@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2024 Senate</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/topojson-client@3"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {} })();</script>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="global-header">
+    <div class="global-header-inner">
+      <a href="./index.html" class="brand" aria-label="Civica home">Civica</a>
+      <nav class="global-nav" aria-label="Main navigation">
+        <a href="./index.html" class="global-nav-link">Features</a>
+        <a href="./elections.html" class="global-nav-link active">Elections</a>
+        <a href="./misc.html" class="global-nav-link">Misc.</a>
+        <a href="./settings.html" class="global-nav-link">Settings</a>
+      </nav>
+      <div class="account-ui" aria-label="Account controls">
+        <button class="login-button" type="button">Log In</button>
+        <button class="account-button" type="button" aria-label="Account">
+          <span class="account-avatar">A</span>
+          <span class="account-label">Account</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="site-shell">
+    <div class="election-package-header">
+      <div class="election-year-strip" aria-label="2024 general election">
+        <span class="year-block red">2</span>
+        <span class="year-block blue">0</span>
+        <span class="year-block red">2</span>
+        <span class="year-block blue">4</span>
+      </div>
+      <nav class="election-package-nav" aria-label="2024 election pages">
+        <a href="./presidency-2024.html" class="election-package-link">Presidency</a>
+        <a href="./house-2024.html" class="election-package-link">House of Representatives</a>
+        <a href="./senate-2024.html" class="election-package-link active">Senate</a>
+        <a href="./governor-2024.html" class="election-package-link">Governor</a>
+        <a href="./state-results-2024.html" class="election-package-link">State Results</a>
+      </nav>
+    </div>
+
+    <header class="site-header">
+      <h1>2024 Senate</h1>
+      <nav class="section-nav" aria-label="Page sections">
+        <a href="#senate-overview">Overview</a>
+        <a href="#senate-state-results">Results by State</a>
+        <a href="#senate-races">Race Board</a>
+      </nav>
+    </header>
+
+    <main class="page-stack">
+      <section id="senate-overview" class="content-panel feature-panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Senate Overview</h2>
+          </div>
+        </div>
+        <div class="ev-bar-card" aria-label="Senate seat totals">
+          <div class="ev-bar-top">
+            <div class="ev-side ev-side-left">
+              <div class="ev-side-meta">
+                <span class="ev-count" id="senate-dem-count">47</span>
+                <span class="ev-name">Democrats</span>
+              </div>
+            </div>
+            <div class="ev-side ev-side-right">
+              <div class="ev-side-meta ev-side-meta-right">
+                <span class="ev-count" id="senate-rep-count">53</span>
+                <span class="ev-name">Republicans</span>
+              </div>
+            </div>
+          </div>
+          <div class="ev-bar-wrap">
+            <div class="ev-bar-center-label">
+              <strong>51</strong>
+              <span>to control</span>
+            </div>
+            <div class="ev-bar-center-tick" aria-hidden="true"></div>
+            <div class="ev-bar-track">
+              <div class="ev-bar-fill ev-bar-dem" id="senate-bar-dem"></div>
+              <div class="ev-bar-fill ev-bar-rep" id="senate-bar-rep"></div>
+            </div>
+          </div>
+          <div class="ev-bar-bottom">
+            <span class="ev-vote-line ev-vote-line-left" id="senate-votes-dem"></span>
+            <span class="ev-total-votes" id="senate-votes-total">2 independents · 35 contests settled in 2024</span>
+            <span class="ev-vote-line ev-vote-line-right" id="senate-votes-rep"></span>
+          </div>
+        </div>
+
+        <div class="map-legend" aria-label="Senate map legend">
+          <div class="legend-group">
+            <span class="legend-title">Dem.</span>
+            <div class="legend-stack">
+              <div class="legend-swatches">
+                <span class="legend-swatch dem-win"></span>
+                <span class="legend-swatch dem-flip"></span>
+              </div>
+              <div class="legend-subtext">
+                <span>Win</span>
+                <span>Flip</span>
+              </div>
+            </div>
+          </div>
+          <div class="legend-group">
+            <span class="legend-title">Rep.</span>
+            <div class="legend-stack">
+              <div class="legend-swatches">
+                <span class="legend-swatch rep-win"></span>
+                <span class="legend-swatch rep-flip"></span>
+              </div>
+              <div class="legend-subtext">
+                <span>Win</span>
+                <span>Flip</span>
+              </div>
+            </div>
+          </div>
+          <div class="legend-group">
+            <span class="legend-title">Ind.</span>
+            <div class="legend-stack">
+              <div class="legend-swatches">
+                <span class="legend-swatch ind-win"></span>
+                <span class="legend-swatch ind-flip"></span>
+              </div>
+              <div class="legend-subtext">
+                <span>Win</span>
+                <span>Flip</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-stage">
+          <div class="national-map-shell senate-map-shell">
+            <svg id="senate-election-map" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet"></svg>
+            <div class="tooltip" id="senate-map-tooltip"></div>
+          </div>
+        </div>
+
+        <div class="results-summary-grid">
+          <div class="summary-stat">
+            <div class="summary-stat-label">Chamber balance</div>
+            <div class="summary-stat-value" id="senate-stat-control">53-47</div>
+            <div class="summary-stat-copy" id="senate-stat-control-copy"></div>
+          </div>
+          <div class="summary-stat">
+            <div class="summary-stat-label">Republican flips</div>
+            <div class="summary-stat-value" id="senate-stat-flips">4</div>
+            <div class="summary-stat-copy" id="senate-stat-flips-copy"></div>
+          </div>
+          <div class="summary-stat">
+            <div class="summary-stat-label">2024 contests</div>
+            <div class="summary-stat-value" id="senate-stat-contested">35</div>
+            <div class="summary-stat-copy" id="senate-stat-contested-copy"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="senate-state-results" class="content-panel">
+        <div class="panel-heading">
+          <div class="panel-heading-inline">
+            <h2>Results by State</h2>
+            <span class="panel-heading-note">Click a state name to open its Senate result page</span>
+          </div>
+          <div class="state-results-sort">
+            <span>Sort by</span>
+            <div class="state-results-sort-toggle" role="tablist" aria-label="Sort Senate state results">
+              <button type="button" class="state-results-sort-button senate-state-results-sort-button is-active" data-sort="margin" aria-pressed="true">
+                Highest margin
+              </button>
+              <button type="button" class="state-results-sort-button senate-state-results-sort-button" data-sort="alphabetical" aria-pressed="false">
+                Alphabetical
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="state-results-layout">
+          <div class="state-results-board" id="senate-state-results-board"></div>
+          <aside class="state-results-sidebar">
+            <div class="rail-card">
+              <h3>At a Glance</h3>
+              <div class="state-mini-stats">
+                <div>
+                  <span>Democratic wins</span>
+                  <strong id="senate-states-won-dem">0</strong>
+                </div>
+                <div>
+                  <span>Republican wins</span>
+                  <strong id="senate-states-won-rep">0</strong>
+                </div>
+                <div>
+                  <span>Independent wins</span>
+                  <strong id="senate-states-won-ind">0</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="rail-card">
+              <h3>Closest Races</h3>
+              <ul class="state-side-list" id="senate-closest-states-list"></ul>
+            </div>
+
+            <div class="rail-card">
+              <h3>Flipped Seats</h3>
+              <ul class="state-side-list" id="senate-flipped-states-list"></ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="senate-races" class="content-panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Race Board</h2>
+          </div>
+        </div>
+        <div class="two-column-grid">
+          <div class="subpanel tall">
+            <h3>Closest Races</h3>
+            <div class="house-note-list" id="senate-closest-list"></div>
+          </div>
+          <div class="subpanel tall">
+            <h3>Flipped Seats</h3>
+            <div class="house-note-list" id="senate-flips-list"></div>
+          </div>
+        </div>
+        <div class="results-board" style="margin-top: 18px;">
+          <div class="results-board-table">
+            <div class="results-board-header">
+              <div>Race</div>
+              <div>Winner</div>
+              <div>Result</div>
+              <div>Status</div>
+            </div>
+            <div id="senate-race-board"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="./senate-2024-data.js"></script>
+  <script src="./senate-2024.js"></script>
+</body>
+</html>

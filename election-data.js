@@ -1,0 +1,71 @@
+// Shared 2024 presidential data for state detail pages.
+
+window.ELECTION_DATA = {
+  "Alabama": { winner: "Trump", ev: 9, rV: "1,462,616", rP: "64.57", dV: "772,412", dP: "34.10" },
+  "Alaska": { winner: "Trump", ev: 3, rV: "184,458", rP: "54.54", dV: "140,026", dP: "41.41" },
+  "Arizona": { winner: "TrumpFlip", ev: 11, rV: "1,770,242", rP: "52.22", dV: "1,582,860", dP: "46.69" },
+  "Arkansas": { winner: "Trump", ev: 6, rV: "759,241", rP: "64.20", dV: "396,905", dP: "33.56" },
+  "California": { winner: "Harris", ev: 54, rV: "6,081,697", rP: "38.33", dV: "9,276,179", dP: "58.47" },
+  "Colorado": { winner: "Harris", ev: 10, rV: "1,377,441", rP: "43.14", dV: "1,728,159", dP: "54.13" },
+  "Connecticut": { winner: "Harris", ev: 7, rV: "736,918", rP: "41.89", dV: "992,053", dP: "56.40" },
+  "Delaware": { winner: "Harris", ev: 3, rV: "214,351", rP: "41.79", dV: "289,758", dP: "56.49" },
+  "District of Columbia": { winner: "Harris", ev: 3, rV: "21,076", rP: "6.47", dV: "294,185", dP: "90.28" },
+  "Florida": { winner: "Trump", ev: 30, rV: "6,110,125", rP: "56.09", dV: "4,683,038", dP: "42.99" },
+  "Georgia": { winner: "TrumpFlip", ev: 16, rV: "2,663,117", rP: "50.72", dV: "2,548,017", dP: "48.53" },
+  "Hawaii": { winner: "Harris", ev: 4, rV: "193,661", rP: "37.48", dV: "313,044", dP: "60.59" },
+  "Idaho": { winner: "Trump", ev: 4, rV: "605,246", rP: "66.87", dV: "274,972", dP: "30.38" },
+  "Illinois": { winner: "Harris", ev: 19, rV: "2,449,079", rP: "43.47", dV: "3,062,863", dP: "54.37" },
+  "Indiana": { winner: "Trump", ev: 11, rV: "1,720,347", rP: "58.58", dV: "1,163,603", dP: "39.62" },
+  "Iowa": { winner: "Trump", ev: 6, rV: "927,019", rP: "55.73", dV: "707,278", dP: "42.52" },
+  "Kansas": { winner: "Trump", ev: 6, rV: "758,802", rP: "57.16", dV: "544,853", dP: "41.04" },
+  "Kentucky": { winner: "Trump", ev: 8, rV: "1,337,494", rP: "64.47", dV: "704,043", dP: "33.94" },
+  "Louisiana": { winner: "Trump", ev: 8, rV: "1,208,505", rP: "60.22", dV: "766,870", dP: "38.21" },
+  "Maine": { winner: "Harris", ev: 2, rV: "377,977", rP: "45.46", dV: "435,652", dP: "52.40" },
+  "Maryland": { winner: "Harris", ev: 10, rV: "1,035,550", rP: "34.08", dV: "1,902,577", dP: "62.62" },
+  "Massachusetts": { winner: "Harris", ev: 11, rV: "1,251,303", rP: "36.02", dV: "2,126,518", dP: "61.22" },
+  "Michigan": { winner: "TrumpFlip", ev: 15, rV: "2,816,636", rP: "49.73", dV: "2,736,533", dP: "48.31" },
+  "Minnesota": { winner: "Harris", ev: 10, rV: "1,519,032", rP: "46.68", dV: "1,656,979", dP: "50.92" },
+  "Mississippi": { winner: "Trump", ev: 6, rV: "747,744", rP: "60.89", dV: "466,668", dP: "38.00" },
+  "Missouri": { winner: "Trump", ev: 10, rV: "1,751,986", rP: "58.49", dV: "1,200,599", dP: "40.08" },
+  "Montana": { winner: "Trump", ev: 4, rV: "352,079", rP: "58.39", dV: "231,906", dP: "38.46" },
+  "Nebraska": { winner: "Trump", ev: 2, rV: "564,816", rP: "59.32", dV: "369,995", dP: "38.86" },
+  "Nevada": { winner: "TrumpFlip", ev: 6, rV: "751,205", rP: "50.59", dV: "705,197", dP: "47.49" },
+  "New Hampshire": { winner: "Harris", ev: 4, rV: "395,523", rP: "47.87", dV: "418,488", dP: "50.65" },
+  "New Jersey": { winner: "Harris", ev: 14, rV: "1,968,215", rP: "46.06", dV: "2,220,713", dP: "51.97" },
+  "New Mexico": { winner: "Harris", ev: 5, rV: "423,391", rP: "45.85", dV: "478,802", dP: "51.85" },
+  "New York": { winner: "Harris", ev: 28, rV: "3,578,899", rP: "43.31", dV: "4,619,195", dP: "55.91" },
+  "North Carolina": { winner: "Trump", ev: 16, rV: "2,898,423", rP: "50.86", dV: "2,715,375", dP: "47.65" },
+  "North Dakota": { winner: "Trump", ev: 3, rV: "246,505", rP: "66.96", dV: "112,327", dP: "30.51" },
+  "Ohio": { winner: "Trump", ev: 17, rV: "3,180,116", rP: "55.14", dV: "2,533,699", dP: "43.93" },
+  "Oklahoma": { winner: "Trump", ev: 7, rV: "1,036,213", rP: "66.16", dV: "499,599", dP: "31.90" },
+  "Oregon": { winner: "Harris", ev: 8, rV: "919,480", rP: "40.97", dV: "1,240,600", dP: "55.27" },
+  "Pennsylvania": { winner: "TrumpFlip", ev: 19, rV: "3,543,308", rP: "50.37", dV: "3,423,042", dP: "48.66" },
+  "Rhode Island": { winner: "Harris", ev: 4, rV: "214,406", rP: "41.76", dV: "285,156", dP: "55.54" },
+  "South Carolina": { winner: "Trump", ev: 9, rV: "1,483,747", rP: "58.23", dV: "1,028,452", dP: "40.36" },
+  "South Dakota": { winner: "Trump", ev: 3, rV: "272,081", rP: "63.43", dV: "146,859", dP: "34.24" },
+  "Tennessee": { winner: "Trump", ev: 11, rV: "1,966,865", rP: "64.19", dV: "1,056,265", dP: "34.47" },
+  "Texas": { winner: "Trump", ev: 40, rV: "6,393,597", rP: "56.14", dV: "4,835,250", dP: "42.46" },
+  "Utah": { winner: "Trump", ev: 6, rV: "883,818", rP: "59.38", dV: "562,566", dP: "37.79" },
+  "Vermont": { winner: "Harris", ev: 3, rV: "119,395", rP: "32.32", dV: "235,791", dP: "63.83" },
+  "Virginia": { winner: "Harris", ev: 13, rV: "2,075,085", rP: "46.05", dV: "2,335,395", dP: "51.83" },
+  "Washington": { winner: "Harris", ev: 12, rV: "1,530,923", rP: "39.01", dV: "2,245,849", dP: "57.23" },
+  "West Virginia": { winner: "Trump", ev: 4, rV: "533,556", rP: "69.97", dV: "214,309", dP: "28.10" },
+  "Wisconsin": { winner: "TrumpFlip", ev: 10, rV: "1,697,626", rP: "49.60", dV: "1,668,229", dP: "48.74" },
+  "Wyoming": { winner: "Trump", ev: 3, rV: "192,633", rP: "71.60", dV: "69,527", dP: "25.84" }
+};
+
+window.DISTRICT_DATA = [
+  { name: "Maine 1", winner: "Harris", ev: 1, rV: "165,214", rP: "38.09", dV: "258,863", dP: "59.69" },
+  { name: "Maine 2", winner: "Trump", ev: 1, rV: "212,763", rP: "53.50", dV: "176,789", dP: "44.46" },
+  { name: "Neb. 1", winner: "Trump", ev: 1, rV: "177,666", rP: "55.49", dV: "136,153", dP: "42.52" },
+  { name: "Neb. 2", winner: "Harris", ev: 1, rV: "148,905", rP: "46.73", dV: "163,541", dP: "51.32" },
+  { name: "Neb. 3", winner: "Trump", ev: 1, rV: "238,245", rP: "76.03", dV: "70,301", dP: "22.44" }
+];
+
+window.DISTRICT_DISPLAY_NAMES = {
+  "Maine 1": "ME-1",
+  "Maine 2": "ME-2",
+  "Neb. 1": "NE-1",
+  "Neb. 2": "NE-2",
+  "Neb. 3": "NE-3"
+};

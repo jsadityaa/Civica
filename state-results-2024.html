@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2024 State Results</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {} })();</script>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="global-header">
+    <div class="global-header-inner">
+      <a href="./index.html" class="brand" aria-label="Civica home">Civica</a>
+      <nav class="global-nav" aria-label="Main navigation">
+        <a href="./index.html" class="global-nav-link">Home</a>
+        <a href="./elections.html" class="global-nav-link active">Elections</a>
+        <a href="./misc.html" class="global-nav-link">Misc.</a>
+        <a href="./settings.html" class="global-nav-link">Settings</a>
+      </nav>
+      <div class="account-ui" aria-label="Account controls">
+        <button class="login-button" type="button">Log In</button>
+        <button class="account-button" type="button" aria-label="Account">
+          <span class="account-avatar">A</span>
+          <span class="account-label">Account</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="site-shell">
+    <div class="election-package-header">
+      <div class="election-year-strip" aria-label="2024 general election">
+        <span class="year-block red">2</span>
+        <span class="year-block blue">0</span>
+        <span class="year-block red">2</span>
+        <span class="year-block blue">4</span>
+      </div>
+      <nav class="election-package-nav" aria-label="2024 election pages">
+        <a href="./presidency-2024.html" class="election-package-link">Presidency</a>
+        <a href="./house-2024.html" class="election-package-link">House of Representatives</a>
+        <a href="./senate-2024.html" class="election-package-link">Senate</a>
+        <a href="./governor-2024.html" class="election-package-link">Governor</a>
+        <a href="./state-results-2024.html" class="election-package-link active">State Results</a>
+      </nav>
+    </div>
+
+    <header class="site-header">
+      <h1>2024 State Results</h1>
+    </header>
+
+    <main class="page-stack">
+      <section class="content-panel">
+        <div class="panel-heading">
+          <div>
+            <h2>State Results Overview</h2>
+          </div>
+        </div>
+        <div class="two-column-grid">
+          <div class="subpanel tall">
+            <h3>State-by-State Picture</h3>
+            <p>Placeholder for dedicated state results modules, maps, and rankings.</p>
+          </div>
+          <div class="subpanel tall">
+            <h3>Context</h3>
+            <p>Placeholder for written context, statewide patterns, and notable regional shifts.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

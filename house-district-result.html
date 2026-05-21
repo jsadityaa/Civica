@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2024 House District Result</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/topojson-client@3"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {} })();</script>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="global-header">
+    <div class="global-header-inner">
+      <a href="./index.html" class="brand" aria-label="Civica home">Civica</a>
+      <nav class="global-nav" aria-label="Main navigation">
+        <a href="./index.html" class="global-nav-link">Home</a>
+        <a href="./elections.html" class="global-nav-link active">Elections</a>
+        <a href="./misc.html" class="global-nav-link">Misc.</a>
+        <a href="./settings.html" class="global-nav-link">Settings</a>
+      </nav>
+      <div class="account-ui" aria-label="Account controls">
+        <button class="login-button" type="button">Log In</button>
+        <button class="account-button" type="button" aria-label="Account">
+          <span class="account-avatar">A</span>
+          <span class="account-label">Account</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="site-shell">
+    <div class="election-package-header">
+      <div class="election-year-strip" aria-label="2024 general election">
+        <span class="year-block red">2</span>
+        <span class="year-block blue">0</span>
+        <span class="year-block red">2</span>
+        <span class="year-block blue">4</span>
+      </div>
+      <nav class="election-package-nav" aria-label="2024 election pages">
+        <a href="./presidency-2024.html" class="election-package-link">Presidency</a>
+        <a href="./house-2024.html" class="election-package-link active">House of Representatives</a>
+        <a href="./senate-2024.html" class="election-package-link">Senate</a>
+        <a href="./governor-2024.html" class="election-package-link">Governor</a>
+        <a href="./state-results-2024.html" class="election-package-link">State Results</a>
+      </nav>
+    </div>
+
+    <main class="page-stack detail-page">
+      <section class="content-panel detail-panel">
+        <a class="detail-back-link" href="./house-2024.html#house-results">← Back to House Results by District</a>
+
+        <div class="detail-heading">
+          <div>
+            <div class="detail-kicker">2024 House Result</div>
+            <h1 id="house-detail-title">Loading…</h1>
+            <p class="detail-subtitle" id="house-detail-subtitle">Certified congressional district result in the 2024 general election.</p>
+          </div>
+        </div>
+
+        <div class="detail-grid">
+          <div class="detail-main-column">
+            <section class="detail-summary-card detail-summary-main" id="house-detail-summary-card">
+              <div class="detail-summary-hero" id="house-detail-summary-hero">
+                <div class="detail-summary-copy">
+                  <div class="detail-summary-kicker">Winner</div>
+                  <h2 class="detail-summary-title" id="house-detail-summary-title">Loading district result…</h2>
+                  <p class="detail-summary-callout" id="house-detail-summary-callout">Race called with certified district totals.</p>
+                </div>
+                <img class="detail-summary-portrait" id="house-detail-summary-portrait" alt="Winning candidate portrait" />
+              </div>
+
+              <div class="detail-stat-row">
+                <div>
+                  <span class="detail-stat-label">Winner</span>
+                  <strong class="detail-stat-value" id="house-detail-winner">—</strong>
+                </div>
+                <div>
+                  <span class="detail-stat-label">District</span>
+                  <strong class="detail-stat-value" id="house-detail-district">—</strong>
+                </div>
+                <div>
+                  <span class="detail-stat-label">Margin</span>
+                  <strong class="detail-stat-value" id="house-detail-margin">—</strong>
+                </div>
+              </div>
+
+              <div class="detail-vote-table-wrap">
+                <table class="detail-vote-table">
+                  <thead>
+                    <tr>
+                      <th>Candidate</th>
+                      <th>Party</th>
+                      <th>Votes</th>
+                      <th>Pct.</th>
+                    </tr>
+                  </thead>
+                  <tbody id="house-detail-vote-body"></tbody>
+                </table>
+              </div>
+
+              <div class="detail-certified-block">
+                <h3 id="house-detail-certified-title">The House vote has been certified here.</h3>
+                <div class="detail-certified-bar">
+                  <div class="detail-certified-segment dem" id="house-detail-certified-dem"></div>
+                  <div class="detail-certified-segment rep" id="house-detail-certified-rep"></div>
+                  <div class="detail-certified-segment ind" id="house-detail-certified-ind"></div>
+                  <div class="detail-certified-segment other" id="house-detail-certified-other"></div>
+                </div>
+                <div class="detail-certified-note" id="house-detail-certified-note">Total votes reported.</div>
+              </div>
+            </section>
+
+            <section class="detail-county-board" id="house-detail-county-board" hidden>
+              <div class="detail-county-board-head">
+                <div>
+                  <h2>County Results</h2>
+                </div>
+              </div>
+              <div class="detail-county-board-table-wrap">
+                <table class="detail-county-board-table">
+                  <thead>
+                    <tr>
+                      <th>County</th>
+                      <th>Margin</th>
+                      <th>Votes</th>
+                      <th>% In</th>
+                    </tr>
+                  </thead>
+                  <tbody id="house-detail-county-board-body"></tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+
+          <aside class="detail-rail">
+            <section class="detail-map-card">
+              <div class="detail-map-head">
+                <div>
+                  <h3>District Map</h3>
+                  <p id="house-detail-map-subtitle">Certified district outline colored by the winning party.</p>
+                </div>
+                <div class="detail-map-legend" id="house-detail-map-legend" aria-label="County map legend" hidden>
+                  <div class="detail-map-legend-row">
+                    <span>Dem.</span>
+                    <div class="detail-map-swatch dem-1"></div>
+                    <div class="detail-map-swatch dem-2"></div>
+                    <div class="detail-map-swatch dem-3"></div>
+                    <div class="detail-map-swatch dem-4"></div>
+                  </div>
+                  <div class="detail-map-legend-row">
+                    <span>Rep.</span>
+                    <div class="detail-map-swatch rep-1"></div>
+                    <div class="detail-map-swatch rep-2"></div>
+                    <div class="detail-map-swatch rep-3"></div>
+                    <div class="detail-map-swatch rep-4"></div>
+                  </div>
+                  <div class="detail-map-legend-scale">
+                    <span></span>
+                    <span>50%</span>
+                    <span>60%</span>
+                    <span>70%</span>
+                    <span>80%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-map-canvas house-detail-map-canvas">
+                <svg id="house-detail-map" viewBox="0 0 540 420" preserveAspectRatio="xMidYMid meet"></svg>
+              </div>
+            </section>
+
+            <div class="rail-card">
+              <h3>Quick Facts</h3>
+              <ul class="rail-list detail-fact-list" id="house-detail-facts"></ul>
+            </div>
+            <div class="rail-card">
+              <h3>Context</h3>
+              <p id="house-detail-context">District-level House result context is loading.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="tooltip" id="house-detail-map-tooltip"></div>
+  <script src="./house-2024-data.js"></script>
+  <script src="./house-districts-geojson.js"></script>
+  <script src="./house-candidate-images.js"></script>
+  <script src="./house-california-overrides.js"></script>
+  <script src="./house-california-county-results.js"></script>
+  <script src="./house-district-result.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elections | Civica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {} })();</script>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="global-header">
+    <div class="global-header-inner">
+      <a href="./index.html" class="brand" aria-label="Civica home">Civica</a>
+
+      <nav class="global-nav" aria-label="Main navigation">
+        <a href="./index.html" class="global-nav-link">Features</a>
+        <a href="./elections.html" class="global-nav-link active">Elections</a>
+        <a href="./misc.html" class="global-nav-link">Misc.</a>
+        <a href="./settings.html" class="global-nav-link">Settings</a>
+      </nav>
+
+      <div class="account-ui" aria-label="Account controls">
+        <button class="login-button" type="button">Log In</button>
+        <button class="account-button" type="button" aria-label="Account">
+          <span class="account-avatar">A</span>
+          <span class="account-label">Account</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="site-shell">
+    <header class="site-header">
+      <h1>Elections</h1>
+      <p class="hub-subtitle">Choose an election to explore.</p>
+    </header>
+
+    <main class="elections-grid">
+      <a class="election-card featured" href="./presidency-2024.html">
+        <span class="card-tag">Featured</span>
+        <h2>2024 US Presidential Election</h2>
+        <p>National map, article, state results, and exit polls.</p>
+      </a>
+
+      <a class="election-card" href="./california-2024.html">
+        <span class="card-tag">State</span>
+        <h2>2024 California Presidential Election</h2>
+        <p>California-focused county map and supporting analysis.</p>
+      </a>
+
+      <a class="election-card" href="./presidential-2020.html">
+        <span class="card-tag">Archive</span>
+        <h2>2020 US Presidential Election</h2>
+        <p>Placeholder page ready for 2020 map and results coverage.</p>
+      </a>
+
+      <a class="election-card" href="./midterms-2022.html">
+        <span class="card-tag">Archive</span>
+        <h2>2022 Midterm Elections</h2>
+        <p>Placeholder page ready for House, Senate, and governor results.</p>
+      </a>
+    </main>
+  </div>
+</body>
+</html>

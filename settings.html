@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings | Civica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {} })();</script>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="global-header">
+    <div class="global-header-inner">
+      <a href="./index.html" class="brand" aria-label="Civica home">Civica</a>
+      <nav class="global-nav" aria-label="Main navigation">
+        <a href="./index.html" class="global-nav-link">Features</a>
+        <a href="./elections.html" class="global-nav-link">Elections</a>
+        <a href="./misc.html" class="global-nav-link">Misc.</a>
+        <a href="./settings.html" class="global-nav-link active">Settings</a>
+      </nav>
+      <div class="account-ui" aria-label="Account controls">
+        <button class="login-button" type="button">Log In</button>
+        <button class="account-button" type="button" aria-label="Account">
+          <span class="account-avatar">A</span>
+          <span class="account-label">Account</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="settings-page">
+    <div class="site-shell settings-shell">
+      <header class="settings-header">
+        <h1>Settings</h1>
+        <p>We can flesh this page out later. For now, this is a simple place to control how Civica looks while you browse.</p>
+      </header>
+
+      <section class="settings-group" aria-labelledby="appearance-heading">
+        <div class="settings-group-intro">
+          <h2 id="appearance-heading">Appearance</h2>
+          <p>Choose your preferred theme. This setting is saved on this device.</p>
+        </div>
+
+        <div class="settings-table" role="table" aria-label="Appearance settings">
+          <div class="settings-row" role="row">
+            <div class="settings-row-copy" role="cell">
+              <strong>Dark mode</strong>
+              <span>Use a darker reading view across the site.</span>
+            </div>
+            <div class="settings-row-action" role="cell">
+              <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">
+                <span class="theme-toggle-track"></span>
+                <span class="theme-toggle-thumb"></span>
+                <span class="theme-toggle-label">Off</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const toggle = document.getElementById('theme-toggle');
+      if (!toggle) return;
+
+      const sync = () => {
+        const isDark = root.getAttribute('data-theme') === 'dark';
+        toggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+        toggle.classList.toggle('is-on', isDark);
+        const label = toggle.querySelector('.theme-toggle-label');
+        if (label) label.textContent = isDark ? 'On' : 'Off';
+      };
+
+      toggle.addEventListener('click', () => {
+        const isDark = root.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+          root.removeAttribute('data-theme');
+          localStorage.removeItem('datahub-theme');
+        } else {
+          root.setAttribute('data-theme', 'dark');
+          localStorage.setItem('datahub-theme', 'dark');
+        }
+        sync();
+      });
+
+      sync();
+    })();
+  </script>
+</body>
+</html>

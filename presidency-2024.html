@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2024 US Presidential Election</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/topojson-client@3"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {} })();</script>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="global-header">
+    <div class="global-header-inner">
+      <a href="./index.html" class="brand" aria-label="Civica home">Civica</a>
+
+      <nav class="global-nav" aria-label="Main navigation">
+        <a href="./index.html" class="global-nav-link">Features</a>
+        <a href="./elections.html" class="global-nav-link active">Elections</a>
+        <a href="./misc.html" class="global-nav-link">Misc.</a>
+        <a href="./settings.html" class="global-nav-link">Settings</a>
+      </nav>
+
+      <div class="account-ui" aria-label="Account controls">
+        <button class="login-button" type="button">Log In</button>
+        <button class="account-button" type="button" aria-label="Account">
+          <span class="account-avatar">A</span>
+          <span class="account-label">Account</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="site-shell">
+    <div class="election-package-header">
+      <div class="election-year-strip" aria-label="2024 general election">
+        <span class="year-block red">2</span>
+        <span class="year-block blue">0</span>
+        <span class="year-block red">2</span>
+        <span class="year-block blue">4</span>
+      </div>
+      <nav class="election-package-nav" aria-label="2024 election pages">
+        <a href="./presidency-2024.html" class="election-package-link active">Presidency</a>
+        <a href="./house-2024.html" class="election-package-link">House of Representatives</a>
+        <a href="./senate-2024.html" class="election-package-link">Senate</a>
+        <a href="./governor-2024.html" class="election-package-link">Governor</a>
+        <a href="./state-results-2024.html" class="election-package-link">State Results</a>
+      </nav>
+    </div>
+
+    <header class="site-header">
+      <h1>2024 US Presidential Election</h1>
+      <nav class="section-nav" aria-label="Page sections">
+        <a href="#national-map-section">National Map</a>
+        <a href="#article">Article</a>
+        <a href="#state-results">Results by State</a>
+        <a href="#exit-polls">Exit Polls</a>
+      </nav>
+    </header>
+
+    <main class="page-stack">
+      <section id="national-map-section" class="content-panel feature-panel">
+        <div class="panel-heading">
+          <div>
+            <h2>National Map</h2>
+          </div>
+        </div>
+        <div class="ev-bar-card" aria-label="Electoral vote totals">
+          <div class="ev-bar-top">
+            <div class="ev-side ev-side-left">
+              <div class="ev-side-meta">
+                <span class="ev-count">226</span>
+                <span class="ev-name">Kamala Harris</span>
+              </div>
+            </div>
+            <div class="ev-side ev-side-right">
+              <div class="ev-side-meta ev-side-meta-right">
+                <span class="ev-count">312</span>
+                <span class="ev-name">Donald J. Trump</span>
+              </div>
+            </div>
+          </div>
+          <div class="ev-bar-wrap">
+            <div class="ev-bar-center-label">
+              <strong>270</strong>
+              <span>to win</span>
+            </div>
+            <div class="ev-bar-center-tick" aria-hidden="true"></div>
+            <div class="ev-bar-track">
+              <div class="ev-bar-fill ev-bar-dem" style="flex: 226;"></div>
+              <div class="ev-bar-fill ev-bar-rep" style="flex: 312;"></div>
+            </div>
+          </div>
+          <div class="ev-bar-bottom">
+            <span class="ev-vote-line ev-vote-line-left">75,019,616 votes (48.43%)</span>
+            <span class="ev-total-votes">154.9 million total votes</span>
+            <span class="ev-vote-line ev-vote-line-right">77,304,184 votes (49.91%)</span>
+          </div>
+        </div>
+        <div class="map-legend" aria-label="Map legend">
+          <div class="legend-group">
+            <span class="legend-title">Dem.</span>
+            <div class="legend-stack">
+              <div class="legend-swatches">
+                <span class="legend-swatch dem-win"></span>
+                <span class="legend-swatch dem-flip"></span>
+              </div>
+              <div class="legend-subtext">
+                <span>Win</span>
+                <span>Flip</span>
+              </div>
+            </div>
+          </div>
+          <div class="legend-group">
+            <span class="legend-title">Rep.</span>
+            <div class="legend-stack">
+              <div class="legend-swatches">
+                <span class="legend-swatch rep-win"></span>
+                <span class="legend-swatch rep-flip"></span>
+              </div>
+              <div class="legend-subtext">
+                <span>Win</span>
+                <span>Flip</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="map-stage">
+          <div class="national-map-shell">
+            <svg id="national-election-map" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet"></svg>
+            <div class="tooltip" id="map-tooltip"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="article" class="content-panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Article / Summary</h2>
+          </div>
+        </div>
+        <p class="byline">Written by Aditya Poduri</p>
+        <div class="article-layout">
+          <article class="article-placeholder article-body">
+            <h3>Background and Early Campaign</h3>
+            <p>
+              The 2024 election cycle technically began on November 15, 2022, when Donald Trump announced his candidacy at Mar-a-Lago only days after a lackluster Republican performance in the midterms. Analysts widely interpreted the move as an effort to freeze the GOP field and get ahead of the constant cloud of Department of Justice investigations. Over the next year, the political world watched a shadow primary unfold as figures like Ron DeSantis, then governor of Florida, and Nikki Haley, former governor of South Carolina and U.S. ambassador to the United Nations, attempted to position themselves as the future of the Republican Party.
+            </p>
+            <p>
+              Five months later, Joe Biden announced his own reelection bid. He centered his campaign on "Bidenomics" and the defense of democracy, setting up a race defined early by deep national polarization and a clear sense of rematch fatigue among the broader electorate.
+            </p>
+            <p>
+              Throughout most of 2023, the news cycle was dominated by Trump's criminal indictments. Across four separate cases, he faced 91 felony counts in multiple jurisdictions. Those legal battles became both a political burden and a fundraising engine for Trump, who described them as politically motivated witch hunts. Democrats, by contrast, remained relatively quiet during the primary phase, allowing Biden to move steadily toward renomination despite persistently low approval ratings and growing concerns about his age and mental sharpness.
+            </p>
+            <p>
+              Inflation and the rising cost of living remained the core kitchen-table issue Republicans used to attack the Biden administration. Democrats, meanwhile, emphasized reproductive rights, believing backlash to the overturning of Roe v. Wade would provide one of their strongest turnout drivers. The Supreme Court also played an unusually direct role in the election environment, ruling that Trump could not be removed from state ballots under the Fourteenth Amendment's insurrection clause despite several state-level efforts to do so.
+            </p>
+            <p>
+              By the end of 2023, the broad shape of the contest had come into focus: a sitting president defending his record against a former president seeking both personal vindication and political restoration. Third-party candidates, particularly Robert F. Kennedy Jr., began attracting attention as signs of frustration with the long-entrenched two-party system. At the same time, international crises including Russia's war in Ukraine and the conflict in Gaza fed into the campaign's foreign-policy arguments. Most polling suggested an extremely narrow race, with many analysts predicting the outcome would be decided by relatively small vote margins in the Midwest.
+            </p>
+
+            <blockquote class="article-pullquote">
+              <p>
+                By late August, the election had been transformed from a Biden-Trump rematch into a compressed, high-stakes sprint between Harris and Trump.
+              </p>
+            </blockquote>
+
+            <h3>Summer 2024: The Summer of Chaos</h3>
+            <p>
+              June 2024 marked a major turning point. The first presidential debate took place unusually early, and Biden's performance on June 27 was widely viewed as catastrophic. He appeared frail, struggled to complete coherent answers, and triggered panic among Democratic donors, strategists, and elected officials. The White House attempted to contain the fallout by insisting he would remain in the race, but the damage was immediate and severe.
+            </p>
+            <p>
+              July proved even more chaotic. The country was shaken when a gunman opened fire at a Trump rally in Butler, Pennsylvania, narrowly missing the former president. The image of Trump raising his fist with a bloodied ear quickly became one of the defining visuals of the campaign and helped unify Republicans at a crucial moment. At the Republican National Convention in Milwaukee, Trump selected Senator JD Vance as his running mate. Although the party tried to project a message of unity, its platform still emphasized mass deportations, aggressive tariff policy, and a hard-edged nationalist agenda.
+            </p>
+            <p>
+              Then, on July 21, Joe Biden posted a letter on social media announcing that he was withdrawing from the race and endorsing Vice President Kamala Harris. Harris consolidated Democratic support with surprising speed, effectively neutralizing the Republican Party's central argument about Biden's age and cognitive decline. Her entrance into the race triggered a major fundraising surge, especially among younger voters who had previously shown limited enthusiasm.
+            </p>
+            <p>
+              Harris later selected Minnesota Governor Tim Walz as her running mate, aiming to strengthen her appeal among Midwestern working-class voters. The Democratic National Convention in Chicago was widely seen as energetic and message-disciplined, emphasizing joy as a political strategy and contrasting that tone with Trump's darker warnings of global war and economic collapse. Even so, the race remained effectively deadlocked in the seven key swing states likely to decide the Electoral College. Protests over Gaza continued to create tension within the Democratic coalition, especially among younger and more progressive voters. By late August, the race had been transformed from a Biden-Trump rematch into a compressed, high-stakes sprint between Harris and Trump.
+            </p>
+
+            <h3>Final Months and November Results</h3>
+            <p>
+              The final stretch of the campaign centered heavily on the Blue Wall states of Pennsylvania, Michigan, and Wisconsin, all of which Biden had carried in 2020. Harris and Trump met for their first and only debate, a performance many observers saw as a clear Harris victory because she repeatedly baited Trump into defensive and undisciplined tangents. Yet the polling barely moved.
+            </p>
+            <p>
+              Trump's campaign leaned deeper into alternative media and the manosphere, including appearances on platforms such as Joe Rogan's, in an effort to reach younger male voters who felt culturally and economically alienated. Harris pursued a different coalition strategy, trying to hold the Democratic base while also appealing to moderate Republicans repelled by Trump's personality but not necessarily persuaded by recent Democratic economic stewardship.
+            </p>
+            <p>
+              A second assassination attempt against Trump heightened the sense of instability surrounding the race and expanded security around both campaigns. Meanwhile, the "Make America Healthy Again" movement gained new relevance when RFK Jr. withdrew from the presidential race and aligned himself with Trump, helping attract anti-establishment and health-skeptical voters distrustful of federal agencies. Trump also intensified his focus on culture-war issues, especially transgender rights and the role of government in education. Harris's closing argument revolved around freedom, especially the freedom to make personal healthcare decisions without government interference.
+            </p>
+            <p>
+              As Election Day approached, turnout appeared strong in several battleground states, particularly Georgia and North Carolina. But on the night of November 5, the results revealed a broader rightward shift across much of the country. Trump not only swept all seven major swing states, but also made notable gains in traditionally Democratic urban areas such as New York City and Chicago. The election also pointed to a significant demographic realignment: Trump improved his standing among Hispanic voters and made gains among Black men.
+            </p>
+            <p>
+              Kamala Harris conceded the following day, emphasizing the importance of a peaceful transfer of power despite the loss. The final outcome made Donald Trump only the second president in American history to win non-consecutive terms, joining Grover Cleveland in that distinction.
+            </p>
+          </article>
+
+          <aside class="article-rail" aria-label="Article sidebar">
+            <div class="rail-card">
+              <h3>Key Dates</h3>
+              <ul class="rail-list">
+                <li><strong>Nov. 15, 2022</strong><span>Trump launches his 2024 campaign.</span></li>
+                <li><strong>Apr. 25, 2023</strong><span>Biden announces reelection bid.</span></li>
+                <li><strong>June 27, 2024</strong><span>Biden's debate performance triggers Democratic panic.</span></li>
+                <li><strong>July 13, 2024</strong><span>Trump survives the Butler rally assassination attempt.</span></li>
+                <li><strong>July 21, 2024</strong><span>Biden withdraws and endorses Kamala Harris.</span></li>
+                <li><strong>Nov. 5, 2024</strong><span>Election Day returns show a broad rightward shift.</span></li>
+              </ul>
+            </div>
+
+            <div class="rail-card">
+              <h3>At a Glance</h3>
+              <div class="rail-stats">
+                <div><span>Winner</span><strong>Donald Trump</strong></div>
+                <div><span>Electoral Vote</span><strong>312-226</strong></div>
+                <div><span>Core Battleground Story</span><strong>Trump swept all seven swing states</strong></div>
+              </div>
+              <div class="rail-ev-bar" aria-label="Electoral vote split">
+                <div class="rail-ev-segment dem" style="width: 42.01%;"></div>
+                <div class="rail-ev-segment rep" style="width: 57.99%;"></div>
+              </div>
+            </div>
+
+            <div class="rail-card">
+              <h3>Key Themes</h3>
+              <p>Economic frustration, age and fitness for office, the courts, reproductive rights, immigration, and the changing media ecosystem all helped define the race.</p>
+            </div>
+
+            <div class="rail-card">
+              <h3>Tickets</h3>
+              <div class="ticket-stack">
+                <div class="ticket-row dem">
+                  <span class="ticket-dot"></span>
+                  <div>
+                    <strong>Harris / Walz</strong>
+                    <span>Democratic ticket</span>
+                  </div>
+                </div>
+                <div class="ticket-row rep">
+                  <span class="ticket-dot"></span>
+                  <div>
+                    <strong>Trump / Vance</strong>
+                    <span>Republican ticket</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="state-results" class="content-panel">
+        <div class="panel-heading">
+          <div class="panel-heading-inline">
+            <h2>Results by State</h2>
+            <span class="panel-heading-note">Click a state name to open its result page</span>
+          </div>
+          <div class="state-results-sort">
+            <span>Sort by</span>
+            <div class="state-results-sort-toggle" role="tablist" aria-label="Sort state results">
+              <button type="button" class="state-results-sort-button is-active" data-sort="margin" aria-pressed="true">
+                Highest margin
+              </button>
+              <button type="button" class="state-results-sort-button" data-sort="alphabetical" aria-pressed="false">
+                Alphabetical
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="state-results-layout">
+          <div class="state-results-board" id="state-results-board"></div>
+          <aside class="state-results-sidebar">
+            <div class="rail-card">
+              <h3>At a Glance</h3>
+              <div class="state-mini-stats">
+                <div>
+                  <span>States won by Harris</span>
+                  <strong id="states-won-harris">19 + DC</strong>
+                </div>
+                <div>
+                  <span>States won by Trump</span>
+                  <strong id="states-won-trump">31</strong>
+                </div>
+                <div>
+                  <span>Flipped states</span>
+                  <strong id="states-flipped-count">6</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="rail-card">
+              <h3>Closest States</h3>
+              <ul class="state-side-list" id="closest-states-list"></ul>
+            </div>
+
+            <div class="rail-card">
+              <h3>Split Districts</h3>
+              <ul class="state-side-list" id="district-results-list"></ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="exit-polls" class="content-panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Exit Polls</h2>
+          </div>
+        </div>
+        <div class="exit-polls-layout">
+          <div class="exit-polls-board" id="exit-polls-board"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./exit-polls-data.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civica</title>
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem('datahub-theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+          }
+        } catch (error) {
+          console.warn('Theme preference unavailable.', error);
+        }
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body class="civica-homepage civica-homepage--blank">
+    <header class="global-header">
+      <div class="global-header-inner">
+        <a href="./index.html" class="brand" aria-label="Civica home">Civica</a>
+        <nav class="global-nav" aria-label="Main navigation">
+          <a href="./index.html" class="global-nav-link active" aria-current="page">Features</a>
+          <a href="./elections.html" class="global-nav-link">Elections</a>
+          <a href="./misc.html" class="global-nav-link">Misc.</a>
+          <a href="./settings.html" class="global-nav-link">Settings</a>
+        </nav>
+        <div class="account-ui" aria-label="Account controls">
+          <button class="login-button" type="button">Log In</button>
+          <button class="account-button" type="button" aria-label="Account">
+            <span class="account-avatar">A</span>
+            <span class="account-label">Account</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="civica-homepage__blank-main" aria-label="Homepage canvas">
+      <section class="civica-homepage__blank-hero">
+        <h1>Projections, forecasting, and trends, all in one.</h1>
+      </section>
+    </main>
+  </body>
+</html>

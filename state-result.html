@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2024 Presidential Result</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/topojson-client@3"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {} })();</script>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="global-header">
+    <div class="global-header-inner">
+      <a href="./index.html" class="brand" aria-label="Civica home">Civica</a>
+
+      <nav class="global-nav" aria-label="Main navigation">
+        <a href="./index.html" class="global-nav-link">Home</a>
+        <a href="./elections.html" class="global-nav-link active">Elections</a>
+        <a href="./misc.html" class="global-nav-link">Misc.</a>
+        <a href="./settings.html" class="global-nav-link">Settings</a>
+      </nav>
+
+      <div class="account-ui" aria-label="Account controls">
+        <button class="login-button" type="button">Log In</button>
+        <button class="account-button" type="button" aria-label="Account">
+          <span class="account-avatar">A</span>
+          <span class="account-label">Account</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="site-shell">
+    <div class="election-package-header">
+      <div class="election-year-strip" aria-label="2024 general election">
+        <span class="year-block red">2</span>
+        <span class="year-block blue">0</span>
+        <span class="year-block red">2</span>
+        <span class="year-block blue">4</span>
+      </div>
+      <nav class="election-package-nav" aria-label="2024 election pages">
+        <a href="./presidency-2024.html" class="election-package-link active">Presidency</a>
+        <a href="./house-2024.html" class="election-package-link">House of Representatives</a>
+        <a href="./senate-2024.html" class="election-package-link">Senate</a>
+        <a href="./governor-2024.html" class="election-package-link">Governor</a>
+        <a href="./state-results-2024.html" class="election-package-link">State Results</a>
+      </nav>
+    </div>
+
+    <main class="page-stack detail-page">
+      <section class="content-panel detail-panel">
+        <a class="detail-back-link" href="./index.html#state-results">← Back to Results by State</a>
+
+        <div class="detail-heading">
+          <div>
+            <div class="detail-kicker">2024 Presidential Result</div>
+            <h1 id="detail-title">Loading...</h1>
+            <p class="detail-subtitle" id="detail-subtitle">State-by-state popular vote and Electoral College result.</p>
+          </div>
+        </div>
+
+        <div class="detail-grid">
+          <section class="detail-summary-card detail-summary-main" id="detail-summary-card">
+            <div class="detail-summary-hero" id="detail-summary-hero">
+              <div class="detail-summary-copy">
+                <div class="detail-summary-kicker">Winner</div>
+                <h2 class="detail-summary-title" id="detail-summary-title">Loading result...</h2>
+                <p class="detail-summary-callout" id="detail-summary-callout">Race called with certified statewide totals.</p>
+              </div>
+              <img class="detail-summary-portrait" id="detail-summary-portrait" alt="Winning candidate portrait" />
+            </div>
+
+            <div class="detail-stat-row">
+              <div>
+                <span class="detail-stat-label">Winner</span>
+                <strong class="detail-stat-value" id="detail-winner-name">—</strong>
+              </div>
+              <div>
+                <span class="detail-stat-label">Electoral Votes</span>
+                <strong class="detail-stat-value" id="detail-ev">—</strong>
+              </div>
+              <div>
+                <span class="detail-stat-label">Margin</span>
+                <strong class="detail-stat-value" id="detail-margin">—</strong>
+              </div>
+            </div>
+
+            <div class="detail-vote-table-wrap">
+              <table class="detail-vote-table">
+                <thead>
+                  <tr>
+                    <th>Candidate</th>
+                    <th>Party</th>
+                    <th>Votes</th>
+                    <th>Pct.</th>
+                  </tr>
+                </thead>
+                <tbody id="detail-vote-body"></tbody>
+              </table>
+            </div>
+
+            <div class="detail-certified-block">
+              <h3 id="detail-certified-title">The vote count has been certified here.</h3>
+              <div class="detail-certified-bar">
+                <div class="detail-certified-segment dem" id="detail-certified-dem"></div>
+                <div class="detail-certified-segment rep" id="detail-certified-rep"></div>
+                <div class="detail-certified-segment other" id="detail-certified-other"></div>
+              </div>
+              <div class="detail-certified-note" id="detail-certified-note">Total votes reported.</div>
+            </div>
+
+            <section class="detail-county-board" id="detail-county-board">
+              <div class="detail-county-board-head">
+                <div>
+                  <h2>County Results</h2>
+                  <p id="detail-county-board-note">County margins and movement since 2020.</p>
+                </div>
+                <div class="detail-county-toolbar" id="detail-county-toolbar">
+                  <div class="detail-county-sort" role="group" aria-label="Sort county results">
+                    <button class="detail-county-sort-button is-active" type="button" data-sort="votes">Votes</button>
+                    <button class="detail-county-sort-button" type="button" data-sort="margin">Margin</button>
+                    <button class="detail-county-sort-button" type="button" data-sort="shift">Shift</button>
+                  </div>
+                  <div class="detail-county-limit" role="group" aria-label="County result count">
+                    <button class="detail-county-limit-button is-active" type="button" data-limit="25">Top 25</button>
+                    <button class="detail-county-limit-button" type="button" data-limit="all">All</button>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-county-board-empty" id="detail-county-board-empty" hidden></div>
+              <div class="detail-county-board-table-wrap" id="detail-county-board-table-wrap">
+                <table class="detail-county-board-table">
+                  <thead>
+                    <tr>
+                      <th>County</th>
+                      <th>Margin</th>
+                      <th>Shift from 2020 pres.</th>
+                      <th>Votes</th>
+                      <th>% In</th>
+                    </tr>
+                  </thead>
+                  <tbody id="detail-county-board-body"></tbody>
+                </table>
+              </div>
+            </section>
+          </section>
+
+          <aside class="detail-rail">
+            <section class="detail-map-card">
+              <div class="detail-map-head">
+                <div>
+                  <h3>County Map</h3>
+                  <p id="detail-map-subtitle">Four-step county margin scale.</p>
+                </div>
+                <div class="detail-map-legend" aria-label="County map legend">
+                  <div class="detail-map-legend-row">
+                    <span>Dem.</span>
+                    <div class="detail-map-swatch dem-1"></div>
+                    <div class="detail-map-swatch dem-2"></div>
+                    <div class="detail-map-swatch dem-3"></div>
+                    <div class="detail-map-swatch dem-4"></div>
+                  </div>
+                  <div class="detail-map-legend-row">
+                    <span>Rep.</span>
+                    <div class="detail-map-swatch rep-1"></div>
+                    <div class="detail-map-swatch rep-2"></div>
+                    <div class="detail-map-swatch rep-3"></div>
+                    <div class="detail-map-swatch rep-4"></div>
+                  </div>
+                  <div class="detail-map-legend-scale">
+                    <span></span>
+                    <span></span>
+                    <span>50</span>
+                    <span>60</span>
+                    <span>70%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="detail-map-canvas" id="detail-map-canvas">
+                <svg id="detail-county-map" viewBox="0 0 540 620" preserveAspectRatio="xMidYMid meet"></svg>
+                <div class="detail-map-empty" id="detail-map-empty" hidden>This page uses county-equivalent or district reporting, so a county map is not available yet.</div>
+              </div>
+            </section>
+
+            <div class="rail-card">
+              <h3>Quick Facts</h3>
+              <ul class="rail-list detail-fact-list" id="detail-facts"></ul>
+            </div>
+            <div class="rail-card">
+              <h3>Context</h3>
+              <p id="detail-context-copy">Detailed result context for this state is loading.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="tooltip" id="detail-map-tooltip"></div>
+  <script src="./election-data.js"></script>
+  <script src="./state-candidate-results.js"></script>
+  <script src="./dc-wards-geojson.js?v=2"></script>
+  <script src="./state-result.js"></script>
+</body>
+</html>
