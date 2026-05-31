@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 184" role="img" aria-label="Election Results">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#ff3e45"/>
+      <stop offset="100%" stop-color="#1f74ff"/>
+    </linearGradient>
+  </defs>
+  <circle cx="92" cy="92" r="92" fill="url(#g1)"/>
+  <g fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="50" y="46" width="84" height="94" rx="6"/>
+    <path d="M68 67h48M68 86h48M68 105h30"/>
+    <circle cx="112" cy="112" r="18"/>
+    <path d="m104 112 6 6 10-12"/>
+  </g>
+</svg>

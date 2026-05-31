@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Presidential 2024 featured map preview">
+  <rect width="320" height="180" fill="none"/>
+  <g transform="translate(16 18)">
+    <path d="M17 20 L42 13 L69 17 L105 21 L142 22 L182 19 L223 24 L265 33 L275 47 L274 64 L258 76 L255 90 L230 96 L200 95 L171 101 L142 106 L111 101 L86 105 L61 99 L34 92 L18 79 L11 60 L13 41 Z" fill="#e14a4a"/>
+    <path d="M17 20 L42 13 L48 53 L34 92 L18 79 L11 60 L13 41 Z" fill="#3d86d6"/>
+    <path d="M48 53 L69 17 L105 21 L111 101 L86 105 L61 99 Z" fill="#3d86d6"/>
+    <path d="M182 19 L223 24 L230 96 L200 95 L171 101 Z" fill="#3d86d6"/>
+    <path d="M255 90 L274 64 L275 47 L265 33 L242 41 L236 58 L238 77 Z" fill="#3d86d6"/>
+    <path d="M138 75 L170 72 L165 102 L142 106 L111 101 L117 79 Z" fill="#3d86d6"/>
+    <path d="M222 58 L236 58 L250 66 L246 84 L229 87 L217 74 Z" fill="#3d86d6"/>
+    <path d="M228 87 L243 92 L240 108 L226 108 L214 97 Z" fill="#e14a4a"/>
+    <path d="M228 96 L249 97 L258 113 L252 128 L230 126 L220 110 Z" fill="#e14a4a"/>
+    <path d="M171 101 L200 95 L230 96 L220 110 L190 116 L167 114 Z" fill="#e14a4a"/>
+    <path d="M8 122 L28 116 L34 131 L29 144 L10 141 L3 132 Z" fill="#e14a4a"/>
+    <path d="M47 142 L52 139 L57 143 L54 149 L47 149 L44 145 Z" fill="#3d86d6"/>
+  </g>
+</svg>

@@ -29,10 +29,12 @@
           <a href="./elections.html" class="global-nav-link">Elections</a>
           <a href="./misc.html" class="global-nav-link">Misc.</a>
           <div class="global-nav-dropdown">
-            <a href="./index.html#our-mission" class="global-nav-link">About Us</a>
-            <div class="global-nav-dropdown-menu">
-              <a href="./index.html#our-mission" class="global-nav-dropdown-link">Our mission</a>
-              <a href="./index.html#our-team" class="global-nav-dropdown-link">Our team</a>
+            <button class="global-nav-link global-nav-dropdown__trigger" type="button" aria-expanded="false" aria-controls="about-dropdown">
+              About Us
+            </button>
+            <div class="global-nav-dropdown__menu" id="about-dropdown" hidden>
+              <a href="#our-mission" class="global-nav-dropdown__link">Our mission</a>
+              <a href="#our-team" class="global-nav-dropdown__link">Our team</a>
             </div>
           </div>
           <a href="./settings.html" class="global-nav-link">Settings</a>
@@ -51,7 +53,7 @@
       <section class="civica-homepage__hero">
         <div class="civica-homepage__hero-inner">
           <h1 class="civica-homepage__headline">Projections, forecasting, and trends, all in one.</h1>
-          <img class="civica-homepage__hero-map" src="file:///Users/adityapoduri/Downloads/Untitled%20design.png" alt="United States election map">
+          <img class="civica-homepage__hero-map" src="./assets/homepage-map-v2.png" alt="United States election map">
         </div>
       </section>
 
@@ -64,7 +66,7 @@
         <div class="civica-homepage__services">
           <article class="civica-service-item">
             <div class="civica-service-item__media">
-              <img src="file:///Users/adityapoduri/Downloads/Untitled%20%28184%20x%20184%20px%29.png" alt="Election Results icon">
+              <img src="./assets/service-election-results.png" alt="Election Results icon">
             </div>
             <div class="civica-service-item__content">
               <h3>Election Results</h3>
@@ -74,7 +76,7 @@
 
           <article class="civica-service-item">
             <div class="civica-service-item__media">
-              <img src="file:///Users/adityapoduri/Downloads/Untitled%20%28184%20x%20184%20px%29%20%283%29.png" alt="Opinion Pieces icon">
+              <img src="./assets/service-opinion-pieces.png" alt="Opinion Pieces icon">
             </div>
             <div class="civica-service-item__content">
               <h3>Opinion Pieces</h3>
@@ -84,7 +86,7 @@
 
           <article class="civica-service-item">
             <div class="civica-service-item__media">
-              <img src="file:///Users/adityapoduri/Downloads/Untitled%20%28184%20x%20184%20px%29%20%281%29.png" alt="Forecasting icon">
+              <img src="./assets/service-forecasting.png" alt="Forecasting icon">
             </div>
             <div class="civica-service-item__content">
               <h3>Forecasting</h3>
@@ -94,7 +96,7 @@
 
           <article class="civica-service-item">
             <div class="civica-service-item__media">
-              <img src="file:///Users/adityapoduri/Downloads/Untitled%20%28184%20x%20184%20px%29%20%284%29.png" alt="Timelines icon">
+              <img src="./assets/service-timelines.png" alt="Timelines icon">
             </div>
             <div class="civica-service-item__content">
               <h3>Timelines</h3>
@@ -104,7 +106,7 @@
 
           <article class="civica-service-item">
             <div class="civica-service-item__media">
-              <img src="file:///Users/adityapoduri/Downloads/Untitled%20%28184%20x%20184%20px%29%20%282%29.png" alt="News icon">
+              <img src="./assets/service-news.png" alt="News icon">
             </div>
             <div class="civica-service-item__content">
               <h3>News</h3>
@@ -114,7 +116,7 @@
 
           <article class="civica-service-item">
             <div class="civica-service-item__media">
-              <img src="file:///Users/adityapoduri/Downloads/Untitled%20%28184%20x%20184%20px%29%20%285%29.png" alt="Fact Checking icon">
+              <img src="./assets/service-fact-checking.png" alt="Fact Checking icon">
             </div>
             <div class="civica-service-item__content">
               <h3>Fact Checking</h3>
@@ -130,7 +132,6 @@
           <p class="civica-homepage__section-caption">Here are some of our featured sites for the day.</p>
           <p class="civica-homepage__featured-timer" id="featured-timer">Resets in 00:00:00</p>
         </div>
-
         <div class="civica-homepage__featured-grid" id="featured-grid"></div>
       </section>
 
@@ -204,6 +205,47 @@
 
     <script>
       (function () {
+        const dropdown = document.querySelector('.global-nav-dropdown');
+        if (!dropdown) return;
+
+        const trigger = dropdown.querySelector('.global-nav-dropdown__trigger');
+        const menu = dropdown.querySelector('.global-nav-dropdown__menu');
+
+        function closeMenu() {
+          dropdown.classList.remove('is-open');
+          trigger.setAttribute('aria-expanded', 'false');
+          menu.hidden = true;
+        }
+
+        function openMenu() {
+          dropdown.classList.add('is-open');
+          trigger.setAttribute('aria-expanded', 'true');
+          menu.hidden = false;
+        }
+
+        trigger.addEventListener('click', function (event) {
+          event.preventDefault();
+          if (dropdown.classList.contains('is-open')) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        });
+
+        document.addEventListener('click', function (event) {
+          if (!dropdown.contains(event.target)) {
+            closeMenu();
+          }
+        });
+
+        document.addEventListener('keydown', function (event) {
+          if (event.key === 'Escape') {
+            closeMenu();
+          }
+        });
+      })();
+
+      (function () {
         const grid = document.getElementById('featured-grid');
         const timer = document.getElementById('featured-timer');
         if (!grid || !timer) return;
@@ -213,19 +255,19 @@
             title: 'Presidential 2024',
             description: 'National map, county breakdowns, and the latest presidential movement.',
             href: './presidency-2024.html',
-            media: './assets/featured-presidential-real.svg'
+            media: './assets/featured-presidency-map-v2.svg'
           },
           {
             title: 'Senate 2024',
             description: 'State race coverage, seat control, and the tightest Senate battlegrounds.',
             href: './senate-2024.html',
-            media: './assets/featured-senate-real.svg'
+            media: './assets/featured-senate-map-v2.svg'
           },
           {
             title: 'House 2024',
             description: 'District-level results, flips, and the path to House control.',
             href: './house-2024.html',
-            media: './assets/featured-house-real.svg'
+            media: './assets/featured-house-map-v2.svg'
           }
         ];
 
@@ -233,7 +275,7 @@
           const now = new Date();
           const pacific = new Date(now.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
           const utcEquivalent = new Date(now.toLocaleString('en-US', { timeZone: 'UTC' }));
-          return { now, pacific, offset: pacific.getTime() - utcEquivalent.getTime() };
+          return { pacific, offset: pacific.getTime() - utcEquivalent.getTime() };
         }
 
         function getPacificKey() {
@@ -258,8 +300,7 @@
         }
 
         function renderFeatured() {
-          const key = getPacificKey();
-          const items = shuffleByKey(featuredPool, key).slice(0, 3);
+          const items = shuffleByKey(featuredPool, getPacificKey()).slice(0, 3);
           grid.innerHTML = items.map(function (item) {
             return `
               <a class="civica-featured-panel" href="${item.href}">
@@ -275,7 +316,21 @@
           }).join('');
         }
 
+        function updateTimer() {
+          const { pacific, offset } = getPacificNow();
+          const nextMidnightPacific = new Date(pacific);
+          nextMidnightPacific.setHours(24, 0, 0, 0);
+          const nextMidnightLocal = new Date(nextMidnightPacific.getTime() - offset);
+          const diff = Math.max(0, nextMidnightLocal.getTime() - Date.now());
+
+          const hours = String(Math.floor(diff / 3600000)).padStart(2, '0');
+          const minutes = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+          const seconds = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+          timer.textContent = `Resets in ${hours}:${minutes}:${seconds}`;
+        }
+
         renderFeatured();
+        updateTimer();
 
         let lastKey = getPacificKey();
         setInterval(function () {
@@ -284,6 +339,7 @@
             lastKey = key;
             renderFeatured();
           }
+          updateTimer();
         }, 1000);
       })();
 
@@ -310,71 +366,5 @@
         });
       })();
     </script>
-    <script>
-      (function () {
-        const timer = document.getElementById('featured-timer');
-        if (!timer) return;
-
-        const pacificFormatter = new Intl.DateTimeFormat('en-US', {
-          timeZone: 'America/Los_Angeles',
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: false
-        });
-
-        function getPacificParts(date) {
-          const parts = pacificFormatter.formatToParts(date);
-          const map = {};
-          parts.forEach(function (part) {
-            if (part.type !== 'literal') map[part.type] = part.value;
-          });
-          return {
-            year: Number(map.year),
-            month: Number(map.month),
-            day: Number(map.day),
-            hour: Number(map.hour),
-            minute: Number(map.minute),
-            second: Number(map.second)
-          };
-        }
-
-        function getPacificKey() {
-          const now = getPacificParts(new Date());
-          return `${now.year}-${String(now.month).padStart(2, '0')}-${String(now.day).padStart(2, '0')}`;
-        }
-
-        let lastKey = getPacificKey();
-        let timerHandle = null;
-
-        function updatePacificResetTimer() {
-          const pacific = getPacificParts(new Date());
-          const secondsLeft = ((23 - pacific.hour) * 3600) + ((59 - pacific.minute) * 60) + (59 - pacific.second);
-          const diff = Math.max(0, secondsLeft);
-
-          const hours = String(Math.floor(diff / 3600)).padStart(2, '0');
-          const minutes = String(Math.floor((diff % 3600) / 60)).padStart(2, '0');
-          const seconds = String(diff % 60).padStart(2, '0');
-          timer.textContent = `Resets in ${hours}:${minutes}:${seconds}`;
-
-          const key = getPacificKey();
-          if (key !== lastKey) {
-            window.location.reload();
-          }
-        }
-
-        function schedulePacificResetTimer() {
-          updatePacificResetTimer();
-          const delay = 1000 - (Date.now() % 1000);
-          timerHandle = window.setTimeout(schedulePacificResetTimer, delay);
-        }
-
-        schedulePacificResetTimer();
-      })();
-    </script>
-    <script src="./nav-dropdown.js"></script>
-</body>
+  </body>
 </html>

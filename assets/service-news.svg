@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 184" role="img" aria-label="News">
+  <defs>
+    <linearGradient id="g5" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#ff3e45"/>
+      <stop offset="100%" stop-color="#1f74ff"/>
+    </linearGradient>
+  </defs>
+  <circle cx="92" cy="92" r="92" fill="url(#g5)"/>
+  <g fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="42" y="44" width="96" height="96" rx="8"/>
+    <path d="M62 66h56M62 84h56M62 102h38M62 120h28"/>
+    <rect x="96" y="96" width="22" height="22" rx="2"/>
+  </g>
+</svg>

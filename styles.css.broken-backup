@@ -137,8 +137,6 @@ body {
 .global-nav-dropdown {
   position: relative;
   flex: 0 0 auto;
-  display: flex;
-  align-items: center;
 }
 
 .global-nav-dropdown-menu {
@@ -174,11 +172,6 @@ body {
 .global-nav-dropdown-link:focus-visible {
   background: rgba(255, 255, 255, 0.06);
   outline: none;
-}
-
-.global-nav-dropdown > .global-nav-link {
-  display: inline-flex;
-  align-items: center;
 }
 
 .account-ui {
@@ -11577,7 +11570,6 @@ html[data-theme="dark"] .site-header__account {
   transition: grid-template-rows 180ms ease;
 }
 
-.civica-faq-item.is-open .civica-faq-item__answer,
 .civica-faq-item__answer.is-open {
   grid-template-rows: 1fr;
 }
@@ -11669,475 +11661,99 @@ html[data-theme="dark"] .civica-featured-panel__media--image {
     min-height: 92px;
   }
 }
-.civica-homepage__footer {
-  padding: 84px 0 52px;
+/* Homepage recovery lock */
+body.civica-homepage .civica-homepage__main {
+  width: min(1120px, calc(100vw - 56px)) !important;
+  margin: 0 auto !important;
+  padding: 56px 0 120px !important;
 }
 
-.civica-homepage__footer-inner {
-  width: min(100%, 980px);
-  gap: 28px;
+body.civica-homepage .civica-homepage__hero {
+  display: flex !important;
+  justify-content: center !important;
+  margin: 0 0 68px !important;
 }
 
-.civica-homepage__footer-heading {
-  font-size: clamp(34px, 4.2vw, 52px);
-  line-height: 1.08;
-  letter-spacing: -0.03em;
-  max-width: 900px;
-}
-
-.civica-homepage__footer-form {
-  gap: 16px;
-}
-
-.civica-homepage__footer-form-row {
-  gap: 16px;
-}
-
-.civica-homepage__footer-input,
-.civica-homepage__footer-textarea {
-  min-height: 58px;
-  padding: 16px 18px;
-  font-size: 18px;
-}
-
-.civica-homepage__footer-textarea {
-  min-height: 220px;
-}
-
-.civica-homepage__footer-submit {
-  min-height: 58px;
-  font-size: 17px;
-  letter-spacing: 0.01em;
-}
-
-.civica-homepage__footer-contact {
-  gap: 28px 56px;
-}
-
-.civica-homepage__footer-contact-item {
-  gap: 10px;
-}
-
-.civica-homepage__footer-contact-link,
-.civica-homepage__footer-contact-copy {
-  font-size: 17px;
-}
-
-.civica-homepage__footer-bottom {
-  margin-top: 8px;
-  padding-top: 22px;
-}
-
-.civica-homepage__footer-brand {
-  font-size: 22px;
-}
-
-.civica-homepage__footer-meta,
-.civica-homepage__footer-copy {
-  font-size: 15px;
-}
-
-@media (max-width: 720px) {
-  .civica-homepage__footer {
-    padding: 64px 0 42px;
-  }
-
-  .civica-homepage__footer-inner {
-    gap: 24px;
-  }
-
-  .civica-homepage__footer-heading {
-    font-size: clamp(28px, 8vw, 40px);
-  }
-
-  .civica-homepage__footer-form-row {
-    gap: 12px;
-  }
-
-  .civica-homepage__footer-input,
-  .civica-homepage__footer-textarea,
-  .civica-homepage__footer-submit {
-    font-size: 16px;
-  }
-
-  .civica-homepage__footer-textarea {
-    min-height: 180px;
-  }
-}
-
-/* Homepage recovery overrides */
-.civica-homepage__main {
-  width: min(1180px, calc(100vw - 48px));
-  margin: 0 auto;
-  padding: 56px 0 120px;
-}
-
-.civica-homepage__hero {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 72px;
-}
-
-.civica-homepage__hero-inner {
-  width: min(100%, 900px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 28px;
-  text-align: center;
-}
-
-.civica-homepage__headline {
-  margin: 0;
-  max-width: 880px;
-  font-family: "Libre Baskerville", Garamond, serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(40px, 5.3vw, 76px);
-  line-height: 1.04;
-  letter-spacing: -0.03em;
-}
-
-.civica-homepage__hero-map {
-  display: block;
-  width: min(100%, 880px);
-  max-width: 880px;
-  height: auto;
-}
-
-.civica-homepage__section {
-  margin-top: 72px;
-}
-
-.civica-homepage__section-stack,
-.civica-homepage__featured-stack {
-  width: min(100%, 980px);
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  text-align: center;
-}
-
-.civica-homepage__section-eyebrow {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-}
-
-.civica-homepage__section-caption {
-  margin: 0;
-  max-width: 980px;
-  font-family: "Libre Baskerville", Garamond, serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(28px, 4vw, 54px);
-  line-height: 1.08;
-  letter-spacing: -0.03em;
-}
-
-.civica-homepage__services {
-  width: min(100%, 1080px);
-  margin: 50px auto 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 44px 56px;
-}
-
-.civica-service-item {
-  display: grid;
-  grid-template-columns: 88px minmax(0, 1fr);
-  align-items: start;
-  column-gap: 22px;
-}
-
-.civica-service-item__media {
-  width: 88px;
-  height: 88px;
-  flex: 0 0 88px;
-  overflow: hidden;
-  border-radius: 50%;
-}
-
-.civica-service-item__media img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.civica-service-item__content {
-  min-width: 0;
-}
-
-.civica-service-item__content h3 {
-  margin: 0 0 10px;
-  font-size: 24px;
-  line-height: 1.15;
-  font-weight: 500;
-}
-
-.civica-service-item__content p {
-  margin: 0;
-  font-size: 15px;
-  line-height: 1.55;
-  color: var(--muted);
-}
-
-.civica-homepage__featured-timer {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-.civica-homepage__featured-grid {
-  width: min(100%, 1080px);
-  margin: 30px auto 0;
-}
-
-.civica-homepage__faq {
-  width: min(100%, 980px);
-  margin: 42px auto 0;
-}
-
-@media (max-width: 900px) {
-  .civica-homepage__main {
-    width: min(100%, calc(100vw - 28px));
-    padding-top: 44px;
-  }
-
-  .civica-homepage__services {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .civica-service-item {
-    grid-template-columns: 76px minmax(0, 1fr);
-    column-gap: 18px;
-  }
-
-  .civica-service-item__media {
-    width: 76px;
-    height: 76px;
-  }
-
-  .civica-service-item__content h3 {
-    font-size: 22px;
-  }
-}
-/* Homepage final override layer */
-body.civica-homepage {
-  background:
-    radial-gradient(circle at top left, rgba(40, 121, 181, 0.10), transparent 28%),
-    radial-gradient(circle at top right, rgba(207, 47, 47, 0.08), transparent 26%),
-    #f4f6fb !important;
-  color: var(--text) !important;
-}
-
-body.civica-homepage .global-header {
-  border-bottom: 1px solid rgba(20, 30, 48, 0.08) !important;
-  background: rgba(244, 246, 251, 0.86) !important;
-}
-
-body.civica-homepage .global-nav-dropdown {
-  position: relative !important;
-}
-
-body.civica-homepage .global-nav-dropdown__trigger {
-  appearance: none !important;
-  -webkit-appearance: none !important;
-  border: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  color: inherit !important;
-  font: inherit !important;
-  cursor: pointer !important;
-}
-
-body.civica-homepage .global-nav-dropdown__menu {
-  position: absolute !important;
-  top: calc(100% + 10px) !important;
-  left: 0 !important;
-  min-width: 170px !important;
-  display: none !important;
-  padding: 8px !important;
-  border: 1px solid rgba(20, 30, 48, 0.10) !important;
-  background: #ffffff !important;
-  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12) !important;
-  z-index: 80 !important;
-}
-
-body.civica-homepage .global-nav-dropdown.is-open .global-nav-dropdown__menu {
-  display: grid !important;
-  gap: 4px !important;
-}
-
-body.civica-homepage .global-nav-dropdown__menu[hidden] {
-  display: none !important;
-}
-
-body.civica-homepage .global-nav-dropdown__link {
-  display: block !important;
-  padding: 10px 12px !important;
-  color: var(--text) !important;
-  text-decoration: none !important;
-  font-size: 13px !important;
-  font-weight: 600 !important;
-}
-
-body.civica-homepage .global-nav-dropdown__link:hover {
-  background: rgba(17, 24, 39, 0.04) !important;
-}
-
-body.civica-homepage .global-nav-link:hover,
-body.civica-homepage .global-nav-link.active,
-body.civica-homepage .global-nav-dropdown.is-open .global-nav-dropdown__trigger {
-  background: rgba(17, 24, 39, 0.06) !important;
+body.civica-homepage .civica-homepage__hero-inner {
+  width: min(100%, 900px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 26px !important;
+  text-align: center !important;
 }
 
 body.civica-homepage .civica-homepage__headline {
-  background: none !important;
-  -webkit-background-clip: border-box !important;
-  background-clip: border-box !important;
-  -webkit-text-fill-color: #f15a4d !important;
-  color: #f15a4d !important;
-  animation: none !important;
+  margin: 0 !important;
+  max-width: 980px !important;
+  font-family: "Garamond", "EB Garamond", "Libre Baskerville", serif !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+  font-size: clamp(58px, 5.8vw, 88px) !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.03em !important;
+  text-align: center !important;
 }
 
-body.civica-homepage .civica-homepage__section-eyebrow,
-body.civica-homepage .civica-homepage__featured-timer,
-body.civica-homepage .civica-featured-panel__body h3,
-body.civica-homepage .civica-service-item__content h3,
-body.civica-homepage .civica-faq-item__question {
-  color: var(--text) !important;
+body.civica-homepage .civica-homepage__hero-map {
+  display: block !important;
+  width: min(100%, 860px) !important;
+  max-width: 860px !important;
+  height: auto !important;
+  margin: 0 auto !important;
 }
 
-body.civica-homepage .civica-service-item__content p,
-body.civica-homepage .civica-featured-panel__body p,
-body.civica-homepage .civica-faq-item__answer p {
-  color: var(--muted) !important;
+body.civica-homepage .civica-homepage__section {
+  margin-top: 74px !important;
 }
 
-body.civica-homepage .civica-faq-item {
-  border-top: 1px solid rgba(20, 30, 48, 0.10) !important;
+body.civica-homepage .civica-homepage__section-stack,
+body.civica-homepage .civica-homepage__featured-stack {
+  width: min(100%, 980px) !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 14px !important;
+  text-align: center !important;
 }
 
-body.civica-homepage .civica-faq-item:last-child {
-  border-bottom: 1px solid rgba(20, 30, 48, 0.10) !important;
+body.civica-homepage .civica-homepage__section-eyebrow {
+  margin: 0 !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.22em !important;
+  text-transform: uppercase !important;
 }
 
-body.civica-homepage .civica-faq-item__question:hover span {
-  color: #111827 !important;
+body.civica-homepage .civica-homepage__section-caption {
+  margin: 0 !important;
+  max-width: 980px !important;
+  font-family: "Libre Baskerville", Garamond, serif !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+  font-size: clamp(30px, 4.2vw, 56px) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.03em !important;
+  text-align: center !important;
 }
 
-body.civica-homepage .civica-featured-panel__media--image img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: contain !important;
-}
-
-html[data-theme="dark"] body.civica-homepage {
-  background:
-    radial-gradient(circle at top left, rgba(40, 121, 181, 0.18), transparent 28%),
-    radial-gradient(circle at top right, rgba(207, 47, 47, 0.14), transparent 26%),
-    #0b0f17 !important;
-  color: #f3f5f7 !important;
-}
-
-html[data-theme="dark"] body.civica-homepage .global-header {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
-  background: rgba(11, 12, 16, 0.86) !important;
-}
-
-html[data-theme="dark"] body.civica-homepage .global-nav-dropdown__menu {
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  background: #11151e !important;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35) !important;
-}
-
-html[data-theme="dark"] body.civica-homepage .global-nav-dropdown__link {
-  color: #f3f5f7 !important;
-}
-
-html[data-theme="dark"] body.civica-homepage .global-nav-dropdown__link:hover {
-  background: rgba(255, 255, 255, 0.05) !important;
-}
-
-html[data-theme="dark"] body.civica-homepage .global-nav-link:hover,
-html[data-theme="dark"] body.civica-homepage .global-nav-link.active,
-html[data-theme="dark"] body.civica-homepage .global-nav-dropdown.is-open .global-nav-dropdown__trigger {
-  background: rgba(255, 255, 255, 0.06) !important;
-}
-
-html[data-theme="dark"] body.civica-homepage .civica-homepage__section-eyebrow,
-html[data-theme="dark"] body.civica-homepage .civica-homepage__featured-timer,
-html[data-theme="dark"] body.civica-homepage .civica-featured-panel__body h3,
-html[data-theme="dark"] body.civica-homepage .civica-service-item__content h3,
-html[data-theme="dark"] body.civica-homepage .civica-faq-item__question {
-  color: #f3f5f7 !important;
-}
-
-html[data-theme="dark"] body.civica-homepage .civica-service-item__content p,
-html[data-theme="dark"] body.civica-homepage .civica-featured-panel__body p,
-html[data-theme="dark"] body.civica-homepage .civica-faq-item__answer p {
-  color: #c6ccd7 !important;
-}
-
-html[data-theme="dark"] body.civica-homepage .civica-faq-item {
-  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-}
-
-html[data-theme="dark"] body.civica-homepage .civica-faq-item:last-child {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-}
-
-html[data-theme="dark"] body.civica-homepage .civica-faq-item__question:hover span {
-  color: #ffffff !important;
-}
-
-html[data-theme="dark"] body.civica-homepage .civica-homepage__hero-map {
-  mix-blend-mode: screen !important;
-  background: transparent !important;
-}
-
-body.civica-homepage .civica-homepage__featured-grid {
-  transform: translateY(10px) !important;
-}
-
-body.civica-homepage .civica-homepage__featured-timer {
-  transform: translateY(7px) !important;
+body.civica-homepage .civica-homepage__services {
+  width: min(100%, 1050px) !important;
+  margin: 48px auto 0 !important;
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 46px 64px !important;
 }
 
 body.civica-homepage .civica-service-item {
-  column-gap: 28px !important;
-}
-
-body.civica-homepage .civica-service-item__media img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  object-position: center center !important;
-}
-
-@media (max-width: 900px) {
-  body.civica-homepage .civica-service-item {
-    column-gap: 20px !important;
-  }
-}
-
-body.civica-homepage .civica-homepage__featured-stack,
-body.civica-homepage .civica-homepage__featured-grid {
-  transform: translateY(5px);
-}
-
-body.civica-homepage .civica-homepage__featured-timer {
-  font-size: 15px !important;
-  letter-spacing: 0.16em !important;
+  display: grid !important;
+  grid-template-columns: 104px minmax(0, 1fr) !important;
+  align-items: start !important;
+  column-gap: 22px !important;
+  min-width: 0 !important;
 }
 
 body.civica-homepage .civica-service-item__media {
@@ -12147,21 +11763,76 @@ body.civica-homepage .civica-service-item__media {
   min-height: 104px !important;
   max-width: 104px !important;
   max-height: 104px !important;
-  aspect-ratio: 1 / 1 !important;
-  flex: 0 0 104px !important;
   border-radius: 50% !important;
   overflow: hidden !important;
+  margin: 0 !important;
+  align-self: start !important;
+  justify-self: start !important;
 }
 
 body.civica-homepage .civica-service-item__media img {
   display: block !important;
   width: 100% !important;
   height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
   object-fit: cover !important;
-  object-position: center !important;
+}
+
+body.civica-homepage .civica-service-item__content {
+  min-width: 0 !important;
+  padding-top: 2px !important;
+}
+
+body.civica-homepage .civica-service-item__content h3 {
+  margin: 0 0 10px !important;
+  font-size: 22px !important;
+  line-height: 1.16 !important;
+  font-weight: 600 !important;
+  font-style: normal !important;
+}
+
+body.civica-homepage .civica-service-item__content p {
+  margin: 0 !important;
+  font-size: 15px !important;
+  line-height: 1.52 !important;
+  color: var(--muted) !important;
+}
+
+body.civica-homepage .civica-homepage__featured-grid {
+  width: min(100%, 1080px) !important;
+  margin: 30px auto 0 !important;
+}
+
+body.civica-homepage .civica-homepage__faq {
+  width: min(100%, 980px) !important;
+  margin: 42px auto 0 !important;
 }
 
 @media (max-width: 900px) {
+  body.civica-homepage .civica-homepage__main {
+    width: min(100%, calc(100vw - 28px)) !important;
+    padding-top: 42px !important;
+  }
+
+  body.civica-homepage .civica-homepage__headline {
+    font-size: clamp(42px, 8vw, 64px) !important;
+  }
+
+  body.civica-homepage .civica-homepage__section-caption {
+    font-size: clamp(26px, 6vw, 40px) !important;
+  }
+
+  body.civica-homepage .civica-homepage__services {
+    grid-template-columns: 1fr !important;
+    gap: 34px !important;
+  }
+
+  body.civica-homepage .civica-service-item {
+    grid-template-columns: 84px minmax(0, 1fr) !important;
+    column-gap: 16px !important;
+  }
+
   body.civica-homepage .civica-service-item__media {
     width: 84px !important;
     height: 84px !important;
@@ -12169,6 +11840,367 @@ body.civica-homepage .civica-service-item__media img {
     min-height: 84px !important;
     max-width: 84px !important;
     max-height: 84px !important;
-    flex: 0 0 84px !important;
+  }
+
+  body.civica-homepage .civica-service-item__content h3 {
+    font-size: 20px !important;
+  }
+
+  body.civica-homepage .civica-service-item__content p {
+    font-size: 14px !important;
+  }
+}
+body.civica-homepage {
+  background:
+    radial-gradient(circle at top left, rgba(40, 121, 181, 0.18), transparent 28%),
+    radial-gradient(circle at top right, rgba(207, 47, 47, 0.14), transparent 26%),
+    #0b0f17;
+  color: #f3f5f7;
+}
+
+body.civica-homepage .global-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(11, 12, 16, 0.86);
+}
+
+body.civica-homepage .global-nav-link:hover,
+body.civica-homepage .global-nav-link.active,
+body.civica-homepage .global-nav-dropdown.is-open .global-nav-dropdown__trigger {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+body.civica-homepage .global-nav-dropdown {
+  position: relative;
+}
+
+body.civica-homepage .global-nav-dropdown__menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  min-width: 170px;
+  display: grid;
+  gap: 4px;
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #11151e;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+  z-index: 80;
+}
+
+body.civica-homepage .global-nav-dropdown__link {
+  display: block;
+  padding: 10px 12px;
+  color: #f3f5f7;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+body.civica-homepage .global-nav-dropdown__link:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+body.civica-homepage .civica-homepage__main {
+  width: min(1120px, calc(100vw - 56px));
+  margin: 0 auto;
+  padding: 56px 0 120px;
+}
+
+body.civica-homepage .civica-homepage__hero {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 72px;
+}
+
+body.civica-homepage .civica-homepage__hero-inner {
+  width: min(100%, 900px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  text-align: center;
+}
+
+body.civica-homepage .civica-homepage__headline {
+  margin: 0;
+  max-width: 980px;
+  font-family: Garamond, "EB Garamond", "Libre Baskerville", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(58px, 5.8vw, 88px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  background: linear-gradient(90deg, #ff4f46 0%, #ff756d 24%, #9d6be8 56%, #3b82f6 100%);
+  background-size: 220% 220%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: civicaHeroShift 6s linear infinite;
+}
+
+@keyframes civicaHeroShift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+body.civica-homepage .civica-homepage__hero-map {
+  display: block;
+  width: min(100%, 860px);
+  max-width: 860px;
+  height: auto;
+  margin: 0 auto;
+}
+
+body.civica-homepage .civica-homepage__section {
+  margin-top: 74px;
+}
+
+body.civica-homepage .civica-homepage__section-stack,
+body.civica-homepage .civica-homepage__featured-stack {
+  width: min(100%, 980px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+body.civica-homepage .civica-homepage__section-eyebrow {
+  margin: 0;
+  color: #f3f5f7;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+body.civica-homepage .civica-homepage__section-caption {
+  margin: 0;
+  max-width: 980px;
+  font-family: "Libre Baskerville", Garamond, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(30px, 4.2vw, 56px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: #f15a4d;
+}
+
+body.civica-homepage .civica-homepage__services {
+  width: min(100%, 1050px);
+  margin: 48px auto 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 46px 64px;
+}
+
+body.civica-homepage .civica-service-item {
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr);
+  align-items: start;
+  column-gap: 22px;
+}
+
+body.civica-homepage .civica-service-item__media {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+body.civica-homepage .civica-service-item__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+body.civica-homepage .civica-service-item__content h3 {
+  margin: 0 0 10px;
+  color: #f3f5f7;
+  font-size: 22px;
+  line-height: 1.16;
+  font-weight: 600;
+}
+
+body.civica-homepage .civica-service-item__content p {
+  margin: 0;
+  color: #c6ccd7;
+  font-size: 15px;
+  line-height: 1.52;
+}
+
+body.civica-homepage .civica-homepage__featured-timer {
+  margin: 0;
+  color: #d5d9e3;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+body.civica-homepage .civica-homepage__featured-grid {
+  width: min(100%, 1080px);
+  margin: 30px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+}
+
+body.civica-homepage .civica-featured-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  text-decoration: none;
+  color: inherit;
+}
+
+body.civica-homepage .civica-featured-panel__media--image {
+  aspect-ratio: 16 / 10;
+}
+
+body.civica-homepage .civica-featured-panel__media--image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+body.civica-homepage .civica-featured-panel__body h3 {
+  margin: 0 0 8px;
+  color: #f3f5f7;
+  font-size: 24px;
+  line-height: 1.12;
+}
+
+body.civica-homepage .civica-featured-panel__body p {
+  margin: 0;
+  color: #c6ccd7;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+body.civica-homepage .civica-homepage__faq {
+  width: min(100%, 980px);
+  margin: 42px auto 0;
+}
+
+body.civica-homepage .civica-faq-item {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.civica-homepage .civica-faq-item:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.civica-homepage .civica-faq-item__question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 0;
+  border: 0;
+  background: transparent;
+  color: #f3f5f7;
+  text-align: left;
+  cursor: pointer;
+}
+
+body.civica-homepage .civica-faq-item__question:hover span {
+  color: #ffffff;
+}
+
+body.civica-homepage .civica-faq-item__question span {
+  display: block;
+  font-size: clamp(20px, 1.45vw, 23px);
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+body.civica-homepage .civica-faq-item__question::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: #f15a4d;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+body.civica-homepage .civica-faq-item.is-open .civica-faq-item__question::after {
+  content: "−";
+}
+
+body.civica-homepage .civica-faq-item__answer-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 180ms ease;
+}
+
+body.civica-homepage .civica-faq-item.is-open .civica-faq-item__answer-wrap {
+  grid-template-rows: 1fr;
+}
+
+body.civica-homepage .civica-faq-item__answer {
+  overflow: hidden;
+}
+
+body.civica-homepage .civica-faq-item__answer p {
+  margin: 0 0 22px;
+  color: #c6ccd7;
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+body.civica-homepage .civica-faq-item__answer a {
+  background: linear-gradient(90deg, #ff4f46 0%, #9d6be8 50%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-decoration: none;
+}
+
+body.civica-homepage .civica-homepage__anchor-section {
+  height: 1px;
+}
+
+@media (max-width: 900px) {
+  body.civica-homepage .civica-homepage__main {
+    width: min(100%, calc(100vw - 28px));
+    padding-top: 42px;
+  }
+
+  body.civica-homepage .civica-homepage__headline {
+    font-size: clamp(42px, 8vw, 64px);
+  }
+
+  body.civica-homepage .civica-homepage__section-caption {
+    font-size: clamp(26px, 6vw, 40px);
+  }
+
+  body.civica-homepage .civica-homepage__services,
+  body.civica-homepage .civica-homepage__featured-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body.civica-homepage .civica-service-item {
+    grid-template-columns: 84px minmax(0, 1fr);
+    column-gap: 16px;
+  }
+
+  body.civica-homepage .civica-service-item__media {
+    width: 84px;
+    height: 84px;
+  }
+
+  body.civica-homepage .civica-service-item__content h3 {
+    font-size: 20px;
+  }
+
+  body.civica-homepage .civica-service-item__content p,
+  body.civica-homepage .civica-featured-panel__body p {
+    font-size: 14px;
   }
 }

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Senate 2024 featured map preview">
+  <rect width="320" height="180" fill="none"/>
+  <g transform="translate(18 24)">
+    <path d="M18 19 L43 13 L71 18 L106 21 L142 22 L180 20 L220 25 L258 34 L267 46 L264 62 L250 71 L246 83 L224 87 L198 87 L170 92 L143 96 L111 94 L87 97 L60 93 L35 87 L20 75 L15 59 L16 40 Z" fill="#20293b"/>
+    <path d="M18 19 L43 13 L48 50 L34 87 L20 75 L15 59 L16 40 Z" fill="#4e95e1"/>
+    <path d="M48 50 L71 18 L106 21 L111 94 L87 97 L60 93 Z" fill="#283247"/>
+    <path d="M180 20 L220 25 L224 87 L198 87 L170 92 Z" fill="#4e95e1"/>
+    <path d="M246 83 L264 62 L267 46 L258 34 L236 41 L231 57 L233 72 Z" fill="#283247"/>
+    <g fill="#eb5c5c">
+      <circle cx="95" cy="53" r="10"/>
+      <circle cx="126" cy="49" r="10"/>
+      <circle cx="160" cy="56" r="10"/>
+      <circle cx="206" cy="60" r="10"/>
+      <circle cx="235" cy="72" r="10"/>
+    </g>
+    <g fill="#4e95e1">
+      <circle cx="64" cy="65" r="9"/>
+      <circle cx="143" cy="77" r="9"/>
+      <circle cx="188" cy="45" r="9"/>
+    </g>
+    <g fill="#f2c14e">
+      <circle cx="112" cy="70" r="4"/>
+      <circle cx="175" cy="66" r="4"/>
+      <circle cx="221" cy="53" r="4"/>
+    </g>
+  </g>
+</svg>
