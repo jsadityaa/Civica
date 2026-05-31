@@ -11500,6 +11500,182 @@ html[data-theme="dark"] .site-header__account {
   height: 1px;
 }
 
+.civica-homepage__footer {
+  width: 100%;
+  margin-top: 64px;
+  background: #000000;
+}
+
+.civica-homepage__footer-inner {
+  width: min(100%, 1320px);
+  margin: 0 auto;
+  padding: 10px 24px;
+  display: grid;
+  gap: 28px;
+}
+
+.civica-homepage__footer-contact-grid {
+  width: min(100%, 940px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 64px;
+}
+
+.civica-homepage__footer-contact-column {
+  display: grid;
+  gap: 14px;
+}
+
+.civica-homepage__footer-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #ffffff;
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  font-size: clamp(16px, 1.25vw, 22px);
+  line-height: 1.2;
+}
+
+.civica-homepage__footer-contact-icon {
+  flex: 0 0 auto;
+  display: block;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.civica-homepage__footer-contact-icon--gmail {
+  width: 32px;
+  height: 24px;
+}
+
+.civica-homepage__footer-contact-link:hover,
+.civica-homepage__footer-contact-link:focus-visible {
+  opacity: 0.88;
+  outline: none;
+}
+
+.civica-homepage__footer-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.civica-homepage__footer-meta {
+  display: grid;
+  gap: 8px;
+}
+
+.civica-homepage__footer-brand {
+  margin: 0;
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: clamp(22px, 2vw, 30px);
+  line-height: 1;
+  font-weight: 700;
+}
+
+.civica-homepage__footer-legal {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.86);
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  font-size: clamp(14px, 1.1vw, 18px);
+  line-height: 1.4;
+}
+
+.civica-homepage__footer-legal a,
+.civica-homepage__footer-copy {
+  color: rgba(255, 255, 255, 0.86);
+  font-family: "Inter", sans-serif;
+  font-size: clamp(14px, 1.1vw, 18px);
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.civica-homepage__footer-legal a:hover,
+.civica-homepage__footer-legal a:focus-visible {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  outline: none;
+}
+
+.civica-homepage__footer-copy {
+  margin: 0;
+  flex: 0 0 auto;
+  color: #ffffff;
+}
+
+.civica-homepage__feedback-form {
+  width: min(100%, 980px);
+  margin: 24px auto 0;
+  display: grid;
+  gap: 14px;
+}
+
+.civica-homepage__feedback-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.civica-homepage__feedback-input,
+.civica-homepage__feedback-textarea {
+  width: 100%;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  padding: 15px 16px;
+  outline: none;
+  transition: border-color 140ms ease, box-shadow 140ms ease, background-color 140ms ease;
+}
+
+.civica-homepage__feedback-input::placeholder,
+.civica-homepage__feedback-textarea::placeholder {
+  color: var(--muted);
+}
+
+.civica-homepage__feedback-input:focus,
+.civica-homepage__feedback-textarea:focus {
+  border-color: rgba(223, 80, 71, 0.42);
+  box-shadow: 0 0 0 3px rgba(223, 80, 71, 0.08);
+}
+
+.civica-homepage__feedback-textarea {
+  min-height: 200px;
+  resize: vertical;
+}
+
+.civica-homepage__feedback-submit {
+  border: 0;
+  background: linear-gradient(90deg, #df5047 0%, #d94d45 100%);
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 18px 22px;
+  cursor: pointer;
+  transition: filter 140ms ease, transform 140ms ease;
+}
+
+.civica-homepage__feedback-submit:hover,
+.civica-homepage__feedback-submit:focus-visible {
+  filter: brightness(1.03);
+  transform: translateY(-1px);
+  outline: none;
+}
+
 .civica-homepage__faq {
   width: min(1200px, calc(100vw - 32px));
   margin: 32px auto 72px;
@@ -11637,6 +11813,63 @@ html[data-theme="dark"] .civica-featured-panel {
 
 html[data-theme="dark"] .civica-faq-item {
   border-color: rgba(139, 193, 255, 0.14);
+}
+
+html[data-theme="dark"] .civica-homepage__feedback-input,
+html[data-theme="dark"] .civica-homepage__feedback-textarea {
+  border-color: rgba(139, 193, 255, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+  color: #f3f5f7;
+}
+
+html[data-theme="dark"] .civica-homepage__feedback-input::placeholder,
+html[data-theme="dark"] .civica-homepage__feedback-textarea::placeholder {
+  color: #aeb6c4;
+}
+
+html[data-theme="dark"] .civica-homepage__feedback-input:focus,
+html[data-theme="dark"] .civica-homepage__feedback-textarea:focus {
+  border-color: rgba(223, 80, 71, 0.5);
+  box-shadow: 0 0 0 3px rgba(223, 80, 71, 0.12);
+}
+
+@media (max-width: 720px) {
+  .civica-homepage__footer-inner {
+    gap: 24px;
+  }
+
+  .civica-homepage__footer-contact-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .civica-homepage__footer-contact-link {
+    gap: 10px;
+    font-size: 16px;
+  }
+
+  .civica-homepage__footer-contact-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .civica-homepage__footer-contact-icon--gmail {
+    width: 28px;
+    height: 20px;
+  }
+
+  .civica-homepage__footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .civica-homepage__feedback-row {
+    grid-template-columns: 1fr;
+  }
+
+  .civica-homepage__feedback-textarea {
+    min-height: 170px;
+  }
 }
 
 html[data-theme="dark"] .civica-featured-panel__media {
