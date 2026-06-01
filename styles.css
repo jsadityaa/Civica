@@ -11502,8 +11502,8 @@ html[data-theme="dark"] .site-header__account {
 
 .civica-homepage__footer {
   width: 100%;
-  margin-top: 64px;
-  background: #000000;
+  margin-top: 24px;
+  background: #ffffff;
 }
 
 .civica-homepage__footer-inner {
@@ -11512,6 +11512,12 @@ html[data-theme="dark"] .site-header__account {
   padding: 10px 24px;
   display: grid;
   gap: 28px;
+}
+
+.civica-homepage__footer-caption {
+  width: auto;
+  max-width: none;
+  margin: 0 auto 17px;
 }
 
 .civica-homepage__footer-contact-grid {
@@ -11527,11 +11533,20 @@ html[data-theme="dark"] .site-header__account {
   gap: 14px;
 }
 
+.civica-homepage__footer-contact-label {
+  margin: 0;
+  color: rgba(16, 24, 40, 0.72);
+  font-family: "Inter", sans-serif;
+  font-size: clamp(16px, 1.1vw, 18px);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
 .civica-homepage__footer-contact-link {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  color: #ffffff;
+  color: #101828;
   text-decoration: none;
   font-family: "Inter", sans-serif;
   font-size: clamp(16px, 1.25vw, 22px);
@@ -11558,6 +11573,7 @@ html[data-theme="dark"] .site-header__account {
 }
 
 .civica-homepage__footer-bottom {
+  position: relative;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -11571,7 +11587,7 @@ html[data-theme="dark"] .site-header__account {
 
 .civica-homepage__footer-brand {
   margin: 0;
-  color: #ffffff;
+  color: #101828;
   font-family: "Inter", sans-serif;
   font-size: clamp(22px, 2vw, 30px);
   line-height: 1;
@@ -11583,7 +11599,7 @@ html[data-theme="dark"] .site-header__account {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: rgba(255, 255, 255, 0.86);
+  color: rgba(16, 24, 40, 0.8);
   text-decoration: none;
   font-family: "Inter", sans-serif;
   font-size: clamp(14px, 1.1vw, 18px);
@@ -11592,7 +11608,7 @@ html[data-theme="dark"] .site-header__account {
 
 .civica-homepage__footer-legal a,
 .civica-homepage__footer-copy {
-  color: rgba(255, 255, 255, 0.86);
+  color: rgba(16, 24, 40, 0.8);
   font-family: "Inter", sans-serif;
   font-size: clamp(14px, 1.1vw, 18px);
   line-height: 1.4;
@@ -11601,7 +11617,7 @@ html[data-theme="dark"] .site-header__account {
 
 .civica-homepage__footer-legal a:hover,
 .civica-homepage__footer-legal a:focus-visible {
-  color: #ffffff;
+  color: #101828;
   text-decoration: underline;
   text-underline-offset: 0.18em;
   outline: none;
@@ -11610,7 +11626,10 @@ html[data-theme="dark"] .site-header__account {
 .civica-homepage__footer-copy {
   margin: 0;
   flex: 0 0 auto;
-  color: #ffffff;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #101828;
 }
 
 .civica-homepage__feedback-form {
@@ -11903,12 +11922,12 @@ html[data-theme="dark"] .civica-featured-panel__media--image {
   }
 }
 .civica-homepage__footer {
-  padding: 84px 0 52px;
+  padding: 36px 0 24px;
 }
 
 .civica-homepage__footer-inner {
   width: min(100%, 980px);
-  gap: 28px;
+  gap: 20px;
 }
 
 .civica-homepage__footer-heading {
@@ -11957,8 +11976,8 @@ html[data-theme="dark"] .civica-featured-panel__media--image {
 }
 
 .civica-homepage__footer-bottom {
-  margin-top: 8px;
-  padding-top: 22px;
+  margin-top: 0;
+  padding-top: 10px;
 }
 
 .civica-homepage__footer-brand {
@@ -11972,11 +11991,11 @@ html[data-theme="dark"] .civica-featured-panel__media--image {
 
 @media (max-width: 720px) {
   .civica-homepage__footer {
-    padding: 64px 0 42px;
+    padding: 28px 0 20px;
   }
 
   .civica-homepage__footer-inner {
-    gap: 24px;
+    gap: 18px;
   }
 
   .civica-homepage__footer-heading {
@@ -11996,6 +12015,37 @@ html[data-theme="dark"] .civica-featured-panel__media--image {
   .civica-homepage__footer-textarea {
     min-height: 180px;
   }
+}
+
+html[data-theme="dark"] .civica-homepage__footer {
+  background: #000000;
+}
+
+html[data-theme="dark"] .civica-homepage__footer-contact-label {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+html[data-theme="dark"] .civica-homepage__footer-contact-link {
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .civica-homepage__footer-brand {
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .civica-homepage__footer-legal {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+html[data-theme="dark"] .civica-homepage__footer-legal a,
+html[data-theme="dark"] .civica-homepage__footer-copy {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+html[data-theme="dark"] .civica-homepage__footer-legal a:hover,
+html[data-theme="dark"] .civica-homepage__footer-legal a:focus-visible,
+html[data-theme="dark"] .civica-homepage__footer-copy {
+  color: #ffffff;
 }
 
 /* Homepage recovery overrides */
