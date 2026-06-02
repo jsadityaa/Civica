@@ -10,7 +10,7 @@
   <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {} })();</script>
   <link rel="stylesheet" href="./styles.css" />
 </head>
-<body>
+<body class="terms-page">
   <header class="global-header">
     <div class="global-header-inner">
       <a href="./index.html" class="brand" aria-label="Civica home">Civica</a>
@@ -43,8 +43,8 @@
       <p class="hub-subtitle">These terms explain how Civica may be used and what users can expect from the platform.</p>
     </header>
 
-    <section class="content-panel">
-      <div class="subpanel tall">
+    <section class="content-panel terms-page__content-panel">
+      <div class="subpanel tall terms-page__subpanel">
         <h3>Use of the site</h3>
         <p>Civica is provided for informational, educational, and research purposes. By using the site, you agree not to misuse the platform, interfere with its operation, or present Civica material in a misleading way.</p>
 

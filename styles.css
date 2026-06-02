@@ -2631,6 +2631,21 @@ body {
   min-height: 260px;
 }
 
+.terms-page .terms-page__content-panel {
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+}
+
+.terms-page .terms-page__subpanel {
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  min-height: 0;
+}
+
 .house-note-list {
   display: grid;
   gap: 10px;
