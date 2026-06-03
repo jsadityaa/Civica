@@ -68,7 +68,7 @@
             </div>
             <div class="civica-service-item__content">
               <h3>Election Results</h3>
-              <p>We provide election results from all around the United States. From time to time, we may even include international elections such as ones from Canada and the EU.</p>
+              <p>We provide election results from all around the United States. However, we are currently working on major expansions that will soon offer elections from a significant amount of nations worldwide.</p>
             </div>
           </article>
 
@@ -78,7 +78,7 @@
             </div>
             <div class="civica-service-item__content">
               <h3>Opinion Pieces</h3>
-              <p>At times, our site developers enjoy writing little op-eds of their own to share their thoughts on social and economic issues. We will soon open this up to allow users to create their own op-eds and upload them to a forum.</p>
+              <p>Users can write about their own thoughts and analyses on political, economic and social issues. Civica is a hub for opinions and discussion among users.</p>
             </div>
           </article>
 
@@ -88,7 +88,7 @@
             </div>
             <div class="civica-service-item__content">
               <h3>Forecasting</h3>
-              <p>One of our other primary services are forecasts for upcoming elections. If you're wondering what the odds are of your favorite candidate winning something, it's all here.</p>
+              <p>One of our other primary services are forecasts for upcoming elections, which are heavily analyzed and reviewed. Users will find that predictions of candidate victories down to the county level are highly accessible.</p>
             </div>
           </article>
 
@@ -118,7 +118,7 @@
             </div>
             <div class="civica-service-item__content">
               <h3>Fact Checking</h3>
-              <p>We hate to see our viewers go misinformed. We do our best to make sure that everyone on this site gets 100% of the facts, no matter what.</p>
+              <p>Misinformation damages public trust. Civica helps users separate fact from fiction by reviewing debates, public statements, documents, and claims from political leaders using reliable sources and clear, transparent fact-checking.</p>
             </div>
           </article>
         </div>
@@ -138,6 +138,10 @@
         <div class="civica-homepage__section-stack">
           <p class="civica-homepage__section-eyebrow">FAQ</p>
           <p class="civica-homepage__section-caption">Here are some of the questions we get a lot.</p>
+        </div>
+
+        <div class="civica-homepage__faq-controls">
+          <button class="civica-homepage__faq-toggle" id="faq-toggle-all" type="button">Expand all</button>
         </div>
 
         <div class="civica-homepage__faq">
@@ -312,6 +316,21 @@
       (function () {
         const items = Array.from(document.querySelectorAll('.civica-faq-item'));
         if (!items.length) return;
+        const toggleAll = document.getElementById('faq-toggle-all');
+
+        function syncToggleLabel() {
+          if (!toggleAll) return;
+          const allOpen = items.every(function (item) {
+            return item.classList.contains('is-open');
+          });
+          toggleAll.textContent = allOpen ? 'Collapse all' : 'Expand all';
+        }
+
+        function setItemState(item, isOpen) {
+          item.classList.toggle('is-open', isOpen);
+          const button = item.querySelector('.civica-faq-item__question');
+          button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        }
 
         items.forEach(function (item) {
           const button = item.querySelector('.civica-faq-item__question');
@@ -319,17 +338,29 @@
             const isOpen = item.classList.contains('is-open');
 
             items.forEach(function (other) {
-              other.classList.remove('is-open');
-              const otherButton = other.querySelector('.civica-faq-item__question');
-              otherButton.setAttribute('aria-expanded', 'false');
+              setItemState(other, false);
             });
 
             if (!isOpen) {
-              item.classList.add('is-open');
-              button.setAttribute('aria-expanded', 'true');
+              setItemState(item, true);
             }
+
+            syncToggleLabel();
           });
         });
+
+        if (toggleAll) {
+          toggleAll.addEventListener('click', function () {
+            const allOpen = items.every(function (item) {
+              return item.classList.contains('is-open');
+            });
+            items.forEach(function (item) {
+              setItemState(item, !allOpen);
+            });
+            syncToggleLabel();
+          });
+          syncToggleLabel();
+        }
       })();
     </script>
     <script>

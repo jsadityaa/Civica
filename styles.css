@@ -2646,6 +2646,14 @@ body {
   min-height: 0;
 }
 
+.terms-page .terms-page__title {
+  width: auto;
+  max-width: none;
+  margin: 0;
+  text-align: left;
+  color: #df5047 !important;
+}
+
 .house-note-list {
   display: grid;
   gap: 10px;
@@ -11003,6 +11011,10 @@ html[data-theme="dark"] .civica-homepage--restored .civica-cover__placeholder {
   line-height: 1.5 !important;
 }
 
+.terms-page .site-shell > .site-header h1.terms-page__title {
+  color: #df5047 !important;
+}
+
 /* Final nav lock: same dark header everywhere */
 .site-header {
   position: sticky;
@@ -11684,6 +11696,33 @@ html[data-theme="dark"] .site-header__account {
   gap: 0;
 }
 
+.civica-homepage__faq-controls {
+  width: min(1200px, calc(100vw - 32px));
+  margin: 18px auto 0;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 125px;
+}
+
+.civica-homepage__faq-toggle {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.3;
+  cursor: pointer;
+  transition: color 140ms ease, opacity 140ms ease;
+}
+
+.civica-homepage__faq-toggle:hover,
+.civica-homepage__faq-toggle:focus-visible {
+  color: var(--text);
+  outline: none;
+}
+
 .civica-faq-item {
   border-top: 1px solid rgba(15, 23, 42, 0.12);
   padding: 0;
@@ -12292,6 +12331,15 @@ body.civica-homepage .civica-faq-item:last-child {
 
 body.civica-homepage .civica-faq-item__question:hover span {
   color: #111827 !important;
+}
+
+body.civica-homepage .civica-homepage__faq-toggle {
+  color: #ffffff !important;
+}
+
+body.civica-homepage .civica-homepage__faq-toggle:hover,
+body.civica-homepage .civica-homepage__faq-toggle:focus-visible {
+  color: var(--text) !important;
 }
 
 body.civica-homepage .civica-featured-panel__media--image img {
