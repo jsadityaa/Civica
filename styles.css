@@ -32,10 +32,14 @@ html[data-theme="dark"] {
 
 html {
   scroll-behavior: smooth;
+  min-height: 100%;
 }
 
 body {
   margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   font-family: "Inter", sans-serif;
   background:
     radial-gradient(circle at top left, var(--page-glow-left), transparent 26%),
@@ -2644,6 +2648,7 @@ body {
   border-radius: 0;
   padding: 0;
   min-height: 0;
+  color: #111827;
 }
 
 .terms-page .terms-page__title {
@@ -2652,6 +2657,48 @@ body {
   margin: 0;
   text-align: left;
   color: #df5047 !important;
+}
+
+.terms-page .site-shell > .site-header .hub-subtitle,
+.terms-page .site-shell > .site-header p,
+.terms-page .terms-page__subpanel p,
+.terms-page .terms-page__subpanel li,
+.terms-page .terms-page__subpanel a {
+  color: #111827 !important;
+}
+
+.terms-page .terms-page__subpanel h3 {
+  color: #df5047 !important;
+}
+
+.terms-page .terms-page__subpanel h3 {
+  margin: 28px 0 10px;
+}
+
+.terms-page .terms-page__subpanel p + h3,
+.terms-page .terms-page__subpanel ul + h3 {
+  margin-top: 34px;
+}
+
+.terms-page .terms-page__subpanel p,
+.terms-page .terms-page__subpanel ul {
+  margin: 0 0 14px;
+}
+
+.terms-page .terms-page__subpanel ul {
+  padding-left: 22px;
+}
+
+html[data-theme="dark"] .terms-page .terms-page__subpanel {
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .terms-page .site-shell > .site-header .hub-subtitle,
+html[data-theme="dark"] .terms-page .site-shell > .site-header p,
+html[data-theme="dark"] .terms-page .terms-page__subpanel p,
+html[data-theme="dark"] .terms-page .terms-page__subpanel li,
+html[data-theme="dark"] .terms-page .terms-page__subpanel a {
+  color: #ffffff !important;
 }
 
 .house-note-list {
@@ -11529,7 +11576,7 @@ html[data-theme="dark"] .site-header__account {
 
 .civica-homepage__footer {
   width: 100%;
-  margin-top: 24px;
+  margin-top: auto;
   background: #ffffff;
 }
 
