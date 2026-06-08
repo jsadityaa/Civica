@@ -2683,6 +2683,8 @@ body {
 .terms-page .terms-page__subpanel h3,
 .privacy-page .privacy-page__subpanel h3 {
   margin: 28px 0 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(223, 80, 71, 0.35);
 }
 
 .terms-page .terms-page__subpanel p + h3,
