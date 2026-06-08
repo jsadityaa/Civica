@@ -12334,6 +12334,10 @@ body.civica-homepage .civica-faq-item__question:hover span {
 }
 
 body.civica-homepage .civica-homepage__faq-toggle {
+  color: #111827 !important;
+}
+
+html[data-theme="dark"] body.civica-homepage .civica-homepage__faq-toggle {
   color: #ffffff !important;
 }
 
