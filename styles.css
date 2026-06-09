@@ -2636,7 +2636,8 @@ body {
 }
 
 .terms-page .terms-page__content-panel,
-.privacy-page .privacy-page__content-panel {
+.privacy-page .privacy-page__content-panel,
+.mission-page .mission-page__content-panel {
   border: 0;
   background: transparent;
   border-radius: 0;
@@ -2644,7 +2645,8 @@ body {
 }
 
 .terms-page .terms-page__subpanel,
-.privacy-page .privacy-page__subpanel {
+.privacy-page .privacy-page__subpanel,
+.mission-page .mission-page__subpanel {
   border: 0;
   background: transparent;
   border-radius: 0;
@@ -2654,7 +2656,8 @@ body {
 }
 
 .terms-page .terms-page__title,
-.privacy-page .privacy-page__title {
+.privacy-page .privacy-page__title,
+.mission-page .mission-page__title {
   width: auto;
   max-width: none;
   margin: 0;
@@ -2671,20 +2674,38 @@ body {
 .privacy-page .site-shell > .site-header p,
 .privacy-page .privacy-page__subpanel p,
 .privacy-page .privacy-page__subpanel li,
-.privacy-page .privacy-page__subpanel a {
+.privacy-page .privacy-page__subpanel a,
+.mission-page .site-shell > .site-header .hub-subtitle,
+.mission-page .site-shell > .site-header p,
+.mission-page .mission-page__subpanel p,
+.mission-page .mission-page__subpanel li,
+.mission-page .mission-page__subpanel a {
   color: #111827 !important;
 }
 
 .terms-page .terms-page__subpanel h3,
-.privacy-page .privacy-page__subpanel h3 {
+.privacy-page .privacy-page__subpanel h3,
+.mission-page .mission-page__subpanel h3 {
   color: #df5047 !important;
 }
 
 .terms-page .terms-page__subpanel h3,
-.privacy-page .privacy-page__subpanel h3 {
+.privacy-page .privacy-page__subpanel h3,
+.mission-page .mission-page__subpanel h3 {
   margin: 28px 0 10px;
   padding-bottom: 8px;
   border-bottom: 1px solid rgba(223, 80, 71, 0.35);
+}
+
+.privacy-page .privacy-page__nested-group {
+  margin-left: 28px;
+  padding-left: 18px;
+  border-left: 1px solid rgba(223, 80, 71, 0.22);
+}
+
+.privacy-page .privacy-page__subsection-title {
+  margin-left: 0;
+  width: 100%;
 }
 
 .terms-page .terms-page__subpanel p + h3,
@@ -2707,7 +2728,8 @@ body {
 }
 
 html[data-theme="dark"] .terms-page .terms-page__subpanel,
-html[data-theme="dark"] .privacy-page .privacy-page__subpanel {
+html[data-theme="dark"] .privacy-page .privacy-page__subpanel,
+html[data-theme="dark"] .mission-page .mission-page__subpanel {
   color: #ffffff;
 }
 
@@ -2720,7 +2742,12 @@ html[data-theme="dark"] .privacy-page .site-shell > .site-header .hub-subtitle,
 html[data-theme="dark"] .privacy-page .site-shell > .site-header p,
 html[data-theme="dark"] .privacy-page .privacy-page__subpanel p,
 html[data-theme="dark"] .privacy-page .privacy-page__subpanel li,
-html[data-theme="dark"] .privacy-page .privacy-page__subpanel a {
+html[data-theme="dark"] .privacy-page .privacy-page__subpanel a,
+html[data-theme="dark"] .mission-page .site-shell > .site-header .hub-subtitle,
+html[data-theme="dark"] .mission-page .site-shell > .site-header p,
+html[data-theme="dark"] .mission-page .mission-page__subpanel p,
+html[data-theme="dark"] .mission-page .mission-page__subpanel li,
+html[data-theme="dark"] .mission-page .mission-page__subpanel a {
   color: #ffffff !important;
 }
 
@@ -11082,7 +11109,8 @@ html[data-theme="dark"] .civica-homepage--restored .civica-cover__placeholder {
 }
 
 .terms-page .site-shell > .site-header h1.terms-page__title,
-.privacy-page .site-shell > .site-header h1.privacy-page__title {
+.privacy-page .site-shell > .site-header h1.privacy-page__title,
+.mission-page .site-shell > .site-header h1.mission-page__title {
   color: #df5047 !important;
 }
 
