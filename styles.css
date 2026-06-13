@@ -2694,7 +2694,9 @@ body {
 .mission-page .mission-page__subpanel h3 {
   margin: 28px 0 10px;
   padding-bottom: 8px;
+  padding-right: 14px;
   border-bottom: 1px solid rgba(223, 80, 71, 0.35);
+  display: inline-block;
 }
 
 .privacy-page .privacy-page__nested-group {
