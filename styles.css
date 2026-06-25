@@ -2731,6 +2731,20 @@ body {
   display: block;
 }
 
+.mission-page .mission-page__image-placeholder {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(223, 80, 71, 0.28);
+  color: var(--muted);
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
 .privacy-page .privacy-page__subsection-title {
   margin-left: 0;
   width: 100%;
@@ -2783,6 +2797,10 @@ html[data-theme="dark"] .mission-page .mission-page__subpanel a {
   color: #ffffff !important;
 }
 
+html[data-theme="dark"] .mission-page .mission-page__image-placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
 @media (max-width: 900px) {
   .mission-page .mission-page__content-panel {
     grid-template-columns: 1fr;
@@ -2790,7 +2808,8 @@ html[data-theme="dark"] .mission-page .mission-page__subpanel a {
 
   .mission-page .mission-page__subpanel--text,
   .mission-page .mission-page__subpanel--placeholder,
-  .mission-page .mission-page__image {
+  .mission-page .mission-page__image,
+  .mission-page .mission-page__image-placeholder {
     min-height: 280px;
   }
 }
