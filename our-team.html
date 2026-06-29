@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Team | Polycivic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {} })();</script>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body class="team-page">
+  <header class="global-header">
+    <div class="global-header-inner">
+      <a href="./index.html" class="brand" aria-label="Polycivic home">Polycivic</a>
+      <nav class="global-nav" aria-label="Main navigation">
+        <a href="./index.html" class="global-nav-link">Features</a>
+        <a href="./elections.html" class="global-nav-link">Elections</a>
+        <a href="./misc.html" class="global-nav-link">Misc.</a>
+        <div class="global-nav-dropdown">
+          <a href="file:///Users/adityapoduri/Desktop/datahub/election-website/our-team.html" class="global-nav-link active" aria-current="page">About Us</a>
+          <div class="global-nav-dropdown-menu">
+            <a href="./our-mission.html" class="global-nav-dropdown-link">Our mission</a>
+            <a href="file:///Users/adityapoduri/Desktop/datahub/election-website/our-team.html" class="global-nav-dropdown-link">Our team</a>
+          </div>
+        </div>
+        <a href="./settings.html" class="global-nav-link">Settings</a>
+      </nav>
+      <div class="account-ui" aria-label="Account controls">
+        <button class="login-button" type="button">Log In</button>
+        <button class="account-button" type="button" aria-label="Account">
+          <span class="account-avatar">A</span>
+          <span class="account-label">Account</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="site-shell">
+    <header class="site-header">
+      <h1 class="civica-homepage__section-caption team-page__title">Our Team</h1>
+      <p class="hub-subtitle">Meet the people building Polycivic.</p>
+    </header>
+
+    <section class="content-panel team-page__content-panel">
+      <div class="team-page__section-intro">
+        <p class="team-page__eyebrow">Leadership</p>
+      </div>
+      <div class="team-page__grid">
+        <article class="subpanel tall team-page__subpanel team-page__profile" aria-label="Aditya Poduri profile">
+          <div class="team-page__profile-top">
+            <div class="team-page__photo-shell">
+              <div class="team-page__photo-glow team-page__photo-glow--ayush" aria-hidden="true"></div>
+              <img class="team-page__photo team-page__photo--ayush" src="./assets/team-aditya.jpeg" alt="Aditya Poduri" />
+            </div>
+            <div class="team-page__identity">
+              <h2 class="team-page__name">Aditya Poduri</h2>
+              <p class="team-page__role">Co-Founder, Lead Developer</p>
+            </div>
+          </div>
+          <div class="team-page__profile-divider" aria-hidden="true"></div>
+          <p class="team-page__bio">Hi, I'm Aditya! I do most of the design and development for Polycivic. I'm in charge of building new features and the interactive tools that you can use on the site. Taking complex political issues and turning them into something that anyone can understand is a huge passion of mine. Outside of Polycivic, you'll usually find me screenwriting or traveling or playing Elden Ring.</p>
+        </article>
+
+        <article class="subpanel tall team-page__subpanel team-page__profile" aria-label="Ayush Deshpande profile">
+          <div class="team-page__profile-top">
+            <div class="team-page__photo-shell">
+              <div class="team-page__photo-glow team-page__photo-glow--ayush" aria-hidden="true"></div>
+              <img class="team-page__photo team-page__photo--ayush" src="file:///Users/adityapoduri/Downloads/dbb6ea_e4217b912c4b49e8b31215bb812a4e54~mv2.avif" alt="Ayush Deshpande" />
+            </div>
+            <div class="team-page__identity">
+              <h2 class="team-page__name">Ayush Deshpande</h2>
+              <p class="team-page__role">Co-Founder, Lead Data Scientist</p>
+            </div>
+          </div>
+          <div class="team-page__profile-divider" aria-hidden="true"></div>
+          <p class="team-page__bio">Leads forecasting logic, data review, and the statistical backbone behind Polycivic’s election analysis and modeling.</p>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <footer id="contact-us" class="civica-homepage__footer">
+    <div class="civica-homepage__footer-inner">
+      <div class="civica-homepage__footer-bottom">
+        <div class="civica-homepage__footer-meta">
+          <p class="civica-homepage__footer-brand">polycivic.com</p>
+          <nav class="civica-homepage__footer-nav" aria-label="Footer navigation">
+            <a href="./index.html#contact-us">Contact Us</a>
+            <a href="./our-mission.html">Our Mission</a>
+            <a href="file:///Users/adityapoduri/Desktop/datahub/election-website/our-team.html">Our Team</a>
+            <a href="./misc.html">Blog</a>
+          </nav>
+          <p class="civica-homepage__footer-legal">
+            <a href="./terms.html">Terms</a>
+            <span>&bull;</span>
+            <a href="./privacy.html">Privacy Policy</a>
+          </p>
+        </div>
+        <p class="civica-homepage__footer-copy">&copy; 2026 Polycivic. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./nav-dropdown.js"></script>
+</body>
+</html>

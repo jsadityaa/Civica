@@ -2637,7 +2637,8 @@ body {
 
 .terms-page .terms-page__content-panel,
 .privacy-page .privacy-page__content-panel,
-.mission-page .mission-page__content-panel {
+.mission-page .mission-page__content-panel,
+.team-page .team-page__content-panel {
   border: 0;
   background: transparent;
   border-radius: 0;
@@ -2646,7 +2647,8 @@ body {
 
 .terms-page .terms-page__subpanel,
 .privacy-page .privacy-page__subpanel,
-.mission-page .mission-page__subpanel {
+.mission-page .mission-page__subpanel,
+.team-page .team-page__subpanel {
   border: 0;
   background: transparent;
   border-radius: 0;
@@ -2657,7 +2659,8 @@ body {
 
 .terms-page .terms-page__title,
 .privacy-page .privacy-page__title,
-.mission-page .mission-page__title {
+.mission-page .mission-page__title,
+.team-page .team-page__title {
   width: auto;
   max-width: none;
   margin: 0;
@@ -2679,19 +2682,26 @@ body {
 .mission-page .site-shell > .site-header p,
 .mission-page .mission-page__subpanel p,
 .mission-page .mission-page__subpanel li,
-.mission-page .mission-page__subpanel a {
+.mission-page .mission-page__subpanel a,
+.team-page .site-shell > .site-header .hub-subtitle,
+.team-page .site-shell > .site-header p,
+.team-page .team-page__subpanel p,
+.team-page .team-page__subpanel li,
+.team-page .team-page__subpanel a {
   color: #111827 !important;
 }
 
 .terms-page .terms-page__subpanel h3,
 .privacy-page .privacy-page__subpanel h3,
-.mission-page .mission-page__subpanel h3 {
+.mission-page .mission-page__subpanel h3,
+.team-page .team-page__subpanel h3 {
   color: #df5047 !important;
 }
 
 .terms-page .terms-page__subpanel h3,
 .privacy-page .privacy-page__subpanel h3,
-.mission-page .mission-page__subpanel h3 {
+.mission-page .mission-page__subpanel h3,
+.team-page .team-page__subpanel h3 {
   margin: 28px 0 10px;
   padding-bottom: 8px;
   padding-right: 14px;
@@ -2753,14 +2763,18 @@ body {
 .terms-page .terms-page__subpanel p + h3,
 .terms-page .terms-page__subpanel ul + h3,
 .privacy-page .privacy-page__subpanel p + h3,
-.privacy-page .privacy-page__subpanel ul + h3 {
+.privacy-page .privacy-page__subpanel ul + h3,
+.team-page .team-page__subpanel p + h3,
+.team-page .team-page__subpanel ul + h3 {
   margin-top: 34px;
 }
 
 .terms-page .terms-page__subpanel p,
 .terms-page .terms-page__subpanel ul,
 .privacy-page .privacy-page__subpanel p,
-.privacy-page .privacy-page__subpanel ul {
+.privacy-page .privacy-page__subpanel ul,
+.team-page .team-page__subpanel p,
+.team-page .team-page__subpanel ul {
   margin: 0 0 14px;
 }
 
@@ -2775,7 +2789,8 @@ body {
 
 html[data-theme="dark"] .terms-page .terms-page__subpanel,
 html[data-theme="dark"] .privacy-page .privacy-page__subpanel,
-html[data-theme="dark"] .mission-page .mission-page__subpanel {
+html[data-theme="dark"] .mission-page .mission-page__subpanel,
+html[data-theme="dark"] .team-page .team-page__subpanel {
   color: #ffffff;
 }
 
@@ -2793,7 +2808,12 @@ html[data-theme="dark"] .mission-page .site-shell > .site-header .hub-subtitle,
 html[data-theme="dark"] .mission-page .site-shell > .site-header p,
 html[data-theme="dark"] .mission-page .mission-page__subpanel p,
 html[data-theme="dark"] .mission-page .mission-page__subpanel li,
-html[data-theme="dark"] .mission-page .mission-page__subpanel a {
+html[data-theme="dark"] .mission-page .mission-page__subpanel a,
+html[data-theme="dark"] .team-page .site-shell > .site-header .hub-subtitle,
+html[data-theme="dark"] .team-page .site-shell > .site-header p,
+html[data-theme="dark"] .team-page .team-page__subpanel p,
+html[data-theme="dark"] .team-page .team-page__subpanel li,
+html[data-theme="dark"] .team-page .team-page__subpanel a {
   color: #ffffff !important;
 }
 
@@ -2801,16 +2821,249 @@ html[data-theme="dark"] .mission-page .mission-page__image-placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
 
+.team-page .team-page__section-intro {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 26px;
+}
+
+.team-page .team-page__eyebrow {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #7a8799 !important;
+}
+
+.team-page .team-page__deck {
+  margin: 0;
+  max-width: 760px;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  line-height: 1.55;
+  color: #4b5563 !important;
+}
+
+.team-page .team-page__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 36px;
+  align-items: stretch;
+}
+
+.team-page .team-page__profile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 460px;
+  padding: 34px 30px 30px;
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  background:
+    linear-gradient(180deg, rgba(77, 145, 212, 0.05), rgba(255,255,255,0) 24%),
+    linear-gradient(180deg, rgba(255,255,255,0.96), rgba(247,249,252,0.96));
+  overflow: hidden;
+}
+
+.team-page .team-page__profile-top {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+}
+
+.team-page .team-page__photo-shell {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  display: grid;
+  place-items: center;
+}
+
+.team-page .team-page__photo-glow {
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  filter: blur(18px);
+  opacity: 0.9;
+}
+
+.team-page .team-page__photo-glow--aditya {
+  background: conic-gradient(from 180deg, rgba(77,145,212,0.12), rgba(77,145,212,0.55), rgba(223,80,71,0.48), rgba(77,145,212,0.12));
+}
+
+.team-page .team-page__photo-glow--ayush {
+  background: conic-gradient(from 180deg, rgba(223,80,71,0.12), rgba(223,80,71,0.52), rgba(185,141,87,0.44), rgba(223,80,71,0.12));
+}
+
+.team-page .team-page__identity {
+  display: grid;
+  gap: 8px;
+  align-content: center;
+}
+
+.team-page .team-page__kicker {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #7a8799 !important;
+}
+
+.team-page .team-page__profile-divider {
+  width: 100%;
+  height: 1px;
+  margin: 28px 0 20px;
+  background: linear-gradient(90deg, rgba(17,24,39,0.12), rgba(17,24,39,0.04));
+}
+
+.team-page .team-page__photo {
+  position: relative;
+  z-index: 1;
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-size: 62px;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  color: #ffffff;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255,255,255,0.18);
+  border: 3px solid rgba(255,255,255,0.18);
+}
+
+.team-page .team-page__photo--aditya {
+  background: linear-gradient(135deg, #4d91d4, #df5047);
+}
+
+.team-page .team-page__photo--ayush {
+  background: linear-gradient(135deg, #df5047, #b98d57);
+}
+
+.team-page .team-page__name {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: clamp(28px, 2.4vw, 38px);
+  line-height: 1.08;
+  font-weight: 700;
+  color: #111827;
+}
+
+.team-page .team-page__role {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  line-height: 1.45;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.team-page .team-page__bio {
+  margin: 0;
+  max-width: 58ch;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #374151 !important;
+}
+
+html[data-theme="dark"] .team-page .team-page__name {
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .team-page .team-page__role {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+html[data-theme="dark"] .team-page .team-page__eyebrow,
+html[data-theme="dark"] .team-page .team-page__kicker {
+  color: rgba(255, 255, 255, 0.54) !important;
+}
+
+html[data-theme="dark"] .team-page .team-page__deck {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+html[data-theme="dark"] .team-page .team-page__profile {
+  border-color: rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(77,145,212,0.08), rgba(255,255,255,0) 24%),
+    linear-gradient(180deg, rgba(21, 28, 38, 0.98), rgba(14, 19, 27, 0.98));
+}
+
+.team-page .team-page__profile:nth-child(2) {
+  background:
+    linear-gradient(180deg, rgba(223,80,71,0.07), rgba(255,255,255,0) 24%),
+    linear-gradient(180deg, rgba(255,255,255,0.96), rgba(247,249,252,0.96));
+}
+
+html[data-theme="dark"] .team-page .team-page__profile:nth-child(2) {
+  background:
+    linear-gradient(180deg, rgba(223,80,71,0.12), rgba(255,255,255,0) 24%),
+    linear-gradient(180deg, rgba(21, 28, 38, 0.98), rgba(14, 19, 27, 0.98));
+}
+
+html[data-theme="dark"] .team-page .team-page__profile-divider {
+  background: linear-gradient(90deg, rgba(255,255,255,0.16), rgba(255,255,255,0.05));
+}
+
+html[data-theme="dark"] .team-page .team-page__bio {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
 @media (max-width: 900px) {
   .mission-page .mission-page__content-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .team-page .team-page__grid {
     grid-template-columns: 1fr;
   }
 
   .mission-page .mission-page__subpanel--text,
   .mission-page .mission-page__subpanel--placeholder,
   .mission-page .mission-page__image,
-  .mission-page .mission-page__image-placeholder {
+  .mission-page .mission-page__image-placeholder,
+  .team-page .team-page__profile {
     min-height: 280px;
+  }
+
+  .team-page .team-page__profile {
+    padding: 28px 22px 24px;
+  }
+
+  .team-page .team-page__profile-top {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    text-align: center;
+  }
+
+  .team-page .team-page__identity {
+    justify-items: center;
+  }
+
+  .team-page .team-page__photo-shell {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto;
+  }
+
+  .team-page .team-page__photo {
+    width: 180px;
+    height: 180px;
+    font-size: 52px;
+  }
+
+  .team-page .team-page__bio {
+    max-width: none;
   }
 }
 
@@ -11173,7 +11426,8 @@ html[data-theme="dark"] .civica-homepage--restored .civica-cover__placeholder {
 
 .terms-page .site-shell > .site-header h1.terms-page__title,
 .privacy-page .site-shell > .site-header h1.privacy-page__title,
-.mission-page .site-shell > .site-header h1.mission-page__title {
+.mission-page .site-shell > .site-header h1.mission-page__title,
+.team-page .site-shell > .site-header h1.team-page__title {
   color: #df5047 !important;
 }
 
