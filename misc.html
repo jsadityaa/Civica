@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Misc. | Polycivic</title>
+  <title>Forum | Polycivic</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {} })();</script>
   <link rel="stylesheet" href="./styles.css" />
 </head>
-<body>
+<body class="forum-page">
   <header class="global-header">
     <div class="global-header-inner">
       <a href="./index.html" class="brand" aria-label="Polycivic home">Polycivic</a>
@@ -39,38 +39,187 @@
 
   <div class="site-shell">
     <header class="site-header">
-      <h1>Misc.</h1>
-      <p class="hub-subtitle">Placeholder space for non-election content and future projects.</p>
+      <h1>Forum</h1>
+      <p class="hub-subtitle">Discuss elections, forecasts, civic issues, and the stories behind the data.</p>
     </header>
-    <section class="content-panel">
-      <div class="subpanel tall">
-        <h3>Miscellaneous content placeholder</h3>
-        <p>This page is a working placeholder for the broader site navigation.</p>
+
+    <section class="content-panel forum-page__guest-banner">
+      <div>
+        <p class="forum-page__eyebrow">Guest mode</p>
+        <h2>Accounts are not live yet, but the forum works locally in this browser.</h2>
+        <p class="forum-page__banner-copy">You can start threads, reply, filter discussions, and save your progress on this device until the full account system is ready.</p>
       </div>
+      <button type="button" class="forum-page__secondary-button" id="forum-reset-storage">Reset local forum data</button>
     </section>
-  </div>
-  <footer id="contact-us" class="civica-homepage__footer">
-      <div class="civica-homepage__footer-inner">
-        <div class="civica-homepage__footer-bottom">
-          <div class="civica-homepage__footer-meta">
-            <p class="civica-homepage__footer-brand">polycivic.com</p>
-            <nav class="civica-homepage__footer-nav" aria-label="Footer navigation">
-              <a href="./index.html#contact-us">Contact Us</a>
-              <a href="./our-mission.html">Our Mission</a>
-              <a href="file:///Users/adityapoduri/Desktop/datahub/election-website/our-team.html">Our Team</a>
-              <a href="./misc.html">Blog</a>
-            </nav>
-            <p class="civica-homepage__footer-legal">
-              <a href="./terms.html">Terms</a>
-              <span>&bull;</span>
-              <a href="./privacy.html">Privacy Policy</a>
-            </p>
-          </div>
-          <p class="civica-homepage__footer-copy">&copy; 2026 Polycivic. All rights reserved.</p>
+
+    <section class="content-panel forum-page__overview">
+      <div class="forum-page__overview-copy">
+        <p class="forum-page__eyebrow">Live discussion</p>
+        <h2>Follow the numbers, argue the trends, and leave a paper trail of how people thought in the moment.</h2>
+      </div>
+      <div class="forum-page__overview-stats" aria-label="Forum statistics">
+        <div class="forum-page__stat">
+          <span class="forum-page__stat-label">Open threads</span>
+          <strong id="forum-stat-threads">0</strong>
+        </div>
+        <div class="forum-page__stat">
+          <span class="forum-page__stat-label">Replies today</span>
+          <strong id="forum-stat-replies">0</strong>
+        </div>
+        <div class="forum-page__stat">
+          <span class="forum-page__stat-label">Active category</span>
+          <strong id="forum-stat-category">All topics</strong>
         </div>
       </div>
-    </footer>
+    </section>
 
+    <section class="content-panel forum-page__composer-panel">
+      <div class="forum-page__panel-header">
+        <div>
+          <p class="forum-page__panel-eyebrow">Start a thread</p>
+          <h2>Create a new discussion</h2>
+        </div>
+      </div>
+      <form class="forum-page__composer" id="forum-thread-form">
+        <div class="forum-page__field-grid">
+          <label class="forum-page__field">
+            <span>Name</span>
+            <input type="text" id="forum-thread-author" maxlength="40" placeholder="Your name" required />
+          </label>
+          <label class="forum-page__field">
+            <span>Category</span>
+            <select id="forum-thread-category" required>
+              <option value="elections">Elections</option>
+              <option value="forecasting">Forecasting</option>
+              <option value="policy">Policy</option>
+              <option value="site-feedback">Site feedback</option>
+            </select>
+          </label>
+        </div>
+        <label class="forum-page__field">
+          <span>Thread title</span>
+          <input type="text" id="forum-thread-title" maxlength="110" placeholder="What should people discuss?" required />
+        </label>
+        <label class="forum-page__field">
+          <span>Opening post</span>
+          <textarea id="forum-thread-body" maxlength="1200" placeholder="Write your argument, observation, or question." required></textarea>
+        </label>
+        <div class="forum-page__composer-actions">
+          <p class="forum-page__helper">Posts stay in this browser so you can keep building the forum experience locally.</p>
+          <button type="submit" class="forum-page__primary-button">Post thread</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="forum-page__main-grid">
+      <aside class="content-panel forum-page__threads-panel">
+        <div class="forum-page__panel-header forum-page__panel-header--stacked">
+          <div>
+            <p class="forum-page__panel-eyebrow">Browse</p>
+            <h2>Threads</h2>
+          </div>
+          <div class="forum-page__thread-tools">
+            <label class="forum-page__field forum-page__field--compact">
+              <span>Search</span>
+              <input type="text" id="forum-thread-search" maxlength="80" placeholder="Search titles or posts" />
+            </label>
+            <label class="forum-page__field forum-page__field--compact">
+              <span>Sort</span>
+              <select id="forum-thread-sort">
+                <option value="active">Most active</option>
+                <option value="newest">Newest</option>
+                <option value="popular">Most upvoted</option>
+              </select>
+            </label>
+          </div>
+          <div class="forum-page__filters" id="forum-filters" role="tablist" aria-label="Forum categories">
+            <button type="button" class="forum-page__filter is-active" data-filter="all">All</button>
+            <button type="button" class="forum-page__filter" data-filter="elections">Elections</button>
+            <button type="button" class="forum-page__filter" data-filter="forecasting">Forecasting</button>
+            <button type="button" class="forum-page__filter" data-filter="policy">Policy</button>
+            <button type="button" class="forum-page__filter" data-filter="site-feedback">Site feedback</button>
+          </div>
+        </div>
+        <div class="forum-page__thread-list" id="forum-thread-list" aria-live="polite"></div>
+      </aside>
+
+      <section class="content-panel forum-page__detail-panel">
+        <div class="forum-page__detail-empty" id="forum-empty-state" hidden>
+          <p class="forum-page__panel-eyebrow">No threads</p>
+          <h2>No discussions match this category yet.</h2>
+          <p>Try a different filter or start the first thread.</p>
+        </div>
+
+        <div class="forum-page__detail" id="forum-thread-detail">
+          <div class="forum-page__thread-header">
+            <div>
+              <div class="forum-page__thread-meta-row">
+                <span class="forum-page__thread-category" id="forum-detail-category">Category</span>
+                <span class="forum-page__thread-meta" id="forum-detail-meta">Started by</span>
+              </div>
+              <h2 id="forum-detail-title">Select a thread</h2>
+            </div>
+            <div class="forum-page__thread-actions">
+              <button type="button" class="forum-page__secondary-button forum-page__secondary-button--small" id="forum-upvote-button">Upvote <span id="forum-upvote-count">0</span></button>
+            </div>
+          </div>
+
+          <div class="forum-page__messages" id="forum-message-list"></div>
+
+          <form class="forum-page__reply-form" id="forum-reply-form">
+            <div class="forum-page__panel-header forum-page__panel-header--reply">
+              <div>
+                <p class="forum-page__panel-eyebrow">Join the thread</p>
+                <h3>Write a reply</h3>
+              </div>
+            </div>
+            <div class="forum-page__field-grid">
+              <label class="forum-page__field">
+                <span>Name</span>
+                <input type="text" id="forum-reply-author" maxlength="40" placeholder="Your name" required />
+              </label>
+            </div>
+            <label class="forum-page__field">
+              <span>Reply</span>
+              <textarea id="forum-reply-body" maxlength="900" placeholder="Add your take on the thread." required></textarea>
+            </label>
+            <div class="forum-page__composer-actions">
+              <p class="forum-page__helper">Use the forum to debate ideas, flag trends, or talk through what the data may be missing.</p>
+              <button type="submit" class="forum-page__primary-button">Post reply</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </section>
+  </div>
+
+  <footer id="contact-us" class="civica-homepage__footer">
+    <div class="civica-homepage__footer-inner">
+      <div class="civica-homepage__footer-bottom">
+        <div class="civica-homepage__footer-meta">
+          <p class="civica-homepage__footer-brand">polycivic.com</p>
+          <nav class="civica-homepage__footer-nav" aria-label="Footer navigation">
+            <a href="./index.html#contact-us">Contact Us</a>
+            <a href="./our-mission.html">Our Mission</a>
+            <a href="file:///Users/adityapoduri/Desktop/datahub/election-website/our-team.html">Our Team</a>
+            <a href="./misc.html">Blog</a>
+          </nav>
+          <p class="civica-homepage__footer-legal">
+            <a href="./terms.html">Terms</a>
+            <span>&bull;</span>
+            <a href="./privacy.html">Privacy Policy</a>
+          </p>
+        </div>
+        <p class="civica-homepage__footer-copy">&copy; 2026 Polycivic. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="./auth-config.js"></script>
+  <script src="./auth.js"></script>
   <script src="./nav-dropdown.js"></script>
+  <script src="./forum.js"></script>
 </body>
 </html>
