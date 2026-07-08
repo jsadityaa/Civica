@@ -203,6 +203,12 @@ body {
   cursor: pointer;
 }
 
+.login-button[hidden],
+.signup-button[hidden],
+.account-button[hidden] {
+  display: none !important;
+}
+
 .login-button {
   padding: 10px 14px;
   font-size: 13px;

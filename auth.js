@@ -20,6 +20,19 @@
     }
   });
 
+  loginButtons.forEach((button) => {
+    button.hidden = false;
+  });
+
+  signUpButtons.forEach((button) => {
+    button.hidden = false;
+  });
+
+  accountButtons.forEach((button) => {
+    button.hidden = true;
+    button.dataset.signedIn = "false";
+  });
+
   const authConfig = window.POLYCIVIC_AUTH_CONFIG || {};
   const firebaseConfig = authConfig.firebase || {};
   const requiredFirebaseKeys = ["apiKey", "authDomain", "projectId", "appId"];
@@ -48,22 +61,23 @@
   };
 
   const setHeaderState = (user) => {
-    const label = user ? user.displayName : "Account";
-    const avatarText = user ? user.initial : "A";
+    const isSignedIn = !!user;
+    const label = isSignedIn ? user.displayName : "Account";
+    const avatarText = isSignedIn ? user.initial : "A";
 
     loginButtons.forEach((button) => {
-      button.hidden = !!user;
+      button.hidden = isSignedIn;
       button.textContent = "Log In";
     });
 
     signUpButtons.forEach((button) => {
-      button.hidden = !!user;
+      button.hidden = isSignedIn;
     });
 
     accountButtons.forEach((button) => {
-      button.hidden = !user;
-      button.dataset.signedIn = user ? "true" : "false";
-      button.setAttribute("aria-label", user ? `${label} account menu` : "Account");
+      button.hidden = !isSignedIn;
+      button.dataset.signedIn = isSignedIn ? "true" : "false";
+      button.setAttribute("aria-label", isSignedIn ? `${label} account menu` : "Account");
     });
 
     accountLabels.forEach((node) => {
@@ -337,7 +351,10 @@
   };
 
   loginButtons.forEach((button) => {
-    button.addEventListener("click", openModal);
+    button.addEventListener("click", () => {
+      setModalMode(false);
+      openModal();
+    });
   });
 
   signUpButtons.forEach((button) => {
@@ -352,6 +369,7 @@
       event.preventDefault();
       event.stopPropagation();
       if (!currentUser) {
+        setModalMode(false);
         openModal();
         return;
       }
