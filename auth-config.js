@@ -1,10 +1,10 @@
 window.POLYCIVIC_AUTH_CONFIG = {
   firebase: {
-    apiKey: "",
-    authDomain: "",
-    projectId: "",
-    appId: "",
-    storageBucket: "",
-    messagingSenderId: ""
+    apiKey: "AIzaSyCWFpJmfOZW5bMkx4vHCDtx-xfjhvwwE24",
+    authDomain: "polycivic-55fd5.firebaseapp.com",
+    projectId: "polycivic-55fd5",
+    appId: "1:6458546751:web:6902ddd8e7f169d54db68a",
+    storageBucket: "polycivic-55fd5.firebasestorage.app",
+    messagingSenderId: "6458546751"
   }
 };
