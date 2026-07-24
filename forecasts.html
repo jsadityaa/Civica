@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2020 US Presidential Election | Polycivic</title>
+  <title>Forecasts | Polycivic</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -16,14 +16,14 @@
       <a href="./index.html" class="brand" aria-label="Polycivic home">Polycivic</a>
       <nav class="global-nav" aria-label="Main navigation">
         <a href="./index.html" class="global-nav-link">Features</a>
-        <a href="./elections.html" class="global-nav-link active">Elections</a>
-        <a href="./forecasts.html" class="global-nav-link">Forecasts</a>
+        <a href="./elections.html" class="global-nav-link">Elections</a>
+        <a href="./forecasts.html" class="global-nav-link active">Forecasts</a>
         <a href="./forum.html" class="global-nav-link">Forum</a>
         <div class="global-nav-dropdown">
           <a href="./index.html#our-mission" class="global-nav-link">About Us</a>
           <div class="global-nav-dropdown-menu">
             <a href="./our-mission.html" class="global-nav-dropdown-link">Our mission</a>
-            <a href="file:///Users/adityapoduri/Desktop/datahub/election-website/our-team.html" class="global-nav-dropdown-link">Our team</a>
+            <a href="./our-team.html" class="global-nav-dropdown-link">Our team</a>
           </div>
         </div>
         <a href="./settings.html" class="global-nav-link">Settings</a>
@@ -40,37 +40,52 @@
 
   <div class="site-shell">
     <header class="site-header">
-      <h1>2020 US Presidential Election</h1>
-      <p class="hub-subtitle">Placeholder page ready for archived 2020 election coverage.</p>
+      <h1>Forecasts</h1>
+      <p class="hub-subtitle">A dedicated space for projections, model notes, and election forecasting tools.</p>
     </header>
-    <section class="content-panel">
-      <div class="subpanel tall">
-        <h3>2020 election page placeholder</h3>
-        <p>This page is linked from the Elections hub and can be filled in later with 2020 maps, results, and reporting.</p>
-      </div>
-    </section>
-  </div>
-  <footer id="contact-us" class="civica-homepage__footer">
-      <div class="civica-homepage__footer-inner">
-        <div class="civica-homepage__footer-bottom">
-          <div class="civica-homepage__footer-meta">
-            <p class="civica-homepage__footer-brand">polycivic.com</p>
-            <nav class="civica-homepage__footer-nav" aria-label="Footer navigation">
-              <a href="./contact.html">Contact Us</a>
-              <a href="./our-mission.html">Our Mission</a>
-              <a href="file:///Users/adityapoduri/Desktop/datahub/election-website/our-team.html">Our Team</a>
-              <a href="./forum.html">Blog</a>
-            </nav>
-            <p class="civica-homepage__footer-legal">
-              <a href="./terms.html">Terms</a>
-              <span>&bull;</span>
-              <a href="./privacy.html">Privacy Policy</a>
-            </p>
+
+    <main class="page-stack">
+      <section class="content-panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Forecast Center</h2>
           </div>
-          <p class="civica-homepage__footer-copy">&copy; 2026 Polycivic. All rights reserved.</p>
         </div>
+        <div class="two-column-grid">
+          <div class="subpanel tall">
+            <h3>National forecast placeholder</h3>
+            <p>This slot can hold a national projection board, seat probabilities, or a simplified model summary later.</p>
+          </div>
+          <div class="subpanel tall">
+            <h3>Model notes placeholder</h3>
+            <p>This area is reserved for methodology notes, update timestamps, and quick-read forecast context.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer id="contact-us" class="civica-homepage__footer">
+    <div class="civica-homepage__footer-inner">
+      <div class="civica-homepage__footer-bottom">
+        <div class="civica-homepage__footer-meta">
+          <p class="civica-homepage__footer-brand">polycivic.com</p>
+          <nav class="civica-homepage__footer-nav" aria-label="Footer navigation">
+            <a href="./contact.html">Contact Us</a>
+            <a href="./our-mission.html">Our Mission</a>
+            <a href="./our-team.html">Our Team</a>
+            <a href="./forum.html">Blog</a>
+          </nav>
+          <p class="civica-homepage__footer-legal">
+            <a href="./terms.html">Terms</a>
+            <span>&bull;</span>
+            <a href="./privacy.html">Privacy Policy</a>
+          </p>
+        </div>
+        <p class="civica-homepage__footer-copy">&copy; 2026 Polycivic. All rights reserved.</p>
       </div>
-    </footer>
+    </div>
+  </footer>
 
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>

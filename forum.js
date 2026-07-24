@@ -12,9 +12,18 @@
   };
 
   const els = {
+    composerPanel: document.getElementById("forum-composer-panel"),
+    mainGrid: document.getElementById("forum-main-grid"),
     threadList: document.getElementById("forum-thread-list"),
     threadForm: document.getElementById("forum-thread-form"),
     replyForm: document.getElementById("forum-reply-form"),
+    authBanner: document.getElementById("forum-auth-banner"),
+    composerLocked: document.getElementById("forum-composer-locked"),
+    threadsLocked: document.getElementById("forum-threads-locked"),
+    replyLocked: document.getElementById("forum-reply-locked"),
+    signUpButton: document.getElementById("forum-sign-up-button"),
+    logInButton: document.getElementById("forum-log-in-button"),
+    authTriggers: Array.from(document.querySelectorAll("[data-auth-trigger]")),
     filters: Array.from(document.querySelectorAll(".forum-page__filter")),
     emptyState: document.getElementById("forum-empty-state"),
     detailWrap: document.getElementById("forum-thread-detail"),
@@ -22,12 +31,8 @@
     detailCategory: document.getElementById("forum-detail-category"),
     detailMeta: document.getElementById("forum-detail-meta"),
     detailTitle: document.getElementById("forum-detail-title"),
-    statThreads: document.getElementById("forum-stat-threads"),
-    statReplies: document.getElementById("forum-stat-replies"),
-    statCategory: document.getElementById("forum-stat-category"),
     threadSearch: document.getElementById("forum-thread-search"),
     threadSort: document.getElementById("forum-thread-sort"),
-    resetStorage: document.getElementById("forum-reset-storage"),
     upvoteButton: document.getElementById("forum-upvote-button"),
     upvoteCount: document.getElementById("forum-upvote-count"),
     threadAuthor: document.getElementById("forum-thread-author"),
@@ -80,6 +85,17 @@
     if (state.authUser && state.authUser.displayName) return state.authUser.displayName;
     if (state.authUser && state.authUser.email) return state.authUser.email;
     return state.guestName;
+  };
+
+  const openAuthFlow = (mode) => {
+    if (!window.POLYCIVIC_AUTH) return;
+    if (mode === "signup" && typeof window.POLYCIVIC_AUTH.openSignUp === "function") {
+      window.POLYCIVIC_AUTH.openSignUp();
+      return;
+    }
+    if (typeof window.POLYCIVIC_AUTH.openLogin === "function") {
+      window.POLYCIVIC_AUTH.openLogin();
+    }
   };
 
   const formatRelativeTime = (iso) => {
@@ -135,24 +151,14 @@
     }
   };
 
-  const renderStats = () => {
-    const filtered = getFilteredThreads();
-    const repliesToday = state.threads.reduce((sum, thread) => {
-      return sum + thread.posts.filter((post) => {
-        const d = new Date(post.createdAt);
-        const now = new Date();
-        return d.getFullYear() === now.getFullYear()
-          && d.getMonth() === now.getMonth()
-          && d.getDate() === now.getDate();
-      }).length;
-    }, 0);
-
-    els.statThreads.textContent = String(filtered.length);
-    els.statReplies.textContent = String(repliesToday);
-    els.statCategory.textContent = formatCategory(state.activeFilter);
-  };
-
   const renderThreadList = () => {
+    if (!state.authUser) {
+      els.threadList.innerHTML = "";
+      els.emptyState.hidden = true;
+      els.detailWrap.hidden = false;
+      return;
+    }
+
     ensureActiveThread();
     const filtered = getFilteredThreads();
     els.threadList.innerHTML = "";
@@ -191,6 +197,17 @@
   };
 
   const renderDetail = () => {
+    if (!state.authUser) {
+      els.detailCategory.textContent = "Forum";
+      els.detailMeta.textContent = "Sign in required";
+      els.detailTitle.textContent = "Create an account to enter the conversation.";
+      els.messageList.innerHTML = "";
+      if (els.upvoteCount) {
+        els.upvoteCount.textContent = "0";
+      }
+      return;
+    }
+
     const thread = state.threads.find((item) => item.id === state.activeThreadId);
     if (!thread) {
       els.messageList.innerHTML = "";
@@ -241,7 +258,6 @@
 
   const render = () => {
     renderFilters();
-    renderStats();
     renderThreadList();
     renderDetail();
   };
@@ -265,9 +281,56 @@
     }
   };
 
+  const syncAccessState = () => {
+    const isSignedIn = !!state.authUser;
+
+    if (els.authBanner) {
+      els.authBanner.hidden = isSignedIn;
+    }
+
+    if (els.composerPanel) {
+      els.composerPanel.hidden = !isSignedIn;
+    }
+
+    if (els.mainGrid) {
+      els.mainGrid.hidden = !isSignedIn;
+    }
+
+    if (els.composerLocked) {
+      els.composerLocked.hidden = isSignedIn;
+    }
+
+    if (els.threadsLocked) {
+      els.threadsLocked.hidden = isSignedIn;
+    }
+
+    if (els.replyLocked) {
+      els.replyLocked.hidden = isSignedIn;
+    }
+
+    if (els.threadForm) {
+      els.threadForm.hidden = !isSignedIn;
+    }
+
+    if (els.replyForm) {
+      els.replyForm.hidden = !isSignedIn;
+    }
+
+    if (els.threadList) {
+      els.threadList.hidden = !isSignedIn;
+    }
+
+    if (els.upvoteButton) {
+      els.upvoteButton.disabled = !isSignedIn;
+      els.upvoteButton.setAttribute("aria-disabled", !isSignedIn ? "true" : "false");
+    }
+  };
+
   window.addEventListener("polycivic-auth-changed", (event) => {
     state.authUser = event.detail && event.detail.user ? event.detail.user : null;
     syncGuestNames();
+    syncAccessState();
+    render();
   });
 
   els.filters.forEach((button) => {
@@ -294,15 +357,26 @@
     });
   }
 
-  if (els.resetStorage) {
-    els.resetStorage.addEventListener("click", () => {
-      localStorage.removeItem(storageKey);
-      window.location.reload();
-    });
+  if (els.signUpButton) {
+    els.signUpButton.addEventListener("click", () => openAuthFlow("signup"));
   }
+
+  if (els.logInButton) {
+    els.logInButton.addEventListener("click", () => openAuthFlow("login"));
+  }
+
+  els.authTriggers.forEach((button) => {
+    button.addEventListener("click", () => {
+      openAuthFlow(button.dataset.authTrigger || "login");
+    });
+  });
 
   if (els.upvoteButton) {
     els.upvoteButton.addEventListener("click", () => {
+      if (!state.authUser) {
+        openAuthFlow("signup");
+        return;
+      }
       const thread = state.threads.find((item) => item.id === state.activeThreadId);
       if (!thread) return;
       thread.upvotes = (thread.upvotes || 0) + 1;
@@ -314,6 +388,11 @@
 
   els.threadForm.addEventListener("submit", (event) => {
     event.preventDefault();
+
+    if (!state.authUser) {
+      openAuthFlow("signup");
+      return;
+    }
 
     const author = (state.authUser?.displayName || state.authUser?.email || els.threadAuthor.value).trim();
     const category = els.threadCategory.value;
@@ -354,6 +433,12 @@
 
   els.replyForm.addEventListener("submit", (event) => {
     event.preventDefault();
+
+    if (!state.authUser) {
+      openAuthFlow("signup");
+      return;
+    }
+
     const thread = state.threads.find((item) => item.id === state.activeThreadId);
     if (!thread) return;
 
@@ -381,5 +466,6 @@
   });
 
   syncGuestNames();
+  syncAccessState();
   render();
 })();

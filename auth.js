@@ -100,7 +100,15 @@
   const broadcastAuthState = () => {
     const user = sanitizeUser(currentUser);
     window.POLYCIVIC_AUTH = {
-      getCurrentUser: () => user
+      getCurrentUser: () => user,
+      openLogin: () => {
+        setModalMode(false);
+        openModal();
+      },
+      openSignUp: () => {
+        setModalMode(true);
+        openModal();
+      }
     };
     window.dispatchEvent(new CustomEvent("polycivic-auth-changed", {
       detail: { user }
@@ -114,18 +122,14 @@
     <div class="polycivic-auth-modal" role="dialog" aria-modal="true" aria-labelledby="polycivic-auth-title">
       <button type="button" class="polycivic-auth-close" aria-label="Close sign in dialog">&times;</button>
       <div class="polycivic-auth-copy">
-        <p class="polycivic-auth-eyebrow">Account access</p>
         <h2 id="polycivic-auth-title">Sign in to Polycivic</h2>
-        <p class="polycivic-auth-description">Use Google or an email address to save your identity across the site once Firebase is configured.</p>
-      </div>
-
-      <div class="polycivic-auth-setup" hidden>
-        <p>Authentication is scaffolded, but it still needs your Firebase project keys in <code>auth-config.js</code>.</p>
-        <p>Add your Firebase config there, enable Google and Email/Password in Firebase Authentication, then reload the site.</p>
       </div>
 
       <div class="polycivic-auth-live">
-        <button type="button" class="polycivic-auth-google">Continue with Google</button>
+        <button type="button" class="polycivic-auth-google">
+          <img src="./assets/google-signin-logo.png" alt="" class="polycivic-auth-google-icon" />
+          <span>Continue with Google</span>
+        </button>
 
         <div class="polycivic-auth-divider"><span>or</span></div>
 
@@ -167,7 +171,6 @@
 
   const authModal = {
     close: overlay.querySelector(".polycivic-auth-close"),
-    setup: overlay.querySelector(".polycivic-auth-setup"),
     live: overlay.querySelector(".polycivic-auth-live"),
     google: overlay.querySelector(".polycivic-auth-google"),
     form: overlay.querySelector(".polycivic-auth-form"),
@@ -207,14 +210,8 @@
     overlay.hidden = false;
     overlay.setAttribute("aria-hidden", "false");
     document.body.classList.add("polycivic-auth-open");
-    if (isFirebaseConfigured && window.firebase) {
-      authModal.setup.hidden = true;
-      authModal.live.hidden = false;
-      authModal.emailInput.focus();
-    } else {
-      authModal.setup.hidden = false;
-      authModal.live.hidden = true;
-    }
+    authModal.live.hidden = false;
+    authModal.emailInput.focus();
   };
 
   const closeModal = () => {

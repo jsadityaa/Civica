@@ -69,13 +69,16 @@ body {
 
 .brand {
   flex: 0 0 auto;
+  display: inline-block;
   text-decoration: none;
   font-family: "Cormorant Garamond", Garamond, serif;
-  font-size: 38px;
+  font-size: 34px;
   font-style: italic;
   font-weight: 600;
   letter-spacing: -0.05em;
-  line-height: 0.95;
+  line-height: 1.08;
+  padding: 2px 4px 4px 0;
+  overflow: visible;
   white-space: nowrap;
   text-rendering: optimizeLegibility;
   font-variant-ligatures: common-ligatures;
@@ -2657,7 +2660,8 @@ body {
 .terms-page .terms-page__content-panel,
 .privacy-page .privacy-page__content-panel,
 .mission-page .mission-page__content-panel,
-.team-page .team-page__content-panel {
+.team-page .team-page__content-panel,
+.contact-page .contact-page__content-panel {
   border: 0;
   background: transparent;
   border-radius: 0;
@@ -2667,7 +2671,8 @@ body {
 .terms-page .terms-page__subpanel,
 .privacy-page .privacy-page__subpanel,
 .mission-page .mission-page__subpanel,
-.team-page .team-page__subpanel {
+.team-page .team-page__subpanel,
+.contact-page .contact-page__subpanel {
   border: 0;
   background: transparent;
   border-radius: 0;
@@ -2679,7 +2684,8 @@ body {
 .terms-page .terms-page__title,
 .privacy-page .privacy-page__title,
 .mission-page .mission-page__title,
-.team-page .team-page__title {
+.team-page .team-page__title,
+.contact-page .contact-page__title {
   width: auto;
   max-width: none;
   margin: 0;
@@ -2706,21 +2712,28 @@ body {
 .team-page .site-shell > .site-header p,
 .team-page .team-page__subpanel p,
 .team-page .team-page__subpanel li,
-.team-page .team-page__subpanel a {
+.team-page .team-page__subpanel a,
+.contact-page .site-shell > .site-header .hub-subtitle,
+.contact-page .site-shell > .site-header p,
+.contact-page .contact-page__subpanel p,
+.contact-page .contact-page__subpanel li,
+.contact-page .contact-page__subpanel a {
   color: #111827 !important;
 }
 
 .terms-page .terms-page__subpanel h3,
 .privacy-page .privacy-page__subpanel h3,
 .mission-page .mission-page__subpanel h3,
-.team-page .team-page__subpanel h3 {
+.team-page .team-page__subpanel h3,
+.contact-page .contact-page__subpanel h3 {
   color: #df5047 !important;
 }
 
 .terms-page .terms-page__subpanel h3,
 .privacy-page .privacy-page__subpanel h3,
 .mission-page .mission-page__subpanel h3,
-.team-page .team-page__subpanel h3 {
+.team-page .team-page__subpanel h3,
+.contact-page .contact-page__subpanel h3 {
   margin: 28px 0 10px;
   padding-bottom: 8px;
   padding-right: 14px;
@@ -2739,6 +2752,13 @@ body {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 36px;
   align-items: stretch;
+}
+
+.contact-page .contact-page__content-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
+  gap: 36px;
+  align-items: start;
 }
 
 .mission-page .mission-page__subpanel--text,
@@ -2784,7 +2804,9 @@ body {
 .privacy-page .privacy-page__subpanel p + h3,
 .privacy-page .privacy-page__subpanel ul + h3,
 .team-page .team-page__subpanel p + h3,
-.team-page .team-page__subpanel ul + h3 {
+.team-page .team-page__subpanel ul + h3,
+.contact-page .contact-page__subpanel p + h3,
+.contact-page .contact-page__subpanel ul + h3 {
   margin-top: 34px;
 }
 
@@ -2793,7 +2815,9 @@ body {
 .privacy-page .privacy-page__subpanel p,
 .privacy-page .privacy-page__subpanel ul,
 .team-page .team-page__subpanel p,
-.team-page .team-page__subpanel ul {
+.team-page .team-page__subpanel ul,
+.contact-page .contact-page__subpanel p,
+.contact-page .contact-page__subpanel ul {
   margin: 0 0 14px;
 }
 
@@ -2809,7 +2833,8 @@ body {
 html[data-theme="dark"] .terms-page .terms-page__subpanel,
 html[data-theme="dark"] .privacy-page .privacy-page__subpanel,
 html[data-theme="dark"] .mission-page .mission-page__subpanel,
-html[data-theme="dark"] .team-page .team-page__subpanel {
+html[data-theme="dark"] .team-page .team-page__subpanel,
+html[data-theme="dark"] .contact-page .contact-page__subpanel {
   color: #ffffff;
 }
 
@@ -2832,8 +2857,137 @@ html[data-theme="dark"] .team-page .site-shell > .site-header .hub-subtitle,
 html[data-theme="dark"] .team-page .site-shell > .site-header p,
 html[data-theme="dark"] .team-page .team-page__subpanel p,
 html[data-theme="dark"] .team-page .team-page__subpanel li,
-html[data-theme="dark"] .team-page .team-page__subpanel a {
+html[data-theme="dark"] .team-page .team-page__subpanel a,
+html[data-theme="dark"] .contact-page .site-shell > .site-header .hub-subtitle,
+html[data-theme="dark"] .contact-page .site-shell > .site-header p,
+html[data-theme="dark"] .contact-page .contact-page__subpanel p,
+html[data-theme="dark"] .contact-page .contact-page__subpanel li,
+html[data-theme="dark"] .contact-page .contact-page__subpanel a {
   color: #ffffff !important;
+}
+
+.contact-page .contact-page__category-list,
+.contact-page .contact-page__contact-list {
+  display: grid;
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.contact-page .contact-page__category-item,
+.contact-page .contact-page__contact-item {
+  display: grid;
+  gap: 6px;
+  padding: 14px 0;
+  border-top: 1px solid rgba(17, 24, 39, 0.08);
+}
+
+.contact-page .contact-page__category-item:first-child,
+.contact-page .contact-page__contact-item:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.contact-page .contact-page__category-item strong,
+.contact-page .contact-page__contact-item span {
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.contact-page .contact-page__form {
+  display: grid;
+  gap: 16px;
+}
+
+.contact-page .contact-page__field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.contact-page .contact-page__field {
+  display: grid;
+  gap: 8px;
+}
+
+.contact-page .contact-page__field span {
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.contact-page .contact-page__field input,
+.contact-page .contact-page__field select,
+.contact-page .contact-page__field textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--panel);
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  padding: 14px 15px;
+  outline: none;
+  transition: border-color 140ms ease, box-shadow 140ms ease, background 140ms ease;
+}
+
+.contact-page .contact-page__field textarea {
+  min-height: 180px;
+  resize: vertical;
+}
+
+.contact-page .contact-page__field input:focus,
+.contact-page .contact-page__field select:focus,
+.contact-page .contact-page__field textarea:focus {
+  border-color: rgba(40, 121, 181, 0.5);
+  box-shadow: 0 0 0 3px rgba(40, 121, 181, 0.12);
+}
+
+.contact-page .contact-page__form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+}
+
+.contact-page .contact-page__form-footer p {
+  margin: 0;
+}
+
+.contact-page .contact-page__submit {
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #2879b5, #cf2f2f);
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  padding: 13px 18px;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+html[data-theme="dark"] .contact-page .contact-page__category-item,
+html[data-theme="dark"] .contact-page .contact-page__contact-item {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark"] .contact-page .contact-page__category-item strong,
+html[data-theme="dark"] .contact-page .contact-page__contact-item span,
+html[data-theme="dark"] .contact-page .contact-page__field span {
+  color: rgba(242, 247, 255, 0.92);
+}
+
+html[data-theme="dark"] .contact-page .contact-page__field input,
+html[data-theme="dark"] .contact-page .contact-page__field select,
+html[data-theme="dark"] .contact-page .contact-page__field textarea {
+  background: var(--panel-2);
 }
 
 html[data-theme="dark"] .mission-page .mission-page__image-placeholder {
@@ -2984,6 +3138,14 @@ html[data-theme="dark"] .mission-page .mission-page__image-placeholder {
   gap: 24px;
 }
 
+.forum-page__banner-actions,
+.forum-page__locked-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
 .forum-page__overview {
   display: grid;
   grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.9fr);
@@ -3024,6 +3186,40 @@ html[data-theme="dark"] .mission-page .mission-page__image-placeholder {
   color: var(--muted);
   font-size: 15px;
   line-height: 1.6;
+}
+
+.forum-page__locked-state {
+  display: grid;
+  gap: 12px;
+  padding: 20px;
+  border: 1px dashed rgba(40, 121, 181, 0.26);
+  background: linear-gradient(180deg, rgba(40,121,181,0.05), rgba(207,47,47,0.03));
+  border-radius: 18px;
+}
+
+.forum-page__locked-state[hidden] {
+  display: none !important;
+}
+
+.forum-page__locked-state--threads {
+  min-height: 220px;
+  place-content: center;
+}
+
+.forum-page__locked-title {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+
+.forum-page__locked-copy {
+  margin: 0;
+  max-width: 640px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.65;
 }
 
 .forum-page__overview-stats {
@@ -3157,6 +3353,12 @@ html[data-theme="dark"] .mission-page .mission-page__image-placeholder {
   letter-spacing: 0.02em;
   padding: 13px 18px;
   cursor: pointer;
+}
+
+.forum-page__primary-button:disabled,
+.forum-page__secondary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .forum-page__secondary-button {
@@ -3402,6 +3604,11 @@ html[data-theme="dark"] .forum-page__secondary-button {
   background: rgba(255,255,255,0.04);
 }
 
+html[data-theme="dark"] .forum-page__locked-state {
+  border-color: rgba(73, 160, 226, 0.3);
+  background: linear-gradient(180deg, rgba(40,121,181,0.09), rgba(255,255,255,0.02));
+}
+
 @media (max-width: 1080px) {
   .forum-page__guest-banner,
   .forum-page__overview,
@@ -3525,6 +3732,10 @@ html[data-theme="dark"] .team-page .team-page__bio {
     grid-template-columns: 1fr;
   }
 
+  .contact-page .contact-page__content-panel {
+    grid-template-columns: 1fr;
+  }
+
   .team-page .team-page__grid {
     grid-template-columns: 1fr;
   }
@@ -3565,6 +3776,12 @@ html[data-theme="dark"] .team-page .team-page__bio {
 
   .team-page .team-page__bio {
     max-width: none;
+  }
+
+  .contact-page .contact-page__field-grid,
+  .contact-page .contact-page__form-footer {
+    grid-template-columns: 1fr;
+    display: grid;
   }
 }
 
@@ -13072,6 +13289,16 @@ html[data-theme="dark"] .civica-homepage__footer-copy {
   column-gap: 22px;
 }
 
+.civica-service-item--link {
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.12s ease, opacity 0.12s ease;
+}
+
+.civica-service-item--link:hover {
+  transform: translateY(-1px);
+}
+
 .civica-service-item__media {
   width: 88px;
   height: 88px;
@@ -13461,19 +13688,15 @@ body.civica-homepage .civica-service-item__media img {
   margin-bottom: 18px;
 }
 
-.polycivic-auth-eyebrow {
-  margin: 0 0 8px;
-  color: var(--accent);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
 .polycivic-auth-copy h2 {
   margin: 0 0 10px;
-  font-size: clamp(28px, 3vw, 36px);
-  line-height: 1.05;
+  color: #df5047;
+  font-family: "Libre Baskerville", Baskerville, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(28px, 4vw, 54px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
 }
 
 .polycivic-auth-description,
@@ -13511,10 +13734,21 @@ body.civica-homepage .civica-service-item__media img {
 }
 
 .polycivic-auth-google {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
   padding: 15px 18px;
   background: linear-gradient(135deg, rgba(207, 47, 47, 0.12), rgba(40, 121, 181, 0.12));
   color: var(--text);
   border: 1px solid var(--border);
+}
+
+.polycivic-auth-google-icon {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  object-fit: contain;
 }
 
 .polycivic-auth-divider {
