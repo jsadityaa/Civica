@@ -188,6 +188,38 @@ body {
   align-items: center;
 }
 
+.global-nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.global-nav-toggle:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-1px);
+}
+
+.global-nav-toggle__bar {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transform-origin: center;
+  transition: transform 220ms ease, opacity 180ms ease;
+}
+
 .account-ui {
   flex: 0 0 auto;
   display: flex;
@@ -13877,4 +13909,716 @@ body.civica-homepage .civica-service-item__media img {
 html[data-theme="dark"] .polycivic-auth-modal,
 html[data-theme="dark"] .polycivic-account-menu {
   box-shadow: 0 26px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* Mobile-only override layer */
+@media (max-width: 768px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  .global-header-inner {
+    width: min(100vw - 24px, 1280px) !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 12px 0 !important;
+  }
+
+  .brand {
+    justify-self: start;
+    font-size: 30px;
+    line-height: 1.08;
+    padding-right: 8px;
+  }
+
+  .global-nav-toggle {
+    display: inline-flex;
+    justify-self: end;
+    align-self: center;
+  }
+
+  .global-nav {
+    display: flex !important;
+    grid-column: 1 / -1;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    gap: 8px !important;
+    width: 100%;
+    padding: 12px 0 0 !important;
+    margin-left: 0 !important;
+    padding-right: 0 !important;
+    overflow: visible !important;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    max-height: 0;
+    pointer-events: none;
+    transition:
+      opacity 220ms ease,
+      transform 260ms ease,
+      max-height 320ms ease,
+      visibility 0s linear 320ms;
+  }
+
+  .global-header-inner.is-mobile-open .global-nav {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    max-height: 520px;
+    pointer-events: auto;
+    transition:
+      opacity 220ms ease,
+      transform 260ms ease,
+      max-height 320ms ease,
+      visibility 0s linear 0s;
+  }
+
+  .global-nav-link,
+  .global-nav-dropdown {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .account-ui {
+    display: flex !important;
+    grid-column: 1 / -1;
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: 6px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    max-height: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transition:
+      opacity 220ms ease 40ms,
+      transform 260ms ease 40ms,
+      max-height 320ms ease,
+      visibility 0s linear 320ms;
+  }
+
+  .global-header-inner.is-mobile-open .account-ui {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    max-height: 140px;
+    pointer-events: auto;
+    transition:
+      opacity 220ms ease 40ms,
+      transform 260ms ease 40ms,
+      max-height 320ms ease,
+      visibility 0s linear 0s;
+  }
+
+  .global-nav-link {
+    width: 100%;
+    justify-content: flex-start;
+    border-radius: 14px;
+    padding: 12px 14px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition:
+      opacity 220ms ease,
+      transform 260ms ease,
+      background 180ms ease;
+  }
+
+  .global-header-inner.is-mobile-open .global-nav-link {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .global-nav-dropdown {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .global-nav-dropdown-menu {
+    position: static;
+    top: auto;
+    left: auto;
+    min-width: 0;
+    margin-top: 6px;
+    border-radius: 14px;
+    box-shadow: none;
+  }
+
+  .global-nav-dropdown-link {
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+      opacity 220ms ease,
+      transform 260ms ease,
+      background 180ms ease;
+  }
+
+  .global-header-inner.is-mobile-open .global-nav-dropdown-link {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .global-header-inner.is-mobile-open .global-nav-link:nth-child(1) { transition-delay: 20ms; }
+  .global-header-inner.is-mobile-open .global-nav-link:nth-child(2) { transition-delay: 45ms; }
+  .global-header-inner.is-mobile-open .global-nav-link:nth-child(3) { transition-delay: 70ms; }
+  .global-header-inner.is-mobile-open .global-nav-link:nth-child(4) { transition-delay: 95ms; }
+  .global-header-inner.is-mobile-open .global-nav-link:nth-child(5) { transition-delay: 120ms; }
+  .global-header-inner.is-mobile-open .global-nav-link:nth-child(6) { transition-delay: 145ms; }
+
+  .global-header-inner.is-mobile-open .global-nav-dropdown-link:nth-child(1) { transition-delay: 135ms; }
+  .global-header-inner.is-mobile-open .global-nav-dropdown-link:nth-child(2) { transition-delay: 160ms; }
+
+  .global-header-inner.is-mobile-open .global-nav-toggle__bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .global-header-inner.is-mobile-open .global-nav-toggle__bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .global-header-inner.is-mobile-open .global-nav-toggle__bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .site-shell,
+  .civica-homepage__main {
+    width: min(100vw - 24px, 1280px) !important;
+  }
+
+  .site-shell {
+    padding-top: 18px !important;
+  }
+
+  .site-shell > .site-header {
+    margin-bottom: 18px;
+  }
+
+  .site-shell > .site-header h1,
+  .terms-page .site-shell > .site-header h1.terms-page__title,
+  .privacy-page .site-shell > .site-header h1.privacy-page__title,
+  .mission-page .site-shell > .site-header h1.mission-page__title,
+  .team-page .site-shell > .site-header h1.team-page__title,
+  .contact-page .site-shell > .site-header h1.contact-page__title {
+    font-size: clamp(34px, 11vw, 50px);
+    line-height: 0.95;
+  }
+
+  .site-shell > .site-header .hub-subtitle,
+  .site-shell > .site-header p {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .content-panel,
+  .terms-page .terms-page__content-panel,
+  .privacy-page .privacy-page__content-panel,
+  .mission-page .mission-page__content-panel,
+  .team-page .team-page__content-panel,
+  .contact-page .contact-page__content-panel {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .subpanel {
+    padding: 16px;
+  }
+
+  .panel-heading {
+    gap: 10px;
+  }
+
+  .panel-heading h2,
+  .content-panel h2 {
+    font-size: 24px;
+  }
+
+  .subpanel h3 {
+    font-size: 18px;
+  }
+
+  .election-package-header {
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+
+  .election-package-nav {
+    width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .election-package-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .election-package-link {
+    flex: 0 0 auto;
+  }
+
+  .national-map-shell {
+    height: 420px !important;
+  }
+
+  .tooltip {
+    min-width: 0 !important;
+    width: min(92vw, 340px);
+  }
+
+  body.civica-homepage .civica-homepage__hero {
+    padding: 28px 0 12px;
+  }
+
+  body.civica-homepage .civica-homepage__hero-inner {
+    gap: 18px;
+  }
+
+  body.civica-homepage .civica-homepage__headline {
+    font-size: clamp(34px, 11vw, 56px) !important;
+    line-height: 1.02 !important;
+    text-align: center;
+    max-width: 11ch;
+    margin: 0 auto;
+  }
+
+  body.civica-homepage .civica-homepage__hero-map {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .civica-homepage__section {
+    margin-top: 42px;
+  }
+
+  .civica-homepage__section-stack,
+  .civica-homepage__featured-stack {
+    width: 100%;
+  }
+
+  .civica-homepage__section-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.16em;
+  }
+
+  .civica-homepage__section-caption {
+    font-size: clamp(28px, 8vw, 42px);
+    line-height: 1.08;
+  }
+
+  .civica-homepage__services {
+    margin-top: 32px !important;
+    gap: 24px !important;
+  }
+
+  .civica-service-item {
+    grid-template-columns: 72px minmax(0, 1fr) !important;
+    column-gap: 16px !important;
+  }
+
+  body.civica-homepage .civica-service-item__media {
+    width: 72px !important;
+    height: 72px !important;
+    min-width: 72px !important;
+    min-height: 72px !important;
+    max-width: 72px !important;
+    max-height: 72px !important;
+    flex: 0 0 72px !important;
+  }
+
+  .civica-service-item__content h3 {
+    font-size: 20px !important;
+    margin-bottom: 8px;
+  }
+
+  .civica-service-item__content p {
+    font-size: 14px !important;
+    line-height: 1.5;
+  }
+
+  body.civica-homepage .civica-homepage__featured-stack,
+  body.civica-homepage .civica-homepage__featured-grid {
+    transform: none !important;
+  }
+
+  body.civica-homepage .civica-homepage__featured-timer {
+    margin-top: 12px !important;
+    transform: none !important;
+    font-size: 13px !important;
+    letter-spacing: 0.14em !important;
+  }
+
+  .civica-homepage__featured-grid {
+    margin-top: 20px !important;
+  }
+
+  .civica-homepage__faq {
+    margin-top: 28px !important;
+  }
+
+  .civica-homepage__faq-controls {
+    justify-content: flex-end;
+  }
+
+  .civica-faq-item__question {
+    padding: 16px 0;
+    font-size: 17px;
+  }
+
+  .civica-homepage__footer {
+    margin-top: 36px;
+  }
+
+  .civica-homepage__footer-inner {
+    width: min(100vw - 24px, 1280px) !important;
+    padding: 18px 0 !important;
+  }
+
+  .civica-homepage__footer-bottom {
+    gap: 12px;
+  }
+
+  .civica-homepage__footer-nav {
+    gap: 10px 14px;
+  }
+
+  .civica-homepage__footer-copy,
+  .civica-homepage__footer-legal,
+  .civica-homepage__footer-nav a {
+    font-size: 13px;
+  }
+
+  .mission-page .mission-page__image {
+    min-height: 260px;
+    object-fit: cover;
+  }
+
+  .team-page .team-page__section-intro {
+    margin-bottom: 8px;
+  }
+
+  .team-page .team-page__profile {
+    padding: 18px;
+  }
+
+  .team-page .team-page__profile-top {
+    gap: 16px;
+    align-items: center;
+  }
+
+  .team-page .team-page__photo-shell {
+    width: 110px;
+    height: 110px;
+    min-width: 110px;
+  }
+
+  .team-page .team-page__name {
+    font-size: 26px;
+  }
+
+  .team-page .team-page__role {
+    font-size: 14px;
+  }
+
+  .team-page .team-page__bio {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .contact-page .contact-page__category-list,
+  .contact-page .contact-page__contact-list {
+    gap: 14px;
+  }
+
+  .contact-page .contact-page__field-grid,
+  .contact-page .contact-page__form-footer {
+    grid-template-columns: 1fr !important;
+  }
+
+  .contact-page .contact-page__field input,
+  .contact-page .contact-page__field select,
+  .contact-page .contact-page__field textarea {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .global-header-inner {
+    width: min(100vw - 18px, 1280px) !important;
+  }
+
+  .site-shell,
+  .civica-homepage__main,
+  .civica-homepage__footer-inner {
+    width: min(100vw - 18px, 1280px) !important;
+  }
+
+  .brand {
+    font-size: 28px;
+  }
+
+  .global-nav-link {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  body.civica-homepage .civica-homepage__headline {
+    font-size: clamp(30px, 10vw, 44px) !important;
+  }
+
+  .civica-homepage__section-caption {
+    font-size: clamp(24px, 8vw, 34px);
+  }
+
+  .civica-service-item {
+    grid-template-columns: 62px minmax(0, 1fr) !important;
+  }
+
+  body.civica-homepage .civica-service-item__media {
+    width: 62px !important;
+    height: 62px !important;
+    min-width: 62px !important;
+    min-height: 62px !important;
+    max-width: 62px !important;
+    max-height: 62px !important;
+    flex: 0 0 62px !important;
+  }
+
+  .team-page .team-page__profile-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .team-page .team-page__identity {
+    padding-left: 0;
+  }
+
+  .mission-page .mission-page__image {
+    min-height: 220px;
+  }
+
+  .national-map-shell {
+    height: 340px !important;
+  }
+}
+
+/* Mobile spacing refinement */
+@media (max-width: 768px) {
+  .site-shell,
+  .civica-homepage__main {
+    padding-top: 12px !important;
+    padding-bottom: 56px !important;
+  }
+
+  .site-shell > .site-header {
+    margin-bottom: 12px !important;
+  }
+
+  .site-shell > .site-header h1,
+  .terms-page .site-shell > .site-header h1.terms-page__title,
+  .privacy-page .site-shell > .site-header h1.privacy-page__title,
+  .mission-page .site-shell > .site-header h1.mission-page__title,
+  .team-page .site-shell > .site-header h1.team-page__title,
+  .contact-page .site-shell > .site-header h1.contact-page__title {
+    margin-bottom: 6px !important;
+  }
+
+  .content-panel,
+  .terms-page .terms-page__content-panel,
+  .privacy-page .privacy-page__content-panel,
+  .mission-page .mission-page__content-panel,
+  .team-page .team-page__content-panel,
+  .contact-page .contact-page__content-panel {
+    padding: 14px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .subpanel,
+  .mission-page .mission-page__subpanel,
+  .team-page .team-page__subpanel,
+  .contact-page .contact-page__subpanel {
+    padding: 14px !important;
+  }
+
+  .two-column-grid,
+  .team-page .team-page__grid,
+  .contact-page .contact-page__field-grid,
+  .contact-page .contact-page__form-footer {
+    gap: 12px !important;
+  }
+
+  .civica-homepage__hero {
+    margin-bottom: 28px !important;
+    padding: 18px 0 6px !important;
+  }
+
+  body.civica-homepage .civica-homepage__hero-inner {
+    gap: 14px !important;
+  }
+
+  .civica-homepage__section {
+    margin-top: 28px !important;
+  }
+
+  .civica-homepage__section-stack,
+  .civica-homepage__featured-stack {
+    gap: 8px !important;
+  }
+
+  .civica-homepage__services {
+    margin-top: 20px !important;
+    gap: 18px !important;
+  }
+
+  .civica-homepage__featured-grid {
+    margin-top: 14px !important;
+  }
+
+  .civica-homepage__faq {
+    margin-top: 18px !important;
+  }
+
+  .civica-faq-item__question {
+    padding: 13px 0 !important;
+  }
+
+  .civica-faq-item__answer {
+    padding-bottom: 12px;
+  }
+
+  .mission-page .mission-page__image {
+    min-height: 220px !important;
+  }
+
+  .team-page .team-page__section-intro {
+    margin-bottom: 2px !important;
+  }
+
+  .team-page .team-page__profile {
+    padding: 14px !important;
+  }
+
+  .team-page .team-page__profile-top {
+    gap: 12px !important;
+  }
+
+  .team-page .team-page__photo-shell {
+    width: 92px !important;
+    height: 92px !important;
+    min-width: 92px !important;
+  }
+
+  .contact-page .contact-page__category-list,
+  .contact-page .contact-page__contact-list {
+    gap: 10px !important;
+  }
+
+  .contact-page .contact-page__field {
+    gap: 6px;
+  }
+
+  .civica-homepage__footer {
+    margin-top: 24px !important;
+  }
+
+  .civica-homepage__footer-inner {
+    padding: 14px 0 !important;
+  }
+
+  .civica-homepage__footer-bottom,
+  .civica-homepage__footer-meta {
+    gap: 8px !important;
+  }
+
+  .civica-homepage__footer-nav {
+    gap: 8px 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .global-header-inner {
+    min-height: 64px !important;
+    gap: 8px !important;
+  }
+
+  .global-nav-toggle {
+    width: 42px;
+    height: 42px;
+  }
+
+  .account-ui {
+    gap: 8px !important;
+  }
+
+  .login-button,
+  .signup-button,
+  .account-button {
+    min-height: 38px;
+  }
+
+  .site-shell,
+  .civica-homepage__main {
+    padding-top: 8px !important;
+    padding-bottom: 44px !important;
+  }
+
+  .site-shell > .site-header {
+    margin-bottom: 10px !important;
+  }
+
+  .content-panel,
+  .terms-page .terms-page__content-panel,
+  .privacy-page .privacy-page__content-panel,
+  .mission-page .mission-page__content-panel,
+  .team-page .team-page__content-panel,
+  .contact-page .contact-page__content-panel {
+    padding: 12px !important;
+  }
+
+  .subpanel,
+  .mission-page .mission-page__subpanel,
+  .team-page .team-page__subpanel,
+  .contact-page .contact-page__subpanel {
+    padding: 12px !important;
+  }
+
+  .civica-homepage__hero {
+    margin-bottom: 20px !important;
+  }
+
+  .civica-homepage__section {
+    margin-top: 22px !important;
+  }
+
+  .civica-homepage__services {
+    gap: 14px !important;
+  }
+
+  .civica-homepage__featured-grid,
+  .civica-homepage__faq {
+    margin-top: 12px !important;
+  }
+
+  .team-page .team-page__profile {
+    padding: 12px !important;
+  }
+
+  .team-page .team-page__photo-shell {
+    width: 84px !important;
+    height: 84px !important;
+    min-width: 84px !important;
+  }
+
+  .civica-homepage__footer {
+    margin-top: 20px !important;
+  }
 }
