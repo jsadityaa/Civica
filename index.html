@@ -435,15 +435,10 @@
         if (!mobileOnly.matches || !('IntersectionObserver' in window)) return;
 
         const selectors = [
-          '.civica-homepage__headline',
-          '.civica-homepage__hero-map',
-          '.civica-homepage__section-stack',
-          '.civica-service-item',
-          '.civica-homepage__featured-timer',
-          '.civica-featured-panel',
-          '.civica-homepage__faq-controls',
-          '.civica-faq-item',
-          '.civica-homepage__footer-inner'
+          '.civica-homepage__hero-inner',
+          '.civica-homepage__section:nth-of-type(1)',
+          '.civica-homepage__section:nth-of-type(2)',
+          '.civica-homepage__faq-section'
         ];
 
         const targets = Array.from(document.querySelectorAll(selectors.join(', ')));
@@ -459,8 +454,8 @@
             entry.target.classList.toggle('is-visible', entry.isIntersecting);
           });
         }, {
-          threshold: 0.16,
-          rootMargin: '0px 0px -8% 0px'
+          threshold: 0.1,
+          rootMargin: '0px 0px -10% 0px'
         });
 
         targets.forEach(function (target) {

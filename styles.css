@@ -13913,13 +13913,19 @@ html[data-theme="dark"] .polycivic-account-menu {
 
 /* Mobile-only override layer */
 @media (max-width: 768px) {
+  .site-shell,
+  .civica-homepage__main,
+  .civica-homepage__footer-inner {
+    width: min(100vw - 40px, 1280px) !important;
+  }
+
   html,
   body {
     overflow-x: hidden;
   }
 
   .global-header-inner {
-    width: min(100vw - 24px, 1280px) !important;
+    width: min(100vw - 40px, 1280px) !important;
     display: grid !important;
     grid-template-columns: minmax(0, 1fr) auto !important;
     align-items: center !important;
@@ -13929,7 +13935,7 @@ html[data-theme="dark"] .polycivic-account-menu {
 
   .brand {
     justify-self: start;
-    font-size: 30px;
+    font-size: 28px;
     line-height: 1.08;
     padding-right: 8px;
   }
@@ -14087,11 +14093,6 @@ html[data-theme="dark"] .polycivic-account-menu {
     transform: translateY(-7px) rotate(-45deg);
   }
 
-  .site-shell,
-  .civica-homepage__main {
-    width: min(100vw - 24px, 1280px) !important;
-  }
-
   .site-shell {
     padding-top: 18px !important;
   }
@@ -14182,8 +14183,8 @@ html[data-theme="dark"] .polycivic-account-menu {
   }
 
   body.civica-homepage .civica-homepage__headline {
-    font-size: clamp(34px, 11vw, 56px) !important;
-    line-height: 1.02 !important;
+    font-size: clamp(30px, 9.6vw, 48px) !important;
+    line-height: 1.04 !important;
     text-align: center;
     max-width: 11ch;
     margin: 0 auto;
@@ -14202,47 +14203,50 @@ html[data-theme="dark"] .polycivic-account-menu {
 
   .civica-homepage__section-stack,
   .civica-homepage__featured-stack {
-    width: 100%;
+    width: min(100%, calc(100vw - 40px));
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .civica-homepage__section-eyebrow {
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.16em;
   }
 
   .civica-homepage__section-caption {
-    font-size: clamp(28px, 8vw, 42px);
-    line-height: 1.08;
+    font-size: clamp(23px, 7vw, 34px);
+    line-height: 1.12;
   }
 
   .civica-homepage__services {
+    width: min(100%, calc(100vw - 40px)) !important;
     margin-top: 32px !important;
-    gap: 24px !important;
+    gap: 20px !important;
   }
 
   .civica-service-item {
-    grid-template-columns: 72px minmax(0, 1fr) !important;
-    column-gap: 16px !important;
+    grid-template-columns: 68px minmax(0, 1fr) !important;
+    column-gap: 14px !important;
   }
 
   body.civica-homepage .civica-service-item__media {
-    width: 72px !important;
-    height: 72px !important;
-    min-width: 72px !important;
-    min-height: 72px !important;
-    max-width: 72px !important;
-    max-height: 72px !important;
-    flex: 0 0 72px !important;
+    width: 68px !important;
+    height: 68px !important;
+    min-width: 68px !important;
+    min-height: 68px !important;
+    max-width: 68px !important;
+    max-height: 68px !important;
+    flex: 0 0 68px !important;
   }
 
   .civica-service-item__content h3 {
-    font-size: 20px !important;
-    margin-bottom: 8px;
+    font-size: 18px !important;
+    margin-bottom: 6px;
   }
 
   .civica-service-item__content p {
-    font-size: 14px !important;
-    line-height: 1.5;
+    font-size: 13px !important;
+    line-height: 1.46;
   }
 
   body.civica-homepage .civica-homepage__featured-stack,
@@ -14253,25 +14257,39 @@ html[data-theme="dark"] .polycivic-account-menu {
   body.civica-homepage .civica-homepage__featured-timer {
     margin-top: 12px !important;
     transform: none !important;
-    font-size: 13px !important;
+    font-size: 12px !important;
     letter-spacing: 0.14em !important;
   }
 
   .civica-homepage__featured-grid {
+    width: min(100%, calc(100vw - 40px)) !important;
     margin-top: 20px !important;
   }
 
   .civica-homepage__faq {
+    width: min(100%, calc(100vw - 40px)) !important;
     margin-top: 28px !important;
   }
 
   .civica-homepage__faq-controls {
+    width: min(100%, calc(100vw - 40px)) !important;
+    margin-left: auto;
+    margin-right: auto;
     justify-content: flex-end;
   }
 
   .civica-faq-item__question {
     padding: 16px 0;
-    font-size: 17px;
+    font-size: 15px;
+  }
+
+  .civica-faq-item__question span {
+    font-size: clamp(18px, 4.8vw, 20px) !important;
+  }
+
+  .civica-faq-item p {
+    font-size: 14px !important;
+    line-height: 1.48 !important;
   }
 
   .civica-homepage__footer {
@@ -14279,7 +14297,7 @@ html[data-theme="dark"] .polycivic-account-menu {
   }
 
   .civica-homepage__footer-inner {
-    width: min(100vw - 24px, 1280px) !important;
+    width: min(100vw - 40px, 1280px) !important;
     padding: 18px 0 !important;
   }
 
@@ -14353,44 +14371,44 @@ html[data-theme="dark"] .polycivic-account-menu {
 
 @media (max-width: 480px) {
   .global-header-inner {
-    width: min(100vw - 18px, 1280px) !important;
+    width: min(100vw - 34px, 1280px) !important;
   }
 
   .site-shell,
   .civica-homepage__main,
   .civica-homepage__footer-inner {
-    width: min(100vw - 18px, 1280px) !important;
+    width: min(100vw - 34px, 1280px) !important;
   }
 
   .brand {
-    font-size: 28px;
+    font-size: 26px;
   }
 
   .global-nav-link {
-    padding: 10px 14px;
-    font-size: 14px;
+    padding: 9px 12px;
+    font-size: 13px;
   }
 
   body.civica-homepage .civica-homepage__headline {
-    font-size: clamp(30px, 10vw, 44px) !important;
+    font-size: clamp(27px, 8.8vw, 38px) !important;
   }
 
   .civica-homepage__section-caption {
-    font-size: clamp(24px, 8vw, 34px);
+    font-size: clamp(21px, 6.8vw, 29px);
   }
 
   .civica-service-item {
-    grid-template-columns: 62px minmax(0, 1fr) !important;
+    grid-template-columns: 58px minmax(0, 1fr) !important;
   }
 
   body.civica-homepage .civica-service-item__media {
-    width: 62px !important;
-    height: 62px !important;
-    min-width: 62px !important;
-    min-height: 62px !important;
-    max-width: 62px !important;
-    max-height: 62px !important;
-    flex: 0 0 62px !important;
+    width: 58px !important;
+    height: 58px !important;
+    min-width: 58px !important;
+    min-height: 58px !important;
+    max-width: 58px !important;
+    max-height: 58px !important;
+    flex: 0 0 58px !important;
   }
 
   .team-page .team-page__profile-top {
@@ -14625,8 +14643,8 @@ html[data-theme="dark"] .polycivic-account-menu {
 
 @media (max-width: 768px) {
   .mobile-reveal {
-    opacity: 0;
-    transform: translate3d(0, 30px, 0);
+    opacity: 0 !important;
+    transform: translate3d(0, 30px, 0) !important;
     transition:
       opacity 420ms ease,
       transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -14634,8 +14652,8 @@ html[data-theme="dark"] .polycivic-account-menu {
   }
 
   .mobile-reveal.is-visible {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
+    opacity: 1 !important;
+    transform: translate3d(0, 0, 0) !important;
   }
 
   .mobile-reveal[data-reveal-delay="1"] {
@@ -14656,5 +14674,105 @@ html[data-theme="dark"] .polycivic-account-menu {
 
   .mobile-reveal[data-reveal-delay="5"] {
     transition-delay: 250ms;
+  }
+
+  body.civica-homepage .civica-homepage__footer {
+    padding: 22px 0 16px !important;
+  }
+
+  body.civica-homepage .civica-homepage__footer-inner {
+    width: min(100vw - 32px, 980px) !important;
+    padding: 0 !important;
+    gap: 0 !important;
+  }
+
+  body.civica-homepage .civica-homepage__footer-bottom {
+    position: static !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    gap: 12px !important;
+  }
+
+  body.civica-homepage .civica-homepage__footer-meta {
+    width: 100%;
+    display: grid !important;
+    gap: 8px !important;
+  }
+
+  body.civica-homepage .civica-homepage__footer-brand {
+    font-size: 20px !important;
+  }
+
+  body.civica-homepage .civica-homepage__footer-nav {
+    width: 100%;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px 14px !important;
+  }
+
+  body.civica-homepage .civica-homepage__footer-legal {
+    margin-top: 6px !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+
+  body.civica-homepage .civica-homepage__footer-copy {
+    position: static !important;
+    left: auto !important;
+    transform: none !important;
+    margin: 4px 0 0 !important;
+    align-self: flex-start !important;
+    text-align: left !important;
+  }
+}
+
+@media (max-width: 480px) {
+  body.civica-homepage .civica-homepage__footer {
+    padding: 18px 0 14px !important;
+  }
+
+  body.civica-homepage .civica-homepage__footer-inner {
+    width: min(100vw - 34px, 980px) !important;
+  }
+
+  body.civica-homepage .civica-homepage__footer-bottom,
+  body.civica-homepage .civica-homepage__footer-meta {
+    gap: 10px !important;
+  }
+
+  body.civica-homepage .civica-homepage__footer-brand {
+    font-size: 18px !important;
+  }
+
+  body.civica-homepage .civica-homepage__footer-nav a,
+  body.civica-homepage .civica-homepage__footer-legal,
+  body.civica-homepage .civica-homepage__footer-copy {
+    font-size: 12px !important;
+    line-height: 1.45 !important;
+  }
+
+  .civica-homepage__featured-timer {
+    font-size: 11px !important;
+  }
+
+  .civica-featured-panel {
+    padding: 16px !important;
+  }
+
+  .civica-featured-panel__media {
+    min-height: 132px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .civica-featured-panel h2,
+  .civica-featured-panel h3 {
+    font-size: 20px !important;
+  }
+
+  .civica-featured-panel p {
+    font-size: 13px !important;
+    line-height: 1.44 !important;
   }
 }
