@@ -4110,10 +4110,7 @@ html[data-theme="dark"] .team-page .team-page__bio {
 @media (max-width: 900px) {
   .global-header-inner {
     width: min(100vw - 20px, 1280px);
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-    padding: 12px 0;
+    gap: 16px;
   }
 
   .global-nav {
@@ -4124,7 +4121,7 @@ html[data-theme="dark"] .team-page .team-page__bio {
 
   .brand,
   .account-ui {
-    justify-self: center;
+    justify-self: auto;
   }
 
   .site-shell {
@@ -13926,35 +13923,48 @@ html[data-theme="dark"] .polycivic-account-menu {
 
   .global-header-inner {
     width: min(100vw - 40px, 1280px) !important;
-    display: grid !important;
-    grid-template-columns: minmax(0, 1fr) auto !important;
+    display: block !important;
     align-items: center !important;
-    gap: 12px !important;
-    padding: 12px 0 !important;
+    min-height: 56px !important;
+    padding: 8px 0 !important;
+    padding-right: 56px !important;
+    position: relative !important;
   }
 
   .brand {
-    justify-self: start;
-    font-size: 28px;
-    line-height: 1.08;
-    padding-right: 8px;
+    display: inline-block !important;
+    vertical-align: middle !important;
+    font-size: 26px;
+    line-height: 1.02;
+    padding-right: 0;
+    margin: 0 !important;
+    transform: translateY(1px);
   }
 
   .global-nav-toggle {
     display: inline-flex;
-    justify-self: end;
-    align-self: center;
+    position: absolute !important;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    flex: 0 0 auto;
+    width: 42px;
+    height: 42px;
+    margin: 0 !important;
   }
 
   .global-nav {
     display: flex !important;
-    grid-column: 1 / -1;
     flex-direction: column !important;
     align-items: stretch !important;
     justify-content: flex-start !important;
     gap: 8px !important;
+    position: absolute !important;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
     width: 100%;
-    padding: 12px 0 0 !important;
+    padding: 14px !important;
     margin-left: 0 !important;
     padding-right: 0 !important;
     overflow: visible !important;
@@ -13963,6 +13973,10 @@ html[data-theme="dark"] .polycivic-account-menu {
     transform: translateY(-10px);
     max-height: 0;
     pointer-events: none;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: var(--panel);
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.14);
     transition:
       opacity 220ms ease,
       transform 260ms ease,
@@ -13974,7 +13988,7 @@ html[data-theme="dark"] .polycivic-account-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
-    max-height: 520px;
+    max-height: 640px;
     pointer-events: auto;
     transition:
       opacity 220ms ease,
@@ -13991,12 +14005,15 @@ html[data-theme="dark"] .polycivic-account-menu {
 
   .account-ui {
     display: flex !important;
-    grid-column: 1 / -1;
-    width: 100%;
+    position: absolute !important;
+    top: calc(100% + 8px);
+    left: 14px;
+    right: 14px;
+    width: auto;
     justify-content: flex-start;
     flex-wrap: wrap;
     gap: 10px;
-    padding-top: 6px;
+    padding: 0;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px);
@@ -14016,6 +14033,10 @@ html[data-theme="dark"] .polycivic-account-menu {
     transform: translateY(0);
     max-height: 140px;
     pointer-events: auto;
+    top: auto;
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
     transition:
       opacity 220ms ease 40ms,
       transform 260ms ease 40ms,
@@ -14053,6 +14074,7 @@ html[data-theme="dark"] .polycivic-account-menu {
     left: auto;
     min-width: 0;
     margin-top: 6px;
+    width: 100%;
     border-radius: 14px;
     box-shadow: none;
   }
@@ -14372,6 +14394,9 @@ html[data-theme="dark"] .polycivic-account-menu {
 @media (max-width: 480px) {
   .global-header-inner {
     width: min(100vw - 34px, 1280px) !important;
+    min-height: 52px !important;
+    padding: 6px 0 !important;
+    padding-right: 52px !important;
   }
 
   .site-shell,
@@ -14381,7 +14406,8 @@ html[data-theme="dark"] .polycivic-account-menu {
   }
 
   .brand {
-    font-size: 26px;
+    font-size: 24px;
+    transform: translateY(2px);
   }
 
   .global-nav-link {
@@ -14564,13 +14590,29 @@ html[data-theme="dark"] .polycivic-account-menu {
 
 @media (max-width: 480px) {
   .global-header-inner {
-    min-height: 64px !important;
-    gap: 8px !important;
+    min-height: 52px !important;
   }
 
   .global-nav-toggle {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
+    right: 0;
+  }
+
+  .global-nav {
+    top: calc(100% + 6px);
+    padding: 12px !important;
+  }
+
+  .account-ui {
+    left: 12px;
+    right: 12px;
+  }
+
+  .global-header-inner.is-mobile-open .account-ui {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
   }
 
   .account-ui {
@@ -15415,5 +15457,118 @@ html[data-theme="dark"] .polycivic-account-menu {
   .detail-map-head p,
   .detail-back-link {
     font-size: 12px !important;
+  }
+}
+@media (max-width: 768px) {
+  .global-header-inner,
+  .global-header-inner.is-mobile-open {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    min-height: 56px !important;
+    padding: 8px 0 !important;
+    padding-right: 0 !important;
+    row-gap: 0 !important;
+    column-gap: 12px !important;
+    position: relative !important;
+  }
+
+  .brand,
+  .brand:link,
+  .brand:visited {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    align-self: center !important;
+    background: linear-gradient(90deg, #ff5b57 0%, #ffb3c2 32%, #8fc2ff 68%, #2f86d4 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+    filter: none !important;
+    text-shadow: none !important;
+  }
+
+  .global-nav-toggle,
+  .global-header-inner.is-mobile-open .global-nav-toggle {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    margin: 0 !important;
+    align-self: center !important;
+    justify-self: end !important;
+    width: 42px !important;
+    height: 42px !important;
+    z-index: 40 !important;
+  }
+
+  .global-nav {
+    grid-column: 1 / -1 !important;
+    position: absolute !important;
+    top: calc(100% + 8px) !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    z-index: 35 !important;
+  }
+
+  .account-ui {
+    position: absolute !important;
+    top: calc(100% + 8px) !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 14px !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 20px !important;
+    background: var(--panel) !important;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.14) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(-10px) !important;
+    pointer-events: none !important;
+    z-index: 34 !important;
+  }
+
+  .global-header-inner.is-mobile-open .account-ui {
+    top: calc(100% + 250px) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    pointer-events: auto !important;
+  }
+
+  .account-ui > * {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .global-header-inner,
+  .global-header-inner.is-mobile-open {
+    min-height: 52px !important;
+    padding: 6px 0 !important;
+    column-gap: 10px !important;
+  }
+
+  .global-nav-toggle,
+  .global-header-inner.is-mobile-open .global-nav-toggle {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .global-header-inner.is-mobile-open .account-ui {
+    top: calc(100% + 234px) !important;
   }
 }
