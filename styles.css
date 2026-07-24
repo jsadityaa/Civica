@@ -16241,3 +16241,341 @@ html[data-theme="dark"] .polycivic-account-menu {
     font-size: 24px !important;
   }
 }
+
+/* Dedicated mobile design pass: Terms, Mission, Team, Contact */
+@media (max-width: 768px) {
+  .terms-page .site-header,
+  .mission-page .site-header,
+  .team-page .site-header,
+  .contact-page .site-header {
+    margin-bottom: 16px !important;
+  }
+
+  .terms-page .terms-page__title,
+  .mission-page .mission-page__title,
+  .team-page .team-page__title,
+  .contact-page .contact-page__title {
+    max-width: 12ch !important;
+    margin: 0 0 8px !important;
+  }
+
+  .terms-page .hub-subtitle,
+  .mission-page .hub-subtitle,
+  .team-page .hub-subtitle,
+  .contact-page .hub-subtitle {
+    max-width: 34ch !important;
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+  }
+
+  .terms-page .terms-page__content-panel,
+  .mission-page .mission-page__content-panel,
+  .team-page .team-page__content-panel,
+  .contact-page .contact-page__content-panel {
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    display: grid !important;
+    gap: 14px !important;
+  }
+
+  .terms-page .terms-page__subpanel,
+  .mission-page .mission-page__subpanel,
+  .team-page .team-page__subpanel,
+  .contact-page .contact-page__subpanel {
+    padding: 16px !important;
+    border-radius: 16px !important;
+  }
+
+  .terms-page .terms-page__subpanel {
+    gap: 0 !important;
+  }
+
+  .terms-page .terms-page__subpanel > p:first-child {
+    margin-top: 0 !important;
+  }
+
+  .terms-page .terms-page__subpanel h3 {
+    margin: 18px 0 8px !important;
+    font-size: 17px !important;
+    line-height: 1.28 !important;
+  }
+
+  .terms-page .terms-page__subpanel p,
+  .terms-page .terms-page__subpanel li {
+    font-size: 13px !important;
+    line-height: 1.62 !important;
+  }
+
+  .terms-page .terms-page__subpanel ul {
+    margin: 8px 0 0 0 !important;
+    padding-left: 18px !important;
+  }
+
+  .mission-page .mission-page__content-panel {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .mission-page .mission-page__subpanel--text,
+  .mission-page .mission-page__subpanel--placeholder {
+    min-height: 0 !important;
+  }
+
+  .mission-page .mission-page__subpanel h3 {
+    margin: 0 0 10px !important;
+    font-size: 18px !important;
+    line-height: 1.2 !important;
+  }
+
+  .mission-page .mission-page__subpanel p {
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+  }
+
+  .mission-page .mission-page__image,
+  .mission-page .mission-page__image-placeholder {
+    width: 100% !important;
+    min-height: 220px !important;
+    height: 220px !important;
+    border-radius: 14px !important;
+    object-fit: cover !important;
+  }
+
+  .team-page .team-page__section-intro {
+    margin-bottom: 2px !important;
+  }
+
+  .team-page .team-page__eyebrow {
+    font-size: 11px !important;
+    letter-spacing: 0.16em !important;
+  }
+
+  .team-page .team-page__grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .team-page .team-page__profile {
+    padding: 16px !important;
+    border-radius: 16px !important;
+  }
+
+  .team-page .team-page__profile-top {
+    display: grid !important;
+    grid-template-columns: 72px minmax(0, 1fr) !important;
+    gap: 12px !important;
+    align-items: center !important;
+    text-align: left !important;
+  }
+
+  .team-page .team-page__photo-shell {
+    width: 72px !important;
+    height: 72px !important;
+    min-width: 72px !important;
+  }
+
+  .team-page .team-page__photo {
+    width: 72px !important;
+    height: 72px !important;
+  }
+
+  .team-page .team-page__identity {
+    padding-left: 0 !important;
+    gap: 4px !important;
+  }
+
+  .team-page .team-page__name {
+    font-size: 18px !important;
+    line-height: 1.1 !important;
+  }
+
+  .team-page .team-page__role {
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+  }
+
+  .team-page .team-page__profile-divider {
+    margin: 12px 0 !important;
+  }
+
+  .team-page .team-page__bio {
+    font-size: 13px !important;
+    line-height: 1.58 !important;
+  }
+
+  .contact-page .contact-page__content-panel {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .contact-page .contact-page__subpanel h3 {
+    margin: 0 0 10px !important;
+    font-size: 18px !important;
+    line-height: 1.2 !important;
+  }
+
+  .contact-page .contact-page__subpanel p,
+  .contact-page .contact-page__category-item p,
+  .contact-page .contact-page__contact-item span,
+  .contact-page .contact-page__contact-item a {
+    font-size: 13px !important;
+    line-height: 1.58 !important;
+  }
+
+  .contact-page .contact-page__category-list,
+  .contact-page .contact-page__contact-list {
+    gap: 14px !important;
+    margin-top: 14px !important;
+  }
+
+  .contact-page .contact-page__category-item strong,
+  .contact-page .contact-page__contact-item span {
+    display: block !important;
+    margin-bottom: 4px !important;
+    font-size: 12px !important;
+    letter-spacing: 0.04em !important;
+  }
+
+  .contact-page .contact-page__field-grid,
+  .contact-page .contact-page__form-footer {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .contact-page .contact-page__field {
+    gap: 6px !important;
+  }
+
+  .contact-page .contact-page__field span {
+    font-size: 12px !important;
+  }
+
+  .contact-page .contact-page__field input,
+  .contact-page .contact-page__field select,
+  .contact-page .contact-page__field textarea {
+    min-height: 44px !important;
+    padding: 11px 12px !important;
+    font-size: 15px !important;
+    border-radius: 12px !important;
+  }
+
+  .contact-page .contact-page__field textarea {
+    min-height: 140px !important;
+  }
+
+  .contact-page .contact-page__form-footer p {
+    font-size: 12px !important;
+    line-height: 1.55 !important;
+  }
+
+  .contact-page .contact-page__submit {
+    width: 100% !important;
+    min-height: 44px !important;
+    font-size: 14px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .terms-page .terms-page__title,
+  .mission-page .mission-page__title,
+  .team-page .team-page__title,
+  .contact-page .contact-page__title {
+    max-width: 10ch !important;
+  }
+
+  .terms-page .terms-page__subpanel,
+  .mission-page .mission-page__subpanel,
+  .team-page .team-page__subpanel,
+  .contact-page .contact-page__subpanel {
+    padding: 14px !important;
+  }
+
+  .mission-page .mission-page__image,
+  .mission-page .mission-page__image-placeholder {
+    min-height: 200px !important;
+    height: 200px !important;
+  }
+
+  .team-page .team-page__profile-top {
+    grid-template-columns: 64px minmax(0, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  .team-page .team-page__photo-shell,
+  .team-page .team-page__photo {
+    width: 64px !important;
+    height: 64px !important;
+  }
+}
+
+/* Mobile auth controls inside hamburger menu */
+@media (max-width: 768px) {
+  .global-header-inner.is-mobile-open {
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    grid-template-areas:
+      "brand toggle"
+      "nav nav"
+      "account account" !important;
+    align-items: start !important;
+  }
+
+  .global-header-inner.is-mobile-open .brand {
+    grid-area: brand !important;
+  }
+
+  .global-header-inner.is-mobile-open .global-nav-toggle {
+    grid-area: toggle !important;
+  }
+
+  .global-header-inner.is-mobile-open .global-nav {
+    grid-area: nav !important;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    max-height: none !important;
+    pointer-events: auto !important;
+    z-index: auto !important;
+  }
+
+  .global-header-inner.is-mobile-open .account-ui {
+    grid-area: account !important;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    margin: 0 0 10px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    max-height: none !important;
+    overflow: visible !important;
+    pointer-events: auto !important;
+    z-index: auto !important;
+  }
+
+  .global-header-inner.is-mobile-open .account-ui > * {
+    width: 100% !important;
+    min-height: 42px !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+}
