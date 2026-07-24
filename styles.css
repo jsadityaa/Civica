@@ -14622,3 +14622,39 @@ html[data-theme="dark"] .polycivic-account-menu {
     margin-top: 20px !important;
   }
 }
+
+@media (max-width: 768px) {
+  .mobile-reveal {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+    transition:
+      opacity 420ms ease,
+      transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  .mobile-reveal.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .mobile-reveal[data-reveal-delay="1"] {
+    transition-delay: 50ms;
+  }
+
+  .mobile-reveal[data-reveal-delay="2"] {
+    transition-delay: 100ms;
+  }
+
+  .mobile-reveal[data-reveal-delay="3"] {
+    transition-delay: 150ms;
+  }
+
+  .mobile-reveal[data-reveal-delay="4"] {
+    transition-delay: 200ms;
+  }
+
+  .mobile-reveal[data-reveal-delay="5"] {
+    transition-delay: 250ms;
+  }
+}

@@ -429,6 +429,45 @@
         schedulePacificResetTimer();
       })();
     </script>
+    <script>
+      (function () {
+        const mobileOnly = window.matchMedia('(max-width: 768px)');
+        if (!mobileOnly.matches || !('IntersectionObserver' in window)) return;
+
+        const selectors = [
+          '.civica-homepage__headline',
+          '.civica-homepage__hero-map',
+          '.civica-homepage__section-stack',
+          '.civica-service-item',
+          '.civica-homepage__featured-timer',
+          '.civica-featured-panel',
+          '.civica-homepage__faq-controls',
+          '.civica-faq-item',
+          '.civica-homepage__footer-inner'
+        ];
+
+        const targets = Array.from(document.querySelectorAll(selectors.join(', ')));
+        if (!targets.length) return;
+
+        targets.forEach(function (target, index) {
+          target.classList.add('mobile-reveal');
+          target.setAttribute('data-reveal-delay', String(index % 6));
+        });
+
+        const observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            entry.target.classList.toggle('is-visible', entry.isIntersecting);
+          });
+        }, {
+          threshold: 0.16,
+          rootMargin: '0px 0px -8% 0px'
+        });
+
+        targets.forEach(function (target) {
+          observer.observe(target);
+        });
+      })();
+    </script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script src="./auth-config.js"></script>
