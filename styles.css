@@ -15572,3 +15572,672 @@ html[data-theme="dark"] .polycivic-account-menu {
     top: calc(100% + 234px) !important;
   }
 }
+
+/* Final phone-first mobile layer */
+@media (max-width: 768px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  body {
+    font-size: 15px;
+  }
+
+  .site-shell,
+  .civica-homepage__main,
+  .civica-homepage__footer-inner {
+    width: min(100vw - 52px, 760px) !important;
+  }
+
+  .site-shell,
+  .civica-homepage__main {
+    padding-top: 14px !important;
+    padding-bottom: 40px !important;
+  }
+
+  .global-header {
+    position: sticky;
+    top: 0;
+    z-index: 120;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .global-header-inner,
+  .global-header-inner.is-mobile-open {
+    min-height: 50px !important;
+    padding: 6px 0 !important;
+    column-gap: 10px !important;
+  }
+
+  .brand,
+  .brand:link,
+  .brand:visited {
+    font-size: 23px !important;
+    line-height: 1 !important;
+    letter-spacing: -0.045em !important;
+    padding: 0 0 2px !important;
+  }
+
+  .global-nav-toggle,
+  .global-header-inner.is-mobile-open .global-nav-toggle {
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 12px !important;
+  }
+
+  .global-nav {
+    top: calc(100% + 10px) !important;
+    padding: 12px !important;
+    border-radius: 18px !important;
+    gap: 6px !important;
+  }
+
+  .global-nav-link,
+  .global-nav-dropdown > .global-nav-link,
+  .global-nav-dropdown-link {
+    min-height: 42px !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 10px 12px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    border-radius: 12px !important;
+  }
+
+  .account-ui {
+    left: 0 !important;
+    right: 0 !important;
+    padding: 12px !important;
+    border-radius: 18px !important;
+    gap: 8px !important;
+  }
+
+  .global-header-inner.is-mobile-open .account-ui {
+    top: calc(100% + 232px) !important;
+  }
+
+  .login-button,
+  .signup-button,
+  .account-button {
+    min-height: 42px !important;
+    padding: 10px 14px !important;
+    font-size: 14px !important;
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .site-header,
+  .civica-homepage__hero,
+  .civica-homepage__section {
+    margin-bottom: 0 !important;
+  }
+
+  .site-header {
+    padding-top: 4px !important;
+    margin-bottom: 14px !important;
+  }
+
+  .site-header h1,
+  .forum-page .site-shell > .site-header h1,
+  .terms-page .terms-page__title,
+  .privacy-page .privacy-page__title,
+  .mission-page .mission-page__title,
+  .team-page .team-page__title,
+  .contact-page .contact-page__title {
+    font-size: clamp(26px, 8vw, 34px) !important;
+    line-height: 1.04 !important;
+    letter-spacing: -0.045em !important;
+    margin-bottom: 6px !important;
+  }
+
+  .hub-subtitle,
+  .subtitle,
+  .terms-page .site-shell > .site-header p,
+  .privacy-page .site-shell > .site-header p,
+  .mission-page .site-shell > .site-header p,
+  .team-page .site-shell > .site-header p,
+  .contact-page .site-shell > .site-header p {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    max-width: 34ch !important;
+  }
+
+  .content-panel,
+  .subpanel,
+  .election-card,
+  .rail-card,
+  .state-results-board,
+  .article-placeholder,
+  .forum-page__threads-panel,
+  .forum-page__detail-panel,
+  .forum-page__overview,
+  .forum-page__guest-banner,
+  .forum-page__composer-panel,
+  .terms-page .terms-page__content-panel,
+  .privacy-page .privacy-page__content-panel,
+  .mission-page .mission-page__content-panel,
+  .team-page .team-page__content-panel,
+  .contact-page .contact-page__content-panel,
+  .settings-page .settings-group {
+    padding: 14px !important;
+    border-radius: 14px !important;
+  }
+
+  .elections-grid,
+  .two-column-grid,
+  .state-results-layout,
+  .article-layout,
+  .results-summary-grid,
+  .detail-grid,
+  .exit-polls-layout,
+  .team-page .team-page__grid,
+  .mission-page .mission-page__content-panel,
+  .contact-page .contact-page__content-panel,
+  .settings-page .settings-group {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .panel-heading,
+  .panel-heading-inline,
+  .detail-heading,
+  .contact-page .contact-page__form-footer {
+    gap: 8px !important;
+  }
+
+  .election-card h2,
+  .panel-heading h2,
+  .forum-page__overview-copy h2,
+  .forum-page__panel-header h2,
+  .forum-page__detail-empty h2,
+  .forum-page__thread-header h2,
+  .forum-page__reply-form h3 {
+    font-size: 21px !important;
+    line-height: 1.1 !important;
+  }
+
+  .card-tag,
+  .panel-heading-note,
+  .byline,
+  .state-results-sort,
+  .district-search-label,
+  .forum-page__eyebrow,
+  .forum-page__panel-eyebrow,
+  .team-page .team-page__eyebrow {
+    font-size: 10px !important;
+    letter-spacing: 0.12em !important;
+  }
+
+  .article-body p,
+  .article-placeholder p,
+  .subpanel p,
+  .rail-card p,
+  .rail-list span,
+  .ticket-row span:last-child,
+  .state-side-value,
+  .forum-page__banner-copy,
+  .forum-page__locked-copy,
+  .forum-page__helper,
+  .forum-page__thread-card p,
+  .forum-page__detail-empty p,
+  .forum-page__message-body p,
+  .detail-subtitle,
+  .detail-summary-callout,
+  .detail-certified-note,
+  .detail-map-head p,
+  .detail-back-link,
+  .team-page .team-page__bio {
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+  }
+
+  .section-nav,
+  .state-results-controls,
+  .forum-page__thread-tools,
+  .forum-page__overview-stats,
+  .forum-page__composer-actions,
+  .forum-page__thread-card-top,
+  .forum-page__thread-card-bottom,
+  .forum-page__thread-meta-row,
+  .forum-page__message-meta {
+    gap: 8px !important;
+  }
+
+  .section-nav a,
+  .election-package-link,
+  .state-results-sort-button,
+  .district-search-input,
+  .district-filter-select,
+  .exit-polls-filter-button,
+  .forum-page__primary-button,
+  .forum-page__secondary-button {
+    font-size: 12px !important;
+    padding: 9px 11px !important;
+    min-height: 40px !important;
+  }
+
+  .national-map-shell,
+  .senate-map-shell {
+    height: 280px !important;
+  }
+
+  .house-map-shell {
+    height: 320px !important;
+  }
+
+  .detail-map-canvas {
+    min-height: 210px !important;
+  }
+
+  body.civica-homepage .civica-homepage__hero {
+    margin-top: 12px !important;
+    margin-bottom: 34px !important;
+  }
+
+  body.civica-homepage .civica-homepage__hero-inner {
+    width: 100% !important;
+    gap: 18px !important;
+  }
+
+  body.civica-homepage .civica-homepage__headline {
+    max-width: 11ch !important;
+    font-size: clamp(28px, 8vw, 40px) !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.035em !important;
+  }
+
+  body.civica-homepage .civica-homepage__hero-map {
+    width: min(100%, 360px) !important;
+    margin: 0 auto !important;
+  }
+
+  body.civica-homepage .civica-homepage__section {
+    margin-top: 48px !important;
+  }
+
+  body.civica-homepage .civica-homepage__section-stack,
+  body.civica-homepage .civica-homepage__featured-stack {
+    width: 100% !important;
+    gap: 9px !important;
+  }
+
+  body.civica-homepage .civica-homepage__section-eyebrow {
+    font-size: 12px !important;
+    letter-spacing: 0.22em !important;
+  }
+
+  body.civica-homepage .civica-homepage__section-caption {
+    max-width: 15ch !important;
+    font-size: clamp(24px, 7vw, 32px) !important;
+    line-height: 1.14 !important;
+  }
+
+  body.civica-homepage .civica-homepage__services {
+    width: 100% !important;
+    margin: 28px auto 0 !important;
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  body.civica-homepage .civica-service-item {
+    grid-template-columns: 56px minmax(0, 1fr) !important;
+    align-items: flex-start !important;
+    column-gap: 14px !important;
+  }
+
+  body.civica-homepage .civica-service-item__media {
+    width: 56px !important;
+    height: 56px !important;
+    min-width: 56px !important;
+    min-height: 56px !important;
+    max-width: 56px !important;
+    max-height: 56px !important;
+    padding: 0 !important;
+  }
+
+  body.civica-homepage .civica-service-item__content h3 {
+    font-size: 18px !important;
+    line-height: 1.12 !important;
+    margin-bottom: 6px !important;
+  }
+
+  body.civica-homepage .civica-service-item__content p {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+  }
+
+  body.civica-homepage .civica-homepage__featured-grid {
+    width: 100% !important;
+    margin: 22px auto 0 !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  body.civica-homepage .civica-featured-panel {
+    padding: 16px !important;
+  }
+
+  body.civica-homepage .civica-featured-panel__media {
+    min-height: 118px !important;
+    margin-bottom: 12px !important;
+  }
+
+  body.civica-homepage .civica-featured-panel h2,
+  body.civica-homepage .civica-featured-panel h3 {
+    font-size: 20px !important;
+    line-height: 1.08 !important;
+  }
+
+  body.civica-homepage .civica-featured-panel p,
+  body.civica-homepage .civica-homepage__featured-timer {
+    font-size: 13px !important;
+  }
+
+  body.civica-homepage .civica-homepage__faq-controls {
+    width: 100% !important;
+    justify-content: center !important;
+    padding-right: 0 !important;
+    margin: 14px auto 0 !important;
+  }
+
+  body.civica-homepage .civica-homepage__faq-toggle {
+    font-size: 14px !important;
+    padding: 8px 12px !important;
+  }
+
+  body.civica-homepage .civica-homepage__faq {
+    width: 100% !important;
+    margin: 16px auto 40px !important;
+  }
+
+  body.civica-homepage .civica-faq-item__question {
+    padding: 16px 0 !important;
+    gap: 12px !important;
+  }
+
+  body.civica-homepage .civica-faq-item__question span {
+    font-size: 16px !important;
+    line-height: 1.35 !important;
+  }
+
+  body.civica-homepage .civica-faq-item__answer p {
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+  }
+
+  .team-page .team-page__profile {
+    padding: 16px !important;
+  }
+
+  .team-page .team-page__profile-top {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    text-align: left !important;
+  }
+
+  .team-page .team-page__photo-shell,
+  .team-page .team-page__photo {
+    width: 88px !important;
+    height: 88px !important;
+  }
+
+  .team-page .team-page__name {
+    font-size: 18px !important;
+  }
+
+  .mission-page .mission-page__image,
+  .contact-page .contact-page__image {
+    min-height: 200px !important;
+  }
+
+  .terms-page .terms-page__content,
+  .privacy-page .privacy-page__content {
+    gap: 18px !important;
+  }
+
+  .terms-page .terms-page__section,
+  .privacy-page .privacy-page__section {
+    padding-bottom: 4px !important;
+  }
+
+  .civica-homepage__footer {
+    padding: 22px 0 18px !important;
+  }
+
+  .civica-homepage__footer-inner {
+    gap: 14px !important;
+  }
+
+  .civica-homepage__footer-bottom,
+  .civica-homepage__footer-meta {
+    display: grid !important;
+    gap: 10px !important;
+    align-items: start !important;
+  }
+
+  .civica-homepage__footer-brand {
+    font-size: 18px !important;
+  }
+
+  .civica-homepage__footer-nav {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px 14px !important;
+    font-size: 13px !important;
+  }
+
+  .civica-homepage__footer-nav a,
+  .civica-homepage__footer-legal,
+  .civica-homepage__footer-copy {
+    font-size: 12px !important;
+    line-height: 1.45 !important;
+  }
+
+  .civica-homepage__footer-legal {
+    margin-top: 4px !important;
+    flex-wrap: wrap !important;
+  }
+
+  .civica-homepage__footer-copy {
+    position: static !important;
+    left: auto !important;
+    transform: none !important;
+    margin: 2px 0 0 !important;
+    text-align: left !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-shell,
+  .civica-homepage__main,
+  .civica-homepage__footer-inner {
+    width: min(100vw - 40px, 520px) !important;
+  }
+
+  .brand,
+  .brand:link,
+  .brand:visited {
+    font-size: 22px !important;
+  }
+
+  body.civica-homepage .civica-homepage__headline {
+    font-size: clamp(26px, 9vw, 34px) !important;
+  }
+
+  body.civica-homepage .civica-homepage__section-caption {
+    font-size: clamp(22px, 7.4vw, 29px) !important;
+  }
+
+  body.civica-homepage .civica-homepage__hero-map {
+    width: min(100%, 320px) !important;
+  }
+
+  .team-page .team-page__photo-shell,
+  .team-page .team-page__photo {
+    width: 80px !important;
+    height: 80px !important;
+  }
+}
+
+/* Mobile election-page fit refinements */
+@media (max-width: 768px) {
+  .national-map-shell,
+  .senate-map-shell {
+    height: 360px !important;
+    min-height: 360px !important;
+    border-radius: 16px !important;
+  }
+
+  #national-election-map,
+  #senate-election-map,
+  #state-election-map,
+  #exit-polls-map {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+  }
+
+  .results-summary-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .summary-stat {
+    min-height: 0 !important;
+    padding: 14px 15px !important;
+  }
+
+  .summary-stat-label {
+    font-size: 10px !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .summary-stat-value {
+    margin-top: 8px !important;
+    font-size: 30px !important;
+    line-height: 1.02 !important;
+  }
+
+  .summary-stat-copy {
+    margin-top: 8px !important;
+    font-size: 12px !important;
+    line-height: 1.45 !important;
+  }
+
+  .results-board-table {
+    border-radius: 14px !important;
+    overflow: hidden !important;
+  }
+
+  .results-board-header {
+    display: none !important;
+  }
+
+  .results-board-row {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+    align-items: start !important;
+    padding: 14px 14px 15px !important;
+  }
+
+  .results-board-race strong {
+    font-size: 15px !important;
+    line-height: 1.22 !important;
+  }
+
+  .results-board-race span,
+  .results-board-winner span,
+  .results-board-party,
+  .results-board-status {
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+  }
+
+  .results-board-winner {
+    font-size: 13px !important;
+    line-height: 1.35 !important;
+  }
+
+  .state-results-board {
+    padding: 14px !important;
+    border-radius: 14px !important;
+  }
+
+  .state-results-grid,
+  .state-results-grid.house-results-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .ticket-row {
+    gap: 8px !important;
+    padding: 10px 0 !important;
+    align-items: center !important;
+  }
+
+  .ticket-row strong,
+  .ticket-row span {
+    font-size: 12px !important;
+    line-height: 1.35 !important;
+  }
+
+  .ticket-row span:last-child {
+    font-size: 11px !important;
+    text-align: right !important;
+  }
+
+  .ev-count {
+    font-size: 26px !important;
+    line-height: 1 !important;
+  }
+
+  .ev-side-left .ev-count,
+  .ev-side-right .ev-count {
+    font-size: 26px !important;
+  }
+
+  .detail-map-canvas {
+    min-height: 240px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .national-map-shell,
+  .senate-map-shell {
+    height: 320px !important;
+    min-height: 320px !important;
+  }
+
+  .summary-stat {
+    padding: 13px 14px !important;
+  }
+
+  .summary-stat-value {
+    font-size: 28px !important;
+  }
+
+  .results-board-row {
+    padding: 13px 13px 14px !important;
+  }
+
+  .results-board-race strong {
+    font-size: 14px !important;
+  }
+
+  .ticket-row strong,
+  .ticket-row span {
+    font-size: 11px !important;
+  }
+
+  .ticket-row span:last-child {
+    font-size: 10px !important;
+  }
+
+  .ev-count,
+  .ev-side-left .ev-count,
+  .ev-side-right .ev-count {
+    font-size: 24px !important;
+  }
+}
