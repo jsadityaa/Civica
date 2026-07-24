@@ -14726,6 +14726,520 @@ html[data-theme="dark"] .polycivic-account-menu {
     align-self: flex-start !important;
     text-align: left !important;
   }
+
+  /* Global mobile polish across non-home pages */
+  .site-shell {
+    width: min(100vw - 56px, 1280px) !important;
+    padding-top: 14px !important;
+    padding-bottom: 42px !important;
+  }
+
+  .global-header-inner {
+    width: min(100vw - 56px, 1280px) !important;
+  }
+
+  .site-header {
+    padding-top: 6px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .site-header h1,
+  .forum-page .site-shell > .site-header h1,
+  .terms-page .terms-page__title,
+  .privacy-page .privacy-page__title,
+  .mission-page .mission-page__title,
+  .team-page .team-page__title,
+  .contact-page .contact-page__title {
+    font-size: clamp(28px, 8.5vw, 42px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.04em !important;
+  }
+
+  .hub-subtitle,
+  .subtitle,
+  .terms-page .site-shell > .site-header p,
+  .privacy-page .site-shell > .site-header p,
+  .mission-page .site-shell > .site-header p,
+  .team-page .site-shell > .site-header p,
+  .contact-page .site-shell > .site-header p {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+
+  .elections-grid,
+  .two-column-grid,
+  .state-results-layout,
+  .article-layout,
+  .results-summary-grid,
+  .detail-grid,
+  .exit-polls-layout,
+  .team-page .team-page__grid,
+  .mission-page .mission-page__content-panel,
+  .contact-page .contact-page__content-panel,
+  .settings-page .settings-group {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .election-card,
+  .content-panel,
+  .subpanel,
+  .rail-card,
+  .state-results-board,
+  .article-placeholder,
+  .forum-page__threads-panel,
+  .forum-page__detail-panel,
+  .forum-page__overview,
+  .forum-page__guest-banner,
+  .forum-page__composer-panel {
+    padding: 16px !important;
+    border-radius: 16px !important;
+  }
+
+  .settings-page .settings-group,
+  .settings-page .settings-table,
+  .settings-page .settings-row {
+    border-radius: 16px !important;
+  }
+
+  .election-card h2,
+  .panel-heading h2,
+  .forum-page__overview-copy h2,
+  .forum-page__panel-header h2,
+  .forum-page__detail-empty h2,
+  .forum-page__thread-header h2,
+  .forum-page__reply-form h3 {
+    font-size: clamp(22px, 6vw, 28px) !important;
+    line-height: 1.08 !important;
+  }
+
+  .card-tag,
+  .panel-heading-note,
+  .byline,
+  .state-results-sort,
+  .district-search-label,
+  .forum-page__eyebrow,
+  .forum-page__panel-eyebrow,
+  .team-page .team-page__eyebrow {
+    font-size: 11px !important;
+  }
+
+  .section-nav,
+  .state-results-controls,
+  .forum-page__thread-tools,
+  .forum-page__overview-stats,
+  .forum-page__composer-actions,
+  .forum-page__thread-card-top,
+  .forum-page__thread-card-bottom,
+  .forum-page__thread-meta-row,
+  .forum-page__message-meta {
+    gap: 8px !important;
+  }
+
+  .section-nav {
+    row-gap: 10px !important;
+  }
+
+  .section-nav a,
+  .election-package-link,
+  .state-results-sort-button,
+  .district-search-input,
+  .district-filter-select,
+  .exit-polls-filter-button,
+  .forum-page__primary-button,
+  .forum-page__secondary-button {
+    font-size: 12px !important;
+    padding: 9px 12px !important;
+  }
+
+  .election-package-header {
+    gap: 10px !important;
+    padding: 6px 6px 6px 10px !important;
+    margin-bottom: 14px !important;
+  }
+
+  .election-year-strip {
+    margin-right: 4px !important;
+  }
+
+  .year-block {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 15px !important;
+  }
+
+  .election-package-nav {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 8px !important;
+  }
+
+  .election-package-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .map-stage {
+    margin-top: 10px !important;
+  }
+
+  .national-map-shell,
+  .senate-map-shell {
+    height: 360px !important;
+    border-radius: 14px !important;
+  }
+
+  .house-map-shell {
+    height: 420px !important;
+    border-radius: 14px !important;
+  }
+
+  .ev-bar-card {
+    padding: 14px 14px 12px !important;
+    border-radius: 14px !important;
+  }
+
+  .ev-bar-top,
+  .ev-bar-bottom {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  .ev-side,
+  .ev-side-left,
+  .ev-side-right {
+    justify-self: stretch !important;
+    justify-content: space-between !important;
+  }
+
+  .ev-side-meta-right {
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+
+  .ev-name {
+    font-size: 13px !important;
+  }
+
+  .ev-count {
+    font-size: 34px !important;
+  }
+
+  .ev-total-votes,
+  .ev-vote-line,
+  .legend-subtext span {
+    font-size: 10px !important;
+  }
+
+  .map-legend {
+    gap: 12px !important;
+  }
+
+  .legend-group {
+    gap: 8px !important;
+  }
+
+  .legend-title {
+    font-size: 12px !important;
+  }
+
+  .legend-swatch,
+  .legend-subtext span {
+    width: 40px !important;
+  }
+
+  .legend-swatch {
+    height: 18px !important;
+  }
+
+  .article-body p,
+  .article-placeholder p,
+  .subpanel p,
+  .rail-card p,
+  .rail-list span,
+  .ticket-row span:last-child,
+  .state-side-value,
+  .forum-page__banner-copy,
+  .forum-page__locked-copy,
+  .forum-page__helper,
+  .forum-page__thread-card p,
+  .forum-page__detail-empty p,
+  .forum-page__message-body p {
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+  }
+
+  .detail-summary-title {
+    font-size: clamp(24px, 6vw, 30px) !important;
+    line-height: 1.08 !important;
+  }
+
+  .detail-subtitle,
+  .detail-summary-callout,
+  .detail-certified-note,
+  .detail-map-head p,
+  .detail-back-link,
+  .settings-header p,
+  .settings-group-intro p,
+  .settings-row-copy span {
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+  }
+
+  .detail-heading,
+  .detail-summary-hero,
+  .detail-stat-row,
+  .detail-county-board-head,
+  .settings-row {
+    gap: 12px !important;
+  }
+
+  .detail-summary-hero,
+  .settings-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .detail-summary-portrait {
+    width: 92px !important;
+    height: 92px !important;
+    justify-self: flex-start !important;
+  }
+
+  .detail-map-card,
+  .detail-summary-card,
+  .detail-county-board {
+    padding: 16px !important;
+    border-radius: 16px !important;
+  }
+
+  .detail-map-canvas {
+    min-height: 250px !important;
+  }
+
+  .detail-vote-table,
+  .detail-county-board-table {
+    font-size: 12px !important;
+  }
+
+  .detail-vote-table th,
+  .detail-vote-table td,
+  .detail-county-board-table th,
+  .detail-county-board-table td {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+  }
+
+  .article-placeholder h3,
+  .subpanel h3,
+  .rail-card h3,
+  .exit-poll-card h3 {
+    font-size: 18px !important;
+  }
+
+  .article-body > p:first-of-type::first-letter {
+    font-size: 42px !important;
+    padding-right: 6px !important;
+  }
+
+  .article-pullquote {
+    margin: 18px 0 !important;
+    padding: 14px 16px !important;
+  }
+
+  .article-pullquote p {
+    font-size: 17px !important;
+    line-height: 1.45 !important;
+  }
+
+  .article-rail,
+  .state-results-sidebar {
+    position: static !important;
+    top: auto !important;
+  }
+
+  .rail-stats strong,
+  .state-mini-stats strong {
+    font-size: 14px !important;
+  }
+
+  .rail-stats span,
+  .state-mini-stats span,
+  .rail-list strong,
+  .state-results-table thead th,
+  .exit-polls-filter-label {
+    font-size: 10px !important;
+  }
+
+  .state-results-grid,
+  .state-results-grid.house-results-grid,
+  .house-results-layout .state-results-sidebar {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .state-results-title {
+    font-size: 12px !important;
+  }
+
+  .state-results-table,
+  .house-results-layout .state-results-table {
+    font-size: 12px !important;
+  }
+
+  .state-results-table tbody td,
+  .house-results-layout .state-results-table tbody td {
+    padding: 7px 0 !important;
+  }
+
+  .state-link,
+  .house-results-layout .state-link {
+    font-size: 12px !important;
+  }
+
+  .margin-box,
+  .house-results-layout .margin-box {
+    min-width: 62px !important;
+    font-size: 10px !important;
+    padding: 4px 7px !important;
+  }
+
+  .state-percent,
+  .house-results-layout .state-percent {
+    font-size: 11px !important;
+  }
+
+  .tooltip {
+    min-width: 0 !important;
+    width: min(88vw, 300px) !important;
+    padding: 12px 14px !important;
+  }
+
+  .tooltip-header {
+    gap: 14px !important;
+    padding-bottom: 8px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .tooltip-title {
+    font-size: 14px !important;
+  }
+
+  .tooltip th,
+  .tooltip td {
+    font-size: 11px !important;
+    padding: 5px 0 !important;
+  }
+
+  .tooltip-candidate {
+    gap: 8px !important;
+  }
+
+  .mission-page .mission-page__image,
+  .mission-page .mission-page__image-placeholder {
+    min-height: 220px !important;
+  }
+
+  .mission-page .mission-page__subpanel,
+  .contact-page .contact-page__subpanel,
+  .terms-page .terms-page__subpanel,
+  .privacy-page .privacy-page__subpanel {
+    padding: 18px !important;
+  }
+
+  .team-page .team-page__profile {
+    padding: 16px !important;
+  }
+
+  .team-page .team-page__profile-top {
+    gap: 12px !important;
+    align-items: flex-start !important;
+  }
+
+  .team-page .team-page__photo-shell {
+    width: 88px !important;
+    height: 88px !important;
+    min-width: 88px !important;
+  }
+
+  .team-page .team-page__name {
+    font-size: 22px !important;
+  }
+
+  .team-page .team-page__role,
+  .team-page .team-page__bio {
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+  }
+
+  .team-page .team-page__section-intro {
+    margin-bottom: 10px !important;
+  }
+
+  .contact-page .contact-page__field-grid,
+  .contact-page .contact-page__form-footer,
+  .forum-page__field-grid,
+  .forum-page__main-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .contact-page .contact-page__field input,
+  .contact-page .contact-page__field select,
+  .contact-page .contact-page__field textarea,
+  .forum-page__field input,
+  .forum-page__field select,
+  .forum-page__field textarea {
+    font-size: 15px !important;
+    padding: 11px 12px !important;
+  }
+
+  .contact-page .contact-page__submit {
+    width: 100%;
+  }
+
+  .contact-page .contact-page__category-list,
+  .contact-page .contact-page__contact-list {
+    gap: 12px !important;
+  }
+
+  .forum-page__thread-card,
+  .forum-page__threads-panel,
+  .forum-page__detail-panel {
+    border-radius: 16px !important;
+  }
+
+  .forum-page__thread-card h3,
+  .forum-page__locked-title {
+    font-size: 18px !important;
+  }
+
+  .civica-homepage__footer-nav,
+  .civica-homepage__footer-legal {
+    row-gap: 6px !important;
+  }
+
+  .civica-homepage__footer {
+    padding: 18px 0 14px !important;
+  }
+
+  .civica-homepage__footer-inner {
+    width: min(100vw - 56px, 980px) !important;
+  }
+
+  .civica-homepage__footer-bottom,
+  .civica-homepage__footer-meta {
+    gap: 10px !important;
+  }
+
+  .civica-homepage__footer-copy {
+    position: static !important;
+    left: auto !important;
+    transform: none !important;
+    margin: 4px 0 0 !important;
+    align-self: flex-start !important;
+    text-align: left !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -14774,5 +15288,132 @@ html[data-theme="dark"] .polycivic-account-menu {
   .civica-featured-panel p {
     font-size: 13px !important;
     line-height: 1.44 !important;
+  }
+
+  .site-shell,
+  .civica-homepage__main,
+  .civica-homepage__footer-inner {
+    width: min(100vw - 42px, 1280px) !important;
+  }
+
+  .global-header-inner {
+    width: min(100vw - 42px, 1280px) !important;
+  }
+
+  .site-header h1,
+  .forum-page .site-shell > .site-header h1,
+  .terms-page .terms-page__title,
+  .privacy-page .privacy-page__title,
+  .mission-page .mission-page__title,
+  .team-page .team-page__title,
+  .contact-page .contact-page__title {
+    font-size: clamp(24px, 8vw, 34px) !important;
+  }
+
+  .election-card,
+  .content-panel,
+  .subpanel,
+  .rail-card,
+  .state-results-board,
+  .article-placeholder,
+  .forum-page__threads-panel,
+  .forum-page__detail-panel,
+  .forum-page__overview,
+  .forum-page__guest-banner,
+  .forum-page__composer-panel {
+    padding: 14px !important;
+  }
+
+  .settings-page .settings-group,
+  .settings-page .settings-table,
+  .settings-page .settings-row,
+  .detail-map-card,
+  .detail-summary-card,
+  .detail-county-board,
+  .mission-page .mission-page__subpanel,
+  .contact-page .contact-page__subpanel,
+  .terms-page .terms-page__subpanel,
+  .privacy-page .privacy-page__subpanel {
+    padding: 14px !important;
+  }
+
+  .panel-heading h2,
+  .election-card h2 {
+    font-size: 20px !important;
+  }
+
+  .national-map-shell,
+  .senate-map-shell {
+    height: 300px !important;
+  }
+
+  .house-map-shell {
+    height: 360px !important;
+  }
+
+  .detail-map-canvas {
+    min-height: 220px !important;
+  }
+
+  .ev-count {
+    font-size: 30px !important;
+  }
+
+  .section-nav a,
+  .election-package-link,
+  .state-results-sort-button,
+  .district-search-input,
+  .district-filter-select,
+  .exit-polls-filter-button,
+  .forum-page__primary-button,
+  .forum-page__secondary-button {
+    font-size: 11px !important;
+    padding: 8px 10px !important;
+  }
+
+  .article-body p,
+  .article-placeholder p,
+  .subpanel p,
+  .rail-card p,
+  .rail-list span,
+  .ticket-row span:last-child,
+  .state-side-value,
+  .forum-page__banner-copy,
+  .forum-page__locked-copy,
+  .forum-page__helper,
+  .forum-page__thread-card p,
+  .forum-page__detail-empty p,
+  .forum-page__message-body p {
+    font-size: 12px !important;
+  }
+
+  .team-page .team-page__photo-shell {
+    width: 80px !important;
+    height: 80px !important;
+    min-width: 80px !important;
+  }
+
+  .team-page .team-page__name {
+    font-size: 20px !important;
+  }
+
+  .team-page .team-page__role,
+  .team-page .team-page__bio,
+  .contact-page .contact-page__field input,
+  .contact-page .contact-page__field select,
+  .contact-page .contact-page__field textarea,
+  .forum-page__field input,
+  .forum-page__field select,
+  .forum-page__field textarea,
+  .settings-row-copy strong,
+  .settings-row-copy span,
+  .detail-vote-table,
+  .detail-county-board-table,
+  .detail-subtitle,
+  .detail-summary-callout,
+  .detail-certified-note,
+  .detail-map-head p,
+  .detail-back-link {
+    font-size: 12px !important;
   }
 }
