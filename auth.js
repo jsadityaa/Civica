@@ -146,6 +146,10 @@
             <span>Password</span>
             <input type="password" id="polycivic-auth-password" autocomplete="current-password" placeholder="Password" required />
           </label>
+          <label class="polycivic-auth-consent polycivic-auth-consent--hidden" aria-hidden="true">
+            <input type="checkbox" id="polycivic-auth-consent" />
+            <span>By signing up, I agree to the <a href="./terms.html" target="_blank" rel="noopener noreferrer">Terms of Service</a> and <a href="./privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.</span>
+          </label>
           <p class="polycivic-auth-error" aria-live="polite"></p>
           <button type="submit" class="polycivic-auth-submit">Sign in</button>
         </form>
@@ -171,6 +175,7 @@
 
   const authModal = {
     close: overlay.querySelector(".polycivic-auth-close"),
+    title: overlay.querySelector("#polycivic-auth-title"),
     live: overlay.querySelector(".polycivic-auth-live"),
     google: overlay.querySelector(".polycivic-auth-google"),
     form: overlay.querySelector(".polycivic-auth-form"),
@@ -178,6 +183,8 @@
     nameInput: overlay.querySelector("#polycivic-auth-name"),
     emailInput: overlay.querySelector("#polycivic-auth-email"),
     passwordInput: overlay.querySelector("#polycivic-auth-password"),
+    consentField: overlay.querySelector(".polycivic-auth-consent"),
+    consentInput: overlay.querySelector("#polycivic-auth-consent"),
     submit: overlay.querySelector(".polycivic-auth-submit"),
     error: overlay.querySelector(".polycivic-auth-error"),
     switchMode: overlay.querySelector(".polycivic-auth-switch")
@@ -194,14 +201,23 @@
     authModal.error.textContent = "";
   };
 
+  const syncSubmitState = () => {
+    authModal.submit.disabled = isSignUpMode && !authModal.consentInput.checked;
+  };
+
   const setModalMode = (signUpMode) => {
     isSignUpMode = signUpMode;
     authModal.nameField.hidden = !signUpMode;
+    authModal.consentField.classList.toggle("polycivic-auth-consent--hidden", !signUpMode);
+    authModal.consentField.setAttribute("aria-hidden", signUpMode ? "false" : "true");
+    authModal.consentInput.checked = signUpMode ? authModal.consentInput.checked : false;
+    authModal.title.textContent = signUpMode ? "Create your Polycivic account" : "Sign in to Polycivic";
     authModal.submit.textContent = signUpMode ? "Create account" : "Sign in";
     authModal.switchMode.textContent = signUpMode
       ? "Already have an account? Sign in"
       : "Need an account? Create one";
     authModal.passwordInput.setAttribute("autocomplete", signUpMode ? "new-password" : "current-password");
+    syncSubmitState();
     clearModalError();
   };
 
@@ -299,6 +315,10 @@
   const signInWithGoogle = async () => {
     if (!auth || !window.firebase) return;
     clearModalError();
+    if (isSignUpMode && !authModal.consentInput.checked) {
+      authModal.error.textContent = "Please agree to the Terms of Service and Privacy Policy before creating an account.";
+      return;
+    }
     const provider = new window.firebase.auth.GoogleAuthProvider();
     provider.setCustomParameters({ prompt: "select_account" });
 
@@ -326,6 +346,11 @@
 
     if (isSignUpMode && !name) {
       authModal.error.textContent = "Add your name so it shows up on posts and replies.";
+      return;
+    }
+
+    if (isSignUpMode && !authModal.consentInput.checked) {
+      authModal.error.textContent = "Please agree to the Terms of Service and Privacy Policy before creating an account.";
       return;
     }
 
@@ -397,6 +422,7 @@
   });
   authModal.google.addEventListener("click", signInWithGoogle);
   authModal.form.addEventListener("submit", handleEmailAuth);
+  authModal.consentInput.addEventListener("change", syncSubmitState);
   authModal.switchMode.addEventListener("click", () => {
     setModalMode(!isSignUpMode);
   });

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap");
+
 :root {
   --bg: #f4f6fb;
   --panel: #ffffff;
@@ -13832,6 +13834,43 @@ body.civica-homepage .civica-service-item__media img {
   font: inherit;
 }
 
+.polycivic-auth-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: -2px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.polycivic-auth-consent--hidden {
+  display: none !important;
+}
+
+.polycivic-auth-consent input {
+  margin: 2px 0 0;
+  flex: 0 0 auto;
+}
+
+.polycivic-auth-consent span {
+  display: block;
+}
+
+.polycivic-auth-consent a {
+  background: linear-gradient(90deg, #df5047 0%, #b15ac9 48%, #3b8fe2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.polycivic-auth-consent a:hover {
+  filter: brightness(1.08);
+}
+
 .polycivic-auth-error {
   min-height: 20px;
   margin: -2px 0 0;
@@ -13844,6 +13883,12 @@ body.civica-homepage .civica-service-item__media img {
   padding: 14px 18px;
   background: linear-gradient(90deg, var(--accent-2), var(--accent));
   color: #fff;
+}
+
+.polycivic-auth-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  filter: grayscale(0.15);
 }
 
 .polycivic-auth-switch {
