@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Us | Polycivic</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
@@ -75,6 +76,10 @@
       <div class="subpanel tall contact-page__subpanel contact-page__subpanel--form">
         <h3>Message Form</h3>
         <form class="contact-page__form" id="contact-form" novalidate>
+          <input type="hidden" name="_subject" value="New Polycivic contact form submission" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="true" />
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="contact-page__honeypot" />
           <div class="contact-page__field-grid">
             <label class="contact-page__field">
               <span>Name</span>
@@ -104,7 +109,7 @@
             <textarea id="contact-message" name="message" placeholder="Write your message here." required></textarea>
           </label>
           <div class="contact-page__form-footer">
-            <p id="contact-form-status">Submitting opens a prefilled email draft to the Polycivic inboxes.</p>
+            <p id="contact-form-status">Your message will be delivered directly to support@polycivic.com.</p>
             <button type="submit" class="contact-page__submit">Submit</button>
           </div>
         </form>
@@ -117,6 +122,7 @@
         <div class="contact-page__contact-list">
           <div class="contact-page__contact-item">
             <span>Email</span>
+            <a href="mailto:support@polycivic.com">support@polycivic.com</a>
             <a href="mailto:aditya.poduri@gmail.com">aditya.poduri@gmail.com</a>
             <a href="mailto:ayush.deshpande205@gmail.com">ayush.deshpande205@gmail.com</a>
           </div>
@@ -164,7 +170,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
   <script src="./auth-config.js?v=20260725-1"></script>
   <script src="./auth.js?v=20260725-1"></script>
-  <script src="./contact.js"></script>
+  <script src="./contact.js?v=20260728-1"></script>
   <script src="./nav-dropdown.js"></script>
 </body>
 </html>

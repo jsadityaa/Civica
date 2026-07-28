@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Polycivic favicon">
+  <defs>
+    <linearGradient id="polycivic-favicon-gradient" x1="10%" y1="10%" x2="90%" y2="90%">
+      <stop offset="0%" stop-color="#ea5b57" />
+      <stop offset="100%" stop-color="#4b87e6" />
+    </linearGradient>
+  </defs>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@1,400&display=swap');
+  </style>
+  <rect width="64" height="64" rx="14" fill="#10131b" />
+  <text
+    x="18"
+    y="47"
+    fill="url(#polycivic-favicon-gradient)"
+    font-family="'Libre Baskerville', serif"
+    font-size="46"
+    font-style="italic"
+    font-weight="400"
+  >P</text>
+</svg>

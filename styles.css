@@ -2974,6 +2974,15 @@ html[data-theme="dark"] .contact-page .contact-page__subpanel a {
   resize: vertical;
 }
 
+.contact-page .contact-page__honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .contact-page .contact-page__field input:focus,
 .contact-page .contact-page__field select:focus,
 .contact-page .contact-page__field textarea:focus {

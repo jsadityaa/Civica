@@ -13,14 +13,7 @@
     message: form.querySelector('#contact-message')
   };
 
-  const authConfig = window.POLYCIVIC_AUTH_CONFIG || {};
-  const firebaseConfig = authConfig.firebase || {};
-  const requiredFirebaseKeys = ['apiKey', 'authDomain', 'projectId', 'appId'];
-  const isFirebaseConfigured = requiredFirebaseKeys.every((key) => {
-    return typeof firebaseConfig[key] === 'string' && firebaseConfig[key].trim();
-  });
-
-  let db = null;
+  const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/support@polycivic.com';
 
   const setStatus = (message, state = 'idle') => {
     if (!status) return;
@@ -79,25 +72,7 @@
     return true;
   };
 
-  const initFirestore = () => {
-    if (!window.firebase || !window.firebase.firestore || !isFirebaseConfigured) {
-      return null;
-    }
-
-    if (!window.firebase.apps.length) {
-      window.firebase.initializeApp(firebaseConfig);
-    }
-
-    return window.firebase.firestore();
-  };
-
-  db = initFirestore();
-
-  if (!db) {
-    setStatus('Contact submissions are temporarily unavailable until Firebase is available on this page.', 'error');
-  } else {
-    setStatus('Your message will be submitted directly to Polycivic.', 'idle');
-  }
+  setStatus('Your message will be delivered directly to support@polycivic.com.', 'idle');
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -107,35 +82,41 @@
       return;
     }
 
-    if (!db) {
-      setStatus('This form cannot submit right now because the database connection is unavailable.', 'error');
-      return;
-    }
-
-    const payload = {
-      name: fields.name.value.trim(),
-      email: fields.email.value.trim(),
-      category: fields.category.value.trim(),
-      subject: fields.subject.value.trim(),
-      message: fields.message.value.trim(),
-      submittedAt: window.firebase.firestore.FieldValue.serverTimestamp(),
-      submittedAtISO: new Date().toISOString(),
-      page: window.location.pathname || '/contact',
-      userAgent: navigator.userAgent
-    };
+    const payload = new FormData();
+    payload.append('name', fields.name.value.trim());
+    payload.append('email', fields.email.value.trim());
+    payload.append('category', fields.category.value.trim());
+    payload.append('subject', fields.subject.value.trim());
+    payload.append('message', fields.message.value.trim());
+    payload.append('_subject', 'New Polycivic contact form submission');
+    payload.append('_template', 'table');
+    payload.append('_captcha', 'true');
+    payload.append('_honey', '');
 
     try {
       setSubmitting(true);
       setStatus('Submitting your message…', 'working');
 
-      await db.collection('contactSubmissions').add(payload);
+      const response = await fetch(FORMSUBMIT_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json'
+        },
+        body: payload
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result.error || 'The contact service rejected the submission.');
+      }
 
       form.reset();
       resetFieldValidity();
-      setStatus('Message sent successfully. Your submission has been saved.', 'success');
+      setStatus('Success!', 'success');
     } catch (error) {
       console.error('Contact form submission failed:', error);
-      setStatus('Submission failed. Please try again in a moment or contact us directly below.', 'error');
+      setStatus('Your message could not be sent.', 'error');
     } finally {
       setSubmitting(false);
     }
