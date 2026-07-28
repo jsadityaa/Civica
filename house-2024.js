@@ -179,7 +179,7 @@ if (houseDataBundle && houseGeojson && document.getElementById("house-district-m
   }
 
   function districtResultLinkHref(code) {
-    return `./house-district-result.html?code=${encodeURIComponent(code)}`;
+    return `/house-district-result?code=${encodeURIComponent(code)}`;
   }
 
   function matchesDistrictSearch(district) {

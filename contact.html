@@ -13,20 +13,20 @@
 <body class="contact-page">
   <header class="global-header">
     <div class="global-header-inner">
-      <a href="./index.html" class="brand" aria-label="Polycivic home">Polycivic</a>
+      <a href="/" class="brand" aria-label="Polycivic home">Polycivic</a>
       <nav class="global-nav" aria-label="Main navigation">
-        <a href="./index.html" class="global-nav-link">Features</a>
-        <a href="./elections.html" class="global-nav-link">Elections</a>
-        <a href="./forecasts.html" class="global-nav-link">Forecasts</a>
-        <a href="./forum.html" class="global-nav-link">Forum</a>
+        <a href="/" class="global-nav-link">Features</a>
+        <a href="/elections" class="global-nav-link">Elections</a>
+        <a href="/forecasts" class="global-nav-link">Forecasts</a>
+        <a href="/forum" class="global-nav-link">Forum</a>
         <div class="global-nav-dropdown">
-          <a href="./index.html#our-mission" class="global-nav-link">About Us</a>
+          <a href="/#our-mission" class="global-nav-link">About Us</a>
           <div class="global-nav-dropdown-menu">
-            <a href="./our-mission.html" class="global-nav-dropdown-link">Our mission</a>
-            <a href="./our-team.html" class="global-nav-dropdown-link">Our team</a>
+            <a href="/our-mission" class="global-nav-dropdown-link">Our mission</a>
+            <a href="/our-team" class="global-nav-dropdown-link">Our team</a>
           </div>
         </div>
-        <a href="./settings.html" class="global-nav-link">Settings</a>
+        <a href="/settings" class="global-nav-link">Settings</a>
       </nav>
       <div class="account-ui" aria-label="Account controls">
         <button class="login-button" type="button">Log In</button>
@@ -74,20 +74,20 @@
 
       <div class="subpanel tall contact-page__subpanel contact-page__subpanel--form">
         <h3>Message Form</h3>
-        <form class="contact-page__form">
+        <form class="contact-page__form" id="contact-form" novalidate>
           <div class="contact-page__field-grid">
             <label class="contact-page__field">
               <span>Name</span>
-              <input type="text" placeholder="Your name" />
+              <input type="text" id="contact-name" name="name" placeholder="Your name" required />
             </label>
             <label class="contact-page__field">
               <span>Email</span>
-              <input type="email" placeholder="you@example.com" />
+              <input type="email" id="contact-email" name="email" placeholder="you@example.com" required />
             </label>
           </div>
           <label class="contact-page__field">
             <span>Category</span>
-            <select>
+            <select id="contact-category" name="category">
               <option>General inquiry</option>
               <option>Correction request</option>
               <option>Press / media</option>
@@ -97,15 +97,15 @@
           </label>
           <label class="contact-page__field">
             <span>Subject</span>
-            <input type="text" placeholder="What is this about?" />
+            <input type="text" id="contact-subject" name="subject" placeholder="What is this about?" required />
           </label>
           <label class="contact-page__field">
             <span>Message</span>
-            <textarea placeholder="Write your message here."></textarea>
+            <textarea id="contact-message" name="message" placeholder="Write your message here." required></textarea>
           </label>
           <div class="contact-page__form-footer">
-            <p>Form delivery will be connected to live messaging shortly. For now, use the direct contact information below for important requests.</p>
-            <button type="button" class="contact-page__submit">Submit</button>
+            <p id="contact-form-status">Submitting opens a prefilled email draft to the Polycivic inboxes.</p>
+            <button type="submit" class="contact-page__submit">Submit</button>
           </div>
         </form>
       </div>
@@ -118,10 +118,12 @@
           <div class="contact-page__contact-item">
             <span>Email</span>
             <a href="mailto:aditya.poduri@gmail.com">aditya.poduri@gmail.com</a>
+            <a href="mailto:ayush.deshpande205@gmail.com">ayush.deshpande205@gmail.com</a>
           </div>
           <div class="contact-page__contact-item">
             <span>Instagram</span>
             <a href="https://www.instagram.com/aditya.poduri/" target="_blank" rel="noreferrer">@aditya.poduri</a>
+            <a href="https://www.instagram.com/ayushdeshpande6/" target="_blank" rel="noreferrer">@ayushdeshpande6</a>
           </div>
         </div>
       </div>
@@ -129,7 +131,7 @@
       <div class="subpanel tall contact-page__subpanel contact-page__subpanel--text">
         <h3>Before You Send</h3>
         <p>We aim to respond within 3 to 5 business days. If your message is about a possible factual error, mark it clearly as a correction request and include the relevant page or claim.</p>
-        <p>If your question may already be covered, you can also review the site’s <a href="./index.html#faq">FAQ</a>, <a href="./terms.html">Terms of Service</a>, or <a href="./privacy.html">Privacy Policy</a>.</p>
+        <p>If your question may already be covered, you can also review the site’s <a href="/#faq">FAQ</a>, <a href="/terms">Terms of Service</a>, or <a href="/privacy">Privacy Policy</a>.</p>
         <p>Polycivic values clear, civil, and constructive communication.</p>
       </div>
     </section>
@@ -141,15 +143,15 @@
         <div class="civica-homepage__footer-meta">
           <p class="civica-homepage__footer-brand">polycivic.com</p>
           <nav class="civica-homepage__footer-nav" aria-label="Footer navigation">
-            <a href="./contact.html">Contact Us</a>
-            <a href="./our-mission.html">Our Mission</a>
-            <a href="./our-team.html">Our Team</a>
-            <a href="./forum.html">Blog</a>
+            <a href="/contact">Contact Us</a>
+            <a href="/our-mission">Our Mission</a>
+            <a href="/our-team">Our Team</a>
+            <a href="/forum">Blog</a>
           </nav>
           <p class="civica-homepage__footer-legal">
-            <a href="./terms.html">Terms</a>
+            <a href="/terms">Terms</a>
             <span>&bull;</span>
-            <a href="./privacy.html">Privacy Policy</a>
+            <a href="/privacy">Privacy Policy</a>
           </p>
         </div>
         <p class="civica-homepage__footer-copy">&copy; 2026 Polycivic. All rights reserved.</p>
@@ -159,8 +161,10 @@
 
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
   <script src="./auth-config.js?v=20260725-1"></script>
   <script src="./auth.js?v=20260725-1"></script>
+  <script src="./contact.js"></script>
   <script src="./nav-dropdown.js"></script>
 </body>
 </html>

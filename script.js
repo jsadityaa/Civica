@@ -313,7 +313,7 @@ function marginClassForResult(result) {
 }
 
 function stateResultLinkHref(name) {
-  return `./state-result.html?name=${encodeURIComponent(name)}`;
+  return `/state-result?name=${encodeURIComponent(name)}`;
 }
 
 function renderStateResults() {

@@ -148,7 +148,7 @@
           </label>
           <label class="polycivic-auth-consent polycivic-auth-consent--hidden" aria-hidden="true">
             <input type="checkbox" id="polycivic-auth-consent" />
-            <span>By signing up, I agree to the <a href="./terms.html" target="_blank" rel="noopener noreferrer">Terms of Service</a> and <a href="./privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.</span>
+            <span>By signing up, I agree to the <a href="/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a> and <a href="/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.</span>
           </label>
           <p class="polycivic-auth-error" aria-live="polite"></p>
           <button type="submit" class="polycivic-auth-submit">Sign in</button>

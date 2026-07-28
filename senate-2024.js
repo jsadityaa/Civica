@@ -262,7 +262,7 @@ if (senateData && document.getElementById("senate-dem-count")) {
     if (seatType && seatType !== "Regular") {
       params.set("seat", seatType);
     }
-    return `./senate-state-result.html?${params.toString()}`;
+    return `/senate-state-result?${params.toString()}`;
   }
 
   function getStateResultsEntries() {
