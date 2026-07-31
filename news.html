@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Forum | Polycivic</title>
+  <title>News | Polycivic</title>
   <link rel="icon" type="image/png" href="./favicon.png" />
   <link rel="shortcut icon" href="./favicon.ico">
   <link rel="apple-touch-icon-precomposed" sizes="180x180" href="./apple-touch-icon.png">
@@ -16,7 +16,7 @@
   <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {} })();</script>
   <link rel="stylesheet" href="./styles.css" />
 </head>
-<body class="forum-page">
+<body>
   <header class="global-header">
     <div class="global-header-inner">
       <a href="/" class="brand" aria-label="Polycivic home">Polycivic</a>
@@ -24,8 +24,8 @@
         <a href="/" class="global-nav-link">Features</a>
         <a href="/elections" class="global-nav-link">Elections</a>
         <a href="/forecasts" class="global-nav-link">Forecasts</a>
-        <a href="/news" class="global-nav-link">News</a>
-        <a href="/forum" class="global-nav-link active">Forum</a>
+        <a href="/news" class="global-nav-link active">News</a>
+        <a href="/forum" class="global-nav-link">Forum</a>
         <div class="global-nav-dropdown">
           <a href="/#our-mission" class="global-nav-link">About Us</a>
           <div class="global-nav-dropdown-menu">
@@ -47,17 +47,29 @@
 
   <div class="site-shell">
     <header class="site-header">
-      <h1>Forum</h1>
-      <p class="hub-subtitle">The Polycivic forum is under development and will be released soon.</p>
+      <h1>News</h1>
+      <p class="hub-subtitle">A dedicated space for political coverage, analysis, and reporting updates.</p>
     </header>
 
-    <section class="content-panel forum-page__guest-banner">
-      <div>
-        <p class="forum-page__eyebrow">Under development</p>
-        <h2>The forum is still being built.</h2>
-        <p class="forum-page__banner-copy">We’re still working on posts, replies, accounts, and moderation tools. It will be available in a future release.</p>
-      </div>
-    </section>
+    <main class="page-stack">
+      <section class="content-panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Newsroom</h2>
+          </div>
+        </div>
+        <div class="two-column-grid">
+          <div class="subpanel tall">
+            <h3>Latest coverage placeholder</h3>
+            <p>This slot can hold headlines, live reporting notes, or article previews later.</p>
+          </div>
+          <div class="subpanel tall">
+            <h3>Analysis placeholder</h3>
+            <p>This area is reserved for explainers, source notes, and editorial context.</p>
+          </div>
+        </div>
+      </section>
+    </main>
   </div>
 
   <footer id="contact-us" class="civica-homepage__footer">

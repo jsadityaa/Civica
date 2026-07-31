@@ -16534,7 +16534,7 @@ html[data-theme="dark"] .polycivic-account-menu {
   .contact-page .contact-page__category-list,
   .contact-page .contact-page__contact-list {
     gap: 14px !important;
-    margin-top: 22px !important;
+    margin-top: 38px !important;
   }
 
   .contact-page .contact-page__content-panel:nth-of-type(2) .contact-page__subpanel:first-child {
@@ -16614,7 +16614,7 @@ html[data-theme="dark"] .polycivic-account-menu {
   .contact-page .contact-page__category-list,
   .contact-page .contact-page__contact-list {
     gap: 12px !important;
-    margin-top: 18px !important;
+    margin-top: 34px !important;
   }
 
   .contact-page .contact-page__field textarea {
