@@ -63,7 +63,7 @@
         </div>
       </section>
 
-      <section class="civica-homepage__section">
+      <section class="civica-homepage__section civica-homepage__overview-section">
         <div class="civica-homepage__section-stack">
           <p class="civica-homepage__section-eyebrow">OVERVIEW</p>
           <p class="civica-homepage__section-caption">Here's a basic rundown of our services.</p>
@@ -132,7 +132,7 @@
         </div>
       </section>
 
-      <section class="civica-homepage__section">
+      <section class="civica-homepage__section civica-homepage__featured-section">
         <div class="civica-homepage__featured-stack">
           <p class="civica-homepage__section-eyebrow">FEATURED</p>
           <p class="civica-homepage__section-caption">Here are some of our featured sites for the day.</p>
@@ -439,20 +439,23 @@
     <script>
       (function () {
         const mobileOnly = window.matchMedia('(max-width: 768px)');
-        if (!mobileOnly.matches || !('IntersectionObserver' in window)) return;
+        if (!('IntersectionObserver' in window)) return;
 
         const selectors = [
-          '.civica-homepage__hero-inner',
-          '.civica-homepage__section:nth-of-type(1)',
-          '.civica-homepage__section:nth-of-type(2)',
+          '.civica-homepage__overview-section',
+          '.civica-homepage__featured-section',
           '.civica-homepage__faq-section'
         ];
+
+        if (mobileOnly.matches) {
+          selectors.unshift('.civica-homepage__hero-inner');
+        }
 
         const targets = Array.from(document.querySelectorAll(selectors.join(', ')));
         if (!targets.length) return;
 
         targets.forEach(function (target, index) {
-          target.classList.add('mobile-reveal');
+          target.classList.add('homepage-reveal');
           target.setAttribute('data-reveal-delay', String(index % 6));
         });
 
