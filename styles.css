@@ -300,7 +300,7 @@ body {
   align-items: center;
   gap: 0;
   margin-bottom: 18px;
-  padding: 6px 6px 6px 12px;
+  padding: 6px 6px 6px 24px;
   border: 1px solid var(--border);
   background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
   border-radius: 999px;
@@ -312,7 +312,7 @@ body {
   flex: 0 0 auto;
   margin-right: 8px;
   overflow: hidden;
-  border-radius: 0;
+  border-radius: 999px;
   align-self: center;
 }
 
@@ -330,11 +330,11 @@ body {
 }
 
 .year-block.red {
-  background: linear-gradient(180deg, #de4949, #bb2323);
+  background: #d73737;
 }
 
 .year-block.blue {
-  background: linear-gradient(180deg, #4f98cf, #1f6fa8);
+  background: #2f83bd;
 }
 
 .election-package-nav {
@@ -1792,7 +1792,7 @@ body {
 .exit-poll-table td:nth-child(3),
 .exit-poll-table th:nth-child(4),
 .exit-poll-table td:nth-child(4) {
-  text-align: right;
+  text-align: center;
 }
 
 .exit-poll-label {
@@ -1814,7 +1814,7 @@ body {
 
 .exit-poll-data-cell {
   min-width: 58px;
-  text-align: right;
+  text-align: center;
 }
 
 .exit-poll-winner-badge {
@@ -16717,7 +16717,7 @@ html[data-theme="dark"] .polycivic-account-menu {
     grid-column: 1 !important;
     grid-row: 1 !important;
     margin: 0 !important;
-    border-radius: 0 !important;
+    border-radius: 999px !important;
   }
 
   .election-package-toggle {
@@ -16982,4 +16982,10 @@ html:not([data-theme="dark"]) .exit-polls-filter-button {
 html:not([data-theme="dark"]) .exit-polls-filter-button.is-active,
 html:not([data-theme="dark"]) .exit-polls-filter-button.is-active .exit-polls-filter-count {
   color: #0f172a !important;
+}
+
+html:not([data-theme="dark"]) .exit-poll-stat-chip.share {
+  background: rgba(15, 23, 42, 0.06);
+  border-color: rgba(15, 23, 42, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
 }
