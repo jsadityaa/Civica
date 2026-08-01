@@ -472,7 +472,7 @@ function buildIssueSummary(question) {
 }
 
 function formatQuestionMeta(question, duplicateCount) {
-  const parts = [`Question ${question.sequence}`];
+  const parts = [];
   if (duplicateCount > 1) {
     parts.push(`${duplicateCount} variants`);
   }
@@ -553,9 +553,6 @@ function renderExitPollCards(questions) {
   return questions.map((question) => `
     <section class="exit-poll-card">
       <div class="exit-poll-card-head">
-        <div class="exit-poll-kicker">
-          <span class="exit-poll-question-number">Q${question.sequence}</span>
-        </div>
         <h3>${question.question}</h3>
       </div>
       <table class="exit-poll-table">

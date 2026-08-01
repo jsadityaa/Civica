@@ -1747,27 +1747,6 @@ body {
   gap: 2px;
 }
 
-.exit-poll-kicker {
-  display: flex;
-}
-
-
-.exit-poll-question-number {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 34px;
-  height: 20px;
-  padding: 0 7px;
-  border-radius: 999px;
-  background: rgba(40,121,181,0.18);
-  color: #cfe6f7;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
 .exit-poll-card-meta {
   color: var(--muted);
   font-size: 11px;
