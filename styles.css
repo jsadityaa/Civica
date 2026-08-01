@@ -16716,3 +16716,172 @@ html[data-theme="dark"] .polycivic-account-menu {
     text-align: center !important;
   }
 }
+
+/* Mobile-only election package menu */
+.election-package-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .election-package-header {
+    display: grid !important;
+    grid-template-columns: auto minmax(0, 1fr) !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 8px !important;
+    border-radius: 18px !important;
+    overflow: visible !important;
+    position: relative !important;
+  }
+
+  .election-year-strip {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .election-package-toggle {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    width: 100% !important;
+    min-height: 42px !important;
+    padding: 9px 12px !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 14px !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    color: var(--text) !important;
+    font-family: "Inter", sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 650 !important;
+    line-height: 1 !important;
+    text-align: left !important;
+    cursor: pointer !important;
+    transition:
+      background 180ms ease,
+      border-color 180ms ease,
+      box-shadow 180ms ease !important;
+  }
+
+  .election-package-toggle[aria-expanded="true"] {
+    background: rgba(74, 144, 226, 0.12) !important;
+    border-color: rgba(74, 144, 226, 0.38) !important;
+    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.14) !important;
+  }
+
+  .election-package-toggle__label {
+    min-width: 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  .election-package-toggle__icon {
+    width: 18px !important;
+    height: 14px !important;
+    display: inline-flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    flex: 0 0 auto !important;
+  }
+
+  .election-package-toggle__bar {
+    display: block !important;
+    width: 18px !important;
+    height: 2px !important;
+    border-radius: 999px !important;
+    background: currentColor !important;
+    transform-origin: center !important;
+    transition:
+      opacity 180ms ease,
+      transform 240ms ease !important;
+  }
+
+  .election-package-toggle[aria-expanded="true"] .election-package-toggle__bar:nth-child(1) {
+    transform: translateY(6px) rotate(45deg) !important;
+  }
+
+  .election-package-toggle[aria-expanded="true"] .election-package-toggle__bar:nth-child(2) {
+    opacity: 0 !important;
+  }
+
+  .election-package-toggle[aria-expanded="true"] .election-package-toggle__bar:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg) !important;
+  }
+
+  .election-package-nav {
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 7px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+    max-height: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(-8px) !important;
+    pointer-events: none !important;
+    transition:
+      max-height 320ms ease,
+      opacity 220ms ease,
+      transform 260ms ease,
+      visibility 0s linear 320ms !important;
+  }
+
+  .election-package-nav.is-package-open {
+    max-height: 320px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    pointer-events: auto !important;
+    padding-top: 8px !important;
+    transition:
+      max-height 320ms ease,
+      opacity 220ms ease,
+      transform 260ms ease,
+      visibility 0s linear 0s !important;
+  }
+
+  .election-package-link {
+    width: 100% !important;
+    flex: 0 0 auto !important;
+    justify-content: flex-start !important;
+    padding: 12px 13px !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 13px !important;
+    background: rgba(255, 255, 255, 0.025) !important;
+    opacity: 0 !important;
+    transform: translateY(8px) !important;
+    transition:
+      opacity 220ms ease,
+      transform 260ms ease,
+      background 180ms ease,
+      border-color 180ms ease !important;
+  }
+
+  .election-package-nav.is-package-open .election-package-link {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  .election-package-nav.is-package-open .election-package-link:nth-child(1) { transition-delay: 20ms !important; }
+  .election-package-nav.is-package-open .election-package-link:nth-child(2) { transition-delay: 45ms !important; }
+  .election-package-nav.is-package-open .election-package-link:nth-child(3) { transition-delay: 70ms !important; }
+  .election-package-nav.is-package-open .election-package-link:nth-child(4) { transition-delay: 95ms !important; }
+  .election-package-nav.is-package-open .election-package-link:nth-child(5) { transition-delay: 120ms !important; }
+
+  .election-package-link:hover,
+  .election-package-link.active {
+    background: rgba(74, 144, 226, 0.12) !important;
+    border-color: rgba(74, 144, 226, 0.35) !important;
+  }
+}

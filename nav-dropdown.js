@@ -119,6 +119,83 @@
     }
   };
 
+  const setupElectionPackageMenus = () => {
+    const packageNavs = Array.from(document.querySelectorAll('.election-package-nav'));
+    if (!packageNavs.length) return;
+
+    const closePackageNav = (nav, toggle) => {
+      nav.classList.remove('is-package-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open 2024 election menu');
+    };
+
+    packageNavs.forEach((nav, index) => {
+      if (nav.dataset.mobileMenuReady === 'true') return;
+
+      const toggle = document.createElement('button');
+      const activeLink = nav.querySelector('.election-package-link.active');
+      const labelText = activeLink ? activeLink.textContent.trim() : '2024 menu';
+      const navId = nav.id || `election-package-mobile-nav-${index + 1}`;
+
+      nav.id = navId;
+      nav.dataset.mobileMenuReady = 'true';
+
+      toggle.type = 'button';
+      toggle.className = 'election-package-toggle';
+      toggle.setAttribute('aria-label', 'Open 2024 election menu');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-controls', navId);
+      toggle.innerHTML = `
+        <span class="election-package-toggle__label">${labelText}</span>
+        <span class="election-package-toggle__icon" aria-hidden="true">
+          <span class="election-package-toggle__bar"></span>
+          <span class="election-package-toggle__bar"></span>
+          <span class="election-package-toggle__bar"></span>
+        </span>
+      `;
+
+      nav.parentNode.insertBefore(toggle, nav);
+
+      toggle.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const isOpen = nav.classList.contains('is-package-open');
+        if (isOpen) {
+          closePackageNav(nav, toggle);
+        } else {
+          nav.classList.add('is-package-open');
+          toggle.setAttribute('aria-expanded', 'true');
+          toggle.setAttribute('aria-label', 'Close 2024 election menu');
+        }
+      });
+
+      document.addEventListener('click', (event) => {
+        if (
+          mobileBreakpoint.matches &&
+          nav.classList.contains('is-package-open') &&
+          !event.target.closest('.election-package-header')
+        ) {
+          closePackageNav(nav, toggle);
+        }
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closePackageNav(nav, toggle);
+      });
+
+      const syncPackageState = () => {
+        if (!mobileBreakpoint.matches) closePackageNav(nav, toggle);
+      };
+
+      if (typeof mobileBreakpoint.addEventListener === 'function') {
+        mobileBreakpoint.addEventListener('change', syncPackageState);
+      } else if (typeof mobileBreakpoint.addListener === 'function') {
+        mobileBreakpoint.addListener(syncPackageState);
+      }
+    });
+  };
+
+  setupElectionPackageMenus();
+
   if (typeof mobileBreakpoint.addEventListener === 'function') {
     mobileBreakpoint.addEventListener('change', syncMobileMenuState);
   } else if (typeof mobileBreakpoint.addListener === 'function') {
