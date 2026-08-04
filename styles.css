@@ -2002,23 +2002,41 @@ body {
 
 .detail-summary-card.winner-dem {
   background:
-    linear-gradient(180deg, rgba(40,121,181,0.18) 0%, rgba(40,121,181,0.1) 18%, rgba(40,121,181,0.04) 36%, rgba(18,20,27,0.98) 58%, rgba(18,20,27,1) 100%),
+    linear-gradient(180deg, rgba(40,121,181,0.18) 0%, rgba(40,121,181,0.1) 20%, rgba(40,121,181,0.04) 40%, rgba(255,255,255,0.96) 66%, rgba(255,255,255,1) 100%),
     var(--panel);
   border-color: rgba(40,121,181,0.24);
 }
 
 .detail-summary-card.winner-rep {
   background:
-    linear-gradient(180deg, rgba(207,47,47,0.18) 0%, rgba(207,47,47,0.1) 18%, rgba(207,47,47,0.04) 36%, rgba(18,20,27,0.98) 58%, rgba(18,20,27,1) 100%),
+    linear-gradient(180deg, rgba(207,47,47,0.18) 0%, rgba(207,47,47,0.1) 20%, rgba(207,47,47,0.04) 40%, rgba(255,255,255,0.96) 66%, rgba(255,255,255,1) 100%),
     var(--panel);
   border-color: rgba(207,47,47,0.24);
 }
 
 .detail-summary-card.winner-ind {
   background:
-    linear-gradient(180deg, rgba(200,164,77,0.18) 0%, rgba(200,164,77,0.1) 18%, rgba(200,164,77,0.04) 36%, rgba(18,20,27,0.98) 58%, rgba(18,20,27,1) 100%),
+    linear-gradient(180deg, rgba(200,164,77,0.18) 0%, rgba(200,164,77,0.1) 20%, rgba(200,164,77,0.04) 40%, rgba(255,255,255,0.96) 66%, rgba(255,255,255,1) 100%),
     var(--panel);
   border-color: rgba(200,164,77,0.24);
+}
+
+html[data-theme="dark"] .detail-summary-card.winner-dem {
+  background:
+    linear-gradient(180deg, rgba(40,121,181,0.18) 0%, rgba(40,121,181,0.1) 18%, rgba(40,121,181,0.04) 36%, rgba(18,20,27,0.98) 58%, rgba(18,20,27,1) 100%),
+    var(--panel);
+}
+
+html[data-theme="dark"] .detail-summary-card.winner-rep {
+  background:
+    linear-gradient(180deg, rgba(207,47,47,0.18) 0%, rgba(207,47,47,0.1) 18%, rgba(207,47,47,0.04) 36%, rgba(18,20,27,0.98) 58%, rgba(18,20,27,1) 100%),
+    var(--panel);
+}
+
+html[data-theme="dark"] .detail-summary-card.winner-ind {
+  background:
+    linear-gradient(180deg, rgba(200,164,77,0.18) 0%, rgba(200,164,77,0.1) 18%, rgba(200,164,77,0.04) 36%, rgba(18,20,27,0.98) 58%, rgba(18,20,27,1) 100%),
+    var(--panel);
 }
 
 .detail-summary-main {
