@@ -900,7 +900,7 @@ body {
 
 .district-label {
   font-size: 13px;
-  fill: #fff;
+  fill: var(--text);
   alignment-baseline: middle;
 }
 
