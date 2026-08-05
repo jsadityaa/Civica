@@ -50,33 +50,166 @@
   <div class="site-shell">
     <header class="site-header">
       <h1>Elections</h1>
-      <p class="hub-subtitle">Choose an election to explore.</p>
+      <p class="hub-subtitle">Browse election coverage by year or by country.</p>
     </header>
 
-    <main class="elections-grid">
-      <a class="election-card featured" href="/presidency-2024">
-        <span class="card-tag">Featured</span>
-        <h2>2024 US Presidential Election</h2>
-        <p>National map, article, state results, and exit polls.</p>
-      </a>
+    <main class="elections-browser">
+      <div class="elections-browser-toolbar">
+        <div class="elections-browser-toggle-group" role="group" aria-label="Election browsing mode">
+          <button class="elections-browser-toggle active" type="button" data-election-view="year" aria-pressed="true">Sort by year</button>
+          <button class="elections-browser-toggle" type="button" data-election-view="country" aria-pressed="false">Sort by country</button>
+        </div>
+        <label class="elections-search" aria-label="Search elections">
+          <span class="elections-search-icon" aria-hidden="true">⌕</span>
+          <input type="search" id="elections-search-input" placeholder="Search elections" autocomplete="off" />
+        </label>
+      </div>
 
-      <a class="election-card" href="/california-2024">
-        <span class="card-tag">State</span>
-        <h2>2024 California Presidential Election</h2>
-        <p>California-focused county map and supporting analysis.</p>
-      </a>
+      <section class="elections-browser-view active" data-election-panel="year" aria-label="Elections sorted by year">
+        <section class="election-group">
+          <div class="election-group-header">
+            <h2>2026</h2>
+          </div>
+          <div class="elections-grid">
+            <a class="election-card election-card-empty" href="/forecasts" data-election-search="2026 election forecasts upcoming races projections united states">
+              <span class="card-tag">Coming soon</span>
+              <h3>2026 Election Forecasts</h3>
+              <p>Forecast pages and upcoming race coverage are being prepared.</p>
+            </a>
+          </div>
+        </section>
 
-      <a class="election-card" href="/presidential-2020">
-        <span class="card-tag">Archive</span>
-        <h2>2020 US Presidential Election</h2>
-        <p>Placeholder page ready for 2020 map and results coverage.</p>
-      </a>
+        <section class="election-group">
+          <div class="election-group-header">
+            <h2>2025</h2>
+          </div>
+          <div class="elections-grid">
+            <article class="election-card election-card-empty" data-election-search="2025 election coverage archive upcoming races">
+              <span class="card-tag">No pages yet</span>
+              <h3>2025 Election Coverage</h3>
+              <p>Pages for 2025 races will appear here once coverage is available.</p>
+            </article>
+          </div>
+        </section>
 
-      <a class="election-card" href="/midterms-2022">
-        <span class="card-tag">Archive</span>
-        <h2>2022 Midterm Elections</h2>
-        <p>Placeholder page ready for House, Senate, and governor results.</p>
-      </a>
+        <section class="election-group">
+          <div class="election-group-header">
+            <h2>2024</h2>
+          </div>
+          <div class="elections-grid">
+            <a class="election-card featured" href="/presidency-2024" data-election-search="2024 us united states presidential election national map article state results exit polls">
+              <span class="card-tag">National</span>
+              <h3>2024 US Presidential Election</h3>
+              <p>National map, article, state results, and exit polls.</p>
+            </a>
+
+            <a class="election-card" href="/house-2024" data-election-search="2024 us united states house elections district results flips house control">
+              <span class="card-tag">House</span>
+              <h3>2024 US House Elections</h3>
+              <p>District-level results, flips, and the path to House control.</p>
+            </a>
+
+            <a class="election-card" href="/senate-2024" data-election-search="2024 us united states senate elections state races seat control battleground results">
+              <span class="card-tag">Senate</span>
+              <h3>2024 US Senate Elections</h3>
+              <p>State race coverage, seat control, and battleground results.</p>
+            </a>
+
+            <a class="election-card" href="/governor-2024" data-election-search="2024 us united states governor elections state races governors">
+              <span class="card-tag">Governor</span>
+              <h3>2024 Governor Elections</h3>
+              <p>Governor race coverage organized by state.</p>
+            </a>
+
+          </div>
+        </section>
+
+        <section class="election-group">
+          <div class="election-group-header">
+            <h2>2022</h2>
+          </div>
+          <div class="elections-grid">
+            <a class="election-card" href="/midterms-2022" data-election-search="2022 us united states midterm elections house senate governor archive">
+              <span class="card-tag">Archive</span>
+              <h3>2022 Midterm Elections</h3>
+              <p>Placeholder page ready for House, Senate, and governor results.</p>
+            </a>
+          </div>
+        </section>
+
+        <section class="election-group">
+          <div class="election-group-header">
+            <h2>2020</h2>
+          </div>
+          <div class="elections-grid">
+            <a class="election-card" href="/presidential-2020" data-election-search="2020 us united states presidential election archive map results">
+              <span class="card-tag">Archive</span>
+              <h3>2020 US Presidential Election</h3>
+              <p>Placeholder page ready for 2020 map and results coverage.</p>
+            </a>
+          </div>
+        </section>
+      </section>
+
+      <section class="elections-browser-view" data-election-panel="country" aria-label="Elections sorted by country" hidden>
+        <section class="election-group">
+          <div class="election-group-header">
+            <h2>United States</h2>
+          </div>
+          <div class="elections-grid">
+            <a class="election-card featured" href="/presidency-2024" data-election-search="united states 2024 us presidential election national map article state results exit polls">
+              <span class="card-tag">2024</span>
+              <h3>US Presidential Election</h3>
+              <p>National map, article, state results, and exit polls.</p>
+            </a>
+
+            <a class="election-card" href="/house-2024" data-election-search="united states 2024 us house elections district results flips house control">
+              <span class="card-tag">2024</span>
+              <h3>US House Elections</h3>
+              <p>District-level results, flips, and House control.</p>
+            </a>
+
+            <a class="election-card" href="/senate-2024" data-election-search="united states 2024 us senate elections state races seat control">
+              <span class="card-tag">2024</span>
+              <h3>US Senate Elections</h3>
+              <p>State race coverage and seat control.</p>
+            </a>
+
+            <a class="election-card" href="/governor-2024" data-election-search="united states 2024 governor elections state races governors">
+              <span class="card-tag">2024</span>
+              <h3>Governor Elections</h3>
+              <p>Governor race coverage organized by state.</p>
+            </a>
+
+            <a class="election-card" href="/presidential-2020" data-election-search="united states 2020 us presidential election archive map results">
+              <span class="card-tag">2020</span>
+              <h3>US Presidential Election</h3>
+              <p>Archived presidential map and results coverage.</p>
+            </a>
+
+            <a class="election-card" href="/midterms-2022" data-election-search="united states 2022 midterm elections house senate governor archive">
+              <span class="card-tag">2022</span>
+              <h3>Midterm Elections</h3>
+              <p>Archived House, Senate, and governor coverage.</p>
+            </a>
+          </div>
+        </section>
+
+        <section class="election-group">
+          <div class="election-group-header">
+            <h2>More countries soon</h2>
+          </div>
+          <div class="elections-grid">
+            <article class="election-card election-card-empty" data-election-search="international elections country coverage coming soon worldwide">
+              <span class="card-tag">Coming soon</span>
+              <h3>International Election Coverage</h3>
+              <p>Country pages will appear here as international coverage is added.</p>
+            </article>
+          </div>
+        </section>
+      </section>
+
+      <p class="elections-no-results" id="elections-no-results" hidden>No elections match your search.</p>
     </main>
   </div>
   <footer id="contact-us" class="civica-homepage__footer">
@@ -106,5 +239,71 @@
   <script src="./auth-config.js?v=20260725-1"></script>
   <script src="./auth.js?v=20260725-1"></script>
   <script src="./nav-dropdown.js"></script>
+  <script>
+    const electionsSearchInput = document.getElementById('elections-search-input');
+    const electionsNoResults = document.getElementById('elections-no-results');
+
+    function getElectionSearchTokens() {
+      return (electionsSearchInput?.value || '')
+        .trim()
+        .toLowerCase()
+        .split(/\s+/)
+        .filter(Boolean);
+    }
+
+    function filterElectionCards() {
+      const tokens = getElectionSearchTokens();
+      let activePanelMatches = 0;
+
+      document.querySelectorAll('[data-election-panel]').forEach((panel) => {
+        const isActivePanel = panel.classList.contains('active');
+
+        panel.querySelectorAll('.election-group').forEach((group) => {
+          let visibleCards = 0;
+
+          group.querySelectorAll('.election-card').forEach((card) => {
+            const searchable = [
+              card.dataset.electionSearch || '',
+              card.textContent || ''
+            ].join(' ').replace(/\s+/g, ' ').toLowerCase();
+            const isMatch = tokens.length === 0 || tokens.every((token) => searchable.includes(token));
+            card.hidden = !isMatch;
+            if (isMatch) visibleCards += 1;
+          });
+
+          group.hidden = visibleCards === 0;
+          if (isActivePanel) activePanelMatches += visibleCards;
+        });
+      });
+
+      if (electionsNoResults) {
+        electionsNoResults.hidden = tokens.length === 0 || activePanelMatches > 0;
+      }
+    }
+
+    document.querySelectorAll('[data-election-view]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const view = button.dataset.electionView;
+
+        document.querySelectorAll('[data-election-view]').forEach((toggle) => {
+          const isActive = toggle.dataset.electionView === view;
+          toggle.classList.toggle('active', isActive);
+          toggle.setAttribute('aria-pressed', String(isActive));
+        });
+
+        document.querySelectorAll('[data-election-panel]').forEach((panel) => {
+          const isActive = panel.dataset.electionPanel === view;
+          panel.hidden = !isActive;
+          panel.classList.toggle('active', isActive);
+        });
+
+        filterElectionCards();
+      });
+    });
+
+    electionsSearchInput?.addEventListener('input', filterElectionCards);
+    electionsSearchInput?.addEventListener('search', filterElectionCards);
+    filterElectionCards();
+  </script>
 </body>
 </html>

@@ -138,6 +138,10 @@
             <span>Name</span>
             <input type="text" id="polycivic-auth-name" autocomplete="name" placeholder="Your name" />
           </label>
+          <label class="polycivic-auth-field polycivic-auth-birthday-field">
+            <span>Birthday</span>
+            <input type="date" id="polycivic-auth-birthday" autocomplete="bday" />
+          </label>
           <label class="polycivic-auth-field">
             <span>Email</span>
             <input type="email" id="polycivic-auth-email" autocomplete="email" placeholder="you@example.com" required />
@@ -181,6 +185,8 @@
     form: overlay.querySelector(".polycivic-auth-form"),
     nameField: overlay.querySelector(".polycivic-auth-name-field"),
     nameInput: overlay.querySelector("#polycivic-auth-name"),
+    birthdayField: overlay.querySelector(".polycivic-auth-birthday-field"),
+    birthdayInput: overlay.querySelector("#polycivic-auth-birthday"),
     emailInput: overlay.querySelector("#polycivic-auth-email"),
     passwordInput: overlay.querySelector("#polycivic-auth-password"),
     consentField: overlay.querySelector(".polycivic-auth-consent"),
@@ -202,12 +208,54 @@
   };
 
   const syncSubmitState = () => {
-    authModal.submit.disabled = isSignUpMode && !authModal.consentInput.checked;
+    authModal.submit.disabled = isSignUpMode && (!authModal.consentInput.checked || !authModal.birthdayInput.value);
+  };
+
+  const isAtLeastThirteen = (birthdayValue) => {
+    if (!birthdayValue) return false;
+
+    const birthday = new Date(`${birthdayValue}T00:00:00`);
+    if (Number.isNaN(birthday.getTime())) return false;
+
+    const today = new Date();
+    let age = today.getFullYear() - birthday.getFullYear();
+    const monthDiff = today.getMonth() - birthday.getMonth();
+    const dayDiff = today.getDate() - birthday.getDate();
+
+    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+      age -= 1;
+    }
+
+    return age >= 13;
+  };
+
+  const validateSignUpEligibility = () => {
+    if (!isSignUpMode) return true;
+
+    if (!authModal.birthdayInput.value) {
+      authModal.error.textContent = "Enter your birthday before creating an account.";
+      return false;
+    }
+
+    if (!isAtLeastThirteen(authModal.birthdayInput.value)) {
+      authModal.error.textContent = "You must be at least 13 years old to create a Polycivic account.";
+      return false;
+    }
+
+    if (!authModal.consentInput.checked) {
+      authModal.error.textContent = "Please agree to the Terms of Service and Privacy Policy before creating an account.";
+      return false;
+    }
+
+    return true;
   };
 
   const setModalMode = (signUpMode) => {
     isSignUpMode = signUpMode;
     authModal.nameField.hidden = !signUpMode;
+    authModal.birthdayField.hidden = !signUpMode;
+    authModal.birthdayInput.required = signUpMode;
+    authModal.birthdayInput.value = signUpMode ? authModal.birthdayInput.value : "";
     authModal.consentField.classList.toggle("polycivic-auth-consent--hidden", !signUpMode);
     authModal.consentField.setAttribute("aria-hidden", signUpMode ? "false" : "true");
     authModal.consentInput.checked = signUpMode ? authModal.consentInput.checked : false;
@@ -315,15 +363,17 @@
   const signInWithGoogle = async () => {
     if (!auth || !window.firebase) return;
     clearModalError();
-    if (isSignUpMode && !authModal.consentInput.checked) {
-      authModal.error.textContent = "Please agree to the Terms of Service and Privacy Policy before creating an account.";
+    if (!validateSignUpEligibility()) {
       return;
     }
     const provider = new window.firebase.auth.GoogleAuthProvider();
     provider.setCustomParameters({ prompt: "select_account" });
 
     try {
-      await auth.signInWithPopup(provider);
+      const credential = await auth.signInWithPopup(provider);
+      if (isSignUpMode && credential.user) {
+        localStorage.setItem(`polycivic-birthday:${credential.user.uid}`, authModal.birthdayInput.value);
+      }
       closeModal();
     } catch (error) {
       authModal.error.textContent = getFriendlyError(error);
@@ -338,6 +388,7 @@
     const email = authModal.emailInput.value.trim();
     const password = authModal.passwordInput.value;
     const name = authModal.nameInput.value.trim();
+    const birthday = authModal.birthdayInput.value;
 
     if (!email || !password) {
       authModal.error.textContent = "Enter both an email and password.";
@@ -349,8 +400,7 @@
       return;
     }
 
-    if (isSignUpMode && !authModal.consentInput.checked) {
-      authModal.error.textContent = "Please agree to the Terms of Service and Privacy Policy before creating an account.";
+    if (!validateSignUpEligibility()) {
       return;
     }
 
@@ -359,6 +409,9 @@
         const credential = await auth.createUserWithEmailAndPassword(email, password);
         if (credential.user && name) {
           await credential.user.updateProfile({ displayName: name });
+        }
+        if (credential.user && birthday) {
+          localStorage.setItem(`polycivic-birthday:${credential.user.uid}`, birthday);
         }
       } else {
         await auth.signInWithEmailAndPassword(email, password);
@@ -423,6 +476,7 @@
   authModal.google.addEventListener("click", signInWithGoogle);
   authModal.form.addEventListener("submit", handleEmailAuth);
   authModal.consentInput.addEventListener("change", syncSubmitState);
+  authModal.birthdayInput.addEventListener("input", syncSubmitState);
   authModal.switchMode.addEventListener("click", () => {
     setModalMode(!isSignUpMode);
   });
