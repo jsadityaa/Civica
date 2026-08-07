@@ -1,4 +1,5 @@
 window.POLYCIVIC_AUTH_CONFIG = {
+  actionUrl: "https://polycivic.com/auth-action",
   firebase: {
     apiKey: "AIzaSyCWFpJmfOZW5bMkx4vHCDtx-xfjhvwwE24",
     authDomain: "polycivic.com",

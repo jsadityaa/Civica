@@ -35,14 +35,22 @@
 
   const authConfig = window.POLYCIVIC_AUTH_CONFIG || {};
   const firebaseConfig = authConfig.firebase || {};
+  const authActionSettings = {
+    url: authConfig.actionUrl || "https://polycivic.com/",
+    handleCodeInApp: false
+  };
   const requiredFirebaseKeys = ["apiKey", "authDomain", "projectId", "appId"];
   const isFirebaseConfigured = requiredFirebaseKeys.every((key) => {
     return typeof firebaseConfig[key] === "string" && firebaseConfig[key].trim();
   });
 
   let auth = null;
+  let db = null;
   let currentUser = null;
+  let currentProfile = null;
   let isSignUpMode = false;
+  let firestoreLoadPromise = null;
+  const firestoreCompatSrc = "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js";
 
   const getInitial = (value) => {
     return (value || "?").trim().charAt(0).toUpperCase() || "?";
@@ -56,8 +64,48 @@
       email: user.email || "",
       displayName,
       photoURL: user.photoURL || "",
+      emailVerified: !!user.emailVerified,
       initial: getInitial(displayName)
     };
+  };
+
+  const loadScript = (src) => {
+    const existing = document.querySelector(`script[src="${src}"]`);
+    if (existing) {
+      return new Promise((resolve, reject) => {
+        if (existing.dataset.loaded === "true") {
+          resolve();
+          return;
+        }
+        existing.addEventListener("load", resolve, { once: true });
+        existing.addEventListener("error", reject, { once: true });
+      });
+    }
+
+    return new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = true;
+      script.dataset.loaded = "false";
+      script.addEventListener("load", () => {
+        script.dataset.loaded = "true";
+        resolve();
+      }, { once: true });
+      script.addEventListener("error", reject, { once: true });
+      document.head.appendChild(script);
+    });
+  };
+
+  const getFirestoreDb = async () => {
+    if (!isFirebaseConfigured || !window.firebase) return null;
+
+    if (!window.firebase.firestore) {
+      firestoreLoadPromise = firestoreLoadPromise || loadScript(firestoreCompatSrc);
+      await firestoreLoadPromise;
+    }
+
+    db = db || window.firebase.firestore();
+    return db;
   };
 
   const setHeaderState = (user) => {
@@ -101,6 +149,7 @@
     const user = sanitizeUser(currentUser);
     window.POLYCIVIC_AUTH = {
       getCurrentUser: () => user,
+      getCurrentProfile: () => currentProfile,
       openLogin: () => {
         setModalMode(false);
         openModal();
@@ -108,7 +157,11 @@
       openSignUp: () => {
         setModalMode(true);
         openModal();
-      }
+      },
+      updateDisplayName,
+      sendPasswordReset,
+      sendVerificationEmail,
+      reloadCurrentUser
     };
     window.dispatchEvent(new CustomEvent("polycivic-auth-changed", {
       detail: { user }
@@ -158,6 +211,7 @@
           <button type="submit" class="polycivic-auth-submit">Sign in</button>
         </form>
 
+        <button type="button" class="polycivic-auth-forgot">Forgot password?</button>
         <button type="button" class="polycivic-auth-switch">Need an account? Create one</button>
       </div>
     </div>
@@ -172,6 +226,7 @@
       <strong class="polycivic-account-menu__name">Account</strong>
       <span class="polycivic-account-menu__email">Signed out</span>
     </div>
+    <a class="polycivic-account-menu__action polycivic-account-menu__link" href="/settings">Account settings</a>
     <button type="button" class="polycivic-account-menu__action" data-auth-action="signin">Sign in</button>
     <button type="button" class="polycivic-account-menu__action" data-auth-action="signout">Sign out</button>
   `;
@@ -193,6 +248,7 @@
     consentInput: overlay.querySelector("#polycivic-auth-consent"),
     submit: overlay.querySelector(".polycivic-auth-submit"),
     error: overlay.querySelector(".polycivic-auth-error"),
+    forgot: overlay.querySelector(".polycivic-auth-forgot"),
     switchMode: overlay.querySelector(".polycivic-auth-switch")
   };
 
@@ -261,6 +317,7 @@
     authModal.consentInput.checked = signUpMode ? authModal.consentInput.checked : false;
     authModal.title.textContent = signUpMode ? "Create your Polycivic account" : "Sign in to Polycivic";
     authModal.submit.textContent = signUpMode ? "Create account" : "Sign in";
+    authModal.forgot.hidden = signUpMode;
     authModal.switchMode.textContent = signUpMode
       ? "Already have an account? Sign in"
       : "Need an account? Create one";
@@ -314,6 +371,115 @@
     }
   };
 
+  const buildProfilePayload = (user, extras = {}, existingProfile = null) => {
+    const safeUser = sanitizeUser(user);
+    const timestamp = window.firebase.firestore.FieldValue.serverTimestamp();
+    const birthday = extras.birthday || existingProfile?.birthday || "";
+
+    return {
+      displayName: extras.displayName || safeUser.displayName,
+      email: safeUser.email,
+      photoURL: safeUser.photoURL,
+      birthday,
+      emailVerified: !!user.emailVerified,
+      role: existingProfile?.role || "user",
+      updatedAt: timestamp,
+      lastSignInAt: timestamp
+    };
+  };
+
+  const syncUserProfile = async (user, extras = {}) => {
+    if (!user) {
+      currentProfile = null;
+      broadcastAuthState();
+      return null;
+    }
+
+    try {
+      const database = await getFirestoreDb();
+      if (!database) return null;
+
+      const profileRef = database.collection("users").doc(user.uid);
+      const snapshot = await profileRef.get();
+
+      if (snapshot.exists) {
+        const existingProfile = snapshot.data() || {};
+        const payload = buildProfilePayload(user, extras, existingProfile);
+        delete payload.role;
+        delete payload.birthday;
+
+        if (extras.birthday) {
+          payload.birthday = extras.birthday;
+        }
+
+        await profileRef.update(payload);
+        currentProfile = { ...existingProfile, ...payload, uid: user.uid };
+      } else {
+        const timestamp = window.firebase.firestore.FieldValue.serverTimestamp();
+        const payload = {
+          ...buildProfilePayload(user, extras),
+          createdAt: timestamp
+        };
+
+        await profileRef.set(payload);
+        currentProfile = { ...payload, uid: user.uid };
+      }
+
+      broadcastAuthState();
+      return currentProfile;
+    } catch (error) {
+      console.warn("Polycivic profile sync failed:", error);
+      return null;
+    }
+  };
+
+  const updateDisplayName = async (displayName) => {
+    if (!auth || !currentUser) {
+      throw new Error("You must be signed in to update your profile.");
+    }
+
+    const cleanName = (displayName || "").trim();
+    if (!cleanName) {
+      throw new Error("Enter a display name.");
+    }
+
+    await currentUser.updateProfile({ displayName: cleanName });
+    await syncUserProfile(currentUser, { displayName: cleanName });
+    const safeUser = sanitizeUser(currentUser);
+    setHeaderState(safeUser);
+    updateAccountMenu(safeUser);
+    broadcastAuthState();
+  };
+
+  const sendPasswordReset = async (emailOverride = "") => {
+    if (!auth) {
+      throw new Error("Firebase Authentication is not ready.");
+    }
+
+    const email = (emailOverride || currentUser?.email || authModal.emailInput.value || "").trim();
+    if (!email) {
+      throw new Error("Enter your email address first.");
+    }
+
+    await auth.sendPasswordResetEmail(email, authActionSettings);
+  };
+
+  const sendVerificationEmail = async () => {
+    if (!currentUser) {
+      throw new Error("You must be signed in to verify your email.");
+    }
+
+    await currentUser.sendEmailVerification(authActionSettings);
+  };
+
+  const reloadCurrentUser = async () => {
+    if (!currentUser) return null;
+    await currentUser.reload();
+    currentUser = auth.currentUser;
+    await syncUserProfile(currentUser);
+    return sanitizeUser(currentUser);
+  };
+
   const getFriendlyError = (error) => {
     const code = error && error.code ? error.code : "";
     switch (code) {
@@ -357,6 +523,11 @@
       setHeaderState(safeUser);
       updateAccountMenu(safeUser);
       broadcastAuthState();
+      if (user) {
+        syncUserProfile(user);
+      } else {
+        currentProfile = null;
+      }
     });
   };
 
@@ -371,8 +542,14 @@
 
     try {
       const credential = await auth.signInWithPopup(provider);
+      const isNewGoogleUser = credential.additionalUserInfo && credential.additionalUserInfo.isNewUser;
+      if (isNewGoogleUser && !isSignUpMode) {
+        await credential.user.delete();
+        authModal.error.textContent = "Use Sign Up to create a new account.";
+        return;
+      }
       if (isSignUpMode && credential.user) {
-        localStorage.setItem(`polycivic-birthday:${credential.user.uid}`, authModal.birthdayInput.value);
+        await syncUserProfile(credential.user, { birthday: authModal.birthdayInput.value });
       }
       closeModal();
     } catch (error) {
@@ -411,7 +588,10 @@
           await credential.user.updateProfile({ displayName: name });
         }
         if (credential.user && birthday) {
-          localStorage.setItem(`polycivic-birthday:${credential.user.uid}`, birthday);
+          await syncUserProfile(credential.user, { birthday, displayName: name });
+        }
+        if (credential.user && !credential.user.emailVerified) {
+          await credential.user.sendEmailVerification(authActionSettings);
         }
       } else {
         await auth.signInWithEmailAndPassword(email, password);
@@ -477,6 +657,15 @@
   authModal.form.addEventListener("submit", handleEmailAuth);
   authModal.consentInput.addEventListener("change", syncSubmitState);
   authModal.birthdayInput.addEventListener("input", syncSubmitState);
+  authModal.forgot.addEventListener("click", async () => {
+    clearModalError();
+    try {
+      await sendPasswordReset();
+      authModal.error.textContent = "Password reset email sent.";
+    } catch (error) {
+      authModal.error.textContent = getFriendlyError(error);
+    }
+  });
   authModal.switchMode.addEventListener("click", () => {
     setModalMode(!isSignUpMode);
   });

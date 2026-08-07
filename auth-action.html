@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2020 US Presidential Election | Polycivic</title>
+  <title>Account Action | Polycivic</title>
   <link rel="icon" type="image/png" href="./favicon.png" />
   <link rel="shortcut icon" href="./favicon.ico">
   <link rel="apple-touch-icon-precomposed" sizes="180x180" href="./apple-touch-icon.png">
@@ -12,17 +12,17 @@
   <meta name="theme-color" content="#10131b" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {} })();</script>
   <link rel="stylesheet" href="./styles.css" />
 </head>
-<body>
+<body class="reset-password-page">
   <header class="global-header">
     <div class="global-header-inner">
       <a href="/" class="brand" aria-label="Polycivic home">Polycivic</a>
       <nav class="global-nav" aria-label="Main navigation">
         <a href="/" class="global-nav-link">Features</a>
-        <a href="/elections" class="global-nav-link active">Elections</a>
+        <a href="/elections" class="global-nav-link">Elections</a>
         <a href="/forecasts" class="global-nav-link">Forecasts</a>
         <a href="/news" class="global-nav-link">News</a>
         <a href="/forum" class="global-nav-link">Forum</a>
@@ -45,44 +45,54 @@
     </div>
   </header>
 
-  <div class="site-shell">
-    <header class="site-header">
-      <h1>2020 US Presidential Election</h1>
-      <p class="hub-subtitle">Placeholder page ready for archived 2020 election coverage.</p>
-    </header>
-    <section class="content-panel">
-      <div class="subpanel tall">
-        <h3>2020 election page placeholder</h3>
-        <p>This page is linked from the Elections hub and can be filled in later with 2020 maps, results, and reporting.</p>
-      </div>
+  <main class="reset-password-page__main">
+    <section class="reset-password-card" aria-labelledby="auth-action-title">
+      <p class="reset-password-card__eyebrow" data-action-eyebrow>Account Security</p>
+      <h1 id="auth-action-title" data-action-title>Checking link</h1>
+      <p class="reset-password-card__copy" data-action-copy>Checking your secure link...</p>
+
+      <form class="reset-password-form" data-reset-form hidden>
+        <label for="new-password">New password</label>
+        <input id="new-password" name="new-password" type="password" autocomplete="new-password" minlength="6" placeholder="New password" required />
+
+        <label for="confirm-password">Confirm password</label>
+        <input id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" minlength="6" placeholder="Confirm password" required />
+
+        <button class="settings-action-button reset-password-form__submit" type="submit">Update password</button>
+      </form>
+
+      <p class="reset-password-card__status" data-action-status aria-live="polite"></p>
+      <a class="reset-password-card__link" href="/settings">Back to settings</a>
     </section>
-  </div>
+  </main>
+
   <footer id="contact-us" class="civica-homepage__footer">
-      <div class="civica-homepage__footer-inner">
-        <div class="civica-homepage__footer-bottom">
-          <div class="civica-homepage__footer-meta">
-            <p class="civica-homepage__footer-brand">polycivic.com</p>
-            <nav class="civica-homepage__footer-nav" aria-label="Footer navigation">
-              <a href="/contact">Contact Us</a>
-              <a href="/our-mission">Our Mission</a>
-              <a href="/our-team">Our Team</a>
-              <a href="/forum">Blog</a>
-            </nav>
-            <p class="civica-homepage__footer-legal">
-              <a href="/terms">Terms</a>
-              <span>&bull;</span>
-              <a href="/privacy">Privacy Policy</a>
-            </p>
-          </div>
-          <p class="civica-homepage__footer-copy">&copy; 2026 Polycivic. All rights reserved.</p>
+    <div class="civica-homepage__footer-inner">
+      <div class="civica-homepage__footer-bottom">
+        <div class="civica-homepage__footer-meta">
+          <p class="civica-homepage__footer-brand">polycivic.com</p>
+          <nav class="civica-homepage__footer-nav" aria-label="Footer navigation">
+            <a href="/contact">Contact Us</a>
+            <a href="/our-mission">Our Mission</a>
+            <a href="/our-team">Our Team</a>
+            <a href="/forum">Blog</a>
+          </nav>
+          <p class="civica-homepage__footer-legal">
+            <a href="/terms">Terms</a>
+            <span>&bull;</span>
+            <a href="/privacy">Privacy Policy</a>
+          </p>
         </div>
+        <p class="civica-homepage__footer-copy">&copy; 2026 Polycivic. All rights reserved.</p>
       </div>
-    </footer>
+    </div>
+  </footer>
 
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script src="./auth-config.js?v=20260806-1"></script>
   <script src="./auth.js?v=20260806-1"></script>
+  <script src="./auth-action.js?v=20260806-2"></script>
   <script src="./nav-dropdown.js"></script>
 </body>
 </html>

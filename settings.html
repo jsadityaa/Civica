@@ -49,7 +49,7 @@
     <div class="site-shell settings-shell">
       <header class="settings-header">
         <h1>Settings</h1>
-        <p>We can flesh this page out later. For now, this is a simple place to control how Polycivic looks while you browse.</p>
+        <p>Control your account, verification status, password recovery, and site appearance.</p>
       </header>
 
       <section class="settings-group" aria-labelledby="appearance-heading">
@@ -73,6 +73,67 @@
             </div>
           </div>
         </div>
+      </section>
+
+      <section class="settings-group account-settings" aria-labelledby="account-heading">
+        <div class="settings-group-intro">
+          <h2 id="account-heading">Account</h2>
+          <p>Manage your Polycivic profile, verification status, and password recovery.</p>
+        </div>
+
+        <div class="settings-table account-settings__signed-out" hidden>
+          <div class="settings-row">
+            <div class="settings-row-copy">
+              <strong>You are not signed in</strong>
+              <span>Create an account or sign in to manage account settings.</span>
+            </div>
+            <div class="settings-row-action">
+              <button class="settings-action-button" type="button" data-settings-signup>Sign Up</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-table account-settings__signed-in" hidden>
+          <div class="settings-row">
+            <div class="settings-row-copy">
+              <strong>Profile</strong>
+              <span class="account-settings__email">Signed in email will appear here.</span>
+            </div>
+            <div class="settings-row-action account-settings__profile-action">
+              <input class="settings-text-input" id="account-display-name" type="text" autocomplete="name" placeholder="Display name" />
+              <button class="settings-action-button" type="button" id="account-save-name">Save</button>
+            </div>
+          </div>
+
+          <div class="settings-row">
+            <div class="settings-row-copy">
+              <strong>Email verification</strong>
+              <span class="account-settings__verification">Verification status will appear here.</span>
+            </div>
+            <div class="settings-row-action">
+              <button class="settings-action-button" type="button" id="account-send-verification">Send verification email</button>
+            </div>
+          </div>
+
+          <div class="settings-row">
+            <div class="settings-row-copy">
+              <strong>Password reset</strong>
+              <span>Send a password reset link to your account email.</span>
+            </div>
+            <div class="settings-row-action">
+              <button class="settings-action-button" type="button" id="account-reset-password">Send reset email</button>
+            </div>
+          </div>
+
+          <div class="settings-row">
+            <div class="settings-row-copy">
+              <strong>Role</strong>
+              <span class="account-settings__role">User</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="account-settings__status" aria-live="polite"></p>
       </section>
     </div>
   </main>
@@ -130,8 +191,9 @@
 
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-  <script src="./auth-config.js?v=20260725-1"></script>
-  <script src="./auth.js?v=20260725-1"></script>
+  <script src="./auth-config.js?v=20260806-1"></script>
+  <script src="./auth.js?v=20260806-2"></script>
+  <script src="./settings-account.js?v=20260806-5"></script>
   <script src="./nav-dropdown.js"></script>
 </body>
 </html>

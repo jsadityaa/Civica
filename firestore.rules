@@ -1,0 +1,47 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function ownsProfile(userId) {
+      return signedIn() && request.auth.uid == userId;
+    }
+
+    match /users/{userId} {
+      allow read: if ownsProfile(userId);
+
+      allow create: if ownsProfile(userId)
+        && request.resource.data.role == "user"
+        && request.resource.data.email is string
+        && request.resource.data.displayName is string
+        && request.resource.data.birthday is string;
+
+      allow update: if ownsProfile(userId)
+        && request.resource.data.role == resource.data.role
+        && request.resource.data.createdAt == resource.data.createdAt
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          "displayName",
+          "email",
+          "photoURL",
+          "birthday",
+          "emailVerified",
+          "lastSignInAt",
+          "updatedAt"
+        ]);
+
+      allow delete: if ownsProfile(userId);
+    }
+
+    match /contactSubmissions/{submissionId} {
+      allow create: if true;
+      allow read, update, delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

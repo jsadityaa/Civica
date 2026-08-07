@@ -1,4 +1,12 @@
 {
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "functions": [
+    {
+      "source": "functions"
+    }
+  ],
   "hosting": {
     "public": ".",
     "ignore": [
@@ -17,6 +25,8 @@
       { "source": "/our-team.html", "destination": "/our-team", "type": 301 },
       { "source": "/terms.html", "destination": "/terms", "type": 301 },
       { "source": "/privacy.html", "destination": "/privacy", "type": 301 },
+      { "source": "/auth-action.html", "destination": "/auth-action", "type": 301 },
+      { "source": "/reset-password.html", "destination": "/reset-password", "type": 301 },
       { "source": "/settings.html", "destination": "/settings", "type": 301 },
       { "source": "/presidency-2024.html", "destination": "/presidency-2024", "type": 301 },
       { "source": "/house-2024.html", "destination": "/house-2024", "type": 301 },
@@ -41,6 +51,8 @@
       { "source": "/our-team", "destination": "/our-team.html" },
       { "source": "/terms", "destination": "/terms.html" },
       { "source": "/privacy", "destination": "/privacy.html" },
+      { "source": "/auth-action", "destination": "/auth-action.html" },
+      { "source": "/reset-password", "destination": "/reset-password.html" },
       { "source": "/settings", "destination": "/settings.html" },
       { "source": "/presidency-2024", "destination": "/presidency-2024.html" },
       { "source": "/house-2024", "destination": "/house-2024.html" },
