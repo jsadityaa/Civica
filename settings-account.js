@@ -59,9 +59,8 @@
 
     if (verificationText) {
       const verified = liveUser ? !!liveUser.emailVerified : !!user.emailVerified;
-      verificationText.textContent = verified
-        ? "Your email is verified."
-        : "Your email is not verified yet.";
+      verificationText.textContent = verified ? "Verified" : "Your email is not verified yet.";
+      verificationText.classList.toggle("account-settings__verification--verified", verified);
     }
 
     if (verificationButton) {

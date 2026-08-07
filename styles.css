@@ -7524,6 +7524,24 @@ html[data-theme="dark"] .team-page .team-page__bio {
   line-height: 1.45;
 }
 
+.settings-row-copy span.account-settings__verification--verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #1f9d55;
+  font-weight: 800;
+}
+
+.settings-row-copy span.account-settings__verification--verified::before {
+  content: "";
+  width: 13px;
+  height: 7px;
+  border-left: 3px solid currentColor;
+  border-bottom: 3px solid currentColor;
+  transform: rotate(-45deg) translateY(-1px);
+  transform-origin: center;
+}
+
 .settings-row-action {
   display: flex;
   justify-content: flex-end;
