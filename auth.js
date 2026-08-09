@@ -56,14 +56,36 @@
     return (value || "?").trim().charAt(0).toUpperCase() || "?";
   };
 
+  const getLocalProfileKey = (uid) => `polycivic-profile:${uid}`;
+
+  const getLocalProfile = (uid) => {
+    if (!uid) return null;
+    try {
+      const storedProfile = window.localStorage.getItem(getLocalProfileKey(uid));
+      return storedProfile ? JSON.parse(storedProfile) : null;
+    } catch (error) {
+      return null;
+    }
+  };
+
+  const saveLocalProfile = (uid, profile) => {
+    if (!uid || !profile) return;
+    try {
+      window.localStorage.setItem(getLocalProfileKey(uid), JSON.stringify(profile));
+    } catch (error) {
+      console.warn("Polycivic local profile save failed:", error);
+    }
+  };
+
   const sanitizeUser = (user) => {
     if (!user) return null;
     const displayName = user.displayName || user.email || "Account";
+    const localProfile = getLocalProfile(user.uid);
     return {
       uid: user.uid,
       email: user.email || "",
       displayName,
-      photoURL: user.photoURL || "",
+      photoURL: currentProfile?.photoURL || localProfile?.photoURL || user.photoURL || "",
       emailVerified: !!user.emailVerified,
       initial: getInitial(displayName)
     };
@@ -159,6 +181,7 @@
         openModal();
       },
       updateDisplayName,
+      uploadProfilePicture,
       sendPasswordReset,
       sendVerificationEmail,
       reloadCurrentUser
@@ -379,7 +402,9 @@
     return {
       displayName: extras.displayName || safeUser.displayName,
       email: safeUser.email,
-      photoURL: safeUser.photoURL,
+      photoURL: Object.prototype.hasOwnProperty.call(extras, "photoURL")
+        ? extras.photoURL
+        : existingProfile?.photoURL || safeUser.photoURL,
       birthday,
       emailVerified: !!user.emailVerified,
       role: existingProfile?.role || "user",
@@ -388,7 +413,7 @@
     };
   };
 
-  const syncUserProfile = async (user, extras = {}) => {
+  const syncUserProfile = async (user, extras = {}, options = {}) => {
     if (!user) {
       currentProfile = null;
       broadcastAuthState();
@@ -429,6 +454,9 @@
       return currentProfile;
     } catch (error) {
       console.warn("Polycivic profile sync failed:", error);
+      if (options.throwOnError) {
+        throw error;
+      }
       return null;
     }
   };
@@ -444,11 +472,109 @@
     }
 
     await currentUser.updateProfile({ displayName: cleanName });
-    await syncUserProfile(currentUser, { displayName: cleanName });
     const safeUser = sanitizeUser(currentUser);
     setHeaderState(safeUser);
     updateAccountMenu(safeUser);
     broadcastAuthState();
+
+    Promise.race([
+      syncUserProfile(currentUser, { displayName: cleanName }),
+      new Promise((resolve) => window.setTimeout(resolve, 2500))
+    ]).catch((error) => {
+      console.warn("Polycivic display name profile sync timed out:", error);
+    });
+  };
+
+  const readImageFile = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.addEventListener("load", () => resolve(reader.result));
+      reader.addEventListener("error", () => reject(new Error("Your profile picture could not be read.")));
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const loadImage = (src) => {
+    return new Promise((resolve, reject) => {
+      const image = new Image();
+      image.addEventListener("load", () => resolve(image));
+      image.addEventListener("error", () => reject(new Error("Your profile picture could not be prepared.")));
+      image.src = src;
+    });
+  };
+
+  const compressProfilePicture = async (file) => {
+    const sourceUrl = await readImageFile(file);
+    const image = await loadImage(sourceUrl);
+    const size = 220;
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+    if (!context) {
+      throw new Error("Your browser could not process this profile picture.");
+    }
+
+    canvas.width = size;
+    canvas.height = size;
+    const sourceSize = Math.min(image.naturalWidth || image.width, image.naturalHeight || image.height);
+    const sourceX = ((image.naturalWidth || image.width) - sourceSize) / 2;
+    const sourceY = ((image.naturalHeight || image.height) - sourceSize) / 2;
+
+    context.drawImage(image, sourceX, sourceY, sourceSize, sourceSize, 0, 0, size, size);
+    return canvas.toDataURL("image/jpeg", 0.82);
+  };
+
+  const updateProfilePicture = async (photoURL) => {
+    if (!auth || !currentUser) {
+      throw new Error("You must be signed in to update your profile picture.");
+    }
+
+    const cleanUrl = (photoURL || "").trim();
+    if (!cleanUrl) {
+      throw new Error("Choose an image first.");
+    }
+
+    currentProfile = {
+      ...(currentProfile || getLocalProfile(currentUser.uid) || {}),
+      uid: currentUser.uid,
+      email: currentUser.email || "",
+      displayName: currentUser.displayName || currentUser.email || "Account",
+      photoURL: cleanUrl
+    };
+    saveLocalProfile(currentUser.uid, currentProfile);
+
+    setHeaderState(sanitizeUser(currentUser));
+    updateAccountMenu(sanitizeUser(currentUser));
+    broadcastAuthState();
+
+    Promise.race([
+      syncUserProfile(currentUser, { photoURL: cleanUrl }),
+      new Promise((resolve) => window.setTimeout(resolve, 2500))
+    ]).catch((error) => {
+      console.warn("Polycivic profile picture cloud sync timed out:", error);
+    });
+  };
+
+  const uploadProfilePicture = async (file) => {
+    if (!auth || !currentUser) {
+      throw new Error("You must be signed in to upload a profile picture.");
+    }
+
+    if (!file) {
+      throw new Error("Choose an image first.");
+    }
+
+    if (!file.type || !file.type.startsWith("image/")) {
+      throw new Error("Choose a valid image file.");
+    }
+
+    const maxFileSize = 8 * 1024 * 1024;
+    if (file.size > maxFileSize) {
+      throw new Error("Choose an image under 8 MB.");
+    }
+
+    const compressedImage = await compressProfilePicture(file);
+    await updateProfilePicture(compressedImage);
+    return compressedImage;
   };
 
   const sendPasswordReset = async (emailOverride = "") => {

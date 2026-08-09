@@ -5,8 +5,12 @@
   const verificationText = document.querySelector(".account-settings__verification");
   const roleText = document.querySelector(".account-settings__role");
   const statusText = document.querySelector(".account-settings__status");
+  const statusRow = document.querySelector(".account-settings__message-row");
   const displayNameInput = document.getElementById("account-display-name");
   const saveNameButton = document.getElementById("account-save-name");
+  const photoFileInput = document.getElementById("account-photo-file");
+  const photoPreview = document.querySelector(".account-settings__picture-preview");
+  const uploadPhotoButton = document.getElementById("account-upload-photo");
   const verificationButton = document.getElementById("account-send-verification");
   const resetPasswordButton = document.getElementById("account-reset-password");
   const signUpButton = document.querySelector("[data-settings-signup]");
@@ -15,10 +19,23 @@
 
   if (!signedOutPanel || !signedInPanel) return;
 
+  const withTimeout = (promise, message, timeoutMs = 12000) => {
+    return Promise.race([
+      promise,
+      new Promise((_, reject) => {
+        window.setTimeout(() => reject(new Error(message)), timeoutMs);
+      })
+    ]);
+  };
+
   const setStatus = (message, type = "neutral") => {
     if (!statusText) return;
     statusText.textContent = message;
     statusText.dataset.status = type;
+    if (statusRow) {
+      statusRow.hidden = !message;
+      statusRow.style.display = message ? "block" : "none";
+    }
   };
 
   const getLiveFirebaseUser = () => {
@@ -55,6 +72,16 @@
 
     if (emailText) {
       emailText.textContent = user.email || "No email address available.";
+    }
+
+    if (photoPreview) {
+      if (user.photoURL) {
+        photoPreview.style.backgroundImage = `url("${user.photoURL}")`;
+        photoPreview.textContent = "";
+      } else {
+        photoPreview.style.backgroundImage = "";
+        photoPreview.textContent = (user.displayName || user.email || "A").trim().charAt(0).toUpperCase() || "A";
+      }
     }
 
     if (verificationText) {
@@ -109,13 +136,50 @@
   });
 
   saveNameButton?.addEventListener("click", async () => {
-    setStatus("");
+    setStatus("Saving changes...", "neutral");
+    saveNameButton.disabled = true;
     try {
-      await window.POLYCIVIC_AUTH?.updateDisplayName?.(displayNameInput.value);
-      setStatus("Profile updated.", "success");
+      if (typeof window.POLYCIVIC_AUTH?.updateDisplayName !== "function") {
+        throw new Error("Account settings are still loading. Try again in a moment.");
+      }
+
+      await window.POLYCIVIC_AUTH.updateDisplayName(displayNameInput.value);
+      setStatus("Changes saved! Refresh to see the changes!", "success");
       render();
     } catch (error) {
       setStatus(error.message || "Your profile could not be updated.", "error");
+    } finally {
+      saveNameButton.disabled = false;
+    }
+  });
+
+  photoFileInput?.addEventListener("change", () => {
+    const file = photoFileInput.files && photoFileInput.files[0];
+    if (!file || !photoPreview) return;
+
+    photoPreview.style.backgroundImage = `url("${URL.createObjectURL(file)}")`;
+    photoPreview.textContent = "";
+  });
+
+  uploadPhotoButton?.addEventListener("click", async () => {
+    const file = photoFileInput?.files && photoFileInput.files[0];
+    setStatus("Uploading profile picture...", "neutral");
+    uploadPhotoButton.disabled = true;
+    try {
+      if (typeof window.POLYCIVIC_AUTH?.uploadProfilePicture !== "function") {
+        throw new Error("Profile picture uploads are still loading. Try again in a moment.");
+      }
+
+      await withTimeout(
+        window.POLYCIVIC_AUTH.uploadProfilePicture(file),
+        "Your profile picture upload timed out. Try a smaller image or try again."
+      );
+      setStatus("Profile picture saved! Refresh to see the changes!", "success");
+      render();
+    } catch (error) {
+      setStatus(error.message || "Your profile picture could not be uploaded.", "error");
+    } finally {
+      uploadPhotoButton.disabled = false;
     }
   });
 

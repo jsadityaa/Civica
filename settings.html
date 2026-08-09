@@ -107,6 +107,22 @@
 
           <div class="settings-row">
             <div class="settings-row-copy">
+              <strong>Profile picture</strong>
+              <span>Upload an image file to update the account photo shown in the navbar.</span>
+            </div>
+            <div class="settings-row-action account-settings__picture-action">
+              <span class="account-settings__picture-preview" aria-hidden="true">A</span>
+              <input class="account-settings__picture-file" id="account-photo-file" type="file" accept="image/png,image/jpeg,image/webp,image/gif" />
+              <button class="settings-action-button" type="button" id="account-upload-photo">Upload picture</button>
+            </div>
+          </div>
+
+          <div class="settings-row account-settings__message-row" hidden>
+            <p class="account-settings__status" aria-live="polite"></p>
+          </div>
+
+          <div class="settings-row">
+            <div class="settings-row-copy">
               <strong>Email verification</strong>
               <span class="account-settings__verification">Verification status will appear here.</span>
             </div>
@@ -133,7 +149,6 @@
           </div>
         </div>
 
-        <p class="account-settings__status" aria-live="polite"></p>
       </section>
     </div>
   </main>
@@ -192,8 +207,8 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script src="./auth-config.js?v=20260806-1"></script>
-  <script src="./auth.js?v=20260806-2"></script>
-  <script src="./settings-account.js?v=20260806-7"></script>
+  <script src="./auth.js?v=20260809-2"></script>
+  <script src="./settings-account.js?v=20260809-2"></script>
   <script src="./nav-dropdown.js"></script>
 </body>
 </html>

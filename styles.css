@@ -7552,6 +7552,48 @@ html[data-theme="dark"] .team-page .team-page__bio {
   gap: 10px;
 }
 
+.account-settings__picture-action {
+  align-items: center;
+  gap: 10px;
+}
+
+.account-settings__picture-preview {
+  display: inline-grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  place-items: center;
+  border: 1px solid rgba(40, 121, 181, 0.38);
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(215, 48, 48, 0.82), rgba(40, 121, 181, 0.88));
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  box-shadow: 0 10px 24px rgba(11, 18, 32, 0.14);
+}
+
+.account-settings__picture-file {
+  max-width: 190px;
+  color: var(--muted);
+  font: inherit;
+  font-size: 13px;
+}
+
+.account-settings__picture-file::file-selector-button {
+  margin-right: 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 9px 12px;
+  background: var(--panel-2);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
 .settings-text-input {
   min-width: 220px;
   padding: 11px 13px;
@@ -7583,12 +7625,29 @@ html[data-theme="dark"] .team-page .team-page__bio {
   background: rgba(40, 121, 181, 0.10);
 }
 
+.settings-action-button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+  transform: none;
+}
+
 .account-settings__status {
   min-height: 20px;
-  margin: 12px 0 0;
+  margin: 0;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
+  line-height: 1.4;
+}
+
+.account-settings__message-row {
+  display: block;
+  padding: 14px 0;
+  margin-top: 0;
+}
+
+.account-settings__message-row[hidden] {
+  display: none;
 }
 
 .account-settings__status[data-status="success"] {
@@ -7719,10 +7778,24 @@ html:not([data-theme="dark"]) .global-nav-dropdown-link:focus-visible {
     flex-direction: column;
   }
 
+  .account-settings__picture-action {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .account-settings__picture-preview {
+    align-self: center;
+  }
+
+  .account-settings__picture-file {
+    max-width: 100%;
+  }
+
   .settings-text-input,
   .settings-action-button {
     width: 100%;
   }
+
 }
 
 
