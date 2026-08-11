@@ -56,7 +56,7 @@
     const cachedUser = authApi && typeof authApi.getCurrentUser === "function"
       ? authApi.getCurrentUser()
       : null;
-    const user = liveUser || cachedUser;
+    const user = cachedUser || liveUser;
     const profile = authApi && typeof authApi.getCurrentProfile === "function"
       ? authApi.getCurrentProfile()
       : null;
@@ -75,8 +75,9 @@
     }
 
     if (photoPreview) {
-      if (user.photoURL) {
-        photoPreview.style.backgroundImage = `url("${user.photoURL}")`;
+      const photoURL = cachedUser?.photoURL || user.photoURL || "";
+      if (photoURL) {
+        photoPreview.style.backgroundImage = `url("${photoURL}")`;
         photoPreview.textContent = "";
       } else {
         photoPreview.style.backgroundImage = "";
@@ -144,7 +145,7 @@
       }
 
       await window.POLYCIVIC_AUTH.updateDisplayName(displayNameInput.value);
-      setStatus("Changes saved! Refresh to see the changes!", "success");
+      setStatus("Changes saved!", "success");
       render();
     } catch (error) {
       setStatus(error.message || "Your profile could not be updated.", "error");
@@ -170,11 +171,15 @@
         throw new Error("Profile picture uploads are still loading. Try again in a moment.");
       }
 
-      await withTimeout(
+      const photoURL = await withTimeout(
         window.POLYCIVIC_AUTH.uploadProfilePicture(file),
         "Your profile picture upload timed out. Try a smaller image or try again."
       );
-      setStatus("Profile picture saved! Refresh to see the changes!", "success");
+      if (photoPreview && photoURL) {
+        photoPreview.style.backgroundImage = `url("${photoURL}")`;
+        photoPreview.textContent = "";
+      }
+      setStatus("Profile picture saved!", "success");
       render();
     } catch (error) {
       setStatus(error.message || "Your profile picture could not be uploaded.", "error");
