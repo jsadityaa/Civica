@@ -50,7 +50,10 @@
   let currentProfile = null;
   let isSignUpMode = false;
   let firestoreLoadPromise = null;
+  let storageLoadPromise = null;
+  let profileUnsubscribe = null;
   const firestoreCompatSrc = "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js";
+  const storageCompatSrc = "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js";
 
   const getInitial = (value) => {
     return (value || "?").trim().charAt(0).toUpperCase() || "?";
@@ -128,6 +131,17 @@
 
     db = db || window.firebase.firestore();
     return db;
+  };
+
+  const getFirebaseStorage = async () => {
+    if (!isFirebaseConfigured || !window.firebase) return null;
+
+    if (!window.firebase.storage) {
+      storageLoadPromise = storageLoadPromise || loadScript(storageCompatSrc);
+      await storageLoadPromise;
+    }
+
+    return window.firebase.storage();
   };
 
   const setHeaderState = (user) => {
@@ -398,19 +412,61 @@
     const safeUser = sanitizeUser(user);
     const timestamp = window.firebase.firestore.FieldValue.serverTimestamp();
     const birthday = extras.birthday || existingProfile?.birthday || "";
+    const localProfile = getLocalProfile(user.uid);
 
     return {
       displayName: extras.displayName || safeUser.displayName,
       email: safeUser.email,
       photoURL: Object.prototype.hasOwnProperty.call(extras, "photoURL")
         ? extras.photoURL
-        : existingProfile?.photoURL || safeUser.photoURL,
+        : existingProfile?.photoURL || user.photoURL || localProfile?.photoURL || "",
       birthday,
       emailVerified: !!user.emailVerified,
       role: existingProfile?.role || "user",
       updatedAt: timestamp,
       lastSignInAt: timestamp
     };
+  };
+
+  const applyRemoteProfile = (user, profile) => {
+    if (!user || !profile) return;
+
+    currentProfile = {
+      ...profile,
+      uid: user.uid
+    };
+    saveLocalProfile(user.uid, currentProfile);
+
+    const safeUser = sanitizeUser(user);
+    setHeaderState(safeUser);
+    updateAccountMenu(safeUser);
+    broadcastAuthState();
+  };
+
+  const stopProfileListener = () => {
+    if (typeof profileUnsubscribe === "function") {
+      profileUnsubscribe();
+    }
+    profileUnsubscribe = null;
+  };
+
+  const watchUserProfile = async (user) => {
+    stopProfileListener();
+    if (!user) return;
+
+    try {
+      const database = await getFirestoreDb();
+      if (!database) return;
+
+      profileUnsubscribe = database.collection("users").doc(user.uid).onSnapshot((snapshot) => {
+        if (!snapshot.exists) return;
+        applyRemoteProfile(user, snapshot.data() || {});
+      }, (error) => {
+        console.warn("Polycivic profile listener failed:", error);
+      });
+    } catch (error) {
+      console.warn("Polycivic profile listener setup failed:", error);
+    }
   };
 
   const syncUserProfile = async (user, extras = {}, options = {}) => {
@@ -503,10 +559,31 @@
     });
   };
 
+  const canvasToBlob = (canvas, quality) => {
+    return new Promise((resolve, reject) => {
+      canvas.toBlob((blob) => {
+        if (blob) {
+          resolve(blob);
+          return;
+        }
+        reject(new Error("Your browser could not process this profile picture."));
+      }, "image/jpeg", quality);
+    });
+  };
+
+  const blobToDataUrl = (blob) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.addEventListener("load", () => resolve(reader.result));
+      reader.addEventListener("error", () => reject(new Error("Your profile picture could not be prepared.")));
+      reader.readAsDataURL(blob);
+    });
+  };
+
   const compressProfilePicture = async (file) => {
     const sourceUrl = await readImageFile(file);
     const image = await loadImage(sourceUrl);
-    const size = 220;
+    const size = 256;
     const canvas = document.createElement("canvas");
     const context = canvas.getContext("2d");
     if (!context) {
@@ -520,7 +597,20 @@
     const sourceY = ((image.naturalHeight || image.height) - sourceSize) / 2;
 
     context.drawImage(image, sourceX, sourceY, sourceSize, sourceSize, 0, 0, size, size);
-    return canvas.toDataURL("image/jpeg", 0.82);
+
+    let blob = await canvasToBlob(canvas, 0.84);
+    const targetBytes = 180 * 1024;
+    const qualities = [0.74, 0.64, 0.54, 0.44];
+
+    for (const quality of qualities) {
+      if (blob.size <= targetBytes) break;
+      blob = await canvasToBlob(canvas, quality);
+    }
+
+    return {
+      blob,
+      dataUrl: await blobToDataUrl(blob)
+    };
   };
 
   const updateProfilePicture = async (photoURL) => {
@@ -546,12 +636,8 @@
     updateAccountMenu(sanitizeUser(currentUser));
     broadcastAuthState();
 
-    Promise.race([
-      syncUserProfile(currentUser, { photoURL: cleanUrl }),
-      new Promise((resolve) => window.setTimeout(resolve, 2500))
-    ]).catch((error) => {
-      console.warn("Polycivic profile picture cloud sync timed out:", error);
-    });
+    await syncUserProfile(currentUser, { photoURL: cleanUrl }, { throwOnError: true });
+    return cleanUrl;
   };
 
   const uploadProfilePicture = async (file) => {
@@ -567,14 +653,32 @@
       throw new Error("Choose a valid image file.");
     }
 
-    const maxFileSize = 8 * 1024 * 1024;
+    const maxFileSize = 35 * 1024 * 1024;
     if (file.size > maxFileSize) {
-      throw new Error("Choose an image under 8 MB.");
+      throw new Error("Choose an image under 35 MB.");
     }
 
     const compressedImage = await compressProfilePicture(file);
-    await updateProfilePicture(compressedImage);
-    return compressedImage;
+    let photoURL = compressedImage.dataUrl;
+
+    try {
+      const storage = await getFirebaseStorage();
+      if (storage) {
+        const photoRef = storage.ref().child(`profile-pictures/${currentUser.uid}/avatar.jpg`);
+        await photoRef.put(compressedImage.blob, {
+          contentType: "image/jpeg",
+          customMetadata: {
+            owner: currentUser.uid
+          }
+        });
+        photoURL = await photoRef.getDownloadURL();
+      }
+    } catch (error) {
+      console.warn("Polycivic profile picture storage upload failed; using Firestore fallback:", error);
+    }
+
+    await updateProfilePicture(photoURL);
+    return photoURL;
   };
 
   const sendPasswordReset = async (emailOverride = "") => {
@@ -650,8 +754,10 @@
       updateAccountMenu(safeUser);
       broadcastAuthState();
       if (user) {
+        watchUserProfile(user);
         syncUserProfile(user);
       } else {
+        stopProfileListener();
         currentProfile = null;
       }
     });
@@ -675,7 +781,9 @@
         return;
       }
       if (isSignUpMode && credential.user) {
-        await syncUserProfile(credential.user, { birthday: authModal.birthdayInput.value });
+        syncUserProfile(credential.user, { birthday: authModal.birthdayInput.value }).catch((profileError) => {
+          console.warn("Polycivic profile sync failed after Google signup:", profileError);
+        });
       }
       closeModal();
     } catch (error) {
@@ -714,10 +822,14 @@
           await credential.user.updateProfile({ displayName: name });
         }
         if (credential.user && birthday) {
-          await syncUserProfile(credential.user, { birthday, displayName: name });
+          syncUserProfile(credential.user, { birthday, displayName: name }).catch((profileError) => {
+            console.warn("Polycivic profile sync failed after signup:", profileError);
+          });
         }
         if (credential.user && !credential.user.emailVerified) {
-          await credential.user.sendEmailVerification(authActionSettings);
+          credential.user.sendEmailVerification(authActionSettings).catch((verificationError) => {
+            console.warn("Polycivic verification email failed after signup:", verificationError);
+          });
         }
       } else {
         await auth.signInWithEmailAndPassword(email, password);

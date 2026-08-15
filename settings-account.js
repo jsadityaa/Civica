@@ -19,7 +19,7 @@
 
   if (!signedOutPanel || !signedInPanel) return;
 
-  const withTimeout = (promise, message, timeoutMs = 12000) => {
+  const withTimeout = (promise, message, timeoutMs = 45000) => {
     return Promise.race([
       promise,
       new Promise((_, reject) => {
