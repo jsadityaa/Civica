@@ -9,6 +9,7 @@
   const saveNameButton = document.getElementById("account-save-name");
   const profileNameEditButton = document.getElementById("account-profile-name-edit");
   const profileNameInput = document.getElementById("account-profile-name-inline");
+  const profileNameEditor = document.querySelector(".account-settings__profile-name-editor");
   const photoFileInput = document.getElementById("account-photo-file");
   const photoPreview = document.querySelector(".account-settings__picture-preview");
   const uploadPhotoButton = document.getElementById("account-upload-photo");
@@ -45,6 +46,9 @@
     if (!profileNameInput) return;
     const length = Math.max((profileNameInput.value || "Profile").trim().length, 7);
     profileNameInput.style.setProperty("--profile-name-ch", String(length));
+    if (profileNameEditor) {
+      profileNameEditor.style.setProperty("--profile-name-ch", String(length));
+    }
   };
 
   const getLiveFirebaseUser = () => {
