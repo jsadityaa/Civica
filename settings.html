@@ -52,35 +52,7 @@
         <p>Control your account, verification status, password recovery, and site appearance.</p>
       </header>
 
-      <section class="settings-group" aria-labelledby="appearance-heading">
-        <div class="settings-group-intro">
-          <h2 id="appearance-heading">Appearance</h2>
-          <p>Choose your preferred theme. This setting is saved on this device.</p>
-        </div>
-
-        <div class="settings-table" role="table" aria-label="Appearance settings">
-          <div class="settings-row" role="row">
-            <div class="settings-row-copy" role="cell">
-              <strong>Dark mode</strong>
-              <span>Use a darker reading view across the site.</span>
-            </div>
-            <div class="settings-row-action" role="cell">
-              <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">
-                <span class="theme-toggle-track"></span>
-                <span class="theme-toggle-thumb"></span>
-                <span class="theme-toggle-label">Off</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section class="settings-group account-settings" aria-labelledby="account-heading">
-        <div class="settings-group-intro">
-          <h2 id="account-heading">Account</h2>
-          <p>Manage your Polycivic profile, verification status, and password recovery.</p>
-        </div>
-
         <div class="settings-table account-settings__signed-out" hidden>
           <div class="settings-row">
             <div class="settings-row-copy">
@@ -155,6 +127,29 @@
           </div>
         </div>
 
+      </section>
+
+      <section class="settings-group" aria-labelledby="appearance-heading">
+        <div class="settings-group-intro">
+          <h2 id="appearance-heading">Appearance</h2>
+          <p>Choose your preferred theme. This setting is saved on this device.</p>
+        </div>
+
+        <div class="settings-table" role="table" aria-label="Appearance settings">
+          <div class="settings-row" role="row">
+            <div class="settings-row-copy" role="cell">
+              <strong>Dark mode</strong>
+              <span>Use a darker reading view across the site.</span>
+            </div>
+            <div class="settings-row-action" role="cell">
+              <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">
+                <span class="theme-toggle-track"></span>
+                <span class="theme-toggle-thumb"></span>
+                <span class="theme-toggle-label">Off</span>
+              </button>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </main>
