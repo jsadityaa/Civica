@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {} })();</script>
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./styles.css?v=20260814-1" />
 </head>
 <body>
   <header class="global-header">
@@ -68,7 +68,14 @@
         <div class="settings-table account-settings__signed-in" hidden>
           <div class="settings-row account-settings__picture-row">
             <div class="settings-row-copy">
-              <strong>Profile picture</strong>
+              <div class="account-settings__profile-name-editor">
+                <input class="account-settings__profile-name-input" id="account-profile-name-inline" type="text" autocomplete="name" readonly value="Profile" aria-label="Display name" />
+                <button class="account-settings__profile-name-edit" id="account-profile-name-edit" type="button" aria-label="Edit display name">
+                  <svg class="account-settings__profile-name-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M4 17.25V20h2.75L17.81 8.94l-2.75-2.75L4 17.25Zm15.92-10.42c.39-.39.39-1.03 0-1.42l-1.33-1.33a1 1 0 0 0-1.42 0l-1.04 1.04 2.75 2.75 1.04-1.04Z" />
+                  </svg>
+                </button>
+              </div>
             </div>
             <div class="settings-row-action account-settings__picture-action">
               <label class="account-settings__picture-picker" for="account-photo-file" aria-label="Choose a new profile picture">
@@ -86,12 +93,8 @@
 
           <div class="settings-row">
             <div class="settings-row-copy">
-              <strong>Profile</strong>
+              <strong>Email</strong>
               <span class="account-settings__email">Signed in email will appear here.</span>
-            </div>
-            <div class="settings-row-action account-settings__profile-action">
-              <input class="settings-text-input" id="account-display-name" type="text" autocomplete="name" placeholder="Display name" />
-              <button class="settings-action-button" type="button" id="account-save-name">Save</button>
             </div>
           </div>
 
@@ -209,7 +212,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script src="./auth-config.js?v=20260806-1"></script>
   <script src="./auth.js?v=20260814-2"></script>
-  <script src="./settings-account.js?v=20260814-2"></script>
+  <script src="./settings-account.js?v=20260814-6"></script>
   <script src="./nav-dropdown.js"></script>
 </body>
 </html>
