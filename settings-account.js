@@ -3,7 +3,6 @@
   const signedInPanel = document.querySelector(".account-settings__signed-in");
   const emailText = document.querySelector(".account-settings__email");
   const verificationText = document.querySelector(".account-settings__verification");
-  const roleText = document.querySelector(".account-settings__role");
   const statusText = document.querySelector(".account-settings__status");
   const statusRow = document.querySelector(".account-settings__message-row");
   const displayNameInput = document.getElementById("account-display-name");
@@ -110,10 +109,6 @@
     if (verificationButton) {
       const verified = liveUser ? !!liveUser.emailVerified : !!user.emailVerified;
       verificationButton.hidden = verified;
-    }
-
-    if (roleText) {
-      roleText.textContent = `Current role: ${profile?.role || "user"}`;
     }
 
     if (settingsParams.get("verified") === "email" && user.emailVerified) {
