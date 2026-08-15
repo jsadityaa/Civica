@@ -7569,15 +7569,26 @@ html[data-theme="dark"] .team-page .team-page__bio {
 
 .account-settings__profile-name-editor {
   position: relative;
-  display: flex;
+  display: grid;
   align-items: center;
   justify-content: center;
+  grid-template-columns: 38px minmax(0, auto) 38px;
+  column-gap: 14px;
   width: min(100%, 620px);
   max-width: 100%;
 }
 
+.account-settings__profile-name-editor::before {
+  content: "";
+  grid-column: 1;
+  width: 38px;
+  height: 38px;
+}
+
 .account-settings__profile-name-input {
-  width: clamp(7ch, calc((var(--profile-name-ch, 7) * 0.52em) + 18px), min(72vw, 420px));
+  grid-column: 2;
+  width: var(--profile-name-width, 180px);
+  max-width: 100%;
   border: 0;
   border-radius: 18px;
   padding: 7px 12px;
@@ -7591,6 +7602,7 @@ html[data-theme="dark"] .team-page .team-page__bio {
   letter-spacing: -0.025em;
   line-height: 1.08;
   text-align: center;
+  overflow: hidden;
   text-overflow: ellipsis;
   box-shadow: none;
   transition: background 180ms ease, box-shadow 180ms ease, color 180ms ease;
@@ -7609,10 +7621,8 @@ html[data-theme="dark"] .team-page .team-page__bio {
 }
 
 .account-settings__profile-name-edit {
+  grid-column: 3;
   display: inline-grid;
-  position: absolute;
-  top: 50%;
-  left: min(calc(100% - 38px), calc(50% + (var(--profile-name-ch, 7) * 0.26em) + 22px));
   width: 38px;
   height: 38px;
   flex: 0 0 38px;
@@ -7624,7 +7634,6 @@ html[data-theme="dark"] .team-page .team-page__bio {
   cursor: pointer;
   font: inherit;
   box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
-  transform: translateY(-50%);
   transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, color 180ms ease;
 }
 
@@ -7633,7 +7642,7 @@ html[data-theme="dark"] .team-page .team-page__bio {
   color: var(--accent-red);
   border-color: rgba(215, 48, 48, 0.34);
   background: color-mix(in srgb, var(--surface) 74%, rgba(215, 48, 48, 0.14));
-  transform: translateY(calc(-50% - 1px));
+  transform: translateY(-1px);
 }
 
 .account-settings__profile-name-edit:focus-visible {

@@ -20,6 +20,7 @@
   let isRefreshingUser = false;
   let isEditingInlineName = false;
   let selectedPhotoPreviewUrl = "";
+  const profileNameMeasureCanvas = document.createElement("canvas");
 
   if (!signedOutPanel || !signedInPanel) return;
 
@@ -44,11 +45,16 @@
 
   const syncProfileNameWidth = () => {
     if (!profileNameInput) return;
-    const length = Math.max((profileNameInput.value || "Profile").trim().length, 7);
-    profileNameInput.style.setProperty("--profile-name-ch", String(length));
-    if (profileNameEditor) {
-      profileNameEditor.style.setProperty("--profile-name-ch", String(length));
-    }
+    const name = (profileNameInput.value || "Profile").trim() || "Profile";
+    const styles = window.getComputedStyle(profileNameInput);
+    const context = profileNameMeasureCanvas.getContext("2d");
+    context.font = `${styles.fontStyle} ${styles.fontWeight} ${styles.fontSize} ${styles.fontFamily}`;
+    const padding = (parseFloat(styles.paddingLeft) || 0) + (parseFloat(styles.paddingRight) || 0);
+    const editorWidth = profileNameEditor?.getBoundingClientRect().width || 620;
+    const maxInputWidth = Math.max(150, editorWidth - 124);
+    const measuredWidth = Math.ceil(context.measureText(name).width + padding + 10);
+    const inputWidth = Math.min(Math.max(measuredWidth, 150), maxInputWidth);
+    profileNameInput.style.setProperty("--profile-name-width", `${inputWidth}px`);
   };
 
   const getLiveFirebaseUser = () => {
