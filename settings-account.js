@@ -16,6 +16,7 @@
   const signUpButton = document.querySelector("[data-settings-signup]");
   const settingsParams = new URLSearchParams(window.location.search);
   let isRefreshingUser = false;
+  let selectedPhotoPreviewUrl = "";
 
   if (!signedOutPanel || !signedInPanel) return;
 
@@ -75,7 +76,7 @@
     }
 
     if (photoPreview) {
-      const photoURL = cachedUser?.photoURL || user.photoURL || "";
+      const photoURL = selectedPhotoPreviewUrl || cachedUser?.photoURL || user.photoURL || "";
       if (photoURL) {
         photoPreview.style.backgroundImage = `url("${photoURL}")`;
         photoPreview.textContent = "";
@@ -158,7 +159,12 @@
     const file = photoFileInput.files && photoFileInput.files[0];
     if (!file || !photoPreview) return;
 
-    photoPreview.style.backgroundImage = `url("${URL.createObjectURL(file)}")`;
+    if (selectedPhotoPreviewUrl) {
+      URL.revokeObjectURL(selectedPhotoPreviewUrl);
+    }
+
+    selectedPhotoPreviewUrl = URL.createObjectURL(file);
+    photoPreview.style.backgroundImage = `url("${selectedPhotoPreviewUrl}")`;
     photoPreview.textContent = "";
   });
 
@@ -176,6 +182,10 @@
         "Your profile picture upload timed out. Try a smaller image or try again."
       );
       if (photoPreview && photoURL) {
+        if (selectedPhotoPreviewUrl) {
+          URL.revokeObjectURL(selectedPhotoPreviewUrl);
+          selectedPhotoPreviewUrl = "";
+        }
         photoPreview.style.backgroundImage = `url("${photoURL}")`;
         photoPreview.textContent = "";
       }
