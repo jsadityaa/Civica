@@ -7547,6 +7547,17 @@ html[data-theme="dark"] .team-page .team-page__bio {
   justify-content: flex-end;
 }
 
+.account-settings__picture-row {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.account-settings__picture-row .settings-row-copy {
+  align-items: center;
+}
+
 .account-settings__profile-action {
   align-items: center;
   gap: 10px;
@@ -7554,31 +7565,85 @@ html[data-theme="dark"] .team-page .team-page__bio {
 
 .account-settings__picture-action {
   align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  gap: 14px;
+  justify-content: center;
+}
+
+.account-settings__picture-picker {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 999px;
+  cursor: pointer;
+  isolation: isolate;
+}
+
+.account-settings__picture-picker:focus-within {
+  outline: 3px solid rgba(40, 121, 181, 0.35);
+  outline-offset: 5px;
 }
 
 .account-settings__picture-preview {
   display: inline-grid;
-  width: 42px;
-  height: 42px;
-  flex: 0 0 42px;
+  width: 132px;
+  height: 132px;
+  flex: 0 0 132px;
   place-items: center;
-  border: 1px solid rgba(40, 121, 181, 0.38);
+  border: 2px solid rgba(40, 121, 181, 0.48);
   border-radius: 999px;
   background: linear-gradient(135deg, rgba(215, 48, 48, 0.82), rgba(40, 121, 181, 0.88));
   background-position: center;
   background-size: cover;
   color: #fff;
-  font-size: 15px;
+  font-size: 42px;
   font-weight: 800;
-  box-shadow: 0 10px 24px rgba(11, 18, 32, 0.14);
+  box-shadow: 0 18px 42px rgba(11, 18, 32, 0.2);
+  transition: transform 180ms ease, border-color 180ms ease, filter 180ms ease;
+}
+
+.account-settings__picture-edit {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  border-radius: inherit;
+  background: rgba(6, 10, 18, 0.58);
+  color: #fff;
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.account-settings__picture-edit svg {
+  width: 34px;
+  height: 34px;
+  fill: currentColor;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35));
+}
+
+.account-settings__picture-picker:hover .account-settings__picture-preview,
+.account-settings__picture-picker:focus-within .account-settings__picture-preview {
+  transform: scale(1.02);
+  border-color: rgba(40, 121, 181, 0.72);
+  filter: saturate(1.08);
+}
+
+.account-settings__picture-picker:hover .account-settings__picture-edit,
+.account-settings__picture-picker:focus-within .account-settings__picture-edit {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .account-settings__picture-file {
-  max-width: 190px;
-  color: var(--muted);
-  font: inherit;
-  font-size: 13px;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .account-settings__picture-file::file-selector-button {
