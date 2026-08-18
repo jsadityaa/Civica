@@ -25,6 +25,9 @@ service cloud.firestore {
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
           "displayName",
           "email",
+          "username",
+          "usernameLower",
+          "bio",
           "photoURL",
           "birthday",
           "emailVerified",
@@ -33,6 +36,20 @@ service cloud.firestore {
         ]);
 
       allow delete: if ownsProfile(userId);
+    }
+
+    match /usernames/{username} {
+      allow get: if signedIn();
+
+      allow create, update: if signedIn()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.username is string
+        && request.resource.data.updatedAt is timestamp;
+
+      allow delete: if signedIn()
+        && resource.data.uid == request.auth.uid;
+
+      allow list: if false;
     }
 
     match /contactSubmissions/{submissionId} {

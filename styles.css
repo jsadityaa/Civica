@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap");
 
 :root {
   --bg: #f4f6fb;
@@ -7448,6 +7448,14 @@ html[data-theme="dark"] .team-page .team-page__bio {
 .settings-page {
   min-height: calc(100vh - 72px);
   padding: 112px 24px 48px;
+  font-family: "Inter", sans-serif;
+}
+
+.settings-page input,
+.settings-page textarea,
+.settings-page select,
+.settings-page button {
+  font-family: "Inter", sans-serif;
 }
 
 .settings-shell {
@@ -7569,24 +7577,14 @@ html[data-theme="dark"] .team-page .team-page__bio {
 
 .account-settings__profile-name-editor {
   position: relative;
-  display: grid;
+  display: flex;
   align-items: center;
   justify-content: center;
-  grid-template-columns: 38px minmax(0, auto) 38px;
-  column-gap: 14px;
-  width: min(100%, 620px);
+  width: min(100%, 720px);
   max-width: 100%;
 }
 
-.account-settings__profile-name-editor::before {
-  content: "";
-  grid-column: 1;
-  width: 38px;
-  height: 38px;
-}
-
 .account-settings__profile-name-input {
-  grid-column: 2;
   width: var(--profile-name-width, 180px);
   max-width: 100%;
   border: 0;
@@ -7608,52 +7606,12 @@ html[data-theme="dark"] .team-page .team-page__bio {
   transition: background 180ms ease, box-shadow 180ms ease, color 180ms ease;
 }
 
-.account-settings__profile-name-input:not(.is-editing) {
-  cursor: default;
-  pointer-events: none;
-}
-
+.account-settings__profile-name-input:hover,
 .account-settings__profile-name-input.is-editing,
 .account-settings__profile-name-input:focus {
   background: color-mix(in srgb, var(--surface) 86%, transparent);
   box-shadow: inset 0 0 0 1px var(--border), 0 16px 42px rgba(15, 23, 42, 0.08);
   outline: 0;
-}
-
-.account-settings__profile-name-edit {
-  grid-column: 3;
-  display: inline-grid;
-  width: 38px;
-  height: 38px;
-  flex: 0 0 38px;
-  place-items: center;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--surface) 82%, transparent);
-  color: var(--muted);
-  cursor: pointer;
-  font: inherit;
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
-  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, color 180ms ease;
-}
-
-.account-settings__profile-name-edit:hover,
-.account-settings__profile-name-edit:focus-visible {
-  color: var(--accent-red);
-  border-color: rgba(215, 48, 48, 0.34);
-  background: color-mix(in srgb, var(--surface) 74%, rgba(215, 48, 48, 0.14));
-  transform: translateY(-1px);
-}
-
-.account-settings__profile-name-edit:focus-visible {
-  outline: 3px solid rgba(40, 121, 181, 0.35);
-  outline-offset: 4px;
-}
-
-.account-settings__profile-name-icon {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
 }
 
 .account-settings__profile-action {
@@ -7755,6 +7713,61 @@ html[data-theme="dark"] .team-page .team-page__bio {
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
+}
+
+.account-settings__details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.account-settings__field {
+  display: grid;
+  gap: 8px;
+}
+
+.account-settings__field span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.account-settings__field--wide {
+  grid-column: 1 / -1;
+}
+
+.account-settings__text-input,
+.account-settings__textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  color: var(--text);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 650;
+  padding: 14px 16px;
+  outline: 0;
+  transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.account-settings__textarea {
+  min-height: 104px;
+  line-height: 1.45;
+  resize: vertical;
+}
+
+.account-settings__text-input:focus,
+.account-settings__textarea:focus {
+  border-color: rgba(40, 121, 181, 0.52);
+  box-shadow: 0 0 0 4px rgba(40, 121, 181, 0.14);
+}
+
+.account-settings__details-action {
+  align-self: end;
 }
 
 .settings-text-input {
@@ -7952,6 +7965,14 @@ html:not([data-theme="dark"]) .global-nav-dropdown-link:focus-visible {
 
   .account-settings__picture-file {
     max-width: 100%;
+  }
+
+  .account-settings__details {
+    grid-template-columns: 1fr;
+  }
+
+  .account-settings__details-action {
+    align-self: stretch;
   }
 
   .settings-text-input,

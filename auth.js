@@ -61,6 +61,22 @@
 
   const getLocalProfileKey = (uid) => `polycivic-profile:${uid}`;
 
+  const makeLocalProfile = (uid, profile = {}) => {
+    return {
+      uid,
+      email: profile.email || "",
+      displayName: profile.displayName || "",
+      username: profile.username || "",
+      usernameLower: profile.usernameLower || "",
+      bio: Object.prototype.hasOwnProperty.call(profile, "bio") ? profile.bio || "" : "",
+      photoURL: profile.photoURL || "",
+      birthday: profile.birthday || "",
+      emailVerified: !!profile.emailVerified,
+      role: profile.role || "user",
+      cachedAt: Date.now()
+    };
+  };
+
   const getLocalProfile = (uid) => {
     if (!uid) return null;
     try {
@@ -74,7 +90,7 @@
   const saveLocalProfile = (uid, profile) => {
     if (!uid || !profile) return;
     try {
-      window.localStorage.setItem(getLocalProfileKey(uid), JSON.stringify(profile));
+      window.localStorage.setItem(getLocalProfileKey(uid), JSON.stringify(makeLocalProfile(uid, profile)));
     } catch (error) {
       console.warn("Polycivic local profile save failed:", error);
     }
@@ -185,7 +201,7 @@
     const user = sanitizeUser(currentUser);
     window.POLYCIVIC_AUTH = {
       getCurrentUser: () => user,
-      getCurrentProfile: () => currentProfile,
+      getCurrentProfile: () => currentProfile || (currentUser ? getLocalProfile(currentUser.uid) : null),
       openLogin: () => {
         setModalMode(false);
         openModal();
@@ -195,6 +211,7 @@
         openModal();
       },
       updateDisplayName,
+      updateProfileDetails,
       uploadProfilePicture,
       sendPasswordReset,
       sendVerificationEmail,
@@ -413,13 +430,23 @@
     const timestamp = window.firebase.firestore.FieldValue.serverTimestamp();
     const birthday = extras.birthday || existingProfile?.birthday || "";
     const localProfile = getLocalProfile(user.uid);
+    const cachedProfile = currentProfile && currentProfile.uid === user.uid ? currentProfile : null;
 
     return {
       displayName: extras.displayName || safeUser.displayName,
       email: safeUser.email,
+      username: Object.prototype.hasOwnProperty.call(extras, "username")
+        ? extras.username
+        : existingProfile?.username || cachedProfile?.username || localProfile?.username || "",
+      usernameLower: Object.prototype.hasOwnProperty.call(extras, "usernameLower")
+        ? extras.usernameLower
+        : existingProfile?.usernameLower || cachedProfile?.usernameLower || localProfile?.usernameLower || "",
+      bio: Object.prototype.hasOwnProperty.call(extras, "bio")
+        ? extras.bio
+        : existingProfile?.bio || cachedProfile?.bio || localProfile?.bio || "",
       photoURL: Object.prototype.hasOwnProperty.call(extras, "photoURL")
         ? extras.photoURL
-        : existingProfile?.photoURL || user.photoURL || localProfile?.photoURL || "",
+        : existingProfile?.photoURL || cachedProfile?.photoURL || user.photoURL || localProfile?.photoURL || "",
       birthday,
       emailVerified: !!user.emailVerified,
       role: existingProfile?.role || "user",
@@ -506,6 +533,7 @@
         currentProfile = { ...payload, uid: user.uid };
       }
 
+      saveLocalProfile(user.uid, currentProfile);
       broadcastAuthState();
       return currentProfile;
     } catch (error) {
@@ -539,6 +567,102 @@
     ]).catch((error) => {
       console.warn("Polycivic display name profile sync timed out:", error);
     });
+  };
+
+  const normalizeUsername = (username) => {
+    return (username || "").trim().replace(/^@+/, "");
+  };
+
+  const updateProfileDetails = async ({ displayName, username, bio } = {}) => {
+    if (!auth || !currentUser) {
+      throw new Error("You must be signed in to update your profile.");
+    }
+
+    const cleanName = (displayName || "").trim();
+    const cleanUsername = normalizeUsername(username);
+    const usernameLower = cleanUsername.toLowerCase();
+    const cleanBio = (bio || "").trim();
+
+    if (!cleanName) {
+      throw new Error("Enter a display name.");
+    }
+
+    if (!cleanUsername) {
+      throw new Error("Enter a username.");
+    }
+
+    if (!/^[a-zA-Z0-9._-]{3,30}$/.test(cleanUsername)) {
+      throw new Error("Use 3-30 letters, numbers, periods, underscores, or hyphens for your username.");
+    }
+
+    if (cleanBio.length > 180) {
+      throw new Error("Keep your bio under 180 characters.");
+    }
+
+    const database = await getFirestoreDb();
+    if (!database) {
+      throw new Error("Profile storage is unavailable. Try again in a moment.");
+    }
+
+    await currentUser.updateProfile({ displayName: cleanName });
+
+    const timestamp = window.firebase.firestore.FieldValue.serverTimestamp();
+    const profileRef = database.collection("users").doc(currentUser.uid);
+    const usernameRef = database.collection("usernames").doc(usernameLower);
+
+    await database.runTransaction(async (transaction) => {
+      const profileSnapshot = await transaction.get(profileRef);
+      const existingProfile = profileSnapshot.exists ? profileSnapshot.data() || {} : null;
+      const previousUsernameLower = existingProfile?.usernameLower || getLocalProfile(currentUser.uid)?.usernameLower || "";
+
+      if (previousUsernameLower !== usernameLower) {
+        const usernameSnapshot = await transaction.get(usernameRef);
+        if (usernameSnapshot.exists && usernameSnapshot.data()?.uid !== currentUser.uid) {
+          throw new Error("That username is already taken.");
+        }
+
+        if (previousUsernameLower) {
+          const previousUsernameRef = database.collection("usernames").doc(previousUsernameLower);
+          const previousUsernameSnapshot = await transaction.get(previousUsernameRef);
+          if (previousUsernameSnapshot.exists && previousUsernameSnapshot.data()?.uid === currentUser.uid) {
+            transaction.delete(previousUsernameRef);
+          }
+        }
+      }
+
+      transaction.set(usernameRef, {
+        uid: currentUser.uid,
+        username: cleanUsername,
+        updatedAt: timestamp
+      }, { merge: true });
+
+      const payload = buildProfilePayload(currentUser, {
+        displayName: cleanName,
+        username: cleanUsername,
+        usernameLower,
+        bio: cleanBio
+      }, existingProfile);
+
+      if (profileSnapshot.exists) {
+        delete payload.role;
+        delete payload.birthday;
+        transaction.update(profileRef, payload);
+        currentProfile = { ...existingProfile, ...payload, uid: currentUser.uid };
+      } else {
+        transaction.set(profileRef, {
+          ...payload,
+          createdAt: timestamp
+        });
+        currentProfile = { ...payload, uid: currentUser.uid };
+      }
+    });
+
+    saveLocalProfile(currentUser.uid, currentProfile);
+    const safeUser = sanitizeUser(currentUser);
+    setHeaderState(safeUser);
+    updateAccountMenu(safeUser);
+    broadcastAuthState();
+    return currentProfile;
   };
 
   const readImageFile = (file) => {

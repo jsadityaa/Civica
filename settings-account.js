@@ -6,8 +6,9 @@
   const statusText = document.querySelector(".account-settings__status");
   const statusRow = document.querySelector(".account-settings__message-row");
   const displayNameInput = document.getElementById("account-display-name");
+  const usernameInput = document.getElementById("account-username");
+  const bioInput = document.getElementById("account-bio");
   const saveNameButton = document.getElementById("account-save-name");
-  const profileNameEditButton = document.getElementById("account-profile-name-edit");
   const profileNameInput = document.getElementById("account-profile-name-inline");
   const profileNameEditor = document.querySelector(".account-settings__profile-name-editor");
   const photoFileInput = document.getElementById("account-photo-file");
@@ -19,6 +20,8 @@
   const settingsParams = new URLSearchParams(window.location.search);
   let isRefreshingUser = false;
   let isEditingInlineName = false;
+  let isEditingProfileDetails = false;
+  let savedProfileDetails = null;
   let selectedPhotoPreviewUrl = "";
   const profileNameMeasureCanvas = document.createElement("canvas");
 
@@ -51,9 +54,9 @@
     context.font = `${styles.fontStyle} ${styles.fontWeight} ${styles.fontSize} ${styles.fontFamily}`;
     const padding = (parseFloat(styles.paddingLeft) || 0) + (parseFloat(styles.paddingRight) || 0);
     const editorWidth = profileNameEditor?.getBoundingClientRect().width || 620;
-    const maxInputWidth = Math.max(150, editorWidth - 124);
+    const maxInputWidth = Math.max(180, editorWidth - 24);
     const measuredWidth = Math.ceil(context.measureText(name).width + padding + 10);
-    const inputWidth = Math.min(Math.max(measuredWidth, 150), maxInputWidth);
+    const inputWidth = Math.min(Math.max(measuredWidth, 180), maxInputWidth);
     profileNameInput.style.setProperty("--profile-name-width", `${inputWidth}px`);
   };
 
@@ -85,8 +88,25 @@
 
     if (!user) return;
 
-    if (displayNameInput) {
-      displayNameInput.value = user.displayName || "";
+    if (!isEditingProfileDetails) {
+      const fallbackName = user.email ? user.email.split("@")[0] : "Profile";
+      const fallbackUsername = user.email
+        ? user.email.split("@")[0].replace(/[^a-zA-Z0-9._-]/g, "").slice(0, 30)
+        : "";
+
+      if (displayNameInput) {
+        displayNameInput.value = (savedProfileDetails?.displayName || user.displayName || profile?.displayName || fallbackName).trim();
+      }
+
+      if (usernameInput) {
+        usernameInput.value = savedProfileDetails?.username || profile?.username || fallbackUsername;
+      }
+
+      if (bioInput) {
+        bioInput.value = Object.prototype.hasOwnProperty.call(savedProfileDetails || {}, "bio")
+          ? savedProfileDetails.bio || ""
+          : profile?.bio || "";
+      }
     }
 
     if (profileNameInput && !isEditingInlineName) {
@@ -160,7 +180,6 @@
   const saveDisplayName = async (nextName) => {
     setStatus("Saving changes...", "neutral");
     if (saveNameButton) saveNameButton.disabled = true;
-    if (profileNameEditButton) profileNameEditButton.disabled = true;
     try {
       if (typeof window.POLYCIVIC_AUTH?.updateDisplayName !== "function") {
         throw new Error("Account settings are still loading. Try again in a moment.");
@@ -176,7 +195,6 @@
       setStatus(error.message || "Your profile could not be updated.", "error");
     } finally {
       if (saveNameButton) saveNameButton.disabled = false;
-      if (profileNameEditButton) profileNameEditButton.disabled = false;
     }
   };
 
@@ -184,7 +202,6 @@
     if (!profileNameInput || !isEditingInlineName) return;
     const nextName = profileNameInput.value.trim();
     isEditingInlineName = false;
-    profileNameInput.setAttribute("readonly", "readonly");
     profileNameInput.classList.remove("is-editing");
 
     if (!nextName) {
@@ -195,16 +212,14 @@
     await saveDisplayName(nextName);
   };
 
-  profileNameEditButton?.addEventListener("click", () => {
-    if (!profileNameInput) return;
+  profileNameInput?.addEventListener("focus", () => {
     isEditingInlineName = true;
-    profileNameInput.removeAttribute("readonly");
     profileNameInput.classList.add("is-editing");
-    profileNameInput.focus();
-    profileNameInput.select();
   });
 
   profileNameInput?.addEventListener("input", () => {
+    isEditingInlineName = true;
+    profileNameInput.classList.add("is-editing");
     syncProfileNameWidth();
     if (displayNameInput && isEditingInlineName) {
       displayNameInput.value = profileNameInput.value;
@@ -219,7 +234,6 @@
 
     if (event.key === "Escape") {
       isEditingInlineName = false;
-      profileNameInput.setAttribute("readonly", "readonly");
       profileNameInput.classList.remove("is-editing");
       render();
     }
@@ -229,8 +243,66 @@
     finishInlineNameEdit();
   });
 
+  [displayNameInput, usernameInput, bioInput].forEach((field) => {
+    field?.addEventListener("input", () => {
+      isEditingProfileDetails = true;
+    });
+  });
+
   saveNameButton?.addEventListener("click", async () => {
-    await saveDisplayName(displayNameInput.value.trim());
+    const nextName = displayNameInput?.value.trim() || profileNameInput?.value.trim() || "";
+    const nextUsername = usernameInput?.value.trim() || "";
+    const nextBio = bioInput?.value.trim() || "";
+    savedProfileDetails = {
+      displayName: nextName,
+      username: nextUsername,
+      bio: nextBio
+    };
+
+    setStatus("Saving changes...", "neutral");
+    if (saveNameButton) saveNameButton.disabled = true;
+
+    try {
+      if (typeof window.POLYCIVIC_AUTH?.updateProfileDetails !== "function") {
+        throw new Error("Profile settings are still loading. Try again in a moment.");
+      }
+
+      const updatedProfile = await window.POLYCIVIC_AUTH.updateProfileDetails({
+        displayName: nextName,
+        username: nextUsername,
+        bio: nextBio
+      });
+
+      if (profileNameInput) {
+        profileNameInput.value = nextName;
+      }
+      savedProfileDetails = {
+        displayName: updatedProfile?.displayName || nextName,
+        username: updatedProfile?.username || nextUsername,
+        bio: Object.prototype.hasOwnProperty.call(updatedProfile || {}, "bio")
+          ? updatedProfile.bio || ""
+          : nextBio
+      };
+      syncProfileNameWidth();
+      isEditingProfileDetails = false;
+      render();
+      if (displayNameInput) {
+        displayNameInput.value = updatedProfile?.displayName || nextName;
+      }
+      if (usernameInput) {
+        usernameInput.value = updatedProfile?.username || nextUsername;
+      }
+      if (bioInput) {
+        bioInput.value = Object.prototype.hasOwnProperty.call(updatedProfile || {}, "bio")
+          ? updatedProfile.bio || ""
+          : nextBio;
+      }
+      setStatus("Changes saved!", "success");
+    } catch (error) {
+      setStatus(error.message || "Your profile could not be updated.", "error");
+    } finally {
+      if (saveNameButton) saveNameButton.disabled = false;
+    }
   });
 
   photoFileInput?.addEventListener("change", () => {
