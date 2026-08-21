@@ -16,6 +16,9 @@
           if (localStorage.getItem('datahub-theme') === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
           }
+          if (localStorage.getItem('datahub-dyslexic-ui') === 'true') {
+            document.documentElement.setAttribute('data-dyslexic', 'true');
+          }
         } catch (error) {
           console.warn('Theme preference unavailable.', error);
         }
@@ -24,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=Inter:wght@400;500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./styles.css?v=20260817-5">
   </head>
   <body class="civica-homepage">
     <header class="global-header">
@@ -476,7 +479,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script src="./auth-config.js?v=20260806-1"></script>
-  <script src="./auth.js?v=20260814-2"></script>
+  <script src="./auth.js?v=20260817-4"></script>
   <script src="./nav-dropdown.js"></script>
 </body>
 </html>

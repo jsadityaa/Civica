@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap");
+@import url("https://fonts.cdnfonts.com/css/open-dyslexic");
 
 :root {
   --bg: #f4f6fb;
@@ -35,6 +36,19 @@ html[data-theme="dark"] {
 html {
   scroll-behavior: smooth;
   min-height: 100%;
+}
+
+html[data-dyslexic="true"],
+html[data-dyslexic="true"] body,
+html[data-dyslexic="true"] button,
+html[data-dyslexic="true"] input,
+html[data-dyslexic="true"] textarea,
+html[data-dyslexic="true"] select {
+  font-family: "Open-Dyslexic", "OpenDyslexic", "Inter", sans-serif !important;
+}
+
+html[data-dyslexic="true"] body {
+  letter-spacing: 0.01em;
 }
 
 body {
@@ -7543,7 +7557,9 @@ html[data-theme="dark"] .account-settings__profile-card {
 }
 
 .account-settings__profile-card .account-settings__details-row {
-  align-items: end;
+  align-items: start;
+  grid-template-columns: 1fr;
+  justify-items: center;
   padding-top: 18px;
   border-top: 1px solid rgba(100, 116, 139, 0.18);
 }
@@ -7756,6 +7772,8 @@ html[data-theme="dark"] .account-settings__profile-card .account-settings__detai
   grid-template-columns: repeat(2, minmax(180px, 1fr));
   gap: 16px;
   width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
 }
 
 .account-settings__field {
@@ -7803,7 +7821,9 @@ html[data-theme="dark"] .account-settings__profile-card .account-settings__detai
 }
 
 .account-settings__details-action {
-  align-self: end;
+  align-self: start;
+  justify-self: center;
+  margin-top: 4px;
 }
 
 .settings-text-input {

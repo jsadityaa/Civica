@@ -1,4 +1,12 @@
 (() => {
+  try {
+    if (window.localStorage.getItem("datahub-dyslexic-ui") === "true") {
+      document.documentElement.setAttribute("data-dyslexic", "true");
+    }
+  } catch (error) {}
+})();
+
+(() => {
   const loginButtons = Array.from(document.querySelectorAll(".login-button"));
   const accountButtons = Array.from(document.querySelectorAll(".account-button"));
   const accountLabels = Array.from(document.querySelectorAll(".account-label"));
@@ -73,6 +81,7 @@
       birthday: profile.birthday || "",
       emailVerified: !!profile.emailVerified,
       role: profile.role || "user",
+      clientUpdatedAt: Number(profile.clientUpdatedAt) || 0,
       cachedAt: Date.now()
     };
   };
@@ -94,6 +103,16 @@
     } catch (error) {
       console.warn("Polycivic local profile save failed:", error);
     }
+  };
+
+  const getEditableProfileFields = (profile = {}) => {
+    return {
+      displayName: profile.displayName || "",
+      username: profile.username || "",
+      usernameLower: profile.usernameLower || "",
+      bio: Object.prototype.hasOwnProperty.call(profile, "bio") ? profile.bio || "" : "",
+      photoURL: profile.photoURL || ""
+    };
   };
 
   const sanitizeUser = (user) => {
@@ -431,25 +450,36 @@
     const birthday = extras.birthday || existingProfile?.birthday || "";
     const localProfile = getLocalProfile(user.uid);
     const cachedProfile = currentProfile && currentProfile.uid === user.uid ? currentProfile : null;
+    const latestProfile = [existingProfile, cachedProfile, localProfile]
+      .filter(Boolean)
+      .reduce((latest, profile) => {
+        return (Number(profile.clientUpdatedAt) || 0) > (Number(latest?.clientUpdatedAt) || 0)
+          ? profile
+          : latest;
+      }, existingProfile || cachedProfile || localProfile || {});
 
     return {
-      displayName: extras.displayName || safeUser.displayName,
+      displayName: extras.displayName || latestProfile?.displayName || safeUser.displayName,
       email: safeUser.email,
       username: Object.prototype.hasOwnProperty.call(extras, "username")
         ? extras.username
-        : existingProfile?.username || cachedProfile?.username || localProfile?.username || "",
+        : latestProfile?.username || "",
       usernameLower: Object.prototype.hasOwnProperty.call(extras, "usernameLower")
         ? extras.usernameLower
-        : existingProfile?.usernameLower || cachedProfile?.usernameLower || localProfile?.usernameLower || "",
+        : latestProfile?.usernameLower || "",
       bio: Object.prototype.hasOwnProperty.call(extras, "bio")
         ? extras.bio
-        : existingProfile?.bio || cachedProfile?.bio || localProfile?.bio || "",
+        : latestProfile?.bio || "",
       photoURL: Object.prototype.hasOwnProperty.call(extras, "photoURL")
         ? extras.photoURL
-        : existingProfile?.photoURL || cachedProfile?.photoURL || user.photoURL || localProfile?.photoURL || "",
+        : latestProfile?.photoURL || user.photoURL || "",
       birthday,
       emailVerified: !!user.emailVerified,
       role: existingProfile?.role || "user",
+      clientUpdatedAt: Object.prototype.hasOwnProperty.call(extras, "clientUpdatedAt")
+        ? extras.clientUpdatedAt
+        : Number(latestProfile?.clientUpdatedAt)
+          || Date.now(),
       updatedAt: timestamp,
       lastSignInAt: timestamp
     };
@@ -457,12 +487,32 @@
 
   const applyRemoteProfile = (user, profile) => {
     if (!user || !profile) return;
+    const localProfile = getLocalProfile(user.uid);
+    const remoteClientUpdatedAt = Number(profile.clientUpdatedAt) || 0;
+    const localClientUpdatedAt = Number(localProfile?.clientUpdatedAt) || 0;
+    const shouldPreferLocal = localProfile && localClientUpdatedAt > remoteClientUpdatedAt;
+    const mergedProfile = shouldPreferLocal
+      ? {
+          ...profile,
+          ...getEditableProfileFields(localProfile),
+          clientUpdatedAt: localClientUpdatedAt
+        }
+      : profile;
 
     currentProfile = {
-      ...profile,
+      ...mergedProfile,
       uid: user.uid
     };
     saveLocalProfile(user.uid, currentProfile);
+
+    if (shouldPreferLocal) {
+      syncUserProfile(user, {
+        ...getEditableProfileFields(localProfile),
+        clientUpdatedAt: localClientUpdatedAt
+      }).catch((error) => {
+        console.warn("Polycivic profile resync failed:", error);
+      });
+    }
 
     const safeUser = sanitizeUser(user);
     setHeaderState(safeUser);
@@ -562,7 +612,7 @@
     broadcastAuthState();
 
     Promise.race([
-      syncUserProfile(currentUser, { displayName: cleanName }),
+      syncUserProfile(currentUser, { displayName: cleanName, clientUpdatedAt: Date.now() }),
       new Promise((resolve) => window.setTimeout(resolve, 2500))
     ]).catch((error) => {
       console.warn("Polycivic display name profile sync timed out:", error);
@@ -607,6 +657,7 @@
     await currentUser.updateProfile({ displayName: cleanName });
 
     const timestamp = window.firebase.firestore.FieldValue.serverTimestamp();
+    const clientUpdatedAt = Date.now();
     const profileRef = database.collection("users").doc(currentUser.uid);
     const usernameRef = database.collection("usernames").doc(usernameLower);
 
@@ -640,7 +691,8 @@
         displayName: cleanName,
         username: cleanUsername,
         usernameLower,
-        bio: cleanBio
+        bio: cleanBio,
+        clientUpdatedAt
       }, existingProfile);
 
       if (profileSnapshot.exists) {
@@ -752,7 +804,8 @@
       uid: currentUser.uid,
       email: currentUser.email || "",
       displayName: currentUser.displayName || currentUser.email || "Account",
-      photoURL: cleanUrl
+      photoURL: cleanUrl,
+      clientUpdatedAt: Date.now()
     };
     saveLocalProfile(currentUser.uid, currentProfile);
 
@@ -760,7 +813,10 @@
     updateAccountMenu(sanitizeUser(currentUser));
     broadcastAuthState();
 
-    await syncUserProfile(currentUser, { photoURL: cleanUrl }, { throwOnError: true });
+    await syncUserProfile(currentUser, {
+      photoURL: cleanUrl,
+      clientUpdatedAt: currentProfile.clientUpdatedAt
+    }, { throwOnError: true });
     return cleanUrl;
   };
 

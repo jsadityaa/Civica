@@ -13,8 +13,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {} })();</script>
-  <link rel="stylesheet" href="./styles.css?v=20260817-4" />
+  <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); if (localStorage.getItem('datahub-dyslexic-ui') === 'true') document.documentElement.setAttribute('data-dyslexic', 'true'); } catch (e) {} })();</script>
+  <link rel="stylesheet" href="./styles.css?v=20260817-5" />
 </head>
 <body>
   <header class="global-header">
@@ -145,7 +145,7 @@
       <section class="settings-group" aria-labelledby="appearance-heading">
         <div class="settings-group-intro">
           <h2 id="appearance-heading">Appearance</h2>
-          <p>Choose your preferred theme. This setting is saved on this device.</p>
+          <p>Choose your preferred theme and reading settings. These settings are saved on this device.</p>
         </div>
 
         <div class="settings-table" role="table" aria-label="Appearance settings">
@@ -162,6 +162,19 @@
               </button>
             </div>
           </div>
+          <div class="settings-row" role="row">
+            <div class="settings-row-copy" role="cell">
+              <strong>Dyslexic-friendly UI</strong>
+              <span>Use OpenDyslexic across the site for easier reading.</span>
+            </div>
+            <div class="settings-row-action" role="cell">
+              <button id="dyslexic-toggle" class="theme-toggle" type="button" aria-pressed="false">
+                <span class="theme-toggle-track"></span>
+                <span class="theme-toggle-thumb"></span>
+                <span class="theme-toggle-label">Off</span>
+              </button>
+            </div>
+          </div>
         </div>
       </section>
     </div>
@@ -170,18 +183,24 @@
   <script>
     (() => {
       const root = document.documentElement;
-      const toggle = document.getElementById('theme-toggle');
-      if (!toggle) return;
+      const themeToggle = document.getElementById('theme-toggle');
+      const dyslexicToggle = document.getElementById('dyslexic-toggle');
+      if (!themeToggle && !dyslexicToggle) return;
 
-      const sync = () => {
-        const isDark = root.getAttribute('data-theme') === 'dark';
-        toggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-        toggle.classList.toggle('is-on', isDark);
+      const syncToggle = (toggle, enabled) => {
+        if (!toggle) return;
+        toggle.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+        toggle.classList.toggle('is-on', enabled);
         const label = toggle.querySelector('.theme-toggle-label');
-        if (label) label.textContent = isDark ? 'On' : 'Off';
+        if (label) label.textContent = enabled ? 'On' : 'Off';
       };
 
-      toggle.addEventListener('click', () => {
+      const sync = () => {
+        syncToggle(themeToggle, root.getAttribute('data-theme') === 'dark');
+        syncToggle(dyslexicToggle, root.getAttribute('data-dyslexic') === 'true');
+      };
+
+      themeToggle?.addEventListener('click', () => {
         const isDark = root.getAttribute('data-theme') === 'dark';
         if (isDark) {
           root.removeAttribute('data-theme');
@@ -189,6 +208,18 @@
         } else {
           root.setAttribute('data-theme', 'dark');
           localStorage.setItem('datahub-theme', 'dark');
+        }
+        sync();
+      });
+
+      dyslexicToggle?.addEventListener('click', () => {
+        const isDyslexic = root.getAttribute('data-dyslexic') === 'true';
+        if (isDyslexic) {
+          root.removeAttribute('data-dyslexic');
+          localStorage.removeItem('datahub-dyslexic-ui');
+        } else {
+          root.setAttribute('data-dyslexic', 'true');
+          localStorage.setItem('datahub-dyslexic-ui', 'true');
         }
         sync();
       });
@@ -221,7 +252,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script src="./auth-config.js?v=20260806-1"></script>
-  <script src="./auth.js?v=20260817-3"></script>
+  <script src="./auth.js?v=20260817-4"></script>
   <script src="./settings-account.js?v=20260817-3"></script>
   <script src="./nav-dropdown.js"></script>
 </body>
