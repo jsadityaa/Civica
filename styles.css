@@ -7882,6 +7882,18 @@ html[data-theme="dark"] .account-settings__profile-card .account-settings__detai
   display: none;
 }
 
+.account-settings__profile-card > .account-settings__message-row {
+  width: 100%;
+  padding: 0;
+  margin: -2px 0 0;
+  justify-self: stretch;
+  text-align: left;
+}
+
+.account-settings__profile-card > .account-settings__message-row .account-settings__status {
+  text-align: left;
+}
+
 .account-settings__status[data-status="success"] {
   color: #1f9d55;
 }
