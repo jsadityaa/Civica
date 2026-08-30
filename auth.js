@@ -79,6 +79,9 @@
       bio: Object.prototype.hasOwnProperty.call(profile, "bio") ? profile.bio || "" : "",
       photoURL: profile.photoURL || "",
       birthday: profile.birthday || "",
+      birthdayAt: profile.birthdayAt?.toMillis
+        ? profile.birthdayAt.toMillis()
+        : profile.birthdayAt || null,
       emailVerified: !!profile.emailVerified,
       role: profile.role || "user",
       clientUpdatedAt: Number(profile.clientUpdatedAt) || 0,
@@ -358,6 +361,15 @@
     return age >= 13;
   };
 
+  const getBirthdayTimestamp = (birthdayValue) => {
+    if (!birthdayValue || !window.firebase?.firestore?.Timestamp) return null;
+
+    const birthday = new Date(`${birthdayValue}T00:00:00`);
+    if (Number.isNaN(birthday.getTime())) return null;
+
+    return window.firebase.firestore.Timestamp.fromDate(birthday);
+  };
+
   const validateSignUpEligibility = () => {
     if (!isSignUpMode) return true;
 
@@ -448,6 +460,7 @@
     const safeUser = sanitizeUser(user);
     const timestamp = window.firebase.firestore.FieldValue.serverTimestamp();
     const birthday = extras.birthday || existingProfile?.birthday || "";
+    const birthdayAt = existingProfile?.birthdayAt || getBirthdayTimestamp(birthday);
     const localProfile = getLocalProfile(user.uid);
     const cachedProfile = currentProfile && currentProfile.uid === user.uid ? currentProfile : null;
     const latestProfile = [existingProfile, cachedProfile, localProfile]
@@ -474,7 +487,7 @@
         ? extras.photoURL
         : latestProfile?.photoURL || user.photoURL || "",
       birthday,
-      emailVerified: !!user.emailVerified,
+      ...(birthdayAt ? { birthdayAt } : {}),
       role: existingProfile?.role || "user",
       clientUpdatedAt: Object.prototype.hasOwnProperty.call(extras, "clientUpdatedAt")
         ? extras.clientUpdatedAt
@@ -565,9 +578,15 @@
         const payload = buildProfilePayload(user, extras, existingProfile);
         delete payload.role;
         delete payload.birthday;
+        delete payload.birthdayAt;
+        delete payload.emailVerified;
 
         if (extras.birthday) {
+          const birthdayAt = getBirthdayTimestamp(extras.birthday);
           payload.birthday = extras.birthday;
+          if (birthdayAt) {
+            payload.birthdayAt = birthdayAt;
+          }
         }
 
         await profileRef.update(payload);
@@ -698,6 +717,7 @@
       if (profileSnapshot.exists) {
         delete payload.role;
         delete payload.birthday;
+        delete payload.emailVerified;
         transaction.update(profileRef, payload);
         currentProfile = { ...existingProfile, ...payload, uid: currentUser.uid };
       } else {
@@ -943,6 +963,20 @@
     });
   };
 
+  const removeRejectedSignupUser = async (user) => {
+    if (!user) return;
+
+    try {
+      await user.delete();
+    } catch (error) {
+      console.warn("Polycivic rejected signup cleanup failed:", error);
+    }
+  };
+
+  const showServerAgeRejection = () => {
+    authModal.error.textContent = "Your account could not be created. Make sure you are at least 13 years old.";
+  };
+
   const signInWithGoogle = async () => {
     if (!auth || !window.firebase) return;
     clearModalError();
@@ -961,9 +995,18 @@
         return;
       }
       if (isSignUpMode && credential.user) {
-        syncUserProfile(credential.user, { birthday: authModal.birthdayInput.value }).catch((profileError) => {
+        try {
+          await syncUserProfile(
+            credential.user,
+            { birthday: authModal.birthdayInput.value },
+            { throwOnError: true }
+          );
+        } catch (profileError) {
           console.warn("Polycivic profile sync failed after Google signup:", profileError);
-        });
+          await removeRejectedSignupUser(credential.user);
+          showServerAgeRejection();
+          return;
+        }
       }
       closeModal();
     } catch (error) {
@@ -1002,9 +1045,18 @@
           await credential.user.updateProfile({ displayName: name });
         }
         if (credential.user && birthday) {
-          syncUserProfile(credential.user, { birthday, displayName: name }).catch((profileError) => {
+          try {
+            await syncUserProfile(
+              credential.user,
+              { birthday, displayName: name },
+              { throwOnError: true }
+            );
+          } catch (profileError) {
             console.warn("Polycivic profile sync failed after signup:", profileError);
-          });
+            await removeRejectedSignupUser(credential.user);
+            showServerAgeRejection();
+            return;
+          }
         }
         if (credential.user && !credential.user.emailVerified) {
           credential.user.sendEmailVerification(authActionSettings).catch((verificationError) => {

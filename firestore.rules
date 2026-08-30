@@ -10,41 +10,147 @@ service cloud.firestore {
       return signedIn() && request.auth.uid == userId;
     }
 
+    function profileKeys() {
+      return [
+        "displayName",
+        "email",
+        "username",
+        "usernameLower",
+        "bio",
+        "photoURL",
+        "birthday",
+        "birthdayAt",
+        "emailVerified",
+        "role",
+        "clientUpdatedAt",
+        "lastSignInAt",
+        "updatedAt",
+        "createdAt"
+      ];
+    }
+
+    function hasProfileField(field) {
+      return request.resource.data.keys().hasAny([field]);
+    }
+
+    function safeText(value, limit) {
+      return value is string && value.size() <= limit;
+    }
+
+    function validDisplayName() {
+      return safeText(request.resource.data.displayName, 80)
+        && request.resource.data.displayName.size() > 0;
+    }
+
+    function validEmail() {
+      return request.resource.data.email is string
+        && request.resource.data.email == request.auth.token.email;
+    }
+
+    function validUsernameValue(value) {
+      return value == ""
+        || (value is string && value.matches("^[A-Za-z0-9._-]{3,30}$"));
+    }
+
+    function validUsernameFields() {
+      return (!hasProfileField("username") || validUsernameValue(request.resource.data.username))
+        && (!hasProfileField("usernameLower") || validUsernameValue(request.resource.data.usernameLower));
+    }
+
+    function validBio() {
+      return !hasProfileField("bio") || safeText(request.resource.data.bio, 180);
+    }
+
+    function validPhotoURL() {
+      return !hasProfileField("photoURL") || safeText(request.resource.data.photoURL, 950000);
+    }
+
+    function validBirthdayValue(value) {
+      return value is string && value.matches("^\\d{4}-\\d{2}-\\d{2}$");
+    }
+
+    function validBirthdayTimestamp(value) {
+      return value is timestamp
+        && value <= request.time - duration.value(4748, "d");
+    }
+
+    function validBirthdayOnCreate() {
+      return validBirthdayValue(request.resource.data.birthday)
+        && hasProfileField("birthdayAt")
+        && validBirthdayTimestamp(request.resource.data.birthdayAt);
+    }
+
+    function validBirthdayOnUpdate() {
+      return !hasProfileField("birthday")
+        || (
+          resource.data.keys().hasAny(["birthday"])
+          && request.resource.data.birthday == resource.data.birthday
+          && (!resource.data.keys().hasAny(["birthdayAt"])
+            || request.resource.data.birthdayAt == resource.data.birthdayAt)
+          && (!hasProfileField("birthdayAt")
+            || validBirthdayTimestamp(request.resource.data.birthdayAt))
+        )
+        || (
+          (!resource.data.keys().hasAny(["birthday"]) || resource.data.birthday == "")
+          && validBirthdayOnCreate()
+        );
+    }
+
+    function validProfileData() {
+      return request.resource.data.keys().hasOnly(profileKeys())
+        && validDisplayName()
+        && validEmail()
+        && validUsernameFields()
+        && validBio()
+        && validPhotoURL()
+        && (!hasProfileField("birthdayAt") || validBirthdayTimestamp(request.resource.data.birthdayAt))
+        && (!hasProfileField("clientUpdatedAt") || request.resource.data.clientUpdatedAt is number);
+    }
+
     match /users/{userId} {
       allow read: if ownsProfile(userId);
 
       allow create: if ownsProfile(userId)
+        && validProfileData()
         && request.resource.data.role == "user"
-        && request.resource.data.email is string
-        && request.resource.data.displayName is string
-        && request.resource.data.birthday is string;
+        && !hasProfileField("emailVerified")
+        && validBirthdayOnCreate()
+        && request.resource.data.createdAt is timestamp
+        && request.resource.data.updatedAt is timestamp
+        && request.resource.data.lastSignInAt is timestamp;
 
       allow update: if ownsProfile(userId)
+        && validProfileData()
         && request.resource.data.role == resource.data.role
+        && request.resource.data.email == resource.data.email
         && request.resource.data.createdAt == resource.data.createdAt
+        && (!resource.data.keys().hasAny(["emailVerified"])
+          || request.resource.data.emailVerified == resource.data.emailVerified)
+        && validBirthdayOnUpdate()
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
           "displayName",
-          "email",
           "username",
           "usernameLower",
           "bio",
           "photoURL",
           "birthday",
-          "emailVerified",
+          "birthdayAt",
           "clientUpdatedAt",
           "lastSignInAt",
           "updatedAt"
         ]);
 
-      allow delete: if ownsProfile(userId);
+      allow delete: if false;
     }
 
     match /usernames/{username} {
       allow get: if signedIn();
 
       allow create, update: if signedIn()
+        && request.resource.data.keys().hasOnly(["uid", "username", "updatedAt"])
         && request.resource.data.uid == request.auth.uid
         && request.resource.data.username is string
+        && request.resource.data.username.matches("^[A-Za-z0-9._-]{3,30}$")
         && request.resource.data.updatedAt is timestamp;
 
       allow delete: if signedIn()
