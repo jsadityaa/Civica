@@ -146,7 +146,15 @@ service cloud.firestore {
     match /usernames/{username} {
       allow get: if signedIn();
 
-      allow create, update: if signedIn()
+      allow create: if signedIn()
+        && request.resource.data.keys().hasOnly(["uid", "username", "updatedAt"])
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.username is string
+        && request.resource.data.username.matches("^[A-Za-z0-9._-]{3,30}$")
+        && request.resource.data.updatedAt is timestamp;
+
+      allow update: if signedIn()
+        && resource.data.uid == request.auth.uid
         && request.resource.data.keys().hasOnly(["uid", "username", "updatedAt"])
         && request.resource.data.uid == request.auth.uid
         && request.resource.data.username is string
@@ -160,8 +168,7 @@ service cloud.firestore {
     }
 
     match /contactSubmissions/{submissionId} {
-      allow create: if true;
-      allow read, update, delete: if false;
+      allow read, write: if false;
     }
 
     match /{document=**} {
