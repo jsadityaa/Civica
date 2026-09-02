@@ -1,14 +1,29 @@
 const admin = require("firebase-admin");
-const { onRequest } = require("firebase-functions/v2/https");
+const crypto = require("crypto");
+const { HttpsError, onCall } = require("firebase-functions/v2/https");
 const nodemailer = require("nodemailer");
 
 admin.initializeApp();
+const firestore = admin.firestore();
 
 const SITE_URL = "https://polycivic.com";
+const FIREBASE_WEB_API_KEY = process.env.FIREBASE_WEB_API_KEY || "AIzaSyCWFpJmfOZW5bMkx4vHCDtx-xfjhvwwE24";
 const SMTP_HOST = process.env.SMTP_HOST || "mail.privateemail.com";
 const SMTP_PORT = Number(process.env.SMTP_PORT || 465);
 const SMTP_USER = process.env.SMTP_USER || "support@polycivic.com";
 const SMTP_PASS = String(process.env.SMTP_PASS || "").replace(/^['"]|['"]$/g, "");
+const PASSWORD_RESET_LIMITS = {
+  email: {
+    maxAttempts: 5,
+    minIntervalMs: 60 * 1000,
+    windowMs: 60 * 60 * 1000
+  },
+  ip: {
+    maxAttempts: 20,
+    minIntervalMs: 10 * 1000,
+    windowMs: 60 * 60 * 1000
+  }
+};
 
 const escapeHtml = (value) => {
   return String(value || "")
@@ -33,6 +48,66 @@ const createTransporter = () => {
       user: SMTP_USER,
       pass: SMTP_PASS
     }
+  });
+};
+
+const hashLimitKey = (value) => {
+  return crypto.createHash("sha256").update(String(value || "unknown")).digest("hex");
+};
+
+const getClientIp = (request) => {
+  const forwardedFor = request.rawRequest?.headers?.["x-forwarded-for"];
+  if (typeof forwardedFor === "string" && forwardedFor.trim()) {
+    return forwardedFor.split(",")[0].trim();
+  }
+
+  return request.rawRequest?.ip
+    || request.rawRequest?.socket?.remoteAddress
+    || "unknown";
+};
+
+const getRateLimitRef = (bucket, key) => {
+  return firestore.collection("_rateLimits").doc(`passwordReset_${bucket}_${hashLimitKey(key)}`);
+};
+
+const getRecentAttempts = (data, cutoff) => {
+  return Array.isArray(data.attempts)
+    ? data.attempts.filter((attempt) => Number(attempt) >= cutoff)
+    : [];
+};
+
+const assertRateLimit = async (bucket, key, limits) => {
+  const now = Date.now();
+  const cutoff = now - limits.windowMs;
+  const limitRef = getRateLimitRef(bucket, key);
+  const snapshot = await limitRef.get();
+  const data = snapshot.exists ? snapshot.data() || {} : {};
+  const attempts = getRecentAttempts(data, cutoff);
+  const latestAttempt = attempts.length ? Math.max(...attempts) : 0;
+
+  if (latestAttempt && now - latestAttempt < limits.minIntervalMs) {
+    throw new HttpsError("resource-exhausted", "Please wait a moment before requesting another reset email.");
+  }
+
+  if (attempts.length >= limits.maxAttempts) {
+    throw new HttpsError("resource-exhausted", "Too many reset requests. Please try again later.");
+  }
+};
+
+const recordRateLimitAttempt = async (bucket, key, limits) => {
+  const now = Date.now();
+  const cutoff = now - limits.windowMs;
+  const limitRef = getRateLimitRef(bucket, key);
+
+  await firestore.runTransaction(async (transaction) => {
+    const snapshot = await transaction.get(limitRef);
+    const data = snapshot.exists ? snapshot.data() || {} : {};
+    const attempts = getRecentAttempts(data, cutoff);
+
+    transaction.set(limitRef, {
+      attempts: [...attempts, now],
+      updatedAt: admin.firestore.Timestamp.fromMillis(now)
+    }, { merge: true });
   });
 };
 
@@ -84,27 +159,41 @@ const buildPasswordResetEmail = ({ email, link }) => {
   };
 };
 
-exports.requestPasswordReset = onRequest({ region: "us-central1" }, async (request, response) => {
-  if (request.method !== "POST") {
-    response.set("Allow", "POST");
-    response.status(405).json({ error: "Method not allowed." });
-    return;
+const sendFirebasePasswordResetEmail = async (email) => {
+  if (!FIREBASE_WEB_API_KEY) {
+    throw new Error("FIREBASE_WEB_API_KEY is not configured.");
   }
 
-  const email = String(request.body?.email || "").trim().toLowerCase();
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    response.status(400).json({ error: "Enter a valid email address." });
-    return;
+  const response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${FIREBASE_WEB_API_KEY}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      requestType: "PASSWORD_RESET",
+      email,
+      continueUrl: SITE_URL
+    })
+  });
+
+  const result = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    const message = result?.error?.message || "Firebase password reset email failed.";
+    const error = new Error(message);
+    error.code = message;
+    throw error;
   }
+};
+
+const sendPasswordResetEmail = async (email) => {
+  const link = await admin.auth().generatePasswordResetLink(email, {
+    url: SITE_URL,
+    handleCodeInApp: false
+  });
+  const message = buildPasswordResetEmail({ email, link });
+  const transporter = createTransporter();
 
   try {
-    const link = await admin.auth().generatePasswordResetLink(email, {
-      url: SITE_URL,
-      handleCodeInApp: false
-    });
-    const message = buildPasswordResetEmail({ email, link });
-    const transporter = createTransporter();
-
     await transporter.sendMail({
       from: `"Polycivic" <${SMTP_USER}>`,
       to: email,
@@ -113,19 +202,48 @@ exports.requestPasswordReset = onRequest({ region: "us-central1" }, async (reque
       text: message.text,
       html: message.html
     });
+  } catch (error) {
+    console.error("Custom SMTP password reset email failed; falling back to Firebase Auth email:", {
+      code: error.code || "",
+      command: error.command || "",
+      responseCode: error.responseCode || "",
+      message: error.message || ""
+    });
+    await sendFirebasePasswordResetEmail(email);
+  }
+};
 
-    response.status(200).json({ ok: true });
+exports.requestPasswordReset = onCall({
+  region: "us-central1"
+}, async (request) => {
+  const email = String(request.data?.email || "").trim().toLowerCase();
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    throw new HttpsError("invalid-argument", "Enter a valid email address.");
+  }
+
+  const clientIp = getClientIp(request);
+
+  try {
+    await assertRateLimit("email", email, PASSWORD_RESET_LIMITS.email);
+    await assertRateLimit("ip", clientIp, PASSWORD_RESET_LIMITS.ip);
+
+    await sendPasswordResetEmail(email);
+
+    await recordRateLimitAttempt("email", email, PASSWORD_RESET_LIMITS.email);
+    await recordRateLimitAttempt("ip", clientIp, PASSWORD_RESET_LIMITS.ip);
+    return { ok: true };
   } catch (error) {
     if (error.code === "auth/user-not-found") {
-      response.status(200).json({ ok: true });
-      return;
+      await recordRateLimitAttempt("email", email, PASSWORD_RESET_LIMITS.email);
+      await recordRateLimitAttempt("ip", clientIp, PASSWORD_RESET_LIMITS.ip);
+      return { ok: true };
+    }
+
+    if (error instanceof HttpsError) {
+      throw error;
     }
 
     console.error("Password reset email failed:", error);
-    response.status(500).json({
-      error: "Password reset email could not be sent.",
-      code: error.code || "",
-      response: error.response || error.message || ""
-    });
+    throw new HttpsError("internal", "Password reset email could not be sent.");
   }
 });

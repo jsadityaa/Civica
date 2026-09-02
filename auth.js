@@ -54,14 +54,20 @@
 
   let auth = null;
   let db = null;
+  let functions = null;
   let currentUser = null;
   let currentProfile = null;
   let isSignUpMode = false;
   let firestoreLoadPromise = null;
   let storageLoadPromise = null;
+  let functionsLoadPromise = null;
+  let appCheckLoadPromise = null;
+  let appCheckInitialized = false;
   let profileUnsubscribe = null;
   const firestoreCompatSrc = "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js";
   const storageCompatSrc = "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js";
+  const functionsCompatSrc = "https://www.gstatic.com/firebasejs/10.12.2/firebase-functions-compat.js";
+  const appCheckCompatSrc = "https://www.gstatic.com/firebasejs/10.12.2/firebase-app-check-compat.js";
 
   const getInitial = (value) => {
     return (value || "?").trim().charAt(0).toUpperCase() || "?";
@@ -180,6 +186,37 @@
     }
 
     return window.firebase.storage();
+  };
+
+  const initializeAppCheck = async () => {
+    if (!isFirebaseConfigured || !window.firebase || appCheckInitialized) return;
+
+    const siteKey = (authConfig.appCheckSiteKey || "").trim();
+    if (!siteKey) {
+      return;
+    }
+
+    if (!window.firebase.appCheck) {
+      appCheckLoadPromise = appCheckLoadPromise || loadScript(appCheckCompatSrc);
+      await appCheckLoadPromise;
+    }
+
+    window.firebase.appCheck().activate(siteKey, true);
+    appCheckInitialized = true;
+  };
+
+  const getFirebaseFunctions = async () => {
+    if (!isFirebaseConfigured || !window.firebase) return null;
+
+    await initializeAppCheck();
+
+    if (!window.firebase.functions) {
+      functionsLoadPromise = functionsLoadPromise || loadScript(functionsCompatSrc);
+      await functionsLoadPromise;
+    }
+
+    functions = functions || window.firebase.app().functions("us-central1");
+    return functions;
   };
 
   const setHeaderState = (user) => {
@@ -891,7 +928,13 @@
       throw new Error("Enter your email address first.");
     }
 
-    await auth.sendPasswordResetEmail(email, authActionSettings);
+    const functionsInstance = await getFirebaseFunctions();
+    if (!functionsInstance) {
+      throw new Error("Password reset is unavailable. Try again in a moment.");
+    }
+
+    const requestPasswordReset = functionsInstance.httpsCallable("requestPasswordReset");
+    await requestPasswordReset({ email });
   };
 
   const sendVerificationEmail = async () => {
