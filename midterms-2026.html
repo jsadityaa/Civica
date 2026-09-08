@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Forecasts | Polycivic</title>
+  <title>2026 US Midterm Elections | Polycivic</title>
   <link rel="icon" type="image/png" href="./favicon.png" />
   <link rel="shortcut icon" href="./favicon.ico">
   <link rel="apple-touch-icon-precomposed" sizes="180x180" href="./apple-touch-icon.png">
@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); if (localStorage.getItem('datahub-dyslexic-ui') === 'true') document.documentElement.setAttribute('data-dyslexic', 'true'); } catch (e) {} })();</script>
-  <link rel="stylesheet" href="./styles.css?v=20260903-forecast-1" />
+  <link rel="stylesheet" href="./styles.css?v=20260902-midterms-1" />
 </head>
 <body>
   <header class="global-header">
@@ -22,8 +22,8 @@
       <a href="/" class="brand" aria-label="Polycivic home">Polycivic</a>
       <nav class="global-nav" aria-label="Main navigation">
         <a href="/" class="global-nav-link">Features</a>
-        <a href="/elections" class="global-nav-link">Elections</a>
-        <a href="/forecasts" class="global-nav-link active">Forecasts</a>
+        <a href="/elections" class="global-nav-link active">Elections</a>
+        <a href="/forecasts" class="global-nav-link">Forecasts</a>
         <a href="/news" class="global-nav-link">News</a>
         <a href="/forum" class="global-nav-link">Forum</a>
         <div class="global-nav-dropdown">
@@ -46,19 +46,63 @@
   </header>
 
   <div class="site-shell">
+    <div class="election-package-header">
+      <div class="election-year-strip" aria-label="2026 midterm election">
+        <span class="year-block red">2</span>
+        <span class="year-block blue">0</span>
+        <span class="year-block red">2</span>
+        <span class="year-block blue">6</span>
+      </div>
+      <nav class="election-package-nav" aria-label="2026 election pages">
+        <a href="/midterms-2026" class="election-package-link active">Overview</a>
+        <a href="/house-2026" class="election-package-link">House of Representatives</a>
+        <a href="/senate-2026" class="election-package-link">Senate</a>
+        <a href="/forecasts" class="election-package-link">Forecast Center</a>
+      </nav>
+    </div>
+
     <header class="site-header">
-      <h1>Forecasts</h1>
-      <p class="hub-subtitle">A dedicated space for projections, model notes, and election forecasting tools.</p>
+      <h1>2026 US Midterm Elections</h1>
+      <p class="hub-subtitle">A starting hub for the House and Senate races that will shape the 120th Congress.</p>
+      <nav class="section-nav" aria-label="Page sections">
+        <a href="#article">Article</a>
+      </nav>
     </header>
 
     <main class="page-stack">
-      <section class="forecast-release-list" aria-label="Available forecasts">
-        <a class="election-card featured forecast-release-card" href="/midterms-2026" data-country="us">
-          <span class="card-tag">Polycivic forecast release</span>
-          <h3>2026 US Midterm Elections</h3>
-          <p>House and Senate forecasts release October 27, 2026.</p>
-        </a>
+      <section id="article" class="content-panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Overview</h2>
+          </div>
+        </div>
+        <p class="byline">Written by Aditya Poduri</p>
+        <div class="article-layout">
+          <article class="article-placeholder article-body">
+            <h3>2026 Midterm Summary</h3>
+            <p>The 2026 United States midterm elections are scheduled for Tuesday, November 3, 2026. The cycle will serve as the first national test of Donald Trump's second administration, with control of Congress, the direction of federal policy, and the strength of both party coalitions on the line.</p>
+            <h3>Contents of the Ballot</h3>
+            <p>All 435 seats in the House of Representatives are up for election. In the Senate, 35 seats will be contested: 33 regularly scheduled races and special elections in Florida and Ohio. Governorships, state legislative seats, and local offices will also appear on many state and local ballots.</p>
+            <h3>POLYCIVIC FORECAST RELEASE</h3>
+            <p>Polycivic's 2026 midterm forecasts are scheduled to release on Tuesday, October 27, 2026, one week before Election Day. The first forecast package will focus on the House and Senate, with additional coverage areas added later if the model expands.</p>
+            <h3>Voter Resources</h3>
+            <p>Voting rules, registration deadlines, early voting options, and absentee ballot procedures vary by state. Voters should check their state election office or local election board for official, location-specific guidance as the election approaches.</p>
+          </article>
+
+          <aside class="article-rail" aria-label="2026 midterm sidebar">
+            <div class="rail-card">
+              <h3>At a Glance</h3>
+              <div class="rail-stats">
+                <div><span>Election Day</span><strong>Nov. 3, 2026</strong></div>
+                <div><span>POLYCIVIC FORECAST RELEASE</span><strong>Oct. 27, 2026</strong></div>
+                <div><span>House</span><strong>435 seats</strong></div>
+                <div><span>Senate</span><strong>35 seats</strong></div>
+              </div>
+            </div>
+          </aside>
+        </div>
       </section>
+
     </main>
   </div>
 

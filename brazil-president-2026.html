@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026 Brazil President | Polycivic</title>
+  <link rel="icon" type="image/png" href="./favicon.png" />
+  <link rel="shortcut icon" href="./favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="./apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+  <link rel="manifest" href="./site.webmanifest" />
+  <meta name="theme-color" content="#10131b" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); if (localStorage.getItem('datahub-dyslexic-ui') === 'true') document.documentElement.setAttribute('data-dyslexic', 'true'); } catch (e) {} })();</script>
+  <link rel="stylesheet" href="./styles.css?v=20260906-brazil-president-1" />
+</head>
+<body class="country-theme-brazil">
+  <header class="global-header">
+    <div class="global-header-inner">
+      <a href="/" class="brand" aria-label="Polycivic home">Polycivic</a>
+      <nav class="global-nav" aria-label="Main navigation">
+        <a href="/" class="global-nav-link">Features</a>
+        <a href="/elections" class="global-nav-link active">Elections</a>
+        <a href="/forecasts" class="global-nav-link">Forecasts</a>
+        <a href="/news" class="global-nav-link">News</a>
+        <a href="/forum" class="global-nav-link">Forum</a>
+        <div class="global-nav-dropdown">
+          <a href="/#our-mission" class="global-nav-link">About Us</a>
+          <div class="global-nav-dropdown-menu">
+            <a href="/our-mission" class="global-nav-dropdown-link">Our mission</a>
+            <a href="/our-team" class="global-nav-dropdown-link">Our team</a>
+          </div>
+        </div>
+        <a href="/settings" class="global-nav-link">Settings</a>
+      </nav>
+      <div class="account-ui" aria-label="Account controls">
+        <button class="login-button" type="button">Log In</button>
+        <button class="account-button" type="button" aria-label="Account">
+          <span class="account-avatar">A</span>
+          <span class="account-label">Account</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="site-shell">
+    <div class="election-package-header">
+      <div class="election-year-strip election-year-strip--brazil" aria-label="2026 Brazil presidential election">
+        <span class="year-block green">2</span>
+        <span class="year-block yellow">0</span>
+        <span class="year-block green">2</span>
+        <span class="year-block yellow">6</span>
+      </div>
+      <nav class="election-package-nav" aria-label="2026 Brazil election pages">
+        <a href="/brazil-2026" class="election-package-link">Overview</a>
+        <a href="/brazil-president-2026" class="election-package-link active">President</a>
+        <a href="/brazil-congress-2026" class="election-package-link">Congress</a>
+        <span class="election-package-link election-package-link-disabled" aria-disabled="true">Governors</span>
+        <span class="election-package-link election-package-link-disabled" aria-disabled="true">State Legislatures</span>
+      </nav>
+    </div>
+
+    <header class="site-header">
+      <h1>2026 Brazil President</h1>
+      <nav class="section-nav" aria-label="Page sections">
+        <a href="#brazil-president-map-section">State-by-State Vote Map</a>
+        <a href="#presidential-candidates">Candidates</a>
+      </nav>
+    </header>
+
+    <main class="page-stack">
+      <section id="brazil-president-map-section" class="content-panel feature-panel brazil-overview-panel">
+        <div class="panel-heading">
+          <div>
+            <h2>State-by-State Vote Map <span class="map-status-badge">Pending</span></h2>
+            <p class="map-context-note">Brazil's president is elected by national popular vote. This map shows state-level vote patterns only; states do not award electoral votes or directly decide the winner.</p>
+          </div>
+        </div>
+
+        <div class="brazil-vote-share-card" aria-label="Brazil presidential vote share placeholder">
+          <div class="brazil-vote-share-copy">
+            <span class="card-tag">First round vote share</span>
+            <h3>Presidential Vote</h3>
+            <p>A candidate wins in the first round with more than 50% of valid votes. If nobody reaches that, the top two advance to an October 25 runoff.</p>
+          </div>
+          <div class="brazil-vote-share-chart">
+            <div class="brazil-donut-chart">
+              <span>0% votes in</span>
+            </div>
+            <div class="brazil-donut-legend" aria-label="Presidential vote legend">
+              <strong>Legend</strong>
+              <span><i class="candidate-color candidate-color-one"></i>Luiz Inácio Lula da Silva</span>
+              <span><i class="candidate-color candidate-color-two"></i>Flávio Bolsonaro</span>
+              <span><i class="candidate-color candidate-color-three"></i>Augusto Cury</span>
+              <span><i class="candidate-color candidate-color-other"></i>Other</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-legend brazil-president-map-legend" aria-label="Presidential state map legend">
+          <div class="legend-group">
+            <span class="legend-title">Lula</span>
+            <div class="legend-stack">
+              <div class="legend-swatches">
+                <span class="legend-swatch president-lula-lead"></span>
+              </div>
+              <div class="legend-subtext">
+                <span>Lead</span>
+              </div>
+            </div>
+          </div>
+          <div class="legend-group">
+            <span class="legend-title">Flávio</span>
+            <div class="legend-stack">
+              <div class="legend-swatches">
+                <span class="legend-swatch president-flavio-lead"></span>
+              </div>
+              <div class="legend-subtext">
+                <span>Lead</span>
+              </div>
+            </div>
+          </div>
+          <div class="legend-group">
+            <span class="legend-title">Cury</span>
+            <div class="legend-stack">
+              <div class="legend-swatches">
+                <span class="legend-swatch president-cury-lead"></span>
+              </div>
+              <div class="legend-subtext">
+                <span>Lead</span>
+              </div>
+            </div>
+          </div>
+          <div class="legend-group">
+            <span class="legend-title">Other</span>
+            <div class="legend-stack">
+              <div class="legend-swatches">
+                <span class="legend-swatch president-other-lead"></span>
+              </div>
+              <div class="legend-subtext">
+                <span>Lead</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-stage">
+          <div class="national-map-shell midterm-map-shell brazil-map-shell">
+            <svg id="brazil-president-map" class="midterm-empty-svg-map" viewBox="0 0 1200 1000" preserveAspectRatio="xMidYMid meet" aria-label="Empty Brazil presidential map placeholder"></svg>
+            <div class="tooltip" id="brazil-map-tooltip"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="presidential-candidates" class="content-panel brazil-overview-panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Main Candidates</h2>
+          </div>
+        </div>
+        <div class="candidate-card-grid" aria-label="2026 Brazil presidential candidates">
+          <article class="candidate-profile-card party-pt">
+            <div class="candidate-profile-image">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Foto%20oficial%20de%20Luiz%20In%C3%A1cio%20Lula%20da%20Silva%20%283x4%20cropped%29.jpg" alt="Luiz Inácio Lula da Silva" loading="lazy" />
+            </div>
+            <div class="candidate-profile-body">
+              <span class="candidate-party-chip">Workers' Party / Partido dos Trabalhadores · 13</span>
+              <h3>Luiz Inácio Lula da Silva</h3>
+              <p>Running mate: Geraldo Alckmin (PSB)</p>
+            </div>
+          </article>
+
+          <article class="candidate-profile-card party-pl">
+            <div class="candidate-profile-image">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Entrevistas%20Diversas%20%2852068540141%29%20%28cropped%29.jpg" alt="Flávio Bolsonaro" loading="lazy" />
+            </div>
+            <div class="candidate-profile-body">
+              <span class="candidate-party-chip">Liberal Party / Partido Liberal · 22</span>
+              <h3>Flávio Bolsonaro</h3>
+              <p>Running mate: Alfredo Gaspar</p>
+            </div>
+          </article>
+
+          <article class="candidate-profile-card party-avante">
+            <div class="candidate-profile-image">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Augusto%20Cury.jpg" alt="Augusto Cury" loading="lazy" />
+            </div>
+            <div class="candidate-profile-body">
+              <span class="candidate-party-chip">Forward / Avante · 70</span>
+              <h3>Augusto Cury</h3>
+              <p>Running mate: Júlio Delgado</p>
+            </div>
+          </article>
+
+          <article class="candidate-profile-card party-psd">
+            <div class="candidate-profile-image">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ronaldo%20Caiado%20in%202026%20em%20S%C3%A3o%20Paulo%20%283x4%29.jpg" alt="Ronaldo Caiado" loading="lazy" />
+            </div>
+            <div class="candidate-profile-body">
+              <span class="candidate-party-chip">Social Democratic Party / Partido Social Democrático · 55</span>
+              <h3>Ronaldo Caiado</h3>
+              <p>Running mate: Gilberto Kassab</p>
+            </div>
+          </article>
+
+          <article class="candidate-profile-card party-missao">
+            <div class="candidate-profile-image">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/2026-01-11%20Renan%20Santos%20%2855036684938%29%20%283x4%29.jpg" alt="Renan Santos" loading="lazy" />
+            </div>
+            <div class="candidate-profile-body">
+              <span class="candidate-party-chip">Mission Party / Partido Missão · 14</span>
+              <h3>Renan Santos</h3>
+              <p>Running mate: Coronel Medina</p>
+            </div>
+          </article>
+
+          <article class="candidate-profile-card party-novo">
+            <div class="candidate-profile-image">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Romeu%20Zema%202025%20%28cropped%29.jpg" alt="Romeu Zema" loading="lazy" />
+            </div>
+            <div class="candidate-profile-body">
+              <span class="candidate-party-chip">New Party / Partido Novo · 30</span>
+              <h3>Romeu Zema</h3>
+              <p>Running mate: Eduardo Girão</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer id="contact-us" class="civica-homepage__footer">
+    <div class="civica-homepage__footer-inner">
+      <div class="civica-homepage__footer-bottom">
+        <div class="civica-homepage__footer-meta">
+          <p class="civica-homepage__footer-brand">polycivic.com</p>
+          <nav class="civica-homepage__footer-nav" aria-label="Footer navigation">
+            <a href="/contact">Contact Us</a>
+            <a href="/our-mission">Our Mission</a>
+            <a href="/our-team">Our Team</a>
+            <a href="/forum">Blog</a>
+          </nav>
+          <p class="civica-homepage__footer-legal">
+            <a href="/terms">Terms</a>
+            <span>&bull;</span>
+            <a href="/privacy">Privacy Policy</a>
+          </p>
+        </div>
+        <p class="civica-homepage__footer-copy">&copy; 2026 Polycivic. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="./auth-config.js?v=20260830-1"></script>
+  <script src="./auth.js?v=20260830-1"></script>
+  <script src="./brazil-states-geojson.js?v=20260906-1"></script>
+  <script src="./brazil-2026-map.js?v=20260906-1"></script>
+  <script src="./nav-dropdown.js"></script>
+</body>
+</html>

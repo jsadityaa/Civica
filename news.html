@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); if (localStorage.getItem('datahub-dyslexic-ui') === 'true') document.documentElement.setAttribute('data-dyslexic', 'true'); } catch (e) {} })();</script>
-  <link rel="stylesheet" href="./styles.css?v=20260817-5" />
+  <link rel="stylesheet" href="./styles.css?v=20260903-news-1" />
 </head>
 <body>
   <header class="global-header">
@@ -52,22 +52,94 @@
     </header>
 
     <main class="page-stack">
-      <section class="content-panel">
-        <div class="panel-heading">
-          <div>
-            <h2>Newsroom</h2>
-          </div>
+      <section class="news-placeholder-list" aria-label="Upcoming news coverage">
+        <div class="news-category-preview" role="tablist" aria-label="News categories">
+          <button class="news-category-button is-active" type="button" role="tab" aria-selected="true" aria-controls="news-headlines" data-news-category="headlines">Headlines</button>
+          <button class="news-category-button" type="button" role="tab" aria-selected="false" aria-controls="news-elections" data-news-category="elections">Elections</button>
+          <button class="news-category-button" type="button" role="tab" aria-selected="false" aria-controls="news-forecast-updates" data-news-category="forecast-updates">Forecast Updates</button>
+          <button class="news-category-button" type="button" role="tab" aria-selected="false" aria-controls="news-bills" data-news-category="bills">Bills</button>
+          <button class="news-category-button" type="button" role="tab" aria-selected="false" aria-controls="news-fact-checks" data-news-category="fact-checks">Fact Checks</button>
+          <button class="news-category-button" type="button" role="tab" aria-selected="false" aria-controls="news-courts-law" data-news-category="courts-law">Courts &amp; Law</button>
+          <button class="news-category-button" type="button" role="tab" aria-selected="false" aria-controls="news-data-desk" data-news-category="data-desk">Data Desk</button>
+          <button class="news-category-button" type="button" role="tab" aria-selected="false" aria-controls="news-opinion" data-news-category="opinion">Opinion</button>
         </div>
-        <div class="two-column-grid">
-          <div class="subpanel tall">
-            <h3>Latest coverage placeholder</h3>
-            <p>This slot can hold headlines, live reporting notes, or article previews later.</p>
+
+        <article class="news-placeholder-card" id="news-headlines" role="tabpanel" data-news-panel="headlines">
+          <span class="card-tag">Coming soon</span>
+          <h2>Headlines</h2>
+          <p>Fast, source-forward political headlines and major civic updates will appear here.</p>
+        </article>
+        <article class="news-placeholder-card" id="news-elections" role="tabpanel" data-news-panel="elections" hidden>
+          <span class="card-tag">Coming soon</span>
+          <h2>Elections</h2>
+          <p>Election previews, race updates, ballot information, and results coverage will appear here.</p>
+        </article>
+        <article class="news-placeholder-card" id="news-forecast-updates" role="tabpanel" data-news-panel="forecast-updates" hidden>
+          <span class="card-tag">Coming soon</span>
+          <h2>Forecast Updates</h2>
+          <p>Model notes, release updates, rating changes, and forecast explainers will appear here.</p>
+        </article>
+        <article class="news-placeholder-card" id="news-bills" role="tabpanel" data-news-panel="bills" hidden>
+          <div class="news-section-intro">
+            <span class="card-tag">Coming soon</span>
+            <h2>Bills</h2>
+            <p>Major legislation, vote tracking, bill summaries, and policy movement will appear here.</p>
           </div>
-          <div class="subpanel tall">
-            <h3>Analysis placeholder</h3>
-            <p>This area is reserved for explainers, source notes, and editorial context.</p>
+          <div class="bill-placeholder-grid" aria-label="Upcoming bill coverage placeholders">
+            <section class="bill-placeholder-card">
+              <div class="bill-placeholder-meta">
+                <span>Federal</span>
+                <span>Pending coverage</span>
+              </div>
+              <h3>Featured Bill</h3>
+              <p>A highlighted national bill will appear here with a plain-English summary, current status, and next action.</p>
+            </section>
+            <section class="bill-placeholder-card">
+              <div class="bill-placeholder-meta">
+                <span>House</span>
+                <span>Vote tracker</span>
+              </div>
+              <h3>House Legislation</h3>
+              <p>House bills, committee movement, floor votes, and party breakdowns will appear here.</p>
+            </section>
+            <section class="bill-placeholder-card">
+              <div class="bill-placeholder-meta">
+                <span>Senate</span>
+                <span>Vote tracker</span>
+              </div>
+              <h3>Senate Legislation</h3>
+              <p>Senate bills, cloture votes, amendments, and final passage updates will appear here.</p>
+            </section>
+            <section class="bill-placeholder-card">
+              <div class="bill-placeholder-meta">
+                <span>States</span>
+                <span>Policy watch</span>
+              </div>
+              <h3>State Bills</h3>
+              <p>State-level legislation on elections, voting rules, education, courts, and budgets will appear here.</p>
+            </section>
           </div>
-        </div>
+        </article>
+        <article class="news-placeholder-card" id="news-fact-checks" role="tabpanel" data-news-panel="fact-checks" hidden>
+          <span class="card-tag">Coming soon</span>
+          <h2>Fact Checks</h2>
+          <p>Claim reviews, context checks, and evidence-based corrections will appear here.</p>
+        </article>
+        <article class="news-placeholder-card" id="news-courts-law" role="tabpanel" data-news-panel="courts-law" hidden>
+          <span class="card-tag">Coming soon</span>
+          <h2>Courts &amp; Law</h2>
+          <p>Court rulings, legal disputes, election law, and constitutional issues will appear here.</p>
+        </article>
+        <article class="news-placeholder-card" id="news-data-desk" role="tabpanel" data-news-panel="data-desk" hidden>
+          <span class="card-tag">Coming soon</span>
+          <h2>Data Desk</h2>
+          <p>Charts, datasets, polling context, and data-driven civic analysis will appear here.</p>
+        </article>
+        <article class="news-placeholder-card" id="news-opinion" role="tabpanel" data-news-panel="opinion" hidden>
+          <span class="card-tag">Coming soon</span>
+          <h2>Opinion</h2>
+          <p>Clearly labeled commentary, editorials, and perspective pieces will appear here.</p>
+        </article>
       </section>
     </main>
   </div>
@@ -98,6 +170,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script src="./auth-config.js?v=20260830-1"></script>
   <script src="./auth.js?v=20260830-1"></script>
+  <script src="./news.js?v=20260906-1"></script>
   <script src="./nav-dropdown.js"></script>
 </body>
 </html>
