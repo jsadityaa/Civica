@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); if (localStorage.getItem('datahub-dyslexic-ui') === 'true') document.documentElement.setAttribute('data-dyslexic', 'true'); } catch (e) {} })();</script>
-  <link rel="stylesheet" href="./styles.css?v=20260902-midterms-1" />
+  <link rel="stylesheet" href="./styles.css?v=20260909-pending-in-page-title-1" />
 </head>
 <body>
   <header class="global-header">
@@ -64,7 +64,7 @@
     </div>
 
     <header class="site-header">
-      <h1>2026 House of Representatives</h1>
+      <h1>2026 House of Representatives <span class="map-status-badge">Pending</span></h1>
       <nav class="section-nav" aria-label="Page sections">
         <a href="#house-map-section">National Map</a>
         <a href="#house-notes">District Notes</a>
@@ -73,11 +73,6 @@
 
     <main class="page-stack">
       <section id="house-map-section" class="content-panel feature-panel">
-        <div class="panel-heading">
-          <div>
-            <h2>National Map <span class="map-status-badge">Pending</span></h2>
-          </div>
-        </div>
         <div class="ev-bar-card" aria-label="House forecast placeholder">
           <div class="ev-bar-top">
             <div class="ev-side ev-side-left">

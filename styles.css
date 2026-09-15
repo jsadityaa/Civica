@@ -4298,6 +4298,43 @@ html[data-theme="dark"] .team-page .team-page__bio {
     var(--panel);
 }
 
+html:not([data-theme="dark"]) .election-card,
+html:not([data-theme="dark"]) .election-card.featured {
+  border-color: rgba(15, 23, 42, 0.09);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+html:not([data-theme="dark"]) .election-card:hover {
+  border-color: rgba(15, 23, 42, 0.14);
+}
+
+html:not([data-theme="dark"]) .election-card-empty {
+  border-color: rgba(15, 23, 42, 0.08);
+  background:
+    repeating-linear-gradient(135deg, rgba(15, 23, 42, 0.035) 0 1px, transparent 1px 14px),
+    rgba(255, 255, 255, 0.72);
+}
+
+html:not([data-theme="dark"]) .election-card[data-country="us"],
+html:not([data-theme="dark"]) .election-card.featured[data-country="us"],
+html:not([data-theme="dark"]) .election-card-empty[data-country="us"] {
+  border-color: rgba(0, 40, 104, 0.12);
+  background:
+    linear-gradient(120deg, rgba(191, 10, 48, 0.07) 0%, transparent 32%),
+    linear-gradient(28deg, transparent 44%, rgba(0, 40, 104, 0.08) 100%),
+    rgba(255, 255, 255, 0.76);
+}
+
+html:not([data-theme="dark"]) .election-card[data-country="br"],
+html:not([data-theme="dark"]) .election-card.featured[data-country="br"],
+html:not([data-theme="dark"]) .election-card-empty[data-country="br"] {
+  border-color: rgba(0, 126, 48, 0.14);
+  background:
+    linear-gradient(120deg, rgba(0, 156, 59, 0.08) 0%, transparent 34%),
+    linear-gradient(28deg, transparent 46%, rgba(255, 223, 0, 0.12) 100%),
+    rgba(255, 255, 255, 0.76);
+}
+
 .card-tag {
   display: inline-block;
   margin-bottom: 12px;
@@ -4599,10 +4636,6 @@ html:not([data-theme="dark"]) .bill-placeholder-meta span {
   align-items: center;
   gap: 24px;
   margin-bottom: 18px;
-  padding: 20px;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.03);
 }
 
 .brazil-vote-share-copy h3 {
@@ -5065,7 +5098,7 @@ html:not([data-theme="dark"]) .bill-placeholder-meta span {
   position: absolute;
   left: var(--seat-x);
   top: var(--seat-y);
-  width: clamp(8px, 0.88vw, 12px);
+  width: clamp(13px, 1.18vw, 19px);
   aspect-ratio: 1;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 50%;
@@ -5126,7 +5159,7 @@ html:not([data-theme="dark"]) .bill-placeholder-meta span {
 }
 
 .senate-seat-dot {
-  width: 14px;
+  width: 18px;
   aspect-ratio: 1;
   display: inline-block;
   border: 1px solid rgba(255, 255, 255, 0.16);
@@ -5179,6 +5212,10 @@ html:not([data-theme="dark"]) .bill-placeholder-meta span {
   margin: 0 0 16px;
 }
 
+.brazil-governor-map-legend {
+  margin: 0 0 16px;
+}
+
 .legend-swatch.president-lula-lead {
   background: #cc092f;
 }
@@ -5217,6 +5254,48 @@ html:not([data-theme="dark"]) .bill-placeholder-meta span {
   background: rgba(148, 163, 184, 0.42);
 }
 
+.legend-swatch.governor-government {
+  background: #cc092f;
+}
+
+.legend-swatch.governor-opposition {
+  background: #1b4f9c;
+}
+
+.legend-swatch.governor-runoff {
+  background: repeating-linear-gradient(
+    45deg,
+    #cc092f 0 4px,
+    #cc092f 4px 6px,
+    #1b4f9c 6px 10px,
+    #1b4f9c 10px 12px
+  );
+}
+
+.legend-swatch.governor-pending {
+  background: rgba(148, 163, 184, 0.42);
+}
+
+.governor-state {
+  fill: rgba(148, 163, 184, 0.34);
+}
+
+.governor-state.governor-government {
+  fill: #cc092f;
+}
+
+.governor-state.governor-opposition {
+  fill: #1b4f9c;
+}
+
+.governor-state.governor-runoff {
+  fill: rgba(148, 163, 184, 0.42);
+}
+
+.governor-state.is-active {
+  fill: rgba(148, 163, 184, 0.52);
+}
+
 .brazil-donut-chart {
   width: 148px;
   aspect-ratio: 1;
@@ -5225,12 +5304,7 @@ html:not([data-theme="dark"]) .bill-placeholder-meta span {
   border-radius: 50%;
   background:
     radial-gradient(circle at center, var(--panel) 0 48%, transparent 49%),
-    conic-gradient(
-      rgba(204, 9, 47, 0.84) 0 35%,
-      rgba(27, 79, 156, 0.82) 35% 62%,
-      rgba(243, 112, 33, 0.78) 62% 82%,
-      rgba(148, 163, 184, 0.38) 82% 100%
-    );
+    conic-gradient(rgba(148, 163, 184, 0.44) 0 100%);
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.08),
     0 16px 30px rgba(0, 0, 0, 0.18);
@@ -5312,9 +5386,7 @@ html:not([data-theme="dark"]) .bill-placeholder-meta span {
   padding: 16px;
   border: 1px solid var(--border);
   border-radius: 18px;
-  background:
-    linear-gradient(135deg, var(--party-color-soft), transparent 48%),
-    rgba(255, 255, 255, 0.035);
+  background: var(--panel);
 }
 
 .candidate-profile-card::before {
@@ -5331,9 +5403,7 @@ html:not([data-theme="dark"]) .bill-placeholder-meta span {
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 16px;
-  background:
-    linear-gradient(135deg, var(--party-color-soft), rgba(148, 163, 184, 0.12)),
-    var(--panel);
+  background: var(--panel-2);
 }
 
 .candidate-profile-image img {
@@ -5425,10 +5495,6 @@ html:not([data-theme="dark"]) .brazil-state.is-active {
   fill: rgba(255, 223, 0, 0.48);
 }
 
-html:not([data-theme="dark"]) .brazil-vote-share-card {
-  background: rgba(255, 255, 255, 0.62);
-}
-
 html:not([data-theme="dark"]) .brazil-congress-mini-stats div,
 html:not([data-theme="dark"]) .brazil-congress-board-card,
 html:not([data-theme="dark"]) .brazil-congress-snapshot-card,
@@ -5451,9 +5517,7 @@ html:not([data-theme="dark"]) .brazil-congress-tabs {
 }
 
 html:not([data-theme="dark"]) .candidate-profile-card {
-  background:
-    linear-gradient(135deg, var(--party-color-soft), transparent 48%),
-    rgba(255, 255, 255, 0.6);
+  background: var(--panel);
 }
 
 @media (max-width: 860px) {
@@ -5654,6 +5718,15 @@ html:not([data-theme="dark"]) .midterm-map-label {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   vertical-align: middle;
+}
+
+.site-header h1 .map-status-badge,
+.site-shell > .site-header h1 .map-status-badge {
+  position: relative;
+  top: -0.12em;
+  margin-left: 14px;
+  font-size: 12px !important;
+  letter-spacing: 0.08em !important;
 }
 
 html:not([data-theme="dark"]) .map-status-badge {
@@ -19334,4 +19407,24 @@ html[data-theme="dark"] .reset-password-form input {
     justify-items: center;
     text-align: center;
   }
+}
+
+/* Election pages: avoid wrapping every chart/module in one oversized outer panel. */
+.site-shell > .page-stack > .content-panel {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent !important;
+  box-shadow: none;
+}
+
+.site-shell > .page-stack > .content-panel > .panel-heading:first-child {
+  margin-bottom: 18px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.site-shell > .page-stack > .content-panel > .panel-heading:first-child:only-child {
+  margin-bottom: 0;
 }

@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2026 Brazil General Election | Polycivic</title>
+  <title>2026 Brazil Governors | Polycivic</title>
   <link rel="icon" type="image/png" href="./favicon.png" />
   <link rel="shortcut icon" href="./favicon.ico">
   <link rel="apple-touch-icon-precomposed" sizes="180x180" href="./apple-touch-icon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
   <link rel="manifest" href="./site.webmanifest" />
   <meta name="theme-color" content="#10131b" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); if (localStorage.getItem('datahub-dyslexic-ui') === 'true') document.documentElement.setAttribute('data-dyslexic', 'true'); } catch (e) {} })();</script>
-  <link rel="stylesheet" href="./styles.css?v=20260909-single-section-nav-removed-1" />
+  <link rel="stylesheet" href="./styles.css?v=20260913-governor-party-colors-1" />
 </head>
 <body class="country-theme-brazil">
   <header class="global-header">
@@ -47,72 +48,87 @@
 
   <div class="site-shell">
     <div class="election-package-header">
-      <div class="election-year-strip election-year-strip--brazil" aria-label="2026 Brazil general election">
+      <div class="election-year-strip election-year-strip--brazil" aria-label="2026 Brazil gubernatorial elections">
         <span class="year-block green">2</span>
         <span class="year-block yellow">0</span>
         <span class="year-block green">2</span>
         <span class="year-block yellow">6</span>
       </div>
       <nav class="election-package-nav" aria-label="2026 Brazil election pages">
-        <a href="/brazil-2026" class="election-package-link active">Overview</a>
+        <a href="/brazil-2026" class="election-package-link">Overview</a>
         <a href="/brazil-president-2026" class="election-package-link">President</a>
         <a href="/brazil-congress-2026" class="election-package-link">Congress</a>
-        <a href="/brazil-governors-2026" class="election-package-link">Governors</a>
+        <a href="/brazil-governors-2026" class="election-package-link active">Governors</a>
         <span class="election-package-link election-package-link-disabled" aria-disabled="true">State Legislatures</span>
       </nav>
     </div>
 
-    <header class="site-header midterm-hero brazil-hero">
-      <h1>2026 Brazil General Election</h1>
+    <header class="site-header">
+      <h1>2026 Brazil Governors <span class="map-status-badge">Pending</span></h1>
     </header>
 
     <main class="page-stack">
-      <section id="article" class="content-panel midterm-overview-panel brazil-overview-panel">
+      <section id="brazil-governor-map-section" class="content-panel feature-panel brazil-overview-panel">
         <div class="panel-heading">
           <div>
-            <h2>Overview</h2>
+            <p class="map-context-note">Each state and the Federal District elect one governor and vice-governor ticket by popular vote. If no ticket wins more than 50% of valid votes, the top two advance to a runoff.</p>
           </div>
         </div>
-        <p class="byline">Written by Aditya Poduri</p>
-        <div class="article-layout">
-          <article class="article-placeholder article-body">
-            <h3>2026 Brazil Election Summary</h3>
-            <p>Brazil's 2026 general election is scheduled for Sunday, October 4, 2026, with a possible runoff on Sunday, October 25. Voters will elect the president and vice president, the full Chamber of Deputies, two-thirds of the Senate, governors, and state legislatures.</p>
-            <p>The election is one of the biggest political events in Latin America. It will test President Luiz Inácio Lula da Silva's government, the strength of Brazil's right wing after Jair Bolsonaro, and the balance of power across Congress and the states.</p>
 
-            <h3>Why It Matters</h3>
-            <p>Brazil is the largest country in Latin America, so its elections often shape regional politics, trade, climate policy, and relations with the United States, China, and Europe. The 2026 vote will decide whether Lula's coalition can keep governing, or whether the opposition can turn dissatisfaction into national power.</p>
-            <p>The election also matters because Brazil is still working through the political aftershocks of the Bolsonaro era. Bolsonaro himself is barred from running, but his movement remains a major force and is expected to influence the presidential race, Congress, and many state contests.</p>
-
-            <h3>Political Background</h3>
-            <p>Lula first led Brazil from 2003 to 2011, returned to national politics after years of legal battles, and won the presidency again in 2022. His narrow victory over Bolsonaro brought the left back to power, but it did not end Brazil's deep political divide.</p>
-            <p>Bolsonaro's defeat was followed by a turbulent period for the Brazilian right. He was later ruled ineligible to run again before 2030, forcing his supporters to rally around other figures. That makes 2026 both a referendum on Lula and a test of whether Bolsonarism can survive without Bolsonaro on the ballot.</p>
-
-            <h3>How the Election Works</h3>
-            <p>Brazil uses a two-round system for president and governors. If no candidate wins more than half of the valid votes in the first round, the top two candidates move to a runoff three weeks later.</p>
-            <p>Congress is split between the Chamber of Deputies and the Federal Senate. Every Chamber seat is up in 2026, while two-thirds of the Senate is on the ballot. Senate races are statewide, while Chamber seats are elected through a proportional system that gives parties seats based on their vote share in each state.</p>
-            <p>State legislatures are the most complex part of the election. They include more than 1,000 seats across Brazil's states and the Federal District, so Polycivic will likely treat them as a high-level tracker first before adding deeper state-by-state detail.</p>
-
-            <h3>Polycivic Coverage</h3>
-            <p>Polycivic will expand this page with presidential, congressional, gubernatorial, and state legislative coverage as the election approaches.</p>
-          </article>
-
-          <aside class="article-rail" aria-label="2026 Brazil election sidebar">
-            <div class="rail-card">
-              <h3>At a Glance</h3>
-              <div class="rail-stats">
-                <div><span>Election Day</span><strong>Oct. 4, 2026</strong></div>
-                <div><span>Possible runoff</span><strong>Oct. 25, 2026</strong></div>
-                <div><span>President</span><strong>On ballot</strong></div>
-                <div><span>Congress</span><strong>On ballot</strong></div>
-                <div><span>Governors</span><strong>On ballot</strong></div>
-                <div><span>State Legislatures</span><strong>On ballot</strong></div>
+        <div class="map-legend brazil-governor-map-legend" aria-label="Governor map legend">
+          <div class="legend-group">
+            <span class="legend-title">Government</span>
+            <div class="legend-stack">
+              <div class="legend-swatches">
+                <span class="legend-swatch governor-government"></span>
+              </div>
+              <div class="legend-subtext">
+                <span>Won</span>
               </div>
             </div>
-          </aside>
+          </div>
+          <div class="legend-group">
+            <span class="legend-title">Opposition</span>
+            <div class="legend-stack">
+              <div class="legend-swatches">
+                <span class="legend-swatch governor-opposition"></span>
+              </div>
+              <div class="legend-subtext">
+                <span>Won</span>
+              </div>
+            </div>
+          </div>
+          <div class="legend-group">
+            <span class="legend-title">Runoff</span>
+            <div class="legend-stack">
+              <div class="legend-swatches">
+                <span class="legend-swatch governor-runoff"></span>
+              </div>
+              <div class="legend-subtext">
+                <span>Top two</span>
+              </div>
+            </div>
+          </div>
+          <div class="legend-group">
+            <span class="legend-title">Pending</span>
+            <div class="legend-stack">
+              <div class="legend-swatches">
+                <span class="legend-swatch governor-pending"></span>
+              </div>
+              <div class="legend-subtext">
+                <span>No results</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-stage">
+          <div class="national-map-shell midterm-map-shell brazil-map-shell">
+            <svg id="brazil-governor-map" class="midterm-empty-svg-map" viewBox="0 0 1200 1000" preserveAspectRatio="xMidYMid meet" aria-label="Empty Brazil governor map placeholder"></svg>
+            <div class="tooltip" id="brazil-governor-map-tooltip"></div>
+          </div>
         </div>
       </section>
-
     </main>
   </div>
 
@@ -142,6 +158,8 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script src="./auth-config.js?v=20260830-1"></script>
   <script src="./auth.js?v=20260830-1"></script>
+  <script src="./brazil-states-geojson.js?v=20260906-1"></script>
+  <script src="./brazil-governors-2026-map.js?v=20260908-brazil-governors-map-1"></script>
   <script src="./nav-dropdown.js"></script>
 </body>
 </html>
