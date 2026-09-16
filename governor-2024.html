@@ -10,6 +10,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
   <link rel="manifest" href="./site.webmanifest" />
   <meta name="theme-color" content="#10131b" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/topojson-client@3"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -63,27 +65,91 @@
     </div>
 
     <header class="site-header">
-      <h1>2024 Governor</h1>
+      <h1>2024 Governor Elections</h1>
+      <nav class="section-nav" aria-label="Page sections">
+        <a href="#governor-map-section">National Map</a>
+      </nav>
     </header>
 
     <main class="page-stack">
-      <section class="content-panel">
+      <section id="governor-map-section" class="content-panel feature-panel">
         <div class="panel-heading">
           <div>
-            <h2>Governor Overview</h2>
+            <h2>National Map</h2>
           </div>
         </div>
-        <div class="two-column-grid">
-          <div class="subpanel tall">
-            <h3>National Governor Picture</h3>
-            <p>Placeholder for gubernatorial results, pickups, and state executive control.</p>
+        <div class="ev-bar-card" aria-label="Governor race win totals">
+          <div class="ev-bar-top">
+            <div class="ev-side ev-side-left">
+              <div class="ev-side-meta">
+                <span class="ev-count" id="governor-dem-count">3</span>
+                <span class="ev-name">Democrats</span>
+              </div>
+            </div>
+            <div class="ev-side ev-side-right">
+              <div class="ev-side-meta ev-side-meta-right">
+                <span class="ev-count" id="governor-rep-count">8</span>
+                <span class="ev-name">Republicans</span>
+              </div>
+            </div>
           </div>
-          <div class="subpanel tall">
-            <h3>Race Notes</h3>
-            <p>Placeholder for your governor-race analysis and state-level context.</p>
+          <div class="ev-bar-wrap">
+            <div class="ev-bar-center-label">
+              <strong>11</strong>
+              <span>races</span>
+            </div>
+            <div class="ev-bar-center-tick" aria-hidden="true"></div>
+            <div class="ev-bar-track">
+              <div class="ev-bar-fill ev-bar-dem" id="governor-bar-dem"></div>
+              <div class="ev-bar-fill ev-bar-rep" id="governor-bar-rep"></div>
+            </div>
+          </div>
+          <div class="ev-bar-bottom">
+            <span class="ev-vote-line ev-vote-line-left" id="governor-votes-dem">3 Democratic wins</span>
+            <span class="ev-total-votes" id="governor-votes-total">11 governor races settled in 2024</span>
+            <span class="ev-vote-line ev-vote-line-right" id="governor-votes-rep">8 Republican wins</span>
+          </div>
+        </div>
+
+        <div class="map-legend" aria-label="Governor map legend">
+          <div class="legend-group">
+            <span class="legend-title">Dem.</span>
+            <div class="legend-stack">
+              <div class="legend-swatches">
+                <span class="legend-swatch dem-win"></span>
+              </div>
+              <div class="legend-subtext">
+                <span>Win</span>
+              </div>
+            </div>
+          </div>
+          <div class="legend-group">
+            <span class="legend-title">Rep.</span>
+            <div class="legend-stack">
+              <div class="legend-swatches">
+                <span class="legend-swatch rep-win"></span>
+                <span class="legend-swatch rep-flip"></span>
+              </div>
+              <div class="legend-subtext">
+                <span>Win</span>
+                <span>Flip</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-stage">
+          <div class="national-map-shell governor-map-shell">
+            <svg id="governor-election-map" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet"></svg>
+            <div class="tooltip" id="governor-map-tooltip"></div>
           </div>
         </div>
       </section>
+
+      <section class="content-panel governor-forecast-panel" aria-label="2024 governor race groups">
+        <div class="state-results-board governor-forecast-board" id="governor-forecast-board"></div>
+      </section>
+
     </main>
   </div>
   <footer id="contact-us" class="civica-homepage__footer">
@@ -112,6 +178,8 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script src="./auth-config.js?v=20260830-1"></script>
   <script src="./auth.js?v=20260830-1"></script>
+  <script src="./governor-2024-data.js?v=20260916-1"></script>
+  <script src="./governor-2024.js?v=20260916-1"></script>
   <script src="./nav-dropdown.js"></script>
 </body>
 </html>

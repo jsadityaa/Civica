@@ -953,26 +953,34 @@ body {
   height: 760px;
 }
 
+.governor-map-shell {
+  height: 760px;
+}
+
 #house-district-map {
   width: 100%;
   height: 100%;
   display: block;
 }
 
-#senate-election-map {
+#senate-election-map,
+#governor-election-map {
   width: 100%;
   height: 100%;
   display: block;
 }
 
-.senate-state {
+.senate-state,
+.governor-state-2024 {
   stroke: rgba(255,255,255,0.9);
   stroke-width: 0.8px;
   transition: filter 0.12s ease;
 }
 
 .senate-state:hover,
-.senate-state.is-active {
+.senate-state.is-active,
+.governor-state-2024:hover,
+.governor-state-2024.is-active {
   filter: brightness(1.08);
   cursor: pointer;
 }
@@ -1383,6 +1391,12 @@ body {
 }
 
 .state-results-grid.house-results-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.state-results-grid.governor-results-grid {
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 16px;
   align-items: start;
@@ -3973,7 +3987,8 @@ html[data-theme="dark"] .team-page .team-page__bio {
 }
 
 @media (max-width: 1480px) {
-  .state-results-grid.house-results-grid {
+  .state-results-grid.house-results-grid,
+  .state-results-grid.governor-results-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
@@ -4867,13 +4882,17 @@ html:not([data-theme="dark"]) .bill-placeholder-meta span {
 
 .brazil-chamber-seat-tile span,
 .brazil-chamber-seat-tile strong,
-.brazil-chamber-seat-tile em {
+.brazil-chamber-seat-tile em,
+.brazil-state-legislature-tile span,
+.brazil-state-legislature-tile strong,
+.brazil-state-legislature-tile em {
   position: relative;
   z-index: 1;
 }
 
 .brazil-chamber-seat-tile span,
-.brazil-chamber-seat-tile .state-abbrev-label {
+.brazil-chamber-seat-tile .state-abbrev-label,
+.brazil-state-legislature-tile .state-abbrev-label {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -4906,7 +4925,8 @@ html:not([data-theme="dark"]) .bill-placeholder-meta span {
   outline-offset: 2px;
 }
 
-.brazil-chamber-seat-tile .state-help-popup {
+.brazil-chamber-seat-tile .state-help-popup,
+.brazil-state-legislature-tile .state-help-popup {
   position: absolute;
   left: 50%;
   bottom: calc(100% + 8px);
@@ -5216,6 +5236,145 @@ html:not([data-theme="dark"]) .bill-placeholder-meta span {
   margin: 0 0 16px;
 }
 
+.brazil-governor-map-legend .legend-subtext span {
+  width: auto;
+  min-width: 52px;
+  white-space: nowrap;
+}
+
+.brazil-state-legislature-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.brazil-state-legislature-summary div,
+.brazil-state-legislature-alignment-grid div,
+.brazil-state-legislature-watch-grid article,
+.brazil-state-legislature-tile {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.brazil-state-legislature-summary div,
+.brazil-state-legislature-alignment-grid div {
+  padding: 14px;
+  border-radius: 16px;
+}
+
+.brazil-state-legislature-summary span,
+.brazil-state-legislature-alignment-grid span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.brazil-state-legislature-summary strong,
+.brazil-state-legislature-alignment-grid strong {
+  display: block;
+  color: var(--text);
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+}
+
+.brazil-state-legislature-map-legend {
+  margin: 18px 0 16px;
+}
+
+.brazil-state-legislature-map-legend .legend-subtext span {
+  width: auto;
+  min-width: 52px;
+  white-space: nowrap;
+}
+
+.brazil-state-legislature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
+  gap: 10px;
+}
+
+.brazil-state-legislature-tile {
+  display: grid;
+  gap: 4px;
+  aspect-ratio: 1;
+  min-height: 0;
+  padding: 12px;
+  border-radius: 16px;
+}
+
+.brazil-state-legislature-tile span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+}
+
+.brazil-state-legislature-tile strong {
+  color: var(--text);
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+}
+
+.brazil-state-legislature-tile em {
+  align-self: end;
+  color: var(--muted);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 950;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.brazil-state-legislature-watch-grid,
+.brazil-state-legislature-alignment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+}
+
+.brazil-state-legislature-watch-grid article {
+  padding: 14px;
+  border-radius: 16px;
+}
+
+.brazil-state-legislature-watch-grid span {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  aspect-ratio: 1;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  color: #072b17;
+  background: #ffdf00;
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.brazil-state-legislature-watch-grid strong {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1.15;
+}
+
+.brazil-state-legislature-watch-grid em,
+.brazil-state-legislature-alignment-grid em {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
 .legend-swatch.president-lula-lead {
   background: #cc092f;
 }
@@ -5276,6 +5435,28 @@ html:not([data-theme="dark"]) .bill-placeholder-meta span {
   background: rgba(148, 163, 184, 0.42);
 }
 
+.legend-swatch.legislature-government {
+  background: #cc092f;
+}
+
+.legend-swatch.legislature-opposition {
+  background: #1b4f9c;
+}
+
+.legend-swatch.legislature-mixed {
+  background: repeating-linear-gradient(
+    45deg,
+    #cc092f 0 4px,
+    #cc092f 4px 6px,
+    #1b4f9c 6px 10px,
+    #1b4f9c 10px 12px
+  );
+}
+
+.legend-swatch.legislature-pending {
+  background: rgba(148, 163, 184, 0.42);
+}
+
 .governor-state {
   fill: rgba(148, 163, 184, 0.34);
 }
@@ -5294,6 +5475,26 @@ html:not([data-theme="dark"]) .bill-placeholder-meta span {
 
 .governor-state.is-active {
   fill: rgba(148, 163, 184, 0.52);
+}
+
+.state-legislature-state {
+  fill: rgba(148, 163, 184, 0.34);
+}
+
+.state-legislature-state.legislature-government {
+  fill: #cc092f;
+}
+
+.state-legislature-state.legislature-opposition {
+  fill: #1b4f9c;
+}
+
+.state-legislature-state.legislature-mixed {
+  fill: rgba(116, 120, 156, 0.54);
+}
+
+.state-legislature-state.is-active {
+  fill: rgba(255, 223, 0, 0.48);
 }
 
 .brazil-donut-chart {
@@ -17123,7 +17324,8 @@ html[data-theme="dark"] .polycivic-account-menu {
   }
 
   .national-map-shell,
-  .senate-map-shell {
+  .senate-map-shell,
+  .governor-map-shell {
     height: 360px !important;
     border-radius: 14px !important;
   }
@@ -17330,6 +17532,7 @@ html[data-theme="dark"] .polycivic-account-menu {
 
   .state-results-grid,
   .state-results-grid.house-results-grid,
+  .state-results-grid.governor-results-grid,
   .house-results-layout .state-results-sidebar {
     grid-template-columns: 1fr !important;
     gap: 12px !important;
@@ -18307,6 +18510,7 @@ html[data-theme="dark"] .polycivic-account-menu {
 
   #national-election-map,
   #senate-election-map,
+  #governor-election-map,
   #state-election-map,
   #exit-polls-map {
     width: 100% !important;
@@ -18381,7 +18585,8 @@ html[data-theme="dark"] .polycivic-account-menu {
   }
 
   .state-results-grid,
-  .state-results-grid.house-results-grid {
+  .state-results-grid.house-results-grid,
+  .state-results-grid.governor-results-grid {
     grid-template-columns: 1fr !important;
     gap: 10px !important;
   }
@@ -19427,4 +19632,30 @@ html[data-theme="dark"] .reset-password-form input {
 
 .site-shell > .page-stack > .content-panel > .panel-heading:first-child:only-child {
   margin-bottom: 0;
+}
+
+html:not([data-theme="dark"]) .brazil-state-legislature-summary div,
+html:not([data-theme="dark"]) .brazil-state-legislature-alignment-grid div,
+html:not([data-theme="dark"]) .brazil-state-legislature-watch-grid article,
+html:not([data-theme="dark"]) .brazil-state-legislature-tile {
+  background: rgba(255, 255, 255, 0.62);
+}
+
+@media (max-width: 768px) {
+  .brazil-state-legislature-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .brazil-state-legislature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .brazil-state-legislature-summary,
+  .brazil-state-legislature-grid,
+  .brazil-state-legislature-watch-grid,
+  .brazil-state-legislature-alignment-grid {
+    grid-template-columns: 1fr;
+  }
 }
