@@ -638,7 +638,6 @@ async function renderExitPolls() {
 
     board.innerHTML = `
       <div class="exit-polls-controls">
-        <div class="exit-polls-filter-label">Browse the full dataset</div>
         <div class="exit-polls-filter-buttons" role="tablist" aria-label="Exit poll categories">
           ${exitPollCategoryDefinitions.map((category) => {
             const isActive = category.id === exitPollCategoryMode;

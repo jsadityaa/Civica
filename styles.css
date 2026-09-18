@@ -974,6 +974,7 @@ body {
 .governor-state-2024 {
   stroke: rgba(255,255,255,0.9);
   stroke-width: 0.8px;
+  cursor: pointer;
   transition: filter 0.12s ease;
 }
 

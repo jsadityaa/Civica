@@ -18,10 +18,10 @@ if (governorData && document.getElementById("governor-dem-count")) {
 
   const labelAdjustments = {
     "Delaware": [16, 6],
-    "New Hampshire": [28, -3],
+    "New Hampshire": [-26, -12],
     "North Carolina": [10, 6],
     "West Virginia": [-8, 8],
-    "Vermont": [22, -6],
+    "Vermont": [25, -6],
     "Washington": [-10, 2]
   };
 
@@ -37,6 +37,10 @@ if (governorData && document.getElementById("governor-dem-count")) {
     if (party === "Dem.") return "dem";
     if (party === "Rep.") return "rep";
     return "ind";
+  }
+
+  function governorCountyHref(stateName) {
+    return `/governor-county-result?name=${encodeURIComponent(stateName)}`;
   }
 
   function tooltipHTML(stateName) {
@@ -207,7 +211,7 @@ if (governorData && document.getElementById("governor-dem-count")) {
                   <tbody>
                     ${section.list.length ? section.list.map((race) => `
                       <tr>
-                        <td><span class="state-link">${race.state}</span></td>
+                        <td><a class="state-link" href="${governorCountyHref(race.state)}">${race.state}</a></td>
                         <td>
                           <span class="margin-box ${race.party === "D" ? "dem-win" : "rep-win"}">
                             ${race.margin}
@@ -270,6 +274,11 @@ if (governorData && document.getElementById("governor-dem-count")) {
         .on("mouseout", (event) => {
           d3.select(event.currentTarget).classed("is-active", false);
           governorTooltip.style("opacity", 0);
+        })
+        .on("click", (event, feature) => {
+          if (raceLookup.has(feature.properties.name)) {
+            window.location.href = governorCountyHref(feature.properties.name);
+          }
         });
 
       governorMapSvg.selectAll(".map-label")
