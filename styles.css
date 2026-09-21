@@ -5243,6 +5243,11 @@ html:not([data-theme="dark"]) .bill-placeholder-meta span {
   white-space: nowrap;
 }
 
+.brazil-governor-balance-bottom {
+  display: block;
+  text-align: center;
+}
+
 .brazil-state-legislature-summary {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));

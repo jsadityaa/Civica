@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /auth-action
+Disallow: /reset-password
+Disallow: /settings
+
+Sitemap: https://polycivic.com/sitemap.xml

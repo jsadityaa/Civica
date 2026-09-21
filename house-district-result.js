@@ -389,11 +389,6 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     return "ind";
   }
 
-  function formatColoredMarginLabel(label, party) {
-    const tone = party === "D" ? "dem" : party === "R" ? "rep" : "ind";
-    return `<span class="detail-stat-margin ${tone}">${label}</span>`;
-  }
-
   async function renderDistrictOutline(district, feature) {
     const subtitle = document.getElementById("house-detail-map-subtitle");
     const svg = d3.select("#house-detail-map");
@@ -452,9 +447,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     document.getElementById("house-detail-summary-portrait").src = getPortrait(district.winnerName);
     document.getElementById("house-detail-summary-portrait").alt = district.winnerName;
 
-    document.getElementById("house-detail-winner").textContent = district.winnerName;
-    document.getElementById("house-detail-district").textContent = district.code;
-    document.getElementById("house-detail-margin").innerHTML = formatColoredMarginLabel(district.marginLabel, district.winnerParty);
+    document.getElementById("house-detail-margin").textContent = district.marginLabel;
 
     const voteBody = document.getElementById("house-detail-vote-body");
     voteBody.innerHTML = district.candidates.map((candidate) => `
@@ -498,9 +491,6 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       `<li><strong>Flip status</strong><span>${district.flipped ? "This district flipped parties in 2024." : "This district stayed with the same party in 2024."}</span></li>`
     ];
     document.getElementById("house-detail-facts").innerHTML = facts.join("");
-
-    document.getElementById("house-detail-context").textContent =
-      `${district.title} was decided by ${district.marginLabel}. ${district.winnerName} won the seat for the ${PARTY_LABELS[district.winnerParty] || district.winnerParty}, and ${district.flipped ? "the result changed party control compared with the previous cycle." : "the seat remained with the same party after the election."}`;
 
     const feature = houseDetailGeojson.features.find((item) => item.properties.code === district.code);
     if (feature) {

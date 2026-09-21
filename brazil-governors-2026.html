@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Track Brazil’s 2026 gubernatorial elections by state, including runoff status, map views, and party bloc context." />
+  <link rel="canonical" href="https://polycivic.com/brazil-governors-2026" />
+  <meta property="og:site_name" content="Polycivic" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="2026 Brazil Gubernatorial Elections | Polycivic" />
+  <meta property="og:description" content="Track Brazil’s 2026 gubernatorial elections by state, including runoff status, map views, and party bloc context." />
+  <meta property="og:url" content="https://polycivic.com/brazil-governors-2026" />
+  <meta name="twitter:card" content="summary_large_image" />
   <title>2026 Brazil Gubernatorial Elections | Polycivic</title>
   <link rel="icon" type="image/png" href="./favicon.png" />
   <link rel="shortcut icon" href="./favicon.ico">
@@ -15,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); if (localStorage.getItem('datahub-dyslexic-ui') === 'true') document.documentElement.setAttribute('data-dyslexic', 'true'); } catch (e) {} })();</script>
-  <link rel="stylesheet" href="./styles.css?v=20260913-governor-party-colors-1" />
+  <link rel="stylesheet" href="./styles.css?v=20260918-brazil-governor-balance-1" />
 </head>
 <body class="country-theme-brazil">
   <header class="global-header">
@@ -72,6 +80,37 @@
         <div class="panel-heading">
           <div>
             <p class="map-context-note">Each state and the Federal District elect one governor and vice-governor ticket by popular vote. If no ticket wins more than 50% of valid votes, the top two advance to a runoff.</p>
+          </div>
+        </div>
+
+        <div class="ev-bar-card congress-balance-bar" aria-label="Brazil gubernatorial race balance">
+          <div class="ev-bar-top">
+            <div class="ev-side ev-side-left">
+              <div class="ev-side-meta">
+                <span class="ev-count">0</span>
+                <span class="ev-name">Government-aligned</span>
+              </div>
+            </div>
+            <div class="ev-side ev-side-right">
+              <div class="ev-side-meta ev-side-meta-right">
+                <span class="ev-count">0</span>
+                <span class="ev-name">Opposition-aligned</span>
+              </div>
+            </div>
+          </div>
+          <div class="ev-bar-wrap">
+            <div class="ev-bar-center-label">
+              <strong>14</strong>
+              <span>majority</span>
+            </div>
+            <div class="ev-bar-center-tick" aria-hidden="true"></div>
+            <div class="ev-bar-track">
+              <div class="ev-bar-fill congress-bar-government" style="flex: 50;"></div>
+              <div class="ev-bar-fill congress-bar-opposition" style="flex: 50;"></div>
+            </div>
+          </div>
+          <div class="ev-bar-bottom brazil-governor-balance-bottom">
+            <span class="ev-total-votes">0 of 27 races called</span>
           </div>
         </div>
 

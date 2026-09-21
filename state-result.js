@@ -658,7 +658,6 @@ function renderSummary(result) {
   const summaryTitle = document.getElementById("detail-summary-title");
   const summaryCallout = document.getElementById("detail-summary-callout");
   const summaryPortrait = document.getElementById("detail-summary-portrait");
-  const winnerName = document.getElementById("detail-winner-name");
   const ev = document.getElementById("detail-ev");
   const margin = document.getElementById("detail-margin");
   const voteBody = document.getElementById("detail-vote-body");
@@ -691,7 +690,6 @@ function renderSummary(result) {
     ? "Race called with certified ward-level reporting."
     : "Race called with certified presidential vote totals.";
   summaryPortrait.src = getCandidatePortrait(winnerFullName);
-  winnerName.textContent = winnerFullName;
   ev.textContent = `${result.ev}`;
   margin.textContent = formatMargin(result);
 

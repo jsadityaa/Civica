@@ -3,13 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2024 Governor County Result</title>
+  <meta name="description" content="Detailed 2024 governor county result with county map, county margins, vote totals, and candidate results." />
+  <meta property="og:site_name" content="Polycivic" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="2024 Governor County Result | Polycivic" />
+  <meta property="og:description" content="Detailed 2024 governor county result with county map, county margins, vote totals, and candidate results." />
+  <meta property="og:url" content="https://polycivic.com/governor-county-result" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>2024 Governor County Result | Polycivic</title>
   <link rel="icon" type="image/png" href="./favicon.png" />
   <link rel="shortcut icon" href="./favicon.ico">
   <link rel="apple-touch-icon-precomposed" sizes="180x180" href="./apple-touch-icon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
   <link rel="manifest" href="./site.webmanifest" />
   <meta name="theme-color" content="#10131b" />
+  <script src="./seo-dynamic.js?v=20260918-1"></script>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://unpkg.com/topojson-client@3"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,7 +31,7 @@
     <div class="global-header-inner">
       <a href="/" class="brand" aria-label="Polycivic home">Polycivic</a>
       <nav class="global-nav" aria-label="Main navigation">
-        <a href="/" class="global-nav-link">Home</a>
+        <a href="/" class="global-nav-link">Features</a>
         <a href="/elections" class="global-nav-link active">Elections</a>
         <a href="/forecasts" class="global-nav-link">Forecasts</a>
         <a href="/news" class="global-nav-link">News</a>
@@ -82,16 +90,11 @@
               <div class="detail-summary-copy">
                 <div class="detail-summary-kicker">Winner</div>
                 <h2 class="detail-summary-title" id="detail-summary-title">Loading result...</h2>
-                <p class="detail-summary-callout" id="detail-summary-callout">Race called with certified statewide totals.</p>
               </div>
               <img class="detail-summary-portrait" id="detail-summary-portrait" alt="Winning candidate portrait" />
             </div>
 
             <div class="detail-stat-row">
-              <div>
-                <span class="detail-stat-label">Winner</span>
-                <strong class="detail-stat-value" id="detail-winner-name">—</strong>
-              </div>
               <div>
                 <span class="detail-stat-label">Margin</span>
                 <strong class="detail-stat-value" id="detail-margin">—</strong>

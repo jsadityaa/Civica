@@ -141,10 +141,8 @@ function renderGovernorSummary(record) {
   document.getElementById("detail-title").textContent = `${record.stateName} Governor`;
   document.getElementById("detail-subtitle").textContent = `County-level results for the 2024 ${record.stateName} governor election.`;
   document.getElementById("detail-summary-card").classList.add(`winner-${winner.tone}`);
-  document.getElementById("detail-summary-title").textContent = `${winner.candidate} won ${record.stateName}`;
-  document.getElementById("detail-summary-callout").textContent = `${winner.candidate} carried the state by ${record.statewide.result}.`;
+  document.getElementById("detail-summary-title").textContent = `${winner.candidate} wins ${record.stateName}.`;
   document.getElementById("detail-summary-portrait").src = governorCandidatePortrait(winner.candidate);
-  document.getElementById("detail-winner-name").textContent = winner.candidate;
   document.getElementById("detail-margin").textContent = record.statewide.result;
 
   document.getElementById("detail-vote-body").innerHTML = rows.map((row, index) => `
