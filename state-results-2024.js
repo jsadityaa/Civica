@@ -154,6 +154,11 @@ function stateResultsHubLink(name) {
   return `./state-result.html?name=${encodeURIComponent(name)}`;
 }
 
+function stateResultsRegionLabel(name) {
+  if (name === "Connecticut") return "Town results";
+  return "County results";
+}
+
 function parsePercent(value) {
   return Number(String(value || "").replace("%", "")) || 0;
 }
@@ -229,6 +234,10 @@ function renderStateResultsHubFallbackGrid() {
       <span class="state-results-shape-card__shape-fallback"></span>
       <span class="state-results-shape-card__name">${state.name}</span>
       <span class="state-results-shape-card__meta">${state.winnerName} - ${state.marginLabel}</span>
+      <span class="state-results-shape-card__links">
+        <span>${stateResultsRegionLabel(state.name)}</span>
+        <span>${state.houseCount ? `${state.houseCount} House ${state.houseCount === 1 ? "district" : "districts"}` : "House detail pending"}</span>
+      </span>
     </a>
   `).join("");
 }
@@ -252,7 +261,7 @@ function renderStateResultsHubGrid() {
       <span class="state-results-shape-card__name">${state.name}</span>
       <span class="state-results-shape-card__meta">${state.winnerName} - ${state.marginLabel}</span>
       <span class="state-results-shape-card__links">
-        <span>County results</span>
+        <span>${stateResultsRegionLabel(state.name)}</span>
         <span>${state.houseCount ? `${state.houseCount} House ${state.houseCount === 1 ? "district" : "districts"}` : "House detail pending"}</span>
       </span>
     </a>

@@ -2,17 +2,23 @@ const COUNTY_RESULTS_URL = "https://raw.githubusercontent.com/tonmcg/US_County_L
 const COUNTY_RESULTS_2020_URL = "https://raw.githubusercontent.com/tonmcg/US_County_Level_Election_Results_08-24/master/2020_US_County_Level_Presidential_Results.csv";
 const COUNTIES_TOPOJSON_URL = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
 const STATES_TOPOJSON_URL = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
+const CT_TOWN_RESULTS_URL = "./data/ct-town-results-2024.json";
+const CT_TOWN_RESULTS_2020_URL = "./data/ct-town-results-2020.json";
+const CT_TOWNS_GEOJSON_URL = "./assets/maps/connecticut-towns.geojson";
 
 const DEM_SHADES = ["#b8d4ec", "#8eb6d9", "#5a96c8", "#2879b5"];
 const REP_SHADES = ["#f1cfcf", "#e49e9e", "#d86a6a", "#cf2f2f"];
 const FALLBACK_FILL = "#2d3138";
 const STATEWIDE_CANDIDATE_RESULTS = window.STATE_CANDIDATE_RESULTS || {};
+const COUNTY_BOARD_PREVIEW_LIMIT = 7;
 const countyResultsCache = new Map();
+const connecticutTownResultsCache = new Map();
 const countyBoardState = {
   rows: [],
   sort: "votes",
-  limit: "25",
-  activeFips: null
+  limit: String(COUNTY_BOARD_PREVIEW_LIMIT),
+  activeFips: null,
+  regionName: "counties"
 };
 
 const CANDIDATE_PORTRAITS = {
@@ -235,6 +241,20 @@ function formatCountyDisplayName(name) {
   return `${base} County`;
 }
 
+function formatCountyAreaName(row) {
+  if (row?.region_type === "town") return String(row.county_name || "").trim();
+  return formatCountyDisplayName(row?.county_name);
+}
+
+function normalizeTownName(name) {
+  return String(name || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
 function formatCountyMarginLabel(row) {
   const winner = getCountyWinner(row) === "Harris" ? "Harris" : "Trump";
   const points = Math.abs(Number(row.per_point_diff) * 100).toFixed(1);
@@ -289,16 +309,19 @@ function renderCountyBoardRows() {
   body.innerHTML = rows
     .map((row) => {
       const shift = formatCountyShift(row.shift);
-      return `
-        <tr class="detail-county-row" data-fips="${row.county_fips}">
-          <td>${formatCountyDisplayName(row.county_name)}</td>
-          <td><span class="detail-county-margin ${getCountyWinner(row) === "Harris" ? "dem" : "rep"}">${formatCountyMarginLabel(row)}</span></td>
-          <td>
+      const shiftMarkup = row.region_type === "town" && !Number.isFinite(row.shift)
+        ? `<span class="detail-county-shift even"><span class="detail-county-shift-badge">—</span></span>`
+        : `
             <span class="detail-county-shift ${shift.direction}">
               <span class="detail-county-shift-arrow" aria-hidden="true"></span>
               <span class="detail-county-shift-badge">${shift.label}</span>
             </span>
-          </td>
+          `;
+      return `
+        <tr class="detail-county-row" data-fips="${row.county_fips}">
+          <td>${formatCountyAreaName(row)}</td>
+          <td><span class="detail-county-margin ${getCountyWinner(row) === "Harris" ? "dem" : "rep"}">${formatCountyMarginLabel(row)}</span></td>
+          <td>${shiftMarkup}</td>
           <td>${formatVotes(row.total_votes)}</td>
           <td>100%</td>
         </tr>
@@ -310,6 +333,22 @@ function renderCountyBoardRows() {
     row.addEventListener("mouseenter", () => setActiveCounty(row.dataset.fips));
     row.addEventListener("mouseleave", () => setActiveCounty(null));
   });
+
+  updateCountyShowAllButton();
+}
+
+function updateCountyShowAllButton() {
+  const button = document.getElementById("detail-county-show-all");
+  if (!button) return;
+
+  const hasOverflow = countyBoardState.rows.length > COUNTY_BOARD_PREVIEW_LIMIT;
+  button.hidden = !hasOverflow;
+  if (!hasOverflow) return;
+
+  const regionName = countyBoardState.regionName || "counties";
+  const showingAll = countyBoardState.limit === "all";
+  button.textContent = showingAll ? `- Show fewer ${regionName}` : `+ Show all ${regionName}`;
+  button.setAttribute("aria-expanded", String(showingAll));
 }
 
 function wireCountyBoardControls() {
@@ -321,24 +360,25 @@ function wireCountyBoardControls() {
     };
   });
 
-  document.querySelectorAll(".detail-county-limit-button").forEach((button) => {
-    button.onclick = () => {
-      countyBoardState.limit = button.dataset.limit;
-      document.querySelectorAll(".detail-county-limit-button").forEach((btn) => btn.classList.toggle("is-active", btn === button));
+  const showAllButton = document.getElementById("detail-county-show-all");
+  if (showAllButton) {
+    showAllButton.onclick = () => {
+      countyBoardState.limit = countyBoardState.limit === "all" ? String(COUNTY_BOARD_PREVIEW_LIMIT) : "all";
       renderCountyBoardRows();
     };
-  });
+  }
 }
 
 function getCountyTooltipHTML(row, stateName) {
   const winner = getCountyWinner(row);
   const demPct = (Number(row.per_dem) * 100).toFixed(1);
   const repPct = (Number(row.per_gop) * 100).toFixed(1);
+  const regionLabel = row.region_type === "town" ? "town" : "presidential";
 
   return `
     <div class="tooltip-header">
-      <div class="tooltip-title">${formatCountyDisplayName(row.county_name)}</div>
-      <div class="tooltip-ev">${stateName} presidential result</div>
+      <div class="tooltip-title">${formatCountyAreaName(row)}</div>
+      <div class="tooltip-ev">${stateName} ${regionLabel} result</div>
     </div>
     <table>
       <thead>
@@ -379,8 +419,20 @@ function getCountyTooltipHTML(row, stateName) {
 
 function getMapRegionLabel(result) {
   if (result.stateName === "District of Columbia") return "Wards";
+  if (result.stateName === "Connecticut") return "Towns";
   if (result.type === "district") return "Counties in the parent state";
   return "Counties";
+}
+
+function setCountyBoardRegionLabels(regionName, shiftLabel) {
+  const heading = document.querySelector("#detail-county-board h2");
+  const areaHeader = document.querySelector(".detail-county-board-table th:first-child");
+  const shiftHeader = document.querySelector(".detail-county-board-table th:nth-child(3)");
+  const singularRegionName = regionName === "Counties" ? "County" : regionName.replace(/s$/, "");
+  countyBoardState.regionName = regionName.toLowerCase();
+  if (heading) heading.textContent = `${regionName} Results`;
+  if (areaHeader) areaHeader.textContent = singularRegionName;
+  if (shiftHeader) shiftHeader.textContent = shiftLabel;
 }
 
 function setMapMode(mode) {
@@ -426,6 +478,38 @@ async function fetchCountyResults(stateName, year = 2024) {
   const filtered = rows.filter(Boolean);
   countyResultsCache.set(cacheKey, filtered);
   return filtered;
+}
+
+async function fetchConnecticutTownResults(year = 2024) {
+  if (connecticutTownResultsCache.has(year)) return connecticutTownResultsCache.get(year);
+
+  const rows = await d3.json(year === 2020 ? CT_TOWN_RESULTS_2020_URL : CT_TOWN_RESULTS_URL);
+  const townResults = rows
+    .map((row) => {
+      const townName = String(row.town || "").trim();
+      const votesDem = Number(row.dem ?? row.harris ?? row.biden ?? 0);
+      const votesGop = Number(row.rep ?? row.trump ?? 0);
+      const totalVotes = Number(row.total || votesDem + votesGop);
+      const perDem = totalVotes ? votesDem / totalVotes : 0;
+      const perGop = totalVotes ? votesGop / totalVotes : 0;
+
+      return {
+        county_fips: `CT-${normalizeTownName(townName)}`,
+        county_name: townName,
+        region_type: "town",
+        votes_dem: votesDem,
+        votes_gop: votesGop,
+        total_votes: totalVotes,
+        per_dem: perDem,
+        per_gop: perGop,
+        per_point_diff: Math.abs(perDem - perGop),
+        percent_in: "100%"
+      };
+    })
+    .sort((a, b) => b.total_votes - a.total_votes);
+
+  connecticutTownResultsCache.set(year, townResults);
+  return townResults;
 }
 
 async function renderCountyMap(result) {
@@ -509,6 +593,61 @@ async function renderCountyMap(result) {
         .attr("x", (_, index) => (index % columns) * (tileWidth + gapX) + 22)
         .attr("y", (_, index) => Math.floor(index / columns) * (tileHeight + gapY) + 68)
         .text((row) => `${getCountyWinner(row) === "Harris" ? "D" : "R"}+${Math.abs(Number(row.per_point_diff) * 100).toFixed(1).replace(/\\.0$/, "")}`);
+
+      return;
+    }
+
+    if (stateName === "Connecticut") {
+      const [townRows, townsGeojson] = await Promise.all([
+        fetchConnecticutTownResults(),
+        d3.json(CT_TOWNS_GEOJSON_URL)
+      ]);
+      const rowByTown = new Map(townRows.map((row) => [normalizeTownName(row.county_name), row]));
+      const features = (townsGeojson.features || [])
+        .map((feature) => ({
+          ...feature,
+          resultRow: rowByTown.get(normalizeTownName(feature.properties?.TOWN_NAME))
+        }))
+        .filter((feature) => feature.resultRow);
+
+      if (!features.length) {
+        mapEmpty.hidden = false;
+        subtitle.textContent = "Town map data is not available for this page yet.";
+        return;
+      }
+
+      mapEmpty.hidden = true;
+      subtitle.textContent = "Connecticut towns shaded by winning margin.";
+
+      const townCollection = { type: "FeatureCollection", features };
+      const projection = d3.geoIdentity().reflectY(true).fitSize([540, 620], townCollection);
+      const path = d3.geoPath(projection);
+
+      svg.append("g")
+        .selectAll("path")
+        .data(features)
+        .enter()
+        .append("path")
+        .attr("class", "detail-county-shape")
+        .attr("data-fips", (feature) => feature.resultRow.county_fips)
+        .attr("d", path)
+        .attr("fill", (feature) => getCountyShade(feature.resultRow))
+        .on("mouseover", (event, feature) => {
+          const row = feature.resultRow;
+          setActiveCounty(row.county_fips);
+          tooltip.style("opacity", 1).html(getCountyTooltipHTML(row, stateName));
+          positionTooltip(event, tooltip);
+        })
+        .on("mousemove", (event) => positionTooltip(event, tooltip))
+        .on("mouseout", () => {
+          tooltip.style("opacity", 0);
+          setActiveCounty(null);
+        });
+
+      svg.append("path")
+        .datum(townCollection)
+        .attr("class", "detail-state-outline")
+        .attr("d", path);
 
       return;
     }
@@ -601,6 +740,7 @@ async function renderCountyBoard(result) {
   empty.hidden = true;
   tableWrap.hidden = false;
   body.innerHTML = "";
+  setCountyBoardRegionLabels("Counties", "Shift from 2020 pres.");
 
   if (result.type === "district") {
     note.textContent = "County shift board unavailable.";
@@ -615,6 +755,34 @@ async function renderCountyBoard(result) {
     empty.hidden = false;
     empty.textContent = "Alaska does not use the same county reporting system here, so a comparable county shift table is not available on this page.";
     tableWrap.hidden = true;
+    return;
+  }
+
+  if (result.stateName === "Connecticut") {
+    const [rows2024, rows2020] = await Promise.all([
+      fetchConnecticutTownResults(2024),
+      fetchConnecticutTownResults(2020)
+    ]);
+    const prevByTown = new Map(rows2020.map((row) => [normalizeTownName(row.county_name), row]));
+    const comparableRows = rows2024.map((row) => {
+      const previous = prevByTown.get(normalizeTownName(row.county_name));
+      if (!previous) return row;
+      const margin2024 = (Number(row.per_dem) - Number(row.per_gop)) * 100;
+      const margin2020 = (Number(previous.per_dem) - Number(previous.per_gop)) * 100;
+      return {
+        ...row,
+        shift: margin2024 - margin2020
+      };
+    });
+
+    setCountyBoardRegionLabels("Towns", "Shift from 2020 pres.");
+    note.textContent = "Town-level presidential margins from the official Connecticut result.";
+    countyBoardState.rows = comparableRows;
+    countyBoardState.sort = "votes";
+    countyBoardState.limit = String(COUNTY_BOARD_PREVIEW_LIMIT);
+    document.querySelectorAll(".detail-county-sort-button").forEach((button) => button.classList.toggle("is-active", button.dataset.sort === "votes"));
+    renderCountyBoardRows();
+    wireCountyBoardControls();
     return;
   }
 
@@ -647,6 +815,9 @@ async function renderCountyBoard(result) {
 
   note.textContent = "County margins and movement since 2020.";
   countyBoardState.rows = comparableRows;
+  countyBoardState.sort = "votes";
+  countyBoardState.limit = String(COUNTY_BOARD_PREVIEW_LIMIT);
+  document.querySelectorAll(".detail-county-sort-button").forEach((button) => button.classList.toggle("is-active", button.dataset.sort === "votes"));
   renderCountyBoardRows();
   wireCountyBoardControls();
 }

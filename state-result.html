@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); if (localStorage.getItem('datahub-dyslexic-ui') === 'true') document.documentElement.setAttribute('data-dyslexic', 'true'); } catch (e) {} })();</script>
-  <link rel="stylesheet" href="./styles.css?v=20260817-5" />
+  <link rel="stylesheet" href="./styles.css?v=20260922-fixed-results-columns" />
 </head>
 <body>
   <header class="global-header">
@@ -142,15 +142,19 @@
                     <button class="detail-county-sort-button" type="button" data-sort="margin">Margin</button>
                     <button class="detail-county-sort-button" type="button" data-sort="shift">Shift</button>
                   </div>
-                  <div class="detail-county-limit" role="group" aria-label="County result count">
-                    <button class="detail-county-limit-button is-active" type="button" data-limit="25">Top 25</button>
-                    <button class="detail-county-limit-button" type="button" data-limit="all">All</button>
-                  </div>
+                  <button class="detail-county-limit-button" id="detail-county-show-all" type="button">+ Show all counties</button>
                 </div>
               </div>
               <div class="detail-county-board-empty" id="detail-county-board-empty" hidden></div>
               <div class="detail-county-board-table-wrap" id="detail-county-board-table-wrap">
                 <table class="detail-county-board-table">
+                  <colgroup>
+                    <col class="detail-county-col-name" />
+                    <col class="detail-county-col-margin" />
+                    <col class="detail-county-col-shift" />
+                    <col class="detail-county-col-votes" />
+                    <col class="detail-county-col-in" />
+                  </colgroup>
                   <thead>
                     <tr>
                       <th>County</th>
@@ -221,7 +225,7 @@
   <script src="./election-data.js"></script>
   <script src="./state-candidate-results.js"></script>
   <script src="./dc-wards-geojson.js?v=2"></script>
-  <script src="./state-result.js"></script>
+  <script src="./state-result.js?v=20260922-result-preview-limit"></script>
   <footer id="contact-us" class="civica-homepage__footer">
       <div class="civica-homepage__footer-inner">
         <div class="civica-homepage__footer-bottom">

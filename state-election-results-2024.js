@@ -8,6 +8,16 @@ const STATE_ELECTION_FIPS_BY_NAME = {
 
 const STATE_ELECTION_DEM_SHADES = ["#b8d4ec", "#8eb6d9", "#5a96c8", "#2879b5"];
 const STATE_ELECTION_REP_SHADES = ["#f1cfcf", "#e49e9e", "#d86a6a", "#cf2f2f"];
+const STATE_ELECTION_LEAD_MODE_STATES = new Set(["Alabama"]);
+const STATE_ELECTION_MAJOR_CITY_LABELS = {
+  Alabama: [
+    { name: "Huntsville", coordinates: [-86.5861, 34.7304] },
+    { name: "Birmingham", coordinates: [-86.8025, 33.5186] },
+    { name: "Tuscaloosa", coordinates: [-87.5692, 33.2098] },
+    { name: "Montgomery", coordinates: [-86.3000, 32.3668] },
+    { name: "Mobile", coordinates: [-88.0431, 30.6954] }
+  ]
+};
 const STATE_ELECTION_HOUSE_OVERRIDES = {
   "AL-03": { winnerParty: "R", fillKey: "Rep", marginLabel: "Uncontested", totalVotesFormatted: "Vote total unavailable" },
   "AL-04": { winnerParty: "R", fillKey: "Rep", marginLabel: "Uncontested", totalVotesFormatted: "Vote total unavailable" },
@@ -37,6 +47,10 @@ function stateElectionCountyShade(row) {
   if (winnerPct >= 60) return shades[2];
   if (winnerPct >= 50) return shades[1];
   return shades[0];
+}
+
+function stateElectionCountyLead(row) {
+  return Math.abs(Number(row.votes_gop || 0) - Number(row.votes_dem || 0));
 }
 
 function stateElectionFormatCountyName(name) {
@@ -227,6 +241,7 @@ function stateElectionRenderPresidentialSummary(stateName) {
   const total = document.getElementById("state-election-presidential-total");
   const body = document.getElementById("state-election-presidential-candidates");
   const card = document.getElementById("state-election-presidential-card");
+  const detailLink = document.getElementById("state-election-presidential-detail-link");
 
   const winnerName = stateElectionWinnerName(result);
   const totalVotes = stateElectionNumberFromVoteString(result.dV) + stateElectionNumberFromVoteString(result.rV);
@@ -237,6 +252,7 @@ function stateElectionRenderPresidentialSummary(stateName) {
   if (ev) ev.textContent = result.ev;
   if (margin) margin.textContent = stateMargin;
   if (total) total.textContent = stateElectionFormatVotes(totalVotes);
+  if (detailLink) detailLink.href = `./state-result.html?name=${encodeURIComponent(stateName)}`;
   if (card) {
     card.classList.remove("winner-dem", "winner-rep");
     card.classList.add(`winner-${winnerTone}`);
@@ -258,7 +274,128 @@ function stateElectionRenderPresidentialSummary(stateName) {
   `).join("");
 }
 
-async function stateElectionRenderCountyMap(stateName, rows) {
+function stateElectionRenderShareCountyMap({ svg, features, stateFeature, rowByFips, path, tooltip, stateName }) {
+  svg.append("g")
+    .selectAll("path")
+    .data(features)
+    .enter()
+    .append("path")
+    .attr("class", "detail-county-shape")
+    .attr("d", path)
+    .attr("fill", (feature) => {
+      const row = rowByFips.get(String(feature.id).padStart(5, "0"));
+      return row ? stateElectionCountyShade(row) : "#2d3138";
+    })
+    .on("mouseover", (event, feature) => {
+      const row = rowByFips.get(String(feature.id).padStart(5, "0"));
+      if (!row) return;
+      tooltip.style("opacity", 1).html(stateElectionCountyTooltipHTML(row, stateName));
+      d3.select(event.currentTarget).classed("is-active", true);
+      stateElectionPositionTooltip(event, tooltip);
+    })
+    .on("mousemove", (event) => stateElectionPositionTooltip(event, tooltip))
+    .on("mouseout", (event) => {
+      d3.select(event.currentTarget).classed("is-active", false);
+      tooltip.style("opacity", 0);
+    });
+
+  svg.append("path")
+    .datum(stateFeature)
+    .attr("class", "detail-state-outline")
+    .attr("d", path);
+}
+
+function stateElectionRenderLeadCountyMap({ svg, features, stateFeature, rowByFips, path, projection, tooltip, stateName }) {
+  const maxLead = d3.max(features, (feature) => {
+    const row = rowByFips.get(String(feature.id).padStart(5, "0"));
+    return row ? stateElectionCountyLead(row) : 0;
+  }) || 1;
+  const radius = d3.scaleSqrt().domain([0, maxLead]).range([2.5, 40]);
+
+  svg.append("g")
+    .selectAll("path")
+    .data(features)
+    .enter()
+    .append("path")
+    .attr("class", "state-election-lead-county-shape")
+    .attr("d", path);
+
+  svg.append("path")
+    .datum(stateFeature)
+    .attr("class", "state-election-lead-state-outline")
+    .attr("d", path);
+
+  const bubbleData = features
+    .map((feature) => {
+      const row = rowByFips.get(String(feature.id).padStart(5, "0"));
+      const centroid = path.centroid(feature);
+      return row ? { feature, row, centroid } : null;
+    })
+    .filter(Boolean)
+    .sort((a, b) => stateElectionCountyLead(b.row) - stateElectionCountyLead(a.row));
+
+  svg.append("g")
+    .selectAll("circle")
+    .data(bubbleData)
+    .enter()
+    .append("circle")
+    .attr("class", (item) => `state-election-lead-bubble ${stateElectionGetCountyWinner(item.row) === "Harris" ? "dem" : "rep"}`)
+    .attr("cx", (item) => item.centroid[0])
+    .attr("cy", (item) => item.centroid[1])
+    .attr("r", (item) => radius(stateElectionCountyLead(item.row)))
+    .on("mouseover", (event, item) => {
+      tooltip.style("opacity", 1).html(stateElectionCountyTooltipHTML(item.row, stateName));
+      d3.select(event.currentTarget).classed("is-active", true);
+      stateElectionPositionTooltip(event, tooltip);
+    })
+    .on("mousemove", (event) => stateElectionPositionTooltip(event, tooltip))
+    .on("mouseout", (event) => {
+      d3.select(event.currentTarget).classed("is-active", false);
+      tooltip.style("opacity", 0);
+    });
+
+  const cityLabels = STATE_ELECTION_MAJOR_CITY_LABELS[stateName] || [];
+  const cityLayer = svg.append("g").attr("class", "state-election-city-labels");
+
+  cityLayer.selectAll("circle")
+    .data(cityLabels)
+    .enter()
+    .append("circle")
+    .attr("cx", (city) => projection(city.coordinates)?.[0] || 0)
+    .attr("cy", (city) => projection(city.coordinates)?.[1] || 0)
+    .attr("r", 2.6);
+
+  cityLayer.selectAll("text")
+    .data(cityLabels)
+    .enter()
+    .append("text")
+    .attr("x", (city) => (projection(city.coordinates)?.[0] || 0) + 5)
+    .attr("y", (city) => (projection(city.coordinates)?.[1] || 0) + 5)
+    .text((city) => city.name);
+}
+
+function stateElectionRenderCityLabels(svg, projection, stateName) {
+  const cityLabels = STATE_ELECTION_MAJOR_CITY_LABELS[stateName] || [];
+  const cityLayer = svg.append("g").attr("class", "state-election-city-labels");
+
+  cityLayer.selectAll("circle")
+    .data(cityLabels)
+    .enter()
+    .append("circle")
+    .attr("cx", (city) => projection(city.coordinates)?.[0] || 0)
+    .attr("cy", (city) => projection(city.coordinates)?.[1] || 0)
+    .attr("r", 2.6);
+
+  cityLayer.selectAll("text")
+    .data(cityLabels)
+    .enter()
+    .append("text")
+    .attr("x", (city) => (projection(city.coordinates)?.[0] || 0) + 5)
+    .attr("y", (city) => (projection(city.coordinates)?.[1] || 0) + 5)
+    .text((city) => city.name);
+}
+
+async function stateElectionRenderCountyMap(stateName, rows, mode = "share") {
   const svg = d3.select("#state-election-presidential-county-map");
   const empty = document.getElementById("state-election-county-empty");
   const tooltip = d3.select("#state-election-map-tooltip");
@@ -293,34 +430,41 @@ async function stateElectionRenderCountyMap(stateName, rows) {
   const projection = d3.geoMercator().fitSize([540, 520], { type: "FeatureCollection", features });
   const path = d3.geoPath(projection);
 
-  svg.append("g")
-    .selectAll("path")
-    .data(features)
-    .enter()
-    .append("path")
-    .attr("class", "detail-county-shape")
-    .attr("d", path)
-    .attr("fill", (feature) => {
-      const row = rowByFips.get(String(feature.id).padStart(5, "0"));
-      return row ? stateElectionCountyShade(row) : "#2d3138";
-    })
-    .on("mouseover", (event, feature) => {
-      const row = rowByFips.get(String(feature.id).padStart(5, "0"));
-      if (!row) return;
-      tooltip.style("opacity", 1).html(stateElectionCountyTooltipHTML(row, stateName));
-      d3.select(event.currentTarget).classed("is-active", true);
-      stateElectionPositionTooltip(event, tooltip);
-    })
-    .on("mousemove", (event) => stateElectionPositionTooltip(event, tooltip))
-    .on("mouseout", (event) => {
-      d3.select(event.currentTarget).classed("is-active", false);
-      tooltip.style("opacity", 0);
-    });
+  const context = { svg, features, stateFeature, rowByFips, path, projection, tooltip, stateName };
+  if (mode === "lead" && STATE_ELECTION_LEAD_MODE_STATES.has(stateName)) {
+    stateElectionRenderLeadCountyMap(context);
+  } else {
+    stateElectionRenderShareCountyMap(context);
+  }
+}
 
-  svg.append("path")
-    .datum(stateFeature)
-    .attr("class", "detail-state-outline")
-    .attr("d", path);
+function stateElectionSetupPresidentialMapMode(stateName, rows) {
+  const control = document.getElementById("state-election-presidential-map-mode");
+  const legend = document.querySelector("#state-election-presidential .detail-map-legend");
+  const leadLegend = document.getElementById("state-election-lead-legend");
+  const copy = document.querySelector("#state-election-presidential .detail-map-head p");
+  if (!control) return;
+
+  const isEnabled = STATE_ELECTION_LEAD_MODE_STATES.has(stateName);
+  control.hidden = !isEnabled;
+  if (!isEnabled) return;
+
+  control.querySelectorAll("[data-map-mode]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const mode = button.dataset.mapMode || "share";
+      control.querySelectorAll("[data-map-mode]").forEach((item) => {
+        item.classList.toggle("is-active", item === button);
+      });
+      if (legend) legend.hidden = mode === "lead";
+      if (leadLegend) leadLegend.hidden = mode !== "lead";
+      if (copy) {
+        copy.textContent = mode === "lead"
+          ? "Circles sized by each county's raw vote lead."
+          : "Counties shaded by 2024 presidential margin.";
+      }
+      await stateElectionRenderCountyMap(stateName, rows, mode);
+    });
+  });
 }
 
 function stateElectionGetHouseDistricts(stateName) {
@@ -393,6 +537,7 @@ function stateElectionRenderHouseDistrictMap(stateName, districts) {
       tooltip.style("opacity", 0);
     });
 
+  stateElectionRenderCityLabels(svg, projection, stateName);
 }
 
 async function stateElectionInit() {
@@ -407,6 +552,7 @@ async function stateElectionInit() {
   try {
     const countyRows = await stateElectionFetchCountyResults(stateName);
     await stateElectionRenderCountyMap(stateName, countyRows);
+    stateElectionSetupPresidentialMapMode(stateName, countyRows);
   } catch (error) {
     const empty = document.getElementById("state-election-county-empty");
     if (empty) empty.hidden = false;
