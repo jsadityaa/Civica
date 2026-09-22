@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="2024 state election results with presidential county results and U.S. House district results." />
+  <link rel="canonical" href="https://polycivic.com/state-election-results-2024" />
+  <meta property="og:site_name" content="Polycivic" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="2024 State Election Results | Polycivic" />
+  <meta property="og:description" content="Browse presidential county results and U.S. House district results for a state." />
+  <meta property="og:url" content="https://polycivic.com/state-election-results-2024" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>2024 State Election Results | Polycivic</title>
+  <link rel="icon" type="image/png" href="./favicon.png" />
+  <link rel="shortcut icon" href="./favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="./apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+  <link rel="manifest" href="./site.webmanifest" />
+  <meta name="theme-color" content="#10131b" />
+  <script src="./seo-dynamic.js?v=20260918-1"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/topojson-client@3"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); if (localStorage.getItem('datahub-dyslexic-ui') === 'true') document.documentElement.setAttribute('data-dyslexic', 'true'); } catch (e) {} })();</script>
+  <link rel="stylesheet" href="./styles.css?v=20260817-5" />
+</head>
+<body>
+  <header class="global-header">
+    <div class="global-header-inner">
+      <a href="/" class="brand" aria-label="Polycivic home">Polycivic</a>
+      <nav class="global-nav" aria-label="Main navigation">
+        <a href="/" class="global-nav-link">Features</a>
+        <a href="/elections" class="global-nav-link active">Elections</a>
+        <a href="/forecasts" class="global-nav-link">Forecasts</a>
+        <div class="global-nav-dropdown">
+          <a href="/#our-mission" class="global-nav-link">About Us</a>
+          <div class="global-nav-dropdown-menu">
+            <a href="/our-mission" class="global-nav-dropdown-link">Our vision</a>
+            <a href="/our-team" class="global-nav-dropdown-link">Our team</a>
+          </div>
+        </div>
+        <a href="/settings" class="global-nav-link">Settings</a>
+      </nav>
+      <div class="account-ui" aria-label="Account controls">
+        <button class="login-button" type="button">Log In</button>
+        <button class="account-button" type="button" aria-label="Account">
+          <span class="account-avatar">A</span>
+          <span class="account-label">Account</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="site-shell">
+    <div class="election-package-header">
+      <div class="election-year-strip" aria-label="2024 general election">
+        <span class="year-block red">2</span>
+        <span class="year-block blue">0</span>
+        <span class="year-block red">2</span>
+        <span class="year-block blue">4</span>
+      </div>
+      <nav class="election-package-nav" aria-label="2024 election pages">
+        <a href="/presidency-2024" class="election-package-link">Presidency</a>
+        <a href="/house-2024" class="election-package-link">House of Representatives</a>
+        <a href="/senate-2024" class="election-package-link">Senate</a>
+        <a href="/governor-2024" class="election-package-link">Governor</a>
+        <a href="/state-results-2024" class="election-package-link active">State Results</a>
+      </nav>
+    </div>
+
+    <main class="page-stack state-election-page">
+      <section class="content-panel state-election-hero">
+        <a class="detail-back-link" href="./state-results-2024.html">← Back to State Results</a>
+        <div class="detail-kicker">2024 State Results</div>
+        <h1 id="state-election-title">Alabama Election Results</h1>
+      </section>
+
+      <section class="content-panel state-election-section" id="state-election-presidential">
+        <div class="panel-heading">
+          <div>
+            <h2>Presidential</h2>
+            <p id="state-election-presidential-summary">County-level result map and certified statewide vote.</p>
+          </div>
+        </div>
+
+        <div class="state-election-two-column">
+          <section class="detail-map-card state-election-map-card">
+            <div class="detail-map-head">
+              <div>
+                <h3>County Map</h3>
+                <p>Counties shaded by 2024 presidential margin.</p>
+              </div>
+              <div class="detail-map-legend" aria-label="Presidential county map legend">
+                <div class="detail-map-legend-row">
+                  <span>Dem.</span>
+                  <div class="detail-map-swatch dem-1"></div>
+                  <div class="detail-map-swatch dem-2"></div>
+                  <div class="detail-map-swatch dem-3"></div>
+                  <div class="detail-map-swatch dem-4"></div>
+                </div>
+                <div class="detail-map-legend-row">
+                  <span>Rep.</span>
+                  <div class="detail-map-swatch rep-1"></div>
+                  <div class="detail-map-swatch rep-2"></div>
+                  <div class="detail-map-swatch rep-3"></div>
+                  <div class="detail-map-swatch rep-4"></div>
+                </div>
+              </div>
+            </div>
+            <div class="detail-map-canvas state-election-map-canvas">
+              <svg id="state-election-presidential-county-map" viewBox="0 0 540 520" preserveAspectRatio="xMidYMid meet"></svg>
+              <div class="detail-map-empty" id="state-election-county-empty" hidden>County map data could not be loaded.</div>
+            </div>
+          </section>
+
+          <section class="state-election-result-card" id="state-election-presidential-card">
+            <div class="state-election-card-kicker">Statewide Result</div>
+            <h3 id="state-election-presidential-title">Loading result...</h3>
+            <div class="state-election-stats">
+              <div>
+                <span>Electoral Votes</span>
+                <strong id="state-election-presidential-ev">-</strong>
+              </div>
+              <div>
+                <span>Margin</span>
+                <strong id="state-election-presidential-margin">-</strong>
+              </div>
+              <div>
+                <span>Total Votes</span>
+                <strong id="state-election-presidential-total">-</strong>
+              </div>
+            </div>
+            <div class="detail-vote-table-wrap">
+              <table class="detail-vote-table">
+                <thead>
+                  <tr>
+                    <th>Candidate</th>
+                    <th>Party</th>
+                    <th>Votes</th>
+                    <th>Pct.</th>
+                  </tr>
+                </thead>
+                <tbody id="state-election-presidential-candidates"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+      </section>
+
+      <section class="content-panel state-election-section" id="state-election-house">
+        <div class="panel-heading">
+          <div>
+            <h2>U.S. House of Representatives</h2>
+            <p>Alabama congressional districts and certified House results.</p>
+          </div>
+        </div>
+
+        <div class="state-election-two-column">
+          <section class="detail-map-card state-election-map-card">
+            <div class="detail-map-head">
+              <div>
+                <h3>Congressional District Map</h3>
+                <p>Districts shaded by winning party.</p>
+              </div>
+              <div class="state-election-simple-legend" aria-label="House district map legend">
+                <span><i class="dem"></i>Democrat</span>
+                <span><i class="rep"></i>Republican</span>
+              </div>
+            </div>
+            <div class="detail-map-canvas state-election-map-canvas">
+              <svg id="state-election-house-district-map" viewBox="0 0 540 520" preserveAspectRatio="xMidYMid meet"></svg>
+              <div class="detail-map-empty" id="state-election-house-empty" hidden>House district map data could not be loaded.</div>
+            </div>
+          </section>
+
+          <section class="state-election-district-list">
+            <div class="state-election-card-kicker">Alabama Districts</div>
+            <div id="state-election-house-list" class="state-election-district-grid"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer id="contact-us" class="civica-homepage__footer">
+    <div class="civica-homepage__footer-inner">
+      <div class="civica-homepage__footer-bottom">
+        <div class="civica-homepage__footer-meta">
+          <p class="civica-homepage__footer-brand">polycivic.com</p>
+          <nav class="civica-homepage__footer-nav" aria-label="Footer navigation">
+            <a href="/contact">Contact Us</a>
+            <a href="/our-mission">Our Vision</a>
+            <a href="/our-team">Our Team</a>
+            <a href="/forum">Blog</a>
+          </nav>
+          <p class="civica-homepage__footer-legal">
+            <a href="/terms">Terms</a>
+            <span>&bull;</span>
+            <a href="/privacy">Privacy Policy</a>
+          </p>
+        </div>
+        <p class="civica-homepage__footer-copy">&copy; 2026 Polycivic. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="./auth-config.js?v=20260830-1"></script>
+  <script src="./auth.js?v=20260830-1"></script>
+  <script src="./nav-dropdown.js"></script>
+  <script src="./election-data.js"></script>
+  <script src="./state-candidate-results.js"></script>
+  <script src="./house-2024-data.js"></script>
+  <script src="./house-districts-geojson.js"></script>
+  <script src="./state-election-results-2024.js"></script>
+</body>
+</html>

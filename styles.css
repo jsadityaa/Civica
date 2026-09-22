@@ -1622,6 +1622,89 @@ body {
   top: 92px;
 }
 
+.state-results-hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 14px;
+}
+
+.state-results-shape-card {
+  display: grid;
+  grid-template-rows: 112px auto auto auto;
+  gap: 8px;
+  min-height: 232px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color 180ms ease, transform 180ms ease, background 180ms ease;
+}
+
+.state-results-shape-card:hover,
+.state-results-shape-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.state-results-shape-card:focus-visible {
+  outline: 2px solid rgba(40, 121, 181, 0.65);
+  outline-offset: 0;
+}
+
+.state-results-shape-card__shape,
+.state-results-shape-card__shape-fallback {
+  display: grid;
+  place-items: center;
+  min-height: 112px;
+}
+
+.state-results-shape-card__svg {
+  display: block;
+  width: 100%;
+  height: 112px;
+}
+
+.state-results-shape-card__path {
+  stroke: rgba(255, 255, 255, 0.92);
+  stroke-width: 1.8px;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.28));
+}
+
+.state-results-shape-card__code,
+.state-results-shape-card__shape-fallback {
+  fill: var(--muted);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-anchor: middle;
+}
+
+.state-results-shape-card__name {
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.state-results-shape-card__meta,
+.state-results-shape-card__links span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.state-results-shape-card__links {
+  display: grid;
+  gap: 4px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 .state-mini-stats {
   display: grid;
   gap: 12px;
@@ -1642,6 +1725,195 @@ body {
 .state-mini-stats strong {
   font-size: 15px;
   line-height: 1.35;
+}
+
+.state-election-page {
+  gap: 20px;
+}
+
+.state-election-hero h1 {
+  margin: 8px 0 0;
+  font-size: clamp(34px, 5vw, 58px);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+
+.state-election-section {
+  display: grid;
+  gap: 20px;
+}
+
+.state-election-two-column {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(360px, 0.85fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.state-election-map-card,
+.state-election-result-card,
+.state-election-district-list {
+  border-radius: 0;
+}
+
+.state-election-map-canvas {
+  min-height: 460px;
+  border-radius: 0;
+}
+
+.state-election-map-canvas svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.state-election-result-card,
+.state-election-district-list {
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+}
+
+.state-election-card-kicker {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.state-election-result-card h3 {
+  margin: 0;
+  font-size: clamp(26px, 3vw, 42px);
+  line-height: 1.04;
+  letter-spacing: -0.05em;
+}
+
+.state-election-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.state-election-stats div {
+  display: grid;
+  gap: 6px;
+}
+
+.state-election-stats span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.state-election-stats strong {
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.state-election-simple-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.state-election-simple-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.state-election-simple-legend i {
+  width: 24px;
+  height: 14px;
+  display: inline-block;
+}
+
+.state-election-simple-legend i.dem {
+  background: #2879b5;
+}
+
+.state-election-simple-legend i.rep {
+  background: #cf2f2f;
+}
+
+.state-election-district-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.state-election-district-card {
+  display: grid;
+  gap: 6px;
+  padding: 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--text);
+  text-decoration: none;
+  background: rgba(255,255,255,0.035);
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+
+.state-election-district-card:hover,
+.state-election-district-card:focus-visible {
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.state-election-district-card--dem {
+  border-left: 5px solid #2879b5;
+}
+
+.state-election-district-card--rep {
+  border-left: 5px solid #cf2f2f;
+}
+
+.state-election-district-card--ind {
+  border-left: 5px solid #c8a24a;
+}
+
+.state-election-district-card strong {
+  font-size: 18px;
+  line-height: 1.15;
+}
+
+.state-election-district-card span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.state-election-district-code {
+  color: var(--text) !important;
+  font-size: 12px !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.state-election-district-shape {
+  transition: filter 0.12s ease;
+}
+
+.state-election-district-shape:hover {
+  cursor: pointer;
+  filter: brightness(1.08);
+}
+
+.state-election-district-label {
+  fill: #fff;
+  font-size: 20px;
+  font-weight: 900;
+  text-anchor: middle;
+  pointer-events: none;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
 }
 
 .state-side-list {
