@@ -1728,7 +1728,7 @@ body {
 }
 
 .state-election-page {
-  gap: 20px;
+  gap: 34px;
 }
 
 .state-election-hero h1 {
@@ -1745,7 +1745,7 @@ body {
 
 .state-election-two-column {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(360px, 0.85fr);
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.62fr);
   gap: 18px;
   align-items: start;
 }
@@ -1753,12 +1753,21 @@ body {
 .state-election-map-card,
 .state-election-result-card,
 .state-election-district-list {
-  border-radius: 0;
+  border-radius: 18px;
+}
+
+.state-election-map-card {
+  order: 2;
+}
+
+.state-election-result-card,
+.state-election-district-list {
+  order: 1;
 }
 
 .state-election-map-canvas {
-  min-height: 460px;
-  border-radius: 0;
+  min-height: 340px;
+  border-radius: 14px;
 }
 
 .state-election-map-canvas svg {
@@ -1774,6 +1783,16 @@ body {
   padding: 20px;
   border: 1px solid var(--border);
   background: var(--panel);
+}
+
+.state-election-result-card.winner-dem {
+  border-color: rgba(40, 121, 181, 0.28);
+  background: rgba(40, 121, 181, 0.12);
+}
+
+.state-election-result-card.winner-rep {
+  border-color: rgba(207, 47, 47, 0.28);
+  background: rgba(207, 47, 47, 0.12);
 }
 
 .state-election-card-kicker {
@@ -1855,6 +1874,7 @@ body {
   gap: 6px;
   padding: 14px;
   border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
   color: var(--text);
   text-decoration: none;
   background: rgba(255,255,255,0.035);
@@ -1907,13 +1927,9 @@ body {
   filter: brightness(1.08);
 }
 
-.state-election-district-label {
-  fill: #fff;
-  font-size: 20px;
-  font-weight: 900;
-  text-anchor: middle;
-  pointer-events: none;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+.state-election-district-shape.is-active {
+  filter: brightness(1.08);
+  stroke-width: 2.1px;
 }
 
 .state-side-list {

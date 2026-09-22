@@ -58,6 +58,120 @@ function stateElectionFormatPresidentialMargin(row) {
   return `${winner === "Harris" ? "D" : "R"}+${points < 1 ? points.toFixed(2) : points.toFixed(1)}`;
 }
 
+function stateElectionPositionTooltip(event, tooltip) {
+  const node = tooltip.node();
+  if (!node) return;
+
+  const width = node.offsetWidth;
+  const height = node.offsetHeight;
+  let left = event.clientX - width / 2;
+  let top = event.clientY + 18;
+
+  left = Math.max(12, Math.min(left, window.innerWidth - width - 12));
+  top = Math.min(top, window.innerHeight - height - 12);
+
+  tooltip.style("left", `${left}px`).style("top", `${top}px`);
+}
+
+function stateElectionCountyTooltipHTML(row, stateName) {
+  const winner = stateElectionGetCountyWinner(row);
+  const demPct = (Number(row.per_dem) * 100).toFixed(1);
+  const repPct = (Number(row.per_gop) * 100).toFixed(1);
+
+  return `
+    <div class="tooltip-header">
+      <div class="tooltip-title">${stateElectionFormatCountyName(row.county_name)}</div>
+      <div class="tooltip-ev">${stateName} presidential result</div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align:left;">Candidate</th>
+          <th>Party</th>
+          <th>Votes</th>
+          <th>Pct.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="${winner === "Trump" ? "winner-row" : ""}">
+          <td>
+            <div class="tooltip-candidate">
+              <span class="tooltip-candidate-bar rep"></span>
+              <span>Donald J. Trump</span>
+            </div>
+          </td>
+          <td>Rep.</td>
+          <td>${stateElectionFormatVotes(row.votes_gop)}</td>
+          <td>${repPct}%</td>
+        </tr>
+        <tr class="${winner === "Harris" ? "winner-row" : ""}">
+          <td>
+            <div class="tooltip-candidate">
+              <span class="tooltip-candidate-bar dem"></span>
+              <span>Kamala Harris</span>
+            </div>
+          </td>
+          <td>Dem.</td>
+          <td>${stateElectionFormatVotes(row.votes_dem)}</td>
+          <td>${demPct}%</td>
+        </tr>
+      </tbody>
+    </table>
+  `;
+}
+
+function stateElectionCandidatePartyLabel(candidate) {
+  const labels = {
+    D: "Democrat",
+    R: "Republican",
+    I: "Independent",
+    LB: "Libertarian",
+    G: "Green"
+  };
+
+  return labels[candidate.party] || candidate.partyName || candidate.party || "";
+}
+
+function stateElectionCandidatePartyTone(candidate) {
+  if (candidate.party === "D") return "dem";
+  if (candidate.party === "R") return "rep";
+  return "ind";
+}
+
+function stateElectionHouseTooltipHTML(district) {
+  const rows = (district.candidates || []).map((candidate) => `
+    <tr class="${candidate.winner ? "winner-row" : ""}">
+      <td>
+        <div class="tooltip-candidate">
+          <span class="tooltip-candidate-bar ${stateElectionCandidatePartyTone(candidate)}"></span>
+          <span>${candidate.name}</span>${candidate.incumbent ? `<span class="tooltip-incumbent">Inc.</span>` : ""}
+        </div>
+      </td>
+      <td>${stateElectionCandidatePartyLabel(candidate)}</td>
+      <td>${district.uncontested || Number(candidate.votes) === 0 ? "-" : candidate.votesFormatted}</td>
+      <td>${district.uncontested || Number(candidate.votes) === 0 ? "-" : `${candidate.pctFormatted}%`}</td>
+    </tr>
+  `).join("");
+
+  return `
+    <div class="tooltip-header">
+      <div class="tooltip-title">${district.title}</div>
+      <div class="tooltip-ev">100% in</div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align:left;">Candidate</th>
+          <th>Party</th>
+          <th>Votes</th>
+          <th>Pct.</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+  `;
+}
+
 function stateElectionFormatStateMargin(result) {
   const harrisPct = Number(result.dP || 0);
   const trumpPct = Number(result.rP || 0);
@@ -108,21 +222,25 @@ function stateElectionRenderPresidentialSummary(stateName) {
   if (!result) return;
 
   const title = document.getElementById("state-election-presidential-title");
-  const summary = document.getElementById("state-election-presidential-summary");
   const ev = document.getElementById("state-election-presidential-ev");
   const margin = document.getElementById("state-election-presidential-margin");
   const total = document.getElementById("state-election-presidential-total");
   const body = document.getElementById("state-election-presidential-candidates");
+  const card = document.getElementById("state-election-presidential-card");
 
   const winnerName = stateElectionWinnerName(result);
   const totalVotes = stateElectionNumberFromVoteString(result.dV) + stateElectionNumberFromVoteString(result.rV);
   const stateMargin = stateElectionFormatStateMargin(result);
+  const winnerTone = winnerName === "Kamala Harris" ? "dem" : "rep";
 
   if (title) title.textContent = `${winnerName} wins ${stateName}.`;
-  if (summary) summary.textContent = `${winnerName} carried ${stateName} by ${stateMargin}.`;
   if (ev) ev.textContent = result.ev;
   if (margin) margin.textContent = stateMargin;
   if (total) total.textContent = stateElectionFormatVotes(totalVotes);
+  if (card) {
+    card.classList.remove("winner-dem", "winner-rep");
+    card.classList.add(`winner-${winnerTone}`);
+  }
   if (!body) return;
 
   const rows = [
@@ -143,6 +261,7 @@ function stateElectionRenderPresidentialSummary(stateName) {
 async function stateElectionRenderCountyMap(stateName, rows) {
   const svg = d3.select("#state-election-presidential-county-map");
   const empty = document.getElementById("state-election-county-empty");
+  const tooltip = d3.select("#state-election-map-tooltip");
   if (svg.empty() || !window.topojson) return;
 
   svg.selectAll("*").remove();
@@ -184,6 +303,18 @@ async function stateElectionRenderCountyMap(stateName, rows) {
     .attr("fill", (feature) => {
       const row = rowByFips.get(String(feature.id).padStart(5, "0"));
       return row ? stateElectionCountyShade(row) : "#2d3138";
+    })
+    .on("mouseover", (event, feature) => {
+      const row = rowByFips.get(String(feature.id).padStart(5, "0"));
+      if (!row) return;
+      tooltip.style("opacity", 1).html(stateElectionCountyTooltipHTML(row, stateName));
+      d3.select(event.currentTarget).classed("is-active", true);
+      stateElectionPositionTooltip(event, tooltip);
+    })
+    .on("mousemove", (event) => stateElectionPositionTooltip(event, tooltip))
+    .on("mouseout", (event) => {
+      d3.select(event.currentTarget).classed("is-active", false);
+      tooltip.style("opacity", 0);
     });
 
   svg.append("path")
@@ -218,6 +349,7 @@ function stateElectionRenderHouseList(districts) {
 function stateElectionRenderHouseDistrictMap(stateName, districts) {
   const svg = d3.select("#state-election-house-district-map");
   const empty = document.getElementById("state-election-house-empty");
+  const tooltip = d3.select("#state-election-map-tooltip");
   if (svg.empty()) return;
 
   svg.selectAll("*").remove();
@@ -247,18 +379,20 @@ function stateElectionRenderHouseDistrictMap(stateName, districts) {
     .attr("d", path)
     .attr("fill", (feature) => stateElectionHouseFill(districtByCode.get(feature.properties.code)?.fillKey))
     .attr("stroke", "rgba(255,255,255,0.9)")
-    .attr("stroke-width", 1.4);
+    .attr("stroke-width", 1.4)
+    .on("mouseover", (event, feature) => {
+      const district = districtByCode.get(feature.properties.code);
+      if (!district) return;
+      tooltip.style("opacity", 1).html(stateElectionHouseTooltipHTML(district));
+      d3.select(event.currentTarget).classed("is-active", true);
+      stateElectionPositionTooltip(event, tooltip);
+    })
+    .on("mousemove", (event) => stateElectionPositionTooltip(event, tooltip))
+    .on("mouseout", (event) => {
+      d3.select(event.currentTarget).classed("is-active", false);
+      tooltip.style("opacity", 0);
+    });
 
-  svg.append("g")
-    .selectAll("text")
-    .data(features)
-    .enter()
-    .append("text")
-    .attr("class", "state-election-district-label")
-    .attr("x", (feature) => path.centroid(feature)[0])
-    .attr("y", (feature) => path.centroid(feature)[1])
-    .attr("dy", "0.35em")
-    .text((feature) => feature.properties.district);
 }
 
 async function stateElectionInit() {
