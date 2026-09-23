@@ -1863,13 +1863,57 @@ body {
 }
 
 .state-election-result-card.winner-dem {
-  border-color: rgba(40, 121, 181, 0.28);
-  background: rgba(40, 121, 181, 0.12);
+  border-color: rgba(40, 121, 181, 0.95);
+  background: #2879b5;
 }
 
 .state-election-result-card.winner-rep {
-  border-color: rgba(207, 47, 47, 0.28);
-  background: rgba(207, 47, 47, 0.12);
+  border-color: rgba(207, 47, 47, 0.95);
+  background: #cf2f2f;
+}
+
+.state-election-result-card.winner-dem,
+.state-election-result-card.winner-rep,
+.state-election-result-card.winner-dem .state-election-stats span,
+.state-election-result-card.winner-rep .state-election-stats span,
+.state-election-result-card.winner-dem .detail-vote-table th,
+.state-election-result-card.winner-rep .detail-vote-table th,
+.state-election-result-card.winner-dem .candidate-name-inline,
+.state-election-result-card.winner-rep .candidate-name-inline {
+  color: rgba(255,255,255,0.94);
+}
+
+.state-election-result-card.winner-dem .detail-vote-table-wrap,
+.state-election-result-card.winner-rep .detail-vote-table-wrap {
+  border-color: rgba(255,255,255,0.20);
+  background: rgba(8,11,16,0.10);
+}
+
+.state-election-result-card.winner-dem .detail-vote-table th,
+.state-election-result-card.winner-dem .detail-vote-table td,
+.state-election-result-card.winner-rep .detail-vote-table th,
+.state-election-result-card.winner-rep .detail-vote-table td {
+  border-bottom-color: rgba(255,255,255,0.17);
+}
+
+.state-election-result-card.winner-dem .detail-vote-table .winner-row td,
+.state-election-result-card.winner-rep .detail-vote-table .winner-row td {
+  color: #fff;
+}
+
+.state-election-result-card.winner-dem .state-election-detail-button,
+.state-election-result-card.winner-rep .state-election-detail-button {
+  border-color: rgba(255,255,255,0.28);
+  color: #fff;
+  background: rgba(255,255,255,0.13);
+}
+
+.state-election-result-card.winner-dem .state-election-detail-button:hover,
+.state-election-result-card.winner-dem .state-election-detail-button:focus-visible,
+.state-election-result-card.winner-rep .state-election-detail-button:hover,
+.state-election-result-card.winner-rep .state-election-detail-button:focus-visible {
+  border-color: rgba(255,255,255,0.42);
+  background: rgba(255,255,255,0.20);
 }
 
 .state-election-card-kicker {
