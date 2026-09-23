@@ -148,10 +148,7 @@ const STATE_RESULTS_HUB_CODE_BY_NAME = STATE_RESULTS_HUB_ORDER.reduce((codes, [c
 }, {});
 
 function stateResultsHubLink(name) {
-  if (name === "Alabama") {
-    return "./state-election-results-2024.html?name=Alabama";
-  }
-  return `./state-result.html?name=${encodeURIComponent(name)}`;
+  return `./state-election-results-2024.html?name=${encodeURIComponent(name)}`;
 }
 
 function stateResultsRegionLabel(name) {

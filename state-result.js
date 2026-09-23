@@ -255,6 +255,21 @@ function normalizeTownName(name) {
     .toLowerCase();
 }
 
+function wardKeyFromRow(row) {
+  const nameMatch = String(row.county_name || "").match(/Ward\s+([1-8])/i);
+  if (nameMatch) return nameMatch[1];
+
+  const fipsMatch = String(row.county_fips || "").match(/([1-8])$/);
+  return fipsMatch ? fipsMatch[1] : "";
+}
+
+function wardKeyFromFeature(feature) {
+  const properties = feature.properties || {};
+  const ward = properties.WARD_ID || properties.WARD || properties.NAME || feature.id || "";
+  const match = String(ward).match(/([1-8])$/);
+  return match ? match[1] : "";
+}
+
 function formatCountyMarginLabel(row) {
   const winner = getCountyWinner(row) === "Harris" ? "Harris" : "Trump";
   const points = Math.abs(Number(row.per_point_diff) * 100).toFixed(1);
@@ -519,7 +534,7 @@ async function renderCountyMap(result) {
   const subtitle = document.getElementById("detail-map-subtitle");
   const stateName = result.stateName;
 
-  if (svg.empty() || !window.d3 || !window.topojson) return;
+  if (svg.empty() || !window.d3) return;
 
   svg.selectAll("*").remove();
   setMapMode(
@@ -531,11 +546,16 @@ async function renderCountyMap(result) {
   try {
     if (stateName === "District of Columbia") {
       const countyRows = await fetchCountyResults(stateName, 2024);
-      const wardRows = countyRows
-        .slice()
-        .sort((a, b) => Number(a.county_fips) - Number(b.county_fips));
+      const wardsGeojson = window.DC_WARDS_GEOJSON;
+      const rowByWard = new Map(countyRows.map((row) => [wardKeyFromRow(row), row]));
+      const features = (wardsGeojson?.features || [])
+        .map((feature) => ({
+          ...feature,
+          resultRow: rowByWard.get(wardKeyFromFeature(feature))
+        }))
+        .filter((feature) => feature.resultRow);
 
-      if (!wardRows.length) {
+      if (!features.length) {
         mapEmpty.hidden = false;
         subtitle.textContent = "Ward-level map data is not available for this page yet.";
         return;
@@ -544,27 +564,21 @@ async function renderCountyMap(result) {
       mapEmpty.hidden = true;
       subtitle.textContent = "District of Columbia wards shaded by winning margin.";
 
-      const tileGroup = svg.append("g").attr("transform", "translate(40, 42)");
-      const columns = 2;
-      const tileWidth = 204;
-      const tileHeight = 96;
-      const gapX = 26;
-      const gapY = 18;
+      const wardCollection = { type: "FeatureCollection", features };
+      const projection = d3.geoIdentity().reflectY(true).fitSize([540, 540], wardCollection);
+      const path = d3.geoPath(projection);
 
-      tileGroup.selectAll("rect")
-        .data(wardRows)
+      svg.append("g")
+        .selectAll("path")
+        .data(features)
         .enter()
-        .append("rect")
+        .append("path")
         .attr("class", "detail-county-shape")
-        .attr("data-fips", (row) => row.county_fips)
-        .attr("x", (_, index) => (index % columns) * (tileWidth + gapX))
-        .attr("y", (_, index) => Math.floor(index / columns) * (tileHeight + gapY))
-        .attr("rx", 18)
-        .attr("ry", 18)
-        .attr("width", tileWidth)
-        .attr("height", tileHeight)
-        .attr("fill", (row) => getCountyShade(row))
-        .on("mouseover", (event, row) => {
+        .attr("data-fips", (feature) => feature.resultRow.county_fips)
+        .attr("d", path)
+        .attr("fill", (feature) => getCountyShade(feature.resultRow))
+        .on("mouseover", (event, feature) => {
+          const row = feature.resultRow;
           setActiveCounty(row.county_fips);
           tooltip.style("opacity", 1).html(getCountyTooltipHTML(row, stateName));
           positionTooltip(event, tooltip);
@@ -575,27 +589,25 @@ async function renderCountyMap(result) {
           setActiveCounty(null);
         });
 
-      tileGroup.selectAll(".detail-ward-label")
-        .data(wardRows)
-        .enter()
-        .append("text")
-        .attr("class", "detail-ward-label")
-        .attr("x", (_, index) => (index % columns) * (tileWidth + gapX) + 22)
-        .attr("y", (_, index) => Math.floor(index / columns) * (tileHeight + gapY) + 38)
-        .attr("text-anchor", "start")
-        .text((row) => row.county_name.replace(" District of Columbia", ""));
+      svg.append("path")
+        .datum(wardCollection)
+        .attr("class", "detail-state-outline")
+        .attr("d", path);
 
-      tileGroup.selectAll(".detail-ward-subvalue")
-        .data(wardRows)
+      svg.append("g")
+        .attr("class", "state-election-ward-labels")
+        .selectAll("text")
+        .data(features)
         .enter()
         .append("text")
-        .attr("class", "detail-ward-subvalue")
-        .attr("x", (_, index) => (index % columns) * (tileWidth + gapX) + 22)
-        .attr("y", (_, index) => Math.floor(index / columns) * (tileHeight + gapY) + 68)
-        .text((row) => `${getCountyWinner(row) === "Harris" ? "D" : "R"}+${Math.abs(Number(row.per_point_diff) * 100).toFixed(1).replace(/\\.0$/, "")}`);
+        .attr("x", (feature) => path.centroid(feature)[0])
+        .attr("y", (feature) => path.centroid(feature)[1] + 4)
+        .text((feature) => `Ward ${wardKeyFromFeature(feature)}`);
 
       return;
     }
+
+    if (!window.topojson) return;
 
     if (stateName === "Connecticut") {
       const [townRows, townsGeojson] = await Promise.all([

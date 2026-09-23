@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); if (localStorage.getItem('datahub-dyslexic-ui') === 'true') document.documentElement.setAttribute('data-dyslexic', 'true'); } catch (e) {} })();</script>
-  <link rel="stylesheet" href="./styles.css?v=20260922-state-detail-button" />
+  <link rel="stylesheet" href="./styles.css?v=20260922-dc-ward-map" />
 </head>
 <body>
   <header class="global-header">
@@ -85,11 +85,11 @@
         </div>
 
         <div class="state-election-two-column">
-          <section class="detail-map-card state-election-map-card">
+          <section class="detail-map-card state-election-map-card" id="state-election-presidential-map-card">
             <div class="detail-map-head">
               <div>
-                <h3>County Map</h3>
-                <p>Counties shaded by 2024 presidential margin.</p>
+                <h3 id="state-election-presidential-map-title">County Map</h3>
+                <p id="state-election-presidential-map-copy">Counties shaded by 2024 presidential margin.</p>
               </div>
               <div class="state-election-map-mode" id="state-election-presidential-map-mode" hidden>
                 <button class="state-election-map-mode-button is-active" type="button" data-map-mode="share">Vote Share</button>
@@ -172,7 +172,7 @@
         </div>
 
         <div class="state-election-two-column">
-          <section class="detail-map-card state-election-map-card">
+          <section class="detail-map-card state-election-map-card" id="state-election-house-map-card">
             <div class="detail-map-head">
               <div>
                 <h3>Congressional District Map</h3>
@@ -190,7 +190,7 @@
           </section>
 
           <section class="state-election-district-list">
-            <div class="state-election-card-kicker">Alabama Districts</div>
+            <div class="state-election-card-kicker" id="state-election-house-kicker">Districts</div>
             <div id="state-election-house-list" class="state-election-district-grid"></div>
           </section>
         </div>
@@ -231,6 +231,7 @@
   <script src="./state-candidate-results.js"></script>
   <script src="./house-2024-data.js"></script>
   <script src="./house-districts-geojson.js"></script>
-  <script src="./state-election-results-2024.js?v=20260922-presidential-portraits"></script>
+  <script src="./dc-wards-geojson.js?v=2"></script>
+  <script src="./state-election-results-2024.js?v=20260923-city-label-placement"></script>
 </body>
 </html>

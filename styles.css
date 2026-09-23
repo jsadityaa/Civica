@@ -1981,6 +1981,13 @@ html:not([data-theme="dark"]) .state-election-detail-button:focus-visible {
   gap: 10px;
 }
 
+.state-election-empty-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
 .state-election-district-card {
   display: grid;
   gap: 6px;
@@ -2101,6 +2108,21 @@ html:not([data-theme="dark"]) .state-election-detail-button:focus-visible {
   letter-spacing: 0;
 }
 
+.state-election-ward-labels {
+  pointer-events: none;
+}
+
+.state-election-ward-labels text {
+  fill: rgba(255,255,255,0.94);
+  paint-order: stroke;
+  stroke: rgba(8, 11, 16, 0.9);
+  stroke-width: 3px;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-anchor: middle;
+}
+
 html:not([data-theme="dark"]) .state-election-lead-county-shape {
   fill: rgba(17, 24, 39, 0.025);
   stroke: rgba(17, 24, 39, 0.18);
@@ -2123,6 +2145,11 @@ html:not([data-theme="dark"]) .state-election-lead-bubble.dem {
 html:not([data-theme="dark"]) .state-election-city-labels circle {
   fill: rgba(17, 24, 39, 0.92);
   stroke: rgba(255, 255, 255, 0.95);
+}
+
+html:not([data-theme="dark"]) .state-election-ward-labels text {
+  fill: rgba(17, 24, 39, 0.92);
+  stroke: rgba(255, 255, 255, 0.96);
 }
 
 html:not([data-theme="dark"]) .state-election-city-labels text {
