@@ -8,6 +8,10 @@ const STATE_ELECTION_FIPS_BY_NAME = {
 
 const STATE_ELECTION_DEM_SHADES = ["#b8d4ec", "#8eb6d9", "#5a96c8", "#2879b5"];
 const STATE_ELECTION_REP_SHADES = ["#f1cfcf", "#e49e9e", "#d86a6a", "#cf2f2f"];
+const STATE_ELECTION_CANDIDATE_PORTRAITS = {
+  "Kamala Harris": "https://upload.wikimedia.org/wikipedia/commons/4/41/Kamala_Harris_Vice_Presidential_Portrait.jpg",
+  "Donald Trump": "https://upload.wikimedia.org/wikipedia/commons/5/56/Donald_Trump_official_portrait.jpg"
+};
 const STATE_ELECTION_LEAD_MODE_STATES = new Set(["Alabama"]);
 const STATE_ELECTION_MAJOR_CITY_LABELS = {
   Alabama: [
@@ -266,7 +270,12 @@ function stateElectionRenderPresidentialSummary(stateName) {
 
   body.innerHTML = rows.map((row) => `
     <tr class="${row.winner ? "winner-row" : ""}">
-      <td><span class="candidate-name-inline ${row.tone}">${row.name}</span></td>
+      <td>
+        <div class="detail-candidate-cell">
+          <img class="detail-candidate-photo" src="${STATE_ELECTION_CANDIDATE_PORTRAITS[row.name]}" alt="${row.name}" />
+          <span class="candidate-name-inline ${row.tone}">${row.name}</span>
+        </div>
+      </td>
       <td>${row.party}</td>
       <td>${row.votes}</td>
       <td>${row.pct}</td>
