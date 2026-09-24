@@ -110,7 +110,33 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     return "#c8a24a";
   }
 
+  function getMapFitFeature(feature) {
+    const geometry = feature?.geometry;
+    if (!geometry || geometry.type !== "MultiPolygon") return feature;
+
+    const largestPolygon = geometry.coordinates
+      .map((coordinates) => ({
+        type: "Feature",
+        properties: feature.properties || {},
+        geometry: {
+          type: "Polygon",
+          coordinates
+        }
+      }))
+      .sort((a, b) => d3.geoArea(b) - d3.geoArea(a))[0];
+
+    return largestPolygon || feature;
+  }
+
+  function createMapProjection(feature) {
+    return d3.geoMercator().fitExtent([[18, 18], [522, 402]], getMapFitFeature(feature));
+  }
+
   const COUNTIES_TOPOJSON_URL = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
+  const CONNECTICUT_TOWNS_GEOJSON_URL = "./assets/maps/connecticut-towns.geojson";
+  const COUNTY_SUBDIVISION_GEOJSON_URLS = {
+    CT: "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/1/query?where=STATE%3D%2709%27&outFields=GEOID%2CNAME%2CBASENAME%2CSTATE%2CCOUNTY&returnGeometry=true&f=geojson&outSR=4326"
+  };
   const STATE_FIPS = {
     AL: "01",
     AK: "02",
@@ -246,6 +272,14 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       .trim();
   }
 
+  function normalizeTownName(name) {
+    return String(name || "")
+      .toLowerCase()
+      .replace(/&/g, "and")
+      .replace(/[^a-z0-9]+/g, " ")
+      .trim();
+  }
+
   function getPartyName(party) {
     return PARTY_LABELS[party] || party || "Other";
   }
@@ -325,8 +359,70 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     };
   }
 
+  function normalizeDistrictTownRow(row) {
+    const totalVotes = Number(row.totalVotes || 0);
+    const candidates = (row.candidates || [])
+      .map((candidate) => {
+        const votes = Number(candidate.votes || 0);
+        const pct = Number.isFinite(Number(candidate.pct)) && Number(candidate.pct) > 0
+          ? Number(candidate.pct)
+          : totalVotes > 0
+            ? (votes / totalVotes) * 100
+            : 0;
+        return {
+          ...candidate,
+          votes,
+          pct,
+          partyName: candidate.partyName || getPartyName(candidate.party)
+        };
+      })
+      .sort((a, b) => Number(b.votes || 0) - Number(a.votes || 0));
+    const first = candidates[0];
+    const second = candidates[1];
+    const margin = first && second
+      ? Math.abs(Number(first.pct || 0) - Number(second.pct || 0))
+      : first
+        ? Number(first.pct || 0)
+        : 0;
+    const winnerParty = getWinnerParty(candidates);
+    const marginLabel = first
+      ? `${winnerParty === "D" ? "D" : winnerParty === "R" ? "R" : "I"}+${formatCompactNumber(margin)}`
+      : "";
+
+    return {
+      ...row,
+      candidates,
+      totalVotes,
+      winnerParty,
+      margin,
+      marginLabel
+    };
+  }
+
   function getCaliforniaCountyFill(row) {
     return getCountyFill(row);
+  }
+
+  function getDominantCountyRow(rows, threshold = 0.95) {
+    const totalVotes = rows.reduce((sum, row) => sum + Number(row.totalVotes || 0), 0);
+    if (!totalVotes) return null;
+
+    const dominantRow = rows
+      .slice()
+      .sort((a, b) => Number(b.totalVotes || 0) - Number(a.totalVotes || 0))[0];
+
+    return Number(dominantRow?.totalVotes || 0) / totalVotes >= threshold ? dominantRow : null;
+  }
+
+  function getVisibleCountyRows(rows) {
+    const dominantRow = getDominantCountyRow(rows);
+    if (!dominantRow) return rows;
+
+    const totalVotes = rows.reduce((sum, row) => sum + Number(row.totalVotes || 0), 0);
+    return rows.filter((row) => {
+      const share = totalVotes ? Number(row.totalVotes || 0) / totalVotes : 0;
+      return row === dominantRow || share >= 0.01;
+    });
   }
 
   function positionTooltip(event, tooltip) {
@@ -435,9 +531,39 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
 
     svg.selectAll("*").remove();
 
-    const projection = d3.geoMercator().fitSize([540, 420], feature);
+    const displayFeature = getMapFitFeature(feature);
+    const projection = createMapProjection(feature);
     const path = d3.geoPath().projection(projection);
-    const districtPath = path(feature);
+    const districtPath = path(displayFeature);
+    const dominantRow = getDominantCountyRow(rows);
+
+    if (dominantRow) {
+      svg.append("path")
+        .datum(displayFeature)
+        .attr("class", "detail-county-shape house-detail-county")
+        .attr("data-fips", dominantRow.countyFips)
+        .attr("d", districtPath)
+        .attr("fill", getCountyFill(dominantRow))
+        .attr("stroke", "rgba(255,255,255,0.95)")
+        .attr("stroke-width", 2.1)
+        .on("mouseover", (event) => {
+          tooltip.style("opacity", 1).html(californiaCountyTooltipHTML(dominantRow, district));
+          positionTooltip(event, tooltip);
+        })
+        .on("mousemove", (event) => positionTooltip(event, tooltip))
+        .on("mouseout", () => {
+          tooltip.style("opacity", 0);
+        });
+
+      if (subtitle) {
+        subtitle.textContent = `${district.title} shaded by the dominant county result.`;
+      }
+      if (legend) {
+        legend.hidden = false;
+      }
+
+      return true;
+    }
 
     const defs = svg.append("defs");
     defs.append("clipPath")
@@ -470,7 +596,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       });
 
     svg.append("path")
-      .datum(feature)
+      .datum(displayFeature)
       .attr("class", "house-detail-shape")
       .attr("d", districtPath)
       .attr("fill", "none")
@@ -479,6 +605,88 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
 
     if (subtitle) {
       subtitle.textContent = `${district.title} counties shaded by the winning county vote share.`;
+    }
+    if (legend) {
+      legend.hidden = false;
+    }
+
+    return true;
+  }
+
+  async function renderDistrictTownMap(district, feature) {
+    const unitData = window.HOUSE_DISTRICT_COUNTY_RESULTS?.[district.code];
+    const subtitle = document.getElementById("house-detail-map-subtitle");
+    const legend = document.getElementById("house-detail-map-legend");
+    const svg = d3.select("#house-detail-map");
+    const tooltip = d3.select("#house-detail-map-tooltip");
+    const geojsonUrl = COUNTY_SUBDIVISION_GEOJSON_URLS[district.state];
+    if (!unitData?.townRows?.length || !geojsonUrl || svg.empty()) {
+      return false;
+    }
+
+    const rows = unitData.townRows
+      .map((row) => normalizeDistrictTownRow(row))
+      .filter((row) => row.townGeoId || row.town);
+
+    if (!rows.length) {
+      return false;
+    }
+
+    const useConnecticutTownShapes = district.state === "CT";
+    const rowByGeoId = new Map(rows.map((row) => [String(row.townGeoId), row]));
+    const rowByTownName = new Map(rows.map((row) => [normalizeTownName(row.town), row]));
+    const townGeojson = useConnecticutTownShapes
+      ? await d3.json(CONNECTICUT_TOWNS_GEOJSON_URL)
+      : window.HOUSE_TOWN_GEOJSON?.[district.state] || await d3.json(geojsonUrl);
+    const getTownRow = (townFeature) => {
+      if (useConnecticutTownShapes) {
+        return rowByTownName.get(normalizeTownName(townFeature.properties?.TOWN_NAME));
+      }
+      return rowByGeoId.get(String(townFeature.properties?.GEOID || ""));
+    };
+    const townFeatures = (townGeojson.features || [])
+      .filter((townFeature) => getTownRow(townFeature));
+
+    if (!townFeatures.length) {
+      return false;
+    }
+
+    svg.selectAll("*").remove();
+
+    const townCollection = {
+      type: "FeatureCollection",
+      features: townFeatures
+    };
+    const projection = useConnecticutTownShapes
+      ? d3.geoIdentity().reflectY(true).fitExtent([[18, 18], [522, 402]], townCollection)
+      : d3.geoMercator().fitExtent([[18, 18], [522, 402]], townCollection);
+    const path = d3.geoPath().projection(projection);
+    const townLayer = svg.append("g");
+
+    townLayer.selectAll("path")
+      .data(townFeatures)
+      .enter()
+      .append("path")
+      .attr("class", "detail-county-shape house-detail-county")
+      .attr("data-geoid", (townFeature) => townFeature.properties?.GEOID || townFeature.properties?.TOWN_NAME)
+      .attr("d", path)
+      .attr("fill", (townFeature) => {
+        const row = getTownRow(townFeature);
+        return row ? getCountyFill(row) : "#2d3138";
+      })
+      .on("mouseover", (event, townFeature) => {
+        const row = getTownRow(townFeature);
+        if (!row) return;
+        tooltip.style("opacity", 1).html(californiaCountyTooltipHTML({ ...row, county: row.town }, district));
+        positionTooltip(event, tooltip);
+      })
+      .on("mousemove", (event) => positionTooltip(event, tooltip))
+      .on("mouseout", () => {
+        tooltip.style("opacity", 0);
+      });
+
+    if (subtitle) {
+      subtitle.textContent = `${district.title} towns shaded by the winning town vote share.`;
     }
     if (legend) {
       legend.hidden = false;
@@ -519,9 +727,39 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
 
     svg.selectAll("*").remove();
 
-    const projection = d3.geoMercator().fitSize([540, 420], feature);
+    const displayFeature = getMapFitFeature(feature);
+    const projection = createMapProjection(feature);
     const path = d3.geoPath().projection(projection);
-    const districtPath = path(feature);
+    const districtPath = path(displayFeature);
+    const dominantRow = getDominantCountyRow(rows);
+
+    if (dominantRow) {
+      svg.append("path")
+        .datum(displayFeature)
+        .attr("class", "detail-county-shape house-detail-county")
+        .attr("data-fips", dominantRow.countyFips)
+        .attr("d", districtPath)
+        .attr("fill", getCountyFill(dominantRow))
+        .attr("stroke", "rgba(255,255,255,0.95)")
+        .attr("stroke-width", 2.1)
+        .on("mouseover", (event) => {
+          tooltip.style("opacity", 1).html(californiaCountyTooltipHTML(dominantRow, district));
+          positionTooltip(event, tooltip);
+        })
+        .on("mousemove", (event) => positionTooltip(event, tooltip))
+        .on("mouseout", () => {
+          tooltip.style("opacity", 0);
+        });
+
+      if (subtitle) {
+        subtitle.textContent = `${district.title} shaded by the dominant county result.`;
+      }
+      if (legend) {
+        legend.hidden = false;
+      }
+
+      return true;
+    }
 
     const defs = svg.append("defs");
     defs.append("clipPath")
@@ -554,7 +792,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       });
 
     svg.append("path")
-      .datum(feature)
+      .datum(displayFeature)
       .attr("class", "house-detail-shape")
       .attr("d", districtPath)
       .attr("fill", "none")
@@ -582,6 +820,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       return false;
     }
 
+    setUnitBoardLabels("County");
     board.hidden = false;
     body.innerHTML = countyData.counties
       .slice()
@@ -599,6 +838,42 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     return true;
   }
 
+  function setUnitBoardLabels(unitLabel) {
+    const title = document.getElementById("house-detail-unit-board-title");
+    const label = document.getElementById("house-detail-unit-board-label");
+    if (title) title.textContent = `${unitLabel} Results`;
+    if (label) label.textContent = unitLabel;
+  }
+
+  function renderDistrictTownBoard(district) {
+    const board = document.getElementById("house-detail-county-board");
+    const body = document.getElementById("house-detail-county-board-body");
+    if (!board || !body) return false;
+
+    const unitData = window.HOUSE_DISTRICT_COUNTY_RESULTS?.[district.code];
+    if (!unitData?.townRows?.length) {
+      return false;
+    }
+
+    const rows = unitData.townRows.map((row) => normalizeDistrictTownRow(row));
+
+    setUnitBoardLabels("Town");
+    board.hidden = false;
+    body.innerHTML = rows
+      .sort((a, b) => b.totalVotes - a.totalVotes || a.town.localeCompare(b.town))
+      .map((row) => `
+        <tr class="detail-county-row">
+          <td>${row.town}</td>
+          <td><span class="detail-county-margin ${row.winnerParty === "D" ? "dem" : row.winnerParty === "R" ? "rep" : "ind"}">${row.marginLabel}</span></td>
+          <td>${formatNumber(row.totalVotes)}</td>
+          <td>100%</td>
+        </tr>
+      `)
+      .join("");
+
+    return true;
+  }
+
   function renderDistrictCountyBoard(district) {
     const board = document.getElementById("house-detail-county-board");
     const body = document.getElementById("house-detail-county-board-body");
@@ -609,9 +884,13 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       return false;
     }
 
+    const rows = getVisibleCountyRows(
+      countyData.rows.map((row) => normalizeDistrictCountyRow(district, row))
+    );
+
+    setUnitBoardLabels("County");
     board.hidden = false;
-    body.innerHTML = countyData.rows
-      .map((row) => normalizeDistrictCountyRow(district, row))
+    body.innerHTML = rows
       .sort((a, b) => b.totalVotes - a.totalVotes || a.county.localeCompare(b.county))
       .map((row) => `
         <tr class="detail-county-row">
@@ -638,8 +917,8 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     if (!feature || svg.empty()) return;
 
     const renderedCountyMap = district.code.startsWith("CA-")
-      ? await renderCaliforniaCountyMap(district, feature) || await renderDistrictCountyMap(district, feature)
-      : await renderDistrictCountyMap(district, feature);
+      ? await renderCaliforniaCountyMap(district, feature) || await renderDistrictTownMap(district, feature) || await renderDistrictCountyMap(district, feature)
+      : await renderDistrictTownMap(district, feature) || await renderDistrictCountyMap(district, feature);
 
     if (renderedCountyMap) return;
 
@@ -648,12 +927,13 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       legend.hidden = true;
     }
 
-    const projection = d3.geoMercator().fitSize([540, 420], feature);
+    const displayFeature = getMapFitFeature(feature);
+    const projection = createMapProjection(feature);
     const path = d3.geoPath().projection(projection);
     svg.selectAll("*").remove();
 
     svg.append("path")
-      .datum(feature)
+      .datum(displayFeature)
       .attr("class", "house-detail-shape")
       .attr("d", path)
       .attr("fill", districtFill(district.fillKey))
@@ -739,16 +1019,16 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     if (feature) {
       renderDistrictOutline(district, feature).then(() => {
         if (district.code.startsWith("CA-")) {
-          renderCaliforniaCountyBoard(district) || renderDistrictCountyBoard(district);
+          renderCaliforniaCountyBoard(district) || renderDistrictTownBoard(district) || renderDistrictCountyBoard(district);
           return;
         }
-        renderDistrictCountyBoard(district);
+        renderDistrictTownBoard(district) || renderDistrictCountyBoard(district);
       });
     } else {
       if (district.code.startsWith("CA-")) {
-        renderCaliforniaCountyBoard(district) || renderDistrictCountyBoard(district);
+        renderCaliforniaCountyBoard(district) || renderDistrictTownBoard(district) || renderDistrictCountyBoard(district);
       } else {
-        renderDistrictCountyBoard(district);
+        renderDistrictTownBoard(district) || renderDistrictCountyBoard(district);
       }
     }
   }
