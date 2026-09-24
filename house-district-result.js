@@ -111,6 +111,59 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
   }
 
   const COUNTIES_TOPOJSON_URL = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
+  const STATE_FIPS = {
+    AL: "01",
+    AK: "02",
+    AZ: "04",
+    AR: "05",
+    CA: "06",
+    CO: "08",
+    CT: "09",
+    DE: "10",
+    DC: "11",
+    FL: "12",
+    GA: "13",
+    HI: "15",
+    ID: "16",
+    IL: "17",
+    IN: "18",
+    IA: "19",
+    KS: "20",
+    KY: "21",
+    LA: "22",
+    ME: "23",
+    MD: "24",
+    MA: "25",
+    MI: "26",
+    MN: "27",
+    MS: "28",
+    MO: "29",
+    MT: "30",
+    NE: "31",
+    NV: "32",
+    NH: "33",
+    NJ: "34",
+    NM: "35",
+    NY: "36",
+    NC: "37",
+    ND: "38",
+    OH: "39",
+    OK: "40",
+    OR: "41",
+    PA: "42",
+    RI: "44",
+    SC: "45",
+    SD: "46",
+    TN: "47",
+    TX: "48",
+    UT: "49",
+    VT: "50",
+    VA: "51",
+    WA: "53",
+    WV: "54",
+    WI: "55",
+    WY: "56"
+  };
   const CALIFORNIA_COUNTY_FIPS = {
     "Alameda County": "06001",
     "Alpine County": "06003",
@@ -185,7 +238,35 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     return normalizeCaliforniaCountyName(name).replace(/ County$/i, "");
   }
 
-  function getCaliforniaCountyFill(row) {
+  function formatCountyTableName(name) {
+    return String(name || "")
+      .replace(/\s*\(pt\.\)$/i, "")
+      .replace(/\s*\(part\)$/i, "")
+      .replace(/ County$/i, "")
+      .trim();
+  }
+
+  function getPartyName(party) {
+    return PARTY_LABELS[party] || party || "Other";
+  }
+
+  function getShortPartyLabel(candidate) {
+    const party = candidate?.party;
+    const partyName = candidate?.partyName;
+    if (party === "D" || partyName === "Democratic" || partyName === "Democrat") return "Dem.";
+    if (party === "R" || partyName === "Republican") return "Rep.";
+    if (party === "LB" || partyName === "Libertarian") return "Lib.";
+    if (party === "GR" || partyName === "Green") return "Green";
+    if (party === "W") return "Write-in";
+    return partyName || getPartyName(party);
+  }
+
+  function getWinnerParty(candidates) {
+    const winner = candidates[0];
+    return winner?.party === "D" || winner?.party === "R" ? winner.party : "I";
+  }
+
+  function getCountyFill(row) {
     const shades = row.winnerParty === "D"
       ? HOUSE_DEM_SHADES
       : row.winnerParty === "R"
@@ -193,10 +274,59 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
         : ["#f0dfab", "#e0c16a", "#c8a24a", "#a97d1c"];
     const winnerPct = Math.max(...(row.candidates || []).map((candidate) => Number(candidate.pct || 0)), 0);
 
-    if (winnerPct >= 80) return shades[3];
-    if (winnerPct >= 70) return shades[2];
-    if (winnerPct >= 60) return shades[1];
+    if (winnerPct >= 70) return shades[3];
+    if (winnerPct >= 60) return shades[2];
+    if (winnerPct >= 50) return shades[1];
     return shades[0];
+  }
+
+  function normalizeDistrictCountyRow(district, row) {
+    const stateFips = STATE_FIPS[district.state];
+    const countyFips = row.countyFips || (stateFips && row.countyFipsSuffix
+      ? `${stateFips}${String(row.countyFipsSuffix).padStart(3, "0")}`
+      : null);
+    const totalVotes = Number(row.totalVotes || 0);
+    const candidates = (row.candidates || [])
+      .map((candidate) => {
+        const votes = Number(candidate.votes || 0);
+        const pct = Number.isFinite(Number(candidate.pct)) && Number(candidate.pct) > 0
+          ? Number(candidate.pct)
+          : totalVotes > 0
+            ? (votes / totalVotes) * 100
+            : 0;
+        return {
+          ...candidate,
+          votes,
+          pct,
+          partyName: candidate.partyName || getPartyName(candidate.party)
+        };
+      })
+      .sort((a, b) => Number(b.votes || 0) - Number(a.votes || 0));
+    const first = candidates[0];
+    const second = candidates[1];
+    const margin = first && second
+      ? Math.abs(Number(first.pct || 0) - Number(second.pct || 0))
+      : first
+        ? Number(first.pct || 0)
+        : 0;
+    const winnerParty = getWinnerParty(candidates);
+    const marginLabel = first
+      ? `${winnerParty === "D" ? "D" : winnerParty === "R" ? "R" : "I"}+${formatCompactNumber(margin)}`
+      : "";
+
+    return {
+      ...row,
+      countyFips,
+      candidates,
+      totalVotes,
+      winnerParty,
+      margin,
+      marginLabel
+    };
+  }
+
+  function getCaliforniaCountyFill(row) {
+    return getCountyFill(row);
   }
 
   function positionTooltip(event, tooltip) {
@@ -243,7 +373,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
                   <span>${first.name}</span>
                 </div>
               </td>
-              <td>${first.partyName === "Democratic" ? "Dem." : first.partyName === "Republican" ? "Rep." : first.partyName || first.party}</td>
+              <td>${getShortPartyLabel(first)}</td>
               <td>${formatNumber(first.votes)}</td>
               <td>${Number(first.pct).toFixed(2).replace(/\.00$/, ".0")}%</td>
             </tr>
@@ -256,7 +386,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
                   <span>${second.name}</span>
                 </div>
               </td>
-              <td>${second.partyName === "Democratic" ? "Dem." : second.partyName === "Republican" ? "Rep." : second.partyName || second.party}</td>
+              <td>${getShortPartyLabel(second)}</td>
               <td>${formatNumber(second.votes)}</td>
               <td>${Number(second.pct).toFixed(2).replace(/\.00$/, ".0")}%</td>
             </tr>
@@ -357,15 +487,99 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     return true;
   }
 
+  async function renderDistrictCountyMap(district, feature) {
+    const countyData = window.HOUSE_DISTRICT_COUNTY_RESULTS?.[district.code];
+    const subtitle = document.getElementById("house-detail-map-subtitle");
+    const legend = document.getElementById("house-detail-map-legend");
+    const svg = d3.select("#house-detail-map");
+    const tooltip = d3.select("#house-detail-map-tooltip");
+    if (!countyData?.rows?.length || svg.empty() || !window.topojson) {
+      if (legend) legend.hidden = true;
+      return false;
+    }
+
+    const rows = countyData.rows
+      .map((row) => normalizeDistrictCountyRow(district, row))
+      .filter((row) => row.countyFips);
+
+    if (!rows.length) {
+      if (legend) legend.hidden = true;
+      return false;
+    }
+
+    const rowByFips = new Map(rows.map((row) => [row.countyFips, row]));
+    const countiesTopo = await d3.json(COUNTIES_TOPOJSON_URL);
+    const countyFeatures = topojson.feature(countiesTopo, countiesTopo.objects.counties).features
+      .filter((countyFeature) => rowByFips.has(String(countyFeature.id).padStart(5, "0")));
+
+    if (!countyFeatures.length) {
+      if (legend) legend.hidden = true;
+      return false;
+    }
+
+    svg.selectAll("*").remove();
+
+    const projection = d3.geoMercator().fitSize([540, 420], feature);
+    const path = d3.geoPath().projection(projection);
+    const districtPath = path(feature);
+
+    const defs = svg.append("defs");
+    defs.append("clipPath")
+      .attr("id", "house-detail-district-clip")
+      .append("path")
+      .attr("d", districtPath);
+
+    const countyLayer = svg.append("g").attr("clip-path", "url(#house-detail-district-clip)");
+
+    countyLayer.selectAll("path")
+      .data(countyFeatures)
+      .enter()
+      .append("path")
+      .attr("class", "detail-county-shape house-detail-county")
+      .attr("data-fips", (countyFeature) => String(countyFeature.id).padStart(5, "0"))
+      .attr("d", path)
+      .attr("fill", (countyFeature) => {
+        const row = rowByFips.get(String(countyFeature.id).padStart(5, "0"));
+        return row ? getCountyFill(row) : "#2d3138";
+      })
+      .on("mouseover", (event, countyFeature) => {
+        const row = rowByFips.get(String(countyFeature.id).padStart(5, "0"));
+        if (!row) return;
+        tooltip.style("opacity", 1).html(californiaCountyTooltipHTML(row, district));
+        positionTooltip(event, tooltip);
+      })
+      .on("mousemove", (event) => positionTooltip(event, tooltip))
+      .on("mouseout", () => {
+        tooltip.style("opacity", 0);
+      });
+
+    svg.append("path")
+      .datum(feature)
+      .attr("class", "house-detail-shape")
+      .attr("d", districtPath)
+      .attr("fill", "none")
+      .attr("stroke", "rgba(255,255,255,0.95)")
+      .attr("stroke-width", 2.1);
+
+    if (subtitle) {
+      subtitle.textContent = `${district.title} counties shaded by the winning county vote share.`;
+    }
+    if (legend) {
+      legend.hidden = false;
+    }
+
+    return true;
+  }
+
   function renderCaliforniaCountyBoard(district) {
     const board = document.getElementById("house-detail-county-board");
     const body = document.getElementById("house-detail-county-board-body");
-    if (!board || !body) return;
+    if (!board || !body) return false;
 
     const countyData = window.HOUSE_CA_COUNTY_RESULTS?.[district.code];
     if (!countyData?.counties?.length) {
       board.hidden = true;
-      return;
+      return false;
     }
 
     board.hidden = false;
@@ -381,6 +595,35 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
         </tr>
       `)
       .join("");
+
+    return true;
+  }
+
+  function renderDistrictCountyBoard(district) {
+    const board = document.getElementById("house-detail-county-board");
+    const body = document.getElementById("house-detail-county-board-body");
+    if (!board || !body) return false;
+
+    const countyData = window.HOUSE_DISTRICT_COUNTY_RESULTS?.[district.code];
+    if (!countyData?.rows?.length) {
+      return false;
+    }
+
+    board.hidden = false;
+    body.innerHTML = countyData.rows
+      .map((row) => normalizeDistrictCountyRow(district, row))
+      .sort((a, b) => b.totalVotes - a.totalVotes || a.county.localeCompare(b.county))
+      .map((row) => `
+        <tr class="detail-county-row">
+          <td>${formatCountyTableName(row.county)}</td>
+          <td><span class="detail-county-margin ${row.winnerParty === "D" ? "dem" : row.winnerParty === "R" ? "rep" : "ind"}">${row.marginLabel}</span></td>
+          <td>${formatNumber(row.totalVotes)}</td>
+          <td>100%</td>
+        </tr>
+      `)
+      .join("");
+
+    return true;
   }
 
   function getWinnerTone(party) {
@@ -395,8 +638,8 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     if (!feature || svg.empty()) return;
 
     const renderedCountyMap = district.code.startsWith("CA-")
-      ? await renderCaliforniaCountyMap(district, feature)
-      : false;
+      ? await renderCaliforniaCountyMap(district, feature) || await renderDistrictCountyMap(district, feature)
+      : await renderDistrictCountyMap(district, feature);
 
     if (renderedCountyMap) return;
 
@@ -495,10 +738,18 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     const feature = houseDetailGeojson.features.find((item) => item.properties.code === district.code);
     if (feature) {
       renderDistrictOutline(district, feature).then(() => {
-        renderCaliforniaCountyBoard(district);
+        if (district.code.startsWith("CA-")) {
+          renderCaliforniaCountyBoard(district) || renderDistrictCountyBoard(district);
+          return;
+        }
+        renderDistrictCountyBoard(district);
       });
     } else {
-      renderCaliforniaCountyBoard(district);
+      if (district.code.startsWith("CA-")) {
+        renderCaliforniaCountyBoard(district) || renderDistrictCountyBoard(district);
+      } else {
+        renderDistrictCountyBoard(district);
+      }
     }
   }
 }
