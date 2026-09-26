@@ -202,6 +202,8 @@ const exitPollCategoryDefinitions = [
 
 const mapSvg = d3.select("#national-election-map");
 const tooltip = d3.select("#map-tooltip");
+const presidentialCountyResultsUrl = "https://raw.githubusercontent.com/tonmcg/US_County_Level_Election_Results_08-24/master/2024_US_County_Level_Presidential_Results.csv";
+let nationalMapMode = "share";
 
 function fillForWinner(winner) {
   if (winner === "Harris") return "#2879b5";
@@ -275,6 +277,86 @@ function positionTooltip(event) {
   left = Math.max(minLeft, Math.min(left, maxLeft));
   top = Math.min(top, maxTop);
   tooltip.style("left", `${left}px`).style("top", `${top}px`);
+}
+
+function parseNationalCountyNumber(value) {
+  return Number(String(value || "0").replace(/,/g, "")) || 0;
+}
+
+function formatNationalVotes(value) {
+  return Number(value || 0).toLocaleString("en-US");
+}
+
+function parseNationalCountyRow(row) {
+  const trumpVotes = parseNationalCountyNumber(row.votes_gop);
+  const harrisVotes = parseNationalCountyNumber(row.votes_dem);
+  const totalVotes = parseNationalCountyNumber(row.total_votes);
+  const trumpPct = parseNationalCountyNumber(row.per_gop) * 100;
+  const harrisPct = parseNationalCountyNumber(row.per_dem) * 100;
+  const leadVotes = Math.abs(trumpVotes - harrisVotes);
+  const marginPct = Math.abs(trumpPct - harrisPct);
+  const winner = trumpVotes >= harrisVotes ? "Trump" : "Harris";
+
+  return {
+    fips: String(row.county_fips || "").padStart(5, "0"),
+    name: row.county_name || "",
+    state: row.state_name || "",
+    trumpVotes,
+    harrisVotes,
+    totalVotes,
+    trumpPct,
+    harrisPct,
+    leadVotes,
+    marginPct,
+    winner
+  };
+}
+
+function countyLeadTooltipHTML(row) {
+  const leadPrefix = row.winner === "Trump" ? "Trump" : "Harris";
+  const leadClass = row.winner === "Trump" ? "rep" : "dem";
+
+  return `
+    <div class="tooltip-header">
+      <div class="tooltip-title">${row.name}</div>
+      <div class="tooltip-ev">${row.state}</div>
+    </div>
+    <div class="tooltip-margin ${leadClass}">${leadPrefix} +${formatMargin(row.marginPct)}</div>
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align:left;">Candidate</th>
+          <th>Party</th>
+          <th>Votes</th>
+          <th>Pct.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="${row.winner === "Trump" ? "winner-row" : ""}">
+          <td>
+            <div class="tooltip-candidate">
+              <span class="tooltip-candidate-bar rep"></span>
+              <span>Donald J. Trump</span>
+            </div>
+          </td>
+          <td>Rep.</td>
+          <td>${formatNationalVotes(row.trumpVotes)}</td>
+          <td>${row.trumpPct.toFixed(1)}%</td>
+        </tr>
+        <tr class="${row.winner === "Harris" ? "winner-row" : ""}">
+          <td>
+            <div class="tooltip-candidate">
+              <span class="tooltip-candidate-bar dem"></span>
+              <span>Kamala Harris</span>
+            </div>
+          </td>
+          <td>Dem.</td>
+          <td>${formatNationalVotes(row.harrisVotes)}</td>
+          <td>${row.harrisPct.toFixed(1)}%</td>
+        </tr>
+      </tbody>
+    </table>
+  `;
 }
 
 function formatMargin(value) {
@@ -760,29 +842,28 @@ function initNationalMap() {
       pattern.append("rect").attr("width", 6).attr("height", 12).attr("fill", "#cf2f2f");
     });
 
-  d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json").then(us => {
-    const states = topojson.feature(us, us.objects.states).features;
-    const stateCollection = { type: "FeatureCollection", features: states };
-    const mapFitArea = [[42, 8], [1392, 892]];
-    projection.fitExtent(mapFitArea, stateCollection);
+  function syncNationalMapChrome() {
+    document.querySelectorAll("[data-national-map-mode]").forEach((button) => {
+      const isActive = button.dataset.nationalMapMode === nationalMapMode;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
 
-    const initialBounds = path.bounds(stateCollection);
-    const currentCenterX = (initialBounds[0][0] + initialBounds[1][0]) / 2;
-    const currentCenterY = (initialBounds[0][1] + initialBounds[1][1]) / 2;
-    const targetCenterX = (mapFitArea[0][0] + mapFitArea[1][0]) / 2;
-    const targetCenterY = (mapFitArea[0][1] + mapFitArea[1][1]) / 2;
-    const currentTranslate = projection.translate();
-    projection.translate([
-      currentTranslate[0] + (targetCenterX - currentCenterX),
-      currentTranslate[1] + (targetCenterY - currentCenterY)
-    ]);
+    const shareLegend = document.getElementById("national-share-legend");
+    const leadLegend = document.getElementById("national-lead-legend");
+    if (shareLegend) shareLegend.hidden = nationalMapMode !== "share";
+    if (leadLegend) leadLegend.hidden = nationalMapMode !== "lead";
+  }
 
-    const groups = mapSvg.append("g");
+  function renderShareMap(states) {
+    const groups = mapSvg.append("g")
+      .attr("class", "national-map-dynamic national-map-state-layer");
 
     groups.selectAll(".state-group")
       .data(states)
       .enter()
       .append("g")
+      .attr("class", "state-group")
       .each(function(d) {
         const group = d3.select(this);
         const stateName = d.properties.name;
@@ -814,7 +895,7 @@ function initNationalMap() {
     const dc = electionData["District of Columbia"];
     const dcPoint = projection([-77.0369, 38.9072]);
     if (dcPoint) {
-      mapSvg.append("circle")
+      groups.append("circle")
         .attr("cx", dcPoint[0])
         .attr("cy", dcPoint[1])
         .attr("r", 6)
@@ -836,7 +917,7 @@ function initNationalMap() {
     districtData.forEach((d, i) => {
       const y = districtY + i * districtGap;
 
-      mapSvg.append("rect")
+      groups.append("rect")
         .attr("class", "district-square")
         .attr("x", districtX)
         .attr("y", y)
@@ -850,12 +931,129 @@ function initNationalMap() {
         .on("mousemove", positionTooltip)
         .on("mouseout", () => tooltip.style("opacity", 0));
 
-      mapSvg.append("text")
+      groups.append("text")
         .attr("class", "district-label")
         .attr("x", districtX + 30)
         .attr("y", y + 11)
         .text(d.name);
     });
+  }
+
+  function renderLeadMap(us, states, countyRows) {
+    const countyByFips = new Map(countyRows.map((row) => [row.fips, row]));
+    const countyFeatures = topojson.feature(us, us.objects.counties).features
+      .map((feature) => {
+        const fips = String(feature.id || "").padStart(5, "0");
+        return { ...feature, result: countyByFips.get(fips) || null };
+      })
+      .filter((feature) => feature.result && feature.result.totalVotes > 0);
+
+    const layer = mapSvg.append("g")
+      .attr("class", "national-map-dynamic national-map-lead-layer");
+
+    layer.append("g")
+      .selectAll("path")
+      .data(countyFeatures)
+      .enter()
+      .append("path")
+      .attr("class", "national-county-base")
+      .attr("d", path);
+
+    layer.append("g")
+      .selectAll("path")
+      .data(states)
+      .enter()
+      .append("path")
+      .attr("class", "national-state-outline")
+      .attr("d", path);
+
+    const leadValues = countyRows
+      .map((row) => row.leadVotes)
+      .filter((value) => value > 0)
+      .sort(d3.ascending);
+    const highLead = d3.quantile(leadValues, 0.995) || d3.max(leadValues) || 1;
+    const radiusScale = d3.scaleSqrt()
+      .domain([0, highLead])
+      .range([2.4, 34])
+      .clamp(true);
+
+    const bubbles = countyFeatures
+      .map((feature) => {
+        const point = path.centroid(feature);
+        return {
+          feature,
+          row: feature.result,
+          x: point[0],
+          y: point[1]
+        };
+      })
+      .filter((item) => Number.isFinite(item.x) && Number.isFinite(item.y))
+      .sort((a, b) => b.row.leadVotes - a.row.leadVotes);
+
+    layer.append("g")
+      .selectAll("circle")
+      .data(bubbles)
+      .enter()
+      .append("circle")
+      .attr("class", (item) => `national-lead-bubble ${item.row.winner === "Trump" ? "rep" : "dem"}`)
+      .attr("cx", (item) => item.x)
+      .attr("cy", (item) => item.y)
+      .attr("r", (item) => radiusScale(item.row.leadVotes))
+      .on("mouseover", function(event, item) {
+        d3.select(this).classed("is-active", true);
+        tooltip.style("opacity", 1).html(countyLeadTooltipHTML(item.row));
+        positionTooltip(event);
+      })
+      .on("mousemove", positionTooltip)
+      .on("mouseout", function() {
+        d3.select(this).classed("is-active", false);
+        tooltip.style("opacity", 0);
+      });
+  }
+
+  function renderNationalMap(us, states, countyRows) {
+    mapSvg.selectAll(".national-map-dynamic").remove();
+    tooltip.style("opacity", 0);
+    syncNationalMapChrome();
+
+    if (nationalMapMode === "lead") {
+      renderLeadMap(us, states, countyRows);
+      return;
+    }
+
+    renderShareMap(states);
+  }
+
+  Promise.all([
+    d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json"),
+    d3.csv(presidentialCountyResultsUrl, parseNationalCountyRow)
+  ]).then(([us, countyRows]) => {
+    const states = topojson.feature(us, us.objects.states).features;
+    const stateCollection = { type: "FeatureCollection", features: states };
+    const mapFitArea = [[42, 8], [1392, 892]];
+    projection.fitExtent(mapFitArea, stateCollection);
+
+    const initialBounds = path.bounds(stateCollection);
+    const currentCenterX = (initialBounds[0][0] + initialBounds[1][0]) / 2;
+    const currentCenterY = (initialBounds[0][1] + initialBounds[1][1]) / 2;
+    const targetCenterX = (mapFitArea[0][0] + mapFitArea[1][0]) / 2;
+    const targetCenterY = (mapFitArea[0][1] + mapFitArea[1][1]) / 2;
+    const currentTranslate = projection.translate();
+    projection.translate([
+      currentTranslate[0] + (targetCenterX - currentCenterX),
+      currentTranslate[1] + (targetCenterY - currentCenterY)
+    ]);
+
+    document.querySelectorAll("[data-national-map-mode]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const nextMode = button.dataset.nationalMapMode;
+        if (!nextMode || nextMode === nationalMapMode) return;
+        nationalMapMode = nextMode;
+        renderNationalMap(us, states, countyRows);
+      });
+    });
+
+    renderNationalMap(us, states, countyRows);
   });
 }
 

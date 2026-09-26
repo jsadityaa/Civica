@@ -121,7 +121,17 @@
             <span class="ev-vote-line ev-vote-line-right">77,304,184 votes (49.91%)</span>
           </div>
         </div>
-        <div class="map-legend" aria-label="Map legend">
+        <div class="national-map-controls" aria-label="National map display">
+          <div class="state-results-sort-toggle national-map-mode-toggle" role="tablist" aria-label="National map mode">
+            <button type="button" class="state-results-sort-button national-map-mode-button is-active" data-national-map-mode="share" aria-pressed="true">
+              Vote Share
+            </button>
+            <button type="button" class="state-results-sort-button national-map-mode-button" data-national-map-mode="lead" aria-pressed="false">
+              Size of Lead
+            </button>
+          </div>
+        </div>
+        <div class="map-legend" id="national-share-legend" aria-label="Map legend">
           <div class="legend-group">
             <span class="legend-title">Dem.</span>
             <div class="legend-stack">
@@ -148,6 +158,10 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="national-lead-legend" id="national-lead-legend" aria-label="Size of lead legend" hidden>
+          <span><i class="dem"></i> Harris county lead</span>
+          <span><i class="rep"></i> Trump county lead</span>
         </div>
         <div class="map-stage">
           <div class="national-map-shell">
@@ -335,7 +349,7 @@
   </div>
 
   <script src="./exit-polls-data.js"></script>
-  <script src="./script.js"></script>
+  <script src="./script.js?v=20260925-national-lead-map"></script>
   <footer id="contact-us" class="civica-homepage__footer">
       <div class="civica-homepage__footer-inner">
         <div class="civica-homepage__footer-bottom">
