@@ -3008,6 +3008,10 @@ html[data-theme="dark"] .detail-summary-card.winner-ind {
   display: none;
 }
 
+.detail-map-legend-row[hidden] {
+  display: none;
+}
+
 .detail-map-legend-row,
 .detail-map-legend-scale {
   display: grid;

@@ -134,8 +134,115 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
 
   const COUNTIES_TOPOJSON_URL = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
   const CONNECTICUT_TOWNS_GEOJSON_URL = "./assets/maps/connecticut-towns.geojson";
+  const STATE_COUNTY_GEOJSON_URLS = {
+    FL: "./assets/maps/florida-counties.geojson"
+  };
+  const DISTRICT_GEOJSON_URLS = {
+    "FL-01": "./assets/maps/florida-district-1.geojson"
+  };
+  const DISTRICT_SVG_URLS = {
+    "FL-01": "./assets/maps/florida-district-1-by-county.svg",
+    "FL-14": "./assets/maps/florida-district-14-by-county.svg",
+    "GA-04": "./assets/maps/georgia-district-4-by-county.svg",
+    "GA-11": "./assets/maps/georgia-district-11-by-county.svg",
+    "HI-02": "./assets/maps/hawaii-district-2-by-county.svg",
+    "MD-03": "./assets/maps/maryland-district-3-dem-primary.svg",
+    "MD-04": "./assets/maps/maryland-district-04-general.svg",
+    "MD-05": "./assets/maps/maryland-district-05-general.svg",
+    "MD-07": "./assets/maps/maryland-district-07-general.svg",
+    "MN-03": "./assets/maps/minnesota-district-03-by-county.svg",
+    "MN-04": "./assets/maps/minnesota-district-04-by-county.svg",
+    "MN-05": "./assets/maps/minnesota-district-05-by-county.svg"
+  };
+  const DISTRICT_SVG_VIEW_BOXES = {
+    "GA-04": "-210 -20 900 790"
+  };
+  const DISTRICT_SVG_COUNTY_PATHS = {
+    "FL-01": {
+      path134: "12033", // Escambia
+      path136: "12113", // Santa Rosa
+      path138: "12091", // Okaloosa
+      path132: "12131" // Walton
+    },
+    // "2024 FL-14 election results.svg" by Incognito melon, CC BY 4.0, via Wikimedia Commons.
+    "FL-14": {
+      path2: "12103", // Pinellas
+      path8: "12057" // Hillsborough
+    },
+    // "2024 GA-04 election results.svg" by Incognito melon and Putitonamap98, CC BY 4.0, via Wikimedia Commons.
+    "GA-04": {
+      path14: "13089", // DeKalb
+      path154: "13135" // Gwinnett
+    },
+    // "2024 GA-11 election results.svg" by Incognito melon and Putitonamap98, CC BY 4.0, via Wikimedia Commons.
+    "GA-11": {
+      path20: "13015", // Bartow
+      path22: "13057", // Cherokee
+      path24: "13067", // Cobb
+      path16: "13129", // Gordon
+      path8: "13227" // Pickens
+    },
+    // "2024 HI-02 election results.svg" by Incognito melon, CC BY 4.0, via Wikimedia Commons.
+    "HI-02": {
+      path14: "15001", // Hawaii
+      path109: "15003", // Honolulu
+      path56: "15007", // Kauai
+      path71: "15007", // Niihau, reported with Kauai County
+      path96: "15009" // Maui
+    },
+    // "2024 MD-03 Democratic primary.svg" by Y2hyaXM, CC BY 4.0, via Wikimedia Commons.
+    // Recolored here with 2024 general-election county results.
+    "MD-03": {
+      path30683: "24003", // Anne Arundel
+      path30685: "24013", // Carroll
+      path30681: "24027", // Howard
+      path30687: "24003" // small Anne Arundel fragment
+    },
+    // Maryland general-election SVGs by Y2hyaXM, CC BY 4.0, via Wikimedia Commons.
+    // Recolored here with 2024 general-election county results.
+    "MD-04": {
+      path12501: "24031", // Montgomery
+      path13476: "24033" // Prince George's
+    },
+    "MD-05": {
+      path15470: "24033", // Prince George's
+      path15474: "24017", // Charles
+      path15476: "24009", // Calvert
+      path15480: "24037", // Saint Mary's
+      path15482: "24037", // Saint Mary's fragment
+      path15484: "24037", // Saint Mary's fragment
+      path15486: "24037", // Saint Mary's fragment
+      path15488: "24037", // Saint Mary's fragment
+      path15490: "24037", // Saint Mary's fragment
+      path15492: "24037", // Saint Mary's fragment
+      path15494: "24003", // Anne Arundel
+      path15496: "24003" // Anne Arundel fragment
+    },
+    "MD-07": {
+      path132: "24510", // Baltimore City
+      path1390: "24005", // Baltimore County
+      path1450: "24005", // Baltimore County
+      path1698: "24005" // Baltimore County fragment
+    },
+    // Minnesota district SVGs by Incognito melon and Putitonamap98, CC BY 4.0, via Wikimedia Commons.
+    // Recolored here with Minnesota Secretary of State 2024 general-election county results.
+    "MN-03": {
+      path1: "27003", // Anoka
+      path34: "27053" // Hennepin
+    },
+    "MN-04": {
+      path14: "27123", // Ramsey
+      path181: "27163" // Washington
+    },
+    "MN-05": {
+      path14: "27003", // Anoka
+      path35: "27053" // Hennepin and same-shade Ramsey area in the source SVG
+    }
+  };
   const COUNTY_SUBDIVISION_GEOJSON_URLS = {
-    CT: "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/1/query?where=STATE%3D%2709%27&outFields=GEOID%2CNAME%2CBASENAME%2CSTATE%2CCOUNTY&returnGeometry=true&f=geojson&outSR=4326"
+    CT: "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/1/query?where=STATE%3D%2709%27&outFields=GEOID%2CNAME%2CBASENAME%2CSTATE%2CCOUNTY&returnGeometry=true&f=geojson&outSR=4326",
+    ME: "./assets/maps/state-local-results-2024/maine-local-results-2024.geojson",
+    MA: "./assets/maps/state-local-results-2024/massachusetts-local-results-2024.geojson"
   };
   const STATE_FIPS = {
     AL: "01",
@@ -252,6 +359,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
   };
 
   const HOUSE_DEM_SHADES = ["#b8d4ec", "#8eb6d9", "#5a96c8", "#2879b5"];
+  const HOUSE_IND_SHADES = ["#f0dfab", "#e0c16a", "#c8a24a", "#a97d1c"];
   const HOUSE_REP_SHADES = ["#f1cfcf", "#e49e9e", "#d86a6a", "#cf2f2f"];
 
   function normalizeCaliforniaCountyName(name) {
@@ -268,7 +376,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     return String(name || "")
       .replace(/\s*\(pt\.\)$/i, "")
       .replace(/\s*\(part\)$/i, "")
-      .replace(/ County$/i, "")
+      .replace(/ (County|Parish)$/i, "")
       .trim();
   }
 
@@ -305,13 +413,28 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       ? HOUSE_DEM_SHADES
       : row.winnerParty === "R"
         ? HOUSE_REP_SHADES
-        : ["#f0dfab", "#e0c16a", "#c8a24a", "#a97d1c"];
+        : HOUSE_IND_SHADES;
     const winnerPct = Math.max(...(row.candidates || []).map((candidate) => Number(candidate.pct || 0)), 0);
 
     if (winnerPct >= 70) return shades[3];
     if (winnerPct >= 60) return shades[2];
     if (winnerPct >= 50) return shades[1];
     return shades[0];
+  }
+
+  function hasIndependentUnitWinner(rows) {
+    return (rows || []).some((row) => row?.winnerParty && row.winnerParty !== "D" && row.winnerParty !== "R");
+  }
+
+  function setMapLegendVisibility(visible, rows = []) {
+    const legend = document.getElementById("house-detail-map-legend");
+    const independentRow = document.getElementById("house-detail-map-legend-ind");
+    if (legend) {
+      legend.hidden = !visible;
+    }
+    if (independentRow) {
+      independentRow.hidden = !visible || !hasIndependentUnitWinner(rows);
+    }
   }
 
   function normalizeDistrictCountyRow(district, row) {
@@ -401,6 +524,212 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
 
   function getCaliforniaCountyFill(row) {
     return getCountyFill(row);
+  }
+
+  function getCountyFeatureFips(countyFeature) {
+    return String(
+      countyFeature?.id ||
+      countyFeature?.properties?.GEOID ||
+      countyFeature?.properties?.geoid ||
+      ""
+    ).padStart(5, "0");
+  }
+
+  function getFeatureWestLongitude(feature) {
+    let west = Infinity;
+
+    function visit(coordinates) {
+      if (!Array.isArray(coordinates)) return;
+      if (typeof coordinates[0] === "number") {
+        west = Math.min(west, coordinates[0]);
+        return;
+      }
+      coordinates.forEach(visit);
+    }
+
+    visit(feature?.geometry?.coordinates);
+    return Number.isFinite(west) ? west : 0;
+  }
+
+  function getRingSignedArea(ring) {
+    return ring.reduce((sum, point, index) => {
+      const next = ring[(index + 1) % ring.length];
+      return sum + (point[0] * next[1] - next[0] * point[1]);
+    }, 0) / 2;
+  }
+
+  function normalizePolygonWinding(coordinates) {
+    return coordinates.map((ring, index) => {
+      const signedArea = getRingSignedArea(ring);
+      const shouldReverse = index === 0
+        ? signedArea > 0
+        : signedArea < 0;
+      return shouldReverse ? ring.slice().reverse() : ring.slice();
+    });
+  }
+
+  function normalizeCountyFeatureGeometry(state, feature) {
+    if (state !== "FL" || !feature?.geometry) return feature;
+    const geometry = feature.geometry;
+
+    if (geometry.type === "Polygon") {
+      return {
+        ...feature,
+        geometry: {
+          ...geometry,
+          coordinates: normalizePolygonWinding(geometry.coordinates)
+        }
+      };
+    }
+
+    if (geometry.type === "MultiPolygon") {
+      return {
+        ...feature,
+        geometry: {
+          ...geometry,
+          coordinates: geometry.coordinates.map(normalizePolygonWinding)
+        }
+      };
+    }
+
+    return feature;
+  }
+
+  function sortCountyFeaturesForDisplay(state, countyFeatures) {
+    const features = countyFeatures.map((feature) => normalizeCountyFeatureGeometry(state, feature));
+    if (state !== "FL") return features;
+
+    return features.sort((a, b) => {
+      return getFeatureWestLongitude(a) - getFeatureWestLongitude(b);
+    });
+  }
+
+  async function getCountyFeaturesForRows(state, rowByFips) {
+    const stateCountyUrl = STATE_COUNTY_GEOJSON_URLS[state];
+    if (stateCountyUrl) {
+      try {
+        const stateCountyGeojson = await d3.json(stateCountyUrl);
+        const stateCountyFeatures = (stateCountyGeojson?.features || [])
+          .filter((countyFeature) => rowByFips.has(getCountyFeatureFips(countyFeature)));
+        if (stateCountyFeatures.length) return sortCountyFeaturesForDisplay(state, stateCountyFeatures);
+      } catch (error) {
+        console.warn(`Detailed county geometry unavailable for ${state}; using fallback geometry.`, error);
+      }
+    }
+
+    const countiesTopo = await d3.json(COUNTIES_TOPOJSON_URL);
+    const fallbackFeatures = topojson.feature(countiesTopo, countiesTopo.objects.counties).features
+      .filter((countyFeature) => rowByFips.has(getCountyFeatureFips(countyFeature)));
+    return sortCountyFeaturesForDisplay(state, fallbackFeatures);
+  }
+
+  async function getDistrictDisplayFeature(district, fallbackFeature) {
+    const districtGeojsonUrl = DISTRICT_GEOJSON_URLS[district.code];
+    if (!districtGeojsonUrl) return getMapFitFeature(fallbackFeature);
+
+    try {
+      const districtGeojson = await d3.json(districtGeojsonUrl);
+      const districtFeature = districtGeojson?.features?.[0];
+      if (districtFeature) {
+        return normalizeCountyFeatureGeometry(district.state, {
+          ...districtFeature,
+          properties: {
+            ...(districtFeature.properties || {}),
+            code: district.code
+          }
+        });
+      }
+    } catch (error) {
+      console.warn(`Detailed district geometry unavailable for ${district.code}; using fallback geometry.`, error);
+    }
+
+    return getMapFitFeature(fallbackFeature);
+  }
+
+  async function renderDistrictSvgCountyMap(district, rowByFips) {
+    const svgUrl = DISTRICT_SVG_URLS[district.code];
+    const pathCountyMap = DISTRICT_SVG_COUNTY_PATHS[district.code];
+    const svg = d3.select("#house-detail-map");
+    const tooltip = d3.select("#house-detail-map-tooltip");
+
+    if (!svgUrl || !pathCountyMap || svg.empty()) return false;
+
+    try {
+      const svgText = await d3.text(svgUrl);
+      const parsedSvg = new DOMParser().parseFromString(svgText, "image/svg+xml").documentElement;
+      const viewBox = DISTRICT_SVG_VIEW_BOXES[district.code]
+        || parsedSvg.getAttribute("viewBox")
+        || `0 0 ${parsedSvg.getAttribute("width") || 800} ${parsedSvg.getAttribute("height") || 433}`;
+      const [sourceX, sourceY, sourceWidth, sourceHeight] = viewBox.split(/\s+/).map(Number);
+      const viewportWidth = 540;
+      const viewportHeight = 420;
+      const viewportPadding = 28;
+      const sourceScale = Number.isFinite(sourceWidth) && Number.isFinite(sourceHeight) && sourceWidth > 0 && sourceHeight > 0
+        ? Math.min((viewportWidth - viewportPadding * 2) / sourceWidth, (viewportHeight - viewportPadding * 2) / sourceHeight)
+        : 1;
+      const sourceTranslateX = (viewportWidth - sourceWidth * sourceScale) / 2 - sourceX * sourceScale;
+      const sourceTranslateY = (viewportHeight - sourceHeight * sourceScale) / 2 - sourceY * sourceScale;
+      const sourcePaths = Array.from(parsedSvg.querySelectorAll("path"));
+      const getPathTransform = (pathElement) => {
+        const transforms = [];
+        let currentElement = pathElement;
+        while (currentElement && currentElement !== parsedSvg) {
+          const transform = currentElement.getAttribute("transform");
+          if (transform) transforms.unshift(transform);
+          currentElement = currentElement.parentElement;
+        }
+        return transforms.join(" ");
+      };
+      const paths = sourcePaths
+        .map((pathElement) => ({
+          id: pathElement.getAttribute("id"),
+          d: pathElement.getAttribute("d"),
+          fillRule: pathElement.getAttribute("fill-rule"),
+          transform: getPathTransform(pathElement),
+          style: pathElement.getAttribute("style")
+        }))
+        .filter((pathData) => pathData.id && pathData.d && pathCountyMap[pathData.id]);
+
+      if (!paths.length) return false;
+
+      svg.selectAll("*").remove();
+      svg
+        .attr("viewBox", `0 0 ${viewportWidth} ${viewportHeight}`)
+        .attr("preserveAspectRatio", "xMidYMid meet");
+
+      const layer = svg.append("g")
+        .attr("class", "house-detail-svg-county-layer")
+        .attr("transform", `translate(${sourceTranslateX} ${sourceTranslateY}) scale(${sourceScale})`);
+
+      layer.selectAll("path")
+        .data(paths)
+        .enter()
+        .append("path")
+        .attr("class", "detail-county-shape house-detail-county house-detail-svg-county")
+        .attr("data-fips", (pathData) => pathCountyMap[pathData.id])
+        .attr("d", (pathData) => pathData.d)
+        .attr("fill-rule", (pathData) => pathData.fillRule || null)
+        .attr("transform", (pathData) => pathData.transform || null)
+        .attr("fill", (pathData) => {
+          const row = rowByFips.get(pathCountyMap[pathData.id]);
+          return row ? getCountyFill(row) : "#2d3138";
+        })
+        .on("mouseover", (event, pathData) => {
+          const row = rowByFips.get(pathCountyMap[pathData.id]);
+          if (!row) return;
+          tooltip.style("opacity", 1).html(californiaCountyTooltipHTML(row, district));
+          positionTooltip(event, tooltip);
+        })
+        .on("mousemove", (event) => positionTooltip(event, tooltip))
+        .on("mouseout", () => {
+          tooltip.style("opacity", 0);
+        });
+
+      return true;
+    } catch (error) {
+      console.warn(`SVG district map unavailable for ${district.code}; using generated geometry.`, error);
+      return false;
+    }
   }
 
   function getDominantCountyRow(rows, threshold = 0.95) {
@@ -495,11 +824,10 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
   async function renderCaliforniaCountyMap(district, feature) {
     const countyData = window.HOUSE_CA_COUNTY_RESULTS?.[district.code];
     const subtitle = document.getElementById("house-detail-map-subtitle");
-    const legend = document.getElementById("house-detail-map-legend");
     const svg = d3.select("#house-detail-map");
     const tooltip = d3.select("#house-detail-map-tooltip");
     if (!countyData?.counties?.length || svg.empty() || !window.topojson) {
-      if (legend) legend.hidden = true;
+      setMapLegendVisibility(false);
       return false;
     }
 
@@ -515,24 +843,28 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       .filter((row) => row.countyFips);
 
     if (!rows.length) {
-      if (legend) legend.hidden = true;
+      setMapLegendVisibility(false);
       return false;
     }
 
     const rowByFips = new Map(rows.map((row) => [row.countyFips, row]));
-    const countiesTopo = await d3.json(COUNTIES_TOPOJSON_URL);
-    const countyFeatures = topojson.feature(countiesTopo, countiesTopo.objects.counties).features
-      .filter((countyFeature) => rowByFips.has(String(countyFeature.id).padStart(5, "0")));
+    const countyFeatures = await getCountyFeaturesForRows(district.state, rowByFips);
 
     if (!countyFeatures.length) {
-      if (legend) legend.hidden = true;
+      setMapLegendVisibility(false);
       return false;
     }
 
     svg.selectAll("*").remove();
+    svg
+      .attr("viewBox", "0 0 540 420")
+      .attr("preserveAspectRatio", "xMidYMid meet");
 
     const displayFeature = getMapFitFeature(feature);
-    const projection = createMapProjection(feature);
+    const projection = d3.geoMercator().fitExtent(
+      [[18, 18], [522, 402]],
+      displayFeature
+    );
     const path = d3.geoPath().projection(projection);
     const districtPath = path(displayFeature);
     const dominantRow = getDominantCountyRow(rows);
@@ -558,22 +890,32 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       if (subtitle) {
         subtitle.textContent = `${district.title} shaded by the dominant county result.`;
       }
-      if (legend) {
-        legend.hidden = false;
-      }
+      setMapLegendVisibility(true, rows);
 
       return true;
     }
 
+    const clipPathId = `house-detail-district-clip-${district.code.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
     const defs = svg.append("defs");
     defs.append("clipPath")
-      .attr("id", "house-detail-district-clip")
+      .attr("id", clipPathId)
       .append("path")
       .attr("d", districtPath);
 
-    const countyLayer = svg.append("g").attr("clip-path", "url(#house-detail-district-clip)");
+    const countyLayer = svg.append("g").attr("clip-path", `url(#${clipPathId})`);
 
-    countyLayer.selectAll("path")
+    const gapFillRow = district.code === "MD-03" ? rowByFips.get("24003") : null;
+    if (gapFillRow) {
+      countyLayer.append("path")
+        .datum(displayFeature)
+        .attr("class", "house-detail-gap-fill")
+        .attr("d", districtPath)
+        .attr("fill", getCountyFill(gapFillRow))
+        .attr("stroke", "none")
+        .attr("pointer-events", "none");
+    }
+
+    countyLayer.selectAll("path.house-detail-county")
       .data(countyFeatures)
       .enter()
       .append("path")
@@ -606,9 +948,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     if (subtitle) {
       subtitle.textContent = `${district.title} counties shaded by the winning county vote share.`;
     }
-    if (legend) {
-      legend.hidden = false;
-    }
+    setMapLegendVisibility(true, rows);
 
     return true;
   }
@@ -616,7 +956,6 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
   async function renderDistrictTownMap(district, feature) {
     const unitData = window.HOUSE_DISTRICT_COUNTY_RESULTS?.[district.code];
     const subtitle = document.getElementById("house-detail-map-subtitle");
-    const legend = document.getElementById("house-detail-map-legend");
     const svg = d3.select("#house-detail-map");
     const tooltip = d3.select("#house-detail-map-tooltip");
     const geojsonUrl = COUNTY_SUBDIVISION_GEOJSON_URLS[district.state];
@@ -639,10 +978,13 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       ? await d3.json(CONNECTICUT_TOWNS_GEOJSON_URL)
       : window.HOUSE_TOWN_GEOJSON?.[district.state] || await d3.json(geojsonUrl);
     const getTownRow = (townFeature) => {
+      const properties = townFeature.properties || {};
       if (useConnecticutTownShapes) {
-        return rowByTownName.get(normalizeTownName(townFeature.properties?.TOWN_NAME));
+        return rowByTownName.get(normalizeTownName(properties.TOWN_NAME));
       }
-      return rowByGeoId.get(String(townFeature.properties?.GEOID || ""));
+      return rowByGeoId.get(String(properties.GEOID || ""))
+        || rowByGeoId.get(String(properties.original_geoid || ""))
+        || rowByTownName.get(normalizeTownName(properties.county_name || properties.NAME || properties.BASENAME || ""));
     };
     const townFeatures = (townGeojson.features || [])
       .filter((townFeature) => getTownRow(townFeature));
@@ -657,18 +999,33 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       type: "FeatureCollection",
       features: townFeatures
     };
+    const displayFeature = getMapFitFeature(feature);
+    const fitFeature = useConnecticutTownShapes ? townCollection : displayFeature;
     const projection = useConnecticutTownShapes
-      ? d3.geoIdentity().reflectY(true).fitExtent([[18, 18], [522, 402]], townCollection)
-      : d3.geoMercator().fitExtent([[18, 18], [522, 402]], townCollection);
+      ? d3.geoIdentity().reflectY(true).fitExtent([[18, 18], [522, 402]], fitFeature)
+      : d3.geoMercator().fitExtent([[18, 18], [522, 402]], fitFeature);
     const path = d3.geoPath().projection(projection);
     const townLayer = svg.append("g");
+    if (!useConnecticutTownShapes && displayFeature) {
+      const clipPathId = `house-detail-town-clip-${district.code.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+      svg.append("defs")
+        .append("clipPath")
+        .attr("id", clipPathId)
+        .append("path")
+        .datum(displayFeature)
+        .attr("d", path);
+      townLayer.attr("clip-path", `url(#${clipPathId})`);
+    }
 
     townLayer.selectAll("path")
       .data(townFeatures)
       .enter()
       .append("path")
       .attr("class", "detail-county-shape house-detail-county")
-      .attr("data-geoid", (townFeature) => townFeature.properties?.GEOID || townFeature.properties?.TOWN_NAME)
+      .attr("data-geoid", (townFeature) => {
+        const properties = townFeature.properties || {};
+        return properties.GEOID || properties.original_geoid || properties.TOWN_NAME || properties.county_name;
+      })
       .attr("d", path)
       .attr("fill", (townFeature) => {
         const row = getTownRow(townFeature);
@@ -688,9 +1045,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     if (subtitle) {
       subtitle.textContent = `${district.title} towns shaded by the winning town vote share.`;
     }
-    if (legend) {
-      legend.hidden = false;
-    }
+    setMapLegendVisibility(true, rows);
 
     return true;
   }
@@ -698,11 +1053,11 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
   async function renderDistrictCountyMap(district, feature) {
     const countyData = window.HOUSE_DISTRICT_COUNTY_RESULTS?.[district.code];
     const subtitle = document.getElementById("house-detail-map-subtitle");
-    const legend = document.getElementById("house-detail-map-legend");
     const svg = d3.select("#house-detail-map");
     const tooltip = d3.select("#house-detail-map-tooltip");
+    const unitLabel = district.state === "LA" ? "parish" : "county";
     if (!countyData?.rows?.length || svg.empty() || !window.topojson) {
-      if (legend) legend.hidden = true;
+      setMapLegendVisibility(false);
       return false;
     }
 
@@ -711,24 +1066,36 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       .filter((row) => row.countyFips);
 
     if (!rows.length) {
-      if (legend) legend.hidden = true;
+      setMapLegendVisibility(false);
       return false;
     }
 
     const rowByFips = new Map(rows.map((row) => [row.countyFips, row]));
-    const countiesTopo = await d3.json(COUNTIES_TOPOJSON_URL);
-    const countyFeatures = topojson.feature(countiesTopo, countiesTopo.objects.counties).features
-      .filter((countyFeature) => rowByFips.has(String(countyFeature.id).padStart(5, "0")));
+    if (await renderDistrictSvgCountyMap(district, rowByFips)) {
+      if (subtitle) {
+        subtitle.textContent = `${district.title} ${unitLabel === "parish" ? "parishes" : "counties"} shaded by the winning ${unitLabel} vote share.`;
+      }
+      setMapLegendVisibility(true, rows);
+      return true;
+    }
+
+    const countyFeatures = await getCountyFeaturesForRows(district.state, rowByFips);
 
     if (!countyFeatures.length) {
-      if (legend) legend.hidden = true;
+      setMapLegendVisibility(false);
       return false;
     }
 
     svg.selectAll("*").remove();
+    svg
+      .attr("viewBox", "0 0 540 420")
+      .attr("preserveAspectRatio", "xMidYMid meet");
 
-    const displayFeature = getMapFitFeature(feature);
-    const projection = createMapProjection(feature);
+    const displayFeature = await getDistrictDisplayFeature(district, feature);
+    const projection = d3.geoMercator().fitExtent(
+      [[18, 18], [522, 402]],
+      displayFeature
+    );
     const path = d3.geoPath().projection(projection);
     const districtPath = path(displayFeature);
     const dominantRow = getDominantCountyRow(rows);
@@ -754,34 +1121,44 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       if (subtitle) {
         subtitle.textContent = `${district.title} shaded by the dominant county result.`;
       }
-      if (legend) {
-        legend.hidden = false;
-      }
+      setMapLegendVisibility(true, rows);
 
       return true;
     }
 
+    const clipPathId = `house-detail-district-clip-${district.code.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
     const defs = svg.append("defs");
     defs.append("clipPath")
-      .attr("id", "house-detail-district-clip")
+      .attr("id", clipPathId)
       .append("path")
       .attr("d", districtPath);
 
-    const countyLayer = svg.append("g").attr("clip-path", "url(#house-detail-district-clip)");
+    const countyLayer = svg.append("g").attr("clip-path", `url(#${clipPathId})`);
 
-    countyLayer.selectAll("path")
+    const gapFillRow = district.code === "MD-03" ? rowByFips.get("24003") : null;
+    if (gapFillRow) {
+      countyLayer.append("path")
+        .datum(displayFeature)
+        .attr("class", "house-detail-gap-fill")
+        .attr("d", districtPath)
+        .attr("fill", getCountyFill(gapFillRow))
+        .attr("stroke", "none")
+        .attr("pointer-events", "none");
+    }
+
+    countyLayer.selectAll("path.house-detail-county")
       .data(countyFeatures)
       .enter()
       .append("path")
       .attr("class", "detail-county-shape house-detail-county")
-      .attr("data-fips", (countyFeature) => String(countyFeature.id).padStart(5, "0"))
+      .attr("data-fips", (countyFeature) => getCountyFeatureFips(countyFeature))
       .attr("d", path)
       .attr("fill", (countyFeature) => {
-        const row = rowByFips.get(String(countyFeature.id).padStart(5, "0"));
+        const row = rowByFips.get(getCountyFeatureFips(countyFeature));
         return row ? getCountyFill(row) : "#2d3138";
       })
       .on("mouseover", (event, countyFeature) => {
-        const row = rowByFips.get(String(countyFeature.id).padStart(5, "0"));
+        const row = rowByFips.get(getCountyFeatureFips(countyFeature));
         if (!row) return;
         tooltip.style("opacity", 1).html(californiaCountyTooltipHTML(row, district));
         positionTooltip(event, tooltip);
@@ -800,11 +1177,9 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       .attr("stroke-width", 2.1);
 
     if (subtitle) {
-      subtitle.textContent = `${district.title} counties shaded by the winning county vote share.`;
+      subtitle.textContent = `${district.title} ${unitLabel === "parish" ? "parishes" : "counties"} shaded by the winning ${unitLabel} vote share.`;
     }
-    if (legend) {
-      legend.hidden = false;
-    }
+    setMapLegendVisibility(true, rows);
 
     return true;
   }
@@ -888,7 +1263,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       countyData.rows.map((row) => normalizeDistrictCountyRow(district, row))
     );
 
-    setUnitBoardLabels("County");
+    setUnitBoardLabels(district.state === "LA" ? "Parish" : "County");
     board.hidden = false;
     body.innerHTML = rows
       .sort((a, b) => b.totalVotes - a.totalVotes || a.county.localeCompare(b.county))
@@ -922,10 +1297,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
 
     if (renderedCountyMap) return;
 
-    const legend = document.getElementById("house-detail-map-legend");
-    if (legend) {
-      legend.hidden = true;
-    }
+    setMapLegendVisibility(false);
 
     const displayFeature = getMapFitFeature(feature);
     const projection = createMapProjection(feature);
