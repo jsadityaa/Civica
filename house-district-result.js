@@ -135,7 +135,9 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
   const COUNTIES_TOPOJSON_URL = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
   const CONNECTICUT_TOWNS_GEOJSON_URL = "./assets/maps/connecticut-towns.geojson";
   const STATE_COUNTY_GEOJSON_URLS = {
-    FL: "./assets/maps/florida-counties.geojson"
+    FL: "./assets/maps/florida-counties.geojson",
+    NJ: "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/1/query?where=STATE%3D%2734%27&outFields=GEOID%2CNAME%2CSTATE&returnGeometry=true&f=geojson&outSR=4326",
+    NM: "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/1/query?where=STATE%3D%2735%27&outFields=GEOID%2CNAME%2CSTATE&returnGeometry=true&f=geojson&outSR=4326"
   };
   const DISTRICT_GEOJSON_URLS = {
     "FL-01": "./assets/maps/florida-district-1.geojson"
@@ -152,10 +154,26 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     "MD-07": "./assets/maps/maryland-district-07-general.svg",
     "MN-03": "./assets/maps/minnesota-district-03-by-county.svg",
     "MN-04": "./assets/maps/minnesota-district-04-by-county.svg",
-    "MN-05": "./assets/maps/minnesota-district-05-by-county.svg"
+    "MN-05": "./assets/maps/minnesota-district-05-by-county.svg",
+    "NE-02": "./assets/maps/nebraska-district-02-wikimedia.svg",
+    "NM-01": "./assets/maps/new-mexico-district-01-by-county.svg",
+    "NM-02": "./assets/maps/new-mexico-district-02-by-county.svg",
+    "NM-03": "./assets/maps/new-mexico-district-03-by-county.svg",
+    "NY-02": "./assets/maps/new-york-district-02-by-county.svg",
+    "NY-03": "./assets/maps/new-york-district-03-by-county.svg",
+    "NY-07": "./assets/maps/new-york-district-07-by-county.svg",
+    "NY-10": "./assets/maps/new-york-district-10-by-county.svg",
+    "NY-11": "./assets/maps/new-york-district-11-by-county.svg",
+    "NY-13": "./assets/maps/new-york-district-13-by-county.svg",
+    "NY-14": "./assets/maps/new-york-district-14-by-county.svg",
+    "NY-16": "./assets/maps/new-york-district-16-by-county.svg",
+    "NY-19": "./assets/maps/new-york-district-19-by-county.svg",
+    "NY-20": "./assets/maps/new-york-district-20-by-county.svg",
+    "NV-04": "./assets/maps/nevada-district-04-by-county.svg"
   };
   const DISTRICT_SVG_VIEW_BOXES = {
-    "GA-04": "-210 -20 900 790"
+    "GA-04": "-210 -20 900 790",
+    "NE-02": "0 0 8200 4300"
   };
   const DISTRICT_SVG_COUNTY_PATHS = {
     "FL-01": {
@@ -237,12 +255,126 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     "MN-05": {
       path14: "27003", // Anoka
       path35: "27053" // Hennepin and same-shade Ramsey area in the source SVG
+    },
+    // New Mexico district SVGs by Incognito melon and later Wikimedia contributors, CC BY 4.0, via Wikimedia Commons.
+    // Recolored here with 2024 general-election county results.
+    "NM-01": {
+      path101506: "35001", // Bernalillo
+      path101118: "35005", // Chaves
+      path101498: "35011", // De Baca
+      path101486: "35019", // Guadalupe
+      path101102: "35027", // Lincoln
+      path101550: "35043", // Sandoval
+      path101786: "35057", // Torrance
+      path5707: "35061" // Valencia
+    },
+    "NM-02": {
+      path1896: "35001", // Bernalillo
+      path52: "35003", // Catron
+      path2372: "35005", // Chaves
+      path1904: "35006", // Cibola
+      path92: "35013", // Dona Ana
+      path80: "35015", // Eddy
+      path192: "35017", // Grant
+      path3496: "35023", // Hidalgo
+      path1524: "35025", // Lea
+      path188: "35029", // Luna
+      path1988: "35031", // McKinley
+      path76: "35035", // Otero
+      path96: "35051", // Sierra
+      path36: "35053", // Socorro
+      path1908: "35061" // Valencia
+    },
+    "NM-03": {
+      path74: "35005", // Chaves
+      path80: "35007", // Colfax
+      path60: "35009", // Curry
+      path84: "35015", // Eddy
+      path66: "35021", // Harding
+      path76: "35025", // Lea
+      path4: "35028", // Los Alamos
+      path56: "35031", // McKinley
+      path82: "35033", // Mora
+      path68: "35037", // Quay
+      path42: "35039", // Rio Arriba
+      path70: "35041", // Roosevelt
+      path38: "35043", // Sandoval
+      path52: "35045", // San Juan
+      path78: "35047", // San Miguel
+      path40: "35049", // Santa Fe
+      path58: "35055", // Taos
+      path50: "35059" // Union
+    },
+    // "2024 NV-04 election results.svg" by Incognito melon, CC BY 4.0, via Wikimedia Commons.
+    // Recolored here with 2024 general-election county results.
+    "NV-04": {
+      path16: "32003", // Clark
+      path4: "32009", // Esmeralda
+      path24: "32017", // Lincoln
+      path20: "32019", // Lyon
+      path6: "32021", // Mineral
+      path22: "32023" // Nye
+    },
+    // New York district SVGs by Wikimedia Commons contributors; recolored here with 2024 general-election county results.
+    "NY-02": {
+      path27: "36059", // Nassau
+      path59: "36103" // Suffolk
+    },
+    "NY-03": {
+      path30: "36081", // Queens
+      path27: "36059", // Nassau
+      path28: "36103" // Suffolk
+    },
+    "NY-07": {
+      path27: "36047", // Kings
+      path32: "36081" // Queens
+    },
+    "NY-10": {
+      path28: "36061", // New York
+      path27: "36047" // Kings
+    },
+    "NY-11": {
+      path28: "36085", // Richmond
+      path27: "36047" // Kings
+    },
+    "NY-13": {
+      path31: "36005", // Bronx
+      path27: "36061" // New York
+    },
+    "NY-14": {
+      path27: "36005", // Bronx
+      path35: "36081" // Queens
+    },
+    "NY-16": {
+      path27: "36005", // Bronx
+      path28: "36119" // Westchester
+    },
+    "NY-19": {
+      path29: "36109", // Tompkins
+      path37: "36023", // Cortland
+      path33: "36017", // Chenango
+      path31: "36007", // Broome
+      path35: "36025", // Delaware
+      path36: "36039", // Greene
+      path30: "36083", // Rensselaer
+      path34: "36021", // Columbia
+      path32: "36111", // Ulster
+      path28: "36105", // Sullivan
+      path27: "36025" // northern district fragment
+    },
+    "NY-20": {
+      path31: "36057", // Montgomery
+      path29: "36091", // Saratoga
+      path27: "36083", // Rensselaer
+      path30: "36001", // Albany
+      path28: "36001" // western district fragment
     }
   };
   const COUNTY_SUBDIVISION_GEOJSON_URLS = {
     CT: "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/1/query?where=STATE%3D%2709%27&outFields=GEOID%2CNAME%2CBASENAME%2CSTATE%2CCOUNTY&returnGeometry=true&f=geojson&outSR=4326",
     ME: "./assets/maps/state-local-results-2024/maine-local-results-2024.geojson",
-    MA: "./assets/maps/state-local-results-2024/massachusetts-local-results-2024.geojson"
+    MA: "./assets/maps/state-local-results-2024/massachusetts-local-results-2024.geojson",
+    NH: "./assets/maps/state-local-results-2024/new-hampshire-local-results-2024.geojson"
   };
   const STATE_FIPS = {
     AL: "01",
@@ -652,7 +784,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     const svg = d3.select("#house-detail-map");
     const tooltip = d3.select("#house-detail-map-tooltip");
 
-    if (!svgUrl || !pathCountyMap || svg.empty()) return false;
+    if (!svgUrl || svg.empty()) return false;
 
     try {
       const svgText = await d3.text(svgUrl);
@@ -683,12 +815,14 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       const paths = sourcePaths
         .map((pathElement) => ({
           id: pathElement.getAttribute("id"),
+          countyFips: (pathCountyMap && pathCountyMap[pathElement.getAttribute("id")])
+            || pathElement.getAttribute("data-fips"),
           d: pathElement.getAttribute("d"),
           fillRule: pathElement.getAttribute("fill-rule"),
           transform: getPathTransform(pathElement),
           style: pathElement.getAttribute("style")
         }))
-        .filter((pathData) => pathData.id && pathData.d && pathCountyMap[pathData.id]);
+        .filter((pathData) => pathData.id && pathData.d && pathData.countyFips);
 
       if (!paths.length) return false;
 
@@ -706,16 +840,16 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
         .enter()
         .append("path")
         .attr("class", "detail-county-shape house-detail-county house-detail-svg-county")
-        .attr("data-fips", (pathData) => pathCountyMap[pathData.id])
+        .attr("data-fips", (pathData) => pathData.countyFips)
         .attr("d", (pathData) => pathData.d)
         .attr("fill-rule", (pathData) => pathData.fillRule || null)
         .attr("transform", (pathData) => pathData.transform || null)
         .attr("fill", (pathData) => {
-          const row = rowByFips.get(pathCountyMap[pathData.id]);
+          const row = rowByFips.get(pathData.countyFips);
           return row ? getCountyFill(row) : "#2d3138";
         })
         .on("mouseover", (event, pathData) => {
-          const row = rowByFips.get(pathCountyMap[pathData.id]);
+          const row = rowByFips.get(pathData.countyFips);
           if (!row) return;
           tooltip.style("opacity", 1).html(californiaCountyTooltipHTML(row, district));
           positionTooltip(event, tooltip);
