@@ -192,6 +192,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     "NY-16": "./assets/maps/new-york-district-16-by-county.svg",
     "NY-19": "./assets/maps/new-york-district-19-by-county.svg",
     "NY-20": "./assets/maps/new-york-district-20-by-county.svg",
+    "TX-26": "./assets/maps/texas-district-26-by-county.svg",
     "NV-04": "./assets/maps/nevada-district-04-by-county.svg"
   };
   const DISTRICT_SVG_VIEW_BOXES = {
@@ -533,6 +534,14 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       path27: "36083", // Rensselaer
       path30: "36001", // Albany
       path28: "36093" // Schenectady
+    },
+    // "2024 TX-26 election results.svg" by Wikimedia Commons contributors, via Wikimedia Commons.
+    // Recolored here with 2024 general-election county results.
+    "TX-26": {
+      path20: "48097", // Cooke
+      path6: "48121", // Denton
+      path14: "48439", // Tarrant
+      path16: "48497" // Wise
     }
   };
   const COUNTY_SUBDIVISION_GEOJSON_URLS = {
@@ -1019,7 +1028,22 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
         .attr("class", "house-detail-svg-county-layer")
         .attr("transform", `translate(${sourceTranslateX} ${sourceTranslateY}) scale(${sourceScale})`);
 
-      layer.selectAll("path")
+      layer.selectAll("path.house-detail-svg-district-outline")
+        .data(paths)
+        .enter()
+        .append("path")
+        .attr("class", "house-detail-svg-district-outline")
+        .attr("d", (pathData) => pathData.d)
+        .attr("fill-rule", (pathData) => pathData.fillRule || null)
+        .attr("transform", (pathData) => pathData.transform || null)
+        .attr("fill", "none")
+        .attr("stroke", "rgba(255,255,255,0.96)")
+        .attr("stroke-width", 2.1)
+        .attr("stroke-linejoin", "round")
+        .attr("vector-effect", "non-scaling-stroke")
+        .attr("pointer-events", "none");
+
+      layer.selectAll("path.house-detail-svg-county")
         .data(paths)
         .enter()
         .append("path")
