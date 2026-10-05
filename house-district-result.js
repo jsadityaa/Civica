@@ -143,20 +143,43 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     "FL-01": "./assets/maps/florida-district-1.geojson"
   };
   const DISTRICT_SVG_URLS = {
+    "CA-10": "./assets/maps/california-district-10-by-county.svg",
+    "CA-15": "./assets/maps/california-district-15-by-county.svg",
+    "CA-17": "./assets/maps/california-district-17-by-county.svg",
+    "CA-26": "./assets/maps/california-district-26-by-county.svg",
+    "CA-40": "./assets/maps/california-district-40-by-county.svg",
+    "CA-45": "./assets/maps/california-district-45-by-county.svg",
+    "CA-49": "./assets/maps/california-district-49-by-county.svg",
+    "CO-06": "./assets/maps/colorado-district-06-by-county.svg",
+    "CO-08": "./assets/maps/colorado-district-08-by-county.svg",
     "FL-01": "./assets/maps/florida-district-1-by-county.svg",
     "FL-14": "./assets/maps/florida-district-14-by-county.svg",
     "GA-04": "./assets/maps/georgia-district-4-by-county.svg",
     "GA-11": "./assets/maps/georgia-district-11-by-county.svg",
     "HI-02": "./assets/maps/hawaii-district-2-by-county.svg",
+    "MD-02": "./assets/maps/maryland-district-02-general.svg",
     "MD-03": "./assets/maps/maryland-district-3-dem-primary.svg",
     "MD-04": "./assets/maps/maryland-district-04-general.svg",
     "MD-05": "./assets/maps/maryland-district-05-general.svg",
     "MD-07": "./assets/maps/maryland-district-07-general.svg",
     "MN-03": "./assets/maps/minnesota-district-03-by-county.svg",
     "MN-04": "./assets/maps/minnesota-district-04-by-county.svg",
-    "MN-05": "./assets/maps/minnesota-district-05-by-county.svg",
+    "MO-01": "./assets/maps/missouri-district-01-by-county.svg",
+    "MO-02": "./assets/maps/missouri-district-02-by-county.svg",
     "NE-02": "./assets/maps/nebraska-district-02-wikimedia.svg",
-    "NM-01": "./assets/maps/new-mexico-district-01-by-county.svg",
+    "NJ-01": "./assets/maps/new-jersey-district-01-by-county.svg",
+    "NJ-02": "./assets/maps/new-jersey-district-02-by-county.svg",
+    "NJ-03": "./assets/maps/new-jersey-district-03-by-county.svg",
+    "NJ-04": "./assets/maps/new-jersey-district-04-by-county.svg",
+    "NJ-05": "./assets/maps/new-jersey-district-05-by-county.svg",
+    "NJ-06": "./assets/maps/new-jersey-district-06-by-county.svg",
+    "NJ-07": "./assets/maps/new-jersey-district-07-by-county.svg",
+    "NJ-08": "./assets/maps/new-jersey-district-08-by-county.svg",
+    "NJ-09": "./assets/maps/new-jersey-district-09-by-county.svg",
+    "NJ-10": "./assets/maps/new-jersey-district-10-by-county.svg",
+    "NJ-11": "./assets/maps/new-jersey-district-11-by-county.svg",
+    "NJ-12": "./assets/maps/new-jersey-district-12-by-county.svg",
+    "NM-01": "./assets/maps/new-mexico-district-01-by-county.svg?v=20261004-2022-wikimedia",
     "NM-02": "./assets/maps/new-mexico-district-02-by-county.svg",
     "NM-03": "./assets/maps/new-mexico-district-03-by-county.svg",
     "NY-02": "./assets/maps/new-york-district-02-by-county.svg",
@@ -172,10 +195,63 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     "NV-04": "./assets/maps/nevada-district-04-by-county.svg"
   };
   const DISTRICT_SVG_VIEW_BOXES = {
-    "GA-04": "-210 -20 900 790",
     "NE-02": "0 0 8200 4300"
   };
+  const DISTRICT_SVG_CORRECTIONS = {};
+  const DISTRICT_SVG_HIT_AREAS = {};
+  const DISTRICT_SVG_SUBPATH_COUNTIES = {
+    "MO-02": {
+      path14: ["29183", "29189"] // St. Charles, then the small St. Louis County piece bundled into that source path.
+    }
+  };
   const DISTRICT_SVG_COUNTY_PATHS = {
+    // California district SVGs by Wikimedia Commons contributors; recolored here with 2024 general-election county results.
+    "CA-10": {
+      path4: "06001", // Alameda
+      path6: "06013" // Contra Costa
+    },
+    "CA-15": {
+      path2: "06081", // San Mateo fragment
+      path4: "06081", // San Mateo
+      path6: "06075" // San Francisco
+    },
+    "CA-17": {
+      path3810: "06001", // Alameda
+      path3938: "06085" // Santa Clara
+    },
+    "CA-26": {
+      path2: "06111", // Ventura fragment
+      path4: "06037", // Los Angeles
+      path6: "06111", // Ventura
+      path8: "06111" // Ventura fragment
+    },
+    "CA-40": {
+      path5573: "06059", // Orange
+      path5759: "06071", // San Bernardino
+      path6267: "06065" // Riverside
+    },
+    "CA-45": {
+      path1: "06037", // Los Angeles
+      path7: "06059" // Orange
+    },
+    "CA-49": {
+      path18443: "06059", // Orange
+      path18759: "06073" // San Diego
+    },
+    // Colorado district SVGs by Wikimedia Commons contributors; recolored here with 2024 general-election county results.
+    "CO-06": {
+      path17: "08001", // Adams
+      path16: "08005", // Arapahoe
+      path14: "08031", // Denver fragment
+      path15: "08031", // Denver fragment
+      path34: "08035", // Douglas
+      path38: "08059" // Jefferson
+    },
+    "CO-08": {
+      path14: "08001", // Adams
+      path262: "08069", // Larimer
+      path271: "08123" // Weld
+    },
     "FL-01": {
       path134: "12033", // Escambia
       path136: "12113", // Santa Rosa
@@ -218,6 +294,11 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     },
     // Maryland general-election SVGs by Y2hyaXM, CC BY 4.0, via Wikimedia Commons.
     // Recolored here with 2024 general-election county results.
+    "MD-02": {
+      path18449: "24510", // Baltimore City
+      path19051: "24005", // Baltimore County
+      path20235: "24013" // Carroll
+    },
     "MD-04": {
       path12501: "24031", // Montgomery
       path13476: "24033" // Prince George's
@@ -252,21 +333,104 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       path14: "27123", // Ramsey
       path181: "27163" // Washington
     },
-    "MN-05": {
-      path14: "27003", // Anoka
-      path35: "27053" // Hennepin and same-shade Ramsey area in the source SVG
+    // Missouri district SVGs by Wikimedia Commons contributors; recolored here with 2024 general-election county results.
+    "MO-01": {
+      path2: "29189", // St. Louis County
+      path4: "29510" // St. Louis City
+    },
+    "MO-02": {
+      path30: "29071", // Franklin
+      path14: "29183", // St. Charles
+      path118: "29189", // St. Louis County
+      path24: "29219" // Warren
+    },
+    // "2024 NJ-01 election results.svg" by Incognito melon and Wikimedia contributors, CC BY 4.0, via Wikimedia Commons.
+    // Recolored here with 2024 general-election county results.
+    "NJ-01": {
+      "Burlington County": "34005",
+      path4: "34007", // Camden
+      path6: "34015" // Gloucester
+    },
+    "NJ-02": {
+      path2: "34001", // Atlantic
+      path6: "34009", // Cape May
+      path8: "34011", // Cumberland
+      path10: "34015", // Gloucester
+      path12: "34029", // Ocean
+      path14: "34033" // Salem
+    },
+    "NJ-03": {
+      path2: "34005", // Burlington
+      path4: "34005", // Burlington fragment
+      path6: "34021", // Mercer
+      path8: "34025", // Monmouth
+      path10: "34005" // Burlington fragment
+    },
+    "NJ-04": {
+      path2: "34025", // Monmouth
+      path4: "34029" // Ocean
+    },
+    "NJ-05": {
+      path2: "34003", // Bergen
+      path4: "34031", // Passaic
+      path6: "34037", // Sussex
+      path8: "34031" // Passaic fragment
+    },
+    "NJ-06": {
+      path2: "34025", // Monmouth
+      path4: "34023" // Middlesex
+    },
+    "NJ-07": {
+      path68: "34019", // Hunterdon
+      path80: "34027", // Morris
+      "Somerset County": "34035",
+      "Sussex County": "34037",
+      "Union County": "34039",
+      "Warren County": "34041"
+    },
+    "NJ-08": {
+      path2: "34013", // Essex
+      path4: "34017", // Hudson
+      path6: "34039" // Union
+    },
+    "NJ-09": {
+      path2: "34003", // Bergen
+      path4: "34003", // Bergen fragment
+      path6: "34017", // Hudson
+      path8: "34031" // Passaic
+    },
+    "NJ-10": {
+      path2: "34013", // Essex
+      path4: "34017", // Hudson
+      path6: "34039" // Union
+    },
+    "NJ-11": {
+      "Essex County": "34013",
+      path4: "34031", // Passaic
+      path10: "34027" // Morris
+    },
+    "NJ-12": {
+      path2: "34021", // Mercer
+      path4: "34035", // Somerset
+      path6: "34039", // Union
+      path8: "34023" // Middlesex
     },
     // New Mexico district SVGs by Incognito melon and later Wikimedia contributors, CC BY 4.0, via Wikimedia Commons.
     // Recolored here with 2024 general-election county results.
     "NM-01": {
-      path101506: "35001", // Bernalillo
-      path101118: "35005", // Chaves
-      path101498: "35011", // De Baca
-      path101486: "35019", // Guadalupe
-      path101102: "35027", // Lincoln
-      path101550: "35043", // Sandoval
-      path101786: "35057", // Torrance
-      path5707: "35061" // Valencia
+      path5156: "35001", // Bernalillo
+      path5158: "35005", // Chaves
+      path5150: "35005", // Chaves fragment
+      path5152: "35011", // De Baca
+      path5154: "35011", // De Baca fragment
+      path5144: "35019", // Guadalupe
+      path5170: "35027", // Lincoln
+      path5142: "35035", // Otero fragment
+      path5148: "35035", // Otero
+      path5162: "35049", // Santa Fe
+      path5164: "35043", // Sandoval
+      path5146: "35057", // Torrance
+      path5160: "35061" // Valencia
     },
     "NM-02": {
       path1896: "35001", // Bernalillo
@@ -308,6 +472,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     // "2024 NV-04 election results.svg" by Incognito melon, CC BY 4.0, via Wikimedia Commons.
     // Recolored here with 2024 general-election county results.
     "NV-04": {
+      path2: "32001", // Churchill
       path16: "32003", // Clark
       path4: "32009", // Esmeralda
       path24: "32017", // Lincoln
@@ -360,14 +525,14 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       path34: "36021", // Columbia
       path32: "36111", // Ulster
       path28: "36105", // Sullivan
-      path27: "36025" // northern district fragment
+      path27: "36077" // Otsego
     },
     "NY-20": {
       path31: "36057", // Montgomery
       path29: "36091", // Saratoga
       path27: "36083", // Rensselaer
       path30: "36001", // Albany
-      path28: "36001" // western district fragment
+      path28: "36093" // Schenectady
     }
   };
   const COUNTY_SUBDIVISION_GEOJSON_URLS = {
@@ -509,6 +674,13 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       .replace(/\s*\(pt\.\)$/i, "")
       .replace(/\s*\(part\)$/i, "")
       .replace(/ (County|Parish)$/i, "")
+      .trim();
+  }
+
+  function formatCountyTooltipName(name) {
+    return String(name || "")
+      .replace(/\s*\(pt\.\)$/i, "")
+      .replace(/\s*\(part\)$/i, "")
       .trim();
   }
 
@@ -784,7 +956,9 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     const svg = d3.select("#house-detail-map");
     const tooltip = d3.select("#house-detail-map-tooltip");
 
-    if (!svgUrl || svg.empty()) return false;
+    if (!svgUrl || svg.empty()) {
+      return false;
+    }
 
     try {
       const svgText = await d3.text(svgUrl);
@@ -813,15 +987,25 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
         return transforms.join(" ");
       };
       const paths = sourcePaths
-        .map((pathElement) => ({
-          id: pathElement.getAttribute("id"),
-          countyFips: (pathCountyMap && pathCountyMap[pathElement.getAttribute("id")])
-            || pathElement.getAttribute("data-fips"),
-          d: pathElement.getAttribute("d"),
-          fillRule: pathElement.getAttribute("fill-rule"),
-          transform: getPathTransform(pathElement),
-          style: pathElement.getAttribute("style")
-        }))
+        .flatMap((pathElement) => {
+          const id = pathElement.getAttribute("id");
+          const d = pathElement.getAttribute("d");
+          const defaultCountyFips = (pathCountyMap && pathCountyMap[id])
+            || pathElement.getAttribute("data-fips");
+          const subpathCounties = DISTRICT_SVG_SUBPATH_COUNTIES[district.code]?.[id];
+          const subpaths = subpathCounties && d
+            ? d.match(/[Mm][^Mm]*/g) || [d]
+            : [d];
+
+          return subpaths.map((subpathD, index) => ({
+            id,
+            countyFips: (subpathCounties && subpathCounties[index]) || defaultCountyFips,
+            d: subpathD,
+            fillRule: pathElement.getAttribute("fill-rule"),
+            transform: getPathTransform(pathElement),
+            style: pathElement.getAttribute("style")
+          }));
+        })
         .filter((pathData) => pathData.id && pathData.d && pathData.countyFips);
 
       if (!paths.length) return false;
@@ -848,6 +1032,10 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
           const row = rowByFips.get(pathData.countyFips);
           return row ? getCountyFill(row) : "#2d3138";
         })
+        .attr("stroke", "rgba(255,255,255,0.95)")
+        .attr("stroke-width", 2.1)
+        .attr("stroke-linejoin", "round")
+        .attr("vector-effect", "non-scaling-stroke")
         .on("mouseover", (event, pathData) => {
           const row = rowByFips.get(pathData.countyFips);
           if (!row) return;
@@ -858,6 +1046,63 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
         .on("mouseout", () => {
           tooltip.style("opacity", 0);
         });
+
+      const corrections = DISTRICT_SVG_CORRECTIONS[district.code] || [];
+      corrections.forEach((correction) => {
+        const row = rowByFips.get(correction.countyFips);
+        if (!row) return;
+
+        const transformSource = correction.transformSourceId
+          ? sourcePaths.find((pathElement) => pathElement.getAttribute("id") === correction.transformSourceId)
+          : null;
+        const transform = transformSource ? getPathTransform(transformSource) : correction.transform;
+
+        layer.append("path")
+          .attr("class", "detail-county-shape house-detail-county house-detail-svg-county house-detail-svg-county-correction")
+          .attr("data-fips", correction.countyFips)
+          .attr("d", correction.d)
+          .attr("transform", transform || null)
+          .attr("fill", getCountyFill(row))
+          .attr("stroke", correction.stroke || "none")
+          .attr("stroke-width", correction.strokeWidth || 0)
+          .attr("vector-effect", correction.strokeWidth ? "non-scaling-stroke" : null)
+          .on("mouseover", (event) => {
+            tooltip.style("opacity", 1).html(californiaCountyTooltipHTML(row, district));
+            positionTooltip(event, tooltip);
+          })
+          .on("mousemove", (event) => positionTooltip(event, tooltip))
+          .on("mouseout", () => {
+            tooltip.style("opacity", 0);
+          });
+      });
+
+      const hitAreas = DISTRICT_SVG_HIT_AREAS[district.code] || [];
+      hitAreas.forEach((hitArea) => {
+        const row = rowByFips.get(hitArea.countyFips);
+        if (!row) return;
+
+        const transformSource = hitArea.transformSourceId
+          ? sourcePaths.find((pathElement) => pathElement.getAttribute("id") === hitArea.transformSourceId)
+          : null;
+        const transform = transformSource ? getPathTransform(transformSource) : hitArea.transform;
+
+        layer.append("path")
+          .attr("class", "detail-county-shape house-detail-county house-detail-svg-county-hit-area")
+          .attr("data-fips", hitArea.countyFips)
+          .attr("d", hitArea.d)
+          .attr("transform", transform || null)
+          .attr("fill", "transparent")
+          .attr("stroke", "none")
+          .attr("pointer-events", "all")
+          .on("mouseover", (event) => {
+            tooltip.style("opacity", 1).html(californiaCountyTooltipHTML(row, district));
+            positionTooltip(event, tooltip);
+          })
+          .on("mousemove", (event) => positionTooltip(event, tooltip))
+          .on("mouseout", () => {
+            tooltip.style("opacity", 0);
+          });
+      });
 
       return true;
     } catch (error) {
@@ -907,7 +1152,8 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     const first = candidates[0];
     const second = candidates[1];
     const districtNumber = String(district.code || "").split("-")[1]?.replace(/^0/, "") || "";
-    const title = districtNumber ? `${row.county} / District ${districtNumber}` : row.county;
+    const countyName = formatCountyTooltipName(row.county);
+    const title = districtNumber ? `${countyName} / District ${districtNumber}` : countyName;
 
     return `
       <div class="tooltip-header">
@@ -960,7 +1206,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     const subtitle = document.getElementById("house-detail-map-subtitle");
     const svg = d3.select("#house-detail-map");
     const tooltip = d3.select("#house-detail-map-tooltip");
-    if (!countyData?.counties?.length || svg.empty() || !window.topojson) {
+    if (!countyData?.counties?.length || svg.empty()) {
       setMapLegendVisibility(false);
       return false;
     }
@@ -982,6 +1228,19 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     }
 
     const rowByFips = new Map(rows.map((row) => [row.countyFips, row]));
+    if (await renderDistrictSvgCountyMap(district, rowByFips)) {
+      if (subtitle) {
+        subtitle.textContent = `${district.title} counties shaded by the winning county vote share.`;
+      }
+      setMapLegendVisibility(true, rows);
+      return true;
+    }
+
+    if (!window.topojson) {
+      setMapLegendVisibility(false);
+      return false;
+    }
+
     const countyFeatures = await getCountyFeaturesForRows(district.state, rowByFips);
 
     if (!countyFeatures.length) {
@@ -1002,6 +1261,67 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     const path = d3.geoPath().projection(projection);
     const districtPath = path(displayFeature);
     const dominantRow = getDominantCountyRow(rows);
+
+    if (district.code === "CA-38") {
+      const losAngelesRow = rowByFips.get("06037");
+      const orangeRow = rowByFips.get("06059");
+      const clipPathId = "house-detail-district-clip-ca-38";
+
+      svg.append("defs")
+        .append("clipPath")
+        .attr("id", clipPathId)
+        .append("path")
+        .attr("d", districtPath);
+
+      svg.append("path")
+        .datum(displayFeature)
+        .attr("class", "detail-county-shape house-detail-county")
+        .attr("data-fips", losAngelesRow?.countyFips || "06037")
+        .attr("d", districtPath)
+        .attr("fill", losAngelesRow ? getCountyFill(losAngelesRow) : "#5a96c8")
+        .attr("stroke", "none")
+        .on("mouseover", (event) => {
+          if (!losAngelesRow) return;
+          tooltip.style("opacity", 1).html(californiaCountyTooltipHTML(losAngelesRow, district));
+          positionTooltip(event, tooltip);
+        })
+        .on("mousemove", (event) => positionTooltip(event, tooltip))
+        .on("mouseout", () => {
+          tooltip.style("opacity", 0);
+        });
+
+      if (orangeRow) {
+        svg.append("path")
+          .attr("class", "detail-county-shape house-detail-county")
+          .attr("data-fips", orangeRow.countyFips)
+          .attr("clip-path", `url(#${clipPathId})`)
+          .attr("d", "M240 244 H330 V310 H240 Z")
+          .attr("fill", getCountyFill(orangeRow))
+          .attr("stroke", "none")
+          .on("mouseover", (event) => {
+            tooltip.style("opacity", 1).html(californiaCountyTooltipHTML(orangeRow, district));
+            positionTooltip(event, tooltip);
+          })
+          .on("mousemove", (event) => positionTooltip(event, tooltip))
+          .on("mouseout", () => {
+            tooltip.style("opacity", 0);
+          });
+      }
+
+      svg.append("path")
+        .datum(displayFeature)
+        .attr("class", "house-detail-shape")
+        .attr("d", districtPath)
+        .attr("fill", "none")
+        .attr("stroke", "rgba(255,255,255,0.95)")
+        .attr("stroke-width", 2.1);
+
+      if (subtitle) {
+        subtitle.textContent = `${district.title} counties shaded by the winning county vote share.`;
+      }
+      setMapLegendVisibility(true, rows);
+      return true;
+    }
 
     if (dominantRow) {
       svg.append("path")
@@ -1038,24 +1358,54 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
 
     const countyLayer = svg.append("g").attr("clip-path", `url(#${clipPathId})`);
 
-    const gapFillRow = district.code === "MD-03" ? rowByFips.get("24003") : null;
+    const gapFillFips = district.code === "MD-03"
+      ? "24003"
+      : district.code === "NY-26"
+        ? "36029"
+        : null;
+    const gapFillRow = district.code === "MD-03"
+      ? rowByFips.get("24003")
+      : district.code === "NY-26"
+        ? rowByFips.get("36029")
+        : null;
     if (gapFillRow) {
       countyLayer.append("path")
         .datum(displayFeature)
-        .attr("class", "house-detail-gap-fill")
+        .attr("class", district.code === "NY-26" ? "detail-county-shape house-detail-gap-fill" : "house-detail-gap-fill")
+        .attr("data-fips", gapFillFips)
         .attr("d", districtPath)
         .attr("fill", getCountyFill(gapFillRow))
         .attr("stroke", "none")
-        .attr("pointer-events", "none");
+        .attr("pointer-events", district.code === "NY-26" ? "auto" : "none")
+        .on("mouseover", (event) => {
+          if (district.code !== "NY-26") return;
+          tooltip.style("opacity", 1).html(californiaCountyTooltipHTML(gapFillRow, district));
+          positionTooltip(event, tooltip);
+        })
+        .on("mousemove", (event) => {
+          if (district.code === "NY-26") positionTooltip(event, tooltip);
+        })
+        .on("mouseout", () => {
+          if (district.code === "NY-26") tooltip.style("opacity", 0);
+        });
     }
 
+    const renderedCountyFeatures = district.code === "NY-26"
+      ? countyFeatures.filter((countyFeature) => getCountyFeatureFips(countyFeature) !== "36029")
+      : countyFeatures;
+
     countyLayer.selectAll("path.house-detail-county")
-      .data(countyFeatures)
+      .data(renderedCountyFeatures)
       .enter()
       .append("path")
       .attr("class", "detail-county-shape house-detail-county")
       .attr("data-fips", (countyFeature) => String(countyFeature.id).padStart(5, "0"))
-      .attr("d", path)
+      .attr("d", (countyFeature) => {
+        if (district.code === "NY-26" && String(countyFeature.id).padStart(5, "0") === "36063") {
+          return "M108.47,78.484L115.421,68.34L117.528,64.636L118.648,61.53L123.325,48.562L122.766,45.97L121.847,41.712L119.906,38.745L113.826,33.365L120.638,27.034L124.344,25.298L128.299,19.21L131.003,19.166L132.796,19.248L133.699,19.358L137.905,18.826L138.391,18.83L152.276,19.503L156.009,19.5L156.572,19.697L167.599,19.768L171.884,19.544L172.79,19.586L214.759,18.824L218.167,18.683L222.1,18.692L231.72,19.081L263.818,19.079L267.295,19.049L270.996,19.088L277.248,19.048L292.698,18.867L310.81,18.359L320.075,18.398L322.102,18L322.48,30.565L311.363,31.079L311.643,38.272L312.097,49.797L312.757,74.509L312.771,75.03L312.959,83.192L317.3,83.039L318.199,81.27L319.788,81.23L323.591,75.49L323.612,76.158L324.4,113.294L331.664,113.168L337.207,110.961L339.534,109.055L339.17,106.65L337.947,105.101L337.402,102.102L338.238,99.717L341.73,96.68L343.846,95.916L346.288,96.294L354.702,95.773L361.761,97.107L365.438,95.468L368.414,92.29L369.914,91.72L378.351,90.667L379.621,90.746L381.47,91.661L385.08,92.62L390.118,92.001L391.969,90.641L393.621,86.08L396.681,82.105L397.967,77.968L400.144,75.138L405.575,72.821L408.33,73.686L410.264,75.813L411.273,78.304L412.568,78.835L415.219,76.691L416.723,76.329L418.8,77.319L420.61,77.123L421.832,75.15L422.414,72.015L426.197,72.305L429.27,72.023L431.465,72.663L406.573,72.985L342.245,97.074L308.549,151.245L265.663,148.236L262.6,122.158L219.714,95.067L155.386,96.071L109.437,83.023Z";
+        }
+        return path(countyFeature);
+      })
       .attr("fill", (countyFeature) => {
         const row = rowByFips.get(String(countyFeature.id).padStart(5, "0"));
         return row ? getCaliforniaCountyFill(row) : "#2d3138";
@@ -1070,6 +1420,27 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       .on("mouseout", () => {
         tooltip.style("opacity", 0);
       });
+
+    if (false && district.code === "NY-26") {
+      const niagaraRow = rowByFips.get("36063");
+      if (niagaraRow) {
+        countyLayer.insert("path", ".house-detail-county")
+          .attr("class", "detail-county-shape house-detail-county house-detail-county-correction")
+          .attr("data-fips", "36063")
+          .attr("d", "M108.47,78.48 L115.42,68.34 L117.53,64.64 L118.65,61.53 L123.33,48.56 L122.77,45.97 L121.85,41.71 L119.91,38.75 L113.83,33.37 L120.64,27.03 L124.34,25.30 L128.30,19.21 L137.91,18.83 L155.39,96.07 L109.44,83.02 Z")
+          .attr("fill", getCountyFill(niagaraRow))
+          .attr("stroke", "none")
+          .attr("stroke-width", 0)
+          .on("mouseover", (event) => {
+            tooltip.style("opacity", 1).html(californiaCountyTooltipHTML(niagaraRow, district));
+            positionTooltip(event, tooltip);
+          })
+          .on("mousemove", (event) => positionTooltip(event, tooltip))
+          .on("mouseout", () => {
+            tooltip.style("opacity", 0);
+          });
+      }
+    }
 
     svg.append("path")
       .datum(displayFeature)
@@ -1190,7 +1561,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     const svg = d3.select("#house-detail-map");
     const tooltip = d3.select("#house-detail-map-tooltip");
     const unitLabel = district.state === "LA" ? "parish" : "county";
-    if (!countyData?.rows?.length || svg.empty() || !window.topojson) {
+    if (!countyData?.rows?.length || svg.empty()) {
       setMapLegendVisibility(false);
       return false;
     }
@@ -1211,6 +1582,11 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       }
       setMapLegendVisibility(true, rows);
       return true;
+    }
+
+    if (!window.topojson) {
+      setMapLegendVisibility(false);
+      return false;
     }
 
     const countyFeatures = await getCountyFeaturesForRows(district.state, rowByFips);
@@ -1269,28 +1645,60 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
 
     const countyLayer = svg.append("g").attr("clip-path", `url(#${clipPathId})`);
 
-    const gapFillRow = district.code === "MD-03" ? rowByFips.get("24003") : null;
+    const gapFillFips = district.code === "MD-03"
+      ? "24003"
+      : district.code === "NY-26"
+        ? "36029"
+        : null;
+    const gapFillRow = district.code === "MD-03"
+      ? rowByFips.get("24003")
+      : district.code === "NY-26"
+        ? rowByFips.get("36029")
+        : null;
     if (gapFillRow) {
       countyLayer.append("path")
         .datum(displayFeature)
-        .attr("class", "house-detail-gap-fill")
+        .attr("class", district.code === "NY-26" ? "detail-county-shape house-detail-gap-fill" : "house-detail-gap-fill")
+        .attr("data-fips", gapFillFips)
         .attr("d", districtPath)
         .attr("fill", getCountyFill(gapFillRow))
         .attr("stroke", "none")
-        .attr("pointer-events", "none");
+        .attr("pointer-events", district.code === "NY-26" ? "auto" : "none")
+        .on("mouseover", (event) => {
+          if (district.code !== "NY-26") return;
+          tooltip.style("opacity", 1).html(californiaCountyTooltipHTML(gapFillRow, district));
+          positionTooltip(event, tooltip);
+        })
+        .on("mousemove", (event) => {
+          if (district.code === "NY-26") positionTooltip(event, tooltip);
+        })
+        .on("mouseout", () => {
+          if (district.code === "NY-26") tooltip.style("opacity", 0);
+        });
     }
 
+    const renderedCountyFeatures = district.code === "NY-26"
+      ? countyFeatures.filter((countyFeature) => getCountyFeatureFips(countyFeature) !== "36029")
+      : countyFeatures;
+
     countyLayer.selectAll("path.house-detail-county")
-      .data(countyFeatures)
+      .data(renderedCountyFeatures)
       .enter()
       .append("path")
-      .attr("class", "detail-county-shape house-detail-county")
-      .attr("data-fips", (countyFeature) => getCountyFeatureFips(countyFeature))
-      .attr("d", path)
-      .attr("fill", (countyFeature) => {
-        const row = rowByFips.get(getCountyFeatureFips(countyFeature));
-        return row ? getCountyFill(row) : "#2d3138";
-      })
+        .attr("class", "detail-county-shape house-detail-county")
+        .attr("data-fips", (countyFeature) => getCountyFeatureFips(countyFeature))
+        .attr("d", (countyFeature) => {
+          if (district.code === "NY-26" && getCountyFeatureFips(countyFeature) === "36063") {
+            return "M108.47,78.484L115.421,68.34L117.528,64.636L118.648,61.53L123.325,48.562L122.766,45.97L121.847,41.712L119.906,38.745L113.826,33.365L120.638,27.034L124.344,25.298L128.299,19.21L131.003,19.166L132.796,19.248L133.699,19.358L137.905,18.826L138.391,18.83L152.276,19.503L156.009,19.5L156.572,19.697L167.599,19.768L171.884,19.544L172.79,19.586L214.759,18.824L218.167,18.683L222.1,18.692L231.72,19.081L263.818,19.079L267.295,19.049L270.996,19.088L277.248,19.048L292.698,18.867L310.81,18.359L320.075,18.398L322.102,18L322.48,30.565L311.363,31.079L311.643,38.272L312.097,49.797L312.757,74.509L312.771,75.03L312.959,83.192L317.3,83.039L318.199,81.27L319.788,81.23L323.591,75.49L323.612,76.158L324.4,113.294L331.664,113.168L337.207,110.961L339.534,109.055L339.17,106.65L337.947,105.101L337.402,102.102L338.238,99.717L341.73,96.68L343.846,95.916L346.288,96.294L354.702,95.773L361.761,97.107L365.438,95.468L368.414,92.29L369.914,91.72L378.351,90.667L379.621,90.746L381.47,91.661L385.08,92.62L390.118,92.001L391.969,90.641L393.621,86.08L396.681,82.105L397.967,77.968L400.144,75.138L405.575,72.821L408.33,73.686L410.264,75.813L411.273,78.304L412.568,78.835L415.219,76.691L416.723,76.329L418.8,77.319L420.61,77.123L421.832,75.15L422.414,72.015L426.197,72.305L429.27,72.023L431.465,72.663L406.573,72.985L342.245,97.074L308.549,151.245L265.663,148.236L262.6,122.158L219.714,95.067L155.386,96.071L109.437,83.023Z";
+          }
+          return path(countyFeature);
+        })
+        .attr("fill", (countyFeature) => {
+          const row = rowByFips.get(getCountyFeatureFips(countyFeature));
+          return row ? getCountyFill(row) : "#2d3138";
+        })
+        .attr("stroke", district.code === "NY-26" ? "none" : null)
+        .attr("stroke-width", district.code === "NY-26" ? 0 : null)
       .on("mouseover", (event, countyFeature) => {
         const row = rowByFips.get(getCountyFeatureFips(countyFeature));
         if (!row) return;
@@ -1301,6 +1709,27 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       .on("mouseout", () => {
         tooltip.style("opacity", 0);
       });
+
+    if (false && district.code === "NY-26") {
+      const niagaraRow = rowByFips.get("36063");
+      if (niagaraRow) {
+        countyLayer.insert("path", ".house-detail-county")
+          .attr("class", "detail-county-shape house-detail-county house-detail-county-correction")
+          .attr("data-fips", "36063")
+          .attr("d", "M108.47,78.48 L115.42,68.34 L117.53,64.64 L118.65,61.53 L123.33,48.56 L122.77,45.97 L121.85,41.71 L119.91,38.75 L113.83,33.37 L120.64,27.03 L124.34,25.30 L128.30,19.21 L137.91,18.83 L155.39,96.07 L109.44,83.02 Z")
+          .attr("fill", getCountyFill(niagaraRow))
+          .attr("stroke", "none")
+          .attr("stroke-width", 0)
+          .on("mouseover", (event) => {
+            tooltip.style("opacity", 1).html(californiaCountyTooltipHTML(niagaraRow, district));
+            positionTooltip(event, tooltip);
+          })
+          .on("mousemove", (event) => positionTooltip(event, tooltip))
+          .on("mouseout", () => {
+            tooltip.style("opacity", 0);
+          });
+      }
+    }
 
     svg.append("path")
       .datum(displayFeature)
