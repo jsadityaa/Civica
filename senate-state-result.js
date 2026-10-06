@@ -1,9 +1,24 @@
 const COUNTY_REFERENCE_URL = "https://raw.githubusercontent.com/tonmcg/US_County_Level_Election_Results_08-24/master/2024_US_County_Level_Presidential_Results.csv";
 const COUNTIES_TOPOJSON_URL = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
 const STATES_TOPOJSON_URL = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
+const SENATE_COUNTY_BOARD_PREVIEW_LIMIT = 6;
 
 const SENATE_DEM_SHADES = ["#b8d4ec", "#8eb6d9", "#5a96c8", "#2879b5"];
 const SENATE_IND_SHADES = ["#f0dfab", "#e0c16a", "#c8a24a", "#a97d1c"];
+const SENATE_MAJOR_CITY_LABELS = {
+  Arizona: [
+    { name: "Phoenix", coordinates: [-112.0740, 33.4484] },
+    { name: "Tucson", coordinates: [-110.9747, 32.2226] }
+  ],
+  California: [
+    { name: "Sacramento", coordinates: [-121.4944, 38.5816] },
+    { name: "San Francisco", coordinates: [-122.4194, 37.7749] },
+    { name: "San Jose", coordinates: [-121.8863, 37.3382] },
+    { name: "Fresno", coordinates: [-119.7871, 36.7378] },
+    { name: "Los Angeles", coordinates: [-118.2437, 34.0522] },
+    { name: "San Diego", coordinates: [-117.1611, 32.7157] }
+  ]
+};
 const SENATE_REP_SHADES = ["#f1cfcf", "#e49e9e", "#d86a6a", "#cf2f2f"];
 const SENATE_FALLBACK_FILL = "#2d3138";
 
@@ -13,7 +28,7 @@ const countyReferenceCache = new Map();
 const countyBoardState = {
   rows: [],
   sort: "votes",
-  limit: "25",
+  limit: String(SENATE_COUNTY_BOARD_PREVIEW_LIMIT),
   activeFips: null
 };
 
@@ -242,9 +257,9 @@ function getCountyMarginValue(row) {
 function getCountyMarginLabel(row) {
   const top = row.candidates[0];
   const margin = getCountyMarginValue(row);
-  const winnerLabel = top ? top.name.split(/\s+/).slice(-1)[0] : "Winner";
+  const winnerLabel = top?.party || "D";
   const formatted = margin < 1 ? margin.toFixed(2) : margin.toFixed(1);
-  return `${winnerLabel} +${formatted}`;
+  return `${winnerLabel}+${formatted}`;
 }
 
 function getCountyShade(row) {
@@ -318,7 +333,6 @@ function renderCountyBoardRows() {
     <tr class="detail-county-row" data-fips="${row.county_fips}">
       <td>${row.displayName}</td>
       <td><span class="detail-county-margin ${senateWinnerTone(row.winnerParty)}">${row.marginLabel}</span></td>
-      <td><span class="detail-county-winner ${senateWinnerTone(row.winnerParty)}">${row.candidates[0]?.name || "—"}</span></td>
       <td>${senateFormatVotes(row.totalVotes)}</td>
       <td>100%</td>
     </tr>
@@ -328,6 +342,21 @@ function renderCountyBoardRows() {
     row.addEventListener("mouseenter", () => setActiveCounty(row.dataset.fips));
     row.addEventListener("mouseleave", () => setActiveCounty(null));
   });
+
+  updateCountyShowAllButton();
+}
+
+function updateCountyShowAllButton() {
+  const button = document.getElementById("detail-county-show-all");
+  if (!button) return;
+
+  const hasOverflow = countyBoardState.rows.length > SENATE_COUNTY_BOARD_PREVIEW_LIMIT;
+  button.hidden = !hasOverflow;
+  if (!hasOverflow) return;
+
+  const showingAll = countyBoardState.limit === "all";
+  button.textContent = showingAll ? "Show fewer" : `Show all ${countyBoardState.rows.length} counties`;
+  button.setAttribute("aria-expanded", String(showingAll));
 }
 
 function wireCountyBoardControls() {
@@ -339,13 +368,13 @@ function wireCountyBoardControls() {
     };
   });
 
-  document.querySelectorAll(".detail-county-limit-button").forEach((button) => {
-    button.onclick = () => {
-      countyBoardState.limit = button.dataset.limit;
-      document.querySelectorAll(".detail-county-limit-button").forEach((btn) => btn.classList.toggle("is-active", btn === button));
+  const showAllButton = document.getElementById("detail-county-show-all");
+  if (showAllButton) {
+    showAllButton.onclick = () => {
+      countyBoardState.limit = countyBoardState.limit === "all" ? String(SENATE_COUNTY_BOARD_PREVIEW_LIMIT) : "all";
       renderCountyBoardRows();
     };
-  });
+  }
 }
 
 function getCountyTooltipHTML(row, stateName) {
@@ -393,6 +422,108 @@ function positionTooltip(event, tooltip) {
   tooltip.style("left", `${left}px`).style("top", `${top}px`);
 }
 
+function renderSenateCityLabels(svg, projection, stateName) {
+  const cityLabels = SENATE_MAJOR_CITY_LABELS[stateName] || [];
+  const placedLabels = placeSenateCityLabels(cityLabels, projection);
+
+  const cityLayer = svg.append("g").attr("class", "state-election-city-labels senate-city-labels");
+
+  cityLayer.selectAll("circle")
+    .data(placedLabels)
+    .enter()
+    .append("circle")
+    .attr("cx", (city) => city.point[0])
+    .attr("cy", (city) => city.point[1])
+    .attr("r", 2.6);
+
+  cityLayer.selectAll("text")
+    .data(placedLabels)
+    .enter()
+    .append("text")
+    .attr("x", (city) => city.labelX)
+    .attr("y", (city) => city.labelY)
+    .attr("text-anchor", (city) => city.anchor)
+    .text((city) => city.name);
+}
+
+function placeSenateCityLabels(cityLabels, projection) {
+  const svgWidth = 540;
+  const svgHeight = 520;
+  const edgePadding = 8;
+  const labelHeight = 22;
+  const placedBoxes = [];
+  const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+  const overlaps = (box) => placedBoxes.some((placed) => (
+    box.x < placed.x + placed.width + 4 &&
+    box.x + box.width + 4 > placed.x &&
+    box.y < placed.y + placed.height + 4 &&
+    box.y + box.height + 4 > placed.y
+  ));
+
+  return cityLabels
+    .map((city) => {
+      const point = projection(city.coordinates);
+      return point ? { ...city, point } : null;
+    })
+    .filter(Boolean)
+    .map((city) => {
+      const [x, y] = city.point;
+      const labelWidth = Math.max(36, city.name.length * 10.2);
+      const candidates = [
+        { x: x + 7, y: y + 6, anchor: "start" },
+        { x: x - 7, y: y + 6, anchor: "end" },
+        { x: x + 7, y: y - 9, anchor: "start" },
+        { x: x - 7, y: y - 9, anchor: "end" },
+        { x, y: y - 13, anchor: "middle" },
+        { x, y: y + 18, anchor: "middle" },
+        { x: x + 7, y: y + 24, anchor: "start" },
+        { x: x - 7, y: y + 24, anchor: "end" }
+      ];
+
+      const prepared = candidates.map((candidate) => {
+        const boxX = candidate.anchor === "end"
+          ? candidate.x - labelWidth
+          : candidate.anchor === "middle"
+            ? candidate.x - labelWidth / 2
+            : candidate.x;
+        const box = {
+          x: clamp(boxX, edgePadding, svgWidth - labelWidth - edgePadding),
+          y: clamp(candidate.y - labelHeight + 5, edgePadding, svgHeight - labelHeight - edgePadding),
+          width: labelWidth,
+          height: labelHeight
+        };
+        return {
+          ...candidate,
+          labelX: candidate.anchor === "end"
+            ? box.x + labelWidth
+            : candidate.anchor === "middle"
+              ? box.x + labelWidth / 2
+              : box.x,
+          labelY: box.y + labelHeight - 5,
+          box
+        };
+      });
+
+      const chosen = prepared.find((candidate) => !overlaps(candidate.box)) || prepared[0];
+      placedBoxes.push(chosen.box);
+
+      return {
+        ...city,
+        labelX: chosen.labelX,
+        labelY: chosen.labelY,
+        anchor: chosen.anchor
+      };
+    });
+}
+
+function updateSenateMapLegend(countyRows) {
+  const winningParties = new Set(countyRows.map((row) => row.winnerParty));
+  document.querySelectorAll(".detail-map-legend-row[data-party]").forEach((row) => {
+    const party = row.dataset.party;
+    row.hidden = !winningParties.has(party);
+  });
+}
+
 async function renderCountyMap(record) {
   const svg = d3.select("#detail-county-map");
   const tooltip = d3.select("#detail-map-tooltip");
@@ -424,8 +555,9 @@ async function renderCountyMap(record) {
 
     mapEmpty.hidden = true;
     subtitle.textContent = `${record.displayName} counties shaded by the winning Senate margin.`;
+    updateSenateMapLegend(countyRows);
 
-    const projection = d3.geoMercator().fitSize([540, 620], { type: "FeatureCollection", features });
+    const projection = d3.geoMercator().fitSize([540, 520], { type: "FeatureCollection", features });
     const path = d3.geoPath(projection);
 
     svg.append("g")
@@ -454,6 +586,8 @@ async function renderCountyMap(record) {
       .datum(stateFeature)
       .attr("class", "detail-state-outline")
       .attr("d", path);
+
+    renderSenateCityLabels(svg, projection, record.name);
   } catch (error) {
     mapEmpty.hidden = false;
     subtitle.textContent = "County map data could not be loaded.";
@@ -480,6 +614,7 @@ async function renderCountyBoard(record) {
 
   note.textContent = "County margins in the 2024 Senate race.";
   countyBoardState.rows = rows;
+  countyBoardState.limit = String(SENATE_COUNTY_BOARD_PREVIEW_LIMIT);
   renderCountyBoardRows();
   wireCountyBoardControls();
 }
@@ -495,8 +630,6 @@ function renderSummary(record) {
   const seat = document.getElementById("detail-ev");
   const margin = document.getElementById("detail-margin");
   const voteBody = document.getElementById("detail-vote-body");
-  const facts = document.getElementById("detail-facts");
-  const contextCopy = document.getElementById("detail-context-copy");
   const certifiedTitle = document.getElementById("detail-certified-title");
   const certifiedDem = document.getElementById("detail-certified-dem");
   const certifiedRep = document.getElementById("detail-certified-rep");
@@ -511,9 +644,9 @@ function renderSummary(record) {
   const repPct = candidates.filter((candidate) => candidate.party === "Republican").reduce((sum, candidate) => sum + Number(candidate.pct.replace("%", "")), 0);
   const indPct = candidates.filter((candidate) => candidate.party === "Independent").reduce((sum, candidate) => sum + Number(candidate.pct.replace("%", "")), 0);
 
-  document.title = `${record.displayName} 2024 Senate Result`;
-  title.textContent = `${record.displayName} Senate Election Results`;
-  subtitle.textContent = `${record.displayName}'s ${record.primary.seatType.toLowerCase()} Senate result in the 2024 general election.`;
+  document.title = `${record.displayName} U.S. Senate Election Results`;
+  title.textContent = `${record.displayName} U.S. Senate Election Results`;
+  subtitle.textContent = `${record.displayName}'s ${record.primary.seatType.toLowerCase()} U.S. Senate result in the 2024 general election.`;
   summaryCard.classList.remove("winner-dem", "winner-rep", "winner-ind");
   summaryCard.classList.add(`winner-${winnerTone}`);
   summaryTitle.textContent = `${record.primary.winner} wins ${record.displayName}.`;
@@ -532,16 +665,13 @@ function renderSummary(record) {
           <img class="detail-candidate-photo" src="${getSenateCandidatePortrait(candidate.candidate)}" alt="${candidate.candidate}" />
           <span>${candidate.candidate}</span>
         </div>
-      </td>
       <td>${candidate.party}</td>
       <td>${candidate.votes}</td>
       <td>${candidate.pct}</td>
     </tr>
   `).join("");
 
-  facts.innerHTML = buildFactItems(record, candidates).join("");
-  contextCopy.innerHTML = `${record.displayName} held ${record.races.length === 1 ? "one Senate race" : `${record.races.length} Senate races`} in the 2024 cycle. ${candidateNameSpan(record.primary.winner, record.primary.winnerParty)} won the ${record.primary.seatType.toLowerCase()} contest by ${record.primary.result}. County-level results below use the county reporting available for this race.`;
-  certifiedTitle.textContent = `The Senate vote has been certified in ${record.displayName}.`;
+  certifiedTitle.textContent = `The U.S. Senate vote has been certified in ${record.displayName}.`;
   certifiedDem.style.width = `${demPct}%`;
   certifiedRep.style.width = `${repPct}%`;
   certifiedInd.style.width = `${indPct}%`;

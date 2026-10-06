@@ -182,13 +182,6 @@ if (senateData && document.getElementById("senate-dem-count")) {
     document.getElementById("senate-votes-dem").textContent = summary.demFlips > summary.repFlips ? `Flipped ${summary.demFlips} seats` : "";
     document.getElementById("senate-votes-total").textContent = `${summary.indSeats} independents · ${summary.contestedSeats} contests settled in 2024`;
     document.getElementById("senate-votes-rep").textContent = summary.repFlips > summary.demFlips ? `Flipped ${summary.repFlips} seats` : "";
-
-    document.getElementById("senate-stat-control").textContent = `${summary.repSeats}-${summary.demSeats}`;
-    document.getElementById("senate-stat-control-copy").textContent = "Republicans finished the cycle with 53 seats, while the Democratic caucus held 47 including two independents.";
-    document.getElementById("senate-stat-flips").textContent = `${summary.repFlips}`;
-    document.getElementById("senate-stat-flips-copy").textContent = "Republicans flipped Montana, Ohio, Pennsylvania, and West Virginia.";
-    document.getElementById("senate-stat-contested").textContent = `${summary.contestedSeats}`;
-    document.getElementById("senate-stat-contested-copy").textContent = "That total includes the Nebraska special election held alongside the regular contest.";
   }
 
   function renderRaceBoard() {

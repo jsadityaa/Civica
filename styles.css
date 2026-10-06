@@ -3085,6 +3085,11 @@ html[data-theme="dark"] .detail-summary-card.winner-ind {
   min-height: 460px;
 }
 
+.senate-detail-map-canvas {
+  height: 360px;
+  min-height: 360px;
+}
+
 
 #detail-county-map {
   width: 100%;

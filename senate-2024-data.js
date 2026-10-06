@@ -12,7 +12,8 @@ window.SENATE_2024_DATA = {
   races: [
     { code: "AZ", race: "Arizona", seatType: "Regular", winner: "Ruben Gallego", winnerParty: "D", opponent: "Kari Lake", opponentParty: "R", status: "Democratic hold", result: "D+2.4", flipped: false, tooltipRows: [
       { name: "Ruben Gallego", party: "Dem.", votes: "1,676,335", pct: "50.06" },
-      { name: "Kari Lake", party: "Rep.", votes: "1,595,761", pct: "47.65" }
+      { name: "Kari Lake", party: "Rep.", votes: "1,595,761", pct: "47.65" },
+      { name: "Eduardo Heredia Quintana", party: "Green", votes: "75,868", pct: "2.27" }
     ] },
     { code: "CA-R", race: "California", seatType: "Regular", winner: "Adam Schiff", winnerParty: "D", opponent: "Steve Garvey", opponentParty: "R", status: "Democratic hold", result: "D+19.1", flipped: false, tooltipRows: [
       { name: "Adam Schiff", party: "Dem.", votes: "9,036,252", pct: "58.87" },

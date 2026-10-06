@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); if (localStorage.getItem('datahub-dyslexic-ui') === 'true') document.documentElement.setAttribute('data-dyslexic', 'true'); } catch (e) {} })();</script>
-  <link rel="stylesheet" href="./styles.css?v=20260817-5" />
+  <link rel="stylesheet" href="./styles.css?v=20261006-senate-map-scale" />
 </head>
 <body>
   <header class="global-header">
@@ -76,7 +76,7 @@
 
         <div class="detail-heading">
           <div>
-            <div class="detail-kicker">2024 Senate Result</div>
+            <div class="detail-kicker">2024 U.S. Senate Result</div>
             <h1 id="detail-title">Loading...</h1>
             <p class="detail-subtitle" id="detail-subtitle">State-by-state Senate result in the 2024 general election.</p>
           </div>
@@ -145,10 +145,6 @@
                     <button class="detail-county-sort-button" type="button" data-sort="margin">Margin</button>
                     <button class="detail-county-sort-button" type="button" data-sort="alphabetical">A–Z</button>
                   </div>
-                  <div class="detail-county-limit" role="group" aria-label="County result count">
-                    <button class="detail-county-limit-button is-active" type="button" data-limit="25">Top 25</button>
-                    <button class="detail-county-limit-button" type="button" data-limit="all">All</button>
-                  </div>
                 </div>
               </div>
               <div class="detail-county-board-empty" id="detail-county-board-empty" hidden></div>
@@ -158,13 +154,13 @@
                     <tr>
                       <th>County</th>
                       <th>Margin</th>
-                      <th>Winner</th>
                       <th>Votes</th>
                       <th>% In</th>
                     </tr>
                   </thead>
                   <tbody id="detail-county-board-body"></tbody>
                 </table>
+                <button class="detail-county-board-toggle" id="detail-county-show-all" type="button" hidden></button>
               </div>
             </section>
           </section>
@@ -177,21 +173,21 @@
                   <p id="detail-map-subtitle">Four-step county margin scale.</p>
                 </div>
                 <div class="detail-map-legend" aria-label="County map legend">
-                  <div class="detail-map-legend-row">
+                  <div class="detail-map-legend-row" data-party="D">
                     <span>Dem.</span>
                     <div class="detail-map-swatch dem-1"></div>
                     <div class="detail-map-swatch dem-2"></div>
                     <div class="detail-map-swatch dem-3"></div>
                     <div class="detail-map-swatch dem-4"></div>
                   </div>
-                  <div class="detail-map-legend-row">
+                  <div class="detail-map-legend-row" data-party="I">
                     <span>Ind.</span>
                     <div class="detail-map-swatch ind-1"></div>
                     <div class="detail-map-swatch ind-2"></div>
                     <div class="detail-map-swatch ind-3"></div>
                     <div class="detail-map-swatch ind-4"></div>
                   </div>
-                  <div class="detail-map-legend-row">
+                  <div class="detail-map-legend-row" data-party="R">
                     <span>Rep.</span>
                     <div class="detail-map-swatch rep-1"></div>
                     <div class="detail-map-swatch rep-2"></div>
@@ -207,20 +203,11 @@
                   </div>
                 </div>
               </div>
-              <div class="detail-map-canvas" id="detail-map-canvas">
-                <svg id="detail-county-map" viewBox="0 0 540 620" preserveAspectRatio="xMidYMid meet"></svg>
+              <div class="detail-map-canvas senate-detail-map-canvas" id="detail-map-canvas">
+                <svg id="detail-county-map" viewBox="0 0 540 520" preserveAspectRatio="xMidYMid meet"></svg>
                 <div class="detail-map-empty" id="detail-map-empty" hidden>County map data is not available for this Senate page yet.</div>
               </div>
             </section>
-
-            <div class="rail-card">
-              <h3>Quick Facts</h3>
-              <ul class="rail-list detail-fact-list" id="detail-facts"></ul>
-            </div>
-            <div class="rail-card">
-              <h3>Context</h3>
-              <p id="detail-context-copy">Detailed Senate result context for this state is loading.</p>
-            </div>
           </aside>
         </div>
       </section>
@@ -228,9 +215,9 @@
   </div>
 
   <div class="tooltip" id="detail-map-tooltip"></div>
-  <script src="./senate-2024-data.js"></script>
-  <script src="./senate-county-results.js"></script>
-  <script src="./senate-state-result.js"></script>
+  <script src="./senate-2024-data.js?v=20261006-senate-statewide"></script>
+  <script src="./senate-county-results.js?v=20261006-california-senate"></script>
+  <script src="./senate-state-result.js?v=20261006-senate-city-labels"></script>
   <footer id="contact-us" class="civica-homepage__footer">
       <div class="civica-homepage__footer-inner">
         <div class="civica-homepage__footer-bottom">
