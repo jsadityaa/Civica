@@ -722,7 +722,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
   };
   const COUNTY_SUBDIVISION_GEOJSON_URLS = {
     CT: "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/1/query?where=STATE%3D%2709%27&outFields=GEOID%2CNAME%2CBASENAME%2CSTATE%2CCOUNTY&returnGeometry=true&f=geojson&outSR=4326",
-    ME: "./assets/maps/state-local-results-2024/maine-local-results-2024.geojson",
+    ME: "./assets/maps/state-local-results-2024/maine-local-results-2024.geojson?v=20261006-maine-labels",
     MA: "./assets/maps/state-local-results-2024/massachusetts-local-results-2024.geojson",
     NH: "./assets/maps/state-local-results-2024/new-hampshire-local-results-2024.geojson",
     RI: "./assets/maps/state-local-results-2024/rhode-island-local-results-2024.geojson",

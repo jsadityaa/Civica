@@ -9,7 +9,7 @@ let stateElectionConnecticutTownRowsCache = null;
 let stateElectionTopoCache = null;
 
 const STATE_ELECTION_LOCAL_GEOJSON_URLS = {
-  Maine: "./assets/maps/state-local-results-2024/maine-local-results-2024.geojson",
+  Maine: "./assets/maps/state-local-results-2024/maine-local-results-2024.geojson?v=20261006-maine-labels",
   Massachusetts: "./assets/maps/state-local-results-2024/massachusetts-local-results-2024.geojson",
   "New Hampshire": "./assets/maps/state-local-results-2024/new-hampshire-local-results-2024.geojson",
   "Rhode Island": "./assets/maps/state-local-results-2024/rhode-island-local-results-2024.geojson",
@@ -32,6 +32,11 @@ const STATE_ELECTION_FIPS_BY_NAME = {
 
 const STATE_ELECTION_DEM_SHADES = ["#b8d4ec", "#8eb6d9", "#5a96c8", "#2879b5"];
 const STATE_ELECTION_REP_SHADES = ["#f1cfcf", "#e49e9e", "#d86a6a", "#cf2f2f"];
+const STATE_ELECTION_HOUSE_PREVIEW_LIMIT = 5;
+const stateElectionHouseListState = {
+  districts: [],
+  limit: STATE_ELECTION_HOUSE_PREVIEW_LIMIT
+};
 const STATE_ELECTION_CANDIDATE_PORTRAITS = {
   "Kamala Harris": "https://upload.wikimedia.org/wikipedia/commons/4/41/Kamala_Harris_Vice_Presidential_Portrait.jpg",
   "Donald Trump": "https://upload.wikimedia.org/wikipedia/commons/5/56/Donald_Trump_official_portrait.jpg"
@@ -1211,20 +1216,42 @@ function stateElectionGetHouseDistricts(stateName) {
 
 function stateElectionRenderHouseList(districts) {
   const list = document.getElementById("state-election-house-list");
+  const showAllButton = document.getElementById("state-election-house-show-all");
   if (!list) return;
+
+  stateElectionHouseListState.districts = districts;
 
   if (!districts.length) {
     list.innerHTML = `<p class="state-election-empty-note">No voting House district result is available for this jurisdiction.</p>`;
+    if (showAllButton) showAllButton.hidden = true;
     return;
   }
 
-  list.innerHTML = districts.map((district) => `
+  const visibleDistricts = stateElectionHouseListState.limit === "all"
+    ? districts
+    : districts.slice(0, STATE_ELECTION_HOUSE_PREVIEW_LIMIT);
+
+  list.innerHTML = visibleDistricts.map((district) => `
     <a class="state-election-district-card state-election-district-card--${stateElectionPartyClass(district.winnerParty)}" href="${stateElectionDistrictLink(district.code)}">
       <span class="state-election-district-code">${district.code}</span>
       <strong>${district.winnerName}</strong>
       <span>${district.marginLabel} · ${district.totalVotesFormatted}${/unavailable/i.test(district.totalVotesFormatted) ? "" : " votes"}</span>
     </a>
   `).join("");
+
+  if (!showAllButton) return;
+
+  const hasOverflow = districts.length > STATE_ELECTION_HOUSE_PREVIEW_LIMIT;
+  showAllButton.hidden = !hasOverflow;
+  if (!hasOverflow) return;
+
+  const showingAll = stateElectionHouseListState.limit === "all";
+  showAllButton.textContent = showingAll ? "Show fewer" : `Show all ${districts.length} districts`;
+  showAllButton.setAttribute("aria-expanded", String(showingAll));
+  showAllButton.onclick = () => {
+    stateElectionHouseListState.limit = showingAll ? STATE_ELECTION_HOUSE_PREVIEW_LIMIT : "all";
+    stateElectionRenderHouseList(stateElectionHouseListState.districts);
+  };
 }
 
 function stateElectionRenderHouseDistrictMap(stateName, districts) {
@@ -1292,13 +1319,11 @@ async function stateElectionInit() {
   document.getElementById("state-election-title").textContent = `${stateName} Election Results`;
   const mapTitle = document.getElementById("state-election-presidential-map-title");
   const mapCopy = document.getElementById("state-election-presidential-map-copy");
-  const houseKicker = document.getElementById("state-election-house-kicker");
   const presidentialMapCard = document.getElementById("state-election-presidential-map-card");
   const houseMapCard = document.getElementById("state-election-house-map-card");
   const hideMaps = stateName === "Alaska";
   if (mapTitle) mapTitle.textContent = `${regionLabel} Map`;
   if (mapCopy) mapCopy.textContent = `${regionLabelPlural} shaded by 2024 presidential margin.`;
-  if (houseKicker) houseKicker.textContent = `${stateName} Districts`;
   if (presidentialMapCard) {
     presidentialMapCard.hidden = hideMaps;
     presidentialMapCard.style.display = hideMaps ? "none" : "";
@@ -1323,6 +1348,7 @@ async function stateElectionInit() {
   }
 
   const houseDistricts = stateElectionGetHouseDistricts(stateName);
+  stateElectionHouseListState.limit = STATE_ELECTION_HOUSE_PREVIEW_LIMIT;
   stateElectionRenderHouseList(houseDistricts);
   stateElectionRenderHouseDistrictMap(stateName, houseDistricts);
 }

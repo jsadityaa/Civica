@@ -2153,6 +2153,27 @@ html:not([data-theme="dark"]) .state-election-detail-button:focus-visible {
   gap: 10px;
 }
 
+.state-election-district-toggle {
+  width: 100%;
+  margin-top: 12px;
+  border: 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 16px 22px 18px;
+  text-align: center;
+  transition: color 0.14s ease, background 0.14s ease;
+}
+
+.state-election-district-toggle:hover {
+  background: rgba(255,255,255,0.035);
+  color: var(--text);
+}
+
 .state-election-empty-note {
   margin: 0;
   color: var(--muted);

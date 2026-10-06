@@ -6,11 +6,18 @@ const CT_TOWN_RESULTS_URL = "./data/ct-town-results-2024.json";
 const CT_TOWN_RESULTS_2020_URL = "./data/ct-town-results-2020.json";
 const CT_TOWNS_GEOJSON_URL = "./assets/maps/connecticut-towns.geojson";
 const LOCAL_RESULT_GEOJSON_URLS = {
-  Maine: "./assets/maps/state-local-results-2024/maine-local-results-2024.geojson",
+  Maine: "./assets/maps/state-local-results-2024/maine-local-results-2024.geojson?v=20261006-maine-labels",
   Massachusetts: "./assets/maps/state-local-results-2024/massachusetts-local-results-2024.geojson",
   "New Hampshire": "./assets/maps/state-local-results-2024/new-hampshire-local-results-2024.geojson",
   "Rhode Island": "./assets/maps/state-local-results-2024/rhode-island-local-results-2024.geojson",
   Vermont: "./assets/maps/state-local-results-2024/vermont-local-results-2024.geojson"
+};
+const LOCAL_RESULT_2020_URLS = {
+  Maine: "./data/maine-local-results-2020.json",
+  Massachusetts: "./data/massachusetts-local-results-2020.json",
+  "New Hampshire": "./data/new-hampshire-local-results-2020.json",
+  "Rhode Island": "./data/rhode-island-local-results-2020.json",
+  Vermont: "./data/vermont-local-results-2020.json"
 };
 
 const DEM_SHADES = ["#b8d4ec", "#8eb6d9", "#5a96c8", "#2879b5"];
@@ -21,6 +28,7 @@ const COUNTY_BOARD_PREVIEW_LIMIT = 7;
 const countyResultsCache = new Map();
 const connecticutTownResultsCache = new Map();
 const localResultGeojsonCache = new Map();
+const localResultRows2020Cache = new Map();
 const countyBoardState = {
   rows: [],
   sort: "votes",
@@ -244,6 +252,59 @@ function normalizeTownName(name) {
     .replace(/\s+/g, " ")
     .trim()
     .toLowerCase();
+}
+
+function normalizeLocalResultName(name) {
+  const normalized = normalizeTownName(name)
+    .replace(/\//g, " ")
+    .replace(/\bplt\b/g, "plantation")
+    .replace(/\btwps\b/g, "twp")
+    .replace(/[^\w\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  return normalized
+    .replace(/^e\s+/, "east ")
+    .replace(/^n\s+/, "north ")
+    .replace(/^s\s+/, "south ")
+    .replace(/^w\s+/, "west ");
+}
+
+function getComparableLocalShiftRows(rows2024, rows2020) {
+  const prevByName = new Map(rows2020.map((row) => [normalizeLocalResultName(row.county_name), row]));
+
+  return rows2024.map((row) => {
+    let previous = prevByName.get(normalizeLocalResultName(row.county_name));
+
+    if (!previous && String(row.county_name || "").includes("/")) {
+      const parts = String(row.county_name)
+        .split("/")
+        .map((part) => normalizeLocalResultName(part))
+        .filter(Boolean);
+      const previousParts = parts.map((part) => prevByName.get(part)).filter(Boolean);
+      if (previousParts.length === parts.length) {
+        const votesDem = previousParts.reduce((sum, part) => sum + Number(part.votes_dem || 0), 0);
+        const votesGop = previousParts.reduce((sum, part) => sum + Number(part.votes_gop || 0), 0);
+        const totalVotes = previousParts.reduce((sum, part) => sum + Number(part.total_votes || 0), 0);
+        previous = {
+          votes_dem: votesDem,
+          votes_gop: votesGop,
+          total_votes: totalVotes,
+          per_dem: totalVotes ? votesDem / totalVotes : 0,
+          per_gop: totalVotes ? votesGop / totalVotes : 0
+        };
+      }
+    }
+
+    if (!previous) return row;
+
+    const margin2024 = (Number(row.per_dem) - Number(row.per_gop)) * 100;
+    const margin2020 = (Number(previous.per_dem) - Number(previous.per_gop)) * 100;
+    return {
+      ...row,
+      shift: margin2024 - margin2020
+    };
+  });
 }
 
 function wardKeyFromRow(row) {
@@ -569,6 +630,29 @@ async function fetchLocalResultRows(stateName) {
     .sort((a, b) => Number(b.total_votes || 0) - Number(a.total_votes || 0));
 }
 
+async function fetchLocalPreviousResultRows(stateName) {
+  if (localResultRows2020Cache.has(stateName)) return localResultRows2020Cache.get(stateName);
+
+  const url = LOCAL_RESULT_2020_URLS[stateName];
+  if (!url) return [];
+
+  const rows = await d3.json(url);
+  const normalized = (rows || [])
+    .map((row) => ({
+      ...row,
+      votes_dem: Number(row.votes_dem || 0),
+      votes_gop: Number(row.votes_gop || 0),
+      total_votes: Number(row.total_votes || 0),
+      per_dem: Number(row.per_dem || 0),
+      per_gop: Number(row.per_gop || 0),
+      per_point_diff: Number(row.per_point_diff || 0)
+    }))
+    .filter((row) => row.county_name);
+
+  localResultRows2020Cache.set(stateName, normalized);
+  return normalized;
+}
+
 async function renderCountyMap(result) {
   const svg = d3.select("#detail-county-map");
   const tooltip = d3.select("#detail-map-tooltip");
@@ -889,12 +973,20 @@ async function renderCountyBoard(result) {
   }
 
   if (usesLocalResultGeometries(result.stateName)) {
-    const localRows = await fetchLocalResultRows(result.stateName);
+    const [localRows, previousLocalRows] = await Promise.all([
+      fetchLocalResultRows(result.stateName),
+      fetchLocalPreviousResultRows(result.stateName)
+    ]);
     const regionName = getMapRegionLabel(result);
+    const comparableRows = previousLocalRows.length
+      ? getComparableLocalShiftRows(localRows, previousLocalRows)
+      : localRows;
 
     setCountyBoardRegionLabels(regionName, "Shift from 2020 pres.");
-    note.textContent = `${getMapRegionSingular(result.stateName)}-level presidential margins from the 2024 result.`;
-    countyBoardState.rows = localRows;
+    note.textContent = previousLocalRows.length
+      ? `${getMapRegionSingular(result.stateName)}-level presidential margins and movement since 2020.`
+      : `${getMapRegionSingular(result.stateName)}-level presidential margins from the 2024 result.`;
+    countyBoardState.rows = comparableRows;
     countyBoardState.sort = "votes";
     countyBoardState.limit = String(COUNTY_BOARD_PREVIEW_LIMIT);
     document.querySelectorAll(".detail-county-sort-button").forEach((button) => button.classList.toggle("is-active", button.dataset.sort === "votes"));
