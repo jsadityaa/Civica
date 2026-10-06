@@ -3175,33 +3175,6 @@ html[data-theme="dark"] .detail-summary-card.winner-ind {
   font-size: 13px;
 }
 
-.detail-fact-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.detail-fact-list li {
-  display: grid;
-  gap: 4px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-
-.detail-fact-list li:last-child {
-  border-bottom: 0;
-}
-
-.detail-fact-list strong {
-  font-size: 13px;
-}
-
-.detail-fact-list span {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.45;
-}
-
 .detail-county-board {
   margin-top: 24px;
   border: 1px solid var(--border);
@@ -3298,10 +3271,10 @@ html[data-theme="dark"] .detail-summary-card.winner-ind {
 }
 
 .detail-county-col-name { width: 23%; }
-.detail-county-col-margin { width: 21%; }
-.detail-county-col-shift { width: 30%; }
+.detail-county-col-margin { width: 20%; }
+.detail-county-col-shift { width: 29%; }
 .detail-county-col-votes { width: 16%; }
-.detail-county-col-in { width: 10%; }
+.detail-county-col-in { width: 12%; }
 
 .detail-county-board-table th,
 .detail-county-board-table td {
@@ -3337,10 +3310,32 @@ html[data-theme="dark"] .detail-summary-card.winner-ind {
 
 .detail-county-board-table td:nth-child(3),
 .detail-county-board-table td:nth-child(4),
+.detail-county-board-table td:nth-child(5),
 .detail-county-board-table th:nth-child(3),
-.detail-county-board-table th:nth-child(4) {
+.detail-county-board-table th:nth-child(4),
+.detail-county-board-table th:nth-child(5) {
   text-align: right;
   white-space: nowrap;
+}
+
+.detail-county-board-toggle {
+  width: 100%;
+  border: 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 16px 22px 18px;
+  text-align: center;
+  transition: color 0.14s ease, background 0.14s ease;
+}
+
+.detail-county-board-toggle:hover {
+  background: rgba(255,255,255,0.035);
+  color: var(--text);
 }
 
 .detail-county-margin {

@@ -2,6 +2,7 @@ const houseDetailDataBundle = window.HOUSE_2024_DATA;
 const houseDetailGeojson = window.HOUSE_2024_GEOJSON;
 
 if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("house-detail-title")) {
+  const UNIT_BOARD_COLLAPSED_LIMIT = 6;
   const PARTY_LABELS = {
     D: "Democrat",
     R: "Republican",
@@ -167,6 +168,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     "MO-01": "./assets/maps/missouri-district-01-by-county.svg",
     "MO-02": "./assets/maps/missouri-district-02-by-county.svg",
     "NE-02": "./assets/maps/nebraska-district-02-wikimedia.svg",
+    "NC-14": "./assets/maps/north-carolina-district-14-by-county.svg",
     "NJ-01": "./assets/maps/new-jersey-district-01-by-county.svg",
     "NJ-02": "./assets/maps/new-jersey-district-02-by-county.svg",
     "NJ-03": "./assets/maps/new-jersey-district-03-by-county.svg",
@@ -192,7 +194,23 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     "NY-16": "./assets/maps/new-york-district-16-by-county.svg",
     "NY-19": "./assets/maps/new-york-district-19-by-county.svg",
     "NY-20": "./assets/maps/new-york-district-20-by-county.svg",
+    "OH-01": "./assets/maps/ohio-district-01-by-county.svg",
+    "OH-12": "./assets/maps/ohio-district-12-by-county.svg",
+    "OK-01": "./assets/maps/oklahoma-district-01-by-county.svg",
+    "PA-01": "./assets/maps/pennsylvania-district-01-by-county.svg",
+    "PA-04": "./assets/maps/pennsylvania-district-04-by-county.svg",
+    "PA-05": "./assets/maps/pennsylvania-district-05-by-county.svg",
+    "PA-06": "./assets/maps/pennsylvania-district-06-by-county.svg",
+    "PA-07": "./assets/maps/pennsylvania-district-07-by-county.svg",
+    "PA-10": "./assets/maps/pennsylvania-district-10-by-county.svg?v=20261005-york",
+    "PA-12": "./assets/maps/pennsylvania-district-12-by-county.svg",
+    "SC-01": "./assets/maps/south-carolina-district-01-by-county.svg",
+    "TN-09": "./assets/maps/tennessee-district-09-by-county.svg",
+    "TX-14": "./assets/maps/texas-district-14-by-county.svg",
     "TX-26": "./assets/maps/texas-district-26-by-county.svg",
+    "VA-02": "./assets/maps/virginia-district-02-by-county.svg",
+    "VA-03": "./assets/maps/virginia-district-03-by-county.svg",
+    "VA-08": "./assets/maps/virginia-district-08-by-county.svg",
     "NV-04": "./assets/maps/nevada-district-04-by-county.svg"
   };
   const DISTRICT_SVG_VIEW_BOXES = {
@@ -200,6 +218,36 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
   };
   const DISTRICT_SVG_CORRECTIONS = {};
   const DISTRICT_SVG_HIT_AREAS = {};
+  const DISTRICT_SVG_TOWN_URLS = {
+    "RI-01": "./assets/maps/rhode-island-district-01-by-municipality.svg"
+  };
+  const DISTRICT_SVG_TOWN_PATHS = {
+    // "2023 Rhode Island's 1st congressional district special Republican primary results map by municipality.svg"
+    // by 02rufus02, CC BY-SA 4.0, via Wikimedia Commons. Recolored here with 2024 general-election municipality results.
+    "RI-01": {
+      path232981: "44007-007-Cumberland",
+      path232983: "44007-007-Woonsocket",
+      path232985: "44007-007-North Smithfield",
+      path232989: "44007-007-Lincoln",
+      path232991: "44007-007-Smithfield",
+      path232995: "44007-007-Central Falls",
+      path232997: "44007-007-Pawtucket",
+      path232999: "44007-007-North Providence",
+      path233003: "44007-007-Providence",
+      path233005: "44007-007-East Providence",
+      path233013: "44007-007-Providence",
+      path233027: "44001-001-Barrington",
+      path233031: "44001-001-Warren",
+      path233039: "44005-005-Tiverton",
+      path233051: "44001-001-Bristol",
+      path233059: "44005-005-Portsmouth",
+      path233065: "44005-005-Middletown",
+      path233113: "44005-005-Jamestown",
+      path233115: "44005-005-Little Compton",
+      path233117: "44005-005-Newport",
+      path233151: "44005-005-Newport"
+    }
+  };
   const DISTRICT_SVG_SUBPATH_COUNTIES = {
     "MO-02": {
       path14: ["29183", "29189"] // St. Charles, then the small St. Louis County piece bundled into that source path.
@@ -344,6 +392,98 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       path14: "29183", // St. Charles
       path118: "29189", // St. Louis County
       path24: "29219" // Warren
+    },
+    // "2024 NC-14 election results.svg" by Wikimedia Commons contributors, CC BY 4.0, via Wikimedia Commons.
+    // Recolored here with 2024 general-election county results.
+    "NC-14": {
+      path40: "37023", // Burke
+      path10: "37045", // Cleveland
+      path12: "37071", // Gaston
+      path20: "37119", // Mecklenburg
+      path34: "37149", // Polk
+      path36: "37161" // Rutherford
+    },
+    // Extracted from "2024 United States House of Representatives elections in Ohio results map by county.svg".
+    // Recolored here with 2024 general-election county results.
+    "OH-01": {
+      Hamilton: "39061",
+      Warren: "39165"
+    },
+    "OH-12": {
+      Athens: "39009",
+      Coshocton: "39031",
+      Delaware: "39041",
+      Fairfield: "39045",
+      Guernsey: "39059",
+      Holmes: "39075",
+      Knox: "39083",
+      Licking: "39089",
+      Morgan: "39115",
+      Muskingum: "39119",
+      Perry: "39127",
+      Tuscarawas: "39157"
+    },
+    // Extracted from "2024 United States House of Representatives elections in Oklahoma results map by county.svg".
+    // Recolored here with 2024 general-election county results.
+    "OK-01": {
+      Creek: "40037",
+      Rogers: "40131",
+      Tulsa: "40143",
+      Wagoner: "40145"
+    },
+    // Pennsylvania district SVGs by Wikimedia Commons contributors; recolored here with 2024 general-election county results.
+    "PA-01": {
+      path1615: "42017", // Bucks
+      path1727: "42091" // Montgomery
+    },
+    "PA-04": {
+      path2: "42011", // Berks
+      path4: "42011", // Berks fragment
+      path6: "42011", // Berks fragment
+      path8: "42091", // Montgomery
+      path10: "42011", // Berks fragment
+      path12: "42011" // Berks fragment
+    },
+    "PA-05": {
+      path4: "42091", // Montgomery
+      path6: "42101", // Philadelphia
+      path8: "42045" // Delaware
+    },
+    "PA-06": {
+      path4: "42011", // Berks
+      path10: "42029" // Chester
+    },
+    "PA-07": {
+      path1603: "42025", // Carbon
+      path1775: "42077", // Lehigh
+      path1547: "42089", // Monroe
+      path5533: "42095" // Northampton
+    },
+    "PA-10": {
+      path140: "42041", // Cumberland
+      path142: "42043", // Dauphin
+      path146: "42133" // York
+    },
+    "PA-12": {
+      path2: "42003", // Allegheny
+      path6: "42129" // Westmoreland
+    },
+    // "2024 SC-01 election.svg" by Wikimedia Commons contributors, CC BY 4.0, via Wikimedia Commons.
+    // Recolored here with 2024 general-election county results.
+    "SC-01": {
+      path3654: "45013", // Beaufort
+      path3650: "45015", // Berkeley
+      path3644: "45019", // Charleston
+      path3652: "45029", // Colleton
+      path3646: "45035", // Dorchester
+      path3648: "45053" // Jasper
+    },
+    // "2022 Tennessee's 9th congressional district election results by county.svg"
+    // by Ohaiyoan124 / Wikimedia contributors, CC BY-SA 4.0, via Wikimedia Commons.
+    // Recolored here with 2024 general-election county results.
+    "TN-09": {
+      path120309: "47157", // Shelby
+      path120307: "47167" // Tipton
     },
     // "2024 NJ-01 election results.svg" by Incognito melon and Wikimedia contributors, CC BY 4.0, via Wikimedia Commons.
     // Recolored here with 2024 general-election county results.
@@ -542,13 +682,51 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       path6: "48121", // Denton
       path14: "48439", // Tarrant
       path16: "48497" // Wise
+    },
+    // "2024 TX-14 election results.svg" by Wikimedia Commons contributors, CC BY 4.0, via Wikimedia Commons.
+    // Recolored here with 2024 general-election county results.
+    "TX-14": {
+      path18: "48039", // Brazoria
+      path22: "48167", // Galveston
+      path14: "48245", // Jefferson
+      path16: "48361" // Orange
+    },
+    // Virginia district SVGs by Wikimedia Commons contributors; recolored here with 2024 general-election county/city results.
+    "VA-02": {
+      path40: "51001", // Accomack
+      path20: "51810", // Virginia Beach
+      path42: "51550", // Chesapeake
+      path12: "51800", // Suffolk
+      path26: "51093", // Isle of Wight
+      path36: "51131", // Northampton
+      path22: "51175", // Southampton
+      path34: "51620" // Franklin City
+    },
+    "VA-03": {
+      51: "51700", // Newport News
+      83: "51650", // Hampton
+      65: "51550", // Chesapeake
+      31: "51740", // Portsmouth
+      125: "51710" // Norfolk
+    },
+    "VA-08": {
+      path4: "51059", // Fairfax
+      path6: "51059", // Fairfax fragment
+      path8: "51059", // Fairfax fragment
+      path10: "51059", // Fairfax fragment
+      path14: "51013", // Arlington
+      path16: "51013", // Arlington fragment
+      path2: "51510", // Alexandria
+      path12: "51610" // Falls Church
     }
   };
   const COUNTY_SUBDIVISION_GEOJSON_URLS = {
     CT: "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/1/query?where=STATE%3D%2709%27&outFields=GEOID%2CNAME%2CBASENAME%2CSTATE%2CCOUNTY&returnGeometry=true&f=geojson&outSR=4326",
     ME: "./assets/maps/state-local-results-2024/maine-local-results-2024.geojson",
     MA: "./assets/maps/state-local-results-2024/massachusetts-local-results-2024.geojson",
-    NH: "./assets/maps/state-local-results-2024/new-hampshire-local-results-2024.geojson"
+    NH: "./assets/maps/state-local-results-2024/new-hampshire-local-results-2024.geojson",
+    RI: "./assets/maps/state-local-results-2024/rhode-island-local-results-2024.geojson",
+    VT: "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/1/query?where=STATE%3D%2750%27&outFields=GEOID%2CNAME%2CBASENAME%2CSTATE%2CCOUNTY&returnGeometry=true&f=geojson&outSR=4326"
   };
   const STATE_FIPS = {
     AL: "01",
@@ -722,6 +900,9 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
   }
 
   function getCountyFill(row) {
+    if (!Number(row?.totalVotes || 0)) {
+      return "#2d3138";
+    }
     const shades = row.winnerParty === "D"
       ? HOUSE_DEM_SHADES
       : row.winnerParty === "R"
@@ -733,6 +914,16 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     if (winnerPct >= 60) return shades[2];
     if (winnerPct >= 50) return shades[1];
     return shades[0];
+  }
+
+  function getCountyUnitLabels(state) {
+    if (state === "LA") {
+      return { singular: "parish", plural: "parishes", board: "Parish" };
+    }
+    if (state === "VA") {
+      return { singular: "county/city", plural: "counties and cities", board: "County/City" };
+    }
+    return { singular: "county", plural: "counties", board: "County" };
   }
 
   function hasIndependentUnitWinner(rows) {
@@ -1135,6 +1326,101 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     }
   }
 
+  async function renderDistrictSvgTownMap(district, rowByGeoId) {
+    const svgUrl = DISTRICT_SVG_TOWN_URLS[district.code];
+    const pathTownMap = DISTRICT_SVG_TOWN_PATHS[district.code];
+    const svg = d3.select("#house-detail-map");
+    const tooltip = d3.select("#house-detail-map-tooltip");
+
+    if (!svgUrl || !pathTownMap || svg.empty()) {
+      return false;
+    }
+
+    try {
+      const svgText = await d3.text(svgUrl);
+      const parsedSvg = new DOMParser().parseFromString(svgText, "image/svg+xml").documentElement;
+      const viewBox = parsedSvg.getAttribute("viewBox")
+        || `0 0 ${parsedSvg.getAttribute("width") || 800} ${parsedSvg.getAttribute("height") || 1259}`;
+      const [sourceX, sourceY, sourceWidth, sourceHeight] = viewBox.split(/\s+/).map(Number);
+      const viewportWidth = 540;
+      const viewportHeight = 420;
+      const viewportPadding = 24;
+      const sourceScale = Number.isFinite(sourceWidth) && Number.isFinite(sourceHeight) && sourceWidth > 0 && sourceHeight > 0
+        ? Math.min((viewportWidth - viewportPadding * 2) / sourceWidth, (viewportHeight - viewportPadding * 2) / sourceHeight)
+        : 1;
+      const sourceTranslateX = (viewportWidth - sourceWidth * sourceScale) / 2 - sourceX * sourceScale;
+      const sourceTranslateY = (viewportHeight - sourceHeight * sourceScale) / 2 - sourceY * sourceScale;
+      const paths = Array.from(parsedSvg.querySelectorAll("path"))
+        .map((pathElement) => {
+          const id = pathElement.getAttribute("id");
+          return {
+            id,
+            townGeoId: pathTownMap[id],
+            d: pathElement.getAttribute("d"),
+            fillRule: pathElement.getAttribute("fill-rule")
+          };
+        })
+        .filter((pathData) => pathData.id && pathData.d && pathData.townGeoId);
+
+      if (!paths.length) return false;
+
+      svg.selectAll("*").remove();
+      svg
+        .attr("viewBox", `0 0 ${viewportWidth} ${viewportHeight}`)
+        .attr("preserveAspectRatio", "xMidYMid meet");
+
+      const layer = svg.append("g")
+        .attr("class", "house-detail-svg-town-layer")
+        .attr("transform", `translate(${sourceTranslateX} ${sourceTranslateY}) scale(${sourceScale})`);
+
+      layer.selectAll("path.house-detail-svg-town-outline")
+        .data(paths)
+        .enter()
+        .append("path")
+        .attr("class", "house-detail-svg-town-outline")
+        .attr("d", (pathData) => pathData.d)
+        .attr("fill-rule", (pathData) => pathData.fillRule || null)
+        .attr("fill", "none")
+        .attr("stroke", "rgba(255,255,255,0.96)")
+        .attr("stroke-width", 2.1)
+        .attr("stroke-linejoin", "round")
+        .attr("vector-effect", "non-scaling-stroke")
+        .attr("pointer-events", "none");
+
+      layer.selectAll("path.house-detail-svg-town")
+        .data(paths)
+        .enter()
+        .append("path")
+        .attr("class", "detail-county-shape house-detail-county house-detail-svg-town")
+        .attr("data-geoid", (pathData) => pathData.townGeoId)
+        .attr("d", (pathData) => pathData.d)
+        .attr("fill-rule", (pathData) => pathData.fillRule || null)
+        .attr("fill", (pathData) => {
+          const row = rowByGeoId.get(pathData.townGeoId);
+          return row ? getCountyFill(row) : "#2d3138";
+        })
+        .attr("stroke", "rgba(255,255,255,0.95)")
+        .attr("stroke-width", 2.1)
+        .attr("stroke-linejoin", "round")
+        .attr("vector-effect", "non-scaling-stroke")
+        .on("mouseover", (event, pathData) => {
+          const row = rowByGeoId.get(pathData.townGeoId);
+          if (!row) return;
+          tooltip.style("opacity", 1).html(californiaCountyTooltipHTML({ ...row, county: row.town }, district));
+          positionTooltip(event, tooltip);
+        })
+        .on("mousemove", (event) => positionTooltip(event, tooltip))
+        .on("mouseout", () => {
+          tooltip.style("opacity", 0);
+        });
+
+      return true;
+    } catch (error) {
+      console.warn(`SVG town map unavailable for ${district.code}; using generated local geometry.`, error);
+      return false;
+    }
+  }
+
   function getDominantCountyRow(rows, threshold = 0.95) {
     const totalVotes = rows.reduce((sum, row) => sum + Number(row.totalVotes || 0), 0);
     if (!totalVotes) return null;
@@ -1501,8 +1787,16 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     }
 
     const useConnecticutTownShapes = district.state === "CT";
+    const usePlanarTownShapes = useConnecticutTownShapes || district.state === "VT";
     const rowByGeoId = new Map(rows.map((row) => [String(row.townGeoId), row]));
     const rowByTownName = new Map(rows.map((row) => [normalizeTownName(row.town), row]));
+    if (await renderDistrictSvgTownMap(district, rowByGeoId)) {
+      if (subtitle) {
+        subtitle.textContent = `${district.title} municipalities shaded by the winning municipality vote share.`;
+      }
+      setMapLegendVisibility(true, rows);
+      return true;
+    }
     const townGeojson = useConnecticutTownShapes
       ? await d3.json(CONNECTICUT_TOWNS_GEOJSON_URL)
       : window.HOUSE_TOWN_GEOJSON?.[district.state] || await d3.json(geojsonUrl);
@@ -1529,13 +1823,13 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       features: townFeatures
     };
     const displayFeature = getMapFitFeature(feature);
-    const fitFeature = useConnecticutTownShapes ? townCollection : displayFeature;
-    const projection = useConnecticutTownShapes
+    const fitFeature = usePlanarTownShapes ? townCollection : displayFeature;
+    const projection = usePlanarTownShapes
       ? d3.geoIdentity().reflectY(true).fitExtent([[18, 18], [522, 402]], fitFeature)
       : d3.geoMercator().fitExtent([[18, 18], [522, 402]], fitFeature);
     const path = d3.geoPath().projection(projection);
     const townLayer = svg.append("g");
-    if (!useConnecticutTownShapes && displayFeature) {
+    if (!usePlanarTownShapes && displayFeature) {
       const clipPathId = `house-detail-town-clip-${district.code.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
       svg.append("defs")
         .append("clipPath")
@@ -1556,6 +1850,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
         return properties.GEOID || properties.original_geoid || properties.TOWN_NAME || properties.county_name;
       })
       .attr("d", path)
+      .attr("vector-effect", "non-scaling-stroke")
       .attr("fill", (townFeature) => {
         const row = getTownRow(townFeature);
         return row ? getCountyFill(row) : "#2d3138";
@@ -1572,7 +1867,10 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       });
 
     if (subtitle) {
-      subtitle.textContent = `${district.title} towns shaded by the winning town vote share.`;
+      const usesMunicipalities = district.state === "RI" || district.state === "VT";
+      const unitPlural = usesMunicipalities ? "municipalities" : "towns";
+      const unitSingular = usesMunicipalities ? "municipality" : "town";
+      subtitle.textContent = `${district.title} ${unitPlural} shaded by the winning ${unitSingular} vote share.`;
     }
     setMapLegendVisibility(true, rows);
 
@@ -1584,7 +1882,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     const subtitle = document.getElementById("house-detail-map-subtitle");
     const svg = d3.select("#house-detail-map");
     const tooltip = d3.select("#house-detail-map-tooltip");
-    const unitLabel = district.state === "LA" ? "parish" : "county";
+    const unitLabels = getCountyUnitLabels(district.state);
     if (!countyData?.rows?.length || svg.empty()) {
       setMapLegendVisibility(false);
       return false;
@@ -1602,7 +1900,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     const rowByFips = new Map(rows.map((row) => [row.countyFips, row]));
     if (await renderDistrictSvgCountyMap(district, rowByFips)) {
       if (subtitle) {
-        subtitle.textContent = `${district.title} ${unitLabel === "parish" ? "parishes" : "counties"} shaded by the winning ${unitLabel} vote share.`;
+        subtitle.textContent = `${district.title} ${unitLabels.plural} shaded by the winning ${unitLabels.singular} vote share.`;
       }
       setMapLegendVisibility(true, rows);
       return true;
@@ -1764,7 +2062,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       .attr("stroke-width", 2.1);
 
     if (subtitle) {
-      subtitle.textContent = `${district.title} ${unitLabel === "parish" ? "parishes" : "counties"} shaded by the winning ${unitLabel} vote share.`;
+      subtitle.textContent = `${district.title} ${unitLabels.plural} shaded by the winning ${unitLabels.singular} vote share.`;
     }
     setMapLegendVisibility(true, rows);
 
@@ -1784,18 +2082,21 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
 
     setUnitBoardLabels("County");
     board.hidden = false;
-    body.innerHTML = countyData.counties
-      .slice()
-      .sort((a, b) => b.totalVotes - a.totalVotes || a.county.localeCompare(b.county))
-      .map((row) => `
+    renderExpandableUnitBoard({
+      body,
+      rows: countyData.counties
+        .slice()
+        .sort((a, b) => b.totalVotes - a.totalVotes || a.county.localeCompare(b.county)),
+      unitPlural: "counties",
+      renderRow: (row) => `
         <tr class="detail-county-row">
           <td>${formatCaliforniaCountyTableName(row.county)}</td>
           <td><span class="detail-county-margin ${row.winnerParty === "D" ? "dem" : row.winnerParty === "R" ? "rep" : "ind"}">${row.marginLabel}</span></td>
           <td>${formatNumber(row.totalVotes)}</td>
           <td>${row.percentIn}</td>
         </tr>
-      `)
-      .join("");
+      `
+    });
 
     return true;
   }
@@ -1805,6 +2106,40 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     const label = document.getElementById("house-detail-unit-board-label");
     if (title) title.textContent = `${unitLabel} Results`;
     if (label) label.textContent = unitLabel;
+  }
+
+  function renderExpandableUnitBoard({ body, rows, unitPlural, renderRow }) {
+    const toggle = document.getElementById("house-detail-county-board-toggle");
+    let expanded = false;
+    const normalizedPlural = unitPlural || "results";
+
+    const render = () => {
+      const visibleRows = expanded ? rows : rows.slice(0, UNIT_BOARD_COLLAPSED_LIMIT);
+      body.innerHTML = visibleRows.map(renderRow).join("");
+
+      if (!toggle) return;
+      if (rows.length <= UNIT_BOARD_COLLAPSED_LIMIT) {
+        toggle.hidden = true;
+        toggle.textContent = "";
+        toggle.onclick = null;
+        toggle.removeAttribute("aria-expanded");
+        return;
+      }
+
+      toggle.hidden = false;
+      toggle.textContent = expanded
+        ? "Show fewer"
+        : `Show all ${rows.length} ${normalizedPlural}`;
+      toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+    };
+
+    if (toggle) {
+      toggle.onclick = () => {
+        expanded = !expanded;
+        render();
+      };
+    }
+    render();
   }
 
   function renderDistrictTownBoard(district) {
@@ -1819,19 +2154,22 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
 
     const rows = unitData.townRows.map((row) => normalizeDistrictTownRow(row));
 
-    setUnitBoardLabels("Town");
+    const usesMunicipalities = district.state === "RI" || district.state === "VT";
+    setUnitBoardLabels(usesMunicipalities ? "Municipality" : "Town");
     board.hidden = false;
-    body.innerHTML = rows
-      .sort((a, b) => b.totalVotes - a.totalVotes || a.town.localeCompare(b.town))
-      .map((row) => `
+    renderExpandableUnitBoard({
+      body,
+      rows: rows.sort((a, b) => b.totalVotes - a.totalVotes || a.town.localeCompare(b.town)),
+      unitPlural: usesMunicipalities ? "municipalities" : "towns",
+      renderRow: (row) => `
         <tr class="detail-county-row">
           <td>${row.town}</td>
           <td><span class="detail-county-margin ${row.winnerParty === "D" ? "dem" : row.winnerParty === "R" ? "rep" : "ind"}">${row.marginLabel}</span></td>
           <td>${formatNumber(row.totalVotes)}</td>
           <td>100%</td>
         </tr>
-      `)
-      .join("");
+      `
+    });
 
     return true;
   }
@@ -1850,19 +2188,22 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       countyData.rows.map((row) => normalizeDistrictCountyRow(district, row))
     );
 
-    setUnitBoardLabels(district.state === "LA" ? "Parish" : "County");
+    const unitLabels = getCountyUnitLabels(district.state);
+    setUnitBoardLabels(unitLabels.board);
     board.hidden = false;
-    body.innerHTML = rows
-      .sort((a, b) => b.totalVotes - a.totalVotes || a.county.localeCompare(b.county))
-      .map((row) => `
+    renderExpandableUnitBoard({
+      body,
+      rows: rows.sort((a, b) => b.totalVotes - a.totalVotes || a.county.localeCompare(b.county)),
+      unitPlural: unitLabels.plural,
+      renderRow: (row) => `
         <tr class="detail-county-row">
           <td>${formatCountyTableName(row.county)}</td>
           <td><span class="detail-county-margin ${row.winnerParty === "D" ? "dem" : row.winnerParty === "R" ? "rep" : "ind"}">${row.marginLabel}</span></td>
           <td>${formatNumber(row.totalVotes)}</td>
           <td>100%</td>
         </tr>
-      `)
-      .join("");
+      `
+    });
 
     return true;
   }
@@ -1878,9 +2219,11 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     const svg = d3.select("#house-detail-map");
     if (!feature || svg.empty()) return;
 
-    const renderedCountyMap = district.code.startsWith("CA-")
-      ? await renderCaliforniaCountyMap(district, feature) || await renderDistrictTownMap(district, feature) || await renderDistrictCountyMap(district, feature)
-      : await renderDistrictTownMap(district, feature) || await renderDistrictCountyMap(district, feature);
+    const renderedCountyMap = district.uncontested
+      ? false
+      : district.code.startsWith("CA-")
+        ? await renderCaliforniaCountyMap(district, feature) || await renderDistrictTownMap(district, feature) || await renderDistrictCountyMap(district, feature)
+        : await renderDistrictTownMap(district, feature) || await renderDistrictCountyMap(district, feature);
 
     if (renderedCountyMap) return;
 
@@ -1900,9 +2243,11 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       .attr("stroke-width", 2.1);
 
     if (subtitle) {
-      subtitle.textContent = district.flipped
-        ? "District outline shown with flip-aware winner coloring."
-        : "District outline shown with certified winner coloring.";
+      subtitle.textContent = district.uncontested
+        ? `${district.title} shown as a solid ${getPartyName(district.winnerParty).toLowerCase()} hold.`
+        : district.flipped
+          ? "District outline shown with flip-aware winner coloring."
+          : "District outline shown with certified winner coloring.";
     }
   }
 
@@ -1962,17 +2307,6 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     document.getElementById("house-detail-certified-rep").style.flex = district.uncontested && district.winnerParty === "R" ? "1" : String(totals.rep);
     document.getElementById("house-detail-certified-ind").style.flex = district.uncontested && !["D", "R"].includes(district.winnerParty) ? "1" : String(totals.ind);
     document.getElementById("house-detail-certified-other").style.flex = district.uncontested ? "0" : String(otherVotes);
-
-    const runnerUp = district.candidates[1] || null;
-    const districtNumber = district.code.split("-")[1];
-    const facts = [
-      `<li><strong>Winner</strong><span>${district.winnerName} carried ${district.title} by ${district.marginLabel}.</span></li>`,
-      `<li><strong>District</strong><span>${district.stateName} Congressional District ${districtNumber.replace(/^0/, "")} was contested in 2024.</span></li>`,
-      `<li><strong>Total votes</strong><span>${district.uncontested ? "This race was uncontested, so comparable two-candidate vote totals are not shown here." : `${formatNumber(totalVotes)} votes were reported in the district.`}</span></li>`,
-      `<li><strong>Runner-up</strong><span>${runnerUp ? `${runnerUp.name} finished second with ${runnerUp.pctFormatted || `${formatCompactNumber(runnerUp.pct)}%`}.` : "No runner-up was recorded because the race was uncontested."}</span></li>`,
-      `<li><strong>Flip status</strong><span>${district.flipped ? "This district flipped parties in 2024." : "This district stayed with the same party in 2024."}</span></li>`
-    ];
-    document.getElementById("house-detail-facts").innerHTML = facts.join("");
 
     const feature = houseDetailGeojson.features.find((item) => item.properties.code === district.code);
     if (feature) {

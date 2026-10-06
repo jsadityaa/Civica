@@ -630,6 +630,12 @@ async function stateElectionFetchLocalResultRows(stateName) {
     .sort((a, b) => Number(b.total_votes || 0) - Number(a.total_votes || 0));
 }
 
+async function stateElectionFetchPresidentialRegionRows(stateName) {
+  if (stateName === "Connecticut") return stateElectionFetchConnecticutTownResults();
+  if (stateElectionUsesLocalResults(stateName)) return stateElectionFetchLocalResultRows(stateName);
+  return stateElectionFetchCountyResults(stateName);
+}
+
 async function stateElectionLoadTopo() {
   if (stateElectionTopoCache) return stateElectionTopoCache;
 
@@ -1306,11 +1312,7 @@ async function stateElectionInit() {
 
   if (!hideMaps) {
     try {
-      const regionRows = stateName === "Connecticut"
-        ? await stateElectionFetchConnecticutTownResults()
-        : stateElectionUsesLocalResults(stateName)
-          ? await stateElectionFetchLocalResultRows(stateName)
-          : await stateElectionFetchCountyResults(stateName);
+      const regionRows = await stateElectionFetchPresidentialRegionRows(stateName);
       await stateElectionRenderCountyMap(stateName, regionRows);
       stateElectionSetupPresidentialMapMode(stateName, regionRows);
     } catch (error) {

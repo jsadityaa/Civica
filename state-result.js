@@ -5,6 +5,13 @@ const STATES_TOPOJSON_URL = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.
 const CT_TOWN_RESULTS_URL = "./data/ct-town-results-2024.json";
 const CT_TOWN_RESULTS_2020_URL = "./data/ct-town-results-2020.json";
 const CT_TOWNS_GEOJSON_URL = "./assets/maps/connecticut-towns.geojson";
+const LOCAL_RESULT_GEOJSON_URLS = {
+  Maine: "./assets/maps/state-local-results-2024/maine-local-results-2024.geojson",
+  Massachusetts: "./assets/maps/state-local-results-2024/massachusetts-local-results-2024.geojson",
+  "New Hampshire": "./assets/maps/state-local-results-2024/new-hampshire-local-results-2024.geojson",
+  "Rhode Island": "./assets/maps/state-local-results-2024/rhode-island-local-results-2024.geojson",
+  Vermont: "./assets/maps/state-local-results-2024/vermont-local-results-2024.geojson"
+};
 
 const DEM_SHADES = ["#b8d4ec", "#8eb6d9", "#5a96c8", "#2879b5"];
 const REP_SHADES = ["#f1cfcf", "#e49e9e", "#d86a6a", "#cf2f2f"];
@@ -13,6 +20,7 @@ const STATEWIDE_CANDIDATE_RESULTS = window.STATE_CANDIDATE_RESULTS || {};
 const COUNTY_BOARD_PREVIEW_LIMIT = 7;
 const countyResultsCache = new Map();
 const connecticutTownResultsCache = new Map();
+const localResultGeojsonCache = new Map();
 const countyBoardState = {
   rows: [],
   sort: "votes",
@@ -190,23 +198,6 @@ function getResultRecord(name) {
   return null;
 }
 
-function buildFactItems(result) {
-  const winner = formatWinnerLabel(result.winner);
-  const winnerName = winner === "Harris" ? "Kamala Harris" : "Donald Trump";
-  const runnerUp = winner === "Harris" ? "Donald Trump" : "Kamala Harris";
-  const winnerVotes = winner === "Harris" ? result.dV : result.rV;
-  const winnerPct = winner === "Harris" ? result.dP : result.rP;
-  const runnerVotes = winner === "Harris" ? result.rV : result.dV;
-  const runnerPct = winner === "Harris" ? result.rP : result.dP;
-
-  return [
-    `<li><strong>${candidateNameSpan(winnerName)}</strong><span>won this ${result.type} with ${winnerVotes} votes (${winnerPct}%).</span></li>`,
-    `<li><strong>${candidateNameSpan(runnerUp)}</strong><span>finished second with ${runnerVotes} votes (${runnerPct}%).</span></li>`,
-    `<li><strong>Electoral count</strong><span>${result.ev} electoral vote${result.ev === 1 ? "" : "s"} were assigned here.</span></li>`,
-    `<li><strong>Margin</strong><span>${candidateNameSpan(winnerName)} carried this ${result.type} by ${formatMargin(result)}.</span></li>`
-  ];
-}
-
 function getCountyShade(row) {
   const demPct = Number(row.per_dem) * 100;
   const repPct = Number(row.per_gop) * 100;
@@ -242,7 +233,7 @@ function formatCountyDisplayName(name) {
 }
 
 function formatCountyAreaName(row) {
-  if (row?.region_type === "town") return String(row.county_name || "").trim();
+  if (row?.region_type === "town" || row?.region_type === "municipality") return String(row.county_name || "").trim();
   return formatCountyDisplayName(row?.county_name);
 }
 
@@ -304,7 +295,11 @@ function sortCountyRows(rows) {
   if (countyBoardState.sort === "margin") {
     sorted.sort((a, b) => Number(b.per_point_diff) - Number(a.per_point_diff));
   } else if (countyBoardState.sort === "shift") {
-    sorted.sort((a, b) => Math.abs(b.shift) - Math.abs(a.shift));
+    sorted.sort((a, b) => {
+      const aShift = Number.isFinite(a.shift) ? Math.abs(a.shift) : -1;
+      const bShift = Number.isFinite(b.shift) ? Math.abs(b.shift) : -1;
+      return bShift - aShift;
+    });
   } else {
     sorted.sort((a, b) => b.total_votes - a.total_votes);
   }
@@ -324,7 +319,7 @@ function renderCountyBoardRows() {
   body.innerHTML = rows
     .map((row) => {
       const shift = formatCountyShift(row.shift);
-      const shiftMarkup = row.region_type === "town" && !Number.isFinite(row.shift)
+      const shiftMarkup = (row.region_type === "town" || row.region_type === "municipality") && !Number.isFinite(row.shift)
         ? `<span class="detail-county-shift even"><span class="detail-county-shift-badge">—</span></span>`
         : `
             <span class="detail-county-shift ${shift.direction}">
@@ -362,7 +357,7 @@ function updateCountyShowAllButton() {
 
   const regionName = countyBoardState.regionName || "counties";
   const showingAll = countyBoardState.limit === "all";
-  button.textContent = showingAll ? `- Show fewer ${regionName}` : `+ Show all ${regionName}`;
+  button.textContent = showingAll ? "Show fewer" : `Show all ${countyBoardState.rows.length} ${regionName}`;
   button.setAttribute("aria-expanded", String(showingAll));
 }
 
@@ -432,10 +427,24 @@ function getCountyTooltipHTML(row, stateName) {
   `;
 }
 
+function usesLocalResultGeometries(stateName) {
+  return Boolean(LOCAL_RESULT_GEOJSON_URLS[stateName]);
+}
+
+function getMapRegionSingular(stateName) {
+  if (stateName === "District of Columbia") return "Ward";
+  if (stateName === "Connecticut") return "Town";
+  if (stateName === "Massachusetts" || stateName === "Rhode Island") return "Municipality";
+  if (usesLocalResultGeometries(stateName)) return "Town";
+  return "County";
+}
+
 function getMapRegionLabel(result) {
   if (result.stateName === "District of Columbia") return "Wards";
   if (result.stateName === "Connecticut") return "Towns";
   if (result.type === "district") return "Counties in the parent state";
+  if (result.stateName === "Massachusetts" || result.stateName === "Rhode Island") return "Municipalities";
+  if (usesLocalResultGeometries(result.stateName)) return "Towns";
   return "Counties";
 }
 
@@ -443,9 +452,14 @@ function setCountyBoardRegionLabels(regionName, shiftLabel) {
   const heading = document.querySelector("#detail-county-board h2");
   const areaHeader = document.querySelector(".detail-county-board-table th:first-child");
   const shiftHeader = document.querySelector(".detail-county-board-table th:nth-child(3)");
-  const singularRegionName = regionName === "Counties" ? "County" : regionName.replace(/s$/, "");
+  const singularRegionName = {
+    Counties: "County",
+    Municipalities: "Municipality",
+    Towns: "Town",
+    Wards: "Ward"
+  }[regionName] || regionName.replace(/s$/, "");
   countyBoardState.regionName = regionName.toLowerCase();
-  if (heading) heading.textContent = `${regionName} Results`;
+  if (heading) heading.textContent = `${singularRegionName} Results`;
   if (areaHeader) areaHeader.textContent = singularRegionName;
   if (shiftHeader) shiftHeader.textContent = shiftLabel;
 }
@@ -527,16 +541,46 @@ async function fetchConnecticutTownResults(year = 2024) {
   return townResults;
 }
 
+async function fetchLocalResultGeojson(stateName) {
+  if (localResultGeojsonCache.has(stateName)) return localResultGeojsonCache.get(stateName);
+
+  const url = LOCAL_RESULT_GEOJSON_URLS[stateName];
+  if (!url) return null;
+
+  const collection = await d3.json(url);
+  const normalized = {
+    type: "FeatureCollection",
+    features: (collection.features || [])
+      .map((feature) => ({
+        ...feature,
+        resultRow: feature.properties
+      }))
+      .filter((feature) => feature.resultRow)
+  };
+
+  localResultGeojsonCache.set(stateName, normalized);
+  return normalized;
+}
+
+async function fetchLocalResultRows(stateName) {
+  const collection = await fetchLocalResultGeojson(stateName);
+  return (collection?.features || [])
+    .map((feature) => feature.resultRow)
+    .sort((a, b) => Number(b.total_votes || 0) - Number(a.total_votes || 0));
+}
+
 async function renderCountyMap(result) {
   const svg = d3.select("#detail-county-map");
   const tooltip = d3.select("#detail-map-tooltip");
   const mapEmpty = document.getElementById("detail-map-empty");
+  const title = document.getElementById("detail-map-title");
   const subtitle = document.getElementById("detail-map-subtitle");
   const stateName = result.stateName;
 
   if (svg.empty() || !window.d3) return;
 
   svg.selectAll("*").remove();
+  if (title) title.textContent = `${result.type === "district" ? "County" : getMapRegionSingular(stateName)} Map`;
   setMapMode(
     stateName === "District of Columbia"
       ? "dc"
@@ -603,6 +647,52 @@ async function renderCountyMap(result) {
         .attr("x", (feature) => path.centroid(feature)[0])
         .attr("y", (feature) => path.centroid(feature)[1] + 4)
         .text((feature) => `Ward ${wardKeyFromFeature(feature)}`);
+
+      return;
+    }
+
+    if (result.type !== "district" && usesLocalResultGeometries(stateName)) {
+      const localGeojson = await fetchLocalResultGeojson(stateName);
+      const features = localGeojson?.features || [];
+
+      if (!features.length) {
+        mapEmpty.hidden = false;
+        subtitle.textContent = `${getMapRegionSingular(stateName)} map data is not available for this page yet.`;
+        return;
+      }
+
+      mapEmpty.hidden = true;
+      subtitle.textContent = `${stateName} ${getMapRegionLabel(result).toLowerCase()} shaded by winning margin.`;
+
+      const localCollection = { type: "FeatureCollection", features };
+      const projection = d3.geoMercator().fitSize([540, 620], localCollection);
+      const path = d3.geoPath(projection);
+
+      svg.append("g")
+        .selectAll("path")
+        .data(features)
+        .enter()
+        .append("path")
+        .attr("class", "detail-county-shape")
+        .attr("data-fips", (feature) => feature.resultRow.county_fips)
+        .attr("d", path)
+        .attr("fill", (feature) => getCountyShade(feature.resultRow))
+        .on("mouseover", (event, feature) => {
+          const row = feature.resultRow;
+          setActiveCounty(row.county_fips);
+          tooltip.style("opacity", 1).html(getCountyTooltipHTML(row, stateName));
+          positionTooltip(event, tooltip);
+        })
+        .on("mousemove", (event) => positionTooltip(event, tooltip))
+        .on("mouseout", () => {
+          tooltip.style("opacity", 0);
+          setActiveCounty(null);
+        });
+
+      svg.append("path")
+        .datum(localCollection)
+        .attr("class", "detail-state-outline")
+        .attr("d", path);
 
       return;
     }
@@ -798,6 +888,21 @@ async function renderCountyBoard(result) {
     return;
   }
 
+  if (usesLocalResultGeometries(result.stateName)) {
+    const localRows = await fetchLocalResultRows(result.stateName);
+    const regionName = getMapRegionLabel(result);
+
+    setCountyBoardRegionLabels(regionName, "Shift from 2020 pres.");
+    note.textContent = `${getMapRegionSingular(result.stateName)}-level presidential margins from the 2024 result.`;
+    countyBoardState.rows = localRows;
+    countyBoardState.sort = "votes";
+    countyBoardState.limit = String(COUNTY_BOARD_PREVIEW_LIMIT);
+    document.querySelectorAll(".detail-county-sort-button").forEach((button) => button.classList.toggle("is-active", button.dataset.sort === "votes"));
+    renderCountyBoardRows();
+    wireCountyBoardControls();
+    return;
+  }
+
   if (result.stateName === "District of Columbia") {
     note.textContent = "Ward shift board unavailable.";
     empty.hidden = false;
@@ -844,8 +949,6 @@ function renderSummary(result) {
   const ev = document.getElementById("detail-ev");
   const margin = document.getElementById("detail-margin");
   const voteBody = document.getElementById("detail-vote-body");
-  const facts = document.getElementById("detail-facts");
-  const contextCopy = document.getElementById("detail-context-copy");
   const certifiedTitle = document.getElementById("detail-certified-title");
   const certifiedDem = document.getElementById("detail-certified-dem");
   const certifiedRep = document.getElementById("detail-certified-rep");
@@ -895,16 +998,13 @@ function renderSummary(result) {
     })
     .join("");
 
-  facts.innerHTML = buildFactItems(result).join("");
-  contextCopy.innerHTML = `${displayName} awarded ${result.ev} electoral vote${result.ev === 1 ? "" : "s"} in the 2024 presidential election. ${candidateNameSpan(winnerFullName)} carried this ${result.type} by ${formatMargin(result)}, based on the vote totals shown here.`;
-
   certifiedTitle.textContent = `The vote count has been certified in ${displayName}.`;
   certifiedDem.style.width = `${demPct}%`;
   certifiedRep.style.width = `${repPct}%`;
   certifiedOther.style.width = `${Math.max(0, 100 - demPct - repPct)}%`;
   certifiedNote.textContent = `${totalVotes} total votes reported.`;
 
-  document.querySelector(".detail-map-head h3").textContent = `${getMapRegionLabel(result)} Map`;
+  document.querySelector(".detail-map-head h3").textContent = `${result.type === "district" ? "County" : getMapRegionSingular(result.stateName)} Map`;
 }
 
 async function renderStateResultPage() {
