@@ -74,6 +74,12 @@ const SENATE_MAJOR_CITY_LABELS = {
     { name: "Jackson", coordinates: [-90.1848, 32.2988] },
     { name: "Gulfport", coordinates: [-89.0928, 30.3674] },
     { name: "Southaven", coordinates: [-89.9787, 34.9890] }
+  ],
+  Missouri: [
+    { name: "Kansas City", coordinates: [-94.5786, 39.0997] },
+    { name: "St. Louis", coordinates: [-90.1994, 38.6270] },
+    { name: "Springfield", coordinates: [-93.2923, 37.2089] },
+    { name: "Columbia", coordinates: [-92.3341, 38.9517] }
   ]
 };
 const SENATE_REP_SHADES = ["#f1cfcf", "#e49e9e", "#d86a6a", "#cf2f2f"];
@@ -311,6 +317,7 @@ function normalizeCountyName(name) {
     .replace(/\./g, "")
     .replace(/['’]/g, "")
     .replace(/\bsaint\b/g, "st")
+    .replace(/\bde\s+kalb\b/g, "dekalb")
     .replace(/\bcounty\b/g, "")
     .replace(/\bparish\b/g, "")
     .replace(/\bborough\b/g, "")
@@ -329,6 +336,12 @@ function formatCountyDisplayName(name) {
   }
   if (/^baltimore\s+city$/i.test(raw)) {
     return "Baltimore City";
+  }
+  if (/^st\.?\s+louis\s+city$/i.test(raw)) {
+    return "St. Louis City";
+  }
+  if (/^kansas\s+city$/i.test(raw)) {
+    return "Kansas City";
   }
 
   const base = raw
@@ -427,7 +440,18 @@ async function getStateCountyRows(stateName) {
     .map((county) => {
       const countyKey = String(county.county || "").trim().toLowerCase();
       const referenceRow = reference.get(countyKey) || reference.get(normalizeCountyName(county.county)) || null;
-      if (!referenceRow) return null;
+      if (!referenceRow) {
+        return {
+          county_fips: `${stateName}-${normalizeCountyName(county.county)}`,
+          county_name: county.county,
+          displayName: formatCountyDisplayName(county.county),
+          candidates: county.candidates,
+          totalVotes: county.totalVotes,
+          winnerParty: getCountyWinnerParty(county),
+          marginValue: getCountyMarginValue(county),
+          marginLabel: getCountyMarginLabel(county)
+        };
+      }
       return {
         county_fips: referenceRow.county_fips,
         county_name: referenceRow.county_name,

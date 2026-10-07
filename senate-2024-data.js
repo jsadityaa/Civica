@@ -81,9 +81,12 @@ window.SENATE_2024_DATA = {
       { name: "Roger Wicker", party: "Rep.", votes: "763,420", pct: "62.81" },
       { name: "Ty Pinkins", party: "Dem.", votes: "451,981", pct: "37.19" }
     ] },
-    { code: "MO", race: "Missouri", seatType: "Regular", winner: "Josh Hawley", winnerParty: "R", opponent: "Lucas Kunce", opponentParty: "D", status: "Republican hold", result: "R+13.2", flipped: false, tooltipRows: [
+    { code: "MO", race: "Missouri", seatType: "Regular", winner: "Josh Hawley", winnerParty: "R", opponent: "Lucas Kunce", opponentParty: "D", status: "Republican hold", result: "R+13.2", flipped: false, reportedTotal: 2972559, tooltipRows: [
       { name: "Josh Hawley", party: "Rep.", votes: "1,651,907", pct: "55.57" },
-      { name: "Lucas Kunce", party: "Dem.", votes: "1,243,728", pct: "41.84" }
+      { name: "Lucas Kunce", party: "Dem.", votes: "1,243,728", pct: "41.84" },
+      { name: "W. C. Young", party: "Lib.", votes: "35,671", pct: "1.20" },
+      { name: "Jared Young", party: "Better", votes: "21,111", pct: "0.71" },
+      { name: "Nathan Kline", party: "Green", votes: "20,123", pct: "0.68" }
     ] },
     { code: "MT", race: "Montana", seatType: "Regular", winner: "Tim Sheehy", winnerParty: "R", opponent: "Jon Tester", opponentParty: "D", status: "Republican flip", result: "R+7.3", flipped: true, tooltipRows: [
       { name: "Tim Sheehy", party: "Rep.", votes: "319,682", pct: "52.64" },

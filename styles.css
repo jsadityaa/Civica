@@ -3074,10 +3074,8 @@ html[data-theme="dark"] .detail-summary-card.winner-ind {
   position: relative;
   min-height: 520px;
   border-radius: 14px;
-  background:
-    radial-gradient(circle at top left, rgba(40,121,181,0.08), transparent 35%),
-    rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.04);
+  background: transparent;
+  border: 0;
   overflow: hidden;
 }
 

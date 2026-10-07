@@ -1,25 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://polycivic.com/</loc><lastmod>2026-09-18</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://polycivic.com/elections</loc><lastmod>2026-09-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://polycivic.com/presidency-2024</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://polycivic.com/</loc><lastmod>2026-10-07</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://polycivic.com/elections</loc><lastmod>2026-09-18</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://polycivic.com/presidency-2024</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://polycivic.com/house-2024</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://polycivic.com/senate-2024</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://polycivic.com/governor-2024</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://polycivic.com/state-results-2024</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://polycivic.com/brazil-2026</loc><lastmod>2026-09-18</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://polycivic.com/brazil-president-2026</loc><lastmod>2026-09-18</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://polycivic.com/brazil-congress-2026</loc><lastmod>2026-09-18</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://polycivic.com/brazil-governors-2026</loc><lastmod>2026-09-18</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://polycivic.com/brazil-state-legislatures-2026</loc><lastmod>2026-09-18</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://polycivic.com/midterms-2026</loc><lastmod>2026-09-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://polycivic.com/house-2026</loc><lastmod>2026-09-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://polycivic.com/senate-2026</loc><lastmod>2026-09-18</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://polycivic.com/midterms-2026</loc><lastmod>2026-10-07</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://polycivic.com/presidential-2020</loc><lastmod>2026-09-18</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>
   <url><loc>https://polycivic.com/midterms-2022</loc><lastmod>2026-09-18</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>
   <url><loc>https://polycivic.com/forecasts</loc><lastmod>2026-09-18</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://polycivic.com/news</loc><lastmod>2026-09-18</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://polycivic.com/forum</loc><lastmod>2026-09-18</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
   <url><loc>https://polycivic.com/contact</loc><lastmod>2026-09-18</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
   <url><loc>https://polycivic.com/our-mission</loc><lastmod>2026-09-18</lastmod><changefreq>yearly</changefreq><priority>0.5</priority></url>
   <url><loc>https://polycivic.com/our-team</loc><lastmod>2026-09-18</lastmod><changefreq>yearly</changefreq><priority>0.5</priority></url>
