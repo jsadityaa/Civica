@@ -130,7 +130,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
   }
 
   function createMapProjection(feature) {
-    return d3.geoMercator().fitExtent([[18, 18], [522, 402]], getMapFitFeature(feature));
+    return d3.geoMercator().fitExtent([[18, 18], [522, 602]], getMapFitFeature(feature));
   }
 
   const COUNTIES_TOPOJSON_URL = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
@@ -1168,7 +1168,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
         || `0 0 ${parsedSvg.getAttribute("width") || 800} ${parsedSvg.getAttribute("height") || 433}`;
       const [sourceX, sourceY, sourceWidth, sourceHeight] = viewBox.split(/\s+/).map(Number);
       const viewportWidth = 540;
-      const viewportHeight = 420;
+      const viewportHeight = 620;
       const viewportPadding = 28;
       const sourceScale = Number.isFinite(sourceWidth) && Number.isFinite(sourceHeight) && sourceWidth > 0 && sourceHeight > 0
         ? Math.min((viewportWidth - viewportPadding * 2) / sourceWidth, (viewportHeight - viewportPadding * 2) / sourceHeight)
@@ -1343,7 +1343,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
         || `0 0 ${parsedSvg.getAttribute("width") || 800} ${parsedSvg.getAttribute("height") || 1259}`;
       const [sourceX, sourceY, sourceWidth, sourceHeight] = viewBox.split(/\s+/).map(Number);
       const viewportWidth = 540;
-      const viewportHeight = 420;
+      const viewportHeight = 620;
       const viewportPadding = 24;
       const sourceScale = Number.isFinite(sourceWidth) && Number.isFinite(sourceHeight) && sourceWidth > 0 && sourceHeight > 0
         ? Math.min((viewportWidth - viewportPadding * 2) / sourceWidth, (viewportHeight - viewportPadding * 2) / sourceHeight)
@@ -1560,12 +1560,12 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
 
     svg.selectAll("*").remove();
     svg
-      .attr("viewBox", "0 0 540 420")
+      .attr("viewBox", "0 0 540 620")
       .attr("preserveAspectRatio", "xMidYMid meet");
 
     const displayFeature = getMapFitFeature(feature);
     const projection = d3.geoMercator().fitExtent(
-      [[18, 18], [522, 402]],
+      [[18, 18], [522, 602]],
       displayFeature
     );
     const path = d3.geoPath().projection(projection);
@@ -1825,8 +1825,8 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     const displayFeature = getMapFitFeature(feature);
     const fitFeature = usePlanarTownShapes ? townCollection : displayFeature;
     const projection = usePlanarTownShapes
-      ? d3.geoIdentity().reflectY(true).fitExtent([[18, 18], [522, 402]], fitFeature)
-      : d3.geoMercator().fitExtent([[18, 18], [522, 402]], fitFeature);
+      ? d3.geoIdentity().reflectY(true).fitExtent([[18, 18], [522, 602]], fitFeature)
+      : d3.geoMercator().fitExtent([[18, 18], [522, 602]], fitFeature);
     const path = d3.geoPath().projection(projection);
     const townLayer = svg.append("g");
     if (!usePlanarTownShapes && displayFeature) {
@@ -1920,12 +1920,12 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
 
     svg.selectAll("*").remove();
     svg
-      .attr("viewBox", "0 0 540 420")
+      .attr("viewBox", "0 0 540 620")
       .attr("preserveAspectRatio", "xMidYMid meet");
 
     const displayFeature = await getDistrictDisplayFeature(district, feature);
     const projection = d3.geoMercator().fitExtent(
-      [[18, 18], [522, 402]],
+      [[18, 18], [522, 602]],
       displayFeature
     );
     const path = d3.geoPath().projection(projection);

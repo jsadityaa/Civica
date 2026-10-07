@@ -3086,8 +3086,7 @@ html[data-theme="dark"] .detail-summary-card.winner-ind {
 }
 
 .senate-detail-map-canvas {
-  height: 360px;
-  min-height: 360px;
+  min-height: 520px;
 }
 
 
@@ -4788,7 +4787,7 @@ html[data-theme="dark"] .team-page .team-page__bio {
 }
 
 .house-detail-map-canvas {
-  min-height: 360px;
+  min-height: 520px;
 }
 
 #house-detail-map {

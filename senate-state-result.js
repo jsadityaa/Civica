@@ -724,8 +724,8 @@ async function renderCountyMap(record) {
 
       const localCollection = { type: "FeatureCollection", features };
       const projection = localConfig.projection === "identity"
-        ? d3.geoIdentity().reflectY(true).fitSize([540, 520], localCollection)
-        : d3.geoMercator().fitSize([540, 520], localCollection);
+        ? d3.geoIdentity().reflectY(true).fitSize([540, 620], localCollection)
+        : d3.geoMercator().fitSize([540, 620], localCollection);
       const path = d3.geoPath(projection);
 
       svg.append("g")
@@ -781,7 +781,7 @@ async function renderCountyMap(record) {
     subtitle.textContent = `${record.displayName} counties shaded by the winning Senate margin.`;
     updateSenateMapLegend(countyRows);
 
-    const projection = d3.geoMercator().fitSize([540, 520], { type: "FeatureCollection", features });
+    const projection = d3.geoMercator().fitSize([540, 620], { type: "FeatureCollection", features });
     const path = d3.geoPath(projection);
 
     svg.append("g")
