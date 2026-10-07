@@ -19,47 +19,65 @@ window.SENATE_2024_DATA = {
       { name: "Adam Schiff", party: "Dem.", votes: "9,036,252", pct: "58.87" },
       { name: "Steve Garvey", party: "Rep.", votes: "6,312,594", pct: "41.13" }
     ] },
-    { code: "CT", race: "Connecticut", seatType: "Regular", winner: "Chris Murphy", winnerParty: "D", opponent: "Matthew Corey", opponentParty: "R", status: "Democratic hold", result: "D+20.3", flipped: false, tooltipRows: [
+    { code: "CT", race: "Connecticut", seatType: "Regular", winner: "Chris Murphy", winnerParty: "D", opponent: "Matthew Corey", opponentParty: "R", status: "Democratic hold", result: "D+20.3", flipped: false, reportedTotal: 1708252, tooltipRows: [
       { name: "Chris Murphy", party: "Dem.", votes: "1,000,695", pct: "58.58" },
-      { name: "Matthew Corey", party: "Rep.", votes: "678,256", pct: "39.78" }
+      { name: "Matthew Corey", party: "Rep.", votes: "678,256", pct: "39.70" },
+      { name: "Robert F. Hyde", party: "Ind.", votes: "14,879", pct: "0.87" },
+      { name: "Justin Paglino", party: "Green", votes: "14,422", pct: "0.84" }
     ] },
-    { code: "DE", race: "Delaware", seatType: "Regular", winner: "Lisa Blunt Rochester", winnerParty: "D", opponent: "Eric Hansen", opponentParty: "R", status: "Democratic hold", result: "D+15.9", flipped: false, tooltipRows: [
+    { code: "DE", race: "Delaware", seatType: "Regular", winner: "Lisa Blunt Rochester", winnerParty: "D", opponent: "Eric Hansen", opponentParty: "R", status: "Democratic hold", result: "D+17.1", flipped: false, tooltipRows: [
       { name: "Lisa Blunt Rochester", party: "Dem.", votes: "283,298", pct: "56.59" },
-      { name: "Eric Hansen", party: "Rep.", votes: "197,753", pct: "39.50" }
+      { name: "Eric Hansen", party: "Rep.", votes: "197,753", pct: "39.50" },
+      { name: "Michael Katz", party: "Ind.", votes: "19,555", pct: "3.91" }
     ] },
-    { code: "FL", race: "Florida", seatType: "Regular", winner: "Rick Scott", winnerParty: "R", opponent: "Debbie Mucarsel-Powell", opponentParty: "D", status: "Republican hold", result: "R+12.8", flipped: false, tooltipRows: [
+    { code: "FL", race: "Florida", seatType: "Regular", winner: "Rick Scott", winnerParty: "R", opponent: "Debbie Mucarsel-Powell", opponentParty: "D", status: "Republican hold", result: "R+12.8", flipped: false, reportedTotal: 10757415, tooltipRows: [
       { name: "Rick Scott", party: "Rep.", votes: "5,977,706", pct: "55.57" },
-      { name: "Debbie Mucarsel-Powell", party: "Dem.", votes: "4,603,077", pct: "42.79" }
+      { name: "Debbie Mucarsel-Powell", party: "Dem.", votes: "4,603,077", pct: "42.79" },
+      { name: "Ben Everidge", party: "Ind.", votes: "62,683", pct: "0.58" },
+      { name: "Feena Bonoan", party: "Lib.", votes: "57,363", pct: "0.53" },
+      { name: "Tuan TQ Nguyen", party: "Ind.", votes: "56,586", pct: "0.53" }
     ] },
     { code: "HI", race: "Hawaii", seatType: "Regular", winner: "Mazie Hirono", winnerParty: "D", opponent: "Bob McDermott", opponentParty: "R", status: "Democratic hold", result: "D+26.0", flipped: false, tooltipRows: [
       { name: "Mazie Hirono", party: "Dem.", votes: "324,194", pct: "64.61" },
-      { name: "Bob McDermott", party: "Rep.", votes: "160,075", pct: "31.90" }
+      { name: "Bob McDermott", party: "Rep.", votes: "160,075", pct: "31.90" },
+      { name: "Shelby Billionaire", party: "We the People", votes: "9,224", pct: "1.84" },
+      { name: "Emma Jane Avila Pohlman", party: "Green", votes: "8,270", pct: "1.65" }
     ] },
-    { code: "IN", race: "Indiana", seatType: "Regular", winner: "Jim Banks", winnerParty: "R", opponent: "Valerie McCray", opponentParty: "D", status: "Republican hold", result: "R+16.5", flipped: false, tooltipRows: [
+    { code: "IN", race: "Indiana", seatType: "Regular", winner: "Jim Banks", winnerParty: "R", opponent: "Valerie McCray", opponentParty: "D", status: "Republican hold", result: "R+16.5", flipped: false, reportedTotal: 2829710, tooltipRows: [
       { name: "Jim Banks", party: "Rep.", votes: "1,659,416", pct: "58.64" },
-      { name: "Valerie McCray", party: "Dem.", votes: "1,097,061", pct: "38.77" }
+      { name: "Valerie McCray", party: "Dem.", votes: "1,097,061", pct: "38.77" },
+      { name: "Andrew Horning", party: "Lib.", votes: "73,233", pct: "2.59" }
     ] },
     { code: "MA", race: "Massachusetts", seatType: "Regular", winner: "Elizabeth Warren", winnerParty: "D", opponent: "John Deaton", opponentParty: "R", status: "Democratic hold", result: "D+22.3", flipped: false, tooltipRows: [
       { name: "Elizabeth Warren", party: "Dem.", votes: "2,041,668", pct: "59.81" },
       { name: "John Deaton", party: "Rep.", votes: "1,365,440", pct: "40.00" }
     ] },
-    { code: "MD", race: "Maryland", seatType: "Regular", winner: "Angela Alsobrooks", winnerParty: "D", opponent: "Larry Hogan", opponentParty: "R", status: "Democratic hold", result: "D+10.2", flipped: false, tooltipRows: [
-      { name: "Angela Alsobrooks", party: "Dem.", votes: "1,650,912", pct: "54.64" },
-      { name: "Larry Hogan", party: "Rep.", votes: "1,294,344", pct: "42.84" }
+    { code: "MD", race: "Maryland", seatType: "Regular", winner: "Angela Alsobrooks", winnerParty: "D", opponent: "Larry Hogan", opponentParty: "R", status: "Democratic hold", result: "D+11.8", flipped: false, reportedTotal: 3014652, tooltipRows: [
+      { name: "Angela Alsobrooks", party: "Dem.", votes: "1,650,912", pct: "54.76" },
+      { name: "Larry Hogan", party: "Rep.", votes: "1,294,344", pct: "42.94" },
+      { name: "Mike Scott", party: "Lib.", votes: "69,396", pct: "2.30" }
     ] },
-    { code: "ME", race: "Maine", seatType: "Regular", winner: "Angus King", winnerParty: "I", opponent: "Demi Kouzounas", opponentParty: "R", status: "Independent hold", result: "I+14.2", flipped: false, caucus: "Democratic caucus", tooltipRows: [
-      { name: "Angus King", party: "Ind.", votes: "427,331", pct: "52.06" },
-      { name: "Demitroula Kouzounas", party: "Rep.", votes: "284,338", pct: "34.64" }
+    { code: "ME", race: "Maine", seatType: "Regular", winner: "Angus King", winnerParty: "I", opponent: "Demi Kouzounas", opponentParty: "R", status: "Independent hold", result: "I+17.4", flipped: false, caucus: "Democratic caucus", reportedTotal: 821072, tooltipRows: [
+      { name: "Angus King", party: "Ind.", votes: "427,570", pct: "52.07" },
+      { name: "Demi Kouzounas", party: "Rep.", votes: "284,434", pct: "34.64" },
+      { name: "David Costello", party: "Dem.", votes: "88,875", pct: "10.82" },
+      { name: "Jason Cherry", party: "Ind.", votes: "20,193", pct: "2.46" }
     ] },
-    { code: "MI", race: "Michigan", seatType: "Regular", winner: "Elissa Slotkin", winnerParty: "D", opponent: "Mike Rogers", opponentParty: "R", status: "Democratic hold", result: "D+0.3", flipped: false, tooltipRows: [
+    { code: "MI", race: "Michigan", seatType: "Regular", winner: "Elissa Slotkin", winnerParty: "D", opponent: "Mike Rogers", opponentParty: "R", status: "Democratic hold", result: "D+0.3", flipped: false, reportedTotal: 5577183, tooltipRows: [
       { name: "Elissa Slotkin", party: "Dem.", votes: "2,712,686", pct: "48.64" },
-      { name: "Mike Rogers", party: "Rep.", votes: "2,693,680", pct: "48.30" }
+      { name: "Mike Rogers", party: "Rep.", votes: "2,693,680", pct: "48.30" },
+      { name: "Joseph Solis-Mullen", party: "Lib.", votes: "56,697", pct: "1.02" },
+      { name: "Douglas P. Marsh", party: "Green", votes: "53,978", pct: "0.97" },
+      { name: "Dave Stein", party: "U.S. Taxpayers", votes: "41,363", pct: "0.74" },
+      { name: "Doug Dern", party: "Natural Law", votes: "18,779", pct: "0.34" }
     ] },
-    { code: "MN", race: "Minnesota", seatType: "Regular", winner: "Amy Klobuchar", winnerParty: "D", opponent: "Royce White", opponentParty: "R", status: "Democratic hold", result: "D+16.2", flipped: false, tooltipRows: [
+    { code: "MN", race: "Minnesota", seatType: "Regular", winner: "Amy Klobuchar", winnerParty: "D", opponent: "Royce White", opponentParty: "R", status: "Democratic hold", result: "D+16.2", flipped: false, reportedTotal: 3185745, tooltipRows: [
       { name: "Amy Klobuchar", party: "Dem.", votes: "1,792,441", pct: "56.20" },
-      { name: "Royce White", party: "Rep.", votes: "1,291,712", pct: "40.50" }
+      { name: "Royce White", party: "Rep.", votes: "1,291,712", pct: "40.50" },
+      { name: "Rebecca Whiting", party: "Lib.", votes: "55,215", pct: "1.73" },
+      { name: "Joyce Lynne Lacey", party: "Ind.", votes: "46,377", pct: "1.45" }
     ] },
-    { code: "MS", race: "Mississippi", seatType: "Regular", winner: "Roger Wicker", winnerParty: "R", opponent: "Ty Pinkins", opponentParty: "D", status: "Republican hold", result: "R+22.2", flipped: false, tooltipRows: [
+    { code: "MS", race: "Mississippi", seatType: "Regular", winner: "Roger Wicker", winnerParty: "R", opponent: "Ty Pinkins", opponentParty: "D", status: "Republican hold", result: "R+22.2", flipped: false, reportedTotal: 1215401, tooltipRows: [
       { name: "Roger Wicker", party: "Rep.", votes: "763,420", pct: "62.81" },
       { name: "Ty Pinkins", party: "Dem.", votes: "451,981", pct: "37.19" }
     ] },

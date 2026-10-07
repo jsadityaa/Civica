@@ -1,6 +1,9 @@
 const COUNTY_REFERENCE_URL = "https://raw.githubusercontent.com/tonmcg/US_County_Level_Election_Results_08-24/master/2024_US_County_Level_Presidential_Results.csv";
 const COUNTIES_TOPOJSON_URL = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
 const STATES_TOPOJSON_URL = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
+const CONNECTICUT_TOWNS_GEOJSON_URL = "./assets/maps/connecticut-towns.geojson";
+const MAINE_TOWNS_GEOJSON_URL = "./assets/maps/state-local-results-2024/maine-local-results-2024.geojson";
+const MASSACHUSETTS_MUNICIPALITIES_GEOJSON_URL = "./assets/maps/state-local-results-2024/massachusetts-local-results-2024.geojson";
 const SENATE_COUNTY_BOARD_PREVIEW_LIMIT = 6;
 
 const SENATE_DEM_SHADES = ["#b8d4ec", "#8eb6d9", "#5a96c8", "#2879b5"];
@@ -17,10 +20,109 @@ const SENATE_MAJOR_CITY_LABELS = {
     { name: "Fresno", coordinates: [-119.7871, 36.7378] },
     { name: "Los Angeles", coordinates: [-118.2437, 34.0522] },
     { name: "San Diego", coordinates: [-117.1611, 32.7157] }
+  ],
+  Connecticut: [
+    { name: "Hartford", coordinates: [-72.6851, 41.7658] },
+    { name: "New Haven", coordinates: [-72.9279, 41.3083] },
+    { name: "Bridgeport", coordinates: [-73.1952, 41.1865] }
+  ],
+  Delaware: [
+    { name: "Wilmington", coordinates: [-75.5466, 39.7447] },
+    { name: "Dover", coordinates: [-75.5244, 39.1582] }
+  ],
+  Florida: [
+    { name: "Jacksonville", coordinates: [-81.6557, 30.3322] },
+    { name: "Orlando", coordinates: [-81.3792, 28.5383] },
+    { name: "Tampa", coordinates: [-82.4572, 27.9506] },
+    { name: "Miami", coordinates: [-80.1918, 25.7617] }
+  ],
+  Hawaii: [
+    { name: "Hilo", coordinates: [-155.0885, 19.7074] },
+    { name: "Honolulu", coordinates: [-157.8583, 21.3069] }
+  ],
+  Indiana: [
+    { name: "Fort Wayne", coordinates: [-85.1394, 41.0793] },
+    { name: "Indianapolis", coordinates: [-86.1581, 39.7684] },
+    { name: "Evansville", coordinates: [-87.5711, 37.9716] }
+  ],
+  Maine: [
+    { name: "Portland", coordinates: [-70.2553, 43.6591] },
+    { name: "Lewiston", coordinates: [-70.2148, 44.1004] },
+    { name: "Bangor", coordinates: [-68.7778, 44.8016] }
+  ],
+  Massachusetts: [
+    { name: "Boston", coordinates: [-71.0589, 42.3601] },
+    { name: "Worcester", coordinates: [-71.8023, 42.2626] },
+    { name: "Springfield", coordinates: [-72.5898, 42.1015] }
+  ],
+  Maryland: [
+    { name: "Baltimore", coordinates: [-76.6122, 39.2904] },
+    { name: "Annapolis", coordinates: [-76.4922, 38.9784] },
+    { name: "Frederick", coordinates: [-77.4105, 39.4143] }
+  ],
+  Michigan: [
+    { name: "Detroit", coordinates: [-83.0458, 42.3314] },
+    { name: "Grand Rapids", coordinates: [-85.6681, 42.9634] },
+    { name: "Lansing", coordinates: [-84.5555, 42.7325] }
+  ],
+  Minnesota: [
+    { name: "Minneapolis", coordinates: [-93.2650, 44.9778] },
+    { name: "Saint Paul", coordinates: [-93.0900, 44.9537] },
+    { name: "Duluth", coordinates: [-92.1005, 46.7867] }
+  ],
+  Mississippi: [
+    { name: "Jackson", coordinates: [-90.1848, 32.2988] },
+    { name: "Gulfport", coordinates: [-89.0928, 30.3674] },
+    { name: "Southaven", coordinates: [-89.9787, 34.9890] }
   ]
 };
 const SENATE_REP_SHADES = ["#f1cfcf", "#e49e9e", "#d86a6a", "#cf2f2f"];
 const SENATE_FALLBACK_FILL = "#2d3138";
+const SENATE_COUNTY_REFERENCE_OVERRIDES = {
+  Connecticut: [
+    { county_fips: "09001", county_name: "Fairfield County" },
+    { county_fips: "09003", county_name: "Hartford County" },
+    { county_fips: "09005", county_name: "Litchfield County" },
+    { county_fips: "09007", county_name: "Middlesex County" },
+    { county_fips: "09009", county_name: "New Haven County" },
+    { county_fips: "09011", county_name: "New London County" },
+    { county_fips: "09013", county_name: "Tolland County" },
+    { county_fips: "09015", county_name: "Windham County" }
+  ]
+};
+
+const SENATE_LOCAL_RESULT_CONFIG = {
+  Connecticut: {
+    geojsonUrl: CONNECTICUT_TOWNS_GEOJSON_URL,
+    nameProperty: "TOWN_NAME",
+    idProperty: null,
+    projection: "identity",
+    singular: "Municipality",
+    plural: "municipalities",
+    mapTitle: "Municipality Map",
+    boardTitle: "Municipality Results"
+  },
+  Maine: {
+    geojsonUrl: MAINE_TOWNS_GEOJSON_URL,
+    nameProperty: "county_name",
+    idProperty: "county_fips",
+    projection: "mercator",
+    singular: "Town",
+    plural: "towns",
+    mapTitle: "Town Map",
+    boardTitle: "Town Results"
+  },
+  Massachusetts: {
+    geojsonUrl: MASSACHUSETTS_MUNICIPALITIES_GEOJSON_URL,
+    nameProperty: "county_name",
+    idProperty: "county_fips",
+    projection: "mercator",
+    singular: "Municipality",
+    plural: "municipalities",
+    mapTitle: "Municipality Map",
+    boardTitle: "Municipality Results"
+  }
+};
 
 const senateCountyResults = window.SENATE_COUNTY_RESULTS || {};
 const senateData = window.SENATE_2024_DATA || { races: [] };
@@ -29,7 +131,8 @@ const countyBoardState = {
   rows: [],
   sort: "votes",
   limit: String(SENATE_COUNTY_BOARD_PREVIEW_LIMIT),
-  activeFips: null
+  activeFips: null,
+  regionPlural: "counties"
 };
 
 const senateStateFipsByName = {
@@ -79,6 +182,7 @@ function senateFormatPartyLabel(party) {
   if (party === "D" || party === "Dem.") return "Democrat";
   if (party === "R" || party === "Rep.") return "Republican";
   if (party === "I" || party === "Ind.") return "Independent";
+  if (party === "L" || party === "Lib.") return "Libertarian";
   return party || "Independent";
 }
 
@@ -172,6 +276,19 @@ function getStatewideCandidates(record) {
   ];
 }
 
+function getCertifiedSenateTotal(record, candidates) {
+  if (record.primary.reportedTotal) {
+    return Number(record.primary.reportedTotal);
+  }
+
+  const countyRows = senateCountyResults[record.name]?.counties || [];
+  if (countyRows.length) {
+    return countyRows.reduce((sum, county) => sum + Number(county.totalVotes || 0), 0);
+  }
+
+  return candidates.reduce((sum, candidate) => sum + Number(String(candidate.votes || 0).replace(/,/g, "")), 0);
+}
+
 function buildFactItems(record, candidates) {
   const [winner, runnerUp] = candidates;
   const facts = [
@@ -210,6 +327,9 @@ function formatCountyDisplayName(name) {
   if (/ward/i.test(raw) || /district of columbia/i.test(raw)) {
     return raw.replace(/\s+city$/i, "");
   }
+  if (/^baltimore\s+city$/i.test(raw)) {
+    return "Baltimore City";
+  }
 
   const base = raw
     .replace(/\s+County$/i, "")
@@ -225,7 +345,7 @@ function formatCountyDisplayName(name) {
 async function fetchCountyReference(stateName) {
   if (countyReferenceCache.has(stateName)) return countyReferenceCache.get(stateName);
 
-  const rows = await d3.csv(COUNTY_REFERENCE_URL, (row) => {
+  const rows = SENATE_COUNTY_REFERENCE_OVERRIDES[stateName] || await d3.csv(COUNTY_REFERENCE_URL, (row) => {
     if (row.state_name !== stateName) return null;
     return {
       county_fips: row.county_fips,
@@ -235,6 +355,8 @@ async function fetchCountyReference(stateName) {
 
   const lookup = new Map();
   rows.filter(Boolean).forEach((row) => {
+    lookup.set(String(row.county_name || "").trim().toLowerCase(), row);
+    lookup.set(formatCountyDisplayName(row.county_name).toLowerCase(), row);
     lookup.set(normalizeCountyName(row.county_name), row);
     lookup.set(normalizeCountyName(formatCountyDisplayName(row.county_name)), row);
   });
@@ -274,14 +396,37 @@ function getCountyShade(row) {
 
 async function getStateCountyRows(stateName) {
   const bundle = senateCountyResults[stateName];
+  const localConfig = SENATE_LOCAL_RESULT_CONFIG[stateName];
   const counties = bundle?.counties || [];
+
+  if (localConfig) {
+    const localRows = bundle?.municipalities || counties;
+    return localRows
+      .map((county) => {
+        const displayName = county.town || county.county;
+        if (!displayName) return null;
+        return {
+          county_fips: county.county_fips || `${stateName}-${normalizeCountyName(displayName)}`,
+          county_name: displayName,
+          displayName,
+          candidates: county.candidates,
+          totalVotes: county.totalVotes,
+          winnerParty: getCountyWinnerParty(county),
+          marginValue: getCountyMarginValue(county),
+          marginLabel: getCountyMarginLabel(county)
+        };
+      })
+      .filter(Boolean);
+  }
+
   if (!counties.length) return [];
 
   const reference = await fetchCountyReference(stateName);
 
   return counties
     .map((county) => {
-      const referenceRow = reference.get(normalizeCountyName(county.county)) || null;
+      const countyKey = String(county.county || "").trim().toLowerCase();
+      const referenceRow = reference.get(countyKey) || reference.get(normalizeCountyName(county.county)) || null;
       if (!referenceRow) return null;
       return {
         county_fips: referenceRow.county_fips,
@@ -355,7 +500,7 @@ function updateCountyShowAllButton() {
   if (!hasOverflow) return;
 
   const showingAll = countyBoardState.limit === "all";
-  button.textContent = showingAll ? "Show fewer" : `Show all ${countyBoardState.rows.length} counties`;
+  button.textContent = showingAll ? "Show fewer" : `Show all ${countyBoardState.rows.length} ${countyBoardState.regionPlural}`;
   button.setAttribute("aria-expanded", String(showingAll));
 }
 
@@ -375,6 +520,17 @@ function wireCountyBoardControls() {
       renderCountyBoardRows();
     };
   }
+}
+
+function getSenateRegionLabels(stateName) {
+  const localConfig = SENATE_LOCAL_RESULT_CONFIG[stateName];
+  if (localConfig) return localConfig;
+  return {
+    singular: "County",
+    plural: "counties",
+    mapTitle: "County Map",
+    boardTitle: "County Results"
+  };
 }
 
 function getCountyTooltipHTML(row, stateName) {
@@ -529,12 +685,80 @@ async function renderCountyMap(record) {
   const tooltip = d3.select("#detail-map-tooltip");
   const mapEmpty = document.getElementById("detail-map-empty");
   const subtitle = document.getElementById("detail-map-subtitle");
+  const mapHeading = document.querySelector(".detail-map-head h3");
+  const mapLegend = document.querySelector(".detail-map-legend");
 
   if (svg.empty() || !window.topojson) return;
 
   svg.selectAll("*").remove();
+  const regionLabels = getSenateRegionLabels(record.name);
+  if (mapHeading) mapHeading.textContent = regionLabels.mapTitle;
+  if (mapLegend) mapLegend.setAttribute("aria-label", `${regionLabels.mapTitle.toLowerCase()} legend`);
 
   try {
+    const localConfig = SENATE_LOCAL_RESULT_CONFIG[record.name];
+    if (localConfig) {
+      const [countyRows, localGeojson] = await Promise.all([
+        getStateCountyRows(record.name),
+        d3.json(localConfig.geojsonUrl)
+      ]);
+      const rowByName = new Map(countyRows.map((row) => [normalizeCountyName(row.displayName), row]));
+      const rowById = new Map(countyRows.map((row) => [row.county_fips, row]));
+      const features = (localGeojson.features || [])
+        .map((feature) => ({
+          ...feature,
+          resultRow: rowById.get(feature.properties?.[localConfig.idProperty]) ||
+            rowByName.get(normalizeCountyName(feature.properties?.[localConfig.nameProperty]))
+        }))
+        .filter((feature) => feature.resultRow);
+
+      if (!countyRows.length || !features.length) {
+        mapEmpty.hidden = false;
+        subtitle.textContent = `${regionLabels.singular} map data is not available for this Senate page yet.`;
+        return;
+      }
+
+      mapEmpty.hidden = true;
+      subtitle.textContent = `${record.displayName} ${regionLabels.plural} shaded by the winning Senate margin.`;
+      updateSenateMapLegend(countyRows);
+
+      const localCollection = { type: "FeatureCollection", features };
+      const projection = localConfig.projection === "identity"
+        ? d3.geoIdentity().reflectY(true).fitSize([540, 520], localCollection)
+        : d3.geoMercator().fitSize([540, 520], localCollection);
+      const path = d3.geoPath(projection);
+
+      svg.append("g")
+        .selectAll("path")
+        .data(features)
+        .enter()
+        .append("path")
+        .attr("class", "detail-county-shape")
+        .attr("data-fips", (feature) => feature.resultRow.county_fips)
+        .attr("d", path)
+        .attr("fill", (feature) => getCountyShade(feature.resultRow))
+        .on("mouseover", (event, feature) => {
+          const row = feature.resultRow;
+          setActiveCounty(row.county_fips);
+          tooltip.style("opacity", 1).html(getCountyTooltipHTML(row, record.name));
+          positionTooltip(event, tooltip);
+        })
+        .on("mousemove", (event) => positionTooltip(event, tooltip))
+        .on("mouseout", () => {
+          tooltip.style("opacity", 0);
+          setActiveCounty(null);
+        });
+
+      svg.append("path")
+        .datum(localCollection)
+        .attr("class", "detail-state-outline")
+        .attr("d", path);
+
+      renderSenateCityLabels(svg, projection, record.name);
+
+      return;
+    }
+
     const [countyRows, countiesTopo, statesTopo] = await Promise.all([
       getStateCountyRows(record.name),
       d3.json(COUNTIES_TOPOJSON_URL),
@@ -599,20 +823,28 @@ async function renderCountyBoard(record) {
   const note = document.getElementById("detail-county-board-note");
   const empty = document.getElementById("detail-county-board-empty");
   const tableWrap = document.getElementById("detail-county-board-table-wrap");
+  const heading = document.querySelector("#detail-county-board h2");
+  const firstColumn = document.querySelector(".senate-county-board-table thead th:first-child");
+  const sortGroup = document.querySelector(".detail-county-sort");
+  const regionLabels = getSenateRegionLabels(record.name);
 
   empty.hidden = true;
   tableWrap.hidden = false;
+  countyBoardState.regionPlural = regionLabels.plural;
+  if (heading) heading.textContent = regionLabels.boardTitle;
+  if (firstColumn) firstColumn.textContent = regionLabels.singular;
+  if (sortGroup) sortGroup.setAttribute("aria-label", `Sort ${regionLabels.singular.toLowerCase()} results`);
 
   const rows = await getStateCountyRows(record.name);
   if (!rows.length) {
-    note.textContent = "County board unavailable.";
+    note.textContent = `${regionLabels.singular} board unavailable.`;
     empty.hidden = false;
-    empty.textContent = "County-level Senate results are not available for this state page yet.";
+    empty.textContent = `${regionLabels.singular}-level Senate results are not available for this state page yet.`;
     tableWrap.hidden = true;
     return;
   }
 
-  note.textContent = "County margins in the 2024 Senate race.";
+  note.textContent = `${regionLabels.singular} margins in the 2024 Senate race.`;
   countyBoardState.rows = rows;
   countyBoardState.limit = String(SENATE_COUNTY_BOARD_PREVIEW_LIMIT);
   renderCountyBoardRows();
@@ -639,7 +871,7 @@ function renderSummary(record) {
   const candidates = getStatewideCandidates(record);
 
   const winnerTone = senateWinnerTone(record.primary.winnerParty);
-  const totalVotes = candidates.reduce((sum, candidate) => sum + Number(String(candidate.votes || 0).replace(/,/g, "")), 0);
+  const totalVotes = getCertifiedSenateTotal(record, candidates);
   const demPct = candidates.filter((candidate) => candidate.party === "Democrat").reduce((sum, candidate) => sum + Number(candidate.pct.replace("%", "")), 0);
   const repPct = candidates.filter((candidate) => candidate.party === "Republican").reduce((sum, candidate) => sum + Number(candidate.pct.replace("%", "")), 0);
   const indPct = candidates.filter((candidate) => candidate.party === "Independent").reduce((sum, candidate) => sum + Number(candidate.pct.replace("%", "")), 0);
