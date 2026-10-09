@@ -10,10 +10,24 @@ const SENATE_COUNTY_BOARD_PREVIEW_LIMIT = 6;
 
 const SENATE_DEM_SHADES = ["#b8d4ec", "#8eb6d9", "#5a96c8", "#2879b5"];
 const SENATE_IND_SHADES = ["#f0dfab", "#e0c16a", "#c8a24a", "#a97d1c"];
+let senateDetailMapMode = "share";
 const SENATE_MAJOR_CITY_LABELS = {
+  Alabama: [
+    { name: "Huntsville", coordinates: [-86.5861, 34.7304] },
+    { name: "Birmingham", coordinates: [-86.8025, 33.5186] },
+    { name: "Tuscaloosa", coordinates: [-87.5692, 33.2098] },
+    { name: "Montgomery", coordinates: [-86.3000, 32.3668] },
+    { name: "Mobile", coordinates: [-88.0431, 30.6954] }
+  ],
   Arizona: [
     { name: "Phoenix", coordinates: [-112.0740, 33.4484] },
     { name: "Tucson", coordinates: [-110.9747, 32.2226] }
+  ],
+  Arkansas: [
+    { name: "Little Rock", coordinates: [-92.2896, 34.7465] },
+    { name: "Fayetteville", coordinates: [-94.1574, 36.0626] },
+    { name: "Fort Smith", coordinates: [-94.3985, 35.3859] },
+    { name: "Jonesboro", coordinates: [-90.7043, 35.8423] }
   ],
   California: [
     { name: "Sacramento", coordinates: [-121.4944, 38.5816] },
@@ -23,194 +37,260 @@ const SENATE_MAJOR_CITY_LABELS = {
     { name: "Los Angeles", coordinates: [-118.2437, 34.0522] },
     { name: "San Diego", coordinates: [-117.1611, 32.7157] }
   ],
+  Colorado: [
+    { name: "Fort Collins", coordinates: [-105.0844, 40.5853] },
+    { name: "Denver", coordinates: [-104.9903, 39.7392] },
+    { name: "Colorado Springs", coordinates: [-104.8214, 38.8339] },
+    { name: "Pueblo", coordinates: [-104.6091, 38.2544] }
+  ],
   Connecticut: [
     { name: "Hartford", coordinates: [-72.6851, 41.7658] },
     { name: "New Haven", coordinates: [-72.9279, 41.3083] },
     { name: "Bridgeport", coordinates: [-73.1952, 41.1865] }
   ],
   Delaware: [
-    { name: "Wilmington", coordinates: [-75.5466, 39.7447] },
-    { name: "Dover", coordinates: [-75.5244, 39.1582] }
+    { name: "Dover", coordinates: [-75.5244, 39.1582] },
+    { name: "Wilmington", coordinates: [-75.5466, 39.7447] }
   ],
   Florida: [
+    { name: "Tallahassee", coordinates: [-84.2807, 30.4383] },
     { name: "Jacksonville", coordinates: [-81.6557, 30.3322] },
     { name: "Orlando", coordinates: [-81.3792, 28.5383] },
     { name: "Tampa", coordinates: [-82.4572, 27.9506] },
+    { name: "W. Palm Beach", coordinates: [-80.0534, 26.7153] },
     { name: "Miami", coordinates: [-80.1918, 25.7617] }
+  ],
+  Georgia: [
+    { name: "Atlanta", coordinates: [-84.3880, 33.7490] },
+    { name: "Athens", coordinates: [-83.3576, 33.9519] },
+    { name: "Augusta", coordinates: [-81.9748, 33.4735] },
+    { name: "Columbus", coordinates: [-84.9877, 32.4609] },
+    { name: "Macon", coordinates: [-83.6324, 32.8407] },
+    { name: "Savannah", coordinates: [-81.0998, 32.0809] }
   ],
   Hawaii: [
     { name: "Hilo", coordinates: [-155.0885, 19.7074] },
     { name: "Honolulu", coordinates: [-157.8583, 21.3069] }
   ],
+  Idaho: [
+    { name: "Boise", coordinates: [-116.2023, 43.6150] },
+    { name: "Idaho Falls", coordinates: [-112.0341, 43.4917] },
+    { name: "Pocatello", coordinates: [-112.4455, 42.8713] }
+  ],
+  Illinois: [
+    { name: "Rockford", coordinates: [-89.0937, 42.2711] },
+    { name: "Chicago", coordinates: [-87.6298, 41.8781] },
+    { name: "Peoria", coordinates: [-89.5890, 40.6936] },
+    { name: "Springfield", coordinates: [-89.6501, 39.7817] }
+  ],
   Indiana: [
-    { name: "Fort Wayne", coordinates: [-85.1394, 41.0793] },
     { name: "Indianapolis", coordinates: [-86.1581, 39.7684] },
-    { name: "Evansville", coordinates: [-87.5711, 37.9716] }
+    { name: "Evansville", coordinates: [-87.5711, 37.9716] },
+    { name: "Fort Wayne", coordinates: [-85.1394, 41.0793] },
+    { name: "Gary", coordinates: [-87.3464, 41.5934] }
+  ],
+  Iowa: [
+    { name: "Des Moines", coordinates: [-93.6091, 41.5868] },
+    { name: "Sioux City", coordinates: [-96.4003, 42.4999] },
+    { name: "Cedar Rapids", coordinates: [-91.6656, 41.9779] },
+    { name: "Davenport", coordinates: [-90.5776, 41.5236] }
+  ],
+  Kansas: [
+    { name: "Wichita", coordinates: [-97.3301, 37.6872] },
+    { name: "Topeka", coordinates: [-95.6890, 39.0473] }
+  ],
+  Kentucky: [
+    { name: "Louisville", coordinates: [-85.7585, 38.2527] },
+    { name: "Lexington", coordinates: [-84.5037, 38.0406] }
+  ],
+  Louisiana: [
+    { name: "Baton Rouge", coordinates: [-91.1403, 30.4515] },
+    { name: "Shreveport", coordinates: [-93.7502, 32.5252] },
+    { name: "Lafayette", coordinates: [-92.0198, 30.2241] },
+    { name: "New Orleans", coordinates: [-90.0715, 29.9511] }
   ],
   Maine: [
     { name: "Portland", coordinates: [-70.2553, 43.6591] },
-    { name: "Lewiston", coordinates: [-70.2148, 44.1004] },
     { name: "Bangor", coordinates: [-68.7778, 44.8016] }
   ],
-  Massachusetts: [
-    { name: "Boston", coordinates: [-71.0589, 42.3601] },
-    { name: "Worcester", coordinates: [-71.8023, 42.2626] },
-    { name: "Springfield", coordinates: [-72.5898, 42.1015] }
-  ],
   Maryland: [
+    { name: "Frederick", coordinates: [-77.4105, 39.4143] },
     { name: "Baltimore", coordinates: [-76.6122, 39.2904] },
-    { name: "Annapolis", coordinates: [-76.4922, 38.9784] },
-    { name: "Frederick", coordinates: [-77.4105, 39.4143] }
+    { name: "Rockville", coordinates: [-77.1528, 39.0840] }
+  ],
+  Massachusetts: [
+    { name: "Springfield", coordinates: [-72.5898, 42.1015] },
+    { name: "Worcester", coordinates: [-71.8023, 42.2626] },
+    { name: "Lowell", coordinates: [-71.3162, 42.6334] },
+    { name: "Boston", coordinates: [-71.0589, 42.3601] }
   ],
   Michigan: [
     { name: "Detroit", coordinates: [-83.0458, 42.3314] },
-    { name: "Grand Rapids", coordinates: [-85.6681, 42.9634] },
-    { name: "Lansing", coordinates: [-84.5555, 42.7325] }
+    { name: "Ann Arbor", coordinates: [-83.7430, 42.2808] },
+    { name: "Grand Rapids", coordinates: [-85.6681, 42.9634] }
   ],
   Minnesota: [
     { name: "Minneapolis", coordinates: [-93.2650, 44.9778] },
-    { name: "Saint Paul", coordinates: [-93.0900, 44.9537] },
-    { name: "Duluth", coordinates: [-92.1005, 46.7867] }
+    { name: "Duluth", coordinates: [-92.1005, 46.7867] },
+    { name: "Rochester", coordinates: [-92.4802, 44.0121] }
   ],
   Mississippi: [
     { name: "Jackson", coordinates: [-90.1848, 32.2988] },
-    { name: "Gulfport", coordinates: [-89.0928, 30.3674] },
-    { name: "Southaven", coordinates: [-89.9787, 34.9890] }
+    { name: "Tupelo", coordinates: [-88.7034, 34.2576] },
+    { name: "Hattiesburg", coordinates: [-89.2903, 31.3271] },
+    { name: "Biloxi", coordinates: [-88.8853, 30.3960] }
   ],
   Missouri: [
     { name: "Kansas City", coordinates: [-94.5786, 39.0997] },
     { name: "St. Louis", coordinates: [-90.1994, 38.6270] },
-    { name: "Springfield", coordinates: [-93.2923, 37.2089] },
-    { name: "Columbia", coordinates: [-92.3341, 38.9517] }
+    { name: "Columbia", coordinates: [-92.3341, 38.9517] },
+    { name: "Springfield", coordinates: [-93.2923, 37.2089] }
   ],
   Montana: [
-    { name: "Billings", coordinates: [-108.5007, 45.7833] },
     { name: "Missoula", coordinates: [-113.9966, 46.8721] },
     { name: "Great Falls", coordinates: [-111.3008, 47.5053] },
-    { name: "Bozeman", coordinates: [-111.0429, 45.6770] },
-    { name: "Helena", coordinates: [-112.0391, 46.5891] }
+    { name: "Helena", coordinates: [-112.0391, 46.5891] },
+    { name: "Billings", coordinates: [-108.5007, 45.7833] }
   ],
   Nebraska: [
     { name: "Omaha", coordinates: [-95.9345, 41.2565] },
-    { name: "Lincoln", coordinates: [-96.7026, 40.8136] },
-    { name: "Grand Island", coordinates: [-98.3420, 40.9264] }
+    { name: "Lincoln", coordinates: [-96.6852, 40.8136] }
   ],
   Nevada: [
-    { name: "Las Vegas", coordinates: [-115.1398, 36.1716] },
     { name: "Reno", coordinates: [-119.8138, 39.5296] },
-    { name: "Carson City", coordinates: [-119.7674, 39.1638] }
+    { name: "Carson City", coordinates: [-119.7674, 39.1638] },
+    { name: "Las Vegas", coordinates: [-115.1398, 36.1699] }
+  ],
+  "New Hampshire": [
+    { name: "Manchester", coordinates: [-71.4548, 42.9956] },
+    { name: "Concord", coordinates: [-71.5376, 43.2081] },
+    { name: "Dover", coordinates: [-70.8737, 43.1979] },
+    { name: "Nashua", coordinates: [-71.4676, 42.7654] }
   ],
   "New Jersey": [
     { name: "Newark", coordinates: [-74.1724, 40.7357] },
-    { name: "Jersey City", coordinates: [-74.0431, 40.7178] },
-    { name: "Paterson", coordinates: [-74.1718, 40.9168] },
-    { name: "Trenton", coordinates: [-74.7429, 40.2171] },
+    { name: "Trenton", coordinates: [-74.7429, 40.2206] },
     { name: "Atlantic City", coordinates: [-74.4229, 39.3643] }
   ],
   "New Mexico": [
     { name: "Albuquerque", coordinates: [-106.6504, 35.0844] },
     { name: "Santa Fe", coordinates: [-105.9378, 35.6870] },
-    { name: "Las Cruces", coordinates: [-106.7637, 32.3199] },
-    { name: "Roswell", coordinates: [-104.5230, 33.3943] }
+    { name: "Las Cruces", coordinates: [-106.7637, 32.3199] }
   ],
   "New York": [
+    { name: "Albany", coordinates: [-73.7562, 42.6526] },
     { name: "New York City", coordinates: [-74.0060, 40.7128] },
-    { name: "Buffalo", coordinates: [-78.8784, 42.8864] },
     { name: "Rochester", coordinates: [-77.6109, 43.1566] },
-    { name: "Syracuse", coordinates: [-76.1474, 43.0481] },
-    { name: "Albany", coordinates: [-73.7562, 42.6526] }
+    { name: "Buffalo", coordinates: [-78.8784, 42.8864] },
+    { name: "Syracuse", coordinates: [-76.1474, 43.0481] }
+  ],
+  "North Carolina": [
+    { name: "Charlotte", coordinates: [-80.8431, 35.2271] },
+    { name: "Greensboro", coordinates: [-79.7920, 36.0726] },
+    { name: "Raleigh", coordinates: [-78.6382, 35.7796] },
+    { name: "Fayetteville", coordinates: [-78.8784, 35.0527] }
   ],
   "North Dakota": [
-    { name: "Fargo", coordinates: [-96.7898, 46.8772] },
     { name: "Bismarck", coordinates: [-100.7837, 46.8083] },
     { name: "Grand Forks", coordinates: [-97.0329, 47.9253] },
-    { name: "Minot", coordinates: [-101.2963, 48.2325] }
+    { name: "Fargo", coordinates: [-96.7898, 46.8772] }
   ],
   Ohio: [
-    { name: "Columbus", coordinates: [-82.9988, 39.9612] },
-    { name: "Cleveland", coordinates: [-81.6944, 41.4993] },
-    { name: "Cincinnati", coordinates: [-84.5120, 39.1031] },
     { name: "Toledo", coordinates: [-83.5552, 41.6528] },
+    { name: "Cleveland", coordinates: [-81.6944, 41.4993] },
     { name: "Akron", coordinates: [-81.5190, 41.0814] },
-    { name: "Dayton", coordinates: [-84.1916, 39.7589] }
+    { name: "Dayton", coordinates: [-84.1916, 39.7589] },
+    { name: "Columbus", coordinates: [-82.9988, 39.9612] },
+    { name: "Cincinnati", coordinates: [-84.5120, 39.1031] }
+  ],
+  Oklahoma: [
+    { name: "Oklahoma City", coordinates: [-97.5164, 35.4676] },
+    { name: "Tulsa", coordinates: [-95.9928, 36.1540] }
+  ],
+  Oregon: [
+    { name: "Portland", coordinates: [-122.6765, 45.5152] },
+    { name: "Salem", coordinates: [-123.0351, 44.9429] },
+    { name: "Eugene", coordinates: [-123.0868, 44.0521] },
+    { name: "Bend", coordinates: [-121.3153, 44.0582] },
+    { name: "Medford", coordinates: [-122.8756, 42.3265] }
   ],
   Pennsylvania: [
-    { name: "Philadelphia", coordinates: [-75.1652, 39.9526] },
+    { name: "Erie", coordinates: [-80.0851, 42.1292] },
     { name: "Pittsburgh", coordinates: [-79.9959, 40.4406] },
     { name: "Allentown", coordinates: [-75.4902, 40.6084] },
-    { name: "Erie", coordinates: [-80.0851, 42.1292] },
-    { name: "Harrisburg", coordinates: [-76.8867, 40.2732] },
-    { name: "Scranton", coordinates: [-75.6624, 41.4089] }
+    { name: "Philadelphia", coordinates: [-75.1652, 39.9526] }
   ],
   "Rhode Island": [
     { name: "Providence", coordinates: [-71.4128, 41.8240] },
-    { name: "Warwick", coordinates: [-71.4162, 41.7001] },
-    { name: "Cranston", coordinates: [-71.4373, 41.7798] },
-    { name: "Pawtucket", coordinates: [-71.3826, 41.8787] }
+    { name: "Warwick", coordinates: [-71.4162, 41.7001] }
+  ],
+  "South Carolina": [
+    { name: "Greenville", coordinates: [-82.3940, 34.8526] },
+    { name: "Rock Hill", coordinates: [-81.0251, 34.9249] },
+    { name: "Columbia", coordinates: [-81.0348, 34.0007] },
+    { name: "Charleston", coordinates: [-79.9311, 32.7765] }
+  ],
+  "South Dakota": [
+    { name: "Rapid City", coordinates: [-103.2310, 44.0805] },
+    { name: "Aberdeen", coordinates: [-98.4865, 45.4647] },
+    { name: "Watertown", coordinates: [-97.1151, 44.8994] },
+    { name: "Sioux Falls", coordinates: [-96.7311, 43.5460] }
   ],
   Tennessee: [
-    { name: "Nashville", coordinates: [-86.7816, 36.1627] },
     { name: "Memphis", coordinates: [-90.0490, 35.1495] },
-    { name: "Knoxville", coordinates: [-83.9207, 35.9606] },
+    { name: "Nashville", coordinates: [-86.7816, 36.1627] },
     { name: "Chattanooga", coordinates: [-85.3097, 35.0456] },
-    { name: "Clarksville", coordinates: [-87.3595, 36.5298] }
+    { name: "Knoxville", coordinates: [-83.9207, 35.9606] }
   ],
   Texas: [
-    { name: "Houston", coordinates: [-95.3698, 29.7604] },
-    { name: "San Antonio", coordinates: [-98.4936, 29.4241] },
+    { name: "Corpus Christi", coordinates: [-97.3964, 27.8006] },
+    { name: "El Paso", coordinates: [-106.4850, 31.7619] },
+    { name: "Fort Worth", coordinates: [-97.3308, 32.7555] },
     { name: "Dallas", coordinates: [-96.7970, 32.7767] },
     { name: "Austin", coordinates: [-97.7431, 30.2672] },
-    { name: "Fort Worth", coordinates: [-97.3308, 32.7555] },
-    { name: "El Paso", coordinates: [-106.4850, 31.7619] }
+    { name: "San Antonio", coordinates: [-98.4936, 29.4241] },
+    { name: "Houston", coordinates: [-95.3698, 29.7604] }
   ],
   Utah: [
     { name: "Salt Lake City", coordinates: [-111.8910, 40.7608] },
-    { name: "West Valley City", coordinates: [-111.9391, 40.6916] },
-    { name: "Provo", coordinates: [-111.6585, 40.2338] },
-    { name: "St. George", coordinates: [-113.5684, 37.0965] },
-    { name: "Ogden", coordinates: [-111.9738, 41.2230] }
+    { name: "Provo", coordinates: [-111.6585, 40.2338] }
   ],
   Vermont: [
     { name: "Burlington", coordinates: [-73.2121, 44.4759] },
-    { name: "South Burlington", coordinates: [-73.1709, 44.4669] },
-    { name: "Rutland", coordinates: [-72.9726, 43.6106] },
     { name: "Montpelier", coordinates: [-72.5754, 44.2601] },
-    { name: "Bennington", coordinates: [-73.1968, 42.8781] }
+    { name: "Rutland", coordinates: [-72.9726, 43.6106] }
   ],
   Virginia: [
     { name: "Richmond", coordinates: [-77.4360, 37.5407] },
-    { name: "Virginia Beach", coordinates: [-75.9780, 36.8529] },
+    { name: "Alexandria", coordinates: [-77.0469, 38.8048] },
+    { name: "Roanoke", coordinates: [-79.9414, 37.2710] },
     { name: "Norfolk", coordinates: [-76.2859, 36.8508] },
-    { name: "Arlington", coordinates: [-77.0842, 38.8816] },
-    { name: "Roanoke", coordinates: [-79.9414, 37.2710] }
+    { name: "Virginia Beach", coordinates: [-75.9780, 36.8529] }
   ],
   Washington: [
+    { name: "Bellingham", coordinates: [-122.4787, 48.7519] },
     { name: "Seattle", coordinates: [-122.3321, 47.6062] },
-    { name: "Spokane", coordinates: [-117.4260, 47.6588] },
-    { name: "Tacoma", coordinates: [-122.4443, 47.2529] },
+    { name: "Olympia", coordinates: [-122.9007, 47.0379] },
     { name: "Vancouver", coordinates: [-122.6615, 45.6387] },
-    { name: "Olympia", coordinates: [-122.9007, 47.0379] }
+    { name: "Yakima", coordinates: [-120.5059, 46.6021] },
+    { name: "Spokane", coordinates: [-117.4260, 47.6588] }
   ],
   "West Virginia": [
-    { name: "Charleston", coordinates: [-81.6326, 38.3498] },
     { name: "Huntington", coordinates: [-82.4452, 38.4192] },
-    { name: "Morgantown", coordinates: [-79.9559, 39.6295] },
-    { name: "Parkersburg", coordinates: [-81.5615, 39.2667] },
-    { name: "Wheeling", coordinates: [-80.7209, 40.0640] }
+    { name: "Charleston", coordinates: [-81.6326, 38.3498] },
+    { name: "Wheeling", coordinates: [-80.7209, 40.0639] }
   ],
   Wisconsin: [
     { name: "Milwaukee", coordinates: [-87.9065, 43.0389] },
-    { name: "Madison", coordinates: [-89.4012, 43.0731] },
-    { name: "Green Bay", coordinates: [-88.0198, 44.5133] },
     { name: "Kenosha", coordinates: [-87.8212, 42.5847] },
-    { name: "Eau Claire", coordinates: [-91.4985, 44.8113] }
+    { name: "Madison", coordinates: [-89.4012, 43.0731] },
+    { name: "Eau Claire", coordinates: [-91.4985, 44.8113] },
+    { name: "Oshkosh", coordinates: [-88.5426, 44.0247] },
+    { name: "Green Bay", coordinates: [-88.0198, 44.5133] }
   ],
   Wyoming: [
     { name: "Cheyenne", coordinates: [-104.8202, 41.1400] },
-    { name: "Casper", coordinates: [-106.3131, 42.8666] },
-    { name: "Laramie", coordinates: [-105.5911, 41.3114] },
-    { name: "Gillette", coordinates: [-105.5019, 44.2911] },
-    { name: "Rock Springs", coordinates: [-109.2029, 41.5875] }
+    { name: "Casper", coordinates: [-106.3131, 42.8501] }
   ]
 };
 const SENATE_REP_SHADES = ["#f1cfcf", "#e49e9e", "#d86a6a", "#cf2f2f"];
@@ -241,10 +321,10 @@ const SENATE_LOCAL_RESULT_CONFIG = {
     nameProperty: "TOWN_NAME",
     idProperty: null,
     projection: "identity",
-    singular: "Municipality",
-    plural: "municipalities",
-    mapTitle: "Municipality Map",
-    boardTitle: "Municipality Results"
+    singular: "Town",
+    plural: "towns",
+    mapTitle: "Town Map",
+    boardTitle: "Town Results"
   },
   Maine: {
     geojsonUrl: MAINE_TOWNS_GEOJSON_URL,
@@ -433,9 +513,9 @@ function senateInitials(name) {
     .join("") || "S";
 }
 
-function getSenateCandidatePortrait(name) {
-  const initials = senateInitials(name);
-  return `https://placehold.co/120x120/2f3540/f3f4f6?text=${encodeURIComponent(initials)}`;
+function getSenateCandidatePortrait(name, imageUrl) {
+  if (imageUrl) return imageUrl;
+  return "https://placehold.co/120x120/2f3540/2f3540";
 }
 
 function getPrimaryRace(name, seatType = "Regular") {
@@ -469,6 +549,7 @@ function getStatewideCandidates(record) {
       partyShort: senateFormatPartyShort(row.party),
       votes: row.votes,
       pct: `${row.pct}%`,
+      imageUrl: row.imageUrl || "",
       tone: senateWinnerTone(row.party[0])
     }));
   }
@@ -480,6 +561,7 @@ function getStatewideCandidates(record) {
       partyShort: senateFormatPartyShort(record.primary.winnerParty),
       votes: "—",
       pct: record.primary.result.replace(/^[A-Z]\+/, "") + "%",
+      imageUrl: "",
       tone: senateWinnerTone(record.primary.winnerParty)
     },
     {
@@ -488,6 +570,7 @@ function getStatewideCandidates(record) {
       partyShort: senateFormatPartyShort(record.primary.opponentParty),
       votes: "—",
       pct: "—",
+      imageUrl: "",
       tone: senateWinnerTone(record.primary.opponentParty)
     }
   ];
@@ -757,6 +840,9 @@ function setActiveCounty(fips) {
   document.querySelectorAll(".detail-county-shape").forEach((shape) => {
     shape.classList.toggle("is-active", shape.dataset.fips === countyBoardState.activeFips);
   });
+  document.querySelectorAll(".state-election-lead-bubble").forEach((shape) => {
+    shape.classList.toggle("is-active", shape.dataset.fips === countyBoardState.activeFips);
+  });
 }
 
 function sortCountyRows(rows) {
@@ -899,29 +985,23 @@ function renderSenateCityLabels(svg, projection, stateName) {
     .attr("cy", (city) => city.point[1])
     .attr("r", 2.6);
 
-  cityLayer.selectAll("text")
+  const texts = cityLayer.selectAll("text")
     .data(placedLabels)
     .enter()
     .append("text")
     .attr("x", (city) => city.labelX)
     .attr("y", (city) => city.labelY)
     .attr("text-anchor", (city) => city.anchor)
+    .attr("dominant-baseline", "middle")
     .text((city) => city.name);
+
+  resolveRenderedSenateCityLabels(texts);
 }
 
 function placeSenateCityLabels(cityLabels, projection) {
   const svgWidth = 540;
-  const svgHeight = 520;
   const edgePadding = 8;
-  const labelHeight = 22;
-  const placedBoxes = [];
   const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
-  const overlaps = (box) => placedBoxes.some((placed) => (
-    box.x < placed.x + placed.width + 4 &&
-    box.x + box.width + 4 > placed.x &&
-    box.y < placed.y + placed.height + 4 &&
-    box.y + box.height + 4 > placed.y
-  ));
 
   return cityLabels
     .map((city) => {
@@ -932,51 +1012,42 @@ function placeSenateCityLabels(cityLabels, projection) {
     .map((city) => {
       const [x, y] = city.point;
       const labelWidth = Math.max(36, city.name.length * 10.2);
-      const candidates = [
-        { x: x + 7, y: y + 6, anchor: "start" },
-        { x: x - 7, y: y + 6, anchor: "end" },
-        { x: x + 7, y: y - 9, anchor: "start" },
-        { x: x - 7, y: y - 9, anchor: "end" },
-        { x, y: y - 13, anchor: "middle" },
-        { x, y: y + 18, anchor: "middle" },
-        { x: x + 7, y: y + 24, anchor: "start" },
-        { x: x - 7, y: y + 24, anchor: "end" }
-      ];
-
-      const prepared = candidates.map((candidate) => {
-        const boxX = candidate.anchor === "end"
-          ? candidate.x - labelWidth
-          : candidate.anchor === "middle"
-            ? candidate.x - labelWidth / 2
-            : candidate.x;
-        const box = {
-          x: clamp(boxX, edgePadding, svgWidth - labelWidth - edgePadding),
-          y: clamp(candidate.y - labelHeight + 5, edgePadding, svgHeight - labelHeight - edgePadding),
-          width: labelWidth,
-          height: labelHeight
-        };
-        return {
-          ...candidate,
-          labelX: candidate.anchor === "end"
-            ? box.x + labelWidth
-            : candidate.anchor === "middle"
-              ? box.x + labelWidth / 2
-              : box.x,
-          labelY: box.y + labelHeight - 5,
-          box
-        };
-      });
-
-      const chosen = prepared.find((candidate) => !overlaps(candidate.box)) || prepared[0];
-      placedBoxes.push(chosen.box);
+      const shouldPlaceLeft = x + labelWidth + 9 > svgWidth - edgePadding;
+      const anchor = shouldPlaceLeft ? "end" : "start";
+      const labelX = shouldPlaceLeft
+        ? clamp(x - 6, edgePadding + labelWidth, svgWidth - edgePadding)
+        : clamp(x + 6, edgePadding, svgWidth - labelWidth - edgePadding);
 
       return {
         ...city,
-        labelX: chosen.labelX,
-        labelY: chosen.labelY,
-        anchor: chosen.anchor
+        labelX,
+        labelY: y,
+        anchor
       };
     });
+}
+
+function resolveRenderedSenateCityLabels(texts) {
+  const svgWidth = 540;
+  const edgePadding = 8;
+  const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+
+  texts.each(function(city) {
+    const text = d3.select(this);
+    const bounds = this.getBBox();
+    const width = bounds.width;
+    const [x, y] = city.point;
+    const shouldPlaceLeft = x + width + 9 > svgWidth - edgePadding;
+    const anchor = shouldPlaceLeft ? "end" : "start";
+    const labelX = shouldPlaceLeft
+      ? clamp(x - 6, edgePadding + width, svgWidth - edgePadding)
+      : clamp(x + 6, edgePadding, svgWidth - width - edgePadding);
+
+    text
+      .attr("x", labelX)
+      .attr("y", y)
+      .attr("text-anchor", anchor);
+  });
 }
 
 function updateSenateMapLegend(countyRows) {
@@ -985,6 +1056,89 @@ function updateSenateMapLegend(countyRows) {
     const party = row.dataset.party;
     row.hidden = !winningParties.has(party);
   });
+}
+
+function getSenateUnitLead(row) {
+  const candidates = (row?.candidates || [])
+    .slice()
+    .sort((a, b) => Number(b.votes || 0) - Number(a.votes || 0));
+  if (!candidates.length) return 0;
+  return Math.max(0, Number(candidates[0].votes || 0) - Number(candidates[1]?.votes || 0));
+}
+
+function setupSenateDetailMapMode(record, rows, regionLabels) {
+  const modeControl = document.getElementById("senate-detail-map-mode");
+  const shareLegend = document.querySelector(".detail-map-legend");
+  const leadLegend = document.getElementById("senate-detail-lead-legend");
+  const indLegend = document.getElementById("senate-detail-lead-legend-ind");
+  const canToggle = rows.length > 1 && rows.some((row) => getSenateUnitLead(row) > 0);
+  if (!canToggle) {
+    senateDetailMapMode = "share";
+  }
+
+  if (modeControl) {
+    modeControl.hidden = !canToggle;
+    modeControl.querySelectorAll("[data-map-mode]").forEach((button) => {
+      button.classList.toggle("is-active", button.dataset.mapMode === senateDetailMapMode);
+      button.onclick = () => {
+        if (senateDetailMapMode === button.dataset.mapMode) return;
+        senateDetailMapMode = button.dataset.mapMode;
+        renderCountyMap(record);
+      };
+    });
+  }
+
+  const showLead = canToggle && senateDetailMapMode === "lead";
+  if (shareLegend) shareLegend.hidden = showLead;
+  if (leadLegend) leadLegend.hidden = !showLead;
+  if (indLegend) {
+    indLegend.hidden = !showLead || !rows.some((row) => {
+      const code = senatePartyCode(row.winnerParty);
+      return code !== "D" && code !== "R";
+    });
+  }
+
+  return showLead
+    ? `${record.displayName} ${regionLabels.plural} sized by the winning Senate vote lead.`
+    : `${record.displayName} ${regionLabels.plural} shaded by the winning Senate margin.`;
+}
+
+function renderSenateLeadBubbles(svg, features, path, getRow, tooltip, record) {
+  const bubbleRows = features
+    .map((feature) => ({ feature, row: getRow(feature) }))
+    .filter((item) => item.row);
+  const maxLead = d3.max(bubbleRows, (item) => getSenateUnitLead(item.row)) || 1;
+  const radius = d3.scaleSqrt().domain([0, maxLead]).range([2.5, 40]);
+
+  svg.append("g")
+    .selectAll("path")
+    .data(features)
+    .enter()
+    .append("path")
+    .attr("class", "state-election-lead-county-shape")
+    .attr("data-fips", (feature) => getRow(feature)?.county_fips || null)
+    .attr("d", path);
+
+  svg.append("g")
+    .selectAll("circle")
+    .data(bubbleRows)
+    .enter()
+    .append("circle")
+    .attr("class", (item) => `state-election-lead-bubble ${senateWinnerTone(item.row.winnerParty)}`)
+    .attr("data-fips", (item) => item.row.county_fips)
+    .attr("cx", (item) => path.centroid(item.feature)[0])
+    .attr("cy", (item) => path.centroid(item.feature)[1])
+    .attr("r", (item) => radius(getSenateUnitLead(item.row)))
+    .on("mouseover", (event, item) => {
+      setActiveCounty(item.row.county_fips);
+      tooltip.style("opacity", 1).html(getCountyTooltipHTML(item.row, record.name));
+      positionTooltip(event, tooltip);
+    })
+    .on("mousemove", (event) => positionTooltip(event, tooltip))
+    .on("mouseout", () => {
+      tooltip.style("opacity", 0);
+      setActiveCounty(null);
+    });
 }
 
 async function renderCountyMap(record) {
@@ -1027,14 +1181,28 @@ async function renderCountyMap(record) {
       }
 
       mapEmpty.hidden = true;
-      subtitle.textContent = `${record.displayName} ${regionLabels.plural} shaded by the winning Senate margin.`;
       updateSenateMapLegend(mapRows);
+      subtitle.textContent = setupSenateDetailMapMode(record, mapRows, regionLabels);
 
       const localCollection = { type: "FeatureCollection", features };
       const projection = localConfig.projection === "identity"
         ? d3.geoIdentity().reflectY(true).fitSize([540, 620], localCollection)
         : d3.geoMercator().fitSize([540, 620], localCollection);
       const path = d3.geoPath(projection);
+      const showLead = senateDetailMapMode === "lead";
+
+      if (showLead) {
+        renderSenateLeadBubbles(svg, features, path, (feature) => feature.resultRow, tooltip, record);
+
+        svg.append("path")
+          .datum(localCollection)
+          .attr("class", "state-election-lead-state-outline")
+          .attr("d", path);
+
+        renderSenateCityLabels(svg, projection, record.name);
+
+        return;
+      }
 
       svg.append("g")
         .selectAll("path")
@@ -1086,11 +1254,31 @@ async function renderCountyMap(record) {
     }
 
     mapEmpty.hidden = true;
-    subtitle.textContent = `${record.displayName} counties shaded by the winning Senate margin.`;
     updateSenateMapLegend(countyRows);
+    subtitle.textContent = setupSenateDetailMapMode(record, countyRows, regionLabels);
 
     const projection = d3.geoMercator().fitSize([540, 620], { type: "FeatureCollection", features });
     const path = d3.geoPath(projection);
+    const showLead = senateDetailMapMode === "lead";
+
+    if (showLead) {
+      renderSenateLeadBubbles(
+        svg,
+        features,
+        path,
+        (feature) => rowByFips.get(String(feature.id).padStart(5, "0")),
+        tooltip,
+        record
+      );
+
+      svg.append("path")
+        .datum(stateFeature)
+        .attr("class", "state-election-lead-state-outline")
+        .attr("d", path);
+
+      renderSenateCityLabels(svg, projection, record.name);
+      return;
+    }
 
     svg.append("g")
       .selectAll("path")
@@ -1166,7 +1354,6 @@ function renderSummary(record) {
   const summaryTitle = document.getElementById("detail-summary-title");
   const summaryCallout = document.getElementById("detail-summary-callout");
   const summaryPortrait = document.getElementById("detail-summary-portrait");
-  const winnerName = document.getElementById("detail-winner-name");
   const seat = document.getElementById("detail-ev");
   const margin = document.getElementById("detail-margin");
   const voteBody = document.getElementById("detail-vote-body");
@@ -1196,8 +1383,7 @@ function renderSummary(record) {
   summaryCallout.textContent = record.races.length > 1
     ? `This page highlights the ${record.primary.seatType.toLowerCase()} Senate race. An additional Senate contest was also on the ballot here in 2024.`
     : "Race called with certified statewide Senate vote totals.";
-  summaryPortrait.src = getSenateCandidatePortrait(record.primary.winner);
-  winnerName.textContent = record.primary.winner;
+  summaryPortrait.src = getSenateCandidatePortrait(record.primary.winner, candidates[0]?.imageUrl);
   seat.textContent = record.primary.seatType;
   margin.textContent = record.primary.result;
 
@@ -1205,7 +1391,7 @@ function renderSummary(record) {
     <tr class="${index === 0 ? "winner-row" : ""}">
       <td>
         <div class="detail-candidate-cell">
-          <img class="detail-candidate-photo" src="${getSenateCandidatePortrait(candidate.candidate)}" alt="${candidate.candidate}" />
+          <img class="detail-candidate-photo" src="${getSenateCandidatePortrait(candidate.candidate, candidate.imageUrl)}" alt="${candidate.candidate}" />
           <span>${candidate.candidate}</span>
         </div>
       <td>${candidate.party}</td>

@@ -1968,6 +1968,10 @@ html:not([data-theme="dark"]) .national-lead-bubble.dem {
   font-weight: 900;
 }
 
+.state-election-lead-legend span[hidden] {
+  display: none;
+}
+
 .state-election-lead-legend i {
   width: 18px;
   height: 18px;
@@ -1983,6 +1987,11 @@ html:not([data-theme="dark"]) .national-lead-bubble.dem {
 .state-election-lead-legend i.dem {
   background: rgba(40, 121, 181, 0.36);
   border: 2px solid rgba(86, 166, 226, 0.95);
+}
+
+.state-election-lead-legend i.ind {
+  background: rgba(199, 156, 57, 0.34);
+  border: 2px solid rgba(228, 187, 82, 0.95);
 }
 
 .state-election-result-card,
@@ -2277,6 +2286,16 @@ html:not([data-theme="dark"]) .state-election-detail-button:focus-visible {
   stroke: rgba(86, 166, 226, 0.95);
 }
 
+.state-election-lead-bubble.ind {
+  fill: rgba(199, 156, 57, 0.34);
+  stroke: rgba(228, 187, 82, 0.95);
+}
+
+.state-election-lead-bubble.none {
+  fill: rgba(156, 163, 175, 0.34);
+  stroke: rgba(209, 213, 219, 0.95);
+}
+
 .state-election-lead-bubble:hover,
 .state-election-lead-bubble.is-active {
   cursor: pointer;
@@ -2299,8 +2318,8 @@ html:not([data-theme="dark"]) .state-election-detail-button:focus-visible {
   fill: rgba(255,255,255,0.92);
   paint-order: stroke;
   stroke: rgba(8, 11, 16, 0.86);
-  stroke-width: 4px;
-  font-size: 18px;
+  stroke-width: 3.2px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0;
 }
@@ -2337,6 +2356,16 @@ html:not([data-theme="dark"]) .state-election-lead-bubble.rep {
 html:not([data-theme="dark"]) .state-election-lead-bubble.dem {
   fill: rgba(40, 121, 181, 0.30);
   stroke: rgba(34, 104, 158, 0.94);
+}
+
+html:not([data-theme="dark"]) .state-election-lead-bubble.ind {
+  fill: rgba(199, 156, 57, 0.30);
+  stroke: rgba(177, 129, 27, 0.94);
+}
+
+html:not([data-theme="dark"]) .state-election-lead-bubble.none {
+  fill: rgba(107, 114, 128, 0.30);
+  stroke: rgba(75, 85, 99, 0.94);
 }
 
 html:not([data-theme="dark"]) .state-election-city-labels circle {

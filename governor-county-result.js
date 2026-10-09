@@ -9,6 +9,7 @@ const GOVERNOR_FALLBACK_FILL = "#2d3138";
 
 const governorCountyResults = window.GOVERNOR_COUNTY_RESULTS || {};
 const governorData = window.GOVERNOR_2024_DATA || { races: [] };
+const governorCandidateImages = window.GOVERNOR_CANDIDATE_IMAGES || {};
 const governorCountyReferenceCache = new Map();
 const governorCountyBoardState = {
   rows: [],
@@ -84,8 +85,11 @@ function governorInitials(name) {
     .join("") || "G";
 }
 
-function governorCandidatePortrait(name) {
-  return `https://placehold.co/120x120/2f3540/f3f4f6?text=${encodeURIComponent(governorInitials(name))}`;
+function governorCandidatePortrait(name, imageUrl) {
+  if (imageUrl) return imageUrl;
+  const mapped = governorCandidateImages[name];
+  if (mapped) return mapped;
+  return "https://placehold.co/120x120/2f3540/2f3540";
 }
 
 function governorWinnerParty(row) {
@@ -130,7 +134,8 @@ function getStatewideRows(record) {
     partyShort: candidate.party,
     votes: candidate.votes,
     pct: `${candidate.pct}%`,
-    tone: candidate.party === "Dem." ? "dem" : candidate.party === "Rep." ? "rep" : "ind"
+    tone: candidate.party === "Dem." ? "dem" : candidate.party === "Rep." ? "rep" : "ind",
+    imageUrl: candidate.imageUrl || ""
   }));
 }
 
@@ -142,12 +147,17 @@ function renderGovernorSummary(record) {
   document.getElementById("detail-subtitle").textContent = `County-level results for the 2024 ${record.stateName} governor election.`;
   document.getElementById("detail-summary-card").classList.add(`winner-${winner.tone}`);
   document.getElementById("detail-summary-title").textContent = `${winner.candidate} wins ${record.stateName}.`;
-  document.getElementById("detail-summary-portrait").src = governorCandidatePortrait(winner.candidate);
+  document.getElementById("detail-summary-portrait").src = governorCandidatePortrait(winner.candidate, winner.imageUrl);
   document.getElementById("detail-margin").textContent = record.statewide.result;
 
   document.getElementById("detail-vote-body").innerHTML = rows.map((row, index) => `
     <tr class="${index === 0 ? "winner-row" : ""}">
-      <td><span class="candidate-name-inline ${row.tone}">${row.candidate}</span></td>
+      <td>
+        <div class="detail-candidate-cell">
+          <img class="detail-candidate-photo" src="${governorCandidatePortrait(row.candidate, row.imageUrl)}" alt="${row.candidate}" />
+          <span class="candidate-name-inline ${row.tone}">${row.candidate}</span>
+        </div>
+      </td>
       <td>${row.partyShort}</td>
       <td>${row.votes}</td>
       <td>${row.pct}</td>

@@ -44,10 +44,10 @@ const CANDIDATE_PORTRAITS = {
   "Jill Stein": "https://upload.wikimedia.org/wikipedia/commons/9/91/Jill_Stein_by_Gage_Skidmore.jpg",
   "Chase Oliver": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Chase_Oliver_by_Gage_Skidmore.jpg",
   "Claudia De la Cruz": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Claudia_De_la_Cruz_%28cropped%29.png/512px-Claudia_De_la_Cruz_%28cropped%29.png",
-  "Cornel West": "https://placehold.co/120x120/6d5a47/f8f2ec?text=CW",
-  "Peter A. Sonski": "https://placehold.co/120x120/5d718a/f4f7fb?text=PS",
-  "Shiva Ayyadurai": "https://placehold.co/120x120/7d4d4d/faf1f1?text=SA",
-  "Write-in": "https://placehold.co/120x120/4b5563/f3f4f6?text=WI"
+  "Cornel West": "https://commons.wikimedia.org/wiki/Special:FilePath/Cornel%20West%20speaks%20with%20media%20at%20the%20Democratic%20National%20Convention%20Thursday%20Aug.%2022%2C%202024%20in%20Chicago%20%2853944428941%29.jpg",
+  "Peter A. Sonski": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter%20Sonski%20Portrait%20%283x4%20cropped%29.jpg",
+  "Shiva Ayyadurai": "https://commons.wikimedia.org/wiki/Special:FilePath/Shiva%20Ayyadurai%20Portrait.jpg",
+  "Write-in": "https://placehold.co/120x120/4b5563/4b5563"
 };
 
 const districtNameMap = {
@@ -146,15 +146,7 @@ function normalizePartyName(party) {
 function getCandidatePortrait(name) {
   const normalized = normalizeCandidateName(name);
   if (CANDIDATE_PORTRAITS[normalized]) return CANDIDATE_PORTRAITS[normalized];
-
-  const initials = normalized
-    .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part[0].toUpperCase())
-    .join("");
-
-  return `https://placehold.co/120x120/4b5563/f3f4f6?text=${encodeURIComponent(initials || "C")}`;
+  return "https://placehold.co/120x120/4b5563/4b5563";
 }
 
 function candidateNameSpan(name) {

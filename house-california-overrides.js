@@ -1,6 +1,6 @@
 (() => {
   if (!window.HOUSE_2024_DATA) return;
-  window.HOUSE_CANDIDATE_IMAGES = Object.assign({}, window.HOUSE_CANDIDATE_IMAGES || {}, {
+  const californiaCandidateImages = {
   "Doug LaMalfa": "https://en.wikipedia.org/wiki/Special:FilePath/Doug%20LaMalfa%20116th%20Congress.jpg",
   "Rose Penelope Yee": "https://en.wikipedia.org/wiki/Special:FilePath/Rose%20Penelope%20Yee%20at%202023%20CADEM%20CD1%20Endorsement%20Caucus%20(4)%20(cropped).jpg",
   "Rose Yee": "https://en.wikipedia.org/wiki/Special:FilePath/Rose%20Penelope%20Yee%20at%202023%20CADEM%20CD1%20Endorsement%20Caucus%20(4)%20(cropped).jpg",
@@ -81,7 +81,11 @@
   "Sara Jacobs": "https://en.wikipedia.org/wiki/Special:FilePath/Congresswoman%20Sara%20Jacobs.jpg",
   "Bill Wells": "https://en.wikipedia.org/wiki/Special:FilePath/Bill%20Wells%2C%202022%20(cropped).jpg",
   "Juan Vargas": "https://en.wikipedia.org/wiki/Special:FilePath/Juan%20Vargas%20portrait%20(118th%20Congress).jpg"
-});
+};
+  window.HOUSE_CANDIDATE_IMAGES = window.HOUSE_CANDIDATE_IMAGES || {};
+  Object.entries(californiaCandidateImages).forEach(([name, image]) => {
+    if (!window.HOUSE_CANDIDATE_IMAGES[name]) window.HOUSE_CANDIDATE_IMAGES[name] = image;
+  });
   const overrides = {
   "CA-01": {
     "winnerParty": "R",

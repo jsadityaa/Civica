@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); if (localStorage.getItem('datahub-dyslexic-ui') === 'true') document.documentElement.setAttribute('data-dyslexic', 'true'); } catch (e) {} })();</script>
-  <link rel="stylesheet" href="./styles.css?v=20261006-transparent-map-canvas" />
+  <link rel="stylesheet" href="./styles.css?v=20261009-detail-lead-toggle" />
 </head>
 <body>
   <header class="global-header">
@@ -157,6 +157,10 @@
                   <h3>District Map</h3>
                   <p id="house-detail-map-subtitle">Certified district outline colored by the winning party.</p>
                 </div>
+                <div class="state-election-map-mode" id="house-detail-map-mode" hidden>
+                  <button class="state-election-map-mode-button is-active" type="button" data-map-mode="share">Vote Share</button>
+                  <button class="state-election-map-mode-button" type="button" data-map-mode="lead">Size of Lead</button>
+                </div>
                 <div class="detail-map-legend" id="house-detail-map-legend" aria-label="County map legend" hidden>
                   <div class="detail-map-legend-row">
                     <span>Dem.</span>
@@ -187,6 +191,11 @@
                     <span>70%</span>
                   </div>
                 </div>
+                <div class="state-election-lead-legend" id="house-detail-lead-legend" aria-label="Size of lead map legend" hidden>
+                  <span><i class="dem"></i>Dem.</span>
+                  <span><i class="rep"></i>Rep.</span>
+                  <span id="house-detail-lead-legend-ind"><i class="ind"></i>Ind.</span>
+                </div>
               </div>
               <div class="detail-map-canvas house-detail-map-canvas">
                 <svg id="house-detail-map" viewBox="0 0 540 620" preserveAspectRatio="xMidYMid meet"></svg>
@@ -202,12 +211,12 @@
   <script src="./house-2024-data.js?v=20261005-wy-nyt-districts"></script>
   <script src="./house-districts-geojson.js"></script>
   <script src="./house-town-geojson.js?v=20260924-ct-town-geometry"></script>
-  <script src="./house-candidate-images.js?v=20260924-candidate-portrait-fixes"></script>
+  <script src="./house-candidate-images.js?v=20261008-nyt-house-portraits"></script>
   <script src="./house-california-overrides.js"></script>
   <script src="./house-california-county-results.js?v=20261003-ca-wikimedia-county-overrides"></script>
   <script src="./house-district-county-results.js?v=20261005-wy-nyt-county"></script>
   <script src="./house-massachusetts-town-results.js?v=20261001-ma-town-house-districts"></script>
-  <script src="./house-district-result.js?v=20261006-tall-detail-maps"></script>
+  <script src="./house-district-result.js?v=20261009-detail-lead-toggle"></script>
   <footer id="contact-us" class="civica-homepage__footer">
       <div class="civica-homepage__footer-inner">
         <div class="civica-homepage__footer-bottom">

@@ -3,6 +3,7 @@ const houseDetailGeojson = window.HOUSE_2024_GEOJSON;
 
 if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("house-detail-title")) {
   const UNIT_BOARD_COLLAPSED_LIMIT = 6;
+  let houseDetailMapMode = "share";
   const PARTY_LABELS = {
     D: "Democrat",
     R: "Republican",
@@ -34,14 +35,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
   function getPortrait(name) {
     const mapped = window.HOUSE_CANDIDATE_IMAGES?.[name];
     if (mapped) return mapped;
-
-    const initials = String(name || "H")
-      .split(/\s+/)
-      .filter(Boolean)
-      .slice(0, 2)
-      .map((part) => part[0].toUpperCase())
-      .join("");
-    return `https://placehold.co/120x120/2f3540/f3f4f6?text=${encodeURIComponent(initials || "C")}`;
+    return "https://placehold.co/120x120/2f3540/2f3540";
   }
 
   function formatHouseCandidateVotes(district, candidate) {
@@ -888,6 +882,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     const partyName = candidate?.partyName;
     if (party === "D" || partyName === "Democratic" || partyName === "Democrat") return "Dem.";
     if (party === "R" || partyName === "Republican") return "Rep.";
+    if (party === "I" || party === "IND" || partyName === "Independent") return "Ind.";
     if (party === "LB" || partyName === "Libertarian") return "Lib.";
     if (party === "GR" || partyName === "Green") return "Green";
     if (party === "W") return "Write-in";
@@ -933,12 +928,138 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
   function setMapLegendVisibility(visible, rows = []) {
     const legend = document.getElementById("house-detail-map-legend");
     const independentRow = document.getElementById("house-detail-map-legend-ind");
+    const leadLegend = document.getElementById("house-detail-lead-legend");
+    const leadIndependentRow = document.getElementById("house-detail-lead-legend-ind");
+    const showLead = visible && houseDetailMapMode === "lead";
     if (legend) {
-      legend.hidden = !visible;
+      legend.hidden = !visible || showLead;
     }
     if (independentRow) {
-      independentRow.hidden = !visible || !hasIndependentUnitWinner(rows);
+      independentRow.hidden = !visible || showLead || !hasIndependentUnitWinner(rows);
     }
+    if (leadLegend) {
+      leadLegend.hidden = !showLead;
+    }
+    if (leadIndependentRow) {
+      leadIndependentRow.hidden = !showLead || !hasIndependentUnitWinner(rows);
+    }
+  }
+
+  function getHouseUnitLead(row) {
+    const candidates = (row?.candidates || [])
+      .slice()
+      .sort((a, b) => Number(b.votes || 0) - Number(a.votes || 0));
+    if (!candidates.length) return 0;
+    return Math.max(0, Number(candidates[0].votes || 0) - Number(candidates[1]?.votes || 0));
+  }
+
+  function setupHouseDetailMapMode(district, feature, rows) {
+    const modeControl = document.getElementById("house-detail-map-mode");
+    const canToggle = rows.length > 1 && rows.some((row) => getHouseUnitLead(row) > 0);
+    if (!canToggle) {
+      houseDetailMapMode = "share";
+    }
+    if (modeControl) {
+      modeControl.hidden = !canToggle;
+      modeControl.querySelectorAll("[data-map-mode]").forEach((button) => {
+        button.classList.toggle("is-active", button.dataset.mapMode === houseDetailMapMode);
+        button.onclick = () => {
+          if (houseDetailMapMode === button.dataset.mapMode) return;
+          houseDetailMapMode = button.dataset.mapMode;
+          renderDistrictOutline(district, feature);
+        };
+      });
+    }
+    setMapLegendVisibility(canToggle, rows);
+    return canToggle && houseDetailMapMode === "lead";
+  }
+
+  function hideHouseDetailMapMode() {
+    const modeControl = document.getElementById("house-detail-map-mode");
+    const leadLegend = document.getElementById("house-detail-lead-legend");
+    if (modeControl) modeControl.hidden = true;
+    if (leadLegend) leadLegend.hidden = true;
+  }
+
+  function renderHouseLeadBubbles(svg, items, tooltip, district) {
+    const maxLead = d3.max(items, (item) => getHouseUnitLead(item.row)) || 1;
+    const radius = d3.scaleSqrt().domain([0, maxLead]).range([2.5, 40]);
+    svg.append("g")
+      .selectAll("circle")
+      .data(items)
+      .enter()
+      .append("circle")
+      .attr("class", (item) => `state-election-lead-bubble ${getWinnerTone(item.row.winnerParty)}`)
+      .attr("data-fips", (item) => item.row.countyFips || item.row.townGeoId || item.row.town || item.row.county)
+      .attr("cx", (item) => item.centroid[0])
+      .attr("cy", (item) => item.centroid[1])
+      .attr("r", (item) => radius(getHouseUnitLead(item.row)))
+      .on("mouseover", (event, item) => {
+        const tooltipRow = { ...item.row, county: item.row.county || item.row.town };
+        tooltip.style("opacity", 1).html(californiaCountyTooltipHTML(tooltipRow, district));
+        positionTooltip(event, tooltip);
+      })
+      .on("mousemove", (event) => positionTooltip(event, tooltip))
+      .on("mouseout", () => {
+        tooltip.style("opacity", 0);
+      });
+  }
+
+  function getSvgPathInteriorPoint(pathElement) {
+    const bbox = pathElement.getBBox();
+    const fallback = [bbox.x + bbox.width / 2, bbox.y + bbox.height / 2];
+    if (!bbox.width || !bbox.height || typeof pathElement.isPointInFill !== "function") return fallback;
+
+    const svg = pathElement.ownerSVGElement;
+    const point = svg?.createSVGPoint?.();
+    if (!point) return fallback;
+
+    const edgePoints = [];
+    try {
+      const length = pathElement.getTotalLength();
+      const samples = 44;
+      for (let index = 0; index <= samples; index += 1) {
+        const edge = pathElement.getPointAtLength((length * index) / samples);
+        edgePoints.push([edge.x, edge.y]);
+      }
+    } catch (error) {
+      return fallback;
+    }
+
+    const candidates = [
+      fallback,
+      [bbox.x + bbox.width * 0.35, bbox.y + bbox.height * 0.5],
+      [bbox.x + bbox.width * 0.65, bbox.y + bbox.height * 0.5],
+      [bbox.x + bbox.width * 0.5, bbox.y + bbox.height * 0.35],
+      [bbox.x + bbox.width * 0.5, bbox.y + bbox.height * 0.65]
+    ];
+    const gridSteps = 8;
+    for (let xStep = 1; xStep < gridSteps; xStep += 1) {
+      for (let yStep = 1; yStep < gridSteps; yStep += 1) {
+        candidates.push([
+          bbox.x + (bbox.width * xStep) / gridSteps,
+          bbox.y + (bbox.height * yStep) / gridSteps
+        ]);
+      }
+    }
+
+    let best = null;
+    let bestScore = -1;
+    candidates.forEach(([x, y]) => {
+      point.x = x;
+      point.y = y;
+      if (!pathElement.isPointInFill(point)) return;
+      const score = edgePoints.reduce((minDistance, edge) => {
+        const distance = (x - edge[0]) ** 2 + (y - edge[1]) ** 2;
+        return Math.min(minDistance, distance);
+      }, Infinity);
+      if (score > bestScore) {
+        bestScore = score;
+        best = [x, y];
+      }
+    });
+
+    return best || fallback;
   }
 
   function normalizeDistrictCountyRow(district, row) {
@@ -1234,6 +1355,60 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
         .attr("vector-effect", "non-scaling-stroke")
         .attr("pointer-events", "none");
 
+      if (houseDetailMapMode === "lead") {
+        const leadItemByFips = new Map();
+        layer.selectAll("path.house-detail-svg-county-lead")
+          .data(paths)
+          .enter()
+          .append("path")
+          .attr("class", "state-election-lead-county-shape house-detail-svg-county-lead")
+          .attr("data-fips", (pathData) => pathData.countyFips)
+          .attr("d", (pathData) => pathData.d)
+          .attr("fill-rule", (pathData) => pathData.fillRule || null)
+          .attr("transform", (pathData) => pathData.transform || null)
+          .attr("vector-effect", "non-scaling-stroke")
+          .each(function(pathData) {
+            const row = rowByFips.get(pathData.countyFips);
+            if (!row) return;
+            const bbox = this.getBBox();
+            const area = bbox.width * bbox.height;
+            const item = {
+              row,
+              centroid: getSvgPathInteriorPoint(this),
+              area
+            };
+            const existing = leadItemByFips.get(pathData.countyFips);
+            if (!existing || area > existing.area) {
+              leadItemByFips.set(pathData.countyFips, item);
+            }
+          });
+
+        const leadItems = Array.from(leadItemByFips.values());
+        const maxLead = d3.max(leadItems, (item) => getHouseUnitLead(item.row)) || 1;
+        const radius = d3.scaleSqrt().domain([0, maxLead]).range([2.5 / sourceScale, 40 / sourceScale]);
+        layer.append("g")
+          .selectAll("circle")
+          .data(leadItems)
+          .enter()
+          .append("circle")
+          .attr("class", (item) => `state-election-lead-bubble ${getWinnerTone(item.row.winnerParty)}`)
+          .attr("data-fips", (item) => item.row.countyFips)
+          .attr("cx", (item) => item.centroid[0])
+          .attr("cy", (item) => item.centroid[1])
+          .attr("r", (item) => radius(getHouseUnitLead(item.row)))
+          .attr("vector-effect", "non-scaling-stroke")
+          .on("mouseover", (event, item) => {
+            tooltip.style("opacity", 1).html(californiaCountyTooltipHTML(item.row, district));
+            positionTooltip(event, tooltip);
+          })
+          .on("mousemove", (event) => positionTooltip(event, tooltip))
+          .on("mouseout", () => {
+            tooltip.style("opacity", 0);
+          });
+
+        return true;
+      }
+
       layer.selectAll("path.house-detail-svg-county")
         .data(paths)
         .enter()
@@ -1387,6 +1562,59 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
         .attr("vector-effect", "non-scaling-stroke")
         .attr("pointer-events", "none");
 
+      if (houseDetailMapMode === "lead") {
+        const leadItemByGeoId = new Map();
+        layer.selectAll("path.house-detail-svg-town-lead")
+          .data(paths)
+          .enter()
+          .append("path")
+          .attr("class", "state-election-lead-county-shape house-detail-svg-town-lead")
+          .attr("data-fips", (pathData) => pathData.townGeoId)
+          .attr("d", (pathData) => pathData.d)
+          .attr("fill-rule", (pathData) => pathData.fillRule || null)
+          .attr("vector-effect", "non-scaling-stroke")
+          .each(function(pathData) {
+            const row = rowByGeoId.get(pathData.townGeoId);
+            if (!row) return;
+            const bbox = this.getBBox();
+            const area = bbox.width * bbox.height;
+            const item = {
+              row,
+              centroid: getSvgPathInteriorPoint(this),
+              area
+            };
+            const existing = leadItemByGeoId.get(pathData.townGeoId);
+            if (!existing || area > existing.area) {
+              leadItemByGeoId.set(pathData.townGeoId, item);
+            }
+          });
+
+        const leadItems = Array.from(leadItemByGeoId.values());
+        const maxLead = d3.max(leadItems, (item) => getHouseUnitLead(item.row)) || 1;
+        const radius = d3.scaleSqrt().domain([0, maxLead]).range([2.5 / sourceScale, 40 / sourceScale]);
+        layer.append("g")
+          .selectAll("circle")
+          .data(leadItems)
+          .enter()
+          .append("circle")
+          .attr("class", (item) => `state-election-lead-bubble ${getWinnerTone(item.row.winnerParty)}`)
+          .attr("data-fips", (item) => item.row.townGeoId || item.row.town)
+          .attr("cx", (item) => item.centroid[0])
+          .attr("cy", (item) => item.centroid[1])
+          .attr("r", (item) => radius(getHouseUnitLead(item.row)))
+          .attr("vector-effect", "non-scaling-stroke")
+          .on("mouseover", (event, item) => {
+            tooltip.style("opacity", 1).html(californiaCountyTooltipHTML({ ...item.row, county: item.row.town }, district));
+            positionTooltip(event, tooltip);
+          })
+          .on("mousemove", (event) => positionTooltip(event, tooltip))
+          .on("mouseout", () => {
+            tooltip.style("opacity", 0);
+          });
+
+        return true;
+      }
+
       layer.selectAll("path.house-detail-svg-town")
         .data(paths)
         .enter()
@@ -1459,8 +1687,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
 
   function californiaCountyTooltipHTML(row, district) {
     const candidates = (row.candidates || []).slice().sort((a, b) => Number(b.votes || 0) - Number(a.votes || 0));
-    const first = candidates[0];
-    const second = candidates[1];
+    const tooltipCandidates = candidates.slice(0, 3);
     const districtNumber = String(district.code || "").split("-")[1]?.replace(/^0/, "") || "";
     const countyName = formatCountyTooltipName(row.county);
     const title = districtNumber ? `${countyName} / District ${districtNumber}` : countyName;
@@ -1480,32 +1707,19 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
           </tr>
         </thead>
         <tbody>
-          ${first ? `
-            <tr class="winner-row">
+          ${tooltipCandidates.map((candidate, index) => `
+            <tr class="${index === 0 ? "winner-row" : ""}">
               <td>
                 <div class="tooltip-candidate">
-                  <span class="tooltip-candidate-bar ${first.party === "D" ? "dem" : first.party === "R" ? "rep" : "ind"}"></span>
-                  <span>${first.name}</span>
+                  <span class="tooltip-candidate-bar ${getWinnerTone(candidate.party)}"></span>
+                  <span>${candidate.name}</span>
                 </div>
               </td>
-              <td>${getShortPartyLabel(first)}</td>
-              <td>${formatNumber(first.votes)}</td>
-              <td>${Number(first.pct).toFixed(2).replace(/\.00$/, ".0")}%</td>
+              <td>${getShortPartyLabel(candidate)}</td>
+              <td>${formatNumber(candidate.votes)}</td>
+              <td>${Number(candidate.pct).toFixed(2).replace(/\.00$/, ".0")}%</td>
             </tr>
-          ` : ""}
-          ${second ? `
-            <tr>
-              <td>
-                <div class="tooltip-candidate">
-                  <span class="tooltip-candidate-bar ${second.party === "D" ? "dem" : second.party === "R" ? "rep" : "ind"}"></span>
-                  <span>${second.name}</span>
-                </div>
-              </td>
-              <td>${getShortPartyLabel(second)}</td>
-              <td>${formatNumber(second.votes)}</td>
-              <td>${Number(second.pct).toFixed(2).replace(/\.00$/, ".0")}%</td>
-            </tr>
-          ` : ""}
+          `).join("")}
         </tbody>
       </table>
     `;
@@ -1537,10 +1751,13 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       return false;
     }
 
+    const showLead = setupHouseDetailMapMode(district, feature, rows);
     const rowByFips = new Map(rows.map((row) => [row.countyFips, row]));
     if (await renderDistrictSvgCountyMap(district, rowByFips)) {
       if (subtitle) {
-        subtitle.textContent = `${district.title} counties shaded by the winning county vote share.`;
+        subtitle.textContent = showLead
+          ? `${district.title} counties sized by the winning county vote lead.`
+          : `${district.title} counties shaded by the winning county vote share.`;
       }
       setMapLegendVisibility(true, rows);
       return true;
@@ -1571,6 +1788,47 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     const path = d3.geoPath().projection(projection);
     const districtPath = path(displayFeature);
     const dominantRow = getDominantCountyRow(rows);
+
+    if (showLead) {
+      const clipPathId = `house-detail-district-lead-clip-${district.code.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+      svg.append("defs")
+        .append("clipPath")
+        .attr("id", clipPathId)
+        .append("path")
+        .attr("d", districtPath);
+
+      const countyLayer = svg.append("g").attr("clip-path", `url(#${clipPathId})`);
+      countyLayer.selectAll("path")
+        .data(countyFeatures)
+        .enter()
+        .append("path")
+        .attr("class", "state-election-lead-county-shape")
+        .attr("data-fips", (countyFeature) => getCountyFeatureFips(countyFeature))
+        .attr("d", path);
+
+      renderHouseLeadBubbles(
+        svg,
+        countyFeatures
+          .map((countyFeature) => ({
+            row: rowByFips.get(getCountyFeatureFips(countyFeature)),
+            centroid: path.centroid(countyFeature)
+          }))
+          .filter((item) => item.row),
+        tooltip,
+        district
+      );
+
+      svg.append("path")
+        .datum(displayFeature)
+        .attr("class", "state-election-lead-state-outline")
+        .attr("d", districtPath);
+
+      if (subtitle) {
+        subtitle.textContent = `${district.title} counties sized by the winning county vote lead.`;
+      }
+      setMapLegendVisibility(true, rows);
+      return true;
+    }
 
     if (district.code === "CA-38") {
       const losAngelesRow = rowByFips.get("06037");
@@ -1790,9 +2048,12 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     const usePlanarTownShapes = useConnecticutTownShapes || district.state === "VT";
     const rowByGeoId = new Map(rows.map((row) => [String(row.townGeoId), row]));
     const rowByTownName = new Map(rows.map((row) => [normalizeTownName(row.town), row]));
+    const showLead = setupHouseDetailMapMode(district, feature, rows);
     if (await renderDistrictSvgTownMap(district, rowByGeoId)) {
       if (subtitle) {
-        subtitle.textContent = `${district.title} municipalities shaded by the winning municipality vote share.`;
+        subtitle.textContent = houseDetailMapMode === "lead"
+          ? `${district.title} municipalities sized by the winning municipality vote lead.`
+          : `${district.title} municipalities shaded by the winning municipality vote share.`;
       }
       setMapLegendVisibility(true, rows);
       return true;
@@ -1838,6 +2099,48 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
         .datum(displayFeature)
         .attr("d", path);
       townLayer.attr("clip-path", `url(#${clipPathId})`);
+    }
+
+    if (showLead) {
+      townLayer.selectAll("path")
+        .data(townFeatures)
+        .enter()
+        .append("path")
+        .attr("class", "state-election-lead-county-shape")
+        .attr("data-fips", (townFeature) => {
+          const row = getTownRow(townFeature);
+          return row?.townGeoId || row?.town || null;
+        })
+        .attr("d", path)
+        .attr("vector-effect", "non-scaling-stroke");
+
+      renderHouseLeadBubbles(
+        svg,
+        townFeatures
+          .map((townFeature) => ({
+            row: getTownRow(townFeature),
+            centroid: path.centroid(townFeature)
+          }))
+          .filter((item) => item.row),
+        tooltip,
+        district
+      );
+
+      if (!usePlanarTownShapes && displayFeature) {
+        svg.append("path")
+          .datum(displayFeature)
+          .attr("class", "state-election-lead-state-outline")
+          .attr("d", path);
+      }
+
+      if (subtitle) {
+        const usesMunicipalities = district.state === "RI" || district.state === "VT";
+        const unitPlural = usesMunicipalities ? "municipalities" : "towns";
+        const unitSingular = usesMunicipalities ? "municipality" : "town";
+        subtitle.textContent = `${district.title} ${unitPlural} sized by the winning ${unitSingular} vote lead.`;
+      }
+      setMapLegendVisibility(true, rows);
+      return true;
     }
 
     townLayer.selectAll("path")
@@ -1897,10 +2200,13 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
       return false;
     }
 
+    const showLead = setupHouseDetailMapMode(district, feature, rows);
     const rowByFips = new Map(rows.map((row) => [row.countyFips, row]));
     if (await renderDistrictSvgCountyMap(district, rowByFips)) {
       if (subtitle) {
-        subtitle.textContent = `${district.title} ${unitLabels.plural} shaded by the winning ${unitLabels.singular} vote share.`;
+        subtitle.textContent = showLead
+          ? `${district.title} ${unitLabels.plural} sized by the winning ${unitLabels.singular} vote lead.`
+          : `${district.title} ${unitLabels.plural} shaded by the winning ${unitLabels.singular} vote share.`;
       }
       setMapLegendVisibility(true, rows);
       return true;
@@ -1931,6 +2237,47 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     const path = d3.geoPath().projection(projection);
     const districtPath = path(displayFeature);
     const dominantRow = getDominantCountyRow(rows);
+
+    if (showLead) {
+      const clipPathId = `house-detail-district-lead-clip-${district.code.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+      svg.append("defs")
+        .append("clipPath")
+        .attr("id", clipPathId)
+        .append("path")
+        .attr("d", districtPath);
+
+      const countyLayer = svg.append("g").attr("clip-path", `url(#${clipPathId})`);
+      countyLayer.selectAll("path")
+        .data(countyFeatures)
+        .enter()
+        .append("path")
+        .attr("class", "state-election-lead-county-shape")
+        .attr("data-fips", (countyFeature) => getCountyFeatureFips(countyFeature))
+        .attr("d", path);
+
+      renderHouseLeadBubbles(
+        svg,
+        countyFeatures
+          .map((countyFeature) => ({
+            row: rowByFips.get(getCountyFeatureFips(countyFeature)),
+            centroid: path.centroid(countyFeature)
+          }))
+          .filter((item) => item.row),
+        tooltip,
+        district
+      );
+
+      svg.append("path")
+        .datum(displayFeature)
+        .attr("class", "state-election-lead-state-outline")
+        .attr("d", districtPath);
+
+      if (subtitle) {
+        subtitle.textContent = `${district.title} ${unitLabels.plural} sized by the winning ${unitLabels.singular} vote lead.`;
+      }
+      setMapLegendVisibility(true, rows);
+      return true;
+    }
 
     if (dominantRow) {
       svg.append("path")
@@ -2228,6 +2575,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     if (renderedCountyMap) return;
 
     setMapLegendVisibility(false);
+    hideHouseDetailMapMode();
 
     const displayFeature = getMapFitFeature(feature);
     const projection = createMapProjection(feature);
