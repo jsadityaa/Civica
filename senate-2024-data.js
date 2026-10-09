@@ -88,82 +88,109 @@ window.SENATE_2024_DATA = {
       { name: "Jared Young", party: "Better", votes: "21,111", pct: "0.71" },
       { name: "Nathan Kline", party: "Green", votes: "20,123", pct: "0.68" }
     ] },
-    { code: "MT", race: "Montana", seatType: "Regular", winner: "Tim Sheehy", winnerParty: "R", opponent: "Jon Tester", opponentParty: "D", status: "Republican flip", result: "R+7.3", flipped: true, tooltipRows: [
+    { code: "MT", race: "Montana", seatType: "Regular", winner: "Tim Sheehy", winnerParty: "R", opponent: "Jon Tester", opponentParty: "D", status: "Republican flip", result: "R+7.1", flipped: true, reportedTotal: 607262, tooltipRows: [
       { name: "Tim Sheehy", party: "Rep.", votes: "319,682", pct: "52.64" },
-      { name: "Jon Tester", party: "Dem.", votes: "276,305", pct: "45.50" }
+      { name: "Jon Tester", party: "Dem.", votes: "276,305", pct: "45.50" },
+      { name: "Sid Daoud", party: "Lib.", votes: "7,272", pct: "1.20" },
+      { name: "Robert Barb", party: "Green", votes: "4,003", pct: "0.66" }
     ] },
-    { code: "NE", race: "Nebraska", seatType: "Regular", winner: "Deb Fischer", winnerParty: "R", opponent: "Dan Osborn", opponentParty: "I", status: "Republican hold", result: "R+7.1", flipped: false, tooltipRows: [
-      { name: "Deb Fischer", party: "Rep.", votes: "499,124", pct: "53.19" },
-      { name: "Dan Osborn", party: "Ind.", votes: "436,493", pct: "46.52" }
+    { code: "NE", race: "Nebraska", seatType: "Regular", winner: "Deb Fischer", winnerParty: "R", opponent: "Dan Osborn", opponentParty: "I", status: "Republican hold", result: "R+6.7", flipped: false, reportedTotal: 935617, tooltipRows: [
+      { name: "Deb Fischer", party: "Rep.", votes: "499,124", pct: "53.35" },
+      { name: "Dan Osborn", party: "Ind.", votes: "436,493", pct: "46.65" }
     ] },
-    { code: "NE-S", race: "Nebraska", seatType: "Special", winner: "Pete Ricketts", winnerParty: "R", opponent: "Preston Love Jr.", opponentParty: "D", status: "Republican hold", result: "R+24.8", flipped: false },
-    { code: "NV", race: "Nevada", seatType: "Regular", winner: "Jacky Rosen", winnerParty: "D", opponent: "Sam Brown", opponentParty: "R", status: "Democratic hold", result: "D+1.7", flipped: false, tooltipRows: [
+    { code: "NE-S", race: "Nebraska", seatType: "Special", winner: "Pete Ricketts", winnerParty: "R", opponent: "Preston Love Jr.", opponentParty: "D", status: "Republican hold", result: "R+25.2", flipped: false, reportedTotal: 935005, tooltipRows: [
+      { name: "Pete Ricketts", party: "Rep.", votes: "585,103", pct: "62.58" },
+      { name: "Preston Love", party: "Dem.", votes: "349,902", pct: "37.42" }
+    ] },
+    { code: "NV", race: "Nevada", seatType: "Regular", winner: "Jacky Rosen", winnerParty: "D", opponent: "Sam Brown", opponentParty: "R", status: "Democratic hold", result: "D+1.6", flipped: false, reportedTotal: 1464728, tooltipRows: [
       { name: "Jacky Rosen", party: "Dem.", votes: "701,105", pct: "47.87" },
-      { name: "Sam Brown", party: "Rep.", votes: "677,046", pct: "46.22" }
+      { name: "Sam Brown", party: "Rep.", votes: "677,046", pct: "46.22" },
+      { name: "None of These Candidates", party: "None", votes: "44,380", pct: "3.03" },
+      { name: "Janine Hansen", party: "Ind. Am.", votes: "21,316", pct: "1.46" },
+      { name: "Chris Cunningham", party: "Lib.", votes: "20,881", pct: "1.43" }
     ] },
-    { code: "NJ", race: "New Jersey", seatType: "Regular", winner: "Andy Kim", winnerParty: "D", opponent: "Curtis Bashaw", opponentParty: "R", status: "Democratic hold", result: "D+9.7", flipped: false, tooltipRows: [
+    { code: "NJ", race: "New Jersey", seatType: "Regular", winner: "Andy Kim", winnerParty: "D", opponent: "Curtis Bashaw", opponentParty: "R", status: "Democratic hold", result: "D+9.6", flipped: false, reportedTotal: 4031795, tooltipRows: [
       { name: "Andy Kim", party: "Dem.", votes: "2,161,491", pct: "53.61" },
-      { name: "Curtis Bashaw", party: "Rep.", votes: "1,773,589", pct: "43.99" }
+      { name: "Curtis Bashaw", party: "Rep.", votes: "1,773,589", pct: "43.99" },
+      { name: "Christina Khalil", party: "Ind.", votes: "45,443", pct: "1.13" },
+      { name: "Kenneth Kaplan", party: "Ind.", votes: "24,242", pct: "0.60" },
+      { name: "Patricia Mooneyham", party: "Ind.", votes: "17,224", pct: "0.43" },
+      { name: "Joanne Kuniansky", party: "Ind.", votes: "9,806", pct: "0.24" }
     ] },
-    { code: "NM", race: "New Mexico", seatType: "Regular", winner: "Martin Heinrich", winnerParty: "D", opponent: "Nella Domenici", opponentParty: "R", status: "Democratic hold", result: "D+9.0", flipped: false, tooltipRows: [
+    { code: "NM", race: "New Mexico", seatType: "Regular", winner: "Martin Heinrich", winnerParty: "D", opponent: "Nella Domenici", opponentParty: "R", status: "Democratic hold", result: "D+10.1", flipped: false, reportedTotal: 903311, tooltipRows: [
       { name: "Martin Heinrich", party: "Dem.", votes: "497,333", pct: "55.06" },
       { name: "Nella Domenici", party: "Rep.", votes: "405,978", pct: "44.94" }
     ] },
-    { code: "NY", race: "New York", seatType: "Regular", winner: "Kirsten Gillibrand", winnerParty: "D", opponent: "Mike Sapraicone", opponentParty: "R", status: "Democratic hold", result: "D+19.5", flipped: false, tooltipRows: [
-      { name: "Kirsten Gillibrand", party: "Dem.", votes: "4,711,298", pct: "58.91" },
-      { name: "Mike Sapraicone", party: "Rep.", votes: "3,246,114", pct: "40.59" }
+    { code: "NY", race: "New York", seatType: "Regular", winner: "Kirsten Gillibrand", winnerParty: "D", opponent: "Mike Sapraicone", opponentParty: "R", status: "Democratic hold", result: "D+18.3", flipped: false, reportedTotal: 7997780, tooltipRows: [
+      { name: "Kirsten Gillibrand", party: "Dem.", votes: "4,711,669", pct: "58.91" },
+      { name: "Mike Sapraicone", party: "Rep.", votes: "3,246,690", pct: "40.59" },
+      { name: "Diane Sare", party: "Ind.", votes: "39,421", pct: "0.49" }
     ] },
-    { code: "ND", race: "North Dakota", seatType: "Regular", winner: "Kevin Cramer", winnerParty: "R", opponent: "Katrina Christiansen", opponentParty: "D", status: "Republican hold", result: "R+35.2", flipped: false, tooltipRows: [
+    { code: "ND", race: "North Dakota", seatType: "Regular", winner: "Kevin Cramer", winnerParty: "R", opponent: "Katrina Christiansen", opponentParty: "D", status: "Republican hold", result: "R+32.8", flipped: false, reportedTotal: 363171, tooltipRows: [
       { name: "Kevin Cramer", party: "Rep.", votes: "241,569", pct: "66.31" },
       { name: "Katrina Christiansen", party: "Dem.", votes: "121,602", pct: "33.38" }
     ] },
-    { code: "OH", race: "Ohio", seatType: "Regular", winner: "Bernie Moreno", winnerParty: "R", opponent: "Sherrod Brown", opponentParty: "D", status: "Republican flip", result: "R+3.8", flipped: true, tooltipRows: [
+    { code: "OH", race: "Ohio", seatType: "Regular", winner: "Bernie Moreno", winnerParty: "R", opponent: "Sherrod Brown", opponentParty: "D", status: "Republican flip", result: "R+3.6", flipped: true, reportedTotal: 5703980, tooltipRows: [
       { name: "Bernie Moreno", party: "Rep.", votes: "2,857,383", pct: "50.09" },
-      { name: "Sherrod Brown", party: "Dem.", votes: "2,650,949", pct: "46.47" }
+      { name: "Sherrod Brown", party: "Dem.", votes: "2,650,949", pct: "46.48" },
+      { name: "Don Kissick", party: "Lib.", votes: "195,648", pct: "3.43" }
     ] },
-    { code: "PA", race: "Pennsylvania", seatType: "Regular", winner: "Dave McCormick", winnerParty: "R", opponent: "Bob Casey Jr.", opponentParty: "D", status: "Republican flip", result: "R+0.2", flipped: true, tooltipRows: [
+    { code: "PA", race: "Pennsylvania", seatType: "Regular", winner: "Dave McCormick", winnerParty: "R", opponent: "Bob Casey Jr.", opponentParty: "D", status: "Republican flip", result: "R+0.2", flipped: true, reportedTotal: 6963137, tooltipRows: [
       { name: "Dave McCormick", party: "Rep.", votes: "3,399,295", pct: "48.82" },
-      { name: "Bob Casey Jr.", party: "Dem.", votes: "3,384,180", pct: "48.60" }
+      { name: "Bob Casey Jr.", party: "Dem.", votes: "3,384,180", pct: "48.60" },
+      { name: "John Thomas", party: "Lib.", votes: "89,653", pct: "1.29" },
+      { name: "Leila Hazou", party: "Green", votes: "66,388", pct: "0.95" },
+      { name: "Marty Selker", party: "Const.", votes: "23,621", pct: "0.34" }
     ] },
-    { code: "RI", race: "Rhode Island", seatType: "Regular", winner: "Sheldon Whitehouse", winnerParty: "D", opponent: "Patricia Morgan", opponentParty: "R", status: "Democratic hold", result: "D+18.6", flipped: false, tooltipRows: [
-      { name: "Sheldon Whitehouse", party: "Dem.", votes: "294,665", pct: "59.90" },
-      { name: "Patricia Morgan", party: "Rep.", votes: "196,039", pct: "39.85" }
+    { code: "RI", race: "Rhode Island", seatType: "Regular", winner: "Sheldon Whitehouse", winnerParty: "D", opponent: "Patricia Morgan", opponentParty: "R", status: "Democratic hold", result: "D+20.1", flipped: false, reportedTotal: 490704, tooltipRows: [
+      { name: "Sheldon Whitehouse", party: "Dem.", votes: "294,665", pct: "60.05" },
+      { name: "Patricia Morgan", party: "Rep.", votes: "196,039", pct: "39.95" }
     ] },
-    { code: "TN", race: "Tennessee", seatType: "Regular", winner: "Marsha Blackburn", winnerParty: "R", opponent: "Gloria Johnson", opponentParty: "D", status: "Republican hold", result: "R+26.4", flipped: false, tooltipRows: [
+    { code: "TN", race: "Tennessee", seatType: "Regular", winner: "Marsha Blackburn", winnerParty: "R", opponent: "Gloria Johnson", opponentParty: "D", status: "Republican hold", result: "R+29.6", flipped: false, reportedTotal: 3007608, tooltipRows: [
       { name: "Marsha Blackburn", party: "Rep.", votes: "1,918,743", pct: "63.80" },
-      { name: "Gloria Johnson", party: "Dem.", votes: "1,027,461", pct: "34.16" }
+      { name: "Gloria Johnson", party: "Dem.", votes: "1,027,461", pct: "34.16" },
+      { name: "Tharon Chandler", party: "Ind.", votes: "28,444", pct: "0.95" }
     ] },
-    { code: "TX", race: "Texas", seatType: "Regular", winner: "Ted Cruz", winnerParty: "R", opponent: "Colin Allred", opponentParty: "D", status: "Republican hold", result: "R+8.5", flipped: false, tooltipRows: [
+    { code: "TX", race: "Texas", seatType: "Regular", winner: "Ted Cruz", winnerParty: "R", opponent: "Colin Allred", opponentParty: "D", status: "Republican hold", result: "R+8.5", flipped: false, reportedTotal: 11289029, tooltipRows: [
       { name: "Ted Cruz", party: "Rep.", votes: "5,990,741", pct: "53.07" },
-      { name: "Colin Allred", party: "Dem.", votes: "5,031,249", pct: "44.57" }
+      { name: "Colin Allred", party: "Dem.", votes: "5,031,249", pct: "44.57" },
+      { name: "Ted Brown", party: "Lib.", votes: "267,039", pct: "2.37" }
     ] },
-    { code: "UT", race: "Utah", seatType: "Regular", winner: "John Curtis", winnerParty: "R", opponent: "Caroline Gleich", opponentParty: "D", status: "Republican hold", result: "R+25.6", flipped: false, tooltipRows: [
+    { code: "UT", race: "Utah", seatType: "Regular", winner: "John Curtis", winnerParty: "R", opponent: "Caroline Gleich", opponentParty: "D", status: "Republican hold", result: "R+30.8", flipped: false, reportedTotal: 1463187, tooltipRows: [
       { name: "John Curtis", party: "Rep.", votes: "914,700", pct: "62.50" },
-      { name: "Caroline Gleich", party: "Dem.", votes: "464,515", pct: "31.74" }
+      { name: "Caroline Gleich", party: "Dem.", votes: "464,515", pct: "31.75" },
+      { name: "Carlton Bowen", party: "Ind. Am.", votes: "83,972", pct: "5.74" }
     ] },
-    { code: "VA", race: "Virginia", seatType: "Regular", winner: "Tim Kaine", winnerParty: "D", opponent: "Hung Cao", opponentParty: "R", status: "Democratic hold", result: "D+9.4", flipped: false, tooltipRows: [
-      { name: "Tim Kaine", party: "Dem.", votes: "2,314,474", pct: "54.37" },
-      { name: "Hung Cao", party: "Rep.", votes: "1,961,719", pct: "45.44" }
+    { code: "VA", race: "Virginia", seatType: "Regular", winner: "Tim Kaine", winnerParty: "D", opponent: "Hung Cao", opponentParty: "R", status: "Democratic hold", result: "D+9.0", flipped: false, reportedTotal: 4437026, tooltipRows: [
+      { name: "Tim Kaine", party: "Dem.", votes: "2,417,115", pct: "54.48" },
+      { name: "Hung Cao", party: "Rep.", votes: "2,019,911", pct: "45.52" }
     ] },
-    { code: "VT", race: "Vermont", seatType: "Regular", winner: "Bernie Sanders", winnerParty: "I", opponent: "Gerald Malloy", opponentParty: "R", status: "Independent hold", result: "I+31.0", flipped: false, caucus: "Democratic caucus", tooltipRows: [
+    { code: "VT", race: "Vermont", seatType: "Regular", winner: "Bernie Sanders", winnerParty: "I", opponent: "Gerald Malloy", opponentParty: "R", status: "Independent hold", result: "I+31.1", flipped: false, caucus: "Democratic caucus", reportedTotal: 362855, tooltipRows: [
       { name: "Bernie Sanders", party: "Ind.", votes: "229,429", pct: "63.16" },
-      { name: "Gerald Malloy", party: "Rep.", votes: "116,512", pct: "32.07" }
+      { name: "Gerald Malloy", party: "Rep.", votes: "116,512", pct: "32.11" },
+      { name: "Steve Berry", party: "Ind.", votes: "7,941", pct: "2.19" },
+      { name: "Matt Hill", party: "Lib.", votes: "4,530", pct: "1.25" },
+      { name: "Justin Schoville", party: "Other", votes: "3,339", pct: "0.92" },
+      { name: "Mark Stewart Greenstein", party: "Ind.", votes: "1,104", pct: "0.30" }
     ] },
-    { code: "WA", race: "Washington", seatType: "Regular", winner: "Maria Cantwell", winnerParty: "D", opponent: "Raul Garcia", opponentParty: "R", status: "Democratic hold", result: "D+17.1", flipped: false, tooltipRows: [
-      { name: "Maria Cantwell", party: "Dem.", votes: "2,252,577", pct: "59.09" },
-      { name: "Raul Garcia", party: "Rep.", votes: "1,549,187", pct: "40.64" }
+    { code: "WA", race: "Washington", seatType: "Regular", winner: "Maria Cantwell", winnerParty: "D", opponent: "Raul Garcia", opponentParty: "R", status: "Democratic hold", result: "D+18.5", flipped: false, reportedTotal: 3801764, tooltipRows: [
+      { name: "Maria Cantwell", party: "Dem.", votes: "2,252,577", pct: "59.25" },
+      { name: "Raul Garcia", party: "Rep.", votes: "1,549,187", pct: "40.75" }
     ] },
-    { code: "WV", race: "West Virginia", seatType: "Regular", winner: "Jim Justice", winnerParty: "R", opponent: "Glenn Elliott", opponentParty: "D", status: "Republican flip", result: "R+40.5", flipped: true, tooltipRows: [
+    { code: "WV", race: "West Virginia", seatType: "Regular", winner: "Jim Justice", winnerParty: "R", opponent: "Glenn Elliott", opponentParty: "D", status: "Republican flip", result: "R+41.0", flipped: true, reportedTotal: 747702, tooltipRows: [
       { name: "Jim Justice", party: "Rep.", votes: "514,079", pct: "68.75" },
-      { name: "Glenn Elliott", party: "Dem.", votes: "207,548", pct: "27.76" }
+      { name: "Glenn Elliott", party: "Dem.", votes: "207,548", pct: "27.76" },
+      { name: "David Moran", party: "Lib.", votes: "26,075", pct: "3.49" }
     ] },
-    { code: "WI", race: "Wisconsin", seatType: "Regular", winner: "Tammy Baldwin", winnerParty: "D", opponent: "Eric Hovde", opponentParty: "R", status: "Democratic hold", result: "D+0.9", flipped: false, tooltipRows: [
-      { name: "Tammy Baldwin", party: "Dem.", votes: "1,672,777", pct: "49.33" },
-      { name: "Eric Hovde", party: "Rep.", votes: "1,643,996", pct: "48.48" }
+    { code: "WI", race: "Wisconsin", seatType: "Regular", winner: "Tammy Baldwin", winnerParty: "D", opponent: "Eric Hovde", opponentParty: "R", status: "Democratic hold", result: "D+0.8", flipped: false, reportedTotal: 3387839, tooltipRows: [
+      { name: "Tammy Baldwin", party: "Dem.", votes: "1,672,777", pct: "49.38" },
+      { name: "Eric Hovde", party: "Rep.", votes: "1,643,996", pct: "48.53" },
+      { name: "Phil Anderson", party: "Ind.", votes: "42,315", pct: "1.25" },
+      { name: "Thomas Leager", party: "Other", votes: "28,751", pct: "0.85" }
     ] },
-    { code: "WY", race: "Wyoming", seatType: "Regular", winner: "John Barrasso", winnerParty: "R", opponent: "Scott Morrow", opponentParty: "D", status: "Republican hold", result: "R+47.1", flipped: false, tooltipRows: [
-      { name: "John Barrasso", party: "Rep.", votes: "198,418", pct: "75.11" },
-      { name: "Scott Morrow", party: "Dem.", votes: "63,727", pct: "24.12" }
+    { code: "WY", race: "Wyoming", seatType: "Regular", winner: "John Barrasso", winnerParty: "R", opponent: "Scott Morrow", opponentParty: "D", status: "Republican hold", result: "R+51.4", flipped: false, reportedTotal: 262145, tooltipRows: [
+      { name: "John Barrasso", party: "Rep.", votes: "198,418", pct: "75.69" },
+      { name: "Scott Morrow", party: "Dem.", votes: "63,727", pct: "24.31" }
     ] }
   ]
 };

@@ -1279,6 +1279,10 @@ html:not([data-theme="dark"]) .national-lead-bubble.dem {
   background: #c8a44d;
 }
 
+.tooltip-candidate-bar.none {
+  background: #8b95a3;
+}
+
 .winner-row td {
   font-weight: 800;
   color: #fff;
@@ -3377,6 +3381,10 @@ html[data-theme="dark"] .detail-summary-card.winner-ind {
   color: #e0c16a;
 }
 
+.detail-county-margin.none {
+  color: #a8b0bd;
+}
+
 .detail-county-winner {
   display: inline-flex;
   align-items: center;
@@ -3465,6 +3473,10 @@ html[data-theme="dark"] .detail-summary-card.winner-ind {
 
 .candidate-name-inline.ind {
   color: #e0c16a;
+}
+
+.candidate-name-inline.none {
+  color: #a8b0bd;
 }
 
 .subpanel {
