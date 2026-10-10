@@ -1512,6 +1512,10 @@ html:not([data-theme="dark"]) .national-lead-bubble.dem {
   align-items: start;
 }
 
+.state-results-layout--full {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .state-results-board {
   border: 1px solid var(--border);
   border-radius: 18px;
@@ -1862,7 +1866,7 @@ html:not([data-theme="dark"]) .national-lead-bubble.dem {
 }
 
 .state-election-page {
-  gap: 34px;
+  gap: 22px;
 }
 
 .state-election-hero h1 {
@@ -1877,10 +1881,18 @@ html:not([data-theme="dark"]) .national-lead-bubble.dem {
   gap: 20px;
 }
 
+.state-election-jump-nav {
+  margin: 16px 0 10px;
+}
+
+.state-election-jump-nav a[hidden] {
+  display: none;
+}
+
 .state-election-two-column {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.62fr);
-  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 420px);
+  gap: 24px;
   align-items: start;
 }
 
@@ -1899,8 +1911,9 @@ html:not([data-theme="dark"]) .national-lead-bubble.dem {
   order: 1;
 }
 
-.state-election-map-canvas {
-  min-height: 340px;
+.detail-map-canvas.state-election-map-canvas {
+  min-height: 0;
+  height: clamp(240px, 28vw, 340px);
   border-radius: 14px;
 }
 
@@ -2001,6 +2014,12 @@ html:not([data-theme="dark"]) .national-lead-bubble.dem {
   padding: 20px;
   border: 1px solid var(--border);
   background: var(--panel);
+}
+
+.state-election-district-list {
+  padding: 0;
+  border: 0;
+  background: transparent;
 }
 
 .state-election-result-card.winner-dem {
@@ -2161,9 +2180,236 @@ html:not([data-theme="dark"]) .state-election-detail-button:focus-visible {
   background: #cf2f2f;
 }
 
+.state-election-simple-legend i.dem-flip {
+  background: repeating-linear-gradient(
+    45deg,
+    #2879b5 0,
+    #2879b5 6px,
+    #5a96c8 6px,
+    #5a96c8 12px
+  );
+}
+
+.state-election-simple-legend i.rep-flip {
+  background: repeating-linear-gradient(
+    45deg,
+    #cf2f2f 0,
+    #cf2f2f 6px,
+    #d86a6a 6px,
+    #d86a6a 12px
+  );
+}
+
+.state-election-house-legend {
+  gap: 14px;
+  margin-bottom: 0;
+}
+
+.state-election-house-legend .legend-group {
+  gap: 7px;
+}
+
+.state-election-house-legend .legend-title {
+  font-size: 12px;
+  padding-top: 1px;
+}
+
+.state-election-house-legend .legend-stack {
+  gap: 4px;
+}
+
+.state-election-house-legend .legend-swatches,
+.state-election-house-legend .legend-subtext {
+  gap: 4px;
+}
+
+.state-election-house-legend .legend-swatch {
+  width: 34px;
+  height: 14px;
+  border-radius: 3px;
+}
+
+.state-election-house-legend .legend-subtext span {
+  width: 34px;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+}
+
 .state-election-district-grid {
   display: grid;
   gap: 10px;
+}
+
+.state-election-house-table-wrap {
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.025);
+}
+
+.state-election-house-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--text);
+}
+
+.state-election-house-table th {
+  background: rgba(255,255,255,0.035);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  padding: 11px 12px;
+  text-align: left;
+}
+
+.state-election-house-table th:nth-child(1),
+.state-election-house-table th:nth-child(2),
+.state-election-house-table th:nth-child(5),
+.state-election-house-table th:nth-child(6) {
+  text-align: center;
+}
+
+.state-election-house-row {
+  cursor: pointer;
+  outline: none;
+  transition: background 140ms ease;
+}
+
+.state-election-house-row:hover,
+.state-election-house-row:focus-visible {
+  background: rgba(255,255,255,0.04);
+}
+
+.state-election-house-table td {
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding: 0;
+  vertical-align: middle;
+}
+
+.state-election-house-district-cell,
+.state-election-house-margin,
+.state-election-house-percent,
+.state-election-house-arrow {
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.state-election-house-district-cell {
+  width: 58px;
+}
+
+.state-election-house-margin {
+  width: 88px;
+}
+
+.state-election-house-margin--dem {
+  color: #5ca8df;
+}
+
+.state-election-house-margin--rep {
+  color: #f16d6d;
+}
+
+.state-election-house-margin--ind {
+  color: #d6b556;
+}
+
+.state-election-house-margin--uncontested {
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
+.state-election-house-candidate {
+  min-width: 0;
+  padding: 11px 14px !important;
+}
+
+.state-election-house-candidate--winner {
+  position: relative;
+  color: #fff;
+  font-weight: 700;
+}
+
+.state-election-house-candidate--winner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.state-election-house-candidate--winner > * {
+  position: relative;
+  z-index: 1;
+}
+
+.state-election-house-candidate--dem::before {
+  background: #2879b5;
+}
+
+.state-election-house-candidate--rep::before {
+  background: #cf2f2f;
+}
+
+.state-election-house-candidate--ind::before {
+  background: #c8a24a;
+}
+
+.state-election-house-candidate--dem.state-election-house-candidate--flip::before {
+  background: repeating-linear-gradient(
+    45deg,
+    #2879b5 0,
+    #2879b5 8px,
+    #5a96c8 8px,
+    #5a96c8 16px
+  );
+}
+
+.state-election-house-candidate--rep.state-election-house-candidate--flip::before {
+  background: repeating-linear-gradient(
+    45deg,
+    #cf2f2f 0,
+    #cf2f2f 8px,
+    #d86a6a 8px,
+    #d86a6a 16px
+  );
+}
+
+.state-election-house-candidate--runner {
+  color: rgba(244,247,251,0.88);
+  background: rgba(255,255,255,0.018);
+}
+
+.state-election-house-candidate-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  max-width: 100%;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.state-election-house-party {
+  color: rgba(244,247,251,0.68);
+  font-size: 14px;
+  font-weight: 600;
+  margin-left: 8px;
+  white-space: nowrap;
+}
+
+.state-election-house-percent {
+  width: 70px;
+  color: var(--muted);
+}
+
+.state-election-house-arrow {
+  width: 34px;
+  color: var(--text);
+  font-size: 24px;
 }
 
 .state-election-district-toggle {
@@ -2196,7 +2442,9 @@ html:not([data-theme="dark"]) .state-election-detail-button:focus-visible {
 
 .state-election-district-card {
   display: grid;
-  gap: 6px;
+  grid-template-columns: 42px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
   padding: 14px;
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 14px;
@@ -2225,22 +2473,55 @@ html:not([data-theme="dark"]) .state-election-detail-button:focus-visible {
   border-left: 5px solid #c8a24a;
 }
 
-.state-election-district-card strong {
+.state-election-district-card-body {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.state-election-district-card-body strong {
   font-size: 18px;
   line-height: 1.15;
 }
 
-.state-election-district-card span {
+.state-election-district-name-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.state-election-district-card-body .state-election-district-meta {
   color: var(--muted);
   font-size: 13px;
   font-weight: 800;
 }
 
-.state-election-district-code {
-  color: var(--text) !important;
-  font-size: 12px !important;
-  letter-spacing: 0.08em;
+.state-election-district-incumbent {
+  background: rgba(255,255,255,0.16);
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: 999px;
+  color: rgba(244,247,251,0.92);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  padding: 4px 7px;
   text-transform: uppercase;
+}
+
+.state-election-district-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.state-election-district-number strong {
+  color: var(--text);
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: -0.04em;
 }
 
 .state-election-district-shape {
@@ -3047,9 +3328,7 @@ html[data-theme="dark"] .detail-summary-card.winner-ind {
 }
 
 .detail-map-head p {
-  margin: 6px 0 0;
-  color: var(--muted);
-  font-size: 13px;
+  display: none !important;
 }
 
 .detail-map-legend {

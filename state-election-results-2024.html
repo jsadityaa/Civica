@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="2024 state election results with presidential county results and U.S. House district results." />
+  <meta name="description" content="2024 state election results with presidential, Senate, and U.S. House results." />
   <link rel="canonical" href="https://polycivic.com/state-election-results-2024" />
   <meta property="og:site_name" content="Polycivic" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="2024 State Election Results | Polycivic" />
-  <meta property="og:description" content="Browse presidential county results and U.S. House district results for a state." />
+  <meta property="og:description" content="Browse presidential, Senate, and U.S. House results for a state." />
   <meta property="og:url" content="https://polycivic.com/state-election-results-2024" />
   <meta name="twitter:card" content="summary_large_image" />
   <title>2024 State Election Results | Polycivic</title>
@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); if (localStorage.getItem('datahub-dyslexic-ui') === 'true') document.documentElement.setAttribute('data-dyslexic', 'true'); } catch (e) {} })();</script>
-  <link rel="stylesheet" href="./styles.css?v=20261009-state-city-label-size" />
+  <link rel="stylesheet" href="./styles.css?v=20261009-no-map-captions" />
 </head>
 <body>
   <header class="global-header">
@@ -75,6 +75,11 @@
       <section class="content-panel state-election-hero">
         <a class="detail-back-link" href="./state-results-2024.html">← Back to State Results</a>
         <h1 id="state-election-title">Alabama Election Results</h1>
+        <nav class="section-nav state-election-jump-nav" aria-label="Election result sections">
+          <a href="#state-election-presidential">Presidential</a>
+          <a href="#state-election-senate" id="state-election-senate-jump">U.S. Senate</a>
+          <a href="#state-election-house">House of Representatives</a>
+        </nav>
       </section>
 
       <section class="content-panel state-election-section" id="state-election-presidential">
@@ -89,7 +94,6 @@
             <div class="detail-map-head">
               <div>
                 <h3 id="state-election-presidential-map-title">County Map</h3>
-                <p id="state-election-presidential-map-copy">Counties shaded by 2024 presidential margin.</p>
               </div>
               <div class="state-election-map-mode" id="state-election-presidential-map-mode" hidden>
                 <button class="state-election-map-mode-button is-active" type="button" data-map-mode="share">Vote Share</button>
@@ -164,6 +168,99 @@
 
       </section>
 
+      <section class="content-panel state-election-section" id="state-election-senate" hidden>
+        <div class="panel-heading">
+          <div>
+            <h2>U.S. Senate</h2>
+          </div>
+        </div>
+
+        <div class="state-election-two-column">
+          <section class="detail-map-card state-election-map-card" id="state-election-senate-map-card">
+            <div class="detail-map-head">
+              <div>
+                <h3 id="state-election-senate-map-title">County Map</h3>
+              </div>
+              <div class="state-election-map-mode" id="state-election-senate-map-mode" hidden>
+                <button class="state-election-map-mode-button is-active" type="button" data-map-mode="share">Vote Share</button>
+                <button class="state-election-map-mode-button" type="button" data-map-mode="lead">Size of Lead</button>
+              </div>
+              <div class="state-election-lead-legend" id="state-election-senate-lead-legend" aria-label="Size of lead map legend" hidden>
+                <span><i class="dem"></i>Dem.</span>
+                <span><i class="rep"></i>Rep.</span>
+                <span id="state-election-senate-lead-legend-ind"><i class="ind"></i>Ind.</span>
+              </div>
+              <div class="detail-map-legend" id="state-election-senate-map-legend" aria-label="Senate county map legend">
+                <div class="detail-map-legend-row" data-party="D">
+                  <span>Dem.</span>
+                  <div class="detail-map-swatch dem-1"></div>
+                  <div class="detail-map-swatch dem-2"></div>
+                  <div class="detail-map-swatch dem-3"></div>
+                  <div class="detail-map-swatch dem-4"></div>
+                </div>
+                <div class="detail-map-legend-row" data-party="I">
+                  <span>Ind.</span>
+                  <div class="detail-map-swatch ind-1"></div>
+                  <div class="detail-map-swatch ind-2"></div>
+                  <div class="detail-map-swatch ind-3"></div>
+                  <div class="detail-map-swatch ind-4"></div>
+                </div>
+                <div class="detail-map-legend-row" data-party="R">
+                  <span>Rep.</span>
+                  <div class="detail-map-swatch rep-1"></div>
+                  <div class="detail-map-swatch rep-2"></div>
+                  <div class="detail-map-swatch rep-3"></div>
+                  <div class="detail-map-swatch rep-4"></div>
+                </div>
+                <div class="detail-map-legend-scale">
+                  <span></span>
+                  <span></span>
+                  <span>50</span>
+                  <span>60</span>
+                  <span>70%</span>
+                </div>
+              </div>
+            </div>
+            <div class="detail-map-canvas state-election-map-canvas">
+              <svg id="state-election-senate-county-map" viewBox="0 0 540 520" preserveAspectRatio="xMidYMid meet"></svg>
+              <div class="detail-map-empty" id="state-election-senate-empty" hidden>Senate map data could not be loaded.</div>
+            </div>
+          </section>
+
+          <section class="state-election-result-card" id="state-election-senate-card">
+            <h3 id="state-election-senate-title">Loading result...</h3>
+            <div class="state-election-stats">
+              <div>
+                <span>Seat</span>
+                <strong id="state-election-senate-seat">-</strong>
+              </div>
+              <div>
+                <span>Margin</span>
+                <strong id="state-election-senate-margin">-</strong>
+              </div>
+              <div>
+                <span>Total Votes</span>
+                <strong id="state-election-senate-total">-</strong>
+              </div>
+            </div>
+            <div class="detail-vote-table-wrap">
+              <table class="detail-vote-table">
+                <thead>
+                  <tr>
+                    <th>Candidate</th>
+                    <th>Party</th>
+                    <th>Votes</th>
+                    <th>Pct.</th>
+                  </tr>
+                </thead>
+                <tbody id="state-election-senate-candidates"></tbody>
+              </table>
+            </div>
+            <a class="state-election-detail-button" id="state-election-senate-detail-link" href="./senate-state-result.html?name=Alabama">See results in detail &gt;</a>
+          </section>
+        </div>
+      </section>
+
       <section class="content-panel state-election-section" id="state-election-house">
         <div class="panel-heading">
           <div>
@@ -176,11 +273,34 @@
             <div class="detail-map-head">
               <div>
                 <h3>Congressional District Map</h3>
-                <p>Districts shaded by winning party.</p>
               </div>
-              <div class="state-election-simple-legend" aria-label="House district map legend">
-                <span><i class="dem"></i>Democrat</span>
-                <span><i class="rep"></i>Republican</span>
+              <div class="map-legend state-election-house-legend" aria-label="House district map legend">
+                <div class="legend-group">
+                  <span class="legend-title">Dem.</span>
+                  <div class="legend-stack">
+                    <div class="legend-swatches">
+                      <span class="legend-swatch dem-win"></span>
+                      <span class="legend-swatch dem-flip"></span>
+                    </div>
+                    <div class="legend-subtext">
+                      <span>Win</span>
+                      <span>Flip</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="legend-group">
+                  <span class="legend-title">Rep.</span>
+                  <div class="legend-stack">
+                    <div class="legend-swatches">
+                      <span class="legend-swatch rep-win"></span>
+                      <span class="legend-swatch rep-flip"></span>
+                    </div>
+                    <div class="legend-subtext">
+                      <span>Win</span>
+                      <span>Flip</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="detail-map-canvas state-election-map-canvas">
@@ -229,9 +349,11 @@
   <script src="./nav-dropdown.js"></script>
   <script src="./election-data.js"></script>
   <script src="./state-candidate-results.js"></script>
+  <script src="./senate-2024-data.js?v=20261008-senate-candidate-images"></script>
+  <script src="./senate-county-results.js?v=20261008-wyoming-senate"></script>
   <script src="./house-2024-data.js"></script>
   <script src="./house-districts-geojson.js"></script>
   <script src="./dc-wards-geojson.js?v=2"></script>
-  <script src="./state-election-results-2024.js?v=20261006-house-district-toggle"></script>
+  <script src="./state-election-results-2024.js?v=20261009-state-senate-section"></script>
 </body>
 </html>

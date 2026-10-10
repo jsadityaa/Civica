@@ -186,6 +186,8 @@ if (senateData && document.getElementById("senate-dem-count")) {
 
   function renderRaceBoard() {
     const host = document.getElementById("senate-race-board");
+    if (!host) return;
+
     const closest = [...senateData.races]
       .sort((a, b) => parseFloat(a.result.split("+")[1]) - parseFloat(b.result.split("+")[1]))
       .slice(0, 5);
