@@ -1025,7 +1025,6 @@ async function renderCountyBoard(result) {
 
 function renderSummary(result) {
   const title = document.getElementById("detail-title");
-  const subtitle = document.getElementById("detail-subtitle");
   const summaryCard = document.getElementById("detail-summary-card");
   const summaryTitle = document.getElementById("detail-summary-title");
   const summaryCallout = document.getElementById("detail-summary-callout");
@@ -1052,7 +1051,6 @@ function renderSummary(result) {
 
   document.title = `${displayName} 2024 Presidential Result`;
   title.textContent = `${displayName} Presidential Election Results`;
-  subtitle.textContent = `${result.type === "district" ? "Congressional district" : "State"} presidential result in the 2024 general election.`;
   summaryCard.classList.remove("winner-dem", "winner-rep");
   summaryCard.classList.add(winnerTone === "dem" ? "winner-dem" : "winner-rep");
   summaryTitle.textContent = `${winnerFullName} wins ${displayName}.`;
@@ -1095,18 +1093,15 @@ async function renderStateResultPage() {
   const params = new URLSearchParams(window.location.search);
   const name = params.get("name");
   const title = document.getElementById("detail-title");
-  const subtitle = document.getElementById("detail-subtitle");
 
   if (!name) {
     title.textContent = "Result not found";
-    subtitle.textContent = "No state or district was specified in the link.";
     return;
   }
 
   const result = getResultRecord(name);
   if (!result) {
     title.textContent = "Result not found";
-    subtitle.textContent = "That state or district is not available in the current 2024 dataset.";
     return;
   }
 

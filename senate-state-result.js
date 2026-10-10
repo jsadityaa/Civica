@@ -1349,7 +1349,6 @@ async function renderCountyBoard(record) {
 
 function renderSummary(record) {
   const title = document.getElementById("detail-title");
-  const subtitle = document.getElementById("detail-subtitle");
   const summaryCard = document.getElementById("detail-summary-card");
   const summaryTitle = document.getElementById("detail-summary-title");
   const summaryCallout = document.getElementById("detail-summary-callout");
@@ -1376,7 +1375,6 @@ function renderSummary(record) {
     : `${record.displayName} U.S. Senate Election Results`;
   document.title = pageTitle;
   title.textContent = pageTitle;
-  subtitle.textContent = `${record.displayName}'s ${record.primary.seatType.toLowerCase()} U.S. Senate result in the 2024 general election.`;
   summaryCard.classList.remove("winner-dem", "winner-rep", "winner-ind");
   summaryCard.classList.add(`winner-${winnerTone}`);
   summaryTitle.textContent = `${record.primary.winner} wins ${record.displayName}.`;
@@ -1416,18 +1414,15 @@ async function renderSenateStatePage() {
   const name = canonicalizeSenateStateName(rawName);
   const seatType = params.get("seat") || "Regular";
   const title = document.getElementById("detail-title");
-  const subtitle = document.getElementById("detail-subtitle");
 
   if (!rawName) {
     title.textContent = "Result not found";
-    subtitle.textContent = "No state was specified in the link.";
     return;
   }
 
   const record = getSenateResultRecord(name, seatType);
   if (!record) {
     title.textContent = "Result not found";
-    subtitle.textContent = "That state does not have a 2024 Senate result in the current dataset.";
     return;
   }
 

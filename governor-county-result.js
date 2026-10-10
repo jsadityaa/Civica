@@ -144,7 +144,6 @@ function renderGovernorSummary(record) {
   const winner = rows[0];
   document.title = `2024 ${record.stateName} Governor County Result`;
   document.getElementById("detail-title").textContent = `${record.stateName} Governor`;
-  document.getElementById("detail-subtitle").textContent = `County-level results for the 2024 ${record.stateName} governor election.`;
   document.getElementById("detail-summary-card").classList.add(`winner-${winner.tone}`);
   document.getElementById("detail-summary-title").textContent = `${winner.candidate} wins ${record.stateName}.`;
   document.getElementById("detail-summary-portrait").src = governorCandidatePortrait(winner.candidate, winner.imageUrl);
@@ -390,7 +389,6 @@ async function initGovernorCountyPage() {
   const record = getGovernorRaceRecord(stateName);
   if (!record) {
     document.getElementById("detail-title").textContent = "Governor county result unavailable";
-    document.getElementById("detail-subtitle").textContent = "Choose a 2024 governor state from the governor page.";
     document.getElementById("detail-county-board-empty").hidden = false;
     document.getElementById("detail-county-board-empty").textContent = "No governor county results are available for this state.";
     return;

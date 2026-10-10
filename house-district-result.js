@@ -2606,7 +2606,6 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
 
   if (!district) {
     document.getElementById("house-detail-title").textContent = "District not found";
-    document.getElementById("house-detail-subtitle").textContent = "This House district result could not be loaded.";
   } else {
     const tone = getWinnerTone(district.winnerParty);
     const summaryCard = document.getElementById("house-detail-summary-card");
@@ -2614,7 +2613,6 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
 
     document.title = `${district.title} House Result`;
     document.getElementById("house-detail-title").textContent = district.title;
-    document.getElementById("house-detail-subtitle").textContent = `Certified congressional district result in ${district.stateName} for the 2024 House election.`;
     document.getElementById("house-detail-summary-title").textContent = `${district.winnerName} wins ${district.title}.`;
     document.getElementById("house-detail-summary-callout").textContent = district.flipped
       ? "This district flipped parties in the 2024 general election."
