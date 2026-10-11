@@ -1190,6 +1190,10 @@
     if (!validateSignUpEligibility()) {
       return;
     }
+    if (firebaseConfig.authDomain !== "polycivic.com") {
+      authModal.error.textContent = "Google sign-in is loading an outdated auth config. Refresh Polycivic and try again.";
+      return;
+    }
     const provider = new window.firebase.auth.GoogleAuthProvider();
     provider.setCustomParameters({ prompt: "select_account" });
 

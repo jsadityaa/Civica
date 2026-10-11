@@ -21100,7 +21100,8 @@ html:not([data-theme="dark"]) .brazil-state-legislature-tile {
 
   .state-results-table,
   .house-results-layout .state-results-table {
-    min-width: 420px !important;
+    min-width: 0 !important;
+    width: 100% !important;
     table-layout: fixed !important;
   }
 
@@ -21122,16 +21123,16 @@ html:not([data-theme="dark"]) .brazil-state-legislature-tile {
   .house-results-layout .state-results-table td:nth-child(3),
   .state-results-table th:nth-child(3),
   .state-results-table td:nth-child(3) {
-    width: 64px !important;
+    width: 54px !important;
   }
 
   .margin-box,
   .house-results-layout .margin-box {
     width: auto !important;
-    min-width: 84px !important;
-    max-width: 104px !important;
-    padding: 6px 8px !important;
-    white-space: normal !important;
+    min-width: 76px !important;
+    max-width: 96px !important;
+    padding: 6px 7px !important;
+    white-space: nowrap !important;
   }
 
   .state-election-house-table {
@@ -21198,7 +21199,7 @@ html:not([data-theme="dark"]) .brazil-state-legislature-tile {
 
   .state-results-table,
   .house-results-layout .state-results-table {
-    min-width: 400px !important;
+    min-width: 0 !important;
   }
 
   .state-election-house-table {
