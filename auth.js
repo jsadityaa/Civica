@@ -123,11 +123,12 @@
 
   const returnToStoredAuthPath = () => {
     const target = getStoredAuthReturnPath();
-    clearAuthReturnPath();
     const current = getCurrentReturnPath();
     if (target && target !== current) {
       window.location.replace(target);
+      return;
     }
+    clearAuthReturnPath();
   };
 
   const shouldUseRedirectForGoogle = () => {

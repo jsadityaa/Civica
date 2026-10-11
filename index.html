@@ -32,6 +32,17 @@
         }
       })();
     </script>
+    <script>
+      (function () {
+        try {
+          var stored = sessionStorage.getItem('polycivic-auth-return-path') || localStorage.getItem('polycivic-auth-return-path');
+          var current = window.location.pathname + window.location.search + window.location.hash;
+          if (stored && stored.charAt(0) === '/' && stored.indexOf('//') !== 0 && stored !== current && window.location.pathname === '/') {
+            window.location.replace(stored);
+          }
+        } catch (error) {}
+      })();
+    </script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -439,6 +450,9 @@
 
         targets.forEach(function (target, index) {
           target.classList.add('homepage-reveal');
+          if (mobileOnly.matches) {
+            target.classList.add('is-visible');
+          }
           target.setAttribute('data-reveal-delay', String(index % 6));
         });
 
@@ -459,7 +473,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script src="./auth-config.js?v=20260830-1"></script>
-  <script src="./auth.js?v=20261011-mobile-auth-return"></script>
+  <script src="./auth.js?v=20261011-mobile-auth-return-2"></script>
   <script src="./nav-dropdown.js"></script>
 </body>
 </html>
