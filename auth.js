@@ -132,9 +132,7 @@
   };
 
   const shouldUseRedirectForGoogle = () => {
-    const hasTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
-    const narrowViewport = window.matchMedia && window.matchMedia("(max-width: 768px)").matches;
-    return hasTouch || narrowViewport;
+    return false;
   };
 
   const makeLocalProfile = (uid, profile = {}) => {
@@ -1024,6 +1022,8 @@
         return "That email or password did not match an account.";
       case "auth/popup-closed-by-user":
         return "Google sign-in was closed before it finished.";
+      case "auth/popup-blocked":
+        return "This browser blocked the Google sign-in window. Allow pop-ups for Polycivic and try again.";
       case "auth/account-exists-with-different-credential":
         return "That email already uses a different sign-in method.";
       case "auth/email-already-in-use":
@@ -1200,17 +1200,6 @@
       const credential = await auth.signInWithPopup(provider);
       await handleGoogleCredential(credential);
     } catch (error) {
-      if (error && error.code === "auth/popup-blocked") {
-        try {
-          await auth.signInWithRedirect(provider);
-          return;
-        } catch (redirectError) {
-          clearAuthReturnPath();
-          clearGoogleSignupContext();
-          authModal.error.textContent = getFriendlyError(redirectError);
-          return;
-        }
-      }
       clearAuthReturnPath();
       clearGoogleSignupContext();
       authModal.error.textContent = getFriendlyError(error);
