@@ -18,6 +18,18 @@
       "**/node_modules/**"
     ],
     "headers": [
+      {
+        "source": "/auth-config.js",
+        "headers": [
+          { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+        ]
+      },
+      {
+        "source": "/auth.js",
+        "headers": [
+          { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+        ]
+      },
       { "source": "/house-2026", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, follow" }] },
       { "source": "/senate-2026", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, follow" }] },
       { "source": "/brazil-2026", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, follow" }] },
