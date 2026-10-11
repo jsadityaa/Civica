@@ -132,7 +132,12 @@
   };
 
   const shouldUseRedirectForGoogle = () => {
-    return false;
+    const ua = navigator.userAgent || "";
+    const isMobileDevice = /Android|iPhone|iPad|iPod|Mobile/i.test(ua);
+    const isTouchOnlyViewport = window.matchMedia
+      && window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+    const isInAppBrowser = /FBAN|FBAV|Instagram|Line|Twitter|TikTok|Pinterest|LinkedInApp|GSA|CriOS|FxiOS/i.test(ua);
+    return !!(isMobileDevice || isTouchOnlyViewport || isInAppBrowser);
   };
 
   const makeLocalProfile = (uid, profile = {}) => {
@@ -1191,6 +1196,7 @@
     try {
       rememberAuthReturnPath();
       rememberGoogleSignupContext();
+      await auth.setPersistence(window.firebase.auth.Auth.Persistence.LOCAL);
 
       if (shouldUseRedirectForGoogle()) {
         await auth.signInWithRedirect(provider);
