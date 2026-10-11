@@ -68,12 +68,73 @@
   const storageCompatSrc = "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js";
   const functionsCompatSrc = "https://www.gstatic.com/firebasejs/10.12.2/firebase-functions-compat.js";
   const appCheckCompatSrc = "https://www.gstatic.com/firebasejs/10.12.2/firebase-app-check-compat.js";
+  const authReturnPathKey = "polycivic-auth-return-path";
+  const googleSignupContextKey = "polycivic-google-signup-context";
 
   const getInitial = (value) => {
     return (value || "?").trim().charAt(0).toUpperCase() || "?";
   };
 
   const getLocalProfileKey = (uid) => `polycivic-profile:${uid}`;
+
+  const getCurrentReturnPath = () => {
+    const path = `${window.location.pathname || "/"}${window.location.search || ""}${window.location.hash || ""}`;
+    if (path.startsWith("/__/auth/handler") || path.startsWith("/auth-action")) return "/";
+    return path || "/";
+  };
+
+  const rememberAuthReturnPath = () => {
+    try {
+      window.sessionStorage.setItem(authReturnPathKey, getCurrentReturnPath());
+    } catch (error) {}
+    try {
+      window.localStorage.setItem(authReturnPathKey, getCurrentReturnPath());
+    } catch (error) {}
+  };
+
+  const getStoredAuthReturnPath = () => {
+    try {
+      const stored = window.sessionStorage.getItem(authReturnPathKey)
+        || window.localStorage.getItem(authReturnPathKey);
+      if (!stored || !stored.startsWith("/") || stored.startsWith("//")) return "/";
+      return stored;
+    } catch (error) {
+      return "/";
+    }
+  };
+
+  const hasStoredAuthReturnPath = () => {
+    try {
+      return !!(window.sessionStorage.getItem(authReturnPathKey)
+        || window.localStorage.getItem(authReturnPathKey));
+    } catch (error) {
+      return false;
+    }
+  };
+
+  const clearAuthReturnPath = () => {
+    try {
+      window.sessionStorage.removeItem(authReturnPathKey);
+    } catch (error) {}
+    try {
+      window.localStorage.removeItem(authReturnPathKey);
+    } catch (error) {}
+  };
+
+  const returnToStoredAuthPath = () => {
+    const target = getStoredAuthReturnPath();
+    clearAuthReturnPath();
+    const current = getCurrentReturnPath();
+    if (target && target !== current) {
+      window.location.replace(target);
+    }
+  };
+
+  const shouldUseRedirectForGoogle = () => {
+    const hasTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+    const narrowViewport = window.matchMedia && window.matchMedia("(max-width: 768px)").matches;
+    return hasTouch || narrowViewport;
+  };
 
   const makeLocalProfile = (uid, profile = {}) => {
     return {
@@ -990,6 +1051,15 @@
     }
 
     auth = window.firebase.auth();
+    auth.getRedirectResult().then(async (credential) => {
+      if (!credential || !credential.user) return;
+
+      await handleGoogleCredential(credential, { fromRedirect: true });
+    }).catch((error) => {
+      console.warn("Polycivic Google redirect sign-in failed:", error);
+      clearAuthReturnPath();
+    });
+
     auth.onAuthStateChanged((user) => {
       currentUser = user;
       const safeUser = sanitizeUser(user);
@@ -999,6 +1069,9 @@
       if (user) {
         watchUserProfile(user);
         syncUserProfile(user);
+        if (hasStoredAuthReturnPath()) {
+          window.setTimeout(returnToStoredAuthPath, 0);
+        }
       } else {
         stopProfileListener();
         currentProfile = null;
@@ -1020,6 +1093,91 @@
     authModal.error.textContent = "Your account could not be created. Make sure you are at least 13 years old.";
   };
 
+  const getGoogleSignupContext = () => {
+    try {
+      const context = JSON.parse(
+        window.sessionStorage.getItem(googleSignupContextKey)
+          || window.localStorage.getItem(googleSignupContextKey)
+          || "{}"
+      );
+      return context && typeof context === "object" ? context : {};
+    } catch (error) {
+      return {};
+    }
+  };
+
+  const clearGoogleSignupContext = () => {
+    try {
+      window.sessionStorage.removeItem(googleSignupContextKey);
+    } catch (error) {}
+    try {
+      window.localStorage.removeItem(googleSignupContextKey);
+    } catch (error) {}
+  };
+
+  const rememberGoogleSignupContext = () => {
+    try {
+      window.sessionStorage.setItem(googleSignupContextKey, JSON.stringify({
+        isSignUpMode,
+        birthday: authModal.birthdayInput.value || ""
+      }));
+    } catch (error) {}
+    try {
+      window.localStorage.setItem(googleSignupContextKey, JSON.stringify({
+        isSignUpMode,
+        birthday: authModal.birthdayInput.value || ""
+      }));
+    } catch (error) {}
+  };
+
+  const handleGoogleCredential = async (credential, options = {}) => {
+    const redirectContext = options.fromRedirect ? getGoogleSignupContext() : {};
+    const wasSignUpMode = options.fromRedirect ? !!redirectContext.isSignUpMode : isSignUpMode;
+    const birthday = options.fromRedirect ? redirectContext.birthday || "" : authModal.birthdayInput.value;
+    const isNewGoogleUser = credential.additionalUserInfo && credential.additionalUserInfo.isNewUser;
+
+    clearGoogleSignupContext();
+
+    if (isNewGoogleUser && !wasSignUpMode) {
+      await credential.user.delete();
+      if (options.fromRedirect) {
+        setModalMode(false);
+        openModal();
+      }
+      authModal.error.textContent = "Use Sign Up to create a new account.";
+      clearAuthReturnPath();
+      return;
+    }
+
+    if (wasSignUpMode && credential.user) {
+      try {
+        await syncUserProfile(
+          credential.user,
+          { birthday },
+          { throwOnError: true }
+        );
+      } catch (profileError) {
+        console.warn("Polycivic profile sync failed after Google signup:", profileError);
+        await removeRejectedSignupUser(credential.user);
+        if (options.fromRedirect) {
+          setModalMode(true);
+          openModal();
+        }
+        showServerAgeRejection();
+        clearAuthReturnPath();
+        return;
+      }
+    }
+
+    if (options.fromRedirect) {
+      returnToStoredAuthPath();
+      return;
+    }
+
+    clearAuthReturnPath();
+    closeModal();
+  };
+
   const signInWithGoogle = async () => {
     if (!auth || !window.firebase) return;
     clearModalError();
@@ -1030,29 +1188,30 @@
     provider.setCustomParameters({ prompt: "select_account" });
 
     try {
-      const credential = await auth.signInWithPopup(provider);
-      const isNewGoogleUser = credential.additionalUserInfo && credential.additionalUserInfo.isNewUser;
-      if (isNewGoogleUser && !isSignUpMode) {
-        await credential.user.delete();
-        authModal.error.textContent = "Use Sign Up to create a new account.";
+      rememberAuthReturnPath();
+      rememberGoogleSignupContext();
+
+      if (shouldUseRedirectForGoogle()) {
+        await auth.signInWithRedirect(provider);
         return;
       }
-      if (isSignUpMode && credential.user) {
+
+      const credential = await auth.signInWithPopup(provider);
+      await handleGoogleCredential(credential);
+    } catch (error) {
+      if (error && error.code === "auth/popup-blocked") {
         try {
-          await syncUserProfile(
-            credential.user,
-            { birthday: authModal.birthdayInput.value },
-            { throwOnError: true }
-          );
-        } catch (profileError) {
-          console.warn("Polycivic profile sync failed after Google signup:", profileError);
-          await removeRejectedSignupUser(credential.user);
-          showServerAgeRejection();
+          await auth.signInWithRedirect(provider);
+          return;
+        } catch (redirectError) {
+          clearAuthReturnPath();
+          clearGoogleSignupContext();
+          authModal.error.textContent = getFriendlyError(redirectError);
           return;
         }
       }
-      closeModal();
-    } catch (error) {
+      clearAuthReturnPath();
+      clearGoogleSignupContext();
       authModal.error.textContent = getFriendlyError(error);
     }
   };
