@@ -418,25 +418,6 @@ if (houseDataBundle && houseGeojson && document.getElementById("house-district-m
     document.getElementById("house-bar-rep").style.flex = String(summary.repSeats);
   }
 
-  function renderLists() {
-    const closestHost = document.getElementById("house-closest-list");
-    const flipsHost = document.getElementById("house-flips-list");
-
-    closestHost.innerHTML = houseDataBundle.summary.closest.slice(0, 12).map((district) => `
-      <a class="house-note-item" href="${district.linkHref}">
-        <div class="house-note-title">${district.title}</div>
-        <div class="house-note-meta ${district.winnerParty === "D" ? "dem" : district.winnerParty === "R" ? "rep" : "ind"}">${district.marginLabel}</div>
-      </a>
-    `).join("");
-
-    flipsHost.innerHTML = houseDataBundle.summary.flips.slice(0, 16).map((district) => `
-      <a class="house-note-item" href="${district.linkHref}">
-        <div class="house-note-title">${district.title}</div>
-        <div class="house-note-meta ${district.winnerParty === "D" ? "dem" : district.winnerParty === "R" ? "rep" : "ind"}">${district.marginLabel}</div>
-      </a>
-    `).join("");
-  }
-
   function buildResultsSections() {
     return houseResultsConfig.map((section) => {
       const list = Object.values(houseDataBundle.districts)
@@ -456,11 +437,6 @@ if (houseDataBundle && houseGeojson && document.getElementById("house-district-m
 
   function renderDistrictResults() {
     const board = document.getElementById("house-results-board");
-    const closestList = document.getElementById("house-district-closest-list");
-    const flipsList = document.getElementById("house-district-flips-list");
-    const demWins = document.getElementById("house-districts-won-dem");
-    const repWins = document.getElementById("house-districts-won-rep");
-    const flipped = document.getElementById("house-districts-flipped");
 
     if (!board) return;
 
@@ -511,29 +487,6 @@ if (houseDataBundle && houseGeojson && document.getElementById("house-district-m
         <span>${houseResultsSearchQuery ? `Search: “${houseResultsSearchQuery}”. ` : ''}${houseResultsStateFilter !== 'all' ? `State: ${HOUSE_STATE_DISPLAY[houseResultsStateFilter] || houseResultsStateFilter}. ` : ''}Try a district code like CA-27 or switch the state filter back to All states.</span>
       </div>
     `;
-
-    const summary = houseDataBundle.summary;
-    if (demWins) demWins.textContent = String(summary.demSeats);
-    if (repWins) repWins.textContent = String(summary.repSeats);
-    if (flipped) flipped.textContent = String(summary.demFlips + summary.repFlips + summary.indFlips);
-
-    if (closestList) {
-      closestList.innerHTML = summary.closest.slice(0, 6).map((district) => `
-        <li>
-          <a class="state-link" href="${district.linkHref}">${district.compactDisplay}</a>
-          <span class="state-side-value">${district.marginLabel}</span>
-        </li>
-      `).join("");
-    }
-
-    if (flipsList) {
-      flipsList.innerHTML = summary.flips.slice(0, 6).map((district) => `
-        <li>
-          <a class="state-link" href="${district.linkHref}">${district.compactDisplay}</a>
-          <span class="state-side-value">${district.marginLabel}</span>
-        </li>
-      `).join("");
-    }
   }
 
   function initResultsControls() {
@@ -635,7 +588,6 @@ if (houseDataBundle && houseGeojson && document.getElementById("house-district-m
 
   normalizeHouseData();
   renderSummary();
-  renderLists();
   renderDistrictResults();
   initResultsControls();
   renderMap();

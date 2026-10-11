@@ -237,6 +237,17 @@ function formatCountyAreaName(row) {
   return formatCountyDisplayName(row?.county_name);
 }
 
+function formatCountyBoardAreaName(row) {
+  const name = formatCountyAreaName(row);
+  if (row?.region_type === "town" || row?.region_type === "municipality") return name;
+  return name
+    .replace(/\s+County$/i, "")
+    .replace(/\s+Parish$/i, "")
+    .replace(/\s+Borough$/i, "")
+    .replace(/\s+Census Area$/i, "")
+    .replace(/\s+Municipality$/i, "");
+}
+
 function normalizeTownName(name) {
   return String(name || "")
     .normalize("NFD")
@@ -329,7 +340,7 @@ function formatCountyShift(shiftPoints) {
   const points = Math.abs(shiftPoints).toFixed(1).replace(/^-/, "");
   return {
     direction: movedLeft ? "left" : "right",
-    label: `${movedLeft ? "Harris" : "Trump"} +${points}`
+    label: `+${points}`
   };
 }
 
@@ -382,7 +393,7 @@ function renderCountyBoardRows() {
           `;
       return `
         <tr class="detail-county-row" data-fips="${row.county_fips}">
-          <td>${formatCountyAreaName(row)}</td>
+          <td>${formatCountyBoardAreaName(row)}</td>
           <td><span class="detail-county-margin ${getCountyWinner(row) === "Harris" ? "dem" : "rep"}">${formatCountyMarginLabel(row)}</span></td>
           <td>${shiftMarkup}</td>
           <td>${formatVotes(row.total_votes)}</td>

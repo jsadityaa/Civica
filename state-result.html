@@ -81,50 +81,52 @@
         </div>
 
         <div class="detail-grid">
-          <section class="detail-summary-card detail-summary-main" id="detail-summary-card">
-            <div class="detail-summary-hero" id="detail-summary-hero">
-              <div class="detail-summary-copy">
-                <div class="detail-summary-kicker">Winner</div>
-                <h2 class="detail-summary-title" id="detail-summary-title">Loading result...</h2>
-                <p class="detail-summary-callout" id="detail-summary-callout">Race called with certified statewide totals.</p>
+          <div class="detail-main-column">
+            <section class="detail-summary-card detail-summary-main" id="detail-summary-card">
+              <div class="detail-summary-hero" id="detail-summary-hero">
+                <div class="detail-summary-copy">
+                  <div class="detail-summary-kicker">Winner</div>
+                  <h2 class="detail-summary-title" id="detail-summary-title">Loading result...</h2>
+                  <p class="detail-summary-callout" id="detail-summary-callout">Race called with certified statewide totals.</p>
+                </div>
+                <img class="detail-summary-portrait" id="detail-summary-portrait" alt="Winning candidate portrait" />
               </div>
-              <img class="detail-summary-portrait" id="detail-summary-portrait" alt="Winning candidate portrait" />
-            </div>
 
-            <div class="detail-stat-row">
-              <div>
-                <span class="detail-stat-label">Electoral Votes</span>
-                <strong class="detail-stat-value" id="detail-ev">—</strong>
+              <div class="detail-stat-row">
+                <div>
+                  <span class="detail-stat-label">Electoral Votes</span>
+                  <strong class="detail-stat-value" id="detail-ev">—</strong>
+                </div>
+                <div>
+                  <span class="detail-stat-label">Margin</span>
+                  <strong class="detail-stat-value" id="detail-margin">—</strong>
+                </div>
               </div>
-              <div>
-                <span class="detail-stat-label">Margin</span>
-                <strong class="detail-stat-value" id="detail-margin">—</strong>
-              </div>
-            </div>
 
-            <div class="detail-vote-table-wrap">
-              <table class="detail-vote-table">
-                <thead>
-                  <tr>
-                    <th>Candidate</th>
-                    <th>Party</th>
-                    <th>Votes</th>
-                    <th>Pct.</th>
-                  </tr>
-                </thead>
-                <tbody id="detail-vote-body"></tbody>
-              </table>
-            </div>
-
-            <div class="detail-certified-block">
-              <h3 id="detail-certified-title">The vote count has been certified here.</h3>
-              <div class="detail-certified-bar">
-                <div class="detail-certified-segment dem" id="detail-certified-dem"></div>
-                <div class="detail-certified-segment rep" id="detail-certified-rep"></div>
-                <div class="detail-certified-segment other" id="detail-certified-other"></div>
+              <div class="detail-vote-table-wrap">
+                <table class="detail-vote-table">
+                  <thead>
+                    <tr>
+                      <th>Candidate</th>
+                      <th>Party</th>
+                      <th>Votes</th>
+                      <th>Pct.</th>
+                    </tr>
+                  </thead>
+                  <tbody id="detail-vote-body"></tbody>
+                </table>
               </div>
-              <div class="detail-certified-note" id="detail-certified-note">Total votes reported.</div>
-            </div>
+
+              <div class="detail-certified-block">
+                <h3 id="detail-certified-title">The vote count has been certified here.</h3>
+                <div class="detail-certified-bar">
+                  <div class="detail-certified-segment dem" id="detail-certified-dem"></div>
+                  <div class="detail-certified-segment rep" id="detail-certified-rep"></div>
+                  <div class="detail-certified-segment other" id="detail-certified-other"></div>
+                </div>
+                <div class="detail-certified-note" id="detail-certified-note">Total votes reported.</div>
+              </div>
+            </section>
 
             <section class="detail-county-board" id="detail-county-board">
               <div class="detail-county-board-head">
@@ -164,7 +166,7 @@
               </div>
               <button class="detail-county-board-toggle" id="detail-county-show-all" type="button" hidden></button>
             </section>
-          </section>
+          </div>
 
           <aside class="detail-rail">
             <section class="detail-map-card">

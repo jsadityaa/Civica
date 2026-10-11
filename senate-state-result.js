@@ -660,6 +660,16 @@ function formatCountyDisplayName(name) {
   return `${base} County`;
 }
 
+function formatCountyBoardDisplayName(row) {
+  const name = String(row?.displayName || row?.county_name || "").trim();
+  return name
+    .replace(/\s+County$/i, "")
+    .replace(/\s+Parish$/i, "")
+    .replace(/\s+Borough$/i, "")
+    .replace(/\s+Census Area$/i, "")
+    .replace(/\s+Municipality$/i, "");
+}
+
 async function fetchCountyReference(stateName) {
   if (countyReferenceCache.has(stateName)) return countyReferenceCache.get(stateName);
 
@@ -869,7 +879,7 @@ function renderCountyBoardRows() {
   const rows = sortCountyRows(countyBoardState.rows);
   body.innerHTML = rows.map((row) => `
     <tr class="detail-county-row" data-fips="${row.county_fips}">
-      <td>${row.displayName}</td>
+      <td>${formatCountyBoardDisplayName(row)}</td>
       <td><span class="detail-county-margin ${senateWinnerTone(row.winnerParty)}">${row.marginLabel}</span></td>
       <td>${senateFormatVotes(row.totalVotes)}</td>
       <td>100%</td>

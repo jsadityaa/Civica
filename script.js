@@ -619,16 +619,16 @@ function getExitPollRowOutcome(answer) {
   const trump = getCandidatePercent(answer.candidateAnswers, "Trump");
 
   if (typeof harris !== "number" || typeof trump !== "number") {
-    return { winner: "none", label: "No call" };
+    return { winner: "none" };
   }
 
   if (harris === trump) {
-    return { winner: "tie", label: "Tie" };
+    return { winner: "tie" };
   }
 
   return harris > trump
-    ? { winner: "harris", label: "Harris won" }
-    : { winner: "trump", label: "Trump won" };
+    ? { winner: "harris" }
+    : { winner: "trump" };
 }
 
 function renderExitPollCards(questions) {
@@ -656,7 +656,6 @@ function renderExitPollCards(questions) {
               <td class="exit-poll-label-cell">
                 <div class="exit-poll-label-wrap">
                   <div class="exit-poll-label">${answer.answerShort || answer.answer || "—"}</div>
-                  <span class="exit-poll-winner-badge ${outcome.winner}">${outcome.label}</span>
                 </div>
               </td>
               <td class="exit-poll-data-cell">

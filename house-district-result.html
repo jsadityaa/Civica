@@ -128,6 +128,13 @@
                 <div>
                   <h2 id="house-detail-unit-board-title">County Results</h2>
                 </div>
+                <div class="detail-county-toolbar" id="house-detail-county-toolbar">
+                  <div class="detail-county-sort" role="group" aria-label="Sort county results">
+                    <button class="detail-county-sort-button is-active" type="button" data-sort="votes" aria-pressed="true">Votes</button>
+                    <button class="detail-county-sort-button" type="button" data-sort="margin" aria-pressed="false">Margin</button>
+                    <button class="detail-county-sort-button" type="button" data-sort="alphabetical" aria-pressed="false">A–Z</button>
+                  </div>
+                </div>
               </div>
               <div class="detail-county-board-table-wrap">
                 <table class="detail-county-board-table">
@@ -212,7 +219,7 @@
   <script src="./house-california-county-results.js?v=20261003-ca-wikimedia-county-overrides"></script>
   <script src="./house-district-county-results.js?v=20261005-wy-nyt-county"></script>
   <script src="./house-massachusetts-town-results.js?v=20261001-ma-town-house-districts"></script>
-  <script src="./house-district-result.js?v=20261009-detail-lead-toggle"></script>
+  <script src="./house-district-result.js?v=20261010-county-sort-toggle"></script>
   <footer id="contact-us" class="civica-homepage__footer">
       <div class="civica-homepage__footer-inner">
         <div class="civica-homepage__footer-bottom">

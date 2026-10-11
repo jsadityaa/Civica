@@ -4,6 +4,10 @@ const houseDetailGeojson = window.HOUSE_2024_GEOJSON;
 if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("house-detail-title")) {
   const UNIT_BOARD_COLLAPSED_LIMIT = 6;
   let houseDetailMapMode = "share";
+  const houseUnitBoardState = {
+    sort: "votes",
+    render: null
+  };
   const PARTY_LABELS = {
     D: "Democrat",
     R: "Republican",
@@ -2451,17 +2455,63 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
   function setUnitBoardLabels(unitLabel) {
     const title = document.getElementById("house-detail-unit-board-title");
     const label = document.getElementById("house-detail-unit-board-label");
+    const sortGroup = document.querySelector("#house-detail-county-board .detail-county-sort");
     if (title) title.textContent = `${unitLabel} Results`;
     if (label) label.textContent = unitLabel;
+    if (sortGroup) sortGroup.setAttribute("aria-label", `Sort ${unitLabel.toLowerCase()} results`);
+  }
+
+  function getUnitBoardRowName(row) {
+    return String(row.town || row.county || "");
+  }
+
+  function getUnitBoardRowMargin(row) {
+    const margin = Number(row.margin ?? row.marginPct ?? 0);
+    return Number.isFinite(margin) ? margin : 0;
+  }
+
+  function sortUnitBoardRows(rows) {
+    const sorted = rows.slice();
+    if (houseUnitBoardState.sort === "margin") {
+      sorted.sort((a, b) => getUnitBoardRowMargin(b) - getUnitBoardRowMargin(a) || Number(b.totalVotes || 0) - Number(a.totalVotes || 0));
+    } else if (houseUnitBoardState.sort === "alphabetical") {
+      sorted.sort((a, b) => getUnitBoardRowName(a).localeCompare(getUnitBoardRowName(b)));
+    } else {
+      sorted.sort((a, b) => Number(b.totalVotes || 0) - Number(a.totalVotes || 0) || getUnitBoardRowName(a).localeCompare(getUnitBoardRowName(b)));
+    }
+    return sorted;
+  }
+
+  function wireUnitBoardSortControls() {
+    document.querySelectorAll("#house-detail-county-board .detail-county-sort-button").forEach((button) => {
+      button.onclick = () => {
+        houseUnitBoardState.sort = button.dataset.sort || "votes";
+        document.querySelectorAll("#house-detail-county-board .detail-county-sort-button").forEach((btn) => {
+          btn.classList.toggle("is-active", btn === button);
+          btn.setAttribute("aria-pressed", btn === button ? "true" : "false");
+        });
+        if (typeof houseUnitBoardState.render === "function") {
+          houseUnitBoardState.render();
+        }
+      };
+    });
   }
 
   function renderExpandableUnitBoard({ body, rows, unitPlural, renderRow }) {
     const toggle = document.getElementById("house-detail-county-board-toggle");
     let expanded = false;
     const normalizedPlural = unitPlural || "results";
+    houseUnitBoardState.sort = "votes";
+
+    document.querySelectorAll("#house-detail-county-board .detail-county-sort-button").forEach((button) => {
+      const isActive = button.dataset.sort === houseUnitBoardState.sort;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
 
     const render = () => {
-      const visibleRows = expanded ? rows : rows.slice(0, UNIT_BOARD_COLLAPSED_LIMIT);
+      const sortedRows = sortUnitBoardRows(rows);
+      const visibleRows = expanded ? sortedRows : sortedRows.slice(0, UNIT_BOARD_COLLAPSED_LIMIT);
       body.innerHTML = visibleRows.map(renderRow).join("");
 
       if (!toggle) return;
@@ -2479,6 +2529,9 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
         : `Show all ${rows.length} ${normalizedPlural}`;
       toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
     };
+
+    houseUnitBoardState.render = render;
+    wireUnitBoardSortControls();
 
     if (toggle) {
       toggle.onclick = () => {

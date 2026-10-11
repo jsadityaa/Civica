@@ -1303,6 +1303,13 @@ html:not([data-theme="dark"]) .national-lead-bubble.dem {
   max-width: none;
 }
 
+.article-placeholder.article-body {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+}
+
 .article-placeholder h3,
 .subpanel h3 {
   margin: 0 0 10px;
@@ -1321,8 +1328,6 @@ html:not([data-theme="dark"]) .national-lead-bubble.dem {
 
 .article-body h3:not(:first-child) {
   margin-top: 24px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .article-body p {
@@ -2893,38 +2898,6 @@ html:not([data-theme="dark"]) .state-election-city-labels text {
   text-align: center;
 }
 
-.exit-poll-winner-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 2px 7px;
-  border-radius: 999px;
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  border: 1px solid rgba(255,255,255,0.08);
-  color: var(--muted);
-  background: rgba(255,255,255,0.04);
-}
-
-.exit-poll-winner-badge.harris {
-  color: #d7ecfa;
-  background: rgba(40,121,181,0.14);
-  border-color: rgba(40,121,181,0.26);
-}
-
-.exit-poll-winner-badge.trump {
-  color: #fde1e1;
-  background: rgba(207,47,47,0.14);
-  border-color: rgba(207,47,47,0.26);
-}
-
-.exit-poll-winner-badge.tie {
-  color: #efe6d6;
-  background: rgba(185,150,87,0.14);
-  border-color: rgba(185,150,87,0.26);
-}
-
 .exit-poll-stat-chip {
   display: inline-flex;
   align-items: center;
@@ -3540,6 +3513,10 @@ html[data-theme="dark"] .detail-summary-card.winner-ind {
   font-size: 13px;
 }
 
+#detail-county-board-note {
+  display: none;
+}
+
 .detail-county-toolbar {
   display: flex;
   align-items: center;
@@ -3674,7 +3651,9 @@ html[data-theme="dark"] .detail-summary-card.winner-ind {
 }
 
 .detail-county-margin {
+  display: inline-block;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .detail-county-margin.dem {
@@ -3762,13 +3741,7 @@ html[data-theme="dark"] .detail-summary-card.winner-ind {
 }
 
 .detail-county-shift-badge {
-  display: inline-flex;
-  align-items: center;
-  min-height: 32px;
-  padding: 0 12px;
-  border-radius: 999px;
-  border: 1px solid currentColor;
-  background: rgba(255,255,255,0.03);
+  display: inline;
 }
 
 .candidate-name-inline.dem {
@@ -20464,8 +20437,7 @@ html:not([data-theme="dark"]) .exit-poll-label,
 html:not([data-theme="dark"]) .exit-poll-card-meta,
 html:not([data-theme="dark"]) .exit-polls-filter-label,
 html:not([data-theme="dark"]) .exit-polls-filter-count,
-html:not([data-theme="dark"]) .exit-poll-stat-chip,
-html:not([data-theme="dark"]) .exit-poll-winner-badge {
+html:not([data-theme="dark"]) .exit-poll-stat-chip {
   color: #111827 !important;
 }
 
@@ -20791,6 +20763,12 @@ html[data-theme="dark"] .reset-password-form input {
   margin-bottom: 0;
 }
 
+@media (min-width: 769px) {
+  #house-results > .panel-heading {
+    align-items: center;
+  }
+}
+
 html:not([data-theme="dark"]) .brazil-state-legislature-summary div,
 html:not([data-theme="dark"]) .brazil-state-legislature-alignment-grid div,
 html:not([data-theme="dark"]) .brazil-state-legislature-watch-grid article,
@@ -20814,5 +20792,582 @@ html:not([data-theme="dark"]) .brazil-state-legislature-tile {
   .brazil-state-legislature-watch-grid,
   .brazil-state-legislature-alignment-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile-only election results cleanup. Desktop/tablet layouts above remain unchanged. */
+@media (max-width: 768px) {
+  .site-shell {
+    width: min(100vw - 24px, 1280px) !important;
+  }
+
+  .detail-page,
+  .page-stack {
+    gap: 18px !important;
+  }
+
+  .detail-panel {
+    padding: 0 !important;
+  }
+
+  .detail-heading {
+    display: block !important;
+    margin-bottom: 14px !important;
+  }
+
+  .detail-heading h1,
+  .state-election-hero h1 {
+    font-size: clamp(34px, 10vw, 44px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.04em !important;
+  }
+
+  .detail-grid,
+  .state-election-two-column,
+  .state-results-layout,
+  .house-results-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 18px !important;
+  }
+
+  .detail-summary-card,
+  .detail-map-card,
+  .detail-county-board,
+  .state-election-result-card,
+  .state-election-map-card {
+    border-radius: 16px !important;
+    padding: 16px !important;
+  }
+
+  .detail-summary-main,
+  .detail-main-column {
+    gap: 14px !important;
+  }
+
+  .detail-summary-hero {
+    grid-template-columns: minmax(0, 1fr) 72px !important;
+    padding: 14px !important;
+  }
+
+  .detail-summary-title {
+    font-size: clamp(24px, 8vw, 32px) !important;
+  }
+
+  .detail-summary-portrait {
+    width: 72px !important;
+    height: 72px !important;
+    justify-self: end !important;
+  }
+
+  .detail-stat-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .detail-stat-value {
+    font-size: 24px !important;
+  }
+
+  .detail-vote-table-wrap,
+  .detail-county-board-table-wrap,
+  .state-results-board,
+  .state-election-house-table-wrap {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .detail-vote-table {
+    min-width: 520px !important;
+  }
+
+  .detail-county-board-table-wrap {
+    overflow-x: visible !important;
+  }
+
+  .detail-county-board-table {
+    display: block !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  .detail-county-board-table colgroup,
+  .detail-county-board-table thead {
+    display: none !important;
+  }
+
+  .detail-county-board-table tbody {
+    display: grid !important;
+    gap: 10px !important;
+  }
+
+  .detail-county-board-table tr {
+    background: rgba(255,255,255,0.025) !important;
+    border: 1px solid rgba(255,255,255,0.07) !important;
+    border-radius: 12px !important;
+    display: grid !important;
+    gap: 8px 14px !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    padding: 13px !important;
+  }
+
+  .detail-county-board-table th {
+    display: none !important;
+  }
+
+  .detail-county-board-table td {
+    border: 0 !important;
+    display: grid !important;
+    gap: 3px !important;
+    min-width: 0 !important;
+    overflow-wrap: normal !important;
+    padding: 0 !important;
+    white-space: normal !important;
+    word-break: normal !important;
+  }
+
+  .detail-county-board-table td {
+    font-size: 15px !important;
+    line-height: 1.25 !important;
+  }
+
+  .detail-county-board-table td:first-child {
+    color: var(--text) !important;
+    font-size: 18px !important;
+    font-weight: 800 !important;
+    grid-column: 1 / -1 !important;
+  }
+
+  .detail-county-board-table td:not(:first-child)::before {
+    color: var(--muted) !important;
+    content: "";
+    display: block !important;
+    font-size: 10px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+  }
+
+  .detail-county-board-table td:nth-child(2)::before {
+    content: "Margin";
+  }
+
+  .detail-county-board-table td:nth-child(3)::before {
+    content: "Shift";
+  }
+
+  .detail-county-board-table td:nth-child(4)::before {
+    content: "Votes";
+  }
+
+  .detail-county-board-table td:nth-child(5)::before {
+    content: "% In";
+  }
+
+  .senate-county-board-table td:nth-child(3)::before,
+  #house-detail-county-board .detail-county-board-table td:nth-child(3)::before {
+    content: "Votes";
+  }
+
+  .senate-county-board-table td:nth-child(4)::before,
+  #house-detail-county-board .detail-county-board-table td:nth-child(4)::before {
+    content: "% In";
+  }
+
+  .detail-county-board-table td:nth-child(3),
+  .detail-county-board-table td:nth-child(4),
+  .detail-county-board-table td:nth-child(5),
+  .detail-county-board-table th:nth-child(3),
+  .detail-county-board-table th:nth-child(4),
+  .detail-county-board-table th:nth-child(5) {
+    text-align: left !important;
+  }
+
+  .detail-county-margin {
+    display: inline-block !important;
+    max-width: 100% !important;
+  }
+
+  .detail-county-col-name,
+  .detail-county-col-margin,
+  .detail-county-col-shift,
+  .detail-county-col-votes,
+  .detail-county-col-in {
+    width: auto !important;
+  }
+
+  .detail-county-board-head {
+    display: grid !important;
+    gap: 14px !important;
+    padding: 16px 16px 12px !important;
+  }
+
+  .detail-county-toolbar,
+  .detail-county-sort {
+    width: 100% !important;
+  }
+
+  .detail-county-sort {
+    justify-content: space-between !important;
+  }
+
+  .detail-county-sort-button {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+  }
+
+  .detail-map-card {
+    gap: 12px !important;
+  }
+
+  .detail-map-head {
+    gap: 12px !important;
+  }
+
+  .detail-map-head h3 {
+    font-size: 24px !important;
+  }
+
+  .detail-map-canvas,
+  .senate-detail-map-canvas,
+  .house-detail-map-canvas {
+    min-height: 340px !important;
+    height: 360px !important;
+  }
+
+  .detail-map-canvas.state-election-map-canvas {
+    height: 300px !important;
+  }
+
+  .detail-map-legend-row,
+  .detail-map-legend-scale {
+    grid-template-columns: 40px repeat(4, 20px) !important;
+  }
+
+  .detail-map-swatch {
+    height: 14px !important;
+  }
+
+  .map-mode-toggle,
+  .state-election-map-mode-toggle {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .map-mode-toggle button,
+  .state-election-map-mode-toggle button {
+    min-width: 0 !important;
+    padding-inline: 12px !important;
+  }
+
+  .state-results-controls {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .district-search,
+  .district-search-input,
+  .district-filter-select,
+  .state-results-sort,
+  .state-results-sort-toggle {
+    width: 100% !important;
+  }
+
+  .state-results-sort {
+    align-items: stretch !important;
+  }
+
+  .state-results-sort-toggle {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .state-results-sort-button {
+    min-width: 0 !important;
+    white-space: normal !important;
+  }
+
+  .state-results-board {
+    padding: 14px !important;
+  }
+
+  .state-results-grid,
+  .state-results-grid.house-results-grid,
+  .state-results-grid.governor-results-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .state-results-table,
+  .house-results-layout .state-results-table {
+    min-width: 420px !important;
+    table-layout: fixed !important;
+  }
+
+  .house-results-layout .state-results-table th:first-child,
+  .house-results-layout .state-results-table td:first-child,
+  .state-results-table th:first-child,
+  .state-results-table td:first-child {
+    width: auto !important;
+  }
+
+  .house-results-layout .state-results-table th:nth-child(2),
+  .house-results-layout .state-results-table td:nth-child(2),
+  .state-results-table th:nth-child(2),
+  .state-results-table td:nth-child(2) {
+    width: 112px !important;
+  }
+
+  .house-results-layout .state-results-table th:nth-child(3),
+  .house-results-layout .state-results-table td:nth-child(3),
+  .state-results-table th:nth-child(3),
+  .state-results-table td:nth-child(3) {
+    width: 64px !important;
+  }
+
+  .margin-box,
+  .house-results-layout .margin-box {
+    width: auto !important;
+    min-width: 84px !important;
+    max-width: 104px !important;
+    padding: 6px 8px !important;
+    white-space: normal !important;
+  }
+
+  .state-election-house-table {
+    min-width: 560px !important;
+  }
+
+  .state-election-house-table th,
+  .state-election-house-table td {
+    white-space: nowrap !important;
+  }
+
+  .state-election-house-candidate-name {
+    white-space: nowrap !important;
+  }
+
+  .state-election-jump-nav {
+    display: flex !important;
+    overflow-x: auto !important;
+    padding-bottom: 4px !important;
+    white-space: nowrap !important;
+  }
+
+  .state-election-jump-nav a {
+    flex: 0 0 auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .detail-heading h1,
+  .state-election-hero h1 {
+    font-size: clamp(30px, 11vw, 40px) !important;
+  }
+
+  .detail-summary-hero {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .detail-summary-portrait {
+    justify-self: start !important;
+  }
+
+  .detail-stat-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .detail-map-canvas,
+  .senate-detail-map-canvas,
+  .house-detail-map-canvas {
+    height: 330px !important;
+    min-height: 320px !important;
+  }
+
+  .detail-map-canvas.state-election-map-canvas {
+    height: 280px !important;
+  }
+
+  .detail-vote-table {
+    min-width: 500px !important;
+  }
+
+  .detail-county-board-table {
+    min-width: 0 !important;
+  }
+
+  .state-results-table,
+  .house-results-layout .state-results-table {
+    min-width: 400px !important;
+  }
+
+  .state-election-house-table {
+    min-width: 540px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .byline {
+    font-size: 13px !important;
+    letter-spacing: 0.04em !important;
+    line-height: 1.25 !important;
+    margin: -4px 0 14px !important;
+    text-transform: none !important;
+    word-spacing: 0 !important;
+  }
+}
+
+.article-placeholder.article-body {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .ev-bar-top {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    align-items: end !important;
+    gap: 12px !important;
+  }
+
+  .ev-side-left {
+    grid-column: 1 !important;
+    justify-content: flex-start !important;
+    justify-self: start !important;
+  }
+
+  .ev-side-right {
+    grid-column: 2 !important;
+    justify-content: flex-end !important;
+    justify-self: end !important;
+  }
+
+  .ev-side-meta {
+    min-width: 0 !important;
+  }
+
+  .ev-name {
+    max-width: 100% !important;
+  }
+
+  .ev-bar-bottom {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    gap: 4px 12px !important;
+    margin-top: 8px !important;
+  }
+
+  .ev-total-votes {
+    grid-column: 1 / -1 !important;
+    grid-row: 1 !important;
+    justify-self: center !important;
+  }
+
+  .ev-vote-line-left {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    text-align: left !important;
+  }
+
+  .ev-vote-line-right {
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    text-align: right !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .ev-name {
+    font-size: 12px !important;
+  }
+
+  .ev-vote-line {
+    font-size: 9px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .site-shell {
+    width: min(100vw - 40px, 1280px) !important;
+  }
+
+  .section-nav a {
+    align-items: center !important;
+    display: inline-flex !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    min-height: 44px !important;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  #senate-state-results .panel-heading-note {
+    display: block !important;
+    font-size: 13px !important;
+    letter-spacing: 0 !important;
+    line-height: 1.35 !important;
+    margin-top: 6px !important;
+    text-transform: none !important;
+  }
+
+  #house-results .panel-heading-note {
+    display: block !important;
+    font-size: 13px !important;
+    letter-spacing: 0 !important;
+    line-height: 1.35 !important;
+    margin-top: 6px !important;
+    text-transform: none !important;
+  }
+
+  #house-results .state-results-controls {
+    margin-top: 16px !important;
+  }
+
+  #senate-state-results .state-results-sort {
+    margin-top: 12px !important;
+  }
+
+  .detail-county-board-table-wrap {
+    margin-top: 14px !important;
+  }
+
+  .detail-county-board-head {
+    justify-items: start !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .detail-county-toolbar,
+  .detail-county-sort {
+    justify-self: start !important;
+    width: auto !important;
+  }
+
+  .detail-county-sort {
+    justify-content: flex-start !important;
+  }
+
+  .detail-county-sort-button {
+    flex: 0 0 auto !important;
+  }
+
+  .election-package-header {
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .election-package-toggle {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .election-package-toggle[aria-expanded="true"] {
+    background: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
   }
 }
