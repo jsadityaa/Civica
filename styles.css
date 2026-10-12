@@ -21659,22 +21659,23 @@ html:not([data-theme="dark"]) .brazil-state-legislature-tile {
     justify-self: end;
     display: inline-flex;
     align-items: center;
-    gap: 3px;
+    gap: 6px;
     width: fit-content;
-    margin: 8px 0 0 auto;
-    padding: 2px;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    background: rgba(13, 17, 24, 0.78);
-    backdrop-filter: blur(10px);
+    margin: 6px 0 0 auto;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    backdrop-filter: none;
   }
 
   .national-map-shell.mobile-map-zoom-card {
     display: grid !important;
-    gap: 8px !important;
+    gap: 6px !important;
     height: auto !important;
+    min-height: 0 !important;
     overflow: hidden !important;
-    padding-bottom: 8px !important;
+    padding-bottom: 6px !important;
   }
 
   .national-map-shell.mobile-map-zoom-card > svg.mobile-map-zoom-target {
@@ -21695,12 +21696,11 @@ html:not([data-theme="dark"]) .brazil-state-legislature-tile {
   }
 
   .national-map-shell.mobile-map-zoom-card > .mobile-map-zoom-controls {
-    margin: 0 8px 0 auto;
+    margin: 0 6px 0 auto;
   }
 
   html:not([data-theme="dark"]) .mobile-map-zoom-controls {
-    border-color: rgba(15, 23, 42, 0.12);
-    background: rgba(255, 255, 255, 0.62);
+    background: transparent;
   }
 
   .mobile-map-zoom-controls button {
