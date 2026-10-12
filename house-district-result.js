@@ -1699,7 +1699,6 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
     return `
       <div class="tooltip-header">
         <div class="tooltip-title">${title}</div>
-        <div class="tooltip-ev">${row.marginLabel}</div>
       </div>
       <table>
         <thead>

@@ -2046,10 +2046,23 @@ async function stateElectionInit() {
     senateSection.style.display = "none";
   }
 
+  const houseSection = document.getElementById("state-election-house");
+  const houseJump = document.getElementById("state-election-house-jump");
   const houseDistricts = stateElectionGetHouseDistricts(stateName);
-  stateElectionHouseListState.limit = STATE_ELECTION_HOUSE_PREVIEW_LIMIT;
-  stateElectionRenderHouseList(houseDistricts);
-  stateElectionRenderHouseDistrictMap(stateName, houseDistricts);
+  const hasHouseResults = stateName !== "District of Columbia" && houseDistricts.length > 0;
+  if (houseJump) houseJump.hidden = !hasHouseResults;
+  if (hasHouseResults) {
+    if (houseSection) {
+      houseSection.hidden = false;
+      houseSection.style.display = "";
+    }
+    stateElectionHouseListState.limit = STATE_ELECTION_HOUSE_PREVIEW_LIMIT;
+    stateElectionRenderHouseList(houseDistricts);
+    stateElectionRenderHouseDistrictMap(stateName, houseDistricts);
+  } else if (houseSection) {
+    houseSection.hidden = true;
+    houseSection.style.display = "none";
+  }
 }
 
 stateElectionInit();

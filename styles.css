@@ -2250,10 +2250,10 @@ html:not([data-theme="dark"]) .state-election-detail-button:focus-visible {
 }
 
 .state-election-house-table-wrap {
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid var(--border);
   border-radius: 16px;
   overflow: hidden;
-  background: rgba(255,255,255,0.025);
+  background: var(--panel);
 }
 
 .state-election-house-table {
@@ -2291,7 +2291,7 @@ html:not([data-theme="dark"]) .state-election-detail-button:focus-visible {
 }
 
 .state-election-house-table td {
-  border-top: 1px solid rgba(255,255,255,0.07);
+  border-top: 1px solid var(--border);
   padding: 0;
   vertical-align: middle;
 }
@@ -2389,6 +2389,42 @@ html:not([data-theme="dark"]) .state-election-detail-button:focus-visible {
 .state-election-house-candidate--runner {
   color: rgba(244,247,251,0.88);
   background: rgba(255,255,255,0.018);
+}
+
+html:not([data-theme="dark"]) .state-election-house-table-wrap {
+  border-color: rgba(15, 23, 42, 0.14);
+  background: rgba(255, 255, 255, 0.76);
+}
+
+html:not([data-theme="dark"]) .state-election-house-table th {
+  background: rgba(15, 23, 42, 0.045);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.14);
+}
+
+html:not([data-theme="dark"]) .state-election-house-row {
+  background: rgba(255, 255, 255, 0.58);
+}
+
+html:not([data-theme="dark"]) .state-election-house-row:hover,
+html:not([data-theme="dark"]) .state-election-house-row:focus-visible {
+  background: rgba(15, 23, 42, 0.045);
+}
+
+html:not([data-theme="dark"]) .state-election-house-table td {
+  border-top-color: rgba(15, 23, 42, 0.13);
+}
+
+html:not([data-theme="dark"]) .state-election-house-candidate--runner {
+  color: rgba(15, 23, 42, 0.82);
+  background: rgba(15, 23, 42, 0.035);
+}
+
+html:not([data-theme="dark"]) .state-election-house-party {
+  color: rgba(15, 23, 42, 0.62);
+}
+
+html:not([data-theme="dark"]) .state-election-house-candidate--winner .state-election-house-party {
+  color: rgba(255, 255, 255, 0.74);
 }
 
 .state-election-house-candidate-name {
@@ -20899,22 +20935,51 @@ html:not([data-theme="dark"]) .brazil-state-legislature-tile {
   }
 
   .state-election-page {
-    gap: 14px !important;
+    gap: 10px !important;
   }
 
   .state-election-hero {
-    padding-bottom: 4px !important;
+    padding-bottom: 0 !important;
   }
 
   .state-election-jump-nav {
-    margin: 10px 0 0 !important;
+    margin: 12px 0 0 !important;
   }
 
   .state-election-section {
-    gap: 12px !important;
+    gap: 14px !important;
+    padding-top: 6px !important;
   }
 
-  .state-election-section .section-heading {
+  .state-election-section .section-heading,
+  .state-election-section .panel-heading {
+    margin-bottom: 0 !important;
+  }
+
+  .state-election-section .panel-heading h2 {
+    margin: 0 !important;
+  }
+
+  .state-election-page > .state-election-hero {
+    display: grid !important;
+    gap: 18px !important;
+  }
+
+  .state-election-page > .state-election-section {
+    margin-top: 0 !important;
+  }
+
+  .state-election-page > .state-election-section + .state-election-section {
+    margin-top: 14px !important;
+  }
+
+  .state-election-page #state-election-presidential {
+    margin-top: 2px !important;
+  }
+
+  .state-election-page #state-election-presidential .panel-heading,
+  .state-election-page #state-election-senate .panel-heading,
+  .state-election-page #state-election-house .panel-heading {
     margin-bottom: 0 !important;
   }
 
@@ -20928,7 +20993,7 @@ html:not([data-theme="dark"]) .brazil-state-legislature-tile {
   }
 
   .state-election-result-card {
-    gap: 14px !important;
+    gap: 16px !important;
   }
 
   .state-election-result-card h3 {
@@ -21564,6 +21629,22 @@ html:not([data-theme="dark"]) .brazil-state-legislature-tile {
     background: transparent !important;
     border-color: transparent !important;
     box-shadow: none !important;
+  }
+
+  .state-election-page > .state-election-hero {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .state-election-page > .state-election-hero h1,
+  .state-election-page > .state-election-hero .state-election-jump-nav {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .state-election-district-toggle {
+    margin-top: 2px !important;
+    padding: 10px 14px 12px !important;
   }
 }
 
