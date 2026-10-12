@@ -21092,6 +21092,42 @@ html:not([data-theme="dark"]) .brazil-state-legislature-tile {
     padding: 14px !important;
   }
 
+  .state-results-hub-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  .state-results-shape-card {
+    grid-template-rows: 76px auto auto auto !important;
+    gap: 6px !important;
+    min-height: 178px !important;
+    padding: 10px !important;
+  }
+
+  .state-results-shape-card__shape,
+  .state-results-shape-card__shape-fallback {
+    min-height: 76px !important;
+  }
+
+  .state-results-shape-card__svg {
+    height: 76px !important;
+  }
+
+  .state-results-shape-card__name {
+    font-size: 16px !important;
+  }
+
+  .state-results-shape-card__meta,
+  .state-results-shape-card__links span {
+    font-size: 10px !important;
+    line-height: 1.2 !important;
+  }
+
+  .state-results-shape-card__links {
+    gap: 3px !important;
+    padding-top: 6px !important;
+  }
+
   .state-results-grid,
   .state-results-grid.house-results-grid,
   .state-results-grid.governor-results-grid {
@@ -21200,6 +21236,14 @@ html:not([data-theme="dark"]) .brazil-state-legislature-tile {
   .state-results-table,
   .house-results-layout .state-results-table {
     min-width: 0 !important;
+  }
+
+  .state-results-hub-grid {
+    gap: 8px !important;
+  }
+
+  .state-results-shape-card {
+    padding: 9px !important;
   }
 
   .state-election-house-table {
