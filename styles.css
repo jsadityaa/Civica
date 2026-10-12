@@ -3419,6 +3419,19 @@ html:not([data-theme="dark"]) .detail-summary-card.winner-ind .detail-summary-he
   display: block;
 }
 
+.mobile-map-zoom-controls {
+  display: none;
+}
+
+.mobile-map-zoom-target {
+  touch-action: pan-y;
+}
+
+.detail-map-canvas:has(> .mobile-map-zoom-controls),
+.national-map-shell:has(> .mobile-map-zoom-controls) {
+  position: relative;
+}
+
 .detail-county-shape {
   stroke: rgba(255,255,255,0.55);
   stroke-width: 0.7px;
@@ -21645,6 +21658,52 @@ html:not([data-theme="dark"]) .brazil-state-legislature-tile {
   .state-election-district-toggle {
     margin-top: 2px !important;
     padding: 10px 14px 12px !important;
+  }
+
+  .mobile-map-zoom-controls {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    z-index: 6;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: rgba(13, 17, 24, 0.78);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(10px);
+  }
+
+  html:not([data-theme="dark"]) .mobile-map-zoom-controls {
+    background: rgba(255, 255, 255, 0.82);
+  }
+
+  .mobile-map-zoom-controls button {
+    min-width: 34px;
+    height: 34px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #f8fafc;
+    cursor: pointer;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 1;
+    padding: 0 10px;
+  }
+
+  html:not([data-theme="dark"]) .mobile-map-zoom-controls button {
+    background: rgba(15, 23, 42, 0.08);
+    color: #0f172a;
+  }
+
+  .mobile-map-zoom-controls button[data-map-zoom="reset"] {
+    min-width: 52px;
+    font-size: 11px;
+    letter-spacing: 0.01em;
   }
 }
 
