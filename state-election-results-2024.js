@@ -2024,6 +2024,7 @@ async function stateElectionInit() {
   const senateMapCard = document.getElementById("state-election-senate-map-card");
   if (senateJump) senateJump.hidden = !senateRace;
   if (senateRace) {
+    if (senateSection) senateSection.style.display = "";
     stateElectionRenderSenateSummary(stateName, senateRace);
     if (senateMapCard) {
       senateMapCard.hidden = hideMaps;
@@ -2042,6 +2043,7 @@ async function stateElectionInit() {
     }
   } else if (senateSection) {
     senateSection.hidden = true;
+    senateSection.style.display = "none";
   }
 
   const houseDistricts = stateElectionGetHouseDistricts(stateName);
