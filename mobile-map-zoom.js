@@ -67,6 +67,7 @@
 
     svg.addEventListener("pointerdown", (event) => {
       if (!mobileQuery.matches || event.pointerType === "mouse") return;
+      event.preventDefault();
       svg.setPointerCapture?.(event.pointerId);
       dragStart = {
         point: pointFromEvent(event),
@@ -76,6 +77,7 @@
 
     svg.addEventListener("pointermove", (event) => {
       if (!dragStart || !mobileQuery.matches || event.pointerType === "mouse") return;
+      event.preventDefault();
       const point = pointFromEvent(event);
       const rect = svg.getBoundingClientRect();
       const dx = ((dragStart.point.x - point.x) / rect.width) * dragStart.box.width;
@@ -122,7 +124,11 @@
 
   function createControls(svg, state) {
     const parent = svg.parentElement;
-    if (!parent || parent.querySelector(":scope > .mobile-map-zoom-controls")) return;
+    const controlsBelongInsideParent = parent?.classList.contains("national-map-shell");
+    const controlsExist = controlsBelongInsideParent
+      ? parent.querySelector(":scope > .mobile-map-zoom-controls")
+      : parent?.nextElementSibling?.classList.contains("mobile-map-zoom-controls");
+    if (!parent || controlsExist) return;
 
     const controls = document.createElement("div");
     controls.className = "mobile-map-zoom-controls";
@@ -140,7 +146,12 @@
       if (action === "out") zoom(svg, state, 1 / 1.35);
       if (action === "reset") reset(svg, state);
     });
-    parent.appendChild(controls);
+    if (controlsBelongInsideParent) {
+      parent.classList.add("mobile-map-zoom-card");
+      parent.appendChild(controls);
+    } else {
+      parent.insertAdjacentElement("afterend", controls);
+    }
   }
 
   function setupMap(svg) {

@@ -1021,8 +1021,8 @@ function stateElectionRenderPresidentialSummary(stateName) {
   if (!body) return;
 
   const rows = [
-    { name: "Donald Trump", party: "Rep.", votes: result.rV, pct: `${result.rP}%`, winner: winnerName === "Donald Trump", tone: "rep" },
-    { name: "Kamala Harris", party: "Dem.", votes: result.dV, pct: `${result.dP}%`, winner: winnerName === "Kamala Harris", tone: "dem" }
+    { name: "Donald Trump", party: "Republican", votes: result.rV, pct: `${result.rP}%`, winner: winnerName === "Donald Trump", tone: "rep" },
+    { name: "Kamala Harris", party: "Democrat", votes: result.dV, pct: `${result.dP}%`, winner: winnerName === "Kamala Harris", tone: "dem" }
   ].sort((a, b) => stateElectionNumberFromVoteString(b.votes) - stateElectionNumberFromVoteString(a.votes));
 
   body.innerHTML = rows.map((row) => `

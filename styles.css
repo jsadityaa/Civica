@@ -3424,12 +3424,7 @@ html:not([data-theme="dark"]) .detail-summary-card.winner-ind .detail-summary-he
 }
 
 .mobile-map-zoom-target {
-  touch-action: pan-y;
-}
-
-.detail-map-canvas:has(> .mobile-map-zoom-controls),
-.national-map-shell:has(> .mobile-map-zoom-controls) {
-  position: relative;
+  touch-action: none;
 }
 
 .detail-county-shape {
@@ -21661,35 +21656,63 @@ html:not([data-theme="dark"]) .brazil-state-legislature-tile {
   }
 
   .mobile-map-zoom-controls {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    z-index: 6;
+    justify-self: end;
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    padding: 4px;
+    gap: 3px;
+    width: fit-content;
+    margin: 8px 0 0 auto;
+    padding: 2px;
     border: 1px solid var(--border);
     border-radius: 999px;
     background: rgba(13, 17, 24, 0.78);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
     backdrop-filter: blur(10px);
   }
 
+  .national-map-shell.mobile-map-zoom-card {
+    display: grid !important;
+    gap: 8px !important;
+    height: auto !important;
+    overflow: hidden !important;
+    padding-bottom: 8px !important;
+  }
+
+  .national-map-shell.mobile-map-zoom-card > svg.mobile-map-zoom-target {
+    width: 100% !important;
+    height: 300px !important;
+    min-height: 0 !important;
+  }
+
+  .house-map-shell.mobile-map-zoom-card > svg.mobile-map-zoom-target {
+    height: 360px !important;
+  }
+
+  .governor-map-shell.mobile-map-zoom-card > svg.mobile-map-zoom-target,
+  .senate-map-shell.mobile-map-zoom-card > svg.mobile-map-zoom-target,
+  .midterm-map-shell.mobile-map-zoom-card > svg.mobile-map-zoom-target,
+  .brazil-map-shell.mobile-map-zoom-card > svg.mobile-map-zoom-target {
+    height: 300px !important;
+  }
+
+  .national-map-shell.mobile-map-zoom-card > .mobile-map-zoom-controls {
+    margin: 0 8px 0 auto;
+  }
+
   html:not([data-theme="dark"]) .mobile-map-zoom-controls {
-    background: rgba(255, 255, 255, 0.82);
+    border-color: rgba(15, 23, 42, 0.12);
+    background: rgba(255, 255, 255, 0.62);
   }
 
   .mobile-map-zoom-controls button {
-    min-width: 34px;
-    height: 34px;
+    min-width: 30px;
+    height: 30px;
     border: 0;
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.12);
     color: #f8fafc;
     cursor: pointer;
     font: inherit;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 900;
     line-height: 1;
     padding: 0 10px;
@@ -21701,7 +21724,7 @@ html:not([data-theme="dark"]) .brazil-state-legislature-tile {
   }
 
   .mobile-map-zoom-controls button[data-map-zoom="reset"] {
-    min-width: 52px;
+    min-width: 48px;
     font-size: 11px;
     letter-spacing: 0.01em;
   }
