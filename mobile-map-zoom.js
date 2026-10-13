@@ -4,6 +4,14 @@
     ".detail-map-canvas > svg",
     ".national-map-shell > svg"
   ].join(",");
+  const tooltipTriggerSelector = [
+    "path",
+    "circle",
+    "rect",
+    "polygon",
+    "g"
+  ].join(",");
+  const tapMoveThreshold = 8;
 
   function parseViewBox(svg) {
     const raw = svg.getAttribute("viewBox");
@@ -61,17 +69,69 @@
     return Math.hypot(dx, dy);
   }
 
+  function hideTooltips() {
+    document.querySelectorAll(".tooltip").forEach((tooltip) => {
+      tooltip.style.opacity = 0;
+    });
+  }
+
+  function hasTooltipListener(element) {
+    return Array.isArray(element.__on)
+      && element.__on.some((listener) => listener.type === "mouseover" || listener.type === "mousemove");
+  }
+
+  function findTooltipTarget(svg, target) {
+    if (!(target instanceof Element)) return null;
+    let current = target;
+    while (current && current !== svg) {
+      if (hasTooltipListener(current)) return current;
+      current = current.parentElement;
+    }
+    const trigger = target.closest(tooltipTriggerSelector);
+    return trigger && svg.contains(trigger) && trigger !== svg ? trigger : null;
+  }
+
+  function dispatchTooltipEvent(target, type, event) {
+    target.dispatchEvent(new MouseEvent(type, {
+      bubbles: true,
+      cancelable: true,
+      clientX: event.clientX,
+      clientY: event.clientY,
+      screenX: event.screenX,
+      screenY: event.screenY,
+      view: window
+    }));
+  }
+
+  function showTooltipForTap(svg, event, target) {
+    const tooltipTarget = findTooltipTarget(svg, target);
+    if (!tooltipTarget) {
+      hideTooltips();
+      return;
+    }
+    hideTooltips();
+    dispatchTooltipEvent(tooltipTarget, "mouseover", event);
+    dispatchTooltipEvent(tooltipTarget, "mousemove", event);
+  }
+
   function enablePanAndPinch(svg, state) {
     let dragStart = null;
     let pinchStart = null;
+    let tapStart = null;
 
     svg.addEventListener("pointerdown", (event) => {
       if (!mobileQuery.matches || event.pointerType === "mouse") return;
       event.preventDefault();
       svg.setPointerCapture?.(event.pointerId);
+      const point = pointFromEvent(event);
       dragStart = {
-        point: pointFromEvent(event),
+        point,
         box: parseViewBox(svg) || state.base
+      };
+      tapStart = {
+        point,
+        target: event.target,
+        moved: false
       };
     });
 
@@ -79,6 +139,9 @@
       if (!dragStart || !mobileQuery.matches || event.pointerType === "mouse") return;
       event.preventDefault();
       const point = pointFromEvent(event);
+      if (tapStart && Math.hypot(point.x - tapStart.point.x, point.y - tapStart.point.y) > tapMoveThreshold) {
+        tapStart.moved = true;
+      }
       const rect = svg.getBoundingClientRect();
       const dx = ((dragStart.point.x - point.x) / rect.width) * dragStart.box.width;
       const dy = ((dragStart.point.y - point.y) / rect.height) * dragStart.box.height;
@@ -89,9 +152,18 @@
       }, state.base));
     });
 
-    ["pointerup", "pointercancel", "pointerleave"].forEach((eventName) => {
+    svg.addEventListener("pointerup", (event) => {
+      if (tapStart && !tapStart.moved && mobileQuery.matches && event.pointerType !== "mouse") {
+        showTooltipForTap(svg, event, tapStart.target);
+      }
+      dragStart = null;
+      tapStart = null;
+    });
+
+    ["pointercancel", "pointerleave"].forEach((eventName) => {
       svg.addEventListener(eventName, () => {
         dragStart = null;
+        tapStart = null;
       });
     });
 
@@ -168,6 +240,14 @@
   function init() {
     document.querySelectorAll(mapSelector).forEach(setupMap);
   }
+
+  document.addEventListener("pointerdown", (event) => {
+    if (!mobileQuery.matches || event.pointerType === "mouse") return;
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    if (target.closest(".mobile-map-zoom-target, .mobile-map-zoom-controls, .tooltip")) return;
+    hideTooltips();
+  }, { passive: true });
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
