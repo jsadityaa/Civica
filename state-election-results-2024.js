@@ -1955,11 +1955,9 @@ function stateElectionRenderHouseDistrictMap(stateName, districts) {
   const path = d3.geoPath(projection);
 
   svg.append("g")
-    .selectAll("a")
+    .selectAll("path")
     .data(features)
     .enter()
-    .append("a")
-    .attr("href", (feature) => stateElectionDistrictLink(feature.properties.code))
     .append("path")
     .attr("class", "state-election-district-shape")
     .attr("d", path)
