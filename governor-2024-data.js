@@ -180,7 +180,8 @@ window.GOVERNOR_2024_DATA = {
       "flipped": false,
       "candidates": [
         {
-          "name": "Spencer Cox (inc.)",
+          "name": "Spencer Cox",
+          "incumbent": true,
           "party": "Rep.",
           "pct": "52.9",
           "votes": "781,431",
@@ -209,7 +210,8 @@ window.GOVERNOR_2024_DATA = {
       "flipped": false,
       "candidates": [
         {
-          "name": "Phil Scott (inc.)",
+          "name": "Phil Scott",
+          "incumbent": true,
           "party": "Rep.",
           "pct": "73.4",
           "votes": "266,439",

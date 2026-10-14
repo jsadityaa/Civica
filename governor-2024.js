@@ -1,6 +1,6 @@
 const governorData = window.GOVERNOR_2024_DATA;
 
-if (governorData && document.getElementById("governor-dem-count")) {
+if (governorData && document.getElementById("governor-election-map")) {
   const governorMapSvg = d3.select("#governor-election-map");
   const governorTooltip = d3.select("#governor-map-tooltip");
   const stateAbbreviations = {
@@ -22,7 +22,12 @@ if (governorData && document.getElementById("governor-dem-count")) {
     "North Carolina": [10, 6],
     "West Virginia": [-8, 8],
     "Vermont": [25, -6],
-    "Washington": [-10, 2]
+    "Washington": [8, 2]
+  };
+
+  const mapLabelOverrides = {
+    "New Hampshire": "VT",
+    "Vermont": "NH"
   };
 
   const raceLookup = new Map(governorData.races.map((race) => [race.state, race]));
@@ -40,7 +45,7 @@ if (governorData && document.getElementById("governor-dem-count")) {
   }
 
   function governorCountyHref(stateName) {
-    return `/governor-county-result?name=${encodeURIComponent(stateName)}`;
+    return `./governor-county-result.html?name=${encodeURIComponent(stateName)}`;
   }
 
   function tooltipHTML(stateName) {
@@ -120,13 +125,21 @@ if (governorData && document.getElementById("governor-dem-count")) {
 
   function renderSummary() {
     const summary = governorData.summary;
-    document.getElementById("governor-dem-count").textContent = summary.demWins;
-    document.getElementById("governor-rep-count").textContent = summary.repWins;
-    document.getElementById("governor-bar-dem").style.flex = String(summary.demWins);
-    document.getElementById("governor-bar-rep").style.flex = String(summary.repWins);
-    document.getElementById("governor-votes-dem").textContent = `${summary.demWins} Democratic wins`;
-    document.getElementById("governor-votes-total").textContent = `${summary.totalRaces} governor races settled in 2024`;
-    document.getElementById("governor-votes-rep").textContent = `${summary.repWins} Republican wins`;
+    const demCount = document.getElementById("governor-dem-count");
+    const repCount = document.getElementById("governor-rep-count");
+    const demBar = document.getElementById("governor-bar-dem");
+    const repBar = document.getElementById("governor-bar-rep");
+    const demVotes = document.getElementById("governor-votes-dem");
+    const totalVotes = document.getElementById("governor-votes-total");
+    const repVotes = document.getElementById("governor-votes-rep");
+
+    if (demCount) demCount.textContent = summary.demWins;
+    if (repCount) repCount.textContent = summary.repWins;
+    if (demBar) demBar.style.flex = String(summary.demWins);
+    if (repBar) repBar.style.flex = String(summary.repWins);
+    if (demVotes) demVotes.textContent = `${summary.demWins} Democratic wins`;
+    if (totalVotes) totalVotes.textContent = `${summary.totalRaces} governor races settled in 2024`;
+    if (repVotes) repVotes.textContent = `${summary.repWins} Republican wins`;
   }
 
   function renderRaceBoard() {
@@ -288,7 +301,7 @@ if (governorData && document.getElementById("governor-dem-count")) {
         .attr("class", "map-label")
         .attr("x", (feature) => path.centroid(feature)[0] + (labelAdjustments[feature.properties.name]?.[0] || 0))
         .attr("y", (feature) => path.centroid(feature)[1] + (labelAdjustments[feature.properties.name]?.[1] || 0))
-        .text((feature) => raceLookup.has(feature.properties.name) ? (stateAbbreviations[feature.properties.name] || "") : "");
+        .text((feature) => raceLookup.has(feature.properties.name) ? (mapLabelOverrides[feature.properties.name] || stateAbbreviations[feature.properties.name] || "") : "");
     });
   }
 

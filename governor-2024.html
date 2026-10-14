@@ -73,9 +73,10 @@
     </div>
 
     <header class="site-header">
-      <h1>2024 Governor Elections</h1>
+      <h1>2024 U.S. Gubernatorial Elections</h1>
       <nav class="section-nav" aria-label="Page sections">
         <a href="#governor-map-section">National Map</a>
+        <a href="#state-results">Results by State</a>
       </nav>
     </header>
 
@@ -86,48 +87,17 @@
             <h2>National Map</h2>
           </div>
         </div>
-        <div class="ev-bar-card" aria-label="Governor race win totals">
-          <div class="ev-bar-top">
-            <div class="ev-side ev-side-left">
-              <div class="ev-side-meta">
-                <span class="ev-count" id="governor-dem-count">3</span>
-                <span class="ev-name">Democrats</span>
-              </div>
-            </div>
-            <div class="ev-side ev-side-right">
-              <div class="ev-side-meta ev-side-meta-right">
-                <span class="ev-count" id="governor-rep-count">8</span>
-                <span class="ev-name">Republicans</span>
-              </div>
-            </div>
-          </div>
-          <div class="ev-bar-wrap">
-            <div class="ev-bar-center-label">
-              <strong>11</strong>
-              <span>races</span>
-            </div>
-            <div class="ev-bar-center-tick" aria-hidden="true"></div>
-            <div class="ev-bar-track">
-              <div class="ev-bar-fill ev-bar-dem" id="governor-bar-dem"></div>
-              <div class="ev-bar-fill ev-bar-rep" id="governor-bar-rep"></div>
-            </div>
-          </div>
-          <div class="ev-bar-bottom">
-            <span class="ev-vote-line ev-vote-line-left" id="governor-votes-dem">3 Democratic wins</span>
-            <span class="ev-total-votes" id="governor-votes-total">11 governor races settled in 2024</span>
-            <span class="ev-vote-line ev-vote-line-right" id="governor-votes-rep">8 Republican wins</span>
-          </div>
-        </div>
-
         <div class="map-legend" aria-label="Governor map legend">
           <div class="legend-group">
             <span class="legend-title">Dem.</span>
             <div class="legend-stack">
               <div class="legend-swatches">
                 <span class="legend-swatch dem-win"></span>
+                <span class="legend-swatch dem-flip"></span>
               </div>
               <div class="legend-subtext">
                 <span>Win</span>
+                <span>Flip</span>
               </div>
             </div>
           </div>
@@ -154,7 +124,13 @@
         </div>
       </section>
 
-      <section class="content-panel governor-forecast-panel" aria-label="2024 governor race groups">
+      <section id="state-results" class="content-panel governor-forecast-panel" aria-label="2024 governor race groups">
+        <div class="panel-heading panel-heading-inline">
+          <div>
+            <h2>Results by State</h2>
+            <span class="panel-heading-note">Click a state name to open its Governor result page</span>
+          </div>
+        </div>
         <div class="state-results-board governor-forecast-board" id="governor-forecast-board"></div>
       </section>
 
@@ -187,8 +163,8 @@
   <script src="./mobile-map-zoom.js?v=20261012-mobile-map-tooltips"></script>
   <script src="./auth-config.js?v=20261011-polycivic-auth-domain-2"></script>
   <script src="./auth.js?v=20261011-mobile-redirect-3"></script>
-  <script src="./governor-2024-data.js?v=20261008-candidate-images"></script>
-  <script src="./governor-2024.js?v=20260916-1"></script>
+  <script src="./governor-2024-data.js?v=20261012-incumbent-pill"></script>
+  <script src="./governor-2024.js?v=20261012-governor-local-state-links"></script>
   <script src="./nav-dropdown.js"></script>
 </body>
 </html>

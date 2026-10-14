@@ -1259,6 +1259,10 @@ html:not([data-theme="dark"]) .national-lead-bubble.dem {
   white-space: nowrap;
 }
 
+.detail-candidate-cell .tooltip-incumbent {
+  margin-left: 2px;
+}
+
 .tooltip-candidate-bar {
   width: 4px;
   height: 16px;
@@ -5453,7 +5457,6 @@ html[data-theme="dark"] .team-page .team-page__bio {
 }
 
 .election-card.featured {
-  grid-column: 1 / -1;
   background:
     radial-gradient(circle at top left, rgba(40,121,181,0.12), transparent 35%),
     linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
@@ -5582,7 +5585,6 @@ html:not([data-theme="dark"]) .card-tag {
 }
 
 .forecast-release-card {
-  min-height: 148px;
   padding: 22px;
 }
 
@@ -5592,7 +5594,7 @@ html:not([data-theme="dark"]) .card-tag {
 }
 
 .forecast-release-card h3 {
-  font-size: clamp(28px, 3.2vw, 40px);
+  font-size: clamp(22px, 2.4vw, 30px);
 }
 
 .forecast-release-card p {
@@ -5600,6 +5602,229 @@ html:not([data-theme="dark"]) .card-tag {
   font-size: clamp(16px, 1.5vw, 19px);
   font-weight: 700;
   line-height: 1.45;
+}
+
+.forecast-detail-panel {
+  display: grid;
+  gap: 18px;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 14% 10%, rgba(40, 121, 181, 0.18), transparent 34%),
+    radial-gradient(circle at 86% 14%, rgba(207, 47, 47, 0.16), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01)),
+    var(--panel);
+}
+
+.forecast-detail-body {
+  max-width: 920px;
+}
+
+.forecast-candidate-showcase {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.forecast-candidate-card {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  align-items: stretch;
+  min-height: 210px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.forecast-candidate-card--dem {
+  border-color: rgba(40, 121, 181, 0.72);
+  background: #2879b5;
+}
+
+.forecast-candidate-card--rep {
+  border-color: rgba(207, 47, 47, 0.72);
+  background: #cf2f2f;
+}
+
+.forecast-party-card {
+  grid-template-columns: 1fr;
+}
+
+.forecast-party-card .forecast-candidate-copy {
+  min-height: 210px;
+}
+
+.forecast-candidate-portrait {
+  width: 100%;
+  height: 100%;
+  min-height: 210px;
+  object-fit: cover;
+}
+
+.forecast-candidate-copy {
+  display: grid;
+  align-content: center;
+  gap: 10px;
+  padding: 20px;
+}
+
+.forecast-candidate-label {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.forecast-candidate-copy h3 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(28px, 3.2vw, 44px);
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+}
+
+.forecast-candidate-copy p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.forecast-candidate-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.forecast-candidate-metrics div,
+.forecast-margin-strip div {
+  display: grid;
+  gap: 4px;
+}
+
+.forecast-candidate-metrics div {
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.14);
+}
+
+.forecast-candidate-metrics span,
+.forecast-margin-strip span {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.forecast-candidate-metrics strong {
+  color: #fff;
+  font-size: clamp(24px, 2.6vw, 38px);
+  line-height: 0.95;
+}
+
+.forecast-margin-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  max-width: 920px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--border);
+}
+
+.forecast-margin-strip div {
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.forecast-margin-strip strong {
+  color: var(--text);
+  font-size: clamp(24px, 3vw, 42px);
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.forecast-margin-strip strong.forecast-margin-highlight {
+  color: #9ec6e6;
+  text-shadow: 0 0 22px rgba(40, 121, 181, 0.32);
+}
+
+.forecast-margin-strip strong.forecast-margin-highlight--rep {
+  color: #f28f8f;
+  text-shadow: 0 0 22px rgba(207, 47, 47, 0.32);
+}
+
+.forecast-archive-card {
+  display: grid;
+  gap: 16px;
+}
+
+.forecast-result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 760px;
+}
+
+.forecast-result-box {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.forecast-result-box span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.forecast-result-box strong {
+  color: var(--text);
+  font-size: clamp(17px, 1.8vw, 22px);
+  line-height: 1.15;
+}
+
+html:not([data-theme="dark"]) .forecast-result-box {
+  border-color: rgba(15, 23, 42, 0.09);
+  background: rgba(255, 255, 255, 0.58);
+}
+
+html:not([data-theme="dark"]) .forecast-detail-panel {
+  background:
+    radial-gradient(circle at 14% 10%, rgba(40, 121, 181, 0.13), transparent 34%),
+    radial-gradient(circle at 86% 14%, rgba(207, 47, 47, 0.11), transparent 34%),
+    rgba(255, 255, 255, 0.78);
+}
+
+html:not([data-theme="dark"]) .forecast-margin-strip div {
+  background: rgba(255, 255, 255, 0.72);
+}
+
+html:not([data-theme="dark"]) .forecast-margin-strip span {
+  color: #5f6b7c;
+}
+
+html:not([data-theme="dark"]) .forecast-margin-strip strong.forecast-margin-highlight {
+  color: #2879b5;
+  text-shadow: none;
+}
+
+html:not([data-theme="dark"]) .forecast-margin-strip strong.forecast-margin-highlight--rep {
+  color: #cf2f2f;
 }
 
 .news-placeholder-list {
@@ -7155,6 +7380,36 @@ html:not([data-theme="dark"]) .map-context-note {
     flex: 1 1 0;
     padding: 9px 10px;
     font-size: 13px;
+  }
+
+  .forecast-result-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .forecast-candidate-showcase,
+  .forecast-margin-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .forecast-candidate-card {
+    grid-template-columns: 112px minmax(0, 1fr);
+    min-height: 180px;
+  }
+
+  .forecast-candidate-portrait {
+    min-height: 180px;
+  }
+
+  .forecast-candidate-copy {
+    padding: 16px;
+  }
+
+  .forecast-candidate-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .forecast-candidate-metrics strong {
+    font-size: 26px;
   }
 
   .elections-search {

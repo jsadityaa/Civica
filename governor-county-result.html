@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); if (localStorage.getItem('datahub-dyslexic-ui') === 'true') document.documentElement.setAttribute('data-dyslexic', 'true'); } catch (e) {} })();</script>
-  <link rel="stylesheet" href="./styles.css?v=20261009-no-map-captions" />
+  <link rel="stylesheet" href="./styles.css?v=20261012-governor-incumbent-pill" />
   <script src="./analytics.js?v=20261011-ga4"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TTQG0NLH31"></script>
 </head>
@@ -82,6 +82,7 @@
         </div>
 
         <div class="detail-grid">
+          <div class="detail-main-column">
           <section class="detail-summary-card detail-summary-main" id="detail-summary-card">
             <div class="detail-summary-hero" id="detail-summary-hero">
               <div class="detail-summary-copy">
@@ -123,47 +124,45 @@
               <div class="detail-certified-note" id="detail-certified-note">Total votes reported.</div>
             </div>
 
-            <section class="detail-county-board" id="detail-county-board">
-              <div class="detail-county-board-head">
-                <div>
-                  <h2>County Results</h2>
-                  <p id="detail-county-board-note">County margins in the 2024 governor race.</p>
-                </div>
-                <div class="detail-county-toolbar" id="detail-county-toolbar">
-                  <div class="detail-county-sort" role="group" aria-label="Sort county results">
-                    <button class="detail-county-sort-button is-active" type="button" data-sort="votes">Votes</button>
-                    <button class="detail-county-sort-button" type="button" data-sort="margin">Margin</button>
-                    <button class="detail-county-sort-button" type="button" data-sort="alphabetical">A-Z</button>
-                  </div>
-                  <div class="detail-county-limit" role="group" aria-label="County result count">
-                    <button class="detail-county-limit-button is-active" type="button" data-limit="25">Top 25</button>
-                    <button class="detail-county-limit-button" type="button" data-limit="all">All</button>
-                  </div>
-                </div>
-              </div>
-              <div class="detail-county-board-empty" id="detail-county-board-empty" hidden></div>
-              <div class="detail-county-board-table-wrap" id="detail-county-board-table-wrap">
-                <table class="detail-county-board-table senate-county-board-table">
-                  <thead>
-                    <tr>
-                      <th>County</th>
-                      <th>Margin</th>
-                      <th>Winner</th>
-                      <th>Votes</th>
-                      <th>% In</th>
-                    </tr>
-                  </thead>
-                  <tbody id="detail-county-board-body"></tbody>
-                </table>
-              </div>
-            </section>
           </section>
+
+          <section class="detail-county-board" id="detail-county-board">
+            <div class="detail-county-board-head">
+              <div>
+                <h2 id="detail-county-board-title">County Results</h2>
+                <p id="detail-county-board-note">County margins in the 2024 governor race.</p>
+              </div>
+              <div class="detail-county-toolbar" id="detail-county-toolbar">
+                <div class="detail-county-sort" id="detail-county-sort" role="group" aria-label="Sort county results">
+                  <button class="detail-county-sort-button is-active" type="button" data-sort="votes">Votes</button>
+                  <button class="detail-county-sort-button" type="button" data-sort="margin">Margin</button>
+                  <button class="detail-county-sort-button" type="button" data-sort="alphabetical">A-Z</button>
+                </div>
+              </div>
+            </div>
+            <div class="detail-county-board-empty" id="detail-county-board-empty" hidden></div>
+            <div class="detail-county-board-table-wrap" id="detail-county-board-table-wrap">
+              <table class="detail-county-board-table senate-county-board-table">
+                <thead>
+                  <tr>
+                    <th id="detail-county-name-heading">County</th>
+                    <th>Margin</th>
+                    <th>Votes</th>
+                    <th>% In</th>
+                  </tr>
+                </thead>
+                <tbody id="detail-county-board-body"></tbody>
+              </table>
+            </div>
+            <button class="detail-county-board-toggle" id="detail-county-show-all" type="button" hidden></button>
+          </section>
+          </div>
 
           <aside class="detail-rail">
             <section class="detail-map-card">
               <div class="detail-map-head">
                 <div>
-                  <h3>County Map</h3>
+                  <h3 id="detail-map-title">County Map</h3>
                   <p id="detail-map-subtitle">Four-step county margin scale.</p>
                 </div>
                 <div class="detail-map-legend" aria-label="County map legend">
@@ -195,15 +194,6 @@
                 <div class="detail-map-empty" id="detail-map-empty" hidden>County map data is not available for this governor page yet.</div>
               </div>
             </section>
-
-            <div class="rail-card">
-              <h3>Quick Facts</h3>
-              <ul class="rail-list detail-fact-list" id="detail-facts"></ul>
-            </div>
-            <div class="rail-card">
-              <h3>Context</h3>
-              <p id="detail-context-copy">Detailed governor result context for this state is loading.</p>
-            </div>
           </aside>
         </div>
       </section>
@@ -211,9 +201,10 @@
   </div>
 
   <div class="tooltip" id="detail-map-tooltip"></div>
-  <script src="./governor-2024-data.js?v=20261008-candidate-images"></script>
+  <script src="./governor-2024-data.js?v=20261012-incumbent-pill"></script>
   <script src="./governor-county-results.js?v=20260916-1"></script>
-  <script src="./governor-county-result.js?v=20261008-blank-portrait-fallbacks"></script>
+  <script src="./governor-vermont-town-results.js?v=20261012-vermont-towns"></script>
+  <script src="./governor-county-result.js?v=20261012-town-table-format"></script>
   <footer id="contact-us" class="civica-homepage__footer">
     <div class="civica-homepage__footer-inner">
       <div class="civica-homepage__footer-bottom">
