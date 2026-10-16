@@ -141,7 +141,9 @@
         currentTranslate[1] + (targetCenterY - currentCenterY)
       ]);
 
-      stateShapes = svg.selectAll(".forecast-senate-state")
+      const artwork = svg.append("g");
+
+      stateShapes = artwork.selectAll(".forecast-senate-state")
         .data(states)
         .enter()
         .append("path")
@@ -155,7 +157,7 @@
           d3.select(event.currentTarget).classed("is-active", false);
         });
 
-      svg.selectAll(".forecast-senate-map-label")
+      artwork.selectAll(".forecast-senate-map-label")
         .data(states)
         .enter()
         .append("text")
@@ -178,7 +180,7 @@
         const scale = desiredWidth / width;
         const targetX = 1274;
         const targetY = 688;
-        const insetGroup = svg.append("g")
+        const insetGroup = artwork.append("g")
           .attr("class", "forecast-senate-special-inset")
           .attr("transform", `translate(${targetX - minX * scale} ${targetY - minY * scale}) scale(${scale})`);
 
@@ -187,7 +189,7 @@
           .attr("d", path(nebraskaFeature))
           .attr("fill", "#cf2f2f");
 
-        const labelGroup = svg.append("g")
+        const labelGroup = artwork.append("g")
           .attr("class", "forecast-senate-special-label-group")
           .attr("transform", `translate(${targetX + desiredWidth + 8} ${targetY + (height * scale) / 2 - 8})`);
 
@@ -205,6 +207,8 @@
       }
 
       paintMap();
+      const bounds = artwork.node().getBBox();
+      artwork.attr("transform", `translate(${800 - bounds.x - bounds.width / 2} ${450 - bounds.y - bounds.height / 2})`);
     });
   }
 

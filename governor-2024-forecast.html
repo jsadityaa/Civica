@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Archive of Polycivic's 2024 Gubernatorial forecast, covering Washington, Indiana, New Hampshire, and North Carolina." />
+  <link rel="canonical" href="https://polycivic.com/governor-2024-forecast" />
+  <meta property="og:site_name" content="Polycivic" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="2024 U.S. Gubernatorial Election Forecast | Polycivic" />
+  <meta property="og:description" content="Archive of Polycivic's 2024 Gubernatorial forecast, covering Washington, Indiana, New Hampshire, and North Carolina." />
+  <meta property="og:url" content="https://polycivic.com/governor-2024-forecast" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>2024 U.S. Gubernatorial Election Forecast | Polycivic</title>
+  <link rel="icon" type="image/png" href="./favicon.png" />
+  <link rel="shortcut icon" href="./favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="./apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+  <link rel="manifest" href="./site.webmanifest" />
+  <meta name="theme-color" content="#10131b" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/topojson-client@3"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); if (localStorage.getItem('datahub-dyslexic-ui') === 'true') document.documentElement.setAttribute('data-dyslexic', 'true'); } catch (e) {} })();</script>
+  <link rel="stylesheet" href="./styles.css?v=20261015-full-width-forecast-maps" />
+  <script src="./analytics.js?v=20261011-ga4"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TTQG0NLH31"></script>
+</head>
+<body>
+  <header class="global-header">
+    <div class="global-header-inner">
+      <a href="/" class="brand" aria-label="Polycivic home">Polycivic</a>
+      <nav class="global-nav" aria-label="Main navigation">
+        <a href="/" class="global-nav-link">Features</a>
+        <a href="/elections" class="global-nav-link">Elections</a>
+        <a href="/forecasts" class="global-nav-link active">Forecasts</a>
+        <div class="global-nav-dropdown">
+          <a href="/#our-mission" class="global-nav-link">About Us</a>
+          <div class="global-nav-dropdown-menu">
+            <a href="/our-mission" class="global-nav-dropdown-link">Our vision</a>
+            <a href="/our-team" class="global-nav-dropdown-link">Our team</a>
+          </div>
+        </div>
+        <a href="/settings" class="global-nav-link">Settings</a>
+      </nav>
+      <div class="account-ui" aria-label="Account controls">
+        <button class="login-button" type="button">Log In</button>
+        <button class="account-button" type="button" aria-label="Account">
+          <span class="account-avatar">A</span>
+          <span class="account-label">Account</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="site-shell">
+    <header class="site-header">
+      <h1>2024 U.S. Gubernatorial Election Forecast</h1>
+      <p class="hub-subtitle">Only Washington, Indiana, New Hampshire, and North Carolina were forecast. Polycivic did not forecast Montana, West Virginia, North Dakota, Utah, Missouri, West Virginia, or Vermont because they were widely considered safe races; therefore, they did not require forecasting.</p>
+    </header>
+
+    <main class="page-stack">
+      <section class="content-panel forecast-detail-panel">
+        <section class="forecast-map-card" aria-labelledby="governor-forecast-map-title">
+          <div class="forecast-map-head">
+            <div>
+              <h2 id="governor-forecast-map-title">Forecast Map</h2>
+            </div>
+          </div>
+
+          <div class="forecast-map-controls">
+            <div class="map-legend forecast-map-legend" aria-label="Forecast map legend">
+              <div class="legend-group">
+                <span class="legend-title">Dem.</span>
+                <div class="legend-stack">
+                  <div class="legend-swatches">
+                    <span class="legend-swatch dem-win"></span>
+                    <span class="legend-swatch dem-flip"></span>
+                  </div>
+                  <div class="legend-subtext">
+                    <span>Win</span>
+                    <span>Flip</span>
+                  </div>
+                </div>
+              </div>
+              <div class="legend-group">
+                <span class="legend-title">Rep.</span>
+                <div class="legend-stack">
+                  <div class="legend-swatches">
+                    <span class="legend-swatch rep-win"></span>
+                    <span class="legend-swatch rep-flip"></span>
+                  </div>
+                  <div class="legend-subtext">
+                    <span>Win</span>
+                    <span>Flip</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="forecast-map-toggle" role="group" aria-label="2024 governor forecast map view">
+              <button class="forecast-map-toggle-button is-active" type="button" data-forecast-map-mode="projected" aria-pressed="true">Projected</button>
+              <button class="forecast-map-toggle-button" type="button" data-forecast-map-mode="actual" aria-pressed="false">Actual</button>
+            </div>
+          </div>
+
+          <p class="hub-subtitle" id="governor-forecast-map-status" role="status"></p>
+          <div class="map-stage">
+            <div class="national-map-shell senate-map-shell forecast-senate-map-shell">
+              <svg id="governor-forecast-map" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet" aria-label="2024 Gubernatorial forecast map"></svg>
+            </div>
+          </div>
+        </section>
+
+        <div class="forecast-candidate-showcase" aria-label="2024 gubernatorial forecast comparisons">
+          <article class="forecast-candidate-card forecast-party-card forecast-candidate-card--dem">
+            <div class="forecast-candidate-copy">
+              <h3>Washington</h3>
+              <div class="forecast-candidate-metrics">
+                <div><span>Polycivic forecast</span><strong>D+7.0</strong></div>
+                <div><span>Actual</span><strong>D+11.2</strong></div>
+              </div>
+              <p>Margin error: 4.2 points</p>
+            </div>
+          </article>
+
+          <article class="forecast-candidate-card forecast-party-card forecast-candidate-card--rep">
+            <div class="forecast-candidate-copy">
+              <h3>Indiana</h3>
+              <div class="forecast-candidate-metrics">
+                <div><span>Polycivic forecast</span><strong>R+8.9</strong></div>
+                <div><span>Actual</span><strong>R+13.3</strong></div>
+              </div>
+              <p>Margin error: 4.4 points</p>
+            </div>
+          </article>
+
+          <article class="forecast-candidate-card forecast-party-card forecast-candidate-card--rep">
+            <div class="forecast-candidate-copy">
+              <h3>New Hampshire</h3>
+              <div class="forecast-candidate-metrics">
+                <div><span>Polycivic forecast</span><strong>D+1.1</strong></div>
+                <div><span>Actual</span><strong>R+9.3</strong></div>
+              </div>
+              <p>Margin error: 10.4 points</p>
+            </div>
+          </article>
+
+          <article class="forecast-candidate-card forecast-party-card forecast-candidate-card--dem">
+            <div class="forecast-candidate-copy">
+              <h3>North Carolina</h3>
+              <div class="forecast-candidate-metrics">
+                <div><span>Polycivic forecast</span><strong>D+8.7</strong></div>
+                <div><span>Actual</span><strong>D+14.8</strong></div>
+              </div>
+              <p>Margin error: 6.1 points</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="forecast-margin-strip" aria-label="Forecast accuracy for the four covered races">
+          <div><span>Races forecast</span><strong>4</strong></div>
+          <div><span>Winners correct</span><strong>3 of 4</strong></div>
+          <div><span>Average margin error</span><strong>6.3 points</strong></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer id="contact-us" class="civica-homepage__footer">
+    <div class="civica-homepage__footer-inner">
+      <div class="civica-homepage__footer-bottom">
+        <div class="civica-homepage__footer-meta">
+          <p class="civica-homepage__footer-brand">polycivic.com</p>
+          <nav class="civica-homepage__footer-nav" aria-label="Footer navigation">
+            <a href="/contact">Contact Us</a>
+            <a href="/our-mission">Our Vision</a>
+            <a href="/our-team">Our Team</a>
+            <a href="/forum">Blog</a>
+          </nav>
+          <p class="civica-homepage__footer-legal">
+            <a href="/terms">Terms</a>
+            <span>&bull;</span>
+            <a href="/privacy">Privacy Policy</a>
+          </p>
+        </div>
+        <p class="civica-homepage__footer-copy">&copy; 2026 Polycivic. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="./mobile-map-zoom.js?v=20261012-mobile-map-tooltips"></script>
+  <script src="./governor-2024-forecast-map.js?v=20261015-centered"></script>
+  <script src="./auth-config.js?v=20261011-polycivic-auth-domain-2"></script>
+  <script src="./auth.js?v=20261011-mobile-redirect-3"></script>
+  <script src="./nav-dropdown.js"></script>
+</body>
+</html>

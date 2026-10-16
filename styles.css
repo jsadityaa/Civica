@@ -5810,7 +5810,9 @@ html:not([data-theme="dark"]) .card-tag {
   display: grid;
   gap: 14px;
   padding: 0;
-  max-width: 1100px;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
   border: 0;
   border-radius: 0;
   background: transparent;
@@ -5875,6 +5877,33 @@ html:not([data-theme="dark"]) .card-tag {
   margin-bottom: 0;
 }
 
+.forecast-map-card[aria-labelledby="governor-forecast-map-title"] {
+  gap: 12px;
+}
+
+.forecast-map-card[aria-labelledby="governor-forecast-map-title"] .forecast-map-controls {
+  margin-top: 0;
+  align-items: center;
+}
+
+.forecast-map-card[aria-labelledby="governor-forecast-map-title"] .map-stage {
+  margin-top: 0;
+}
+
+#governor-forecast-map-status:empty {
+  display: none;
+}
+
+.forecast-map-card[aria-labelledby="governor-forecast-map-title"] .forecast-senate-map-shell {
+  height: auto;
+}
+
+#governor-forecast-map {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .forecast-senate-map-shell {
   height: 640px;
 }
@@ -5883,6 +5912,17 @@ html:not([data-theme="dark"]) .card-tag {
   width: 100%;
   height: 100%;
   display: block;
+}
+
+@media (min-width: 769px) {
+  .forecast-map-card .forecast-senate-map-shell {
+    height: auto;
+  }
+
+  #senate-forecast-map,
+  #governor-forecast-map {
+    height: auto;
+  }
 }
 
 .forecast-senate-state {
