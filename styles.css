@@ -2045,19 +2045,29 @@ html:not([data-theme="dark"]) .national-lead-bubble.dem {
   background: #cf2f2f;
 }
 
+.state-election-result-card.winner-ind[data-state="Vermont"] {
+  border-color: rgba(200, 164, 77, 0.95);
+  background: #c8a44d;
+}
+
 .state-election-result-card.winner-dem,
 .state-election-result-card.winner-rep,
+.state-election-result-card.winner-ind[data-state="Vermont"],
 .state-election-result-card.winner-dem .state-election-stats span,
 .state-election-result-card.winner-rep .state-election-stats span,
+.state-election-result-card.winner-ind[data-state="Vermont"] .state-election-stats span,
 .state-election-result-card.winner-dem .detail-vote-table th,
 .state-election-result-card.winner-rep .detail-vote-table th,
+.state-election-result-card.winner-ind[data-state="Vermont"] .detail-vote-table th,
 .state-election-result-card.winner-dem .candidate-name-inline,
-.state-election-result-card.winner-rep .candidate-name-inline {
+.state-election-result-card.winner-rep .candidate-name-inline,
+.state-election-result-card.winner-ind[data-state="Vermont"] .candidate-name-inline {
   color: rgba(255,255,255,0.94);
 }
 
 .state-election-result-card.winner-dem .detail-vote-table-wrap,
-.state-election-result-card.winner-rep .detail-vote-table-wrap {
+.state-election-result-card.winner-rep .detail-vote-table-wrap,
+.state-election-result-card.winner-ind[data-state="Vermont"] .detail-vote-table-wrap {
   border-color: rgba(255,255,255,0.20);
   background: rgba(8,11,16,0.10);
 }
@@ -2065,17 +2075,21 @@ html:not([data-theme="dark"]) .national-lead-bubble.dem {
 .state-election-result-card.winner-dem .detail-vote-table th,
 .state-election-result-card.winner-dem .detail-vote-table td,
 .state-election-result-card.winner-rep .detail-vote-table th,
-.state-election-result-card.winner-rep .detail-vote-table td {
+.state-election-result-card.winner-ind[data-state="Vermont"] .detail-vote-table th,
+.state-election-result-card.winner-rep .detail-vote-table td,
+.state-election-result-card.winner-ind[data-state="Vermont"] .detail-vote-table td {
   border-bottom-color: rgba(255,255,255,0.17);
 }
 
 .state-election-result-card.winner-dem .detail-vote-table .winner-row td,
-.state-election-result-card.winner-rep .detail-vote-table .winner-row td {
+.state-election-result-card.winner-rep .detail-vote-table .winner-row td,
+.state-election-result-card.winner-ind[data-state="Vermont"] .detail-vote-table .winner-row td {
   color: #fff;
 }
 
 .state-election-result-card.winner-dem .state-election-detail-button,
-.state-election-result-card.winner-rep .state-election-detail-button {
+.state-election-result-card.winner-rep .state-election-detail-button,
+.state-election-result-card.winner-ind[data-state="Vermont"] .state-election-detail-button {
   border-color: rgba(255,255,255,0.28);
   color: #fff;
   background: rgba(255,255,255,0.13);
@@ -2084,7 +2098,9 @@ html:not([data-theme="dark"]) .national-lead-bubble.dem {
 .state-election-result-card.winner-dem .state-election-detail-button:hover,
 .state-election-result-card.winner-dem .state-election-detail-button:focus-visible,
 .state-election-result-card.winner-rep .state-election-detail-button:hover,
-.state-election-result-card.winner-rep .state-election-detail-button:focus-visible {
+.state-election-result-card.winner-ind[data-state="Vermont"] .state-election-detail-button:hover,
+.state-election-result-card.winner-rep .state-election-detail-button:focus-visible,
+.state-election-result-card.winner-ind[data-state="Vermont"] .state-election-detail-button:focus-visible {
   border-color: rgba(255,255,255,0.42);
   background: rgba(255,255,255,0.20);
 }
@@ -2143,6 +2159,10 @@ html:not([data-theme="dark"]) .state-election-detail-button:focus-visible {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
+}
+
+#state-election-governor-card .state-election-stats {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .state-election-stats div {
@@ -3070,6 +3090,26 @@ html:not([data-theme="dark"]) .state-election-city-labels text {
   font-size: clamp(36px, 5vw, 56px);
   line-height: 0.95;
   letter-spacing: -0.05em;
+}
+
+.detail-state-results-link {
+  display: inline-block;
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.detail-state-results-link[hidden] {
+  display: none;
+}
+
+.detail-state-results-link:hover,
+.detail-state-results-link:focus-visible {
+  color: var(--text);
 }
 
 .detail-subtitle {
@@ -5762,6 +5802,127 @@ html:not([data-theme="dark"]) .card-tag {
   text-shadow: 0 0 22px rgba(207, 47, 47, 0.32);
 }
 
+.forecast-map-card {
+  display: grid;
+  gap: 14px;
+  padding: 0;
+  max-width: 1100px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.forecast-map-head {
+  display: block;
+}
+
+.forecast-map-head h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(24px, 3vw, 38px);
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.forecast-map-head p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.forecast-map-toggle {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.forecast-map-toggle-button {
+  min-height: 36px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.forecast-map-toggle-button.is-active {
+  color: #fff;
+  background: rgba(40, 121, 181, 0.9);
+}
+
+.forecast-map-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.forecast-map-legend {
+  margin-bottom: 0;
+}
+
+.forecast-senate-map-shell {
+  height: 640px;
+}
+
+#senate-forecast-map {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.forecast-senate-state {
+  stroke: rgba(255, 255, 255, 0.88);
+  stroke-width: 0.8px;
+  transition: filter 0.12s ease, opacity 0.12s ease;
+}
+
+.forecast-senate-state.is-on-map {
+  cursor: pointer;
+}
+
+.forecast-senate-state.is-muted {
+  opacity: 0.58;
+}
+
+.forecast-senate-state.is-on-map.is-active,
+.forecast-senate-state.is-on-map:hover {
+  filter: brightness(1.12);
+}
+
+.forecast-senate-map-label {
+  fill: rgba(255, 255, 255, 0.92);
+  font-size: 11px;
+  font-weight: 900;
+  text-anchor: middle;
+  pointer-events: none;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.82);
+}
+
+.forecast-senate-special-shape {
+  stroke: rgba(255, 255, 255, 0.9);
+  stroke-width: 1px;
+}
+
+.forecast-senate-special-label {
+  fill: rgba(255, 255, 255, 0.92);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-anchor: start;
+  pointer-events: none;
+}
+
 .forecast-archive-card {
   display: grid;
   gap: 16px;
@@ -5825,6 +5986,28 @@ html:not([data-theme="dark"]) .forecast-margin-strip strong.forecast-margin-high
 
 html:not([data-theme="dark"]) .forecast-margin-strip strong.forecast-margin-highlight--rep {
   color: #cf2f2f;
+}
+
+html:not([data-theme="dark"]) .forecast-map-toggle {
+  background: rgba(255, 255, 255, 0.66);
+}
+
+html:not([data-theme="dark"]) .forecast-map-toggle-button.is-active {
+  color: #fff;
+  background: #2879b5;
+}
+
+html:not([data-theme="dark"]) .forecast-senate-state {
+  stroke: rgba(15, 23, 42, 0.32);
+}
+
+html:not([data-theme="dark"]) .forecast-senate-state.is-muted {
+  fill: rgba(100, 116, 139, 0.1);
+}
+
+html:not([data-theme="dark"]) .forecast-senate-map-label {
+  fill: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 4px rgba(15, 23, 42, 0.82);
 }
 
 .news-placeholder-list {
@@ -7389,6 +7572,28 @@ html:not([data-theme="dark"]) .map-context-note {
   .forecast-candidate-showcase,
   .forecast-margin-strip {
     grid-template-columns: 1fr;
+  }
+
+  .forecast-map-head {
+    display: block;
+  }
+
+  .forecast-map-controls {
+    display: grid;
+  }
+
+  .forecast-map-toggle {
+    width: 100%;
+  }
+
+  .forecast-map-toggle-button {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0 10px;
+  }
+
+  .forecast-senate-map-shell {
+    height: 500px;
   }
 
   .forecast-candidate-card {
@@ -21242,6 +21447,8 @@ html:not([data-theme="dark"]) .brazil-state-legislature-tile {
 
   .state-election-page #state-election-presidential .panel-heading,
   .state-election-page #state-election-senate .panel-heading,
+  .state-election-page #state-election-senate-special .panel-heading,
+  .state-election-page #state-election-governor .panel-heading,
   .state-election-page #state-election-house .panel-heading {
     margin-bottom: 0 !important;
   }

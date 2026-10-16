@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); if (localStorage.getItem('datahub-dyslexic-ui') === 'true') document.documentElement.setAttribute('data-dyslexic', 'true'); } catch (e) {} })();</script>
-  <link rel="stylesheet" href="./styles.css?v=20261012-governor-incumbent-pill" />
+  <link rel="stylesheet" href="./styles.css?v=20261015-state-results-links" />
   <script src="./analytics.js?v=20261011-ga4"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TTQG0NLH31"></script>
 </head>
@@ -76,8 +76,8 @@
       <section class="content-panel detail-panel">
         <div class="detail-heading">
           <div>
-            <div class="detail-kicker">2024 Governor County Result</div>
             <h1 id="detail-title">Loading...</h1>
+            <a class="detail-state-results-link" id="detail-state-results-link" hidden>See all state election results</a>
           </div>
         </div>
 
@@ -204,7 +204,7 @@
   <script src="./governor-2024-data.js?v=20261012-incumbent-pill"></script>
   <script src="./governor-county-results.js?v=20260916-1"></script>
   <script src="./governor-vermont-town-results.js?v=20261012-vermont-towns"></script>
-  <script src="./governor-county-result.js?v=20261012-town-table-format"></script>
+  <script src="./governor-county-result.js?v=20261015-state-results-links"></script>
   <footer id="contact-us" class="civica-homepage__footer">
     <div class="civica-homepage__footer-inner">
       <div class="civica-homepage__footer-bottom">

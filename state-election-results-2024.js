@@ -669,6 +669,7 @@ function stateElectionSenatePartyTone(party) {
 
 function stateElectionSenatePartyLabel(party) {
   const code = stateElectionSenatePartyCode(party);
+  if (party === "W") return "Write-in";
   if (code === "D") return "Democrat";
   if (code === "R") return "Republican";
   if (code === "N") return "None";
@@ -861,7 +862,7 @@ function stateElectionSenateTooltipHTML(row, stateName, race) {
   return `
     <div class="tooltip-header">
       <div class="tooltip-title">${title}</div>
-      <div class="tooltip-ev">${race.seatType === "Special" ? "Special " : ""}${stateName} Senate result</div>
+      <div class="tooltip-ev">${race.seatType === "Special" ? "Special " : ""}${stateName} ${race.office === "governor" ? "governor" : "Senate"} result</div>
     </div>
     <table>
       <thead>
@@ -1040,30 +1041,31 @@ function stateElectionRenderPresidentialSummary(stateName) {
   `).join("");
 }
 
-function stateElectionRenderSenateSummary(stateName, race) {
-  const section = document.getElementById("state-election-senate");
+function stateElectionRenderSenateSummary(stateName, race, office = "senate") {
+  const section = document.getElementById(`state-election-${office}`);
   if (!section || !race) return false;
 
-  const title = document.getElementById("state-election-senate-title");
-  const seat = document.getElementById("state-election-senate-seat");
-  const margin = document.getElementById("state-election-senate-margin");
-  const total = document.getElementById("state-election-senate-total");
-  const body = document.getElementById("state-election-senate-candidates");
-  const card = document.getElementById("state-election-senate-card");
-  const detailLink = document.getElementById("state-election-senate-detail-link");
+  const title = document.getElementById(`state-election-${office}-title`);
+  const seat = document.getElementById(`state-election-${office}-seat`);
+  const margin = document.getElementById(`state-election-${office}-margin`);
+  const total = document.getElementById(`state-election-${office}-total`);
+  const body = document.getElementById(`state-election-${office}-candidates`);
+  const card = document.getElementById(`state-election-${office}-card`);
+  const detailLink = document.getElementById(`state-election-${office}-detail-link`);
   const candidates = stateElectionSenateCandidateRows(race);
   const totalVotes = race.reportedTotal || candidates.reduce((sum, candidate) => sum + Number(candidate.voteNumber || 0), 0);
   const winnerTone = stateElectionSenatePartyTone(race.winnerParty);
 
   section.hidden = false;
   if (title) {
-    title.textContent = `${race.winner} wins ${stateName}'s${race.seatType === "Special" ? " special" : ""} Senate race.`;
+    title.textContent = `${race.winner} wins ${stateName}'s${race.seatType === "Special" ? " special" : ""} ${office === "governor" ? "governor" : "Senate"} race.`;
   }
-  if (seat) seat.textContent = race.seatType || "Regular";
+  if (seat) seat.textContent = office === "governor" ? "Governor" : race.seatType || "Regular";
   if (margin) margin.textContent = race.result || "-";
   if (total) total.textContent = stateElectionFormatVotes(totalVotes);
-  if (detailLink) detailLink.href = stateElectionSenateDetailLink(stateName, race);
+  if (detailLink) detailLink.href = office === "governor" ? `./governor-county-result.html?name=${encodeURIComponent(stateName)}` : stateElectionSenateDetailLink(stateName, race);
   if (card) {
+    card.dataset.state = stateName;
     card.classList.remove("winner-dem", "winner-rep", "winner-ind", "winner-none");
     card.classList.add(`winner-${winnerTone}`);
   }
@@ -1581,9 +1583,9 @@ function stateElectionSetupPresidentialMapMode(stateName, rows) {
   });
 }
 
-async function stateElectionFetchSenateRegionRows(stateName) {
+async function stateElectionFetchSenateRegionRows(stateName, seatType = "Regular") {
   const bundle = window.SENATE_COUNTY_RESULTS?.[stateName];
-  const rawRows = bundle?.municipalities || bundle?.counties || [];
+  const rawRows = seatType === "Special" ? bundle?.specialCounties || [] : bundle?.municipalities || bundle?.counties || [];
   if (!rawRows.length) return [];
 
   let referenceByName = new Map();
@@ -1677,7 +1679,7 @@ function stateElectionRenderSenateLeadMap({ svg, features, stateFeature, path, p
   stateElectionRenderCityLabels(svg, projection, stateName);
 }
 
-async function stateElectionBuildSenateMapFeatures(stateName, rows) {
+async function stateElectionBuildSenateMapFeatures(stateName, rows, office = "senate") {
   let mapRows = rows;
 
   if (stateName === "Connecticut") {
@@ -1696,8 +1698,8 @@ async function stateElectionBuildSenateMapFeatures(stateName, rows) {
     }
   }
 
-  if (stateElectionUsesLocalResults(stateName)) {
-    mapRows = stateElectionAggregateSenateLocalMapRows(stateName, rows);
+  if (stateElectionUsesLocalResults(stateName) && !(office === "governor" && rows.every((row) => row.region_type === "county"))) {
+    mapRows = office === "governor" ? rows : stateElectionAggregateSenateLocalMapRows(stateName, rows);
     const rowByName = new Map(mapRows.map((row) => [stateElectionNormalizeRegionName(row.county_name), row]));
     const rowById = new Map(mapRows.map((row) => [row.county_fips, row]));
     const localGeojson = await d3.json(STATE_ELECTION_LOCAL_GEOJSON_URLS[stateName]);
@@ -1740,9 +1742,9 @@ async function stateElectionBuildSenateMapFeatures(stateName, rows) {
   return { features, stateFeature, projection };
 }
 
-async function stateElectionRenderSenateMap(stateName, race, rows, mode = "share") {
-  const svg = d3.select("#state-election-senate-county-map");
-  const empty = document.getElementById("state-election-senate-empty");
+async function stateElectionRenderSenateMap(stateName, race, rows, mode = "share", office = "senate") {
+  const svg = d3.select(`#state-election-${office}-county-map`);
+  const empty = document.getElementById(`state-election-${office}-empty`);
   const tooltip = d3.select("#state-election-map-tooltip");
   if (svg.empty()) return;
 
@@ -1752,7 +1754,7 @@ async function stateElectionRenderSenateMap(stateName, race, rows, mode = "share
     return;
   }
 
-  const built = await stateElectionBuildSenateMapFeatures(stateName, rows);
+  const built = await stateElectionBuildSenateMapFeatures(stateName, rows, office);
   if (!built) {
     if (empty) empty.hidden = false;
     return;
@@ -1767,19 +1769,19 @@ async function stateElectionRenderSenateMap(stateName, race, rows, mode = "share
   }
 }
 
-function stateElectionSetupSenateMapMode(stateName, race, rows) {
-  const control = document.getElementById("state-election-senate-map-mode");
-  const legend = document.getElementById("state-election-senate-map-legend");
-  const leadLegend = document.getElementById("state-election-senate-lead-legend");
-  const leadIndLegend = document.getElementById("state-election-senate-lead-legend-ind");
-  const mapTitle = document.getElementById("state-election-senate-map-title");
+function stateElectionSetupSenateMapMode(stateName, race, rows, office = "senate") {
+  const control = document.getElementById(`state-election-${office}-map-mode`);
+  const legend = document.getElementById(`state-election-${office}-map-legend`);
+  const leadLegend = document.getElementById(`state-election-${office}-lead-legend`);
+  const leadIndLegend = document.getElementById(`state-election-${office}-lead-legend-ind`);
+  const mapTitle = document.getElementById(`state-election-${office}-map-title`);
   const unit = stateElectionSenateUnitLabelForRows(stateName, rows);
   const winningParties = new Set(rows.map((row) => stateElectionSenateWinnerParty(row)));
   const isEnabled = rows.length > 0;
 
   if (mapTitle) mapTitle.textContent = `${unit.singular} Map`;
   if (legend) {
-    legend.setAttribute("aria-label", `Senate ${unit.singular.toLowerCase()} map legend`);
+    legend.setAttribute("aria-label", `${office === "governor" ? "Governor" : "Senate"} ${unit.singular.toLowerCase()} map legend`);
     legend.querySelectorAll("[data-party]").forEach((row) => {
       row.hidden = !winningParties.has(row.dataset.party);
     });
@@ -1789,7 +1791,7 @@ function stateElectionSetupSenateMapMode(stateName, race, rows) {
   }
 
   if (!control) return;
-  stateElectionSenateMapMode = "share";
+  if (office === "senate") stateElectionSenateMapMode = "share";
   control.hidden = !isEnabled;
   if (legend) legend.hidden = false;
   if (leadLegend) leadLegend.hidden = true;
@@ -1799,14 +1801,14 @@ function stateElectionSetupSenateMapMode(stateName, race, rows) {
     button.classList.toggle("is-active", button.dataset.mapMode === "share");
     button.onclick = async () => {
       const mode = button.dataset.mapMode || "share";
-      stateElectionSenateMapMode = mode;
+      if (office === "senate") stateElectionSenateMapMode = mode;
       control.querySelectorAll("[data-map-mode]").forEach((item) => {
         item.classList.toggle("is-active", item === button);
       });
       if (legend) legend.hidden = mode === "lead";
       if (leadLegend) leadLegend.hidden = mode !== "lead";
       if (leadIndLegend) leadIndLegend.hidden = mode !== "lead" || !winningParties.has("I");
-      await stateElectionRenderSenateMap(stateName, race, rows, mode);
+      await stateElectionRenderSenateMap(stateName, race, rows, mode, office);
     };
   });
 }
@@ -1980,6 +1982,66 @@ function stateElectionRenderHouseDistrictMap(stateName, districts) {
   stateElectionRenderCityLabels(svg, projection, stateName);
 }
 
+function stateElectionGetGovernorRace(stateName) {
+  const race = window.GOVERNOR_2024_DATA?.races?.find((item) => item.state === stateName);
+  const bundle = window.GOVERNOR_COUNTY_RESULTS?.[stateName];
+  if (!race || !bundle?.counties?.length) return null;
+
+  // Match the detailed governor page: statewide totals include every local candidate.
+  const totals = new Map();
+  bundle.counties.forEach((region) => {
+    (region.candidates || []).forEach((candidate) => {
+      const key = candidate.name.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+      const total = totals.get(key) || {
+        name: candidate.name,
+        party: key === "write in" ? "W" : candidate.name === "Other" ? "Other" : candidate.party,
+        votes: 0
+      };
+      total.votes += Number(candidate.votes || 0);
+      totals.set(key, total);
+    });
+  });
+  const candidates = Array.from(totals.values()).sort((a, b) => b.votes - a.votes);
+  const reportedTotal = candidates.reduce((sum, candidate) => sum + candidate.votes, 0);
+  return {
+    ...race,
+    office: "governor",
+    reportedTotal,
+    tooltipRows: candidates.map((candidate) => ({
+      ...candidate,
+      votes: stateElectionFormatVotes(candidate.votes),
+      pct: reportedTotal ? ((candidate.votes / reportedTotal) * 100).toFixed(2) : "0.00",
+      imageUrl: race.candidates.find((known) => known.name === candidate.name)?.imageUrl || ""
+    }))
+  };
+}
+
+async function stateElectionFetchGovernorRegionRows(stateName) {
+  const bundle = window.GOVERNOR_COUNTY_RESULTS[stateName];
+  let referenceByName = new Map();
+  if (bundle.regionType !== "town") {
+    const { countiesTopo } = await stateElectionLoadTopo();
+    referenceByName = new Map(topojson.feature(countiesTopo, countiesTopo.objects.counties).features
+      .filter((feature) => String(feature.id).padStart(5, "0").startsWith(STATE_ELECTION_FIPS_BY_NAME[stateName]))
+      .map((feature) => [stateElectionNormalizeRegionName(feature.properties.name), {
+        county_fips: String(feature.id).padStart(5, "0"), region_type: "county"
+      }]));
+  }
+  return bundle.counties.map((row) => {
+    const normalized = stateElectionNormalizeSenateUnitRow(row);
+    const countyKey = stateElectionNormalizeRegionName(row.county.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+    const reference = referenceByName.get(countyKey);
+    // The atlas gives St. Louis city and county the same display name.
+    const stLouisFips = stateName === "Missouri" && /^St\. Louis (City|County)$/.test(row.county)
+      ? (row.county.endsWith("City") ? "29510" : "29189") : null;
+    return {
+      ...normalized,
+      county_fips: stLouisFips || reference?.county_fips || normalized.county_fips,
+      region_type: bundle.regionType === "town" ? "town" : "county"
+    };
+  });
+}
+
 async function stateElectionInit() {
   const params = new URLSearchParams(window.location.search);
   const stateName = params.get("name") || "Alabama";
@@ -2042,6 +2104,49 @@ async function stateElectionInit() {
   } else if (senateSection) {
     senateSection.hidden = true;
     senateSection.style.display = "none";
+  }
+
+  const specialSenateRace = stateName === "Nebraska"
+    ? stateElectionGetSenateRaces(stateName).find((race) => race.seatType === "Special") : null;
+  const specialSenateSection = document.getElementById("state-election-senate-special");
+  const specialSenateJump = document.getElementById("state-election-senate-special-jump");
+  if (specialSenateJump) specialSenateJump.hidden = !specialSenateRace;
+  if (specialSenateSection) {
+    specialSenateSection.hidden = !specialSenateRace;
+    specialSenateSection.style.display = specialSenateRace ? "" : "none";
+  }
+  if (specialSenateRace) {
+    stateElectionRenderSenateSummary(stateName, specialSenateRace, "senate-special");
+    try {
+      const specialRows = await stateElectionFetchSenateRegionRows(stateName, "Special");
+      await stateElectionRenderSenateMap(stateName, specialSenateRace, specialRows, "share", "senate-special");
+      stateElectionSetupSenateMapMode(stateName, specialSenateRace, specialRows, "senate-special");
+    } catch (error) {
+      const empty = document.getElementById("state-election-senate-special-empty");
+      if (empty) empty.hidden = false;
+      console.error(error);
+    }
+  }
+
+  const governorRace = stateElectionGetGovernorRace(stateName);
+  const governorSection = document.getElementById("state-election-governor");
+  const governorJump = document.getElementById("state-election-governor-jump");
+  if (governorJump) governorJump.hidden = !governorRace;
+  if (governorSection) {
+    governorSection.hidden = !governorRace;
+    governorSection.style.display = governorRace ? "" : "none";
+  }
+  if (governorRace) {
+    stateElectionRenderSenateSummary(stateName, governorRace, "governor");
+    try {
+      const governorRows = await stateElectionFetchGovernorRegionRows(stateName);
+      await stateElectionRenderSenateMap(stateName, governorRace, governorRows, "share", "governor");
+      stateElectionSetupSenateMapMode(stateName, governorRace, governorRows, "governor");
+    } catch (error) {
+      const empty = document.getElementById("state-election-governor-empty");
+      if (empty) empty.hidden = false;
+      console.error(error);
+    }
   }
 
   const houseSection = document.getElementById("state-election-house");

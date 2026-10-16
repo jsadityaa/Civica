@@ -2665,6 +2665,10 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
 
     document.title = `${district.title} House Result`;
     document.getElementById("house-detail-title").textContent = district.title;
+    const stateResultsLink = document.getElementById("detail-state-results-link");
+    stateResultsLink.textContent = `See all ${district.stateName} election results`;
+    stateResultsLink.href = `./state-election-results-2024.html?name=${encodeURIComponent(district.stateName)}`;
+    stateResultsLink.hidden = false;
     document.getElementById("house-detail-summary-title").textContent = `${district.winnerName} wins ${district.title}.`;
     document.getElementById("house-detail-summary-callout").textContent = district.flipped
       ? "This district flipped parties in the 2024 general election."

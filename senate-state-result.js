@@ -1385,6 +1385,10 @@ function renderSummary(record) {
     : `${record.displayName} U.S. Senate Election Results`;
   document.title = pageTitle;
   title.textContent = pageTitle;
+  const stateResultsLink = document.getElementById("detail-state-results-link");
+  stateResultsLink.textContent = `See all ${record.name} election results`;
+  stateResultsLink.href = `./state-election-results-2024.html?name=${encodeURIComponent(record.name)}`;
+  stateResultsLink.hidden = false;
   summaryCard.classList.remove("winner-dem", "winner-rep", "winner-ind");
   summaryCard.classList.add(`winner-${winnerTone}`);
   summaryTitle.textContent = `${record.primary.winner} wins ${record.displayName}.`;

@@ -1062,6 +1062,10 @@ function renderSummary(result) {
 
   document.title = `${displayName} 2024 Presidential Result`;
   title.textContent = `${displayName} Presidential Election Results`;
+  const stateResultsLink = document.getElementById("detail-state-results-link");
+  stateResultsLink.textContent = `See all ${result.stateName} election results`;
+  stateResultsLink.href = `./state-election-results-2024.html?name=${encodeURIComponent(result.stateName)}`;
+  stateResultsLink.hidden = false;
   summaryCard.classList.remove("winner-dem", "winner-rep");
   summaryCard.classList.add(winnerTone === "dem" ? "winner-dem" : "winner-rep");
   summaryTitle.textContent = `${winnerFullName} wins ${displayName}.`;

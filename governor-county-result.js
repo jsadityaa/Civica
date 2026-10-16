@@ -240,9 +240,11 @@ function renderGovernorSummary(record) {
   const winner = rows[0];
   governorCurrentRegionLabels = getGovernorRegionLabels(record);
   document.title = `2024 ${record.stateName} Governor ${governorCurrentRegionLabels.singularTitle} Result`;
-  const kicker = document.querySelector(".detail-kicker");
-  if (kicker) kicker.textContent = `2024 Governor ${governorCurrentRegionLabels.singularTitle} Result`;
   document.getElementById("detail-title").textContent = `${record.stateName} Gubernatorial Elections`;
+  const stateResultsLink = document.getElementById("detail-state-results-link");
+  stateResultsLink.textContent = `See all ${record.stateName} election results`;
+  stateResultsLink.href = `./state-election-results-2024.html?name=${encodeURIComponent(record.stateName)}`;
+  stateResultsLink.hidden = false;
   document.getElementById("detail-summary-card").classList.add(`winner-${winner.tone}`);
   document.getElementById("detail-summary-title").textContent = `${winner.candidate} wins ${record.stateName}.`;
   document.getElementById("detail-summary-portrait").src = governorCandidatePortrait(winner.candidate, winner.imageUrl);
@@ -257,7 +259,7 @@ function renderGovernorSummary(record) {
           ${row.incumbent ? `<span class="tooltip-incumbent">Incumbent</span>` : ""}
         </div>
       </td>
-      <td>${row.partyShort}</td>
+      <td>${row.party}</td>
       <td>${row.votes}</td>
       <td>${row.pct}</td>
     </tr>
@@ -411,6 +413,10 @@ function wireGovernorCountyControls() {
 }
 
 function governorCountyTooltipHTML(row, stateName) {
+  const regionName = String(row.county_name || row.displayName || "").trim();
+  const title = governorCurrentRegionLabels.singular === "town" || /\b(County|City)$/i.test(regionName)
+    ? regionName
+    : `${regionName} County`;
   const rows = row.candidates.slice(0, GOVERNOR_LOCAL_CANDIDATE_DISPLAY_LIMIT).map((candidate, index) => `
     <tr class="${index === 0 ? "winner-row" : ""}">
       <td>
@@ -426,7 +432,7 @@ function governorCountyTooltipHTML(row, stateName) {
   `).join("");
   return `
     <div class="tooltip-header">
-      <div class="tooltip-title">${row.displayName}</div>
+      <div class="tooltip-title">${title}</div>
       <div class="tooltip-ev">${stateName} governor</div>
     </div>
     <table>

@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); if (localStorage.getItem('datahub-dyslexic-ui') === 'true') document.documentElement.setAttribute('data-dyslexic', 'true'); } catch (e) {} })();</script>
-  <link rel="stylesheet" href="./styles.css?v=20261009-no-map-captions" />
+  <link rel="stylesheet" href="./styles.css?v=20261015-nebraska-special" />
   <script src="./analytics.js?v=20261011-ga4"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TTQG0NLH31"></script>
 </head>
@@ -79,6 +79,8 @@
         <nav class="section-nav state-election-jump-nav" aria-label="Election result sections">
           <a href="#state-election-presidential">Presidential</a>
           <a href="#state-election-senate" id="state-election-senate-jump">U.S. Senate</a>
+          <a href="#state-election-senate-special" id="state-election-senate-special-jump" hidden>U.S. Senate Special Election</a>
+          <a href="#state-election-governor" id="state-election-governor-jump" hidden>Governor</a>
           <a href="#state-election-house" id="state-election-house-jump">House of Representatives</a>
         </nav>
       </section>
@@ -262,6 +264,188 @@
         </div>
       </section>
 
+      <section class="content-panel state-election-section" id="state-election-senate-special" hidden>
+        <div class="panel-heading">
+          <div>
+            <h2>U.S. Senate Special Election</h2>
+          </div>
+        </div>
+
+        <div class="state-election-two-column">
+          <section class="detail-map-card state-election-map-card" id="state-election-senate-special-map-card">
+            <div class="detail-map-head">
+              <div>
+                <h3 id="state-election-senate-special-map-title">County Map</h3>
+              </div>
+              <div class="state-election-map-mode" id="state-election-senate-special-map-mode" hidden>
+                <button class="state-election-map-mode-button is-active" type="button" data-map-mode="share">Vote Share</button>
+                <button class="state-election-map-mode-button" type="button" data-map-mode="lead">Size of Lead</button>
+              </div>
+              <div class="state-election-lead-legend" id="state-election-senate-special-lead-legend" aria-label="Size of lead map legend" hidden>
+                <span><i class="dem"></i>Dem.</span>
+                <span><i class="rep"></i>Rep.</span>
+                <span id="state-election-senate-special-lead-legend-ind"><i class="ind"></i>Ind.</span>
+              </div>
+              <div class="detail-map-legend" id="state-election-senate-special-map-legend" aria-label="Senate special election county map legend">
+                <div class="detail-map-legend-row" data-party="D">
+                  <span>Dem.</span>
+                  <div class="detail-map-swatch dem-1"></div>
+                  <div class="detail-map-swatch dem-2"></div>
+                  <div class="detail-map-swatch dem-3"></div>
+                  <div class="detail-map-swatch dem-4"></div>
+                </div>
+                <div class="detail-map-legend-row" data-party="I">
+                  <span>Ind.</span>
+                  <div class="detail-map-swatch ind-1"></div>
+                  <div class="detail-map-swatch ind-2"></div>
+                  <div class="detail-map-swatch ind-3"></div>
+                  <div class="detail-map-swatch ind-4"></div>
+                </div>
+                <div class="detail-map-legend-row" data-party="R">
+                  <span>Rep.</span>
+                  <div class="detail-map-swatch rep-1"></div>
+                  <div class="detail-map-swatch rep-2"></div>
+                  <div class="detail-map-swatch rep-3"></div>
+                  <div class="detail-map-swatch rep-4"></div>
+                </div>
+                <div class="detail-map-legend-scale">
+                  <span></span>
+                  <span></span>
+                  <span>50</span>
+                  <span>60</span>
+                  <span>70%</span>
+                </div>
+              </div>
+            </div>
+            <div class="detail-map-canvas state-election-map-canvas">
+              <svg id="state-election-senate-special-county-map" viewBox="0 0 540 520" preserveAspectRatio="xMidYMid meet"></svg>
+              <div class="detail-map-empty" id="state-election-senate-special-empty" hidden>Senate map data could not be loaded.</div>
+            </div>
+          </section>
+
+          <section class="state-election-result-card" id="state-election-senate-special-card">
+            <h3 id="state-election-senate-special-title">Loading result...</h3>
+            <div class="state-election-stats">
+              <div>
+                <span>Seat</span>
+                <strong id="state-election-senate-special-seat">-</strong>
+              </div>
+              <div>
+                <span>Margin</span>
+                <strong id="state-election-senate-special-margin">-</strong>
+              </div>
+              <div>
+                <span>Total Votes</span>
+                <strong id="state-election-senate-special-total">-</strong>
+              </div>
+            </div>
+            <div class="detail-vote-table-wrap">
+              <table class="detail-vote-table">
+                <thead>
+                  <tr>
+                    <th>Candidate</th>
+                    <th>Party</th>
+                    <th>Votes</th>
+                    <th>Pct.</th>
+                  </tr>
+                </thead>
+                <tbody id="state-election-senate-special-candidates"></tbody>
+              </table>
+            </div>
+            <a class="state-election-detail-button" id="state-election-senate-special-detail-link" href="./senate-state-result.html?name=Alabama">See results in detail &gt;</a>
+          </section>
+        </div>
+      </section>
+
+      <section class="content-panel state-election-section" id="state-election-governor" hidden>
+        <div class="panel-heading">
+          <div>
+            <h2>Governor</h2>
+          </div>
+        </div>
+
+        <div class="state-election-two-column">
+          <section class="detail-map-card state-election-map-card" id="state-election-governor-map-card">
+            <div class="detail-map-head">
+              <div>
+                <h3 id="state-election-governor-map-title">County Map</h3>
+              </div>
+              <div class="state-election-map-mode" id="state-election-governor-map-mode" hidden>
+                <button class="state-election-map-mode-button is-active" type="button" data-map-mode="share">Vote Share</button>
+                <button class="state-election-map-mode-button" type="button" data-map-mode="lead">Size of Lead</button>
+              </div>
+              <div class="state-election-lead-legend" id="state-election-governor-lead-legend" aria-label="Size of lead map legend" hidden>
+                <span><i class="dem"></i>Dem.</span>
+                <span><i class="rep"></i>Rep.</span>
+                <span id="state-election-governor-lead-legend-ind"><i class="ind"></i>Ind.</span>
+              </div>
+              <div class="detail-map-legend" id="state-election-governor-map-legend" aria-label="Governor county map legend">
+                <div class="detail-map-legend-row" data-party="D">
+                  <span>Dem.</span>
+                  <div class="detail-map-swatch dem-1"></div>
+                  <div class="detail-map-swatch dem-2"></div>
+                  <div class="detail-map-swatch dem-3"></div>
+                  <div class="detail-map-swatch dem-4"></div>
+                </div>
+                <div class="detail-map-legend-row" data-party="I">
+                  <span>Ind.</span>
+                  <div class="detail-map-swatch ind-1"></div>
+                  <div class="detail-map-swatch ind-2"></div>
+                  <div class="detail-map-swatch ind-3"></div>
+                  <div class="detail-map-swatch ind-4"></div>
+                </div>
+                <div class="detail-map-legend-row" data-party="R">
+                  <span>Rep.</span>
+                  <div class="detail-map-swatch rep-1"></div>
+                  <div class="detail-map-swatch rep-2"></div>
+                  <div class="detail-map-swatch rep-3"></div>
+                  <div class="detail-map-swatch rep-4"></div>
+                </div>
+                <div class="detail-map-legend-scale">
+                  <span></span>
+                  <span></span>
+                  <span>50</span>
+                  <span>60</span>
+                  <span>70%</span>
+                </div>
+              </div>
+            </div>
+            <div class="detail-map-canvas state-election-map-canvas">
+              <svg id="state-election-governor-county-map" viewBox="0 0 540 520" preserveAspectRatio="xMidYMid meet"></svg>
+              <div class="detail-map-empty" id="state-election-governor-empty" hidden>Governor map data could not be loaded.</div>
+            </div>
+          </section>
+
+          <section class="state-election-result-card" id="state-election-governor-card">
+            <h3 id="state-election-governor-title">Loading result...</h3>
+            <div class="state-election-stats">
+              <div>
+                <span>Margin</span>
+                <strong id="state-election-governor-margin">-</strong>
+              </div>
+              <div>
+                <span>Total Votes</span>
+                <strong id="state-election-governor-total">-</strong>
+              </div>
+            </div>
+            <div class="detail-vote-table-wrap">
+              <table class="detail-vote-table">
+                <thead>
+                  <tr>
+                    <th>Candidate</th>
+                    <th>Party</th>
+                    <th>Votes</th>
+                    <th>Pct.</th>
+                  </tr>
+                </thead>
+                <tbody id="state-election-governor-candidates"></tbody>
+              </table>
+            </div>
+            <a class="state-election-detail-button" id="state-election-governor-detail-link" href="./governor-county-result.html?name=Delaware">See results in detail &gt;</a>
+          </section>
+        </div>
+      </section>
+
       <section class="content-panel state-election-section" id="state-election-house">
         <div class="panel-heading">
           <div>
@@ -353,9 +537,12 @@
   <script src="./state-candidate-results.js"></script>
   <script src="./senate-2024-data.js?v=20261008-senate-candidate-images"></script>
   <script src="./senate-county-results.js?v=20261008-wyoming-senate"></script>
+  <script src="./governor-2024-data.js"></script>
+  <script src="./governor-county-results.js"></script>
+  <script src="./governor-vermont-town-results.js"></script>
   <script src="./house-2024-data.js"></script>
   <script src="./house-districts-geojson.js"></script>
   <script src="./dc-wards-geojson.js?v=2"></script>
-  <script src="./state-election-results-2024.js?v=20261012-no-district-map-links"></script>
+  <script src="./state-election-results-2024.js?v=20261015-nebraska-special"></script>
 </body>
 </html>
