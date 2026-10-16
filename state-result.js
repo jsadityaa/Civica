@@ -725,6 +725,8 @@ async function renderCountyMap(result) {
         .attr("class", "detail-state-outline")
         .attr("d", path);
 
+      stateElectionRenderCityLabels(svg, projection, stateName);
+
       svg.append("g")
         .attr("class", "state-election-ward-labels")
         .selectAll("text")
@@ -780,6 +782,8 @@ async function renderCountyMap(result) {
         .datum(localCollection)
         .attr("class", "detail-state-outline")
         .attr("d", path);
+
+      stateElectionRenderCityLabels(svg, projection, stateName);
 
       return;
     }
@@ -837,6 +841,8 @@ async function renderCountyMap(result) {
         .datum(townCollection)
         .attr("class", "detail-state-outline")
         .attr("d", path);
+
+      stateElectionRenderCityLabels(svg, projection, stateName);
 
       return;
     }
@@ -911,6 +917,8 @@ async function renderCountyMap(result) {
       .datum(stateFeature)
       .attr("class", "detail-state-outline")
       .attr("d", path);
+
+    stateElectionRenderCityLabels(svg, projection, stateName);
   } catch (error) {
     mapEmpty.hidden = false;
     subtitle.textContent = "County map data could not be loaded.";

@@ -32,12 +32,12 @@
 
   const forecastMaps = {
     projected: {
-      dem: ["Washington", "New Hampshire", "North Carolina"],
-      rep: ["Indiana"]
+      dem: ["Washington", "New Hampshire", "North Carolina", "Delaware"],
+      rep: ["Indiana", "Montana", "West Virginia", "North Dakota", "Utah", "Missouri", "Vermont"]
     },
     actual: {
-      dem: ["Washington", "North Carolina"],
-      rep: ["Indiana", "New Hampshire"]
+      dem: ["Washington", "North Carolina", "Delaware"],
+      rep: ["Indiana", "New Hampshire", "Montana", "West Virginia", "North Dakota", "Utah", "Missouri", "Vermont"]
     }
   };
   const margins = {
@@ -112,7 +112,9 @@
       const result = margins[stateName];
       return result
         ? `${stateName}: Polycivic ${result.projected}; actual ${result.actual}`
-        : `${stateName}: not included in this forecast`;
+        : lookup.has(stateName)
+          ? `${stateName}: safe race; not forecast by Polycivic`
+          : `${stateName}: not included in this forecast`;
     });
     updateButtons();
   }

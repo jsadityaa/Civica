@@ -515,6 +515,7 @@ async function renderGovernorCountyMap(record) {
         setActiveGovernorCounty(null);
         tooltip.style("opacity", 0);
       });
+    stateElectionRenderCityLabels(svg, projection, record.stateName);
   } catch (error) {
     empty.hidden = false;
     empty.textContent = "County map data could not be loaded.";
@@ -568,6 +569,7 @@ async function renderGovernorTownMap(record) {
         setActiveGovernorCounty(null);
         tooltip.style("opacity", 0);
       });
+    stateElectionRenderCityLabels(svg, projection, record.stateName);
   } catch (error) {
     empty.hidden = false;
     empty.textContent = "Town map data could not be loaded.";
