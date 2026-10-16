@@ -1837,6 +1837,10 @@ html:not([data-theme="dark"]) .national-lead-bubble.dem {
   letter-spacing: 0;
 }
 
+.state-results-shape-card[data-state-name="Massachusetts"] .state-results-shape-card__name {
+  font-size: 18px;
+}
+
 .state-results-shape-card__meta,
 .state-results-shape-card__links span {
   color: var(--muted);
@@ -21770,6 +21774,10 @@ html:not([data-theme="dark"]) .brazil-state-legislature-tile {
 
   .state-results-shape-card__name {
     font-size: 16px !important;
+  }
+
+  .state-results-shape-card[data-state-name="Massachusetts"] .state-results-shape-card__name {
+    font-size: 14px !important;
   }
 
   .state-results-shape-card__meta,

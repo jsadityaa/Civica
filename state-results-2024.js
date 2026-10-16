@@ -227,7 +227,7 @@ function renderStateResultsHubFallbackGrid() {
   if (!grid) return;
   const cards = buildStateHubCardData();
   grid.innerHTML = cards.map((state) => `
-    <a class="state-results-shape-card state-results-shape-card--${state.tone}" href="${stateResultsHubLink(state.name)}">
+    <a class="state-results-shape-card state-results-shape-card--${state.tone}" href="${stateResultsHubLink(state.name)}" data-state-name="${state.name}">
       <span class="state-results-shape-card__shape-fallback"></span>
       <span class="state-results-shape-card__name">${state.name}</span>
       <span class="state-results-shape-card__meta">${state.winnerName} - ${state.marginLabel}</span>
