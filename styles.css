@@ -1919,6 +1919,131 @@ html:not([data-theme="dark"]) .national-lead-bubble.dem {
   border-radius: 18px;
 }
 
+#state-election-ballot-measures {
+  min-width: 0;
+  width: 100%;
+  max-width: 820px;
+  box-sizing: border-box;
+}
+
+.ballot-measures-grid {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--panel);
+}
+
+.ballot-measure {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 24px 0 28px;
+}
+
+.ballot-measure-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0 24px 6px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ballot-measure-label {
+  letter-spacing: 0.03em;
+}
+
+.ballot-measure h3 {
+  margin: 0 24px;
+  color: var(--text);
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+}
+
+.ballot-measure-description {
+  margin: 10px 24px 20px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.ballot-measure-results {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.ballot-measure-choice {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  padding: 11px 24px;
+  background: transparent;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.ballot-measure-choice strong {
+  font-size: inherit;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.ballot-measure-choice.is-winner {
+  color: #fff;
+}
+
+.ballot-measure-choice--yes {
+  background: #237d62;
+}
+
+.ballot-measure-choice--no {
+  background: #cf2f2f;
+}
+
+.ballot-measure:last-child {
+  padding-bottom: 0;
+}
+
+.ballot-measure-choice + .ballot-measure-choice {
+  border-left: 1px solid var(--border);
+}
+
+@media (max-width: 768px) {
+  .state-election-page {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ballot-measures-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ballot-measure-heading {
+    margin-inline: 16px;
+  }
+
+  .ballot-measure h3,
+  .ballot-measure-description {
+    margin-inline: 16px;
+  }
+
+  .ballot-measure-choice {
+    padding: 11px 16px;
+  }
+}
+
 .state-election-map-card {
   order: 2;
 }

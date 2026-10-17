@@ -152,7 +152,9 @@ function stateResultsHubLink(name) {
 }
 
 function stateResultsRegionLabel(name) {
-  if (name === "Connecticut") return "Town results";
+  if (name === "District of Columbia") return "Ward results";
+  if (["Connecticut", "Maine", "New Hampshire", "Vermont"].includes(name)) return "Town results";
+  if (["Massachusetts", "Rhode Island"].includes(name)) return "Municipality results";
   return "County results";
 }
 
