@@ -1903,7 +1903,7 @@ html:not([data-theme="dark"]) .national-lead-bubble.dem {
 }
 
 .state-election-jump-nav a[hidden] {
-  display: none;
+  display: none !important;
 }
 
 .state-election-two-column {
@@ -22012,15 +22012,33 @@ html:not([data-theme="dark"]) .brazil-state-legislature-tile {
     white-space: nowrap !important;
   }
 
-  .state-election-jump-nav {
+  .state-election-page .state-election-jump-nav {
     display: flex !important;
-    overflow-x: auto !important;
+    flex-wrap: wrap !important;
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: visible !important;
     padding-bottom: 4px !important;
-    white-space: nowrap !important;
+    white-space: normal !important;
   }
 
-  .state-election-jump-nav a {
+  .state-election-page .state-election-jump-nav a {
     flex: 0 0 auto !important;
+    max-width: 100%;
+    white-space: normal !important;
+    text-align: center;
+  }
+
+  .state-election-page > .state-election-hero {
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .state-election-hero h1 {
+    min-width: 0;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   html:not([data-theme="dark"]) .detail-county-board-table tr {

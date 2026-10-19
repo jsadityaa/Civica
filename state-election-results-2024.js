@@ -1605,6 +1605,22 @@ async function stateElectionInit() {
 
   document.title = `${stateName} Election Results | Polycivic`;
   document.getElementById("state-election-title").textContent = `${stateName} Election Results`;
+  // Set navigation before awaiting map requests, including when those requests fail.
+  const availableRaces = {
+    senate: Boolean(stateElectionGetPrimarySenateRace(stateName)),
+    "senate-special": stateName === "Nebraska" && stateElectionGetSenateRaces(stateName).some((race) => race.seatType === "Special"),
+    governor: Boolean(stateElectionGetGovernorRace(stateName)),
+    house: stateName !== "District of Columbia" && stateElectionGetHouseDistricts(stateName).length > 0
+  };
+  Object.entries(availableRaces).forEach(([office, available]) => {
+    const link = document.getElementById(`state-election-${office}-jump`);
+    const section = document.getElementById(`state-election-${office}`);
+    if (link) link.hidden = !available;
+    if (section && !available) {
+      section.hidden = true;
+      section.style.display = "none";
+    }
+  });
   const mapTitle = document.getElementById("state-election-presidential-map-title");
   const presidentialMapCard = document.getElementById("state-election-presidential-map-card");
   const houseMapCard = document.getElementById("state-election-house-map-card");
