@@ -5931,6 +5931,80 @@ html:not([data-theme="dark"]) .card-tag {
   text-shadow: 0 0 22px rgba(207, 47, 47, 0.32);
 }
 
+.forecast-2026-page .site-header h1 {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.forecast-2026-page .election-package-nav {
+  flex-wrap: wrap;
+}
+
+.forecast-2026-page .forecast-2026-map-shell {
+  height: auto;
+  min-height: 0;
+}
+
+#forecast-2026-map {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.forecast-2026-map-status,
+.forecast-2026-note {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.forecast-2026-map-status {
+  margin: 0;
+}
+
+.forecast-2026-map-status:empty {
+  display: none;
+}
+
+.tooltip.forecast-2026-tooltip {
+  min-width: 0;
+  width: 300px;
+  max-width: calc(100vw - 24px);
+  box-sizing: border-box;
+}
+
+.forecast-2026-tooltip .tooltip-header {
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.forecast-2026-tooltip-caption {
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #aeb5c0;
+}
+
+.forecast-2026-margin {
+  display: inline-block;
+  min-width: 86px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: #fff;
+  text-align: center;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 600px) {
+  .forecast-2026-page .global-nav,
+  .forecast-2026-page .account-ui { flex-wrap: nowrap !important; }
+
+  .forecast-2026-page .global-header-inner:not(.is-mobile-open) .global-nav,
+  .forecast-2026-page .global-header-inner:not(.is-mobile-open) .account-ui { overflow: hidden !important; }
+
+}
+
 .forecast-map-card {
   display: grid;
   gap: 14px;
