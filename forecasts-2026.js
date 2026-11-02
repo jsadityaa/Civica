@@ -9,9 +9,55 @@
   const outcome = race => `Projected ${race[1][0] === "D" ? "Democratic" : "Republican"} ${isFlip(race) ? "flip" : "win"}`;
   const color = margin => margin.startsWith("D") ? "#2879b5" : "#cf2f2f";
   const label = race => `${race[0]}${race[2] ? ` — ${race[2]}` : ""}: ${race[1]} — ${outcome(race)}`;
-  document.querySelector("#forecast-race-count").textContent = races.length;
-  document.querySelector("#forecast-dem-count").textContent = races.filter(race => race[1][0] === "D").length;
-  document.querySelector("#forecast-rep-count").textContent = races.filter(race => race[1][0] === "R").length;
+  const stateSelect = document.querySelector("#forecast-detail-state");
+  const inputs = window.POLYCIVIC_FORECASTS_2026_INPUTS?.[office];
+  if (stateSelect && inputs) {
+    races.forEach(([state, , special]) => {
+      const option = document.createElement("option");
+      option.value = state;
+      option.textContent = `${state}${special ? " · Special election" : ""}`;
+      stateSelect.append(option);
+    });
+    const metrics = [
+      ["polling", "Polling average"], ["nationalEnvironment", "National environment"],
+      ["statePartisanship", "State partisanship"], ["candidateStrength", "Candidate strength (net)"],
+      ["fundraisingMargin", "Fundraising margin"], ["fundamentals", "Fundamentals"],
+      ["expertAverage", "Expert average"]
+    ];
+    function renderDetails() {
+      const state = stateSelect.value;
+      const race = byState.get(state);
+      const input = inputs[state];
+      if (!race || !input) return;
+      document.querySelector("#forecast-detail-name").textContent = `${state}${race[2] ? " · Special election" : ""}`;
+      document.querySelector("#forecast-detail-outcome").textContent = outcome(race);
+      const prediction = document.querySelector("#forecast-detail-prediction");
+      prediction.textContent = race[1];
+      prediction.style.backgroundColor = color(race[1]);
+      document.querySelector("#forecast-fundraising-dem").textContent = input.fundraisingD;
+      document.querySelector("#forecast-fundraising-rep").textContent = input.fundraisingR;
+      const dollars = value => Number(value.replace(/[^\d.]/g, ""));
+      const dem = dollars(input.fundraisingD);
+      const rep = dollars(input.fundraisingR);
+      document.querySelector("#forecast-fundraising-dem-bar").style.width = `${dem + rep ? dem / (dem + rep) * 100 : 0}%`;
+      document.querySelector("#forecast-fundraising-rep-bar").style.width = `${dem + rep ? rep / (dem + rep) * 100 : 0}%`;
+      const grid = document.querySelector("#forecast-input-metrics");
+      grid.replaceChildren();
+      metrics.forEach(([field, title]) => {
+        const cell = document.createElement("div");
+        const term = document.createElement("dt");
+        term.textContent = title;
+        const value = document.createElement("dd");
+        value.textContent = input[field] || "Not available";
+        if (input[field]?.startsWith("D+")) value.dataset.party = "D";
+        if (input[field]?.startsWith("R+")) value.dataset.party = "R";
+        cell.append(term, value);
+        grid.append(cell);
+      });
+    }
+    stateSelect.addEventListener("change", renderDetails);
+    renderDetails();
+  }
   if (office === "senate") {
     // Current caucus balance: 45 Democrats + 2 independents, 53 Republicans.
     // https://www.senate.gov/about/parties-leadership/party-division.shtml
@@ -127,6 +173,11 @@
       .attr("aria-label", state => byState.has(state.properties.name) ? label(byState.get(state.properties.name)) : `${state.properties.name}: no race`)
       .attr("aria-describedby", state => byState.has(state.properties.name) ? tooltip.id : null)
       .on("mouseover mousemove focus click", showTooltip)
+      .on("click.details", (_, state) => {
+        if (!stateSelect || !byState.has(state.properties.name)) return;
+        stateSelect.value = state.properties.name;
+        stateSelect.dispatchEvent(new Event("change"));
+      })
       .on("mouseout blur", hideTooltip)
       .on("keydown", (event, state) => {
         if ((event.key === "Enter" || event.key === " ") && byState.has(state.properties.name)) {

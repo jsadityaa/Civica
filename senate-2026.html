@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); if (localStorage.getItem('datahub-dyslexic-ui') === 'true') document.documentElement.setAttribute('data-dyslexic', 'true'); } catch (e) {} })();</script>
-  <link rel="stylesheet" href="./styles.css?v=20261101-forecasts" />
+  <link rel="stylesheet" href="./styles.css?v=20261101-forecast-inputs" />
   <script src="./analytics.js?v=20261011-ga4"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TTQG0NLH31"></script>
 </head>
@@ -131,15 +131,32 @@
           </div>
           <p class="forecast-2026-map-status" role="status">Loading forecast map…</p>
         </section>
-        <div class="forecast-candidate-showcase" aria-label="Projected wins among races forecast">
-          <article class="forecast-candidate-card forecast-party-card forecast-candidate-card--dem">
-            <div class="forecast-candidate-copy"><h3>Democrats</h3><div class="forecast-candidate-metrics"><div><span>Projected wins</span><strong id="forecast-dem-count">—</strong></div></div></div>
-          </article>
-          <article class="forecast-candidate-card forecast-party-card forecast-candidate-card--rep">
-            <div class="forecast-candidate-copy"><h3>Republicans</h3><div class="forecast-candidate-metrics"><div><span>Projected wins</span><strong id="forecast-rep-count">—</strong></div></div></div>
-          </article>
-        </div>
-        <p class="forecast-2026-note">Counts include only the <span id="forecast-race-count">35</span> races forecast for 2026. States without a race remain muted.</p>
+        <details class="forecast-input-details">
+          <summary>Fundraising &amp; forecast inputs</summary>
+          <div class="forecast-input-body">
+            <div class="forecast-input-selector">
+              <label for="forecast-detail-state">Select a state</label>
+              <select id="forecast-detail-state"></select>
+            </div>
+            <div id="forecast-selected-details" aria-live="polite" aria-atomic="true">
+              <div class="forecast-input-heading">
+                <div><h3 id="forecast-detail-name"></h3><p id="forecast-detail-outcome"></p></div>
+                <div><span class="forecast-input-prediction-label">Polycivic forecast</span><strong class="forecast-2026-margin" id="forecast-detail-prediction"></strong></div>
+              </div>
+              <div class="forecast-fundraising">
+                <h4>Fundraising</h4>
+                <div class="forecast-fundraising-totals">
+                  <div><span>Democratic</span><strong id="forecast-fundraising-dem"></strong></div>
+                  <div><span>Republican</span><strong id="forecast-fundraising-rep"></strong></div>
+                </div>
+                <div class="forecast-fundraising-bar" aria-hidden="true"><span id="forecast-fundraising-dem-bar"></span><span id="forecast-fundraising-rep-bar"></span></div>
+              </div>
+              <dl class="forecast-input-metrics" id="forecast-input-metrics"></dl>
+            </div>
+            <p class="forecast-input-note">D/R figures are margins in points. Fundraising totals are dollars; the fundraising margin is the spreadsheet’s model value.</p>
+            <p class="forecast-input-source">Source: <a href="https://docs.google.com/spreadsheets/d/1O4P7yK1TaDzKKB2hZqRFGeRumebjS4UXkEfPxGxVnOM/edit?gid=0#gid=0" target="_blank" rel="noopener">Polycivic’s 2026 Midterms Forecast</a></p>
+          </div>
+        </details>
         <noscript><p>Enable JavaScript to view the forecast map and tooltips.</p></noscript>
       </section>
     </main>
@@ -168,7 +185,8 @@
   </footer>
 
   <script src="./forecasts-2026-data.js?v=20261101-2"></script>
-  <script src="./forecasts-2026.js?v=20261101-5"></script>
+  <script src="./forecasts-2026-inputs.js?v=20261101-1"></script>
+  <script src="./forecasts-2026.js?v=20261101-7"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script src="./mobile-map-zoom.js?v=20261012-mobile-map-tooltips"></script>
