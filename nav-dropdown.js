@@ -126,15 +126,16 @@
     const closePackageNav = (nav, toggle) => {
       nav.classList.remove('is-package-open');
       toggle.setAttribute('aria-expanded', 'false');
-      toggle.setAttribute('aria-label', 'Open 2024 election menu');
+      toggle.setAttribute('aria-label', `Open ${nav.getAttribute('aria-label')?.match(/20\d{2}/)?.[0] || '2024'} election menu`);
     };
 
     packageNavs.forEach((nav, index) => {
       if (nav.dataset.mobileMenuReady === 'true') return;
 
       const toggle = document.createElement('button');
+      const packageYear = nav.getAttribute('aria-label')?.match(/20\d{2}/)?.[0] || '2024';
       const activeLink = nav.querySelector('.election-package-link.active');
-      const labelText = activeLink ? activeLink.textContent.trim() : '2024 menu';
+      const labelText = activeLink ? activeLink.textContent.trim() : `${packageYear} menu`;
       const navId = nav.id || `election-package-mobile-nav-${index + 1}`;
 
       nav.id = navId;
@@ -142,7 +143,7 @@
 
       toggle.type = 'button';
       toggle.className = 'election-package-toggle';
-      toggle.setAttribute('aria-label', 'Open 2024 election menu');
+      toggle.setAttribute('aria-label', `Open ${packageYear} election menu`);
       toggle.setAttribute('aria-expanded', 'false');
       toggle.setAttribute('aria-controls', navId);
       toggle.innerHTML = `
@@ -164,7 +165,7 @@
         } else {
           nav.classList.add('is-package-open');
           toggle.setAttribute('aria-expanded', 'true');
-          toggle.setAttribute('aria-label', 'Close 2024 election menu');
+          toggle.setAttribute('aria-label', `Close ${packageYear} election menu`);
         }
       });
 

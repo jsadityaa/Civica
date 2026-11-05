@@ -1,0 +1,23 @@
+/* Reuse the 2024 package styles; only live-result states need additions. */
+.results-2026-pending { background: #858b9755; }
+.results-2026-page .ev-bar-rep { margin-left: auto; }
+.result-2026-leading { opacity: .6; }
+.results-2026-uncalled { display: block; color: var(--muted); font-size: 10px; margin-top: 3px; }
+.results-2026-source { margin: 20px 0; line-height: 1.6; }
+.results-2026-source a { color: inherit; text-decoration: underline; }
+.results-2026-call { color: #aeb5c0; font-size: 12px; margin: 0 0 10px; }
+.result-2026-incumbent { font-size: 10px; opacity: .8; }
+.results-2026-page #results-detail-content { display: grid; gap: 24px; }
+.results-2026-page .state-election-result-card .detail-vote-table-wrap { overflow-x: auto; }
+.results-2026-page .tooltip { pointer-events: none; }
+.results-2026-page .site-header h1 { white-space: normal; }
+.county-map-2026-region { stroke: var(--panel); stroke-width: .55; vector-effect: non-scaling-stroke; cursor: pointer; }
+.county-map-2026-region:hover, .county-map-2026-region:focus { stroke: var(--text); stroke-width: 1.8; filter: brightness(1.12); outline: none; }
+.county-map-2026-outline { fill: none; stroke: var(--muted); stroke-width: 1.2; vector-effect: non-scaling-stroke; pointer-events: none; }
+.county-map-2026-legend { display: flex; gap: 12px; flex-wrap: wrap; color: var(--muted); font-size: 11px; }
+.county-map-2026-legend span { display: inline-flex; gap: 5px; align-items: center; }
+.county-map-2026-legend i { width: 14px; height: 10px; display: inline-block; }
+.county-map-2026-legend i.dem { background: #2879b5; }
+.county-map-2026-legend i.rep { background: #cf2f2f; }
+.county-map-2026-note { padding: 0 16px 12px; font-size: 12px; }
+.county-board-2026 { margin-top: 24px; }

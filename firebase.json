@@ -19,6 +19,10 @@
     ],
     "headers": [
       {
+        "source": "/midterms-2026-results-data.js",
+        "headers": [{ "key": "Cache-Control", "value": "no-cache, must-revalidate" }]
+      },
+      {
         "source": "/auth-config.js",
         "headers": [
           { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
@@ -68,6 +72,13 @@
       { "source": "/brazil-governors-2026.html", "destination": "/brazil-governors-2026", "type": 301 },
       { "source": "/brazil-state-legislatures-2026.html", "destination": "/brazil-state-legislatures-2026", "type": 301 },
       { "source": "/midterms-2026.html", "destination": "/midterms-2026", "type": 301 },
+      { "source": "/senate-2026-results.html", "destination": "/senate-2026-results", "type": 301 },
+      { "source": "/governor-2026-results.html", "destination": "/governor-2026-results", "type": 301 },
+      { "source": "/house-2026-results.html", "destination": "/house-2026-results", "type": 301 },
+      { "source": "/state-results-2026.html", "destination": "/state-results-2026", "type": 301 },
+      { "source": "/state-election-results-2026.html", "destination": "/state-election-results-2026", "type": 301 },
+      { "source": "/race-result-2026.html", "destination": "/race-result-2026", "type": 301 },
+      { "source": "/precinct-map-2026.html", "destination": "/precinct-map-2026", "type": 301 },
       { "source": "/house-2026.html", "destination": "/house-2026", "type": 301 },
       { "source": "/senate-2026.html", "destination": "/senate-2026", "type": 301 },
       { "source": "/governor-2026.html", "destination": "/governor-2026", "type": 301 },
@@ -108,6 +119,13 @@
       { "source": "/brazil-governors-2026", "destination": "/brazil-governors-2026.html" },
       { "source": "/brazil-state-legislatures-2026", "destination": "/brazil-state-legislatures-2026.html" },
       { "source": "/midterms-2026", "destination": "/midterms-2026.html" },
+      { "source": "/senate-2026-results", "destination": "/senate-2026-results.html" },
+      { "source": "/governor-2026-results", "destination": "/governor-2026-results.html" },
+      { "source": "/house-2026-results", "destination": "/house-2026-results.html" },
+      { "source": "/state-results-2026", "destination": "/state-results-2026.html" },
+      { "source": "/state-election-results-2026", "destination": "/state-election-results-2026.html" },
+      { "source": "/race-result-2026", "destination": "/race-result-2026.html" },
+      { "source": "/precinct-map-2026", "destination": "/precinct-map-2026.html" },
       { "source": "/house-2026", "destination": "/house-2026.html" },
       { "source": "/senate-2026", "destination": "/senate-2026.html" },
       { "source": "/governor-2026", "destination": "/governor-2026.html" },

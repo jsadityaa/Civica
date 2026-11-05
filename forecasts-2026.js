@@ -11,6 +11,7 @@
   const label = race => `${race[0]}${race[2] ? ` — ${race[2]}` : ""}: ${race[1]} — ${outcome(race)}`;
   const stateSelect = document.querySelector("#forecast-detail-state");
   const inputs = window.POLYCIVIC_FORECASTS_2026_INPUTS?.[office];
+  let renderStateShape = () => {};
   if (stateSelect && inputs) {
     races.forEach(([state, , special]) => {
       const option = document.createElement("option");
@@ -19,11 +20,71 @@
       stateSelect.append(option);
     });
     const metrics = [
-      ["polling", "Polling average"], ["nationalEnvironment", "National environment"],
-      ["statePartisanship", "State partisanship"], ["candidateStrength", "Candidate strength (net)"],
-      ["fundraisingMargin", "Fundraising margin"], ["fundamentals", "Fundamentals"],
-      ["expertAverage", "Expert average"]
+      ["polling", "Polling average", "A combined estimate of voter preferences from multiple opinion polls. Combining polls helps reduce the influence of any single survey."],
+      ["nationalEnvironment", "National environment", "The broader political mood across the country, including which party voters favor overall. National trends can influence individual races."],
+      ["statePartisanship", "State partisanship", "A state's underlying tendency to support one political party over another, based on its voting history."],
+      ["candidateStrength", "Candidate strength (net)", "The relative electoral appeal of the candidates, including factors such as experience, name recognition, and personal popularity. Net strength compares the advantages of both sides."],
+      ["fundraisingMargin", "Fundraising margin", "The relative fundraising advantage between the two sides. Fundraising can help campaigns pay for advertising, staff, and voter outreach."],
+      ["fundamentals", "Fundamentals", "The underlying conditions that shape an election, such as a state's partisan lean, incumbency, candidate strength, and the national political climate."],
+      ["expertAverage", "Expert average", "A combined assessment of a race from election analysts. Analysts evaluate factors such as polling, candidates, and the political climate when judging a race."]
     ];
+    function addHelp(term, description, id, container) {
+      const wrapper = document.createElement("span");
+      wrapper.className = "forecast-term-help-wrapper";
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "forecast-term-help";
+      button.textContent = "?";
+      button.setAttribute("aria-label", `What does ${term.textContent} mean?`);
+      button.setAttribute("aria-expanded", "false");
+      button.setAttribute("aria-controls", id);
+      button.setAttribute("aria-describedby", id);
+      const explanation = document.createElement("span");
+      explanation.id = id;
+      explanation.className = "forecast-term-explanation";
+      explanation.setAttribute("role", "tooltip");
+      explanation.textContent = description;
+      explanation.setAttribute("aria-hidden", "true");
+      const position = event => {
+        const anchor = button.getBoundingClientRect();
+        const x = event?.clientX ?? anchor.left + anchor.width / 2;
+        const y = event?.clientY ?? anchor.top;
+        const bounds = explanation.getBoundingClientRect();
+        explanation.style.left = `${Math.max(12, Math.min(x - bounds.width / 2, window.innerWidth - bounds.width - 12))}px`;
+        explanation.style.top = `${Math.max(12, y - bounds.height - 14)}px`;
+      };
+      const show = event => {
+        position(event);
+        explanation.classList.add("is-visible");
+        explanation.setAttribute("aria-hidden", "false");
+        button.setAttribute("aria-expanded", "true");
+      };
+      const hide = () => {
+        explanation.classList.remove("is-visible");
+        explanation.setAttribute("aria-hidden", "true");
+        button.setAttribute("aria-expanded", "false");
+      };
+      wrapper.addEventListener("mouseenter", show);
+      button.addEventListener("mousemove", position);
+      wrapper.addEventListener("mouseleave", hide);
+      button.addEventListener("focus", show);
+      button.addEventListener("blur", hide);
+      button.addEventListener("click", show);
+      container.addEventListener("keydown", event => {
+        if (event.key === "Escape" && explanation.classList.contains("is-visible")) {
+          button.focus();
+          hide();
+        }
+      });
+      window.addEventListener("scroll", hide, { passive: true });
+      window.addEventListener("resize", hide);
+      wrapper.append(button, explanation);
+      term.append(" ", wrapper);
+    }
+    const fundraisingHeading = document.querySelector(".forecast-fundraising h4");
+    addHelp(fundraisingHeading, "Money raised to support a campaign's activities, such as advertising, staffing, events, and voter outreach.", "forecast-help-fundraising", document.querySelector(".forecast-fundraising"));
+    const forecastLabel = document.querySelector(".forecast-input-prediction-label");
+    addHelp(forecastLabel, "An estimate of an election's likely outcome based on the available evidence. It reflects expectations before votes are counted and carries uncertainty.", "forecast-help-prediction", document.querySelector(".forecast-input-prediction-group"));
     function renderDetails() {
       const state = stateSelect.value;
       const race = byState.get(state);
@@ -33,7 +94,8 @@
       document.querySelector("#forecast-detail-outcome").textContent = outcome(race);
       const prediction = document.querySelector("#forecast-detail-prediction");
       prediction.textContent = race[1];
-      prediction.style.backgroundColor = color(race[1]);
+      prediction.style.color = color(race[1]);
+      renderStateShape();
       document.querySelector("#forecast-fundraising-dem").textContent = input.fundraisingD;
       document.querySelector("#forecast-fundraising-rep").textContent = input.fundraisingR;
       const dollars = value => Number(value.replace(/[^\d.]/g, ""));
@@ -43,7 +105,7 @@
       document.querySelector("#forecast-fundraising-rep-bar").style.width = `${dem + rep ? rep / (dem + rep) * 100 : 0}%`;
       const grid = document.querySelector("#forecast-input-metrics");
       grid.replaceChildren();
-      metrics.forEach(([field, title]) => {
+      metrics.forEach(([field, title, description]) => {
         const cell = document.createElement("div");
         const term = document.createElement("dt");
         term.textContent = title;
@@ -52,6 +114,7 @@
         if (input[field]?.startsWith("D+")) value.dataset.party = "D";
         if (input[field]?.startsWith("R+")) value.dataset.party = "R";
         cell.append(term, value);
+        addHelp(term, description, `forecast-help-${field}`, cell);
         grid.append(cell);
       });
     }
@@ -102,8 +165,8 @@
     caption.className = "forecast-2026-tooltip-caption";
     caption.textContent = outcome(race);
     const margin = document.createElement("strong");
-    margin.className = "forecast-2026-margin";
-    margin.style.backgroundColor = color(race[1]);
+    margin.className = "forecast-input-prediction";
+    margin.style.color = color(race[1]);
     margin.textContent = race[1];
     tooltip.append(header, caption, margin);
     const bounds = event.currentTarget.getBoundingClientRect();
@@ -157,6 +220,26 @@
   });
   d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json").then(us => {
     const states = topojson.feature(us, us.objects.states).features.filter(state => abbreviations[state.properties.name]);
+    const detailSvg = d3.select("#forecast-detail-shape");
+    const detailDefs = detailSvg.append("defs");
+    [["D", "#5a96c8", "#2879b5"], ["R", "#d86a6a", "#cf2f2f"]].forEach(([party, light, base]) => {
+      const pattern = detailDefs.append("pattern").attr("id", `forecast-detail-${party}-flip`)
+        .attr("patternUnits", "userSpaceOnUse").attr("width", 12).attr("height", 12)
+        .attr("patternTransform", "rotate(45)");
+      pattern.append("rect").attr("width", 12).attr("height", 12).attr("fill", light);
+      pattern.append("rect").attr("width", 6).attr("height", 12).attr("fill", base);
+    });
+    const detailPath = detailSvg.append("path");
+    renderStateShape = () => {
+      const race = byState.get(stateSelect?.value);
+      const state = states.find(feature => feature.properties.name === race?.[0]);
+      if (!state) return;
+      const detailProjection = d3.geoAlbersUsa().fitExtent([[12, 12], [268, 208]], state);
+      detailPath.attr("d", d3.geoPath(detailProjection)(state))
+        .attr("fill", isFlip(race) ? `url(#forecast-detail-${race[1][0]}-flip)` : color(race[1]));
+      detailSvg.attr("aria-label", `${race[0]}: ${outcome(race)}, ${race[1]}`);
+    };
+    renderStateShape();
     const projection = d3.geoAlbersUsa().fitExtent([[38, 28], [1522, 872]], { type: "FeatureCollection", features: states });
     const path = d3.geoPath(projection);
     const artwork = svg.append("g");

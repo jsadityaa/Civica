@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ohio Precinct Map | Polycivic</title>
+  <meta name="description" content="Explore an Ohio precinct boundary preview. This map uses 2024 geography; 2026 precinct results and boundary verification are pending." />
+  <link rel="canonical" href="https://polycivic.com/precinct-map-2026" />
+  <link rel="icon" type="image/png" href="./favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script>(() => { try { if (localStorage.getItem('datahub-theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); if (localStorage.getItem('datahub-dyslexic-ui') === 'true') document.documentElement.setAttribute('data-dyslexic', 'true'); } catch (e) {} })();</script>
+  <link rel="stylesheet" href="./styles.css?v=20260909-no-outer-election-panels-1" />
+  <link rel="stylesheet" href="./precinct-map-2026.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body class="results-2026-page">
+  <header class="global-header"><div class="global-header-inner">
+    <a href="/" class="brand" aria-label="Polycivic home">Polycivic</a>
+    <nav class="global-nav" aria-label="Main navigation">
+      <a href="/" class="global-nav-link">Features</a><a href="/elections" class="global-nav-link active">Elections</a><a href="/forecasts" class="global-nav-link">Forecasts</a>
+      <div class="global-nav-dropdown"><a href="/#our-mission" class="global-nav-link">About Us</a><div class="global-nav-dropdown-menu"><a href="/our-mission" class="global-nav-dropdown-link">Our vision</a><a href="/our-team" class="global-nav-dropdown-link">Our team</a></div></div>
+      <a href="/settings" class="global-nav-link">Settings</a>
+    </nav>
+    <div class="account-ui" aria-label="Account controls"><button class="login-button" type="button">Log In</button><button class="account-button" type="button" aria-label="Account"><span class="account-avatar">A</span><span class="account-label">Account</span></button></div>
+  </div></header>
+  <div class="site-shell">
+    <div class="election-package-header">
+      <div class="election-year-strip" aria-label="2026 general election"><span class="year-block red">2</span><span class="year-block blue">0</span><span class="year-block red">2</span><span class="year-block blue">6</span></div>
+      <nav class="election-package-nav" aria-label="2026 election pages">
+        <a href="./house-2026-results.html" class="election-package-link">House of Representatives</a>
+        <a href="./senate-2026-results.html" class="election-package-link">Senate</a>
+        <a href="./governor-2026-results.html" class="election-package-link">Governor</a>
+        <a href="./state-results-2026.html" class="election-package-link">State Results</a>
+        <a href="./precinct-map-2026.html" class="election-package-link active" aria-current="page">Precinct Map</a>
+      </nav>
+    </div>
+    <header class="site-header"><h1>Ohio Precinct Map</h1><p class="precinct-intro">Explore Ohio’s precinct boundaries. Zoom in for more detail.</p></header>
+    <main>
+      <section aria-labelledby="precinct-heading">
+        <div class="precinct-heading-row"><div><h2 id="precinct-heading">Boundary preview</h2><p class="precinct-status">2024 geography · 2026 results pending</p></div><a class="precinct-download" href="./ohio-precinct-boundaries.svg" download>Download SVG</a></div>
+        <p class="precinct-notice">This preview uses 2024 precinct boundaries. Changes for 2026 have not yet been verified, and 2026 precinct vote totals have not been added. Neutral shading shows boundaries only.</p>
+        <div class="precinct-map-shell">
+          <div class="precinct-map-controls" role="group" aria-label="Map zoom controls"><button type="button" id="precinct-zoom-in" aria-label="Zoom in" disabled>+</button><button type="button" id="precinct-zoom-out" aria-label="Zoom out" disabled>−</button><button type="button" id="precinct-reset" disabled>Reset</button><output id="precinct-zoom-level" aria-label="Zoom level">100%</output></div>
+          <p id="precinct-loading" role="status">Loading Ohio’s precinct boundaries…</p>
+          <svg id="ohio-precinct-map" role="img" tabindex="0" aria-label="Ohio precinct boundary preview using 2024 geography. No 2026 results. Use plus and minus to zoom, arrow keys to pan, or zero to reset." hidden></svg>
+        </div>
+        <p class="precinct-map-help">Scroll or pinch to zoom. Drag to move. Keyboard: + / − to zoom, arrow keys to move, 0 to reset.</p>
+        <p class="precinct-attribution">Boundary geometry: <a href="https://commons.wikimedia.org/wiki/File:OH_President_2024.svg" target="_blank" rel="noopener">Orca and Putitonamap98 / Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>. Adapted to remove historic result colors.</p>
+      </section>
+    </main>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="./auth-config.js?v=20261011-polycivic-auth-domain-2"></script><script src="./auth.js?v=20261011-mobile-redirect-3"></script><script src="./nav-dropdown.js?v=20261104-election-year"></script>
+  <script src="./precinct-map-2026.js"></script>
+</body>
+</html>
