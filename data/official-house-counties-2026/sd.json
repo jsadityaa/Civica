@@ -1,0 +1,1190 @@
+[
+  {
+    "name": "Aurora",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=10&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 709
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 254
+      }
+    ],
+    "total": 963
+  },
+  {
+    "name": "Beadle",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=04&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 3498
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 1319
+      }
+    ],
+    "total": 4817
+  },
+  {
+    "name": "Bennett",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=11&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 519
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 317
+      }
+    ],
+    "total": 836
+  },
+  {
+    "name": "Bon Homme",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=12&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 1610
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 527
+      }
+    ],
+    "total": 2137
+  },
+  {
+    "name": "Brookings",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=06&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 6853
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 4610
+      }
+    ],
+    "total": 11463
+  },
+  {
+    "name": "Brown",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=03&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 7756
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 4252
+      }
+    ],
+    "total": 12008
+  },
+  {
+    "name": "Brule",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=13&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 1259
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 500
+      }
+    ],
+    "total": 1759
+  },
+  {
+    "name": "Buffalo",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=14&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 165
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 211
+      }
+    ],
+    "total": 376
+  },
+  {
+    "name": "Butte",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=15&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 2755
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 686
+      }
+    ],
+    "total": 3441
+  },
+  {
+    "name": "Campbell",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=16&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 514
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 84
+      }
+    ],
+    "total": 598
+  },
+  {
+    "name": "Charles Mix",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=17&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 1867
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 791
+      }
+    ],
+    "total": 2658
+  },
+  {
+    "name": "Clark",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=18&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 1233
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 296
+      }
+    ],
+    "total": 1529
+  },
+  {
+    "name": "Clay",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=19&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 1822
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 2244
+      }
+    ],
+    "total": 4066
+  },
+  {
+    "name": "Codington",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=05&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 6883
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 2979
+      }
+    ],
+    "total": 9862
+  },
+  {
+    "name": "Corson",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=20&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 395
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 331
+      }
+    ],
+    "total": 726
+  },
+  {
+    "name": "Custer",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=21&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 3413
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 1244
+      }
+    ],
+    "total": 4657
+  },
+  {
+    "name": "Davison",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=08&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 4231
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 1802
+      }
+    ],
+    "total": 6033
+  },
+  {
+    "name": "Day",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=22&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 1477
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 775
+      }
+    ],
+    "total": 2252
+  },
+  {
+    "name": "Deuel",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=23&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 1278
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 400
+      }
+    ],
+    "total": 1678
+  },
+  {
+    "name": "Dewey",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=24&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 556
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 720
+      }
+    ],
+    "total": 1276
+  },
+  {
+    "name": "Douglas",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=25&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 1089
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 149
+      }
+    ],
+    "total": 1238
+  },
+  {
+    "name": "Edmunds",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=26&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 1125
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 305
+      }
+    ],
+    "total": 1430
+  },
+  {
+    "name": "Fall River",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=27&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 2446
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 819
+      }
+    ],
+    "total": 3265
+  },
+  {
+    "name": "Faulk",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=28&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 693
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 123
+      }
+    ],
+    "total": 816
+  },
+  {
+    "name": "Grant",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=29&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 2140
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 757
+      }
+    ],
+    "total": 2897
+  },
+  {
+    "name": "Gregory",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=30&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 1243
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 325
+      }
+    ],
+    "total": 1568
+  },
+  {
+    "name": "Haakon",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=31&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 745
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 88
+      }
+    ],
+    "total": 833
+  },
+  {
+    "name": "Hamlin",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=32&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 1773
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 447
+      }
+    ],
+    "total": 2220
+  },
+  {
+    "name": "Hand",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=33&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 1045
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 219
+      }
+    ],
+    "total": 1264
+  },
+  {
+    "name": "Hanson",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=34&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 923
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 255
+      }
+    ],
+    "total": 1178
+  },
+  {
+    "name": "Harding",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=35&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 612
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 45
+      }
+    ],
+    "total": 657
+  },
+  {
+    "name": "Hughes",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=36&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 4420
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 2027
+      }
+    ],
+    "total": 6447
+  },
+  {
+    "name": "Hutchinson",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=37&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 2026
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 508
+      }
+    ],
+    "total": 2534
+  },
+  {
+    "name": "Hyde",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=38&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 413
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 94
+      }
+    ],
+    "total": 507
+  },
+  {
+    "name": "Jackson",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=39&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 528
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 245
+      }
+    ],
+    "total": 773
+  },
+  {
+    "name": "Jerauld",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=40&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 525
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 165
+      }
+    ],
+    "total": 690
+  },
+  {
+    "name": "Jones",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=41&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 391
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 59
+      }
+    ],
+    "total": 450
+  },
+  {
+    "name": "Kingsbury",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=42&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 1520
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 534
+      }
+    ],
+    "total": 2054
+  },
+  {
+    "name": "Lake",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=43&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 3010
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 1400
+      }
+    ],
+    "total": 4410
+  },
+  {
+    "name": "Lawrence",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=09&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 7043
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 3797
+      }
+    ],
+    "total": 10840
+  },
+  {
+    "name": "Lincoln",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=44&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 16237
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 10081
+      }
+    ],
+    "total": 26318
+  },
+  {
+    "name": "Lyman",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=45&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 779
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 335
+      }
+    ],
+    "total": 1114
+  },
+  {
+    "name": "Marshall",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=48&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 1063
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 593
+      }
+    ],
+    "total": 1656
+  },
+  {
+    "name": "McCook",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=46&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 1627
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 532
+      }
+    ],
+    "total": 2159
+  },
+  {
+    "name": "McPherson",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=47&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 862
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 126
+      }
+    ],
+    "total": 988
+  },
+  {
+    "name": "Meade",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=49&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 7507
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 2486
+      }
+    ],
+    "total": 9993
+  },
+  {
+    "name": "Mellette",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=50&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 389
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 213
+      }
+    ],
+    "total": 602
+  },
+  {
+    "name": "Miner",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=51&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 669
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 218
+      }
+    ],
+    "total": 887
+  },
+  {
+    "name": "Minnehaha",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=01&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 36090
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 30943
+      }
+    ],
+    "total": 67033
+  },
+  {
+    "name": "Moody",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=52&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 1606
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 858
+      }
+    ],
+    "total": 2464
+  },
+  {
+    "name": "Oglala Lakota",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=65&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 308
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 1915
+      }
+    ],
+    "total": 2223
+  },
+  {
+    "name": "Pennington",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=02&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 23677
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 14532
+      }
+    ],
+    "total": 38209
+  },
+  {
+    "name": "Perkins",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=53&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 1066
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 189
+      }
+    ],
+    "total": 1255
+  },
+  {
+    "name": "Potter",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=54&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 769
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 149
+      }
+    ],
+    "total": 918
+  },
+  {
+    "name": "Roberts",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=55&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 1816
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 1151
+      }
+    ],
+    "total": 2967
+  },
+  {
+    "name": "Sanborn",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=56&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 599
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 226
+      }
+    ],
+    "total": 825
+  },
+  {
+    "name": "Spink",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=57&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 1625
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 621
+      }
+    ],
+    "total": 2246
+  },
+  {
+    "name": "Stanley",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=58&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 989
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 323
+      }
+    ],
+    "total": 1312
+  },
+  {
+    "name": "Sully",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=59&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 604
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 105
+      }
+    ],
+    "total": 709
+  },
+  {
+    "name": "Todd",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=67&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 415
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 1225
+      }
+    ],
+    "total": 1640
+  },
+  {
+    "name": "Tripp",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=60&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 1607
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 319
+      }
+    ],
+    "total": 1926
+  },
+  {
+    "name": "Turner",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=61&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 2465
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 768
+      }
+    ],
+    "total": 3233
+  },
+  {
+    "name": "Union",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=62&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 3907
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 1898
+      }
+    ],
+    "total": 5805
+  },
+  {
+    "name": "Walworth",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=63&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 1328
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 306
+      }
+    ],
+    "total": 1634
+  },
+  {
+    "name": "Yankton",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=07&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 4795
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 2898
+      }
+    ],
+    "total": 7693
+  },
+  {
+    "name": "Ziebach",
+    "source": "https://electionresults.sd.gov/ResultsSW.aspx?type=CTYALL&cty=64&map=CTY",
+    "electionDate": "2026-11-03",
+    "candidates": [
+      {
+        "name": "Marty Jackley",
+        "party": "Republican",
+        "votes": 286
+      },
+      {
+        "name": "Nicole \"Nikki\" Gronli",
+        "party": "Democratic",
+        "votes": 284
+      }
+    ],
+    "total": 570
+  }
+]

@@ -776,7 +776,7 @@ function stateElectionRenderSenateSummary(stateName, race, office = "senate") {
 
   section.hidden = false;
   if (title) {
-    title.textContent = `${race.winner} wins ${stateName}'s${race.seatType === "Special" ? " special" : ""} ${office === "governor" ? "governor" : "Senate"} race.`;
+    title.textContent = `${race.winner} wins ${stateName}'s${race.seatType === "Special" ? " special" : ""} ${office === "governor" ? "gubernatorial" : "Senate"} race.`;
   }
   if (seat) seat.textContent = office === "governor" ? "Governor" : race.seatType || "Regular";
   if (margin) margin.textContent = race.result || "-";

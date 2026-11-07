@@ -1,0 +1,60 @@
+.precinct-selectors{display:flex;flex-wrap:wrap;gap:20px;margin:22px 0}
+.precinct-selectors label,.precinct-search{display:flex;flex-direction:column;gap:9px;font-size:14px;font-weight:700;max-width:100%;min-width:0}
+.precinct-selectors label:first-child{flex:1;max-width:650px}
+.precinct-selectors select,.precinct-search input{max-width:100%;min-width:0;padding:13px 16px;font:inherit;color:inherit;background:var(--panel,#fff);border:1px solid var(--border,#d6dae0);border-radius:12px}
+.precinct-party-legend{display:flex;flex-wrap:wrap;gap:12px 24px;font-size:13px;font-weight:600;margin:18px 0}
+.precinct-party-legend[hidden]{display:none}
+.precinct-gradient-legend{width:100%;max-width:480px;margin:0 0 20px;font-family:Inter,sans-serif}
+.precinct-legend-candidates{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-bottom:16px}
+.precinct-legend-candidate{display:flex;align-items:center;gap:9px;min-width:0}
+.precinct-legend-candidate>div{min-width:0}
+.precinct-legend-candidate img{width:44px;height:44px;flex:none;border-radius:50%;object-fit:cover;object-position:center 25%}
+.precinct-legend-candidate strong{display:block;font-size:14px;line-height:1.35;color:var(--text,#111827)}
+.precinct-legend-candidate.rep{flex-direction:row-reverse;text-align:right}
+.precinct-legend-party{display:block;margin-top:3px;font-size:12px;font-weight:600;line-height:1.4}
+.precinct-legend-party.dem{color:#2864c5}.precinct-legend-party.rep{color:#cf293b}
+[data-theme="dark"] .precinct-legend-party.dem{color:#82aafa}[data-theme="dark"] .precinct-legend-party.rep{color:#f58b97}
+@media(max-width:400px){.precinct-legend-candidate img{width:36px;height:36px}.precinct-legend-candidate{gap:6px}.precinct-legend-candidate strong{font-size:13px}.precinct-legend-candidates{gap:10px}}
+.precinct-gradient-labels{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px;font-size:12px;line-height:1.4;font-weight:600;color:var(--text,#111827)}
+.precinct-gradient-labels span:nth-child(2){text-align:center}
+.precinct-gradient-labels span:last-child{text-align:right}
+.precinct-gradient-bar{height:12px;border-radius:3px;background:linear-gradient(to right,#2864c5,#cf293b)}
+.precinct-gradient-legend p{margin:8px 0 0;font-size:12px;line-height:1.5;color:var(--muted,#626c7c)}
+.precinct-party-legend span{display:flex;align-items:center;gap:8px}
+.precinct-swatch{width:24px;height:15px;border-radius:4px}
+.precinct-swatch.dem{background:#287bb4}.precinct-swatch.rep{background:#c62828}.precinct-swatch.other{background:#b79942}.precinct-swatch.neutral{background:#a5acb7}
+.precinct-result-shape{stroke:none;cursor:pointer}
+.precinct-state-backdrop{fill:#d9dde4;stroke:#8b94a2;stroke-width:1.4}
+.precinct-unfilled-shape{fill:#d9dde4;stroke:#8e98a7;stroke-width:.45;vector-effect:non-scaling-stroke;fill-rule:evenodd}
+[data-theme="dark"] .precinct-unfilled-shape{fill:#272c35;stroke:#637082}
+.precinct-result-shape{vector-effect:non-scaling-stroke}
+.precinct-city-labels{pointer-events:none;user-select:none}
+.precinct-city-label text{font-family:Inter,sans-serif;font-weight:600;fill:var(--text,#111827);stroke:var(--panel,#fff);stroke-linejoin:round;paint-order:stroke fill}
+.precinct-city-label[data-tier="0"] text{font-weight:800}
+.precinct-city-label circle{fill:var(--text,#111827);stroke:var(--panel,#fff)}
+.precinct-streets,.precinct-street-names,.precinct-street-status{pointer-events:none}
+.precinct-street-road{fill:none;stroke:#858b95;stroke-width:.65;stroke-opacity:.75;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+.precinct-street-road.road-level-0{stroke-width:1.25}.precinct-street-road.road-level-1{stroke-width:.95}
+[data-theme="dark"] .precinct-street-road{stroke:#9ba2ad;stroke-opacity:.65}
+.precinct-street-names text{font-family:Inter,sans-serif;font-weight:500;fill:#5b6470;stroke:var(--panel,#fff);stroke-linejoin:round;paint-order:stroke fill}
+[data-theme="dark"] .precinct-street-names text{fill:#bdc4cf}
+.precinct-street-status{font:500 12px Inter,sans-serif;fill:var(--muted,#626c7c);paint-order:stroke fill;stroke:var(--panel,#fff);stroke-width:3px;stroke-linejoin:round}
+[data-theme="dark"] .precinct-state-backdrop{fill:#272c35;stroke:#66707d}
+#precinct-tooltip{position:fixed;z-index:5000;width:360px;max-width:calc(100vw - 16px);padding:20px;background:#101319;color:#f3f4f6;border:1px solid #454c59;border-radius:16px;box-shadow:0 8px 28px #0005;pointer-events:none}
+#precinct-tooltip h3,.precinct-selection h3{font-size:20px;margin:0 0 8px}
+.precinct-detail-subtitle{font-size:12px;line-height:1.5;color:#aeb7c6;margin:0 0 14px}
+#precinct-tooltip table,.precinct-selection table{border-collapse:collapse;width:100%;font-size:13px}
+#precinct-tooltip th,#precinct-tooltip td,.precinct-selection th,.precinct-selection td{padding:8px 0;text-align:right;border-bottom:1px solid #78818f40}
+#precinct-tooltip th:first-child,#precinct-tooltip td:first-child,.precinct-selection th:first-child,.precinct-selection td:first-child{text-align:left;padding-right:8px}
+.precinct-candidate-party{display:inline-block;min-width:18px;font-weight:800;margin-right:5px;color:#b49b46}
+.precinct-candidate-party[data-party="D"]{color:#53a8de}.precinct-candidate-party[data-party="R"]{color:#ef7676}
+.precinct-selection{padding:24px;border:1px solid var(--border,#d6dae0);border-radius:16px;margin:20px 0;max-width:700px}
+.precinct-selection .precinct-detail-subtitle{color:var(--muted,#626c7c)}
+#precinct-list-section{margin-top:32px}.precinct-search{max-width:420px;margin:20px 0}
+.precinct-table-wrap{overflow-x:auto}.precinct-results-table{width:100%;border-collapse:collapse;font-size:14px}
+.precinct-results-table th,.precinct-results-table td{text-align:left;padding:14px 10px;border-bottom:1px solid var(--border,#d6dae0)}
+.precinct-results-table th:last-child,.precinct-results-table td:last-child{text-align:right}
+.precinct-results-table button{font:inherit;font-weight:700;border:0;padding:0;text-align:left;background:transparent;color:inherit;cursor:pointer}
+.precinct-results-table button:hover{text-decoration:underline}.precinct-results-table small{display:block;font-size:11px;color:var(--muted,#626c7c);margin-top:4px}
+#precinct-show-all{margin:18px 0;background:transparent;cursor:pointer}#precinct-show-all[hidden]{display:none}
+@media(max-width:600px){.precinct-selectors{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}.precinct-results-table{font-size:12px}.precinct-results-table th,.precinct-results-table td{padding:12px 6px}.precinct-results-table td:nth-child(2){max-width:130px;overflow-wrap:anywhere}}

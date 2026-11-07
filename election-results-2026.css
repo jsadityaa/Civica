@@ -8,12 +8,18 @@
 .results-2026-call { color: #aeb5c0; font-size: 12px; margin: 0 0 10px; }
 .result-2026-incumbent { font-size: 10px; opacity: .8; }
 .results-2026-page #results-detail-content { display: grid; gap: 24px; }
+.results-2026-page[data-results-office="state"] #results-detail-content { display: contents; }
 .results-2026-page .state-election-result-card .detail-vote-table-wrap { overflow-x: auto; }
 .results-2026-page .tooltip { pointer-events: none; }
+.results-2026-page .tooltip .winner-row td,
+.results-2026-page .tooltip .winner-row .tooltip-candidate > span { font-weight: 900; }
+.results-2026-page .detail-vote-table .winner-row td,
+.results-2026-page .detail-vote-table .winner-row .candidate-name-inline { font-weight: 800; }
+.results-2026-page .detail-vote-table .candidate-name-inline { color: inherit; }
 .results-2026-page .site-header h1 { white-space: normal; }
-.county-map-2026-region { stroke: var(--panel); stroke-width: .55; vector-effect: non-scaling-stroke; cursor: pointer; }
-.county-map-2026-region:hover, .county-map-2026-region:focus { stroke: var(--text); stroke-width: 1.8; filter: brightness(1.12); outline: none; }
-.county-map-2026-outline { fill: none; stroke: var(--muted); stroke-width: 1.2; vector-effect: non-scaling-stroke; pointer-events: none; }
+.county-map-2026-region { stroke: #fff; stroke-width: .55; vector-effect: non-scaling-stroke; cursor: pointer; }
+.county-map-2026-region:hover, .county-map-2026-region:focus { stroke: #fff; stroke-width: 1.8; filter: brightness(1.12); outline: none; }
+.county-map-2026-outline { fill: none; stroke: #fff; stroke-width: 1.2; vector-effect: non-scaling-stroke; pointer-events: none; }
 .county-map-2026-legend { display: flex; gap: 12px; flex-wrap: wrap; color: var(--muted); font-size: 11px; }
 .county-map-2026-legend span { display: inline-flex; gap: 5px; align-items: center; }
 .county-map-2026-legend i { width: 14px; height: 10px; display: inline-block; }
@@ -21,3 +27,16 @@
 .county-map-2026-legend i.rep { background: #cf2f2f; }
 .county-map-2026-note { padding: 0 16px 12px; font-size: 12px; }
 .county-board-2026 { margin-top: 24px; }
+.results-2026-page .state-election-section {
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none;
+}
+.candidate-photo-placeholder { display: inline-flex; align-items: center; justify-content: center; background: #ffffff26; color: inherit; font-size: 18px; font-weight: 700; flex: none; }
+.candidate-photo-credit { display: inline-flex; flex: none; border-radius: 50%; }
+.candidate-photo-credit .detail-candidate-photo { object-position: center 20%; }
+.detail-candidate-note { margin: 0; font-size: 12px; line-height: 1.5; color: var(--muted); }
+.state-election-result-card .detail-candidate-note { color: inherit; opacity: .85; }
+.state-election-result-card[data-office="governor"] .state-election-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }

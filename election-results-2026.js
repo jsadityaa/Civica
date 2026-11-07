@@ -7,7 +7,7 @@
   const esc = value => String(value ?? "").replace(/[&<>"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
   const party = value => value === "Dem" ? "D" : value === "GOP" ? "R" : "I";
   const tone = value => ({ D: "dem", R: "rep", I: "ind" }[value] || "ind");
-  const partyName = value => ({ Dem: "Democrat", GOP: "Republican", Ind: "Independent", NP: "Nonpartisan", NPP: "No Party Preference", NPA: "No Party Affiliation", Lib: "Libertarian", Grn: "Green", Other: "Other", Oth: "Other", Una: "Unaffiliated", NoL: "No Labels", UDC: "United Citizens", CST: "Constitution", IAP: "Independent American" }[value] || value);
+  const partyName = value => ({ Dem: "Democrat", GOP: "Republican", Ind: "Independent", NP: "Nonpartisan", NPP: "No Party Preference", NPA: "No Party Affiliation", Lib: "Libertarian", Grn: "Green", Other: "Other", Oth: "Other", Una: "Unaffiliated", NoL: "No Labels", UDC: "United Citizens", CST: "Constitution", IAP: "Independent American", AmC: "American Constitution", AVP: "Approval Voting", Uty: "Unity", FWD: "Forward" }[value] || value);
   const candidateName = candidate => [candidate.first, candidate.last].filter(Boolean).join(" ");
   const candidates = race => [...race.candidates].sort((a, b) => (b.votes || 0) - (a.votes || 0));
   const winner = race => race.called === true ? race.candidates.find(c => c.winner === "X") : null;
@@ -46,6 +46,23 @@
     return feature;
   });
   const colors = { D: "#2879b5", R: "#cf2f2f", I: "#c8a44d" };
+  // Reuse existing portrait assets only; results always come from the 2026 feed.
+  const portraits = new Map(Object.entries(window.HOUSE_CANDIDATE_IMAGES || {}));
+  for (const race of [...(window.SENATE_2024_DATA?.races || []), ...(window.GOVERNOR_2024_DATA?.races || [])]) {
+    for (const candidate of race.tooltipRows || race.candidates || []) if (candidate.imageUrl) portraits.set(candidate.name, candidate.imageUrl);
+  }
+  portraits.set("Sherrod Brown", "./assets/candidates/sherrod-brown.jpg");
+  portraits.set("Jon Husted", "./assets/candidates/jon-husted.jpg");
+  function portrait(candidate) {
+    const full = candidateName(candidate), record = window.CANDIDATE_PORTRAITS_2026?.[candidate.id];
+    const image = record?.image || portraits.get(full);
+    if (image) {
+      const photo = `<img class="detail-candidate-photo" src="${esc(image)}" alt="${esc(full)}" loading="lazy"${record?.objectPosition ? ` style="object-position:${esc(record.objectPosition)}"` : ""} />`;
+      return record ? `<a class="candidate-photo-credit" href="${esc(record.source)}" target="_blank" rel="noopener noreferrer" title="${esc(`Photo: ${record.author} · ${record.license}`)}" aria-label="${esc(`Portrait of ${full}; photo source and credits`)}">${photo}</a>` : photo;
+    }
+    if (!candidate.first) return '<span class="detail-candidate-photo candidate-photo-placeholder" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="7" r="4"/><path d="M4 22v-3a8 8 0 0 1 16 0v3Z"/></svg></span>';
+    return `<span class="detail-candidate-photo candidate-photo-placeholder" role="img" aria-label="Portrait unavailable for ${esc(full)}">${esc([candidate.first, candidate.last].filter(Boolean).map(n => n[0]).join(""))}</span>`;
+  }
   function patterns(svg, prefix) {
     const defs = svg.append("defs");
     for (const [p, base] of Object.entries(colors)) {
@@ -63,7 +80,20 @@
     return colors[p];
   }
   function candidateRows(race, tooltip = false) {
-    return candidates(race).map(c => `<tr class="${winner(race) === c ? "winner-row" : ""}"><td>${tooltip ? `<div class="tooltip-candidate"><span class="tooltip-candidate-bar ${tone(party(c.party))}"></span><span>${esc(candidateName(c))}</span>${c.incumbent ? '<span class="tooltip-incumbent">Inc.</span>' : ""}</div>` : esc(candidateName(c)) + (c.incumbent ? ' <span class="tooltip-incumbent">Incumbent</span>' : "")}</td><td>${esc(partyName(c.party))}</td><td>${number(c.votes)}</td><td>${pct(c.percent, 2)}</td></tr>`).join("");
+    const supplement = window.RACE_CANDIDATES_2026?.[race.id];
+    const named = race.candidates.filter(c => c.first);
+    const known = new Set(named.map(c => c.id));
+    const sameSnapshot = supplement?.snapshotCapturedAt === data.capturedAt;
+    const extra = (supplement?.candidates || []).filter(c => !known.has(c.id)).map(c => sameSnapshot ? c : { ...c, votes: null, percent: null });
+    const all = [...named, ...extra].sort((a, b) => (b.votes ?? -1) - (a.votes ?? -1));
+    const list = tooltip && race.office === "H" ? all.slice(0, 3) : all;
+    return list.map(c => `<tr class="${winner(race) === c ? "winner-row" : ""}"><td>${tooltip ? `<div class="tooltip-candidate"><span class="tooltip-candidate-bar ${tone(party(c.party))}"></span><span>${esc(candidateName(c))}</span>${c.incumbent ? '<span class="tooltip-incumbent">Inc.</span>' : ""}</div>` : `<div class="detail-candidate-cell">${portrait(c)}<span class="candidate-name-inline ${tone(party(c.party))}">${esc(candidateName(c))}${c.incumbent ? ' <span class="tooltip-incumbent">Incumbent</span>' : ""}</span></div>`}</td><td>${esc(partyName(c.party))}</td><td>${c.votes == null ? '<span aria-label="Individual total not separately reported">—</span>' : number(c.votes)}</td><td>${pct(c.percent, 2)}</td></tr>`).join("");
+  }
+  function groupedVoteNote(race) {
+    const supplement = window.RACE_CANDIDATES_2026?.[race.id];
+    if (supplement?.fullyReconciled && supplement.snapshotCapturedAt === data.capturedAt) return "";
+    const total = race.candidates.filter(c => !c.first).reduce((sum, c) => sum + c.votes, 0);
+    return total ? `<p class="detail-candidate-note">${number(total)} additional votes are reported together by the results provider; individual totals are unavailable. A dash indicates an individual total is not separately reported.</p>` : "";
   }
   const tooltipHTML = race => `<div class="tooltip-header"><div class="tooltip-title">${esc(title(race))}</div><div class="tooltip-ev">${pct(race.eevp)} in</div></div>${!winner(race) ? '<p class="results-2026-call">Uncalled</p>' : race.flippedSeat ? '<p class="results-2026-call">Flip</p>' : ""}<table><thead><tr><th style="text-align:left">Candidate</th><th>Party</th><th>Votes</th><th>Pct.</th></tr></thead><tbody>${candidateRows(race, true)}</tbody></table>`;
   function drawMap(selector, features, lookup, prefix, tooltipSelector, small = false) {
@@ -71,10 +101,20 @@
     if (svg.empty()) return;
     const width = small ? 540 : 1600, height = small ? 520 : 900;
     const collection = { type: "FeatureCollection", features };
+    const isHouse = prefix.includes("house");
+    const landCollection = { type: "FeatureCollection", features: states.filter(state => features.some(feature => feature.properties.STATE === String(state.id).padStart(2, "0"))) };
     const center = d3.geoCentroid(collection);
-    const projection = small ? d3.geoAzimuthalEqualArea().rotate([-center[0], -center[1]]).fitExtent([[25, 25], [width - 25, height - 25]], collection) : d3.geoAlbersUsa().fitExtent([[30, 20], [1570, 880]], collection);
+    const projection = small ? d3.geoAzimuthalEqualArea().rotate([-center[0], -center[1]]).fitExtent([[25, 25], [width - 25, height - 25]], collection) : d3.geoAlbersUsa().fitExtent([[30, 20], [1570, 880]], isHouse ? landCollection : collection);
     const path = d3.geoPath(projection);
     const artwork = svg.append("g"); patterns(svg, prefix);
+    if (isHouse) {
+      // Census district territory includes water. Clip each district to its own
+      // state so fills, borders, and pointer hit areas stop at the shoreline.
+      const clips = svg.select("defs").selectAll("clipPath.house-shoreline").data(landCollection.features).join("clipPath")
+        .attr("class", "house-shoreline").attr("clipPathUnits", "userSpaceOnUse")
+        .attr("id", state => `${prefix}-land-${String(state.id).padStart(2, "0")}`);
+      clips.append("path").attr("d", path);
+    }
     const tooltip = d3.select(tooltipSelector);
     function show(event, feature) {
       const race = lookup(feature); if (tooltip.empty()) return;
@@ -84,6 +124,7 @@
       tooltip.style("left", `${Math.max(12, Math.min(x + 14, window.innerWidth - tooltip.node().offsetWidth - 12))}px`).style("top", `${Math.max(12, Math.min(y + 14, window.innerHeight - tooltip.node().offsetHeight - 12))}px`);
     }
     artwork.selectAll("path").data(features).join("path").attr("d", path)
+      .attr("clip-path", f => isHouse ? `url(#${prefix}-land-${f.properties.STATE})` : null)
       .attr("class", prefix.includes("house") ? "house-district" : "governor-state-2024")
       .attr("fill", f => fill(lookup(f), prefix)).attr("tabindex", f => lookup(f) ? 0 : null).attr("role", f => lookup(f) ? "link" : null)
       .attr("aria-label", f => { const r = lookup(f); return r ? `${title(r)}: ${winner(r) ? "Called" : "Uncalled"}, ${marginLabel(r)}, ${pct(r.eevp)} counted` : `${f.properties.name}: no race`; })
@@ -97,7 +138,10 @@
       artwork.selectAll("text").data(features.filter(lookup)).join("text").attr("class", "map-label")
         .attr("transform", f => { const [x, y] = path.centroid(f); const [dx, dy] = offsets[f.properties.name] || [0, 0]; return `translate(${x + dx},${y + dy})`; }).text(f => abbr.get(f.properties.name));
     }
-    if (!small) { const b = artwork.node().getBBox(); artwork.attr("transform", `translate(${800 - b.x - b.width / 2},${450 - b.y - b.height / 2})`); }
+    if (!small) {
+      const b = isHouse ? (() => { const [[x, y], [right, bottom]] = path.bounds(landCollection); return { x, y, width: right - x, height: bottom - y }; })() : artwork.node().getBBox();
+      artwork.attr("transform", `translate(${800 - b.x - b.width / 2},${450 - b.y - b.height / 2})`);
+    }
   }
   function summary(key) {
     const races = rows(key), held = key === "senate" ? { D: 34, R: 31 } : { D: 0, R: 0 };
@@ -157,8 +201,17 @@
   function resultCard(race, key, index) {
     const lead = leader(race), p = lead ? party(lead.party) : null;
     const status = winner(race) ? "wins" : "leads in";
-    const titleText = lead ? `${candidateName(lead)} ${status} ${race.stateName}${race.office === "H" ? ` District ${Number(race.seatNumber)}` : ""}.` : "No votes reported.";
-    return `<section class="content-panel state-election-section" id="state-election-${key}-${index}"><div class="panel-heading"><h2>${esc(offices[key])}${isSpecial(race) ? " Special Election" : race.office === "H" ? ` · District ${Number(race.seatNumber)}` : ""}</h2></div><div class="state-election-two-column"><section class="detail-map-card state-election-map-card"><div class="detail-map-head"><h3>${race.office === "H" ? "District Map" : "State Map"}</h3></div><div class="detail-map-canvas state-election-map-canvas"><svg id="detail-map-${race.id}" viewBox="0 0 540 520" preserveAspectRatio="xMidYMid meet"></svg></div></section><section class="state-election-result-card winner-${tone(p)}" style="background:${p ? colors[p] : "#777e8b"}"><h3>${esc(titleText)}</h3><div class="state-election-stats"><div><span>Margin</span><strong>${marginLabel(race)}</strong></div><div><span>Total Votes</span><strong>${number(race.candidates.reduce((sum, c) => sum + c.votes, 0))}</strong></div></div><p>${winner(race) ? "Race called" : "Race uncalled"} · ${pct(race.eevp)} estimated votes counted${race.rankedChoice ? " · Ranked-choice voting" : ""}</p><div class="detail-vote-table-wrap"><table class="detail-vote-table"><thead><tr><th>Candidate</th><th>Party</th><th>Votes</th><th>Pct.</th></tr></thead><tbody>${candidateRows(race)}</tbody></table></div>${office === "state" ? `<a class="state-election-detail-button" href="${href(race)}">See results in detail &gt;</a>` : ""}</section></div></section>`;
+    const contest = office === "state" && race.office === "G" ? "'s gubernatorial race" : office === "state" && race.office === "S" ? `'s${isSpecial(race) ? " special" : ""} Senate race` : race.office === "H" ? ` District ${Number(race.seatNumber)}` : "";
+    const titleText = lead ? `${candidateName(lead)} ${status} ${race.stateName}${contest}.` : "No votes reported.";
+    if (office === "race") {
+      const total = race.candidates.reduce((sum, c) => sum + c.votes, 0);
+      const segments = ["D", "R", "I", null].map(group => {
+        const votes = race.candidates.filter(c => party(c.party) === group).reduce((sum, c) => sum + c.votes, 0);
+        return `<div class="detail-certified-segment ${group === "D" ? "dem" : group === "R" ? "rep" : group === "I" ? "ind" : "other"}" style="width:${total ? votes / total * 100 : 0}%"></div>`;
+      }).join("");
+      return `<section class="detail-panel state-election-section" id="state-election-${key}-${index}"><div class="detail-grid"><div class="detail-main-column"><section class="detail-summary-card detail-summary-main winner-${tone(p)}"><div class="detail-summary-hero"><div class="detail-summary-copy"><div class="detail-summary-kicker">${winner(race) ? "Winner" : "Leading"}</div><h2 class="detail-summary-title">${esc(titleText)}</h2></div>${lead ? portrait(lead).replaceAll("detail-candidate-photo", "detail-summary-portrait") : ""}</div><div class="detail-stat-row"><div><span class="detail-stat-label">Margin</span><strong class="detail-stat-value">${marginLabel(race)}</strong></div></div><div class="detail-vote-table-wrap"><table class="detail-vote-table"><thead><tr><th>Candidate</th><th>Party</th><th>Votes</th><th>Pct.</th></tr></thead><tbody>${candidateRows(race)}</tbody></table></div><div class="detail-certified-block"><div class="detail-certified-bar">${segments}</div><div class="detail-certified-note">${number(total)} total votes reported.</div></div></section></div><aside class="detail-rail"><section class="detail-map-card"><div class="detail-map-head"><h3>${race.office === "H" ? "District Map" : "County Map"}</h3></div><div class="detail-map-canvas"><svg id="detail-map-${race.id}" viewBox="0 0 540 520" preserveAspectRatio="xMidYMid meet"></svg></div></section></aside></div></section>`;
+    }
+    return `<section class="content-panel state-election-section" id="state-election-${key}-${index}"><div class="panel-heading"><h2>${esc(offices[key])}${isSpecial(race) ? " Special Election" : race.office === "H" ? ` · District ${Number(race.seatNumber)}` : ""}</h2></div><div class="state-election-two-column"><section class="detail-map-card state-election-map-card"><div class="detail-map-head"><h3>${race.office === "H" ? "District Map" : "State Map"}</h3></div><div class="detail-map-canvas state-election-map-canvas"><svg id="detail-map-${race.id}" viewBox="0 0 540 520" preserveAspectRatio="xMidYMid meet"></svg></div></section><section class="state-election-result-card winner-${tone(p)}" style="background:${p ? colors[p] : "#777e8b"}"><h3>${esc(titleText)}</h3><div class="state-election-stats"><div><span>Margin</span><strong>${marginLabel(race)}</strong></div><div><span>Total Votes</span><strong>${number(race.candidates.reduce((sum, c) => sum + c.votes, 0))}</strong></div></div><div class="detail-vote-table-wrap"><table class="detail-vote-table"><thead><tr><th>Candidate</th><th>Party</th><th>Votes</th><th>Pct.</th></tr></thead><tbody>${candidateRows(race)}</tbody></table></div>${office === "state" ? `<a class="state-election-detail-button" href="${href(race)}">See results in detail &gt;</a>` : ""}</section></div></section>`;
   }
   function details() {
     const params = new URLSearchParams(window.location.search);
@@ -171,15 +224,30 @@
     heading.textContent = office === "state" ? `${selected[0][1].stateName} Election Results` : `${title(selected[0][1])} ${offices[selected[0][0]]} Election Results`;
     document.title = `${heading.textContent} 2026 | Polycivic`;
     const nav = document.getElementById("results-detail-nav");
+    if (office === "race") nav.className = "detail-state-results-nav";
     nav.innerHTML = office === "race" ? `<a class="detail-state-results-link" href="${stateHref(selected[0][1].stateName)}">See all ${esc(selected[0][1].stateName)} election results</a>` : [...new Set(selected.map(([key]) => key))].map(key => `<a href="#state-election-${key}-${selected.findIndex(([k]) => k === key)}">${offices[key]}</a>`).join("");
     const statewide = office === "state" ? selected.filter(([key]) => key !== "house") : selected;
     content.innerHTML = statewide.map(([key, race], index) => resultCard(race, key, index)).join("");
+    statewide.forEach(([key, race], index) => {
+      document.querySelector(`#state-election-${key}-${index} .detail-vote-table-wrap`).insertAdjacentHTML("afterend", groupedVoteNote(race));
+      const card = document.querySelector(`#state-election-${key}-${index} .state-election-result-card`);
+      if (!card) return;
+      card.dataset.state = race.stateName;
+      card.dataset.office = key;
+      if (key === "senate") card.querySelector(".state-election-stats").insertAdjacentHTML("afterbegin", `<div><span>Seat</span><strong>${isSpecial(race) ? "Special" : "Regular"}</strong></div>`);
+    });
     if (office === "state") {
       const houseRaces = selected.filter(([key]) => key === "house").map(([, race]) => race);
       content.insertAdjacentHTML("beforeend", `<section class="content-panel state-election-section" id="state-election-house-${selected.findIndex(([key]) => key === "house")}"><div class="panel-heading"><h2>U.S. House of Representatives</h2></div><div class="state-election-two-column"><section class="detail-map-card state-election-map-card"><div class="detail-map-head"><h3>Congressional District Map</h3></div><div class="detail-map-canvas state-election-map-canvas"><svg id="state-election-house-map" viewBox="0 0 540 520" preserveAspectRatio="xMidYMid meet"></svg></div></section><div><div class="state-election-house-table-wrap"><table class="state-election-house-table"><thead><tr><th>District</th><th>Margin</th><th colspan="2">Candidates</th><th>% In</th><th aria-label="District details"></th></tr></thead><tbody>${houseRaces.map(race => {
         const list = candidates(race), lead = leader(race), runner = list.find(c => c !== lead), p = tone(party(lead?.party));
         return `<tr class="state-election-house-row" data-district-link="${href(race)}" tabindex="0"><td class="state-election-house-district-cell">${Number(race.seatNumber)}</td><td class="state-election-house-margin state-election-house-margin--${p}">${marginLabel(race)}</td><td class="state-election-house-candidate state-election-house-candidate--winner state-election-house-candidate--${p}${winner(race) && race.flippedSeat ? " state-election-house-candidate--flip" : ""}"><span class="state-election-house-candidate-name">${esc(lead ? candidateName(lead) : "No votes reported")}${lead?.incumbent ? ' <span class="state-election-district-incumbent">Incumbent</span>' : ""}</span><span class="state-election-house-party">${lead ? esc(partyName(lead.party)) : ""}${winner(race) ? "" : " · Uncalled"}</span></td><td class="state-election-house-candidate state-election-house-candidate--runner state-election-house-candidate--${tone(party(runner?.party))}">${runner ? `<span class="state-election-house-candidate-name">${esc(candidateName(runner))}${runner.incumbent ? ' <span class="state-election-district-incumbent">Incumbent</span>' : ""}</span><span class="state-election-house-party">${esc(partyName(runner.party))}</span>` : "Unopposed"}</td><td class="state-election-house-percent">${pct(race.eevp)}</td><td class="state-election-house-arrow">›</td></tr>`;
       }).join("")}</tbody></table></div></div></div></section>`);
+      content.querySelector(".state-election-house-table-wrap").parentElement.classList.add("state-election-district-list");
+      const houseLegend = document.createElement("div");
+      houseLegend.className = "map-legend state-election-house-legend";
+      houseLegend.setAttribute("aria-label", "House district map legend");
+      houseLegend.innerHTML = ["dem", "rep"].map(p => `<div class="legend-group"><span class="legend-title">${p === "dem" ? "Dem." : "Rep."}</span><div class="legend-stack"><div class="legend-swatches"><span class="legend-swatch ${p}-win"></span><span class="legend-swatch ${p}-flip"></span></div><div class="legend-subtext"><span>Win</span><span>Flip</span></div></div></div>`).join("");
+      content.querySelector("#state-election-house-map").closest(".detail-map-card").querySelector(".detail-map-head").append(houseLegend);
       content.querySelectorAll(".state-election-house-row").forEach(row => {
         row.addEventListener("click", () => { window.location.href = row.dataset.districtLink; });
         row.addEventListener("keydown", event => { if (["Enter", " "].includes(event.key)) { event.preventDefault(); window.location.href = row.dataset.districtLink; } });
@@ -204,10 +272,23 @@
     const tooltip = document.createElement("div"); tooltip.className = "tooltip"; tooltip.id = "results-detail-tooltip"; document.body.append(tooltip);
     statewide.forEach(([key, race]) => {
       const features = key === "house" ? districts.filter(f => f.properties.code === keyOf(race)) : states.filter(f => f.properties.name === race.stateName);
-      if ((key === "senate" || key === "house") && window.renderCountyMap2026) window.renderCountyMap2026(`#detail-map-${race.id}`, race, key === "house" ? features[0] : null);
+      if (["senate", "governor", "house"].includes(key) && window.renderCountyMap2026) window.renderCountyMap2026(`#detail-map-${race.id}`, race, key === "house" ? features[0] : null);
       else drawMap(`#detail-map-${race.id}`, features, () => race, `detail-${key}-${race.id}`, "#results-detail-tooltip", true);
     });
     if (office === "state") drawMap("#state-election-house-map", districts.filter(f => f.properties.stateName === selected[0][1].stateName), f => houseByCode.get(f.properties.code), "detail-house-state", "#results-detail-tooltip", true);
+    if (office === "state") {
+      // Use the original 2024 section hooks so its spacing and responsive rules
+      // apply to the 2026 page without a separate approximation of the layout.
+      for (const section of content.querySelectorAll(".state-election-section")) {
+        const oldId = section.id;
+        const key = oldId.split("-")[2];
+        const special = key === "senate" && section.querySelector("h2")?.textContent.includes("Special");
+        section.id = `state-election-${key}${special ? "-special" : ""}`;
+        const card = section.querySelector(".state-election-result-card");
+        if (card) card.id = `${section.id}-card`;
+        nav.querySelectorAll("a").forEach(a => { if (a.getAttribute("href") === `#${oldId}`) a.setAttribute("href", `#${section.id}`); });
+      }
+    }
   }
   if (["senate", "governor", "house"].includes(office)) {
     if (office !== "governor") summary(office);

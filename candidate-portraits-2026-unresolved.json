@@ -1,0 +1,3154 @@
+[
+  {
+    "id": "57566",
+    "name": "Gerald Heikes",
+    "state": "AK",
+    "party": "GOP",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "177716",
+    "name": "Daniel Sullivan",
+    "state": "AK",
+    "party": "UDC",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "69443",
+    "name": "Blake Huber",
+    "state": "CO",
+    "party": "Lib",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "168020",
+    "name": "Christopher Baum",
+    "state": "CO",
+    "party": "AVP",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178649",
+    "name": "Thomas Laehn",
+    "state": "IA",
+    "party": "Lib",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "167082",
+    "name": "Matt Loesby",
+    "state": "ID",
+    "party": "Lib",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178025",
+    "name": "Whitfield Harrington",
+    "state": "IL",
+    "party": "ACR",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "71739",
+    "name": "David Graham",
+    "state": "KS",
+    "party": "Lib",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178926",
+    "name": "Tim Long",
+    "state": "MI",
+    "party": "UST",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "168024",
+    "name": "Douglas Marsh",
+    "state": "MI",
+    "party": "Grn",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "179337",
+    "name": "Walter Kristy",
+    "state": "MI",
+    "party": "NLP",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "179588",
+    "name": "Marisa Simonetti",
+    "state": "MN",
+    "party": "Ind",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "167707",
+    "name": "Rebecca Whiting",
+    "state": "MN",
+    "party": "Lib",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "166370",
+    "name": "Michael Dublin",
+    "state": "NC",
+    "party": "Grn",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "166842",
+    "name": "Joanne Kuniansky",
+    "state": "NJ",
+    "party": "Oth",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "173585",
+    "name": "N'Kiyla Thomas",
+    "state": "OK",
+    "party": "Dem",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "179042",
+    "name": "Curtis Stinnett",
+    "state": "OK",
+    "party": "Ind",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "179043",
+    "name": "Ron Meinhardt",
+    "state": "OK",
+    "party": "Ind",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "179038",
+    "name": "Sevier White",
+    "state": "OK",
+    "party": "Lib",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "42016",
+    "name": "Gary Dye",
+    "state": "OR",
+    "party": "Lib",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "69446",
+    "name": "Mark Hackett",
+    "state": "SC",
+    "party": "CST",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "65322",
+    "name": "Tharon Chandler",
+    "state": "TN",
+    "party": "Ind",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178767",
+    "name": "Jeremy Hearn",
+    "state": "TN",
+    "party": "Ind",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178766",
+    "name": "Andrew Gerena",
+    "state": "TN",
+    "party": "Ind",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178772",
+    "name": "Catherine Whitson",
+    "state": "TN",
+    "party": "Ind",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178769",
+    "name": "James Macon",
+    "state": "TN",
+    "party": "Ind",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178770",
+    "name": "Yoshi Matthews",
+    "state": "TN",
+    "party": "Ind",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "155104",
+    "name": "S. Wilson",
+    "state": "WV",
+    "party": "CST",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "71504",
+    "name": "Edmond Laplante",
+    "state": "NH",
+    "party": "CST",
+    "office": "senate",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "177706",
+    "name": "Treg Taylor",
+    "state": "AK",
+    "party": "GOP",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178822",
+    "name": "Stephen Hamilton",
+    "state": "CO",
+    "party": "AmC",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178995",
+    "name": "Frank Russo",
+    "state": "FL",
+    "party": "NPA",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178993",
+    "name": "Scott Jewett",
+    "state": "FL",
+    "party": "Lib",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178990",
+    "name": "Charles Burkett",
+    "state": "FL",
+    "party": "NPA",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178991",
+    "name": "Jeffrey Datto",
+    "state": "FL",
+    "party": "NPA",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178989",
+    "name": "Dean Abrams",
+    "state": "FL",
+    "party": "NPA",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178992",
+    "name": "Moliere Dimanche",
+    "state": "FL",
+    "party": "NPA",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "70344",
+    "name": "Paul Sand",
+    "state": "ID",
+    "party": "Lib",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178018",
+    "name": "Jacob Burnett (write-in)",
+    "state": "ID",
+    "party": "Ind",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178028",
+    "name": "Collin Corbett",
+    "state": "IL",
+    "party": "Ind",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178524",
+    "name": "Andy Ellis",
+    "state": "MD",
+    "party": "Grn",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178525",
+    "name": "Cathy White",
+    "state": "MD",
+    "party": "WCP",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "166567",
+    "name": "Anthony Hudson",
+    "state": "MI",
+    "party": "Lib",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "1321",
+    "name": "Douglas Campbell",
+    "state": "MI",
+    "party": "Grn",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "70820",
+    "name": "Donna Brandenburg",
+    "state": "MI",
+    "party": "UST",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "179590",
+    "name": "Steven Young",
+    "state": "MN",
+    "party": "Grn",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "61797",
+    "name": "Brett Lindstrom",
+    "state": "NE",
+    "party": "AFi",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "175131",
+    "name": "Rick Beard",
+    "state": "NE",
+    "party": "LMN",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "177925",
+    "name": "Danielle Ford",
+    "state": "NV",
+    "party": "NPA",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "60901",
+    "name": "Don Kissick",
+    "state": "OH",
+    "party": "Lib",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "179040",
+    "name": "Robert Brooks",
+    "state": "OK",
+    "party": "Ind",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "179039",
+    "name": "Jerry Griffin",
+    "state": "OK",
+    "party": "Ind",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "179041",
+    "name": "Orlando Bush",
+    "state": "OK",
+    "party": "Ind",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "167924",
+    "name": "Brett Smith",
+    "state": "OR",
+    "party": "PAG",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "177976",
+    "name": "Walid Hakim",
+    "state": "SC",
+    "party": "Grn",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178866",
+    "name": "Wendell Jackson",
+    "state": "TN",
+    "party": "Ind",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178867",
+    "name": "Eddie Murphy",
+    "state": "TN",
+    "party": "Ind",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178862",
+    "name": "Misam Abidi",
+    "state": "TN",
+    "party": "Ind",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178864",
+    "name": "Ray Brown",
+    "state": "TN",
+    "party": "Ind",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178863",
+    "name": "Dean Brewer",
+    "state": "TN",
+    "party": "Ind",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178872",
+    "name": "L. Taylor",
+    "state": "TN",
+    "party": "Ind",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178873",
+    "name": "Robert Vick",
+    "state": "TN",
+    "party": "Ind",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "70888",
+    "name": "Charles Van Morgan",
+    "state": "TN",
+    "party": "Ind",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178871",
+    "name": "Karl Smithson",
+    "state": "TN",
+    "party": "Ind",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178870",
+    "name": "Dave Seeman",
+    "state": "TN",
+    "party": "Ind",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "143645",
+    "name": "Aaron Guckian",
+    "state": "RI",
+    "party": "GOP",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "167782",
+    "name": "June Goodband",
+    "state": "VT",
+    "party": "PJP",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "149767",
+    "name": "Brian Judd",
+    "state": "VT",
+    "party": "Ind",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178912",
+    "name": "Dean Roy",
+    "state": "VT",
+    "party": "Oth",
+    "office": "governor",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "177719",
+    "name": "Bill Hill",
+    "state": "AK",
+    "party": "NP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "167001",
+    "name": "Eric Hafner",
+    "state": "AK",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "171289",
+    "name": "Lee McInnis",
+    "state": "AL",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-6092-bobbywilson",
+    "name": "Bobby Wilson",
+    "state": "AR",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-3004-monicaalponte",
+    "name": "Monica Alponte",
+    "state": "AZ",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-3006-curtisgoodwin",
+    "name": "Curtis Goodwin",
+    "state": "AZ",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "167577",
+    "name": "Alan Aversa",
+    "state": "AZ",
+    "party": "NoL",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178692",
+    "name": "David Redkey",
+    "state": "AZ",
+    "party": "Grn",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-3010-tishabenoit",
+    "name": "Tisha Benoit",
+    "state": "AZ",
+    "party": "NoL",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "174922",
+    "name": "Elizabeth Lee",
+    "state": "AZ",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-3544-jeremelancepeters",
+    "name": "Jereme Lance Peters",
+    "state": "AZ",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "172498",
+    "name": "Robb Tucker",
+    "state": "CA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "161038",
+    "name": "John McBride",
+    "state": "CA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "172530",
+    "name": "Connie Chan",
+    "state": "CA",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "172551",
+    "name": "Shane Lewis",
+    "state": "CA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "106620",
+    "name": "Peter Verbica",
+    "state": "CA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "172565",
+    "name": "Tessa Hodge",
+    "state": "CA",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "172581",
+    "name": "Jason Gibbs",
+    "state": "CA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "172584",
+    "name": "Scott Meyers",
+    "state": "CA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "172601",
+    "name": "Houston Brignano",
+    "state": "CA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "172605",
+    "name": "Samantha Mota",
+    "state": "CA",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "106493",
+    "name": "Steve Manos",
+    "state": "CA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "106776",
+    "name": "Mitch Clemmons",
+    "state": "CA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "69777",
+    "name": "Jenny Rae Le Roux",
+    "state": "CA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "172634",
+    "name": "Jeff Belle",
+    "state": "CA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "172599",
+    "name": "Angela Gonzales-Torres",
+    "state": "CA",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-6614-gaylonkent",
+    "name": "Gaylon Kent",
+    "state": "CO",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-6615-coryrobertson",
+    "name": "Cory Robertson",
+    "state": "CO",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-6615-cliftonbrown",
+    "name": "Clifton Brown",
+    "state": "CO",
+    "party": "Unaffiliated",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-6616-douglasmangeris",
+    "name": "Douglas Mangeris",
+    "state": "CO",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "174619",
+    "name": "Jessica Killin",
+    "state": "CO",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-6617-markmarkyjrelworth",
+    "name": "Mark \"Marky Jr\" Elworth",
+    "state": "CO",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-6618-meredithryan",
+    "name": "Meredith Ryan",
+    "state": "CO",
+    "party": "Unity Party",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-6618-samirezzeldinwitta",
+    "name": "Samir Ezzeldin Witta",
+    "state": "CO",
+    "party": "Unaffiliated",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "174621",
+    "name": "Tim Bennett",
+    "state": "CO",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-6954-susanhall",
+    "name": "Susan Hall",
+    "state": "CO",
+    "party": "Unity Party",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-6954-lawrencekyleclark",
+    "name": "Lawrence Kyle Clark",
+    "state": "CO",
+    "party": "American Constitution Party",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-6954-dankilosallis",
+    "name": "Dan \"Kilo\" Sallis",
+    "state": "CO",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-6954-joekrzeczkowski",
+    "name": "Joe Krzeczkowski",
+    "state": "CO",
+    "party": "Unaffiliated",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178491",
+    "name": "Shimon Blau",
+    "state": "CO",
+    "party": "Una",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "71816",
+    "name": "Amy Chai",
+    "state": "CT",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "177494",
+    "name": "Christopher Lancia",
+    "state": "CT",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "177495",
+    "name": "Chris Shea",
+    "state": "CT",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "175650",
+    "name": "Austin Rogers",
+    "state": "FL",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "175643",
+    "name": "Amanda Green",
+    "state": "FL",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-10011-mikeklein",
+    "name": "Mike Klein",
+    "state": "FL",
+    "party": "No Party Affiliation",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-10017-michaelgist",
+    "name": "Michael Gist",
+    "state": "FL",
+    "party": "No Party Affiliation",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-10017-andrewparrott",
+    "name": "Andrew Parrott",
+    "state": "FL",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "175729",
+    "name": "Bale Dalton",
+    "state": "FL",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-10019-christopherdennison",
+    "name": "Christopher Dennison",
+    "state": "FL",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "175733",
+    "name": "Jennifer Jenkins",
+    "state": "FL",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "175754",
+    "name": "James Pericola",
+    "state": "FL",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-10029-brandenscrivener",
+    "name": "Branden Scrivener",
+    "state": "FL",
+    "party": "No Party Affiliation",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "175764",
+    "name": "Leela Gray",
+    "state": "FL",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-10031-tonydarrigo",
+    "name": "Tony D'Arrigo",
+    "state": "FL",
+    "party": "No Party Affiliation",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "175816",
+    "name": "Sydney Gruters",
+    "state": "FL",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-10037-markdavis",
+    "name": "Mark Davis",
+    "state": "FL",
+    "party": "No Party Affiliation",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "175844",
+    "name": "James Martin",
+    "state": "FL",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "69371",
+    "name": "Casey Askar",
+    "state": "FL",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-11129-peterjassenoff",
+    "name": "Peter Jassenoff",
+    "state": "FL",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "175870",
+    "name": "Nicole Locklin",
+    "state": "FL",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "175872",
+    "name": "Eliott Rodriguez",
+    "state": "FL",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "175822",
+    "name": "Victor Arias",
+    "state": "FL",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-83114-kednermaxime",
+    "name": "Kedner Maxime",
+    "state": "FL",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178284",
+    "name": "Michael Bridgford",
+    "state": "IA",
+    "party": "NPA",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "114693",
+    "name": "Lindsay James",
+    "state": "IA",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "64430",
+    "name": "Rick Stewart",
+    "state": "IA",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-17072-davebushaw",
+    "name": "Dave Bushaw",
+    "state": "IA",
+    "party": "No Party",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "173759",
+    "name": "Chris McGowan",
+    "state": "IA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "113747",
+    "name": "Dave Dawson",
+    "state": "IA",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-13253-brendangomez",
+    "name": "Brendan Gomez",
+    "state": "ID",
+    "party": "Constitution",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "172087",
+    "name": "Ellie Gilbreath",
+    "state": "ID",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-13254-willjohanson",
+    "name": "Will Johanson",
+    "state": "ID",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "167406",
+    "name": "Angel Oakley",
+    "state": "IL",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "119629",
+    "name": "Lupe Castillo",
+    "state": "IL",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-15993-edhershey",
+    "name": "Ed Hershey",
+    "state": "IL",
+    "party": "Working Class Party",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "66122",
+    "name": "John Elleson",
+    "state": "IL",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "161847",
+    "name": "Carl Lambrecht",
+    "state": "IL",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "170491",
+    "name": "Jennifer Todd",
+    "state": "IL",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "170497",
+    "name": "Paul Nolley",
+    "state": "IL",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "170498",
+    "name": "Dillan Vancil",
+    "state": "IL",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-15017-williamerichenry",
+    "name": "William Eric Henry",
+    "state": "IN",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "113870",
+    "name": "Kelly Thompson",
+    "state": "IN",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-15032-jamesmsceniak",
+    "name": "James M Sceniak",
+    "state": "IN",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-17007-stevenjacob",
+    "name": "Steven Jacob",
+    "state": "KS",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "115820",
+    "name": "Eric Jenkins",
+    "state": "KS",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-17009-stevenahohe",
+    "name": "Steven A Hohe",
+    "state": "KS",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-17720-drewcranmer",
+    "name": "Drew Cranmer",
+    "state": "KS",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "169788",
+    "name": "Maria Rodriguez",
+    "state": "KY",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "169791",
+    "name": "Ned Pillersdorf",
+    "state": "KY",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-18624-thomasaloecken",
+    "name": "Thomas A. Loecken",
+    "state": "KY",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-18835-mohammadwaelahmad",
+    "name": "Mohammad Wael Ahmad",
+    "state": "KY",
+    "party": "Kentucky Party",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-20556-randallarrington",
+    "name": "Randall Arrington",
+    "state": "LA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-20556-eliddyglass",
+    "name": "E. \"Liddy\" Glass",
+    "state": "LA",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-20557-walterrockybeach",
+    "name": "Walter \"Rocky\" Beach",
+    "state": "LA",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-20557-renadahoneycollins",
+    "name": "Renada \"Honey\" Collins",
+    "state": "LA",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-20558-tialebrun",
+    "name": "Tia LeBrun",
+    "state": "LA",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-20559-mikenichols",
+    "name": "\"Mike\" Nichols",
+    "state": "LA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178737",
+    "name": "Antonio Wilson",
+    "state": "LA",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "72526",
+    "name": "Chauna Banks",
+    "state": "LA",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "72403",
+    "name": "Blake Miguez",
+    "state": "LA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178739",
+    "name": "Stephen Wagley",
+    "state": "LA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178738",
+    "name": "Patrick Forbes",
+    "state": "LA",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "168182",
+    "name": "Nadia Milleron",
+    "state": "MA",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "168132",
+    "name": "Gary Grossi",
+    "state": "MA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "61587",
+    "name": "Dave Wallace",
+    "state": "MD",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-21760-mosheylandman",
+    "name": "Moshe Y. Landman",
+    "state": "MD",
+    "party": "Grn",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23805-arnettsatterla",
+    "name": "Arnett Satterla",
+    "state": "MI",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23805-dockovaly",
+    "name": "Doc Kovaly",
+    "state": "MI",
+    "party": "U.S. Taxpayers",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23805-lavetadavenport",
+    "name": "LaVeta Davenport",
+    "state": "MI",
+    "party": "Grn",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23805-lizhakola",
+    "name": "Liz Hakola",
+    "state": "MI",
+    "party": "Working Class",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23805-zebulonfeatherly",
+    "name": "Zebulon Featherly",
+    "state": "MI",
+    "party": "No Party Affiliation",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23806-charlottemagoon",
+    "name": "Charlotte Magoon",
+    "state": "MI",
+    "party": "Grn",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23806-richardsills",
+    "name": "Richard Sills",
+    "state": "MI",
+    "party": "Natural Law",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23807-joejock",
+    "name": "Joe Jock",
+    "state": "MI",
+    "party": "Grn",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23808-shafinachebarnett",
+    "name": "Shafina Che Barnett",
+    "state": "MI",
+    "party": "Grn",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "175194",
+    "name": "Christian Vukasovich",
+    "state": "MI",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23809-ronaldamuszynski",
+    "name": "Ronald A Muszynski",
+    "state": "MI",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23809-sharonmarierenier",
+    "name": "Sharon Marie Renier",
+    "state": "MI",
+    "party": "U.S. Taxpayers",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23809-jimbronke",
+    "name": "Jim Bronke",
+    "state": "MI",
+    "party": "Grn",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23810-timothyateagan",
+    "name": "Timothy A. Teagan",
+    "state": "MI",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23810-mikemickevicius",
+    "name": "Mike Mickevicius",
+    "state": "MI",
+    "party": "U.S. Taxpayers",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23810-clydeshabazz",
+    "name": "Clyde Shabazz",
+    "state": "MI",
+    "party": "Grn",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23810-lindarayburn",
+    "name": "Linda Rayburn",
+    "state": "MI",
+    "party": "Working Class",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23811-shanededrick",
+    "name": "Shane Dedrick",
+    "state": "MI",
+    "party": "Grn",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23812-cmiapettus",
+    "name": "C. Mia Pettus",
+    "state": "MI",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23812-jimcasha",
+    "name": "Jim Casha",
+    "state": "MI",
+    "party": "Grn",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23812-kathygoodwin",
+    "name": "Kathy Goodwin",
+    "state": "MI",
+    "party": "Working Class",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23813-kevinvayko",
+    "name": "Kevin Vayko",
+    "state": "MI",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23813-johnvlahos",
+    "name": "John Vlahos",
+    "state": "MI",
+    "party": "U.S. Taxpayers",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23813-destinyclayton",
+    "name": "Destiny Clayton",
+    "state": "MI",
+    "party": "Grn",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23813-jimwalkowicz",
+    "name": "Jim Walkowicz",
+    "state": "MI",
+    "party": "Working Class",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23814-mikesaliba",
+    "name": "Mike Saliba",
+    "state": "MI",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23814-kwabenankromo",
+    "name": "Kwabena Nkromo",
+    "state": "MI",
+    "party": "Grn",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23814-andrealkirby",
+    "name": "Andrea L. Kirby",
+    "state": "MI",
+    "party": "Working Class",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23815-faridishac",
+    "name": "Farid Ishac",
+    "state": "MI",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23815-ryanteasdale",
+    "name": "Ryan Teasdale",
+    "state": "MI",
+    "party": "Grn",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23815-anilkumar",
+    "name": "Anil Kumar",
+    "state": "MI",
+    "party": "No Party Affiliation",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23816-marcjosephsosnowski",
+    "name": "Marc Joseph Sosnowski",
+    "state": "MI",
+    "party": "U.S. Taxpayers",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23816-brendaksanders",
+    "name": "Brenda K. Sanders",
+    "state": "MI",
+    "party": "Grn",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23816-garywalkowicz",
+    "name": "Gary Walkowicz",
+    "state": "MI",
+    "party": "Working Class",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23817-chrisdardzinski",
+    "name": "Chris Dardzinski",
+    "state": "MI",
+    "party": "U.S. Taxpayers",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23817-raelynlight",
+    "name": "Raelyn Light",
+    "state": "MI",
+    "party": "Grn",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-23817-simonercoleman",
+    "name": "Simone R. Coleman",
+    "state": "MI",
+    "party": "Working Class",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "177170",
+    "name": "Jake Johnson",
+    "state": "MN",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "179589",
+    "name": "DeVelle Jackson",
+    "state": "MN",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "177185",
+    "name": "Doug Chapin",
+    "state": "MN",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "177186",
+    "name": "Erik Osberg",
+    "state": "MN",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "177189",
+    "name": "Trina Swanson",
+    "state": "MN",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "169321",
+    "name": "Michael Chiaradio",
+    "state": "MS",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-26489-carlboyanton",
+    "name": "Carl Boyanton",
+    "state": "MS",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-27167-johnnybaucom",
+    "name": "Johnny Baucom",
+    "state": "MS",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "171717",
+    "name": "Aaron Flint",
+    "state": "MT",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-28447-nicksheedy",
+    "name": "Nick Sheedy",
+    "state": "MT",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-34969-danielcavender",
+    "name": "Daniel Cavender",
+    "state": "NC",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-34973-maadabughazalah",
+    "name": "Maad Abu-Ghazalah",
+    "state": "NC",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "169343",
+    "name": "Jamie Ager",
+    "state": "NC",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-34977-travisgroo",
+    "name": "Travis Groo",
+    "state": "NC",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-35385-tombailey",
+    "name": "Tom Bailey",
+    "state": "NC",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "160570",
+    "name": "Eugene Douglass",
+    "state": "NC",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-35386-matthewlaszacs",
+    "name": "Matthew Laszacs",
+    "state": "NC",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-35388-robertbluffman",
+    "name": "Robert B. Luffman",
+    "state": "NC",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "169330",
+    "name": "Cyril Jefferson",
+    "state": "NC",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "169338",
+    "name": "Ashley Bell",
+    "state": "NC",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "169350",
+    "name": "Paul Barringer",
+    "state": "NC",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-35753-stevenswinton",
+    "name": "Steven Swinton",
+    "state": "NC",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "169353",
+    "name": "Lakesha Womack",
+    "state": "NC",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "171157",
+    "name": "Chris Backemeyer",
+    "state": "NE",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-28382-niksandman",
+    "name": "Nik Sandman",
+    "state": "NE",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-28382-danhartong",
+    "name": "Dan Hartong",
+    "state": "NE",
+    "party": "America First",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "171162",
+    "name": "Becky Stille",
+    "state": "NE",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-28384-davidjelse",
+    "name": "David J. Else",
+    "state": "NE",
+    "party": "Legal Marijuana NOW",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-28384-maceybudke",
+    "name": "Macey Budke",
+    "state": "NE",
+    "party": "Nebraska Working People",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "176351",
+    "name": "Anthony DiLorenzo",
+    "state": "NH",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-30017-robbiemahrou",
+    "name": "Robbie Mahrou",
+    "state": "NH",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "163024",
+    "name": "Damon Galdo",
+    "state": "NJ",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "172981",
+    "name": "Sean Kirrane",
+    "state": "NJ",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "175991",
+    "name": "Craig Honts",
+    "state": "NJ",
+    "party": "Oth",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "172146",
+    "name": "Michael McGuire",
+    "state": "NJ",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-31218-seamuspatrickotoole",
+    "name": "Seamus Patrick O'Toole",
+    "state": "NJ",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "67763",
+    "name": "Gregg Mele",
+    "state": "NJ",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-31223-winstonjordan",
+    "name": "Winston Jordan",
+    "state": "NJ",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-31230-alanbbond",
+    "name": "Alan B. Bond",
+    "state": "NJ",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "134067",
+    "name": "Gregory Cunningham",
+    "state": "NM",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "132279",
+    "name": "Carrie Buck",
+    "state": "NV",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-3-afzalbobbykhan",
+    "name": "Afzal \"Bobby\" Khan",
+    "state": "NV",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-3-anthonythomasjr",
+    "name": "Anthony Thomas Jr.",
+    "state": "NV",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-3-stevenchapstjohn",
+    "name": "Steven \"Chap\" St John",
+    "state": "NV",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-3-victorrwillert",
+    "name": "Victor R. Willert",
+    "state": "NV",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "164356",
+    "name": "Marty O'Donnell",
+    "state": "NV",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-30155-davidjanderson",
+    "name": "David J. Anderson",
+    "state": "NV",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-30155-pdeanjohnson",
+    "name": "P. Dean Johnson",
+    "state": "NV",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "166655",
+    "name": "Lynn Chapman",
+    "state": "NV",
+    "party": "IAP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "172349",
+    "name": "Cody Whipple",
+    "state": "NV",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-30992-garysteele",
+    "name": "Gary Steele",
+    "state": "NV",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-30992-williamjohnson",
+    "name": "William Johnson",
+    "state": "NV",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-30992-russellbest",
+    "name": "Russell Best",
+    "state": "NV",
+    "party": "Independent American",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "174656",
+    "name": "George Marsh",
+    "state": "NY",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "168114",
+    "name": "Joseph Chou",
+    "state": "NY",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "174657",
+    "name": "Melvin Rivera",
+    "state": "NY",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-36587-priscillaghaznavi",
+    "name": "Priscilla Ghaznavi",
+    "state": "NY",
+    "party": "Our Future",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "174658",
+    "name": "Lewis Mizrahi",
+    "state": "NY",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "174660",
+    "name": "Jennifer Moore",
+    "state": "NY",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-36592-wilneidanegron",
+    "name": "Wilneida Negron",
+    "state": "NY",
+    "party": "For All of Us",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "159659",
+    "name": "Jomo Williams",
+    "state": "NY",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "65223",
+    "name": "Stylo Sapaskis",
+    "state": "NY",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "179244",
+    "name": "Andre Easton",
+    "state": "NY",
+    "party": "Oth",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "164781",
+    "name": "Ralph Ambrosio",
+    "state": "NY",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "174349",
+    "name": "Kailee Buller",
+    "state": "NY",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "174331",
+    "name": "Aaron Gies",
+    "state": "NY",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "174332",
+    "name": "Alissa Ellman",
+    "state": "NY",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "174659",
+    "name": "Joel Azumah",
+    "state": "NY",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "68426",
+    "name": "Cleophus Dulaney",
+    "state": "OH",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-36023-michaeljveloff",
+    "name": "Michael J. Veloff",
+    "state": "OH",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "170915",
+    "name": "Elizabeth Kirtley",
+    "state": "OH",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-36033-thomasfmcmasters",
+    "name": "Thomas F. McMasters",
+    "state": "OH",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "170767",
+    "name": "Don Leonard",
+    "state": "OH",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-36043-brennanbarrington",
+    "name": "Brennan Barrington",
+    "state": "OH",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-36043-garyjosephson",
+    "name": "Gary Josephson",
+    "state": "OH",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "139666",
+    "name": "John Croisant",
+    "state": "OK",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "173687",
+    "name": "Suzie Byrd",
+    "state": "OK",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "163438",
+    "name": "Mitchell Jacob",
+    "state": "OK",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-37036-roccobonacci",
+    "name": "Rocco Bonacci",
+    "state": "OK",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-37855-ronniehopkins",
+    "name": "Ronnie Hopkins",
+    "state": "OK",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-37856-austinnieves",
+    "name": "Austin Nieves",
+    "state": "OK",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "172173",
+    "name": "Loran Ayles",
+    "state": "OR",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-38532-andreatownsend",
+    "name": "Andrea Townsend",
+    "state": "OR",
+    "party": "Pacific Green",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "172158",
+    "name": "Barbara Kahl",
+    "state": "OR",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178522",
+    "name": "Dennis Mahoney",
+    "state": "PA",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "171514",
+    "name": "Nick Manganaro",
+    "state": "PA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "146242",
+    "name": "Bob Brooks",
+    "state": "PA",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "171508",
+    "name": "Jessica Arriaga",
+    "state": "PA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "171224",
+    "name": "Rachel Wallace",
+    "state": "PA",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178109",
+    "name": "Victor Mellor",
+    "state": "RI",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "172893",
+    "name": "Zyon Khalifa",
+    "state": "SC",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-41003-daynaalanesmith",
+    "name": "Dayna Alane Smith",
+    "state": "SC",
+    "party": "Workers Party",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-41004-briancorriea",
+    "name": "Brian Corriea",
+    "state": "SC",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "173077",
+    "name": "Courtney McClain",
+    "state": "SC",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "173081",
+    "name": "John Vincent",
+    "state": "SC",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-41922-billreeside",
+    "name": "Bill Reeside",
+    "state": "SC",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "144639",
+    "name": "Wes Climer",
+    "state": "SC",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "172899",
+    "name": "Mallory Dittmer",
+    "state": "SC",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "173282",
+    "name": "Nicole Gronli",
+    "state": "SD",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "174783",
+    "name": "Kristi Burke",
+    "state": "TN",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-43003-joshuarayashburn",
+    "name": "Joshua Ray Ashburn",
+    "state": "TN",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-43003-richardgbaker",
+    "name": "Richard G. Baker",
+    "state": "TN",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-43003-billycody",
+    "name": "Billy Cody",
+    "state": "TN",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-43003-tylerbricemitchellmcclain",
+    "name": "Tyler Brice Mitchell McClain",
+    "state": "TN",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "174786",
+    "name": "Michaela Barnett",
+    "state": "TN",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-43007-brucefine",
+    "name": "Bruce Fine",
+    "state": "TN",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-43007-adamheimerman",
+    "name": "Adam Heimerman",
+    "state": "TN",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "174787",
+    "name": "Anna Golladay",
+    "state": "TN",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-43009-jeanhowardhill",
+    "name": "Jean Howard-Hill",
+    "state": "TN",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-43009-donnielynnownby",
+    "name": "Donnie Lynn Ownby",
+    "state": "TN",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-43009-edwardjohnroland",
+    "name": "Edward John Roland",
+    "state": "TN",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-43011-clayfaircloth",
+    "name": "Clay Faircloth",
+    "state": "TN",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-43013-jamesajohnson",
+    "name": "James A. Johnson",
+    "state": "TN",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-43013-michealmehauloleary",
+    "name": "Miche\u00e1l (Me-Haul) O'Leary",
+    "state": "TN",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "147493",
+    "name": "Johnny Garrett",
+    "state": "TN",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-43015-anguspurdy",
+    "name": "Angus Purdy",
+    "state": "TN",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "169085",
+    "name": "Darden Copeland",
+    "state": "TN",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-43017-andrewjkoontz",
+    "name": "Andrew J. Koontz",
+    "state": "TN",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "174809",
+    "name": "Heidi Kuhn",
+    "state": "TN",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-43019-adamdaustill",
+    "name": "Adam D. Austill",
+    "state": "TN",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-43019-wendellwellsblankenship",
+    "name": "Wendell (Wells) Blankenship",
+    "state": "TN",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-43019-pamelajeaninepmoses",
+    "name": "Pamela Jeanine (P.) Moses",
+    "state": "TN",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-43019-henryjwardiii",
+    "name": "Henry J. Ward, III",
+    "state": "TN",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "147801",
+    "name": "Brent Taylor",
+    "state": "TN",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-43020-dennisclark",
+    "name": "Dennis Clark",
+    "state": "TN",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-43020-michelledavishead",
+    "name": "Michelle Davis Head",
+    "state": "TN",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "169702",
+    "name": "Jason Pearce",
+    "state": "TX",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "169987",
+    "name": "Alexander Hale",
+    "state": "TX",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "169992",
+    "name": "Jessica Hart Steinmann",
+    "state": "TX",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "157689",
+    "name": "Alex Mealer",
+    "state": "TX",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "169713",
+    "name": "Caitlin Rourk",
+    "state": "TX",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "169715",
+    "name": "Claire Reynolds",
+    "state": "TX",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "169216",
+    "name": "Ronald Whitfield",
+    "state": "TX",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "170243",
+    "name": "Edgardo Baez",
+    "state": "TX",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-45893-benmendoza",
+    "name": "Ben Mendoza",
+    "state": "TX",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "169739",
+    "name": "Kevin Burge",
+    "state": "TX",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-45896-philgray",
+    "name": "Phil Gray",
+    "state": "TX",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "169745",
+    "name": "Frederick Haynes",
+    "state": "TX",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "169747",
+    "name": "Justin Early",
+    "state": "TX",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-48732-gregstoker",
+    "name": "Greg Stoker",
+    "state": "TX",
+    "party": "Grn",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "169748",
+    "name": "Dan Barrios",
+    "state": "TX",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-49478-chrisroyal",
+    "name": "Chris Royal",
+    "state": "TX",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "170064",
+    "name": "Jon Bonck",
+    "state": "TX",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-45669-jessewest",
+    "name": "Jesse West",
+    "state": "UT",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-45669-eliashenrymontgomery",
+    "name": "Elias Henry Montgomery",
+    "state": "UT",
+    "party": "Unaffiliated",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-45670-danielcottam",
+    "name": "Daniel Cottam",
+    "state": "UT",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-45670-robertmmoesinger",
+    "name": "Robert M. Moesinger",
+    "state": "UT",
+    "party": "Unaffiliated",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-49548-stevenburt",
+    "name": "Steven Burt",
+    "state": "UT",
+    "party": "Unaffiliated",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-49642-michaelrstoddard",
+    "name": "Michael R. Stoddard",
+    "state": "UT",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-49642-aydenscott",
+    "name": "Ayden Scott",
+    "state": "UT",
+    "party": "Unaffiliated",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-47003-geraldbishopstaten",
+    "name": "Geral D. \"Bishop\" Staten",
+    "state": "VA",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-47005-makibaagaines",
+    "name": "Makiba A. Gaines",
+    "state": "VA",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-47005-stephencwoll",
+    "name": "Stephen C. Woll",
+    "state": "VA",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-47007-joaneandrewsbell",
+    "name": "Joan E. \"Andrews\" Bell",
+    "state": "VA",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-47009-cookecharvey",
+    "name": "Cooke C. Harvey",
+    "state": "VA",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-47013-taneredemircilopez",
+    "name": "Taner E. Demirci Lopez",
+    "state": "VA",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-47013-alahaahrar",
+    "name": "Alaha Ahrar",
+    "state": "VA",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-47013-joshuaeertle",
+    "name": "Joshua E. Ertle",
+    "state": "VA",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "178104",
+    "name": "Tony Sabio",
+    "state": "VA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "169028",
+    "name": "Joy Powers",
+    "state": "VA",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "174943",
+    "name": "Dave Beckwith",
+    "state": "VA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-47019-ahsenmujeebmalik",
+    "name": "Ahsen Mujeeb Malik",
+    "state": "VA",
+    "party": "Ind",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-47021-diannelblais",
+    "name": "Dianne L. Blais",
+    "state": "VA",
+    "party": "Grn",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "165711",
+    "name": "Mary Silva",
+    "state": "WA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "64065",
+    "name": "Doug Basler",
+    "state": "WA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "176038",
+    "name": "Edwin Feller",
+    "state": "WA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "176056",
+    "name": "John Duresky",
+    "state": "WA",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "176084",
+    "name": "Teresa Fox",
+    "state": "WA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "165741",
+    "name": "Nirav Sheth",
+    "state": "WA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "176089",
+    "name": "Spencer Meline",
+    "state": "WA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "165818",
+    "name": "Chris Chung",
+    "state": "WA",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-50060-matthewarndt",
+    "name": "Matthew Arndt",
+    "state": "WI",
+    "party": "Wisconsin Green",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "175235",
+    "name": "Rick Crosson",
+    "state": "WI",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "170766",
+    "name": "Ace Parsi",
+    "state": "WV",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "154187",
+    "name": "Chuck Gray",
+    "state": "WY",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-26025-jimhiggins",
+    "name": "Jim Higgins",
+    "state": "MO",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-26027-thomasholbrook",
+    "name": "Thomas Holbrook",
+    "state": "MO",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-26029-randallrandylangkraehr",
+    "name": "Randall (Randy) Langkraehr",
+    "state": "MO",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "175137",
+    "name": "Josh Smead",
+    "state": "MO",
+    "party": "Dem",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "ballot-26035-rebeccasharpelombard",
+    "name": "Rebecca Sharpe Lombard",
+    "state": "MO",
+    "party": "Lib",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  },
+  {
+    "id": "65385",
+    "name": "Paul Berry",
+    "state": "MO",
+    "party": "GOP",
+    "office": "house",
+    "reason": "No verified usable individual portrait found"
+  }
+]

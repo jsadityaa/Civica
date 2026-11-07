@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ohio Precinct Map | Polycivic</title>
-  <meta name="description" content="Explore an Ohio precinct boundary preview. This map uses 2024 geography; 2026 precinct results and boundary verification are pending." />
+  <meta name="description" content="Explore available 2026 Ohio precinct election results, starting with Cuyahoga County's Senate, governor and House returns." />
   <link rel="canonical" href="https://polycivic.com/precinct-map-2026" />
   <link rel="icon" type="image/png" href="./favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -13,7 +13,9 @@
   <script>(() => { try { if (localStorage.getItem('datahub-theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); if (localStorage.getItem('datahub-dyslexic-ui') === 'true') document.documentElement.setAttribute('data-dyslexic', 'true'); } catch (e) {} })();</script>
   <link rel="stylesheet" href="./styles.css?v=20260909-no-outer-election-panels-1" />
   <link rel="stylesheet" href="./precinct-map-2026.css" />
+  <link rel="stylesheet" href="./precinct-results-2026.css?v=20261106-candidate-legend" />
   <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/topojson-client@3"></script>
 </head>
 <body class="results-2026-page">
   <header class="global-header"><div class="global-header-inner">
@@ -36,23 +38,40 @@
         <a href="./precinct-map-2026.html" class="election-package-link active" aria-current="page">Precinct Map</a>
       </nav>
     </div>
-    <header class="site-header"><h1>Ohio Precinct Map</h1><p class="precinct-intro">Explore Ohio’s precinct boundaries. Zoom in for more detail.</p></header>
+    <header class="site-header"><h1>Ohio Precinct Map</h1></header>
     <main>
-      <section aria-labelledby="precinct-heading">
-        <div class="precinct-heading-row"><div><h2 id="precinct-heading">Boundary preview</h2><p class="precinct-status">2024 geography · 2026 results pending</p></div><a class="precinct-download" href="./ohio-precinct-boundaries.svg" download>Download SVG</a></div>
-        <p class="precinct-notice">This preview uses 2024 precinct boundaries. Changes for 2026 have not yet been verified, and 2026 precinct vote totals have not been added. Neutral shading shows boundaries only.</p>
+      <section aria-label="Statewide Ohio precinct results map">
+        <div class="precinct-gradient-legend" role="group" aria-label="Precinct color legend">
+          <div class="precinct-legend-candidates" aria-label="Ohio U.S. Senate special election candidates">
+            <div class="precinct-legend-candidate">
+              <img src="./assets/candidates/sherrod-brown.jpg" alt="Sherrod Brown" width="44" height="44" />
+              <div><strong>Sherrod Brown</strong><span class="precinct-legend-party dem">Democrat</span></div>
+            </div>
+            <div class="precinct-legend-candidate rep">
+              <img src="./assets/candidates/jon-husted.jpg" alt="Jon Husted" width="44" height="44" />
+              <div><strong>Jon Husted</strong><span class="precinct-legend-party rep">Republican</span></div>
+            </div>
+          </div>
+          <div class="precinct-gradient-labels"><span>More Democratic</span><span>Evenly split</span><span>More Republican</span></div>
+          <div class="precinct-gradient-bar" role="img" aria-label="Blue for a more Democratic vote share blends through purple at an even split to red for a more Republican vote share"></div>
+          <p>Darker shading means more votes cast per square mile.</p>
+        </div>
         <div class="precinct-map-shell">
           <div class="precinct-map-controls" role="group" aria-label="Map zoom controls"><button type="button" id="precinct-zoom-in" aria-label="Zoom in" disabled>+</button><button type="button" id="precinct-zoom-out" aria-label="Zoom out" disabled>−</button><button type="button" id="precinct-reset" disabled>Reset</button><output id="precinct-zoom-level" aria-label="Zoom level">100%</output></div>
           <p id="precinct-loading" role="status">Loading Ohio’s precinct boundaries…</p>
-          <svg id="ohio-precinct-map" role="img" tabindex="0" aria-label="Ohio precinct boundary preview using 2024 geography. No 2026 results. Use plus and minus to zoom, arrow keys to pan, or zero to reset." hidden></svg>
+          <svg id="ohio-precinct-map" role="img" tabindex="0" aria-label="2026 Cuyahoga County precinct results. Use plus and minus to zoom, arrow keys to pan, or zero to reset." hidden></svg>
         </div>
-        <p class="precinct-map-help">Scroll or pinch to zoom. Drag to move. Keyboard: + / − to zoom, arrow keys to move, 0 to reset.</p>
-        <p class="precinct-attribution">Boundary geometry: <a href="https://commons.wikimedia.org/wiki/File:OH_President_2024.svg" target="_blank" rel="noopener">Orca and Putitonamap98 / Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>. Adapted to remove historic result colors.</p>
       </section>
     </main>
   </div>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script src="./auth-config.js?v=20261011-polycivic-auth-domain-2"></script><script src="./auth.js?v=20261011-mobile-redirect-3"></script><script src="./nav-dropdown.js?v=20261104-election-year"></script>
-  <script src="./precinct-map-2026.js"></script>
+  <div id="precinct-tooltip" role="tooltip" hidden></div>
+  <script src="./midterms-2026-states.js"></script>
+  <script src="./ohio-precinct-results-2026-data.js"></script>
+  <script src="./ohio-unfilled-precincts.js"></script>
+  <script src="./ohio-city-labels.js"></script>
+  <script src="./precinct-streets-2026.js?v=20261105-street-threshold"></script>
+  <script src="./precinct-map-2026.js?v=20261105-density-colors"></script>
 </body>
 </html>

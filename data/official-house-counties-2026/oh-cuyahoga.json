@@ -1,0 +1,1149 @@
+{
+  "election": {
+    "ballotItemCount": 1,
+    "dateText": [
+      {
+        "languageId": "en",
+        "text": "November 3, 2026"
+      }
+    ],
+    "id": "01000000-78b0-d12a-ac3e-08df1fbf51ac",
+    "jurisdictionId": "6397b9a7-ccfa-406e-a155-6d2a595cf70d",
+    "name": [
+      {
+        "languageId": "en",
+        "text": "Cuyahoga County - November 3, 2026 General Election"
+      }
+    ],
+    "isOfficialResults": false,
+    "electionDate": "2026-11-03",
+    "isProduction": true,
+    "asOf": "2026-11-04T16:42:14.3000381Z",
+    "lastUpdated": "2026-11-04T10:38:42.8838433Z",
+    "publishDate": "2026-11-04T16:42:16.0814222Z",
+    "publishVersionId": "26851439-b25e-42c5-95a5-793a7e9ecfce",
+    "publicReportCategories": [
+      {
+        "id": null,
+        "categoryName": null,
+        "reports": [
+          {
+            "reportName": "Summary Results by Contest (HTML)",
+            "blobName": "Summary Results_fc0886fd-cd6e-4a5d-b166-53f0a8066aec.html",
+            "order": 0,
+            "versions": null,
+            "county": null
+          },
+          {
+            "reportName": "Summary Results by Contest with Contest-Level Details (HTML)",
+            "blobName": "Summary Results with Contest Stats_89e0eab4-59e0-4146-af34-c48516d75499.html",
+            "order": 0,
+            "versions": null,
+            "county": null
+          },
+          {
+            "reportName": "Summary Results by Contest with Contest-Level Details",
+            "blobName": "Summary Results with Contest-Level Details_4ffcda08-f19d-4819-ba2d-243928a5832d.PDF",
+            "order": 0,
+            "versions": null,
+            "county": null
+          },
+          {
+            "reportName": "Summary Results by Contest",
+            "blobName": "Summary Results_1c585e68-5d7f-49d7-bbdf-a757b740b644.PDF",
+            "order": 0,
+            "versions": null,
+            "county": null
+          },
+          {
+            "reportName": "Summary Results by Contest with Party Details",
+            "blobName": "Summary Results with Party Details_2897921d-2eab-4870-bb10-00d1e76720ab.PDF",
+            "order": 0,
+            "versions": null,
+            "county": null
+          },
+          {
+            "reportName": "Summary Results by Contest with Voting Method Details",
+            "blobName": "Summary Results with Voting Methods_f0114443-3700-4579-bee6-dc588a7bdf60.PDF",
+            "order": 0,
+            "versions": null,
+            "county": null
+          },
+          {
+            "reportName": "Precinct/District Results (CSV)",
+            "blobName": "Detailed Results_4f9f1d3c-d2a4-4440-808d-2ae90f000d9c.csv",
+            "order": 0,
+            "versions": null,
+            "county": null
+          },
+          {
+            "reportName": "Summary and Precinct Results Excel",
+            "blobName": "Results_eb69f3e7-6a38-4777-aee9-c3cff06ca01f.xlsx",
+            "order": 0,
+            "versions": null,
+            "county": null
+          },
+          {
+            "reportName": "All Results Excel",
+            "blobName": "All Results_b49c0fc6-cd1b-43e9-8fb6-971b558f4f20.xlsx",
+            "order": 0,
+            "versions": null,
+            "county": null
+          },
+          {
+            "reportName": "Contest Precinct Results",
+            "blobName": "Precinct Results_8b27cde6-cdee-42f2-919b-aaf15248fd01.xlsx",
+            "order": 0,
+            "versions": null,
+            "county": null
+          },
+          {
+            "reportName": "Precinct/District Results with Voting Method Details",
+            "blobName": "Detailed Results with Voting Methods_7dd948c1-e898-4355-bdf6-bc1e44d699fb.PDF",
+            "order": 0,
+            "versions": null,
+            "county": null
+          },
+          {
+            "reportName": "Election Change Log Report",
+            "blobName": "Election Change Log_2a2128d2-5738-4db9-9c3d-dcdb4c9a397e.csv",
+            "order": 0,
+            "versions": null,
+            "county": null
+          }
+        ],
+        "order": 0,
+        "categoryType": null,
+        "description": null,
+        "categoryNameTranslations": null
+      }
+    ],
+    "groupReportingStatus": [
+      {
+        "groupName": [
+          {
+            "languageId": "en",
+            "text": "Election Day"
+          }
+        ],
+        "reportingStatusClientTextKey": "reporting-status-election-night-complete",
+        "order": 1,
+        "value": null
+      },
+      {
+        "groupName": [
+          {
+            "languageId": "en",
+            "text": "Early In-Person"
+          }
+        ],
+        "reportingStatusClientTextKey": "reporting-status-fully-reported",
+        "order": 2,
+        "value": null
+      },
+      {
+        "groupName": [
+          {
+            "languageId": "en",
+            "text": "Provisional"
+          }
+        ],
+        "reportingStatusClientTextKey": "reporting-status-not-reported",
+        "order": 3,
+        "value": null
+      },
+      {
+        "groupName": [
+          {
+            "languageId": "en",
+            "text": "Post Election Day"
+          }
+        ],
+        "reportingStatusClientTextKey": "reporting-status-not-reported",
+        "order": 4,
+        "value": null
+      },
+      {
+        "groupName": [
+          {
+            "languageId": "en",
+            "text": "Post VBM"
+          }
+        ],
+        "reportingStatusClientTextKey": "reporting-status-not-reported",
+        "order": 5,
+        "value": null
+      },
+      {
+        "groupName": [
+          {
+            "languageId": "en",
+            "text": "Vote By Mail"
+          }
+        ],
+        "reportingStatusClientTextKey": "reporting-status-fully-reported",
+        "order": 6,
+        "value": null
+      }
+    ],
+    "precinctReportingStatus": [
+      {
+        "groupName": [
+          {
+            "languageId": null,
+            "text": "Fully Reported"
+          }
+        ],
+        "reportingStatusClientTextKey": "reporting-status-fully-reported",
+        "order": 1,
+        "value": 0
+      },
+      {
+        "groupName": [
+          {
+            "languageId": null,
+            "text": "Election Night Complete"
+          }
+        ],
+        "reportingStatusClientTextKey": "reporting-status-election-night-complete",
+        "order": 2,
+        "value": 897
+      },
+      {
+        "groupName": [
+          {
+            "languageId": null,
+            "text": "Partially Reported"
+          }
+        ],
+        "reportingStatusClientTextKey": "reporting-status-partially-reported",
+        "order": 3,
+        "value": 0
+      },
+      {
+        "groupName": [
+          {
+            "languageId": null,
+            "text": "Not Reported"
+          }
+        ],
+        "reportingStatusClientTextKey": "reporting-status-not-reported",
+        "order": 4,
+        "value": 0
+      }
+    ],
+    "contestGroups": [
+      {
+        "id": "01000000-ff7d-a01c-4520-08df1fcabfb5",
+        "groupHeading": [
+          {
+            "languageId": "en",
+            "text": "State Contests"
+          }
+        ],
+        "groupSubHeading": [],
+        "hideIfEmpty": false,
+        "order": 0,
+        "showInPublicResultsFilters": true
+      },
+      {
+        "id": "01000000-78b0-d12a-4d23-08df1fcb95d8",
+        "groupHeading": [
+          {
+            "languageId": "en",
+            "text": "State Judicial Contests"
+          }
+        ],
+        "groupSubHeading": [],
+        "hideIfEmpty": false,
+        "order": 1,
+        "showInPublicResultsFilters": true
+      },
+      {
+        "id": "01000000-ff7d-a01c-7823-08df1fcacb7d",
+        "groupHeading": [
+          {
+            "languageId": "en",
+            "text": "Federal Contests"
+          }
+        ],
+        "groupSubHeading": [],
+        "hideIfEmpty": false,
+        "order": 2,
+        "showInPublicResultsFilters": true
+      },
+      {
+        "id": "01000000-ff7d-a01c-ea72-08df1fcad74f",
+        "groupHeading": [
+          {
+            "languageId": "en",
+            "text": "County Judicial Contests"
+          }
+        ],
+        "groupSubHeading": [],
+        "hideIfEmpty": false,
+        "order": 3,
+        "showInPublicResultsFilters": true
+      },
+      {
+        "id": "01000000-ff7d-a01c-9701-08df1fcadeeb",
+        "groupHeading": [
+          {
+            "languageId": "en",
+            "text": "County Contests"
+          }
+        ],
+        "groupSubHeading": [],
+        "hideIfEmpty": false,
+        "order": 4,
+        "showInPublicResultsFilters": true
+      },
+      {
+        "id": "01000000-78b0-d12a-89ed-08df1fcae934",
+        "groupHeading": [
+          {
+            "languageId": "en",
+            "text": "State Issue"
+          }
+        ],
+        "groupSubHeading": [],
+        "hideIfEmpty": false,
+        "order": 5,
+        "showInPublicResultsFilters": true
+      },
+      {
+        "id": "01000000-78b0-d12a-d81a-08df1fcaf0b2",
+        "groupHeading": [
+          {
+            "languageId": "en",
+            "text": "School Issues"
+          }
+        ],
+        "groupSubHeading": [],
+        "hideIfEmpty": false,
+        "order": 6,
+        "showInPublicResultsFilters": true
+      },
+      {
+        "id": "01000000-ff7d-a01c-b662-08df1fcaf7ff",
+        "groupHeading": [
+          {
+            "languageId": "en",
+            "text": "County Issues"
+          }
+        ],
+        "groupSubHeading": [],
+        "hideIfEmpty": false,
+        "order": 7,
+        "showInPublicResultsFilters": true
+      },
+      {
+        "id": "01000000-78b0-d12a-c530-08df1fcb00fe",
+        "groupHeading": [
+          {
+            "languageId": "en",
+            "text": "Municipal Issues"
+          }
+        ],
+        "groupSubHeading": [],
+        "hideIfEmpty": false,
+        "order": 8,
+        "showInPublicResultsFilters": true
+      },
+      {
+        "id": "other",
+        "groupHeading": [
+          {
+            "languageId": "en",
+            "text": "Other Contests"
+          }
+        ],
+        "groupSubHeading": null,
+        "hideIfEmpty": true,
+        "order": 9,
+        "showInPublicResultsFilters": null
+      }
+    ],
+    "countGroups": [
+      {
+        "groupId": "01000000-ad7d-4778-c927-08df1fbf5769",
+        "groupName": [
+          {
+            "languageId": "en",
+            "text": "Election Day"
+          }
+        ],
+        "isFromVirtualPrecinct": false
+      },
+      {
+        "groupId": "01000000-ad7d-4778-f9c6-08df1fbf576b",
+        "groupName": [
+          {
+            "languageId": "en",
+            "text": "Early In-Person"
+          }
+        ],
+        "isFromVirtualPrecinct": false
+      },
+      {
+        "groupId": "01000000-ad7d-4778-4645-08df1fbf576d",
+        "groupName": [
+          {
+            "languageId": "en",
+            "text": "Provisional"
+          }
+        ],
+        "isFromVirtualPrecinct": false
+      },
+      {
+        "groupId": "01000000-ad7d-4778-8100-08df1fbf576e",
+        "groupName": [
+          {
+            "languageId": "en",
+            "text": "Post Election Day"
+          }
+        ],
+        "isFromVirtualPrecinct": false
+      },
+      {
+        "groupId": "01000000-ad7d-4778-c2d5-08df1fbf576f",
+        "groupName": [
+          {
+            "languageId": "en",
+            "text": "Post VBM"
+          }
+        ],
+        "isFromVirtualPrecinct": false
+      },
+      {
+        "groupId": "01000000-ad7d-4778-1350-08df1fbf5771",
+        "groupName": [
+          {
+            "languageId": "en",
+            "text": "Vote By Mail"
+          }
+        ],
+        "isFromVirtualPrecinct": false
+      }
+    ],
+    "precinctsReporting": 1.0,
+    "map": {
+      "enabled": true,
+      "styleUrl": "mapbox://styles/enhancedvoting/cmva18d9e007701s8htryf0lh",
+      "featureIdField": "id",
+      "disclaimer": [],
+      "showMapLegend": true
+    },
+    "totalVoters": 878381.0,
+    "ballotsCast": 482011.0,
+    "redactingPrecinctCountGroups": true,
+    "precinctResultsProtected": false,
+    "reportingStatusBy": 0,
+    "customPublicMessages": [],
+    "closeRaceThreshold": null,
+    "closeRaceThresholdDisclaimer": [],
+    "hasStateWideCloseRaces": false,
+    "nextUpdateAt": null,
+    "hidePrecincts": false,
+    "includePrecinctResults": true,
+    "includePrecinctStatuses": true,
+    "showOverUnderVotes": false,
+    "isPrimary": false,
+    "parties": [
+      {
+        "id": "01000000-ad7d-4778-c7a9-08df1fbf5773",
+        "name": [
+          {
+            "languageId": "en",
+            "text": "Unaffiliated"
+          }
+        ],
+        "abbreviation": "NON",
+        "standardName": "Unaffiliated",
+        "color": "#b0a9a7",
+        "textColor": "#FFFFFF",
+        "showInPublicResultsFilters": true
+      },
+      {
+        "id": "01000000-ad7d-4778-e7e4-08df1fbf5773",
+        "name": [
+          {
+            "languageId": "en",
+            "text": "Republican"
+          }
+        ],
+        "abbreviation": "REP",
+        "standardName": "Republican",
+        "color": "#960018",
+        "textColor": "#ffffff",
+        "showInPublicResultsFilters": true
+      },
+      {
+        "id": "01000000-ad7d-4778-ea93-08df1fbf5773",
+        "name": [
+          {
+            "languageId": "en",
+            "text": "Democratic"
+          }
+        ],
+        "abbreviation": "DEM",
+        "standardName": "Democratic",
+        "color": "#255C99",
+        "textColor": "#ffffff",
+        "showInPublicResultsFilters": true
+      },
+      {
+        "id": "01000000-ad7d-4778-eaef-08df1fbf5773",
+        "name": [
+          {
+            "languageId": "en",
+            "text": "Libertarian"
+          }
+        ],
+        "abbreviation": "LIB",
+        "standardName": "Libertarian",
+        "color": "#f4c900",
+        "textColor": "#000000",
+        "showInPublicResultsFilters": true
+      },
+      {
+        "id": "01000000-ad7d-4778-f6cc-08df1fbf5773",
+        "name": [
+          {
+            "languageId": "en",
+            "text": "Other-party"
+          }
+        ],
+        "abbreviation": "Other",
+        "standardName": "Other-party",
+        "color": "#FF9933",
+        "textColor": "#000000",
+        "showInPublicResultsFilters": true
+      }
+    ]
+  },
+  "ballotItems": [
+    {
+      "id": "01000000-ad7d-4778-cf2e-08df1fbf5788",
+      "parentId": null,
+      "parentJurisdictionName": "Ohio",
+      "publishPublicElectionId": "GE2026",
+      "relatedIds": null,
+      "name": [
+        {
+          "languageId": "en",
+          "text": "For Representative to Congress <br> (7th District)"
+        }
+      ],
+      "voteFor": [
+        {
+          "languageId": "en",
+          "text": "Vote for 1"
+        }
+      ],
+      "referendum": [],
+      "turnout": null,
+      "reportingStatus": {
+        "reportingUnits": 332,
+        "totalUnits": 332,
+        "asOf": "2026-11-04T16:42:14.3000381Z",
+        "reportingStatusDetails": [
+          {
+            "groupName": [
+              {
+                "languageId": null,
+                "text": "Fully Reported"
+              }
+            ],
+            "reportingStatusClientTextKey": "reporting-status-fully-reported",
+            "order": 1,
+            "value": 0
+          },
+          {
+            "groupName": [
+              {
+                "languageId": null,
+                "text": "Election Night Complete"
+              }
+            ],
+            "reportingStatusClientTextKey": "reporting-status-election-night-complete",
+            "order": 2,
+            "value": 332
+          },
+          {
+            "groupName": [
+              {
+                "languageId": null,
+                "text": "Partially Reported"
+              }
+            ],
+            "reportingStatusClientTextKey": "reporting-status-partially-reported",
+            "order": 3,
+            "value": 0
+          },
+          {
+            "groupName": [
+              {
+                "languageId": null,
+                "text": "Not Reported"
+              }
+            ],
+            "reportingStatusClientTextKey": "reporting-status-not-reported",
+            "order": 4,
+            "value": 0
+          }
+        ]
+      },
+      "voteTotal": 201394,
+      "underVoteCount": null,
+      "overVoteCount": null,
+      "contestGroupId": "01000000-ff7d-a01c-7823-08df1fcacb7d",
+      "contestType": "Candidate",
+      "summaryResults": {
+        "ballotOptions": [
+          {
+            "id": "01000000-ad7d-4778-cf8e-08df1fbf5788",
+            "nativeId": "16",
+            "name": [
+              {
+                "languageId": "en",
+                "text": "Max Miller"
+              }
+            ],
+            "voteCount": 76425,
+            "party": {
+              "id": "01000000-ad7d-4778-e7e4-08df1fbf5773",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "Republican"
+                }
+              ],
+              "abbreviation": "REP",
+              "standardName": null,
+              "color": "#960018",
+              "textColor": "#ffffff",
+              "showInPublicResultsFilters": null
+            },
+            "groupResults": [
+              {
+                "groupId": "01000000-ad7d-4778-c927-08df1fbf5769",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Election Day"
+                  }
+                ],
+                "voteCount": 56611
+              },
+              {
+                "groupId": "01000000-ad7d-4778-f9c6-08df1fbf576b",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Early In-Person"
+                  }
+                ],
+                "voteCount": 2341
+              },
+              {
+                "groupId": "01000000-ad7d-4778-4645-08df1fbf576d",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Provisional"
+                  }
+                ],
+                "voteCount": 0
+              },
+              {
+                "groupId": "01000000-ad7d-4778-8100-08df1fbf576e",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Post Election Day"
+                  }
+                ],
+                "voteCount": 0
+              },
+              {
+                "groupId": "01000000-ad7d-4778-c2d5-08df1fbf576f",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Post VBM"
+                  }
+                ],
+                "voteCount": 0
+              },
+              {
+                "groupId": "01000000-ad7d-4778-1350-08df1fbf5771",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Vote By Mail"
+                  }
+                ],
+                "voteCount": 17473
+              }
+            ],
+            "isWriteIn": false,
+            "isQualifiedWriteIn": false,
+            "isWinner": null
+          },
+          {
+            "id": "01000000-ad7d-4778-d286-08df1fbf5788",
+            "nativeId": "17",
+            "name": [
+              {
+                "languageId": "en",
+                "text": "Brian Poindexter"
+              }
+            ],
+            "voteCount": 123741,
+            "party": {
+              "id": "01000000-ad7d-4778-ea93-08df1fbf5773",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "Democratic"
+                }
+              ],
+              "abbreviation": "DEM",
+              "standardName": null,
+              "color": "#255C99",
+              "textColor": "#ffffff",
+              "showInPublicResultsFilters": null
+            },
+            "groupResults": [
+              {
+                "groupId": "01000000-ad7d-4778-c927-08df1fbf5769",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Election Day"
+                  }
+                ],
+                "voteCount": 77038
+              },
+              {
+                "groupId": "01000000-ad7d-4778-f9c6-08df1fbf576b",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Early In-Person"
+                  }
+                ],
+                "voteCount": 11436
+              },
+              {
+                "groupId": "01000000-ad7d-4778-4645-08df1fbf576d",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Provisional"
+                  }
+                ],
+                "voteCount": 0
+              },
+              {
+                "groupId": "01000000-ad7d-4778-8100-08df1fbf576e",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Post Election Day"
+                  }
+                ],
+                "voteCount": 0
+              },
+              {
+                "groupId": "01000000-ad7d-4778-c2d5-08df1fbf576f",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Post VBM"
+                  }
+                ],
+                "voteCount": 0
+              },
+              {
+                "groupId": "01000000-ad7d-4778-1350-08df1fbf5771",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Vote By Mail"
+                  }
+                ],
+                "voteCount": 35267
+              }
+            ],
+            "isWriteIn": false,
+            "isQualifiedWriteIn": false,
+            "isWinner": null
+          },
+          {
+            "id": "01000000-ad7d-4778-d55e-08df1fbf5788",
+            "nativeId": "272",
+            "name": [
+              {
+                "languageId": "en",
+                "text": "Write-in"
+              }
+            ],
+            "voteCount": 1228,
+            "party": {
+              "id": "01000000-ad7d-4778-c7a9-08df1fbf5773",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "Unaffiliated"
+                }
+              ],
+              "abbreviation": "NON",
+              "standardName": null,
+              "color": "#b0a9a7",
+              "textColor": "#FFFFFF",
+              "showInPublicResultsFilters": null
+            },
+            "groupResults": [
+              {
+                "groupId": "01000000-ad7d-4778-c927-08df1fbf5769",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Election Day"
+                  }
+                ],
+                "voteCount": 839
+              },
+              {
+                "groupId": "01000000-ad7d-4778-f9c6-08df1fbf576b",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Early In-Person"
+                  }
+                ],
+                "voteCount": 52
+              },
+              {
+                "groupId": "01000000-ad7d-4778-4645-08df1fbf576d",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Provisional"
+                  }
+                ],
+                "voteCount": 0
+              },
+              {
+                "groupId": "01000000-ad7d-4778-8100-08df1fbf576e",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Post Election Day"
+                  }
+                ],
+                "voteCount": 0
+              },
+              {
+                "groupId": "01000000-ad7d-4778-c2d5-08df1fbf576f",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Post VBM"
+                  }
+                ],
+                "voteCount": 0
+              },
+              {
+                "groupId": "01000000-ad7d-4778-1350-08df1fbf5771",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Vote By Mail"
+                  }
+                ],
+                "voteCount": 337
+              }
+            ],
+            "isWriteIn": true,
+            "isQualifiedWriteIn": false,
+            "isWinner": null
+          }
+        ]
+      },
+      "rankedChoiceSummaryResults": null,
+      "hasBreakdownResults": true,
+      "crossCounties": [],
+      "isCloseRace": null,
+      "partyName": "Unaffiliated"
+    },
+    {
+      "id": "01000000-ad7d-4778-371d-08df1fbf5790",
+      "parentId": null,
+      "parentJurisdictionName": "Ohio",
+      "publishPublicElectionId": "GE2026",
+      "relatedIds": null,
+      "name": [
+        {
+          "languageId": "en",
+          "text": "For Representative to Congress <br> (11th District)"
+        }
+      ],
+      "voteFor": [
+        {
+          "languageId": "en",
+          "text": "Vote for 1"
+        }
+      ],
+      "referendum": [],
+      "turnout": null,
+      "reportingStatus": {
+        "reportingUnits": 565,
+        "totalUnits": 565,
+        "asOf": "2026-11-04T16:42:14.3000381Z",
+        "reportingStatusDetails": [
+          {
+            "groupName": [
+              {
+                "languageId": null,
+                "text": "Fully Reported"
+              }
+            ],
+            "reportingStatusClientTextKey": "reporting-status-fully-reported",
+            "order": 1,
+            "value": 0
+          },
+          {
+            "groupName": [
+              {
+                "languageId": null,
+                "text": "Election Night Complete"
+              }
+            ],
+            "reportingStatusClientTextKey": "reporting-status-election-night-complete",
+            "order": 2,
+            "value": 565
+          },
+          {
+            "groupName": [
+              {
+                "languageId": null,
+                "text": "Partially Reported"
+              }
+            ],
+            "reportingStatusClientTextKey": "reporting-status-partially-reported",
+            "order": 3,
+            "value": 0
+          },
+          {
+            "groupName": [
+              {
+                "languageId": null,
+                "text": "Not Reported"
+              }
+            ],
+            "reportingStatusClientTextKey": "reporting-status-not-reported",
+            "order": 4,
+            "value": 0
+          }
+        ]
+      },
+      "voteTotal": 263344,
+      "underVoteCount": null,
+      "overVoteCount": null,
+      "contestGroupId": "01000000-ff7d-a01c-7823-08df1fcacb7d",
+      "contestType": "Candidate",
+      "summaryResults": {
+        "ballotOptions": [
+          {
+            "id": "01000000-ad7d-4778-3810-08df1fbf5790",
+            "nativeId": "18",
+            "name": [
+              {
+                "languageId": "en",
+                "text": "Shontel M. Brown"
+              }
+            ],
+            "voteCount": 219971,
+            "party": {
+              "id": "01000000-ad7d-4778-ea93-08df1fbf5773",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "Democratic"
+                }
+              ],
+              "abbreviation": "DEM",
+              "standardName": null,
+              "color": "#255C99",
+              "textColor": "#ffffff",
+              "showInPublicResultsFilters": null
+            },
+            "groupResults": [
+              {
+                "groupId": "01000000-ad7d-4778-c927-08df1fbf5769",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Election Day"
+                  }
+                ],
+                "voteCount": 139171
+              },
+              {
+                "groupId": "01000000-ad7d-4778-f9c6-08df1fbf576b",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Early In-Person"
+                  }
+                ],
+                "voteCount": 36901
+              },
+              {
+                "groupId": "01000000-ad7d-4778-4645-08df1fbf576d",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Provisional"
+                  }
+                ],
+                "voteCount": 0
+              },
+              {
+                "groupId": "01000000-ad7d-4778-8100-08df1fbf576e",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Post Election Day"
+                  }
+                ],
+                "voteCount": 0
+              },
+              {
+                "groupId": "01000000-ad7d-4778-c2d5-08df1fbf576f",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Post VBM"
+                  }
+                ],
+                "voteCount": 0
+              },
+              {
+                "groupId": "01000000-ad7d-4778-1350-08df1fbf5771",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Vote By Mail"
+                  }
+                ],
+                "voteCount": 43899
+              }
+            ],
+            "isWriteIn": false,
+            "isQualifiedWriteIn": false,
+            "isWinner": null
+          },
+          {
+            "id": "01000000-ad7d-4778-3e52-08df1fbf5790",
+            "nativeId": "19",
+            "name": [
+              {
+                "languageId": "en",
+                "text": "Mike Kirchner"
+              }
+            ],
+            "voteCount": 43373,
+            "party": {
+              "id": "01000000-ad7d-4778-e7e4-08df1fbf5773",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "Republican"
+                }
+              ],
+              "abbreviation": "REP",
+              "standardName": null,
+              "color": "#960018",
+              "textColor": "#ffffff",
+              "showInPublicResultsFilters": null
+            },
+            "groupResults": [
+              {
+                "groupId": "01000000-ad7d-4778-c927-08df1fbf5769",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Election Day"
+                  }
+                ],
+                "voteCount": 31618
+              },
+              {
+                "groupId": "01000000-ad7d-4778-f9c6-08df1fbf576b",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Early In-Person"
+                  }
+                ],
+                "voteCount": 2402
+              },
+              {
+                "groupId": "01000000-ad7d-4778-4645-08df1fbf576d",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Provisional"
+                  }
+                ],
+                "voteCount": 0
+              },
+              {
+                "groupId": "01000000-ad7d-4778-8100-08df1fbf576e",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Post Election Day"
+                  }
+                ],
+                "voteCount": 0
+              },
+              {
+                "groupId": "01000000-ad7d-4778-c2d5-08df1fbf576f",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Post VBM"
+                  }
+                ],
+                "voteCount": 0
+              },
+              {
+                "groupId": "01000000-ad7d-4778-1350-08df1fbf5771",
+                "groupName": [
+                  {
+                    "languageId": "en",
+                    "text": "Vote By Mail"
+                  }
+                ],
+                "voteCount": 9353
+              }
+            ],
+            "isWriteIn": false,
+            "isQualifiedWriteIn": false,
+            "isWinner": null
+          }
+        ]
+      },
+      "rankedChoiceSummaryResults": null,
+      "hasBreakdownResults": true,
+      "crossCounties": [],
+      "isCloseRace": null,
+      "partyName": "Unaffiliated"
+    }
+  ]
+}

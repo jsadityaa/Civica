@@ -62,23 +62,34 @@ def collect():
     parser.add_argument("--senate-only", action="store_true")
     args = parser.parse_args()
     snapshot = json.loads((ROOT / "midterms-2026-results-data.js").read_text().split(" = ", 1)[1].rstrip(";\n"))
-    races = snapshot["offices"]["senate"]["races"] + ([] if args.senate_only else snapshot["offices"]["house"]["races"])
+    races = snapshot["offices"]["senate"]["races"] + ([] if args.senate_only else snapshot["offices"]["house"]["races"] + snapshot["offices"]["governor"]["races"])
     with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
         results = dict(pool.map(get_race, races))
+    existing = {}
+    if (ROOT / "county-results-2026-data.js").exists():
+        existing = json.loads((ROOT / "county-results-2026-data.js").read_text().split(" = ", 1)[1].rstrip(";\n"))
+        # Official district-specific county returns take precedence over NPR's
+        # unavailable House county feeds. Never discard a validated import.
+        results.update({key: value for key, value in existing["races"].items()
+                        if value.get("sourceType") == "official" and value["office"] == "H"})
     if args.senate_only and (ROOT / "county-results-2026-data.js").exists():
         existing = json.loads((ROOT / "county-results-2026-data.js").read_text().split(" = ", 1)[1].rstrip(";\n"))
-        results.update({key: value for key, value in existing["races"].items() if value["office"] == "H"})
+        results.update({key: value for key, value in existing["races"].items() if value["office"] != "S"})
     states = sorted({r["state"] for r in races if results[r["id"]]["rows"]})
     with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
         maps = dict(pool.map(get_map, states))
+    if args.senate_only and (ROOT / "county-results-2026-data.js").exists():
+        maps = {**existing.get("maps", {}), **maps}
     payload = {"capturedAt": datetime.now(timezone.utc).isoformat(), "races": results, "maps": maps}
+    if existing.get("officialHouseCapturedAt"):
+        payload["officialHouseCapturedAt"] = existing["officialHouseCapturedAt"]
     target = ROOT / "county-results-2026-data.js"
     temporary = target.with_suffix(".tmp")
     temporary.write_text("window.COUNTY_RESULTS_2026 = " + json.dumps(payload, separators=(",", ":")) + ";\n")
     temporary.replace(target)
     geometry = download("https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json")
     (ROOT / "county-geography-2026.js").write_text("window.COUNTY_GEOGRAPHY_2026 = " + geometry.decode() + ";\n")
-    for code, name in [("S", "Senate"), ("H", "House")]:
+    for code, name in [("S", "Senate"), ("G", "Governor"), ("H", "House")]:
         available = [r for r in results.values() if r["office"] == code and r["rows"]]
         print(name + ": " + str(len(available)) + " races with local returns; " + str(sum(len(r["rows"]) for r in available)) + " local result rows")
 

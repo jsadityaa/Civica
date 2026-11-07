@@ -1,0 +1,2265 @@
+[
+  {
+    "name": "Allegany County",
+    "url": "https://www.elections.maryland.gov/elections/2026/general_results/gen_results_2026_by_county_1.html",
+    "heading": " Unofficial 2026 Gubernatorial General Election Results for Allegany County",
+    "results": [
+      {
+        "district": "District 6",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "April McClain Delaney",
+            "Democratic",
+            "1,384",
+            "3,941",
+            "1,865",
+            "NR",
+            "7,190",
+            "34.79%"
+          ],
+          [
+            "Robin Ficker",
+            "Republican",
+            "2,067",
+            "9,701",
+            "1,188",
+            "NR",
+            "12,956",
+            "62.68%"
+          ],
+          [
+            "Moshe Y. Landman",
+            "Green",
+            "76",
+            "344",
+            "80",
+            "NR",
+            "500",
+            "2.42%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "0",
+            "16",
+            "7",
+            "NR",
+            "23",
+            "0.11%"
+          ],
+          [
+            "Totals",
+            "",
+            "3,527",
+            "14,002",
+            "3,140",
+            "NR",
+            "20,669",
+            "100.00%"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Anne Arundel County",
+    "url": "https://www.elections.maryland.gov/elections/2026/general_results/gen_results_2026_by_county_2.html",
+    "heading": " Unofficial 2026 Gubernatorial General Election Results for Anne Arundel County",
+    "results": [
+      {
+        "district": "District 3",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Sarah Elfreth",
+            "Democratic",
+            "26,493",
+            "41,357",
+            "20,875",
+            "NR",
+            "88,725",
+            "59.95%"
+          ],
+          [
+            "Berney Flowers",
+            "Republican",
+            "16,246",
+            "36,945",
+            "5,819",
+            "NR",
+            "59,010",
+            "39.87%"
+          ],
+          [
+            "Robert L. Coffman (Write-In)",
+            "Republican",
+            "3",
+            "8",
+            "0",
+            "NR",
+            "11",
+            "0.01%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "64",
+            "150",
+            "46",
+            "NR",
+            "260",
+            "0.18%"
+          ],
+          [
+            "Totals",
+            "",
+            "42,806",
+            "78,460",
+            "26,740",
+            "NR",
+            "148,006",
+            "100.00%"
+          ]
+        ]
+      },
+      {
+        "district": "District 5",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Adrian Boafo",
+            "Democratic",
+            "12,606",
+            "16,312",
+            "8,638",
+            "NR",
+            "37,556",
+            "62.36%"
+          ],
+          [
+            "Chris Chaffee",
+            "Republican",
+            "7,116",
+            "12,898",
+            "2,382",
+            "NR",
+            "22,396",
+            "37.19%"
+          ],
+          [
+            "Mildred Marie Hall (Write-In)",
+            "Other Candidates",
+            "6",
+            "9",
+            "5",
+            "NR",
+            "20",
+            "0.03%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "86",
+            "109",
+            "54",
+            "NR",
+            "249",
+            "0.41%"
+          ],
+          [
+            "Totals",
+            "",
+            "19,814",
+            "29,328",
+            "11,079",
+            "NR",
+            "60,221",
+            "100.00%"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Baltimore City",
+    "url": "https://www.elections.maryland.gov/elections/2026/general_results/gen_results_2026_by_county_3.html",
+    "heading": " Unofficial 2026 Gubernatorial General Election Results for Baltimore City",
+    "results": [
+      {
+        "district": "District 2",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "John \"Johnny O\" Olszewski, Jr.",
+            "Democratic",
+            "1,554",
+            "5,503",
+            "1,990",
+            "NR",
+            "9,047",
+            "88.42%"
+          ],
+          [
+            "Dave Wallace",
+            "Republican",
+            "107",
+            "861",
+            "172",
+            "NR",
+            "1,140",
+            "11.14%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "7",
+            "26",
+            "12",
+            "NR",
+            "45",
+            "0.44%"
+          ],
+          [
+            "Totals",
+            "",
+            "1,668",
+            "6,390",
+            "2,174",
+            "NR",
+            "10,232",
+            "100.00%"
+          ]
+        ]
+      },
+      {
+        "district": "District 7",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Kweisi Mfume",
+            "Democratic",
+            "29,331",
+            "71,104",
+            "17,343",
+            "NR",
+            "117,778",
+            "91.14%"
+          ],
+          [
+            "Scott M. Collier",
+            "Republican",
+            "1,762",
+            "7,818",
+            "1,307",
+            "NR",
+            "10,887",
+            "8.42%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "130",
+            "344",
+            "95",
+            "NR",
+            "569",
+            "0.44%"
+          ],
+          [
+            "Totals",
+            "",
+            "31,223",
+            "79,266",
+            "18,745",
+            "NR",
+            "129,234",
+            "100.00%"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Baltimore County",
+    "url": "https://www.elections.maryland.gov/elections/2026/general_results/gen_results_2026_by_county_4.html",
+    "heading": " Unofficial 2026 Gubernatorial General Election Results for Baltimore County",
+    "results": [
+      {
+        "district": "District 1",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Dan Schwartz",
+            "Democratic",
+            "3,549",
+            "4,713",
+            "1,917",
+            "NR",
+            "10,179",
+            "43.36%"
+          ],
+          [
+            "Andy Harris",
+            "Republican",
+            "4,457",
+            "7,667",
+            "1,142",
+            "NR",
+            "13,266",
+            "56.51%"
+          ],
+          [
+            "Edward Shlikas (Write-In)",
+            "Unaffiliated",
+            "0",
+            "0",
+            "0",
+            "NR",
+            "0",
+            "0.00%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "10",
+            "18",
+            "4",
+            "NR",
+            "32",
+            "0.14%"
+          ],
+          [
+            "Totals",
+            "",
+            "8,016",
+            "12,398",
+            "3,063",
+            "NR",
+            "23,477",
+            "100.00%"
+          ]
+        ]
+      },
+      {
+        "district": "District 2",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "John \"Johnny O\" Olszewski, Jr.",
+            "Democratic",
+            "37,266",
+            "65,214",
+            "22,093",
+            "NR",
+            "124,573",
+            "68.53%"
+          ],
+          [
+            "Dave Wallace",
+            "Republican",
+            "15,334",
+            "35,682",
+            "5,813",
+            "NR",
+            "56,829",
+            "31.26%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "86",
+            "229",
+            "69",
+            "NR",
+            "384",
+            "0.21%"
+          ],
+          [
+            "Totals",
+            "",
+            "52,686",
+            "101,125",
+            "27,975",
+            "NR",
+            "181,786",
+            "100.00%"
+          ]
+        ]
+      },
+      {
+        "district": "District 7",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Kweisi Mfume",
+            "Democratic",
+            "12,154",
+            "19,822",
+            "5,218",
+            "NR",
+            "37,194",
+            "67.10%"
+          ],
+          [
+            "Scott M. Collier",
+            "Republican",
+            "4,957",
+            "12,005",
+            "1,152",
+            "NR",
+            "18,114",
+            "32.68%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "46",
+            "63",
+            "10",
+            "NR",
+            "119",
+            "0.21%"
+          ],
+          [
+            "Totals",
+            "",
+            "17,157",
+            "31,890",
+            "6,380",
+            "NR",
+            "55,427",
+            "100.00%"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Calvert County",
+    "url": "https://www.elections.maryland.gov/elections/2026/general_results/gen_results_2026_by_county_5.html",
+    "heading": " Unofficial 2026 Gubernatorial General Election Results for Calvert County",
+    "results": [
+      {
+        "district": "District 5",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Adrian Boafo",
+            "Democratic",
+            "6,002",
+            "6,864",
+            "4,835",
+            "NR",
+            "17,701",
+            "46.89%"
+          ],
+          [
+            "Chris Chaffee",
+            "Republican",
+            "7,255",
+            "10,675",
+            "1,993",
+            "NR",
+            "19,923",
+            "52.77%"
+          ],
+          [
+            "Mildred Marie Hall (Write-In)",
+            "Other Candidates",
+            "0",
+            "0",
+            "0",
+            "NR",
+            "0",
+            "0.00%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "36",
+            "47",
+            "44",
+            "NR",
+            "127",
+            "0.34%"
+          ],
+          [
+            "Totals",
+            "",
+            "13,293",
+            "17,586",
+            "6,872",
+            "NR",
+            "37,751",
+            "100.00%"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Caroline County",
+    "url": "https://www.elections.maryland.gov/elections/2026/general_results/gen_results_2026_by_county_6.html",
+    "heading": " Unofficial 2026 Gubernatorial General Election Results for Caroline County",
+    "results": [
+      {
+        "district": "District 1",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Dan Schwartz",
+            "Democratic",
+            "1,209",
+            "2,139",
+            "815",
+            "NR",
+            "4,163",
+            "36.15%"
+          ],
+          [
+            "Andy Harris",
+            "Republican",
+            "1,860",
+            "5,002",
+            "474",
+            "NR",
+            "7,336",
+            "63.70%"
+          ],
+          [
+            "Edward Shlikas (Write-In)",
+            "Unaffiliated",
+            "0",
+            "0",
+            "0",
+            "NR",
+            "0",
+            "0.00%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "1",
+            "14",
+            "2",
+            "NR",
+            "17",
+            "0.15%"
+          ],
+          [
+            "Totals",
+            "",
+            "3,070",
+            "7,155",
+            "1,291",
+            "NR",
+            "11,516",
+            "100.00%"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Carroll County",
+    "url": "https://www.elections.maryland.gov/elections/2026/general_results/gen_results_2026_by_county_7.html",
+    "heading": " Unofficial 2026 Gubernatorial General Election Results for Carroll County",
+    "results": [
+      {
+        "district": "District 2",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "John \"Johnny O\" Olszewski, Jr.",
+            "Democratic",
+            "7,062",
+            "11,692",
+            "6,809",
+            "NR",
+            "25,563",
+            "41.17%"
+          ],
+          [
+            "Dave Wallace",
+            "Republican",
+            "9,557",
+            "23,761",
+            "3,137",
+            "NR",
+            "36,455",
+            "58.72%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "14",
+            "40",
+            "13",
+            "NR",
+            "67",
+            "0.11%"
+          ],
+          [
+            "Totals",
+            "",
+            "16,633",
+            "35,493",
+            "9,959",
+            "NR",
+            "62,085",
+            "100.00%"
+          ]
+        ]
+      },
+      {
+        "district": "District 3",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Sarah Elfreth",
+            "Democratic",
+            "732",
+            "1,843",
+            "932",
+            "NR",
+            "3,507",
+            "41.63%"
+          ],
+          [
+            "Berney Flowers",
+            "Republican",
+            "951",
+            "3,559",
+            "400",
+            "NR",
+            "4,910",
+            "58.28%"
+          ],
+          [
+            "Robert L. Coffman (Write-In)",
+            "Republican",
+            "0",
+            "0",
+            "0",
+            "NR",
+            "0",
+            "0.00%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "1",
+            "6",
+            "1",
+            "NR",
+            "8",
+            "0.09%"
+          ],
+          [
+            "Totals",
+            "",
+            "1,684",
+            "5,408",
+            "1,333",
+            "NR",
+            "8,425",
+            "100.00%"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Cecil County",
+    "url": "https://www.elections.maryland.gov/elections/2026/general_results/gen_results_2026_by_county_8.html",
+    "heading": " Unofficial 2026 Gubernatorial General Election Results for Cecil County",
+    "results": [
+      {
+        "district": "District 1",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Dan Schwartz",
+            "Democratic",
+            "3,911",
+            "7,067",
+            "1,608",
+            "NR",
+            "12,586",
+            "39.97%"
+          ],
+          [
+            "Andy Harris",
+            "Republican",
+            "5,541",
+            "12,514",
+            "805",
+            "NR",
+            "18,860",
+            "59.89%"
+          ],
+          [
+            "Edward Shlikas (Write-In)",
+            "Unaffiliated",
+            "0",
+            "0",
+            "0",
+            "NR",
+            "0",
+            "0.00%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "12",
+            "32",
+            "1",
+            "NR",
+            "45",
+            "0.14%"
+          ],
+          [
+            "Totals",
+            "",
+            "9,464",
+            "19,613",
+            "2,414",
+            "NR",
+            "31,491",
+            "100.00%"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Charles County",
+    "url": "https://www.elections.maryland.gov/elections/2026/general_results/gen_results_2026_by_county_9.html",
+    "heading": " Unofficial 2026 Gubernatorial General Election Results for Charles County",
+    "results": [
+      {
+        "district": "District 5",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Adrian Boafo",
+            "Democratic",
+            "17,458",
+            "23,713",
+            "8,871",
+            "NR",
+            "50,042",
+            "75.34%"
+          ],
+          [
+            "Chris Chaffee",
+            "Republican",
+            "4,370",
+            "9,945",
+            "1,686",
+            "NR",
+            "16,001",
+            "24.09%"
+          ],
+          [
+            "Mildred Marie Hall (Write-In)",
+            "Other Candidates",
+            "0",
+            "0",
+            "0",
+            "NR",
+            "0",
+            "0.00%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "112",
+            "178",
+            "91",
+            "NR",
+            "381",
+            "0.57%"
+          ],
+          [
+            "Totals",
+            "",
+            "21,940",
+            "33,836",
+            "10,648",
+            "NR",
+            "66,424",
+            "100.00%"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Dorchester County",
+    "url": "https://www.elections.maryland.gov/elections/2026/general_results/gen_results_2026_by_county_10.html",
+    "heading": " Unofficial 2026 Gubernatorial General Election Results for Dorchester County",
+    "results": [
+      {
+        "district": "District 1",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Dan Schwartz",
+            "Democratic",
+            "1,705",
+            "2,876",
+            "1,146",
+            "NR",
+            "5,727",
+            "45.83%"
+          ],
+          [
+            "Andy Harris",
+            "Republican",
+            "1,600",
+            "4,674",
+            "472",
+            "NR",
+            "6,746",
+            "53.99%"
+          ],
+          [
+            "Edward Shlikas (Write-In)",
+            "Unaffiliated",
+            "0",
+            "0",
+            "0",
+            "NR",
+            "0",
+            "0.00%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "1",
+            "20",
+            "2",
+            "NR",
+            "23",
+            "0.18%"
+          ],
+          [
+            "Totals",
+            "",
+            "3,306",
+            "7,570",
+            "1,620",
+            "NR",
+            "12,496",
+            "100.00%"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Frederick County",
+    "url": "https://www.elections.maryland.gov/elections/2026/general_results/gen_results_2026_by_county_11.html",
+    "heading": " Unofficial 2026 Gubernatorial General Election Results for Frederick County",
+    "results": [
+      {
+        "district": "District 6",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "April McClain Delaney",
+            "Democratic",
+            "17,625",
+            "30,676",
+            "16,764",
+            "NR",
+            "65,065",
+            "59.18%"
+          ],
+          [
+            "Robin Ficker",
+            "Republican",
+            "10,036",
+            "27,540",
+            "3,887",
+            "NR",
+            "41,463",
+            "37.71%"
+          ],
+          [
+            "Moshe Y. Landman",
+            "Green",
+            "620",
+            "1,989",
+            "576",
+            "NR",
+            "3,185",
+            "2.90%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "45",
+            "126",
+            "68",
+            "NR",
+            "239",
+            "0.22%"
+          ],
+          [
+            "Totals",
+            "",
+            "28,326",
+            "60,331",
+            "21,295",
+            "NR",
+            "109,952",
+            "100.00%"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Garrett County",
+    "url": "https://www.elections.maryland.gov/elections/2026/general_results/gen_results_2026_by_county_12.html",
+    "heading": " Unofficial 2026 Gubernatorial General Election Results for Garrett County",
+    "results": [
+      {
+        "district": "District 6",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "April McClain Delaney",
+            "Democratic",
+            "815",
+            "1,099",
+            "811",
+            "NR",
+            "2,725",
+            "25.56%"
+          ],
+          [
+            "Robin Ficker",
+            "Republican",
+            "1,883",
+            "5,272",
+            "596",
+            "NR",
+            "7,751",
+            "72.71%"
+          ],
+          [
+            "Moshe Y. Landman",
+            "Green",
+            "38",
+            "95",
+            "29",
+            "NR",
+            "162",
+            "1.52%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "4",
+            "16",
+            "2",
+            "NR",
+            "22",
+            "0.21%"
+          ],
+          [
+            "Totals",
+            "",
+            "2,740",
+            "6,482",
+            "1,438",
+            "NR",
+            "10,660",
+            "100.00%"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Harford County",
+    "url": "https://www.elections.maryland.gov/elections/2026/general_results/gen_results_2026_by_county_13.html",
+    "heading": " Unofficial 2026 Gubernatorial General Election Results for Harford County",
+    "results": [
+      {
+        "district": "District 1",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Dan Schwartz",
+            "Democratic",
+            "16,908",
+            "24,930",
+            "10,431",
+            "NR",
+            "52,269",
+            "48.91%"
+          ],
+          [
+            "Andy Harris",
+            "Republican",
+            "16,168",
+            "33,690",
+            "4,530",
+            "NR",
+            "54,388",
+            "50.90%"
+          ],
+          [
+            "Edward Shlikas (Write-In)",
+            "Unaffiliated",
+            "0",
+            "0",
+            "0",
+            "NR",
+            "0",
+            "0.00%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "43",
+            "137",
+            "20",
+            "NR",
+            "200",
+            "0.19%"
+          ],
+          [
+            "Totals",
+            "",
+            "33,119",
+            "58,757",
+            "14,981",
+            "NR",
+            "106,857",
+            "100.00%"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Howard County",
+    "url": "https://www.elections.maryland.gov/elections/2026/general_results/gen_results_2026_by_county_14.html",
+    "heading": " Unofficial 2026 Gubernatorial General Election Results for Howard County",
+    "results": [
+      {
+        "district": "District 3",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Sarah Elfreth",
+            "Democratic",
+            "30,320",
+            "46,112",
+            "25,240",
+            "NR",
+            "101,672",
+            "76.06%"
+          ],
+          [
+            "Berney Flowers",
+            "Republican",
+            "7,963",
+            "19,535",
+            "3,982",
+            "NR",
+            "31,480",
+            "23.55%"
+          ],
+          [
+            "Robert L. Coffman (Write-In)",
+            "Republican",
+            "0",
+            "0",
+            "0",
+            "NR",
+            "0",
+            "0.00%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "121",
+            "274",
+            "126",
+            "NR",
+            "521",
+            "0.39%"
+          ],
+          [
+            "Totals",
+            "",
+            "38,404",
+            "65,921",
+            "29,348",
+            "NR",
+            "133,673",
+            "100.00%"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Kent County",
+    "url": "https://www.elections.maryland.gov/elections/2026/general_results/gen_results_2026_by_county_15.html",
+    "heading": " Unofficial 2026 Gubernatorial General Election Results for Kent County",
+    "results": [
+      {
+        "district": "District 1",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Dan Schwartz",
+            "Democratic",
+            "1,665",
+            "1,772",
+            "869",
+            "NR",
+            "4,306",
+            "52.60%"
+          ],
+          [
+            "Andy Harris",
+            "Republican",
+            "868",
+            "2,743",
+            "258",
+            "NR",
+            "3,869",
+            "47.26%"
+          ],
+          [
+            "Edward Shlikas (Write-In)",
+            "Unaffiliated",
+            "0",
+            "0",
+            "0",
+            "NR",
+            "0",
+            "0.00%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "2",
+            "10",
+            "0",
+            "NR",
+            "12",
+            "0.15%"
+          ],
+          [
+            "Totals",
+            "",
+            "2,535",
+            "4,525",
+            "1,127",
+            "NR",
+            "8,187",
+            "100.00%"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Montgomery County",
+    "url": "https://www.elections.maryland.gov/elections/2026/general_results/gen_results_2026_by_county_16.html",
+    "heading": " Unofficial 2026 Gubernatorial General Election Results for Montgomery County",
+    "results": [
+      {
+        "district": "District 4",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Glenn F. Ivey",
+            "Democratic",
+            "3,274",
+            "4,029",
+            "1,208",
+            "NR",
+            "8,511",
+            "85.39%"
+          ],
+          [
+            "George E. McDermott",
+            "Republican",
+            "343",
+            "645",
+            "119",
+            "NR",
+            "1,107",
+            "11.11%"
+          ],
+          [
+            "Sam Husseini",
+            "Green",
+            "74",
+            "231",
+            "35",
+            "NR",
+            "340",
+            "3.41%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "4",
+            "4",
+            "1",
+            "NR",
+            "9",
+            "0.09%"
+          ],
+          [
+            "Totals",
+            "",
+            "3,695",
+            "4,909",
+            "1,363",
+            "NR",
+            "9,967",
+            "100.00%"
+          ]
+        ]
+      },
+      {
+        "district": "District 6",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "April McClain Delaney",
+            "Democratic",
+            "15,643",
+            "27,746",
+            "9,991",
+            "NR",
+            "53,380",
+            "77.43%"
+          ],
+          [
+            "Robin Ficker",
+            "Republican",
+            "3,341",
+            "8,782",
+            "1,368",
+            "NR",
+            "13,491",
+            "19.57%"
+          ],
+          [
+            "Moshe Y. Landman",
+            "Green",
+            "387",
+            "1,173",
+            "299",
+            "NR",
+            "1,859",
+            "2.70%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "50",
+            "124",
+            "33",
+            "NR",
+            "207",
+            "0.30%"
+          ],
+          [
+            "Totals",
+            "",
+            "19,421",
+            "37,825",
+            "11,691",
+            "NR",
+            "68,937",
+            "100.00%"
+          ]
+        ]
+      },
+      {
+        "district": "District 8",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Jamie Raskin",
+            "Democratic",
+            "59,497",
+            "99,467",
+            "48,106",
+            "NR",
+            "207,070",
+            "82.73%"
+          ],
+          [
+            "Cheryl Riley",
+            "Republican",
+            "8,856",
+            "24,699",
+            "5,015",
+            "NR",
+            "38,570",
+            "15.41%"
+          ],
+          [
+            "Nancy Wallace",
+            "Green",
+            "902",
+            "2,661",
+            "646",
+            "NR",
+            "4,209",
+            "1.68%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "111",
+            "270",
+            "74",
+            "NR",
+            "455",
+            "0.18%"
+          ],
+          [
+            "Totals",
+            "",
+            "69,366",
+            "127,097",
+            "53,841",
+            "NR",
+            "250,304",
+            "100.00%"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Prince George's County",
+    "url": "https://www.elections.maryland.gov/elections/2026/general_results/gen_results_2026_by_county_17.html",
+    "heading": " Unofficial 2026 Gubernatorial General Election Results for Prince George's County",
+    "results": [
+      {
+        "district": "District 4",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Glenn F. Ivey",
+            "Democratic",
+            "51,716",
+            "74,777",
+            "20,628",
+            "NR",
+            "147,121",
+            "89.35%"
+          ],
+          [
+            "George E. McDermott",
+            "Republican",
+            "2,326",
+            "6,524",
+            "930",
+            "NR",
+            "9,780",
+            "5.94%"
+          ],
+          [
+            "Sam Husseini",
+            "Green",
+            "2,005",
+            "4,966",
+            "504",
+            "NR",
+            "7,475",
+            "4.54%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "85",
+            "169",
+            "20",
+            "NR",
+            "274",
+            "0.17%"
+          ],
+          [
+            "Totals",
+            "",
+            "56,132",
+            "86,436",
+            "22,082",
+            "NR",
+            "164,650",
+            "100.00%"
+          ]
+        ]
+      },
+      {
+        "district": "District 5",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Adrian Boafo",
+            "Democratic",
+            "35,869",
+            "34,414",
+            "10,606",
+            "NR",
+            "80,889",
+            "90.07%"
+          ],
+          [
+            "Chris Chaffee",
+            "Republican",
+            "2,619",
+            "4,502",
+            "750",
+            "NR",
+            "7,871",
+            "8.76%"
+          ],
+          [
+            "Mildred Marie Hall (Write-In)",
+            "Other Candidates",
+            "0",
+            "0",
+            "0",
+            "NR",
+            "0",
+            "0.00%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "518",
+            "404",
+            "126",
+            "NR",
+            "1,048",
+            "1.17%"
+          ],
+          [
+            "Totals",
+            "",
+            "39,006",
+            "39,320",
+            "11,482",
+            "NR",
+            "89,808",
+            "100.00%"
+          ]
+        ]
+      },
+      {
+        "district": "District 8",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Jamie Raskin",
+            "Democratic",
+            "1",
+            "1",
+            "0",
+            "NR",
+            "2",
+            "100.00%"
+          ],
+          [
+            "Cheryl Riley",
+            "Republican",
+            "0",
+            "0",
+            "0",
+            "NR",
+            "0",
+            "0.00%"
+          ],
+          [
+            "Nancy Wallace",
+            "Green",
+            "0",
+            "0",
+            "0",
+            "NR",
+            "0",
+            "0.00%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "0",
+            "0",
+            "0",
+            "NR",
+            "0",
+            "0.00%"
+          ],
+          [
+            "Totals",
+            "",
+            "1",
+            "1",
+            "0",
+            "NR",
+            "2",
+            "100.00%"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Queen Anne's County",
+    "url": "https://www.elections.maryland.gov/elections/2026/general_results/gen_results_2026_by_county_18.html",
+    "heading": " Unofficial 2026 Gubernatorial General Election Results for Queen Anne's County",
+    "results": [
+      {
+        "district": "District 1",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Dan Schwartz",
+            "Democratic",
+            "3,405",
+            "4,212",
+            "2,393",
+            "NR",
+            "10,010",
+            "41.84%"
+          ],
+          [
+            "Andy Harris",
+            "Republican",
+            "4,558",
+            "8,195",
+            "1,112",
+            "NR",
+            "13,865",
+            "57.95%"
+          ],
+          [
+            "Edward Shlikas (Write-In)",
+            "Unaffiliated",
+            "0",
+            "0",
+            "0",
+            "NR",
+            "0",
+            "0.00%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "18",
+            "28",
+            "3",
+            "NR",
+            "49",
+            "0.20%"
+          ],
+          [
+            "Totals",
+            "",
+            "7,981",
+            "12,435",
+            "3,508",
+            "NR",
+            "23,924",
+            "100.00%"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Saint Mary's County",
+    "url": "https://www.elections.maryland.gov/elections/2026/general_results/gen_results_2026_by_county_19.html",
+    "heading": " Unofficial 2026 Gubernatorial General Election Results for Saint Mary's County",
+    "results": [
+      {
+        "district": "District 5",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Adrian Boafo",
+            "Democratic",
+            "6,337",
+            "7,352",
+            "4,459",
+            "NR",
+            "18,148",
+            "44.60%"
+          ],
+          [
+            "Chris Chaffee",
+            "Republican",
+            "7,723",
+            "12,618",
+            "2,009",
+            "NR",
+            "22,350",
+            "54.93%"
+          ],
+          [
+            "Mildred Marie Hall (Write-In)",
+            "Other Candidates",
+            "0",
+            "0",
+            "0",
+            "NR",
+            "0",
+            "0.00%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "60",
+            "67",
+            "63",
+            "NR",
+            "190",
+            "0.47%"
+          ],
+          [
+            "Totals",
+            "",
+            "14,120",
+            "20,037",
+            "6,531",
+            "NR",
+            "40,688",
+            "100.00%"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Somerset County",
+    "url": "https://www.elections.maryland.gov/elections/2026/general_results/gen_results_2026_by_county_20.html",
+    "heading": " Unofficial 2026 Gubernatorial General Election Results for Somerset County",
+    "results": [
+      {
+        "district": "District 1",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Dan Schwartz",
+            "Democratic",
+            "786",
+            "1,627",
+            "518",
+            "NR",
+            "2,931",
+            "41.43%"
+          ],
+          [
+            "Andy Harris",
+            "Republican",
+            "1,177",
+            "2,614",
+            "344",
+            "NR",
+            "4,135",
+            "58.45%"
+          ],
+          [
+            "Edward Shlikas (Write-In)",
+            "Unaffiliated",
+            "0",
+            "0",
+            "0",
+            "NR",
+            "0",
+            "0.00%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "1",
+            "6",
+            "1",
+            "NR",
+            "8",
+            "0.11%"
+          ],
+          [
+            "Totals",
+            "",
+            "1,964",
+            "4,247",
+            "863",
+            "NR",
+            "7,074",
+            "100.00%"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Talbot County",
+    "url": "https://www.elections.maryland.gov/elections/2026/general_results/gen_results_2026_by_county_21.html",
+    "heading": " Unofficial 2026 Gubernatorial General Election Results for Talbot County",
+    "results": [
+      {
+        "district": "District 1",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Dan Schwartz",
+            "Democratic",
+            "3,735",
+            "3,420",
+            "2,611",
+            "NR",
+            "9,766",
+            "54.16%"
+          ],
+          [
+            "Andy Harris",
+            "Republican",
+            "3,139",
+            "4,255",
+            "846",
+            "NR",
+            "8,240",
+            "45.70%"
+          ],
+          [
+            "Edward Shlikas (Write-In)",
+            "Unaffiliated",
+            "0",
+            "1",
+            "0",
+            "NR",
+            "1",
+            "0.01%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "7",
+            "15",
+            "2",
+            "NR",
+            "24",
+            "0.13%"
+          ],
+          [
+            "Totals",
+            "",
+            "6,881",
+            "7,691",
+            "3,459",
+            "NR",
+            "18,031",
+            "100.00%"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Washington County",
+    "url": "https://www.elections.maryland.gov/elections/2026/general_results/gen_results_2026_by_county_22.html",
+    "heading": " Unofficial 2026 Gubernatorial General Election Results for Washington County",
+    "results": [
+      {
+        "district": "District 6",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "April McClain Delaney",
+            "Democratic",
+            "5,695",
+            "9,483",
+            "6,007",
+            "NR",
+            "21,185",
+            "43.76%"
+          ],
+          [
+            "Robin Ficker",
+            "Republican",
+            "6,865",
+            "16,418",
+            "2,487",
+            "NR",
+            "25,770",
+            "53.23%"
+          ],
+          [
+            "Moshe Y. Landman",
+            "Green",
+            "305",
+            "775",
+            "239",
+            "NR",
+            "1,319",
+            "2.72%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "35",
+            "68",
+            "33",
+            "NR",
+            "136",
+            "0.28%"
+          ],
+          [
+            "Totals",
+            "",
+            "12,900",
+            "26,744",
+            "8,766",
+            "NR",
+            "48,410",
+            "100.00%"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Wicomico County",
+    "url": "https://www.elections.maryland.gov/elections/2026/general_results/gen_results_2026_by_county_23.html",
+    "heading": " Unofficial 2026 Gubernatorial General Election Results for Wicomico County",
+    "results": [
+      {
+        "district": "District 1",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Dan Schwartz",
+            "Democratic",
+            "5,467",
+            "8,233",
+            "3,194",
+            "NR",
+            "16,894",
+            "52.50%"
+          ],
+          [
+            "Andy Harris",
+            "Republican",
+            "4,079",
+            "9,879",
+            "1,261",
+            "NR",
+            "15,219",
+            "47.29%"
+          ],
+          [
+            "Edward Shlikas (Write-In)",
+            "Unaffiliated",
+            "0",
+            "0",
+            "0",
+            "NR",
+            "0",
+            "0.00%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "24",
+            "38",
+            "4",
+            "NR",
+            "66",
+            "0.21%"
+          ],
+          [
+            "Totals",
+            "",
+            "9,570",
+            "18,150",
+            "4,459",
+            "NR",
+            "32,179",
+            "100.00%"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Worcester County",
+    "url": "https://www.elections.maryland.gov/elections/2026/general_results/gen_results_2026_by_county_24.html",
+    "heading": " Unofficial 2026 Gubernatorial General Election Results for Worcester County",
+    "results": [
+      {
+        "district": "District 1",
+        "rows": [
+          [
+            "Name",
+            "Party",
+            "Early Voting",
+            "Election Day",
+            "Mail-In Ballot",
+            "Provisional",
+            "Total",
+            "Percentage"
+          ],
+          [
+            "Dan Schwartz",
+            "Democratic",
+            "2,239",
+            "5,344",
+            "2,222",
+            "NR",
+            "9,805",
+            "42.28%"
+          ],
+          [
+            "Andy Harris",
+            "Republican",
+            "2,820",
+            "9,316",
+            "1,215",
+            "NR",
+            "13,351",
+            "57.57%"
+          ],
+          [
+            "Edward Shlikas (Write-In)",
+            "Unaffiliated",
+            "0",
+            "5",
+            "0",
+            "NR",
+            "5",
+            "0.02%"
+          ],
+          [
+            "Other Write-Ins",
+            "",
+            "9",
+            "15",
+            "5",
+            "NR",
+            "29",
+            "0.13%"
+          ],
+          [
+            "Totals",
+            "",
+            "5,068",
+            "14,680",
+            "3,442",
+            "NR",
+            "23,190",
+            "100.00%"
+          ]
+        ]
+      }
+    ]
+  }
+]

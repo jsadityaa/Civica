@@ -1,0 +1,1196 @@
+[
+  {
+    "counties": [
+      {
+        "candidates": [
+          {
+            "name": "BOB HARVIE (DEM)",
+            "result": "52.67% (Votes: 158,908)"
+          },
+          {
+            "name": "BRIAN FITZPATRICK (REP)",
+            "result": "47.33% (Votes: 142,796)"
+          }
+        ],
+        "name": "BUCKS"
+      },
+      {
+        "candidates": [
+          {
+            "name": "BOB HARVIE (DEM)",
+            "result": "53.14% (Votes: 29,179)"
+          },
+          {
+            "name": "BRIAN FITZPATRICK (REP)",
+            "result": "46.86% (Votes: 25,735)"
+          }
+        ],
+        "name": "MONTGOMERY"
+      }
+    ],
+    "heading": "Representative in Congress - 1st Congressional District",
+    "source": "https://www.electionreturns.pa.gov/General/CountyBreakDownResults?officeId=11&districtId=2&ElectionID=117&ElectionType=G&IsActive=1&isRetention=0"
+  },
+  {
+    "counties": [
+      {
+        "candidates": [
+          {
+            "name": "BRENDAN F BOYLE (DEM)",
+            "result": "80.75% (Votes: 148,570)"
+          },
+          {
+            "name": "JESSICA ARRIAGA (REP)",
+            "result": "19.25% (Votes: 35,413)"
+          }
+        ],
+        "name": "PHILADELPHIA"
+      }
+    ],
+    "heading": "Representative in Congress - 2nd Congressional District",
+    "source": "https://www.electionreturns.pa.gov/General/CountyBreakDownResults?officeId=11&districtId=3&ElectionID=117&ElectionType=G&IsActive=1&isRetention=0"
+  },
+  {
+    "counties": [
+      {
+        "candidates": [
+          {
+            "name": "CHRIS RABB (DEM)",
+            "result": "93.61% (Votes: 254,163)"
+          },
+          {
+            "name": "DENNIS MAHONEY (TIP)",
+            "result": "6.39% (Votes: 17,361)"
+          }
+        ],
+        "name": "PHILADELPHIA"
+      }
+    ],
+    "heading": "Representative in Congress - 3rd Congressional District",
+    "source": "https://www.electionreturns.pa.gov/General/CountyBreakDownResults?officeId=11&districtId=4&ElectionID=117&ElectionType=G&IsActive=1&isRetention=0"
+  },
+  {
+    "counties": [
+      {
+        "candidates": [
+          {
+            "name": "MADELEINE DEAN (DEM)",
+            "result": "49.70% (Votes: 26,730)"
+          },
+          {
+            "name": "AURORA STUSKI (REP)",
+            "result": "50.30% (Votes: 27,050)"
+          }
+        ],
+        "name": "BERKS"
+      },
+      {
+        "candidates": [
+          {
+            "name": "MADELEINE DEAN (DEM)",
+            "result": "70.32% (Votes: 204,695)"
+          },
+          {
+            "name": "AURORA STUSKI (REP)",
+            "result": "29.68% (Votes: 86,414)"
+          }
+        ],
+        "name": "MONTGOMERY"
+      }
+    ],
+    "heading": "Representative in Congress - 4th Congressional District",
+    "source": "https://www.electionreturns.pa.gov/General/CountyBreakDownResults?officeId=11&districtId=5&ElectionID=117&ElectionType=G&IsActive=1&isRetention=0"
+  },
+  {
+    "counties": [
+      {
+        "candidates": [
+          {
+            "name": "MARY GAY SCANLON (DEM)",
+            "result": "0.00% (Votes: 0)"
+          },
+          {
+            "name": "NICK MANGANARO (REP)",
+            "result": "0.00% (Votes: 0)"
+          }
+        ],
+        "name": "CHESTER"
+      },
+      {
+        "candidates": [
+          {
+            "name": "MARY GAY SCANLON (DEM)",
+            "result": "69.66% (Votes: 162,736)"
+          },
+          {
+            "name": "NICK MANGANARO (REP)",
+            "result": "30.34% (Votes: 70,871)"
+          }
+        ],
+        "name": "DELAWARE"
+      },
+      {
+        "candidates": [
+          {
+            "name": "MARY GAY SCANLON (DEM)",
+            "result": "80.96% (Votes: 34,949)"
+          },
+          {
+            "name": "NICK MANGANARO (REP)",
+            "result": "19.04% (Votes: 8,218)"
+          }
+        ],
+        "name": "MONTGOMERY"
+      },
+      {
+        "candidates": [
+          {
+            "name": "MARY GAY SCANLON (DEM)",
+            "result": "81.28% (Votes: 15,812)"
+          },
+          {
+            "name": "NICK MANGANARO (REP)",
+            "result": "18.72% (Votes: 3,642)"
+          }
+        ],
+        "name": "PHILADELPHIA"
+      }
+    ],
+    "heading": "Representative in Congress - 5th Congressional District",
+    "source": "https://www.electionreturns.pa.gov/General/CountyBreakDownResults?officeId=11&districtId=6&ElectionID=117&ElectionType=G&IsActive=1&isRetention=0"
+  },
+  {
+    "counties": [
+      {
+        "candidates": [
+          {
+            "name": "CHRISSY HOULAHAN (DEM)",
+            "result": "61.38% (Votes: 40,616)"
+          },
+          {
+            "name": "MARTY YOUNG (REP)",
+            "result": "38.62% (Votes: 25,551)"
+          }
+        ],
+        "name": "BERKS"
+      },
+      {
+        "candidates": [
+          {
+            "name": "CHRISSY HOULAHAN (DEM)",
+            "result": "65.10% (Votes: 158,099)"
+          },
+          {
+            "name": "MARTY YOUNG (REP)",
+            "result": "34.90% (Votes: 84,746)"
+          }
+        ],
+        "name": "CHESTER"
+      }
+    ],
+    "heading": "Representative in Congress - 6th Congressional District",
+    "source": "https://www.electionreturns.pa.gov/General/CountyBreakDownResults?officeId=11&districtId=7&ElectionID=117&ElectionType=G&IsActive=1&isRetention=0"
+  },
+  {
+    "counties": [
+      {
+        "candidates": [
+          {
+            "name": "BOB BROOKS (DEM)",
+            "result": "39.94% (Votes: 9,749)"
+          },
+          {
+            "name": "RYAN MACKENZIE (REP)",
+            "result": "60.06% (Votes: 14,661)"
+          }
+        ],
+        "name": "CARBON"
+      },
+      {
+        "candidates": [
+          {
+            "name": "BOB BROOKS (DEM)",
+            "result": "58.85% (Votes: 80,201)"
+          },
+          {
+            "name": "RYAN MACKENZIE (REP)",
+            "result": "41.15% (Votes: 56,078)"
+          }
+        ],
+        "name": "LEHIGH"
+      },
+      {
+        "candidates": [
+          {
+            "name": "BOB BROOKS (DEM)",
+            "result": "39.36% (Votes: 2,052)"
+          },
+          {
+            "name": "RYAN MACKENZIE (REP)",
+            "result": "60.64% (Votes: 3,162)"
+          }
+        ],
+        "name": "MONROE"
+      },
+      {
+        "candidates": [
+          {
+            "name": "BOB BROOKS (DEM)",
+            "result": "56.95% (Votes: 72,541)"
+          },
+          {
+            "name": "RYAN MACKENZIE (REP)",
+            "result": "43.05% (Votes: 54,837)"
+          }
+        ],
+        "name": "NORTHAMPTON"
+      }
+    ],
+    "heading": "Representative in Congress - 7th Congressional District",
+    "source": "https://www.electionreturns.pa.gov/General/CountyBreakDownResults?officeId=11&districtId=8&ElectionID=117&ElectionType=G&IsActive=1&isRetention=0"
+  },
+  {
+    "counties": [
+      {
+        "candidates": [
+          {
+            "name": "PAIGE COGNETTI (DEM)",
+            "result": "60.45% (Votes: 52,079)"
+          },
+          {
+            "name": "ROB BRESNAHAN JR (REP)",
+            "result": "39.55% (Votes: 34,079)"
+          }
+        ],
+        "name": "LACKAWANNA"
+      },
+      {
+        "candidates": [
+          {
+            "name": "PAIGE COGNETTI (DEM)",
+            "result": "51.70% (Votes: 48,907)"
+          },
+          {
+            "name": "ROB BRESNAHAN JR (REP)",
+            "result": "48.30% (Votes: 45,688)"
+          }
+        ],
+        "name": "LUZERNE"
+      },
+      {
+        "candidates": [
+          {
+            "name": "PAIGE COGNETTI (DEM)",
+            "result": "60.21% (Votes: 33,567)"
+          },
+          {
+            "name": "ROB BRESNAHAN JR (REP)",
+            "result": "39.79% (Votes: 22,181)"
+          }
+        ],
+        "name": "MONROE"
+      },
+      {
+        "candidates": [
+          {
+            "name": "PAIGE COGNETTI (DEM)",
+            "result": "45.30% (Votes: 10,998)"
+          },
+          {
+            "name": "ROB BRESNAHAN JR (REP)",
+            "result": "54.70% (Votes: 13,280)"
+          }
+        ],
+        "name": "PIKE"
+      },
+      {
+        "candidates": [
+          {
+            "name": "PAIGE COGNETTI (DEM)",
+            "result": "38.07% (Votes: 8,213)"
+          },
+          {
+            "name": "ROB BRESNAHAN JR (REP)",
+            "result": "61.93% (Votes: 13,361)"
+          }
+        ],
+        "name": "WAYNE"
+      }
+    ],
+    "heading": "Representative in Congress - 8th Congressional District",
+    "source": "https://www.electionreturns.pa.gov/General/CountyBreakDownResults?officeId=11&districtId=9&ElectionID=117&ElectionType=G&IsActive=1&isRetention=0"
+  },
+  {
+    "counties": [
+      {
+        "candidates": [
+          {
+            "name": "RACHEL WALLACE (DEM)",
+            "result": "38.88% (Votes: 8,491)"
+          },
+          {
+            "name": "DAN MEUSER  (REP)",
+            "result": "61.12% (Votes: 13,350)"
+          }
+        ],
+        "name": "BERKS"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RACHEL WALLACE (DEM)",
+            "result": "32.15% (Votes: 6,713)"
+          },
+          {
+            "name": "DAN MEUSER  (REP)",
+            "result": "67.85% (Votes: 14,167)"
+          }
+        ],
+        "name": "BRADFORD"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RACHEL WALLACE (DEM)",
+            "result": "41.02% (Votes: 9,203)"
+          },
+          {
+            "name": "DAN MEUSER  (REP)",
+            "result": "58.98% (Votes: 13,233)"
+          }
+        ],
+        "name": "COLUMBIA"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RACHEL WALLACE (DEM)",
+            "result": "41.62% (Votes: 21,222)"
+          },
+          {
+            "name": "DAN MEUSER  (REP)",
+            "result": "58.38% (Votes: 29,763)"
+          }
+        ],
+        "name": "LEBANON"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RACHEL WALLACE (DEM)",
+            "result": "34.38% (Votes: 5,835)"
+          },
+          {
+            "name": "DAN MEUSER  (REP)",
+            "result": "65.62% (Votes: 11,138)"
+          }
+        ],
+        "name": "LUZERNE"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RACHEL WALLACE (DEM)",
+            "result": "39.47% (Votes: 9,701)"
+          },
+          {
+            "name": "DAN MEUSER  (REP)",
+            "result": "60.53% (Votes: 14,876)"
+          }
+        ],
+        "name": "LYCOMING"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RACHEL WALLACE (DEM)",
+            "result": "45.87% (Votes: 3,202)"
+          },
+          {
+            "name": "DAN MEUSER  (REP)",
+            "result": "54.13% (Votes: 3,779)"
+          }
+        ],
+        "name": "MONTOUR"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RACHEL WALLACE (DEM)",
+            "result": "37.14% (Votes: 10,447)"
+          },
+          {
+            "name": "DAN MEUSER  (REP)",
+            "result": "62.86% (Votes: 17,685)"
+          }
+        ],
+        "name": "NORTHUMBERLAND"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RACHEL WALLACE (DEM)",
+            "result": "39.22% (Votes: 18,866)"
+          },
+          {
+            "name": "DAN MEUSER  (REP)",
+            "result": "60.78% (Votes: 29,242)"
+          }
+        ],
+        "name": "SCHUYLKILL"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RACHEL WALLACE (DEM)",
+            "result": "33.27% (Votes: 890)"
+          },
+          {
+            "name": "DAN MEUSER  (REP)",
+            "result": "66.73% (Votes: 1,785)"
+          }
+        ],
+        "name": "SULLIVAN"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RACHEL WALLACE (DEM)",
+            "result": "33.50% (Votes: 5,080)"
+          },
+          {
+            "name": "DAN MEUSER  (REP)",
+            "result": "66.50% (Votes: 10,082)"
+          }
+        ],
+        "name": "SUSQUEHANNA"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RACHEL WALLACE (DEM)",
+            "result": "38.29% (Votes: 4,002)"
+          },
+          {
+            "name": "DAN MEUSER  (REP)",
+            "result": "61.71% (Votes: 6,450)"
+          }
+        ],
+        "name": "WYOMING"
+      }
+    ],
+    "heading": "Representative in Congress - 9th Congressional District",
+    "source": "https://www.electionreturns.pa.gov/General/CountyBreakDownResults?officeId=11&districtId=10&ElectionID=117&ElectionType=G&IsActive=1&isRetention=0"
+  },
+  {
+    "counties": [
+      {
+        "candidates": [
+          {
+            "name": "JANELLE STELSON (DEM)",
+            "result": "54.18% (Votes: 58,538)"
+          },
+          {
+            "name": "SCOTT PERRY (REP)",
+            "result": "45.82% (Votes: 49,508)"
+          }
+        ],
+        "name": "CUMBERLAND"
+      },
+      {
+        "candidates": [
+          {
+            "name": "JANELLE STELSON (DEM)",
+            "result": "60.18% (Votes: 68,809)"
+          },
+          {
+            "name": "SCOTT PERRY (REP)",
+            "result": "39.82% (Votes: 45,533)"
+          }
+        ],
+        "name": "DAUPHIN"
+      },
+      {
+        "candidates": [
+          {
+            "name": "JANELLE STELSON (DEM)",
+            "result": "49.80% (Votes: 46,324)"
+          },
+          {
+            "name": "SCOTT PERRY (REP)",
+            "result": "50.20% (Votes: 46,690)"
+          }
+        ],
+        "name": "YORK"
+      }
+    ],
+    "heading": "Representative in Congress - 10th Congressional District",
+    "source": "https://www.electionreturns.pa.gov/General/CountyBreakDownResults?officeId=11&districtId=11&ElectionID=117&ElectionType=G&IsActive=1&isRetention=0"
+  },
+  {
+    "counties": [
+      {
+        "candidates": [
+          {
+            "name": "NANCY MANNION (DEM)",
+            "result": "46.84% (Votes: 100,733)"
+          },
+          {
+            "name": "LLOYD K SMUCKER (REP)",
+            "result": "53.16% (Votes: 114,325)"
+          }
+        ],
+        "name": "LANCASTER"
+      },
+      {
+        "candidates": [
+          {
+            "name": "NANCY MANNION (DEM)",
+            "result": "38.51% (Votes: 33,237)"
+          },
+          {
+            "name": "LLOYD K SMUCKER (REP)",
+            "result": "61.49% (Votes: 53,060)"
+          }
+        ],
+        "name": "YORK"
+      }
+    ],
+    "heading": "Representative in Congress - 11th Congressional District",
+    "source": "https://www.electionreturns.pa.gov/General/CountyBreakDownResults?officeId=11&districtId=12&ElectionID=117&ElectionType=G&IsActive=1&isRetention=0"
+  },
+  {
+    "counties": [
+      {
+        "candidates": [
+          {
+            "name": "SUMMER LEE (DEM)",
+            "result": "69.87% (Votes: 173,681)"
+          },
+          {
+            "name": "JAMES HAYES (REP)",
+            "result": "30.13% (Votes: 74,882)"
+          }
+        ],
+        "name": "ALLEGHENY"
+      },
+      {
+        "candidates": [
+          {
+            "name": "SUMMER LEE (DEM)",
+            "result": "42.57% (Votes: 20,524)"
+          },
+          {
+            "name": "JAMES HAYES (REP)",
+            "result": "57.43% (Votes: 27,689)"
+          }
+        ],
+        "name": "WESTMORELAND"
+      }
+    ],
+    "heading": "Representative in Congress - 12th Congressional District",
+    "source": "https://www.electionreturns.pa.gov/General/CountyBreakDownResults?officeId=11&districtId=13&ElectionID=117&ElectionType=G&IsActive=1&isRetention=0"
+  },
+  {
+    "counties": [
+      {
+        "candidates": [
+          {
+            "name": "BETH FARNHAM (DEM)",
+            "result": "39.35% (Votes: 16,744)"
+          },
+          {
+            "name": "JOHN JOYCE (REP)",
+            "result": "60.65% (Votes: 25,803)"
+          }
+        ],
+        "name": "ADAMS"
+      },
+      {
+        "candidates": [
+          {
+            "name": "BETH FARNHAM (DEM)",
+            "result": "19.40% (Votes: 3,667)"
+          },
+          {
+            "name": "JOHN JOYCE (REP)",
+            "result": "80.60% (Votes: 15,235)"
+          }
+        ],
+        "name": "BEDFORD"
+      },
+      {
+        "candidates": [
+          {
+            "name": "BETH FARNHAM (DEM)",
+            "result": "33.38% (Votes: 14,689)"
+          },
+          {
+            "name": "JOHN JOYCE (REP)",
+            "result": "66.62% (Votes: 29,310)"
+          }
+        ],
+        "name": "BLAIR"
+      },
+      {
+        "candidates": [
+          {
+            "name": "BETH FARNHAM (DEM)",
+            "result": "36.52% (Votes: 17,694)"
+          },
+          {
+            "name": "JOHN JOYCE (REP)",
+            "result": "63.48% (Votes: 30,757)"
+          }
+        ],
+        "name": "CAMBRIA"
+      },
+      {
+        "candidates": [
+          {
+            "name": "BETH FARNHAM (DEM)",
+            "result": "37.31% (Votes: 2,972)"
+          },
+          {
+            "name": "JOHN JOYCE (REP)",
+            "result": "62.69% (Votes: 4,994)"
+          }
+        ],
+        "name": "CUMBERLAND"
+      },
+      {
+        "candidates": [
+          {
+            "name": "BETH FARNHAM (DEM)",
+            "result": "33.19% (Votes: 19,005)"
+          },
+          {
+            "name": "JOHN JOYCE (REP)",
+            "result": "66.81% (Votes: 38,255)"
+          }
+        ],
+        "name": "FRANKLIN"
+      },
+      {
+        "candidates": [
+          {
+            "name": "BETH FARNHAM (DEM)",
+            "result": "17.43% (Votes: 880)"
+          },
+          {
+            "name": "JOHN JOYCE (REP)",
+            "result": "82.57% (Votes: 4,170)"
+          }
+        ],
+        "name": "FULTON"
+      },
+      {
+        "candidates": [
+          {
+            "name": "BETH FARNHAM (DEM)",
+            "result": "27.66% (Votes: 4,408)"
+          },
+          {
+            "name": "JOHN JOYCE (REP)",
+            "result": "72.34% (Votes: 11,526)"
+          }
+        ],
+        "name": "HUNTINGDON"
+      },
+      {
+        "candidates": [
+          {
+            "name": "BETH FARNHAM (DEM)",
+            "result": "23.50% (Votes: 1,927)"
+          },
+          {
+            "name": "JOHN JOYCE (REP)",
+            "result": "76.50% (Votes: 6,273)"
+          }
+        ],
+        "name": "JUNIATA"
+      },
+      {
+        "candidates": [
+          {
+            "name": "BETH FARNHAM (DEM)",
+            "result": "26.61% (Votes: 3,816)"
+          },
+          {
+            "name": "JOHN JOYCE (REP)",
+            "result": "73.39% (Votes: 10,522)"
+          }
+        ],
+        "name": "MIFFLIN"
+      },
+      {
+        "candidates": [
+          {
+            "name": "BETH FARNHAM (DEM)",
+            "result": "30.51% (Votes: 5,471)"
+          },
+          {
+            "name": "JOHN JOYCE (REP)",
+            "result": "69.49% (Votes: 12,458)"
+          }
+        ],
+        "name": "PERRY"
+      },
+      {
+        "candidates": [
+          {
+            "name": "BETH FARNHAM (DEM)",
+            "result": "30.47% (Votes: 209)"
+          },
+          {
+            "name": "JOHN JOYCE (REP)",
+            "result": "69.53% (Votes: 477)"
+          }
+        ],
+        "name": "SOMERSET"
+      }
+    ],
+    "heading": "Representative in Congress - 13th Congressional District",
+    "source": "https://www.electionreturns.pa.gov/General/CountyBreakDownResults?officeId=11&districtId=14&ElectionID=117&ElectionType=G&IsActive=1&isRetention=0"
+  },
+  {
+    "counties": [
+      {
+        "candidates": [
+          {
+            "name": "ALAN BRADSTOCK (DEM)",
+            "result": "40.90% (Votes: 15,717)"
+          },
+          {
+            "name": "GUY RESCHENTHALER (REP)",
+            "result": "59.10% (Votes: 22,712)"
+          }
+        ],
+        "name": "FAYETTE"
+      },
+      {
+        "candidates": [
+          {
+            "name": "ALAN BRADSTOCK (DEM)",
+            "result": "37.87% (Votes: 4,118)"
+          },
+          {
+            "name": "GUY RESCHENTHALER (REP)",
+            "result": "62.13% (Votes: 6,757)"
+          }
+        ],
+        "name": "GREENE"
+      },
+      {
+        "candidates": [
+          {
+            "name": "ALAN BRADSTOCK (DEM)",
+            "result": "39.60% (Votes: 10,023)"
+          },
+          {
+            "name": "GUY RESCHENTHALER (REP)",
+            "result": "60.40% (Votes: 15,286)"
+          }
+        ],
+        "name": "INDIANA"
+      },
+      {
+        "candidates": [
+          {
+            "name": "ALAN BRADSTOCK (DEM)",
+            "result": "27.78% (Votes: 7,271)"
+          },
+          {
+            "name": "GUY RESCHENTHALER (REP)",
+            "result": "72.22% (Votes: 18,899)"
+          }
+        ],
+        "name": "SOMERSET"
+      },
+      {
+        "candidates": [
+          {
+            "name": "ALAN BRADSTOCK (DEM)",
+            "result": "47.21% (Votes: 38,250)"
+          },
+          {
+            "name": "GUY RESCHENTHALER (REP)",
+            "result": "52.79% (Votes: 42,769)"
+          }
+        ],
+        "name": "WASHINGTON"
+      },
+      {
+        "candidates": [
+          {
+            "name": "ALAN BRADSTOCK (DEM)",
+            "result": "44.40% (Votes: 42,053)"
+          },
+          {
+            "name": "GUY RESCHENTHALER (REP)",
+            "result": "55.60% (Votes: 52,665)"
+          }
+        ],
+        "name": "WESTMORELAND"
+      }
+    ],
+    "heading": "Representative in Congress - 14th Congressional District",
+    "source": "https://www.electionreturns.pa.gov/General/CountyBreakDownResults?officeId=11&districtId=15&ElectionID=117&ElectionType=G&IsActive=1&isRetention=0"
+  },
+  {
+    "counties": [
+      {
+        "candidates": [
+          {
+            "name": "RAY BILGER (DEM)",
+            "result": "29.89% (Votes: 7,143)"
+          },
+          {
+            "name": "GLENN GT THOMPSON (REP)",
+            "result": "70.11% (Votes: 16,757)"
+          }
+        ],
+        "name": "ARMSTRONG"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RAY BILGER (DEM)",
+            "result": "26.98% (Votes: 436)"
+          },
+          {
+            "name": "GLENN GT THOMPSON (REP)",
+            "result": "73.02% (Votes: 1,180)"
+          }
+        ],
+        "name": "CAMERON"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RAY BILGER (DEM)",
+            "result": "56.81% (Votes: 32,234)"
+          },
+          {
+            "name": "GLENN GT THOMPSON (REP)",
+            "result": "43.19% (Votes: 24,503)"
+          }
+        ],
+        "name": "CENTRE"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RAY BILGER (DEM)",
+            "result": "28.16% (Votes: 3,631)"
+          },
+          {
+            "name": "GLENN GT THOMPSON (REP)",
+            "result": "71.84% (Votes: 9,262)"
+          }
+        ],
+        "name": "CLARION"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RAY BILGER (DEM)",
+            "result": "28.70% (Votes: 7,741)"
+          },
+          {
+            "name": "GLENN GT THOMPSON (REP)",
+            "result": "71.30% (Votes: 19,228)"
+          }
+        ],
+        "name": "CLEARFIELD"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RAY BILGER (DEM)",
+            "result": "35.47% (Votes: 4,476)"
+          },
+          {
+            "name": "GLENN GT THOMPSON (REP)",
+            "result": "64.53% (Votes: 8,142)"
+          }
+        ],
+        "name": "CLINTON"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RAY BILGER (DEM)",
+            "result": "31.07% (Votes: 3,631)"
+          },
+          {
+            "name": "GLENN GT THOMPSON (REP)",
+            "result": "68.93% (Votes: 8,056)"
+          }
+        ],
+        "name": "ELK"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RAY BILGER (DEM)",
+            "result": "32.23% (Votes: 605)"
+          },
+          {
+            "name": "GLENN GT THOMPSON (REP)",
+            "result": "67.77% (Votes: 1,272)"
+          }
+        ],
+        "name": "FOREST"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RAY BILGER (DEM)",
+            "result": "21.05% (Votes: 547)"
+          },
+          {
+            "name": "GLENN GT THOMPSON (REP)",
+            "result": "78.95% (Votes: 2,051)"
+          }
+        ],
+        "name": "INDIANA"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RAY BILGER (DEM)",
+            "result": "25.02% (Votes: 3,777)"
+          },
+          {
+            "name": "GLENN GT THOMPSON (REP)",
+            "result": "74.98% (Votes: 11,317)"
+          }
+        ],
+        "name": "JEFFERSON"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RAY BILGER (DEM)",
+            "result": "27.03% (Votes: 4,290)"
+          },
+          {
+            "name": "GLENN GT THOMPSON (REP)",
+            "result": "72.97% (Votes: 11,583)"
+          }
+        ],
+        "name": "LYCOMING"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RAY BILGER (DEM)",
+            "result": "31.17% (Votes: 3,873)"
+          },
+          {
+            "name": "GLENN GT THOMPSON (REP)",
+            "result": "68.83% (Votes: 8,551)"
+          }
+        ],
+        "name": "McKEAN"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RAY BILGER (DEM)",
+            "result": "21.85% (Votes: 1,357)"
+          },
+          {
+            "name": "GLENN GT THOMPSON (REP)",
+            "result": "78.15% (Votes: 4,853)"
+          }
+        ],
+        "name": "POTTER"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RAY BILGER (DEM)",
+            "result": "31.23% (Votes: 4,221)"
+          },
+          {
+            "name": "GLENN GT THOMPSON (REP)",
+            "result": "68.77% (Votes: 9,295)"
+          }
+        ],
+        "name": "SNYDER"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RAY BILGER (DEM)",
+            "result": "27.47% (Votes: 4,046)"
+          },
+          {
+            "name": "GLENN GT THOMPSON (REP)",
+            "result": "72.53% (Votes: 10,681)"
+          }
+        ],
+        "name": "TIOGA"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RAY BILGER (DEM)",
+            "result": "44.63% (Votes: 6,336)"
+          },
+          {
+            "name": "GLENN GT THOMPSON (REP)",
+            "result": "55.37% (Votes: 7,862)"
+          }
+        ],
+        "name": "UNION"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RAY BILGER (DEM)",
+            "result": "32.13% (Votes: 3,530)"
+          },
+          {
+            "name": "GLENN GT THOMPSON (REP)",
+            "result": "67.87% (Votes: 7,457)"
+          }
+        ],
+        "name": "VENANGO"
+      },
+      {
+        "candidates": [
+          {
+            "name": "RAY BILGER (DEM)",
+            "result": "34.65% (Votes: 4,790)"
+          },
+          {
+            "name": "GLENN GT THOMPSON (REP)",
+            "result": "65.35% (Votes: 9,034)"
+          }
+        ],
+        "name": "WARREN"
+      }
+    ],
+    "heading": "Representative in Congress - 15th Congressional District",
+    "source": "https://www.electionreturns.pa.gov/General/CountyBreakDownResults?officeId=11&districtId=16&ElectionID=117&ElectionType=G&IsActive=1&isRetention=0"
+  },
+  {
+    "counties": [
+      {
+        "candidates": [
+          {
+            "name": "JUSTIN WAGNER (DEM)",
+            "result": "41.41% (Votes: 35,375)"
+          },
+          {
+            "name": "MIKE KELLY (REP)",
+            "result": "58.59% (Votes: 50,059)"
+          }
+        ],
+        "name": "BUTLER"
+      },
+      {
+        "candidates": [
+          {
+            "name": "JUSTIN WAGNER (DEM)",
+            "result": "36.11% (Votes: 10,375)"
+          },
+          {
+            "name": "MIKE KELLY (REP)",
+            "result": "63.89% (Votes: 18,355)"
+          }
+        ],
+        "name": "CRAWFORD"
+      },
+      {
+        "candidates": [
+          {
+            "name": "JUSTIN WAGNER (DEM)",
+            "result": "57.09% (Votes: 53,944)"
+          },
+          {
+            "name": "MIKE KELLY (REP)",
+            "result": "42.91% (Votes: 40,540)"
+          }
+        ],
+        "name": "ERIE"
+      },
+      {
+        "candidates": [
+          {
+            "name": "JUSTIN WAGNER (DEM)",
+            "result": "41.09% (Votes: 12,828)"
+          },
+          {
+            "name": "MIKE KELLY (REP)",
+            "result": "58.91% (Votes: 18,394)"
+          }
+        ],
+        "name": "LAWRENCE"
+      },
+      {
+        "candidates": [
+          {
+            "name": "JUSTIN WAGNER (DEM)",
+            "result": "42.96% (Votes: 16,692)"
+          },
+          {
+            "name": "MIKE KELLY (REP)",
+            "result": "57.04% (Votes: 22,164)"
+          }
+        ],
+        "name": "MERCER"
+      },
+      {
+        "candidates": [
+          {
+            "name": "JUSTIN WAGNER (DEM)",
+            "result": "34.34% (Votes: 2,423)"
+          },
+          {
+            "name": "MIKE KELLY (REP)",
+            "result": "65.66% (Votes: 4,632)"
+          }
+        ],
+        "name": "VENANGO"
+      }
+    ],
+    "heading": "Representative in Congress - 16th Congressional District",
+    "source": "https://www.electionreturns.pa.gov/General/CountyBreakDownResults?officeId=11&districtId=17&ElectionID=117&ElectionType=G&IsActive=1&isRetention=0"
+  },
+  {
+    "counties": [
+      {
+        "candidates": [
+          {
+            "name": "CHRIS DELUZIO (DEM)",
+            "result": "66.18% (Votes: 175,732)"
+          },
+          {
+            "name": "TONY GUY (REP)",
+            "result": "33.82% (Votes: 89,786)"
+          }
+        ],
+        "name": "ALLEGHENY"
+      },
+      {
+        "candidates": [
+          {
+            "name": "CHRIS DELUZIO (DEM)",
+            "result": "49.11% (Votes: 31,979)"
+          },
+          {
+            "name": "TONY GUY (REP)",
+            "result": "50.89% (Votes: 33,133)"
+          }
+        ],
+        "name": "BEAVER"
+      }
+    ],
+    "heading": "Representative in Congress - 17th Congressional District",
+    "source": "https://www.electionreturns.pa.gov/General/CountyBreakDownResults?officeId=11&districtId=18&ElectionID=117&ElectionType=G&IsActive=1&isRetention=0"
+  }
+]

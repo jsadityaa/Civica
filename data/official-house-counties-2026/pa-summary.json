@@ -1,0 +1,223 @@
+[
+  {
+    "candidates": [
+      {
+        "name": "BOB HARVIE (DEM)",
+        "result": "52.74% (Votes: 188,087)"
+      },
+      {
+        "name": "BRIAN FITZPATRICK (REP)",
+        "result": "47.26% (Votes: 168,531)"
+      }
+    ],
+    "district": "1st Congressional District"
+  },
+  {
+    "candidates": [
+      {
+        "name": "BRENDAN F BOYLE (DEM)",
+        "result": "80.75% (Votes: 148,570)"
+      },
+      {
+        "name": "JESSICA ARRIAGA (REP)",
+        "result": "19.25% (Votes: 35,413)"
+      }
+    ],
+    "district": "2nd Congressional District"
+  },
+  {
+    "candidates": [
+      {
+        "name": "CHRIS RABB (DEM)",
+        "result": "93.61% (Votes: 254,163)"
+      },
+      {
+        "name": "DENNIS MAHONEY (TIP)",
+        "result": "6.39% (Votes: 17,361)"
+      }
+    ],
+    "district": "3rd Congressional District"
+  },
+  {
+    "candidates": [
+      {
+        "name": "MADELEINE DEAN (DEM)",
+        "result": "67.10% (Votes: 231,425)"
+      },
+      {
+        "name": "AURORA STUSKI (REP)",
+        "result": "32.90% (Votes: 113,464)"
+      }
+    ],
+    "district": "4th Congressional District"
+  },
+  {
+    "candidates": [
+      {
+        "name": "MARY GAY SCANLON (DEM)",
+        "result": "72.07% (Votes: 213,497)"
+      },
+      {
+        "name": "NICK MANGANARO (REP)",
+        "result": "27.93% (Votes: 82,731)"
+      }
+    ],
+    "district": "5th Congressional District"
+  },
+  {
+    "candidates": [
+      {
+        "name": "CHRISSY HOULAHAN (DEM)",
+        "result": "64.31% (Votes: 198,715)"
+      },
+      {
+        "name": "MARTY YOUNG (REP)",
+        "result": "35.69% (Votes: 110,297)"
+      }
+    ],
+    "district": "6th Congressional District"
+  },
+  {
+    "candidates": [
+      {
+        "name": "BOB BROOKS (DEM)",
+        "result": "56.10% (Votes: 164,543)"
+      },
+      {
+        "name": "RYAN MACKENZIE (REP)",
+        "result": "43.90% (Votes: 128,738)"
+      }
+    ],
+    "district": "7th Congressional District"
+  },
+  {
+    "candidates": [
+      {
+        "name": "PAIGE COGNETTI (DEM)",
+        "result": "54.46% (Votes: 153,764)"
+      },
+      {
+        "name": "ROB BRESNAHAN JR (REP)",
+        "result": "45.54% (Votes: 128,589)"
+      }
+    ],
+    "district": "8th Congressional District"
+  },
+  {
+    "candidates": [
+      {
+        "name": "RACHEL WALLACE (DEM)",
+        "result": "38.50% (Votes: 103,652)"
+      },
+      {
+        "name": "DAN MEUSER  (REP)",
+        "result": "61.50% (Votes: 165,550)"
+      }
+    ],
+    "district": "9th Congressional District"
+  },
+  {
+    "candidates": [
+      {
+        "name": "JANELLE STELSON (DEM)",
+        "result": "55.06% (Votes: 173,671)"
+      },
+      {
+        "name": "SCOTT PERRY (REP)",
+        "result": "44.94% (Votes: 141,731)"
+      }
+    ],
+    "district": "10th Congressional District"
+  },
+  {
+    "candidates": [
+      {
+        "name": "NANCY MANNION (DEM)",
+        "result": "44.46% (Votes: 133,970)"
+      },
+      {
+        "name": "LLOYD K SMUCKER (REP)",
+        "result": "55.54% (Votes: 167,385)"
+      }
+    ],
+    "district": "11th Congressional District"
+  },
+  {
+    "candidates": [
+      {
+        "name": "SUMMER LEE (DEM)",
+        "result": "65.44% (Votes: 194,205)"
+      },
+      {
+        "name": "JAMES HAYES (REP)",
+        "result": "34.56% (Votes: 102,571)"
+      }
+    ],
+    "district": "12th Congressional District"
+  },
+  {
+    "candidates": [
+      {
+        "name": "BETH FARNHAM (DEM)",
+        "result": "32.53% (Votes: 91,482)"
+      },
+      {
+        "name": "JOHN JOYCE (REP)",
+        "result": "67.47% (Votes: 189,780)"
+      }
+    ],
+    "district": "13th Congressional District"
+  },
+  {
+    "candidates": [
+      {
+        "name": "ALAN BRADSTOCK (DEM)",
+        "result": "42.47% (Votes: 117,432)"
+      },
+      {
+        "name": "GUY RESCHENTHALER (REP)",
+        "result": "57.53% (Votes: 159,088)"
+      }
+    ],
+    "district": "14th Congressional District"
+  },
+  {
+    "candidates": [
+      {
+        "name": "RAY BILGER (DEM)",
+        "result": "36.10% (Votes: 96,664)"
+      },
+      {
+        "name": "GLENN GT THOMPSON (REP)",
+        "result": "63.90% (Votes: 171,084)"
+      }
+    ],
+    "district": "15th Congressional District"
+  },
+  {
+    "candidates": [
+      {
+        "name": "JUSTIN WAGNER (DEM)",
+        "result": "46.06% (Votes: 131,637)"
+      },
+      {
+        "name": "MIKE KELLY (REP)",
+        "result": "53.94% (Votes: 154,144)"
+      }
+    ],
+    "district": "16th Congressional District"
+  },
+  {
+    "candidates": [
+      {
+        "name": "CHRIS DELUZIO (DEM)",
+        "result": "62.82% (Votes: 207,711)"
+      },
+      {
+        "name": "TONY GUY (REP)",
+        "result": "37.18% (Votes: 122,919)"
+      }
+    ],
+    "district": "17th Congressional District"
+  }
+]
