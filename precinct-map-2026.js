@@ -1,26 +1,20 @@
 (() => {
   const states = {
     Georgia: {id:'13', election:'U.S. Senate election', load:()=>window.GEORGIA_PRECINCT_RESULTS_2026,
-      coverageSummary:({matchedPrecincts, totalPrecincts})=>`${number(matchedPrecincts)} of ${number(totalPrecincts)} precinct records in Georgia’s Senate returns have matched outlines.`,
       boundaries:'Georgia uses 2026 precinct boundaries from The Atlanta Journal-Constitution and the Chatham and Fulton county GIS layers. Areas without matched returns are gray.'},
     'South Carolina': {id:'45', election:'U.S. Senate election', load:()=>window.SOUTH_CAROLINA_PRECINCT_RESULTS_2026,
       boundaries:'South Carolina uses precinct returns from the South Carolina Election Commission and boundaries from the South Carolina Revenue and Fiscal Affairs Office and Laurens County GIS. Areas without matched returns are gray.'},
     Nebraska: {id:'31', election:'U.S. Senate election', load:()=>window.NEBRASKA_PRECINCT_RESULTS_2026,
-      coverageSummary:({matchedPrecincts, totalPrecincts})=>`${number(matchedPrecincts)} of ${number(totalPrecincts)} precinct records have matched outlines. The map uses county GIS and older reference boundaries. Results are unofficial.`,
       parties:['R','I'], palette:['--precinct-rep','--precinct-split','--precinct-ind'],
       colorDescription:'Red indicates a larger Ricketts share, gold a larger Osborn share, and muted orange an even split.',
       boundaries:'Nebraska uses the Secretary of State’s unofficial returns for the six-year Senate race. Boundaries are from the U.S. Census Bureau, county GIS, and the 2024Precincts compilation of county records.'},
     'North Carolina': {id:'37', election:'U.S. Senate election', load:()=>window.NORTH_CAROLINA_PRECINCT_RESULTS_2026,
-      coverageSummary:(_, matched, outlined)=>`Returns for ${number(matched)} of ${number(outlined)} precinct areas in the state’s boundary layer. Hendersonville 2 includes the Carolina Village satellite. Unofficial results exclude countywide vote batches.`,
       boundaries:'North Carolina uses precinct returns from the State Board of Elections and voting precinct boundaries from NC OneMap.'},
     Michigan: {id:'26', election:'U.S. Senate election', load:()=>window.MICHIGAN_PRECINCT_RESULTS_2026,
-      coverageSummary:(_, matched, outlined)=>`Returns for ${number(matched)} of ${number(outlined)} precincts in Michigan’s state GIS layer. Gray outlines have no matched returns. Some sources report only Election Day votes or group minor candidates and write-ins.`,
       boundaries:'Michigan uses returns from county clerks and The New York Times, with 2026 precinct boundaries from the State of Michigan.'},
     Texas: {id:'48', election:'U.S. Senate election', load:()=>window.TEXAS_PRECINCT_RESULTS_2026,
-      coverageSummary:(_, matched, outlined)=>`Returns for ${number(matched)} of ${number(outlined)} precinct areas on the map. The map combines primary and general-election outlines. Gray areas have no matched returns. Some returns are partial or unofficial.`,
       boundaries:'Texas uses returns from county election offices and The New York Times, with 2026 precinct boundaries from the Texas Legislative Council and The New York Times.'},
     Florida: {id:'12', election:'U.S. Senate special election', load:()=>window.FLORIDA_PRECINCT_RESULTS_2026,
-      coverageSummary:(_, matched, outlined)=>`Returns for ${number(matched)} of ${number(outlined)} precinct areas on the map. The map uses county GIS and 2024 reference outlines. Gray areas have no matched returns. Some returns are unofficial.`,
       boundaries:'Florida uses county election returns, county GIS, and the 2024Precincts compilation of precinct outlines.'},
     Virginia: {id:'51', election:'U.S. Senate election', load:()=>window.VIRGINIA_PRECINCT_RESULTS_2026,
       boundaries:'Virginia uses unofficial returns and 2026 precinct boundaries from the Virginia Department of Elections.'},
@@ -29,7 +23,7 @@
       unfilled:window.OHIO_UNFILLED_PRECINCTS.features,
       boundaryYear:window.OHIO_UNFILLED_PRECINCTS.boundaryYear,
       places:window.OHIO_CITY_LABELS?.places || []
-    }), coverageSummary:(_, matched)=>`Returns are mapped for ${number(matched)} precincts. Ohio’s map uses county updates and 2024 reference outlines. The statewide boundary count for this map is unverified.`,
+    }), totalPrecincts:8833,
       boundaries:'Seven Butler County precincts in Monroe use approximate traces of the county’s revised maps. Carroll, other Butler boundaries, and unfilled boundaries statewide come from OPoliticsGuru / 21MetcalfJ’s 2024Precincts Ohio dataset.'},
     Iowa: {id:'19', election:'U.S. Senate election', load:()=>window.IOWA_PRECINCT_RESULTS_2026,
       boundaries:'Iowa uses precinct returns and boundaries from The New York Times, with county canvass and boundary data for Marshall and Muscatine.'},
@@ -52,7 +46,7 @@
     function hideTooltip() { pinned = false; tooltip.hidden = true; }
     try {
       const data = config.load();
-      const {counties, unfilled:unfilledFeatures, places, boundaryYear, matchedPrecincts, totalPrecincts, unmatchedPrecincts, coverageNote} = data;
+      const {counties, unfilled:unfilledFeatures, places, boundaryYear, totalPrecincts} = data;
       const precinctKey = (county, key) => `${county}:${key}`;
       const rows = counties.flatMap(({county, races}) => races.find(race => race.office === 'senate').rows
         .map(row => ({...row, county, key: precinctKey(county, row.key)})));
@@ -60,21 +54,14 @@
       const outlineKeys = new Set(counties.flatMap(({county, features}) => features.map(feature => precinctKey(county, feature.properties.key))));
       const matched = rows.filter(row => outlineKeys.has(row.key)).length;
       const coverage = $('.precinct-coverage');
-      const coverageText = config.coverageSummary?.(data, matched, outlineKeys.size + unfilledFeatures.length)
-        || coverageNote || `${number(matchedPrecincts)} of ${number(totalPrecincts)} precinct records matched to ${boundaryYear} boundaries.`;
+      const total = config.totalPrecincts ?? totalPrecincts ?? outlineKeys.size + unfilledFeatures.length;
+      const coverageText = `${number(matched)} of ${number(total)} precincts recorded`;
       if(coverage) {
-        coverage.textContent = coverageText;
-        if(unmatchedPrecincts?.length) {
-          coverage.append(' Zero votes and no verified outline for ');
-          unmatchedPrecincts.forEach((precinct, index) => {
-            if(index) coverage.append(index === unmatchedPrecincts.length - 1 ? ' and ' : ', ');
-            const link = document.createElement('a');
-            link.href = precinct.source;
-            link.textContent = `${precinct.name} (${precinct.county} County)`;
-            coverage.append(link);
-          });
-          coverage.append('.');
-        }
+        const recordedCount = document.createElement('strong');
+        recordedCount.textContent = number(matched);
+        const totalCount = document.createElement('strong');
+        totalCount.textContent = number(total);
+        coverage.replaceChildren(recordedCount, ' of ', totalCount, ' precincts recorded');
         coverage.hidden = false;
       }
       const sorted = row => [...row.candidates].sort((a,b) => b.votes-a.votes);
