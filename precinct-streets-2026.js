@@ -9,9 +9,19 @@ window.createPrecinctStreetLayer = function({svg,viewport,projection,path,land,c
   const ZOOM={roads:6,streets:12,names:24};
   let controller=null,retryTimer=null,requestVersion=0,features=[],loaded=null,moving=false,current=d3.zoomIdentity;
   const contains=(outer,inner)=>outer&&outer[0]<=inner[0]&&outer[1]<=inner[1]&&outer[2]>=inner[2]&&outer[3]>=inner[3];
+  const [[west,south],[east,north]]=d3.geoBounds(land);
+  const crossesAntimeridian=west>east;
+  const unwrap=lon=>lon>0?lon-360:lon;
   const extentFor=transform=>{
+    if(crossesAntimeridian){
+      const edge=[0,.25,.5,.75,1].flatMap(t=>[[t*1200,0],[t*1200,900],[0,t*900],[1200,t*900]]);
+      const points=edge.map(point=>projection.invert(transform.invert(point)));
+      const longitude=points.map(point=>unwrap(point[0]));
+      const latitude=points.map(point=>point[1]);
+      return [Math.max(unwrap(west)-.05,d3.min(longitude)),Math.max(south-.05,d3.min(latitude)),Math.min(east+.05,d3.max(longitude)),Math.min(north+.05,d3.max(latitude))];
+    }
     const a=projection.invert(transform.invert([0,0])),b=projection.invert(transform.invert([1200,900]));
-    return [Math.max(-84.83,Math.min(a[0],b[0])),Math.max(38.39,Math.min(a[1],b[1])),Math.min(-80.50,Math.max(a[0],b[0])),Math.min(42.02,Math.max(a[1],b[1]))];
+    return [Math.max(west-.05,Math.min(a[0],b[0])),Math.max(south-.05,Math.min(a[1],b[1])),Math.min(east+.05,Math.max(a[0],b[0])),Math.min(north+.05,Math.max(a[1],b[1]))];
   };
   function report(message='') {
     const bounds=svg.node().getBoundingClientRect(),scale=Math.min(bounds.width/1200,bounds.height/900)||1;
@@ -29,6 +39,11 @@ window.createPrecinctStreetLayer = function({svg,viewport,projection,path,land,c
       if(!data.exceededTransferLimit)return output;
     }
     throw new Error('Road viewport too large for a complete response');
+  }
+  function queryBoxes(box) {
+    if(box[0]>=-180)return [box];
+    const westBox=[box[0]+360,box[1],Math.min(box[2],-180)+360,box[3]];
+    return box[2]<=-180?[westBox]:[westBox,[-180,box[1],box[2],box[3]]];
   }
   function draw(items,box,profile) {
     features=items.map(feature=>({...feature,lines:(feature.geometry.type==='LineString'?[feature.geometry.coordinates]:feature.geometry.coordinates).map(line=>line.map(coordinate=>projection(coordinate)))}));
@@ -57,11 +72,12 @@ window.createPrecinctStreetLayer = function({svg,viewport,projection,path,land,c
     const active=controller,timeout=setTimeout(()=>active.abort(),25000);
     report('Loading roads…');
     try {
-      const result=await Promise.allSettled((profile==='streets'?[0,1,2]:[0,1]).map(layer=>query(layer,box,active.signal)));
+      const layers=profile==='streets'?[0,1,2]:[0,1];
+      const result=await Promise.allSettled(queryBoxes(box).flatMap(area=>layers.map(layer=>query(layer,area,active.signal))));
       if(version!==requestVersion)return;
       const good=result.filter(item=>item.status==='fulfilled').flatMap(item=>item.value);
       if(!good.length&&result.some(item=>item.status==='rejected'))throw new Error('Road service unavailable');
-      draw(good,box,profile);
+      draw([...new Map(good.map(feature=>[`${feature.roadLayer}:${feature.id??feature.properties.OBJECTID}`,feature])).values()],box,profile);
       if(result.some(item=>item.status==='rejected')){loaded=null;retry();}
       else{report();cache.set(key,good);if(cache.size>6)cache.delete(cache.keys().next().value);}
     }catch(error){if(version===requestVersion)retry();}

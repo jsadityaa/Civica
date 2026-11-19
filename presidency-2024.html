@@ -23,8 +23,45 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap" rel="stylesheet" />
   <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); if (localStorage.getItem('datahub-dyslexic-ui') === 'true') document.documentElement.setAttribute('data-dyslexic', 'true'); } catch (e) {} })();</script>
-  <link rel="stylesheet" href="./styles.css?v=20260909-no-outer-election-panels-1" />
+  <link rel="stylesheet" href="./styles.css?v=20261117-exit-poll-filters" />
+  <style>
+    #article .panel-heading h2,
+    #article .article-body :is(h3, p, figcaption) {
+      font-family: "Lora", Georgia, serif;
+    }
+
+    #article .article-body > p:first-of-type::first-letter {
+      font-weight: 700;
+    }
+
+    #article,
+    #exit-polls {
+      margin-block: clamp(24px, 3vw, 48px);
+    }
+
+    #article .article-layout,
+    #exit-polls .exit-polls-layout {
+      margin-top: clamp(24px, 2.8vw, 40px);
+    }
+
+    #article .article-body h3:not(:first-child) {
+      margin-top: clamp(36px, 4vw, 56px);
+    }
+
+    #exit-polls .exit-polls-board {
+      gap: clamp(24px, 2.8vw, 40px);
+    }
+
+    #exit-polls .exit-polls-grid {
+      column-gap: clamp(16px, 2vw, 24px);
+    }
+
+    #exit-polls .exit-poll-card {
+      margin-bottom: clamp(16px, 2vw, 24px);
+    }
+  </style>
   <script src="./analytics.js?v=20261011-ga4"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TTQG0NLH31"></script>
 </head>
@@ -176,7 +213,7 @@
       <section id="article" class="content-panel">
         <div class="panel-heading">
           <div>
-            <h2>Article / Summary</h2>
+            <h2>How the 2024 Presidential Race Unfolded</h2>
           </div>
         </div>
         <p class="byline">Written by Aditya Poduri</p>
@@ -192,6 +229,13 @@
             <p>
               Throughout most of 2023, the news cycle was dominated by Trump's criminal indictments. Across four separate cases, he faced 91 felony counts in multiple jurisdictions. Those legal battles became both a political burden and a fundraising engine for Trump, who described them as politically motivated witch hunts. Democrats, by contrast, remained relatively quiet during the primary phase, allowing Biden to move steadily toward renomination despite persistently low approval ratings and growing concerns about his age and mental sharpness.
             </p>
+            <figure class="article-photo article-photo--right">
+              <img src="./assets/articles/presidency-2024/biden-state-of-the-union.jpg" width="1280" height="853" loading="lazy" decoding="async" alt="Joe Biden at the House rostrum, with Kamala Harris and House Speaker Mike Johnson seated behind him." />
+              <figcaption>
+                President Joe Biden delivers the State of the Union address at the U.S. Capitol in Washington, D.C., on March 7, 2024, while seeking reelection.
+                <span class="article-photo-credit"><a href="https://commons.wikimedia.org/wiki/File:P20240307CS-1876_(53575394559).jpg">Cameron Smith / The White House</a></span>
+              </figcaption>
+            </figure>
             <p>
               Inflation and the rising cost of living remained the core kitchen-table issue Republicans used to attack the Biden administration. Democrats, meanwhile, emphasized reproductive rights, believing backlash to the overturning of Roe v. Wade would provide one of their strongest turnout drivers. The Supreme Court also played an unusually direct role in the election environment, ruling that Trump could not be removed from state ballots under the Fourteenth Amendment's insurrection clause despite several state-level efforts to do so.
             </p>
@@ -200,15 +244,39 @@
             </p>
 
             <h3>Summer 2024</h3>
+            <figure class="article-photo article-photo--left">
+              <img src="./assets/articles/presidency-2024/trump-butler-rally.webp" width="387" height="258" loading="lazy" decoding="async" alt="Donald Trump raises his fist beneath an American flag as Secret Service agents surround him." />
+              <figcaption>
+                Donald Trump raises his fist after the assassination attempt at his campaign rally in Butler, Pennsylvania, on July 13, 2024.
+                <span class="article-photo-credit"><a href="https://www.ap.org/news-highlights/best-of-the-week/first-winner/2024/ap-photographers-vucci-and-pushkar-and-reporter-carr-smyth-dominate-with-photos-and-account-of-assassination-attempt-on-former-president-donald-trump/">Evan Vucci / Associated Press</a></span>
+              </figcaption>
+            </figure>
             <p>
               June 2024 marked a major turning point. The first presidential debate took place unusually early, and Biden's performance on June 27 was widely viewed as catastrophic. He appeared frail, struggled to complete coherent answers, and triggered panic among Democratic donors, strategists, and elected officials. The White House attempted to contain the fallout by insisting he would remain in the race, but the damage was immediate and severe.
             </p>
             <p>
-              July proved even more chaotic. The country was shaken when a gunman opened fire at a Trump rally in Butler, Pennsylvania, narrowly missing the former president. The image of Trump raising his fist with a bloodied ear quickly became one of the defining visuals of the campaign and helped unify Republicans at a crucial moment. At the Republican National Convention in Milwaukee, Trump selected Senator JD Vance as his running mate. Although the party tried to project a message of unity, its platform still emphasized mass deportations, aggressive tariff policy, and a hard-edged nationalist agenda.
+              On July 13, 2024, a gunman opened fire at a campaign rally in Butler, Pennsylvania, wounding Trump in the ear. Evan Vucci’s Associated Press photograph of Trump raising his fist as Secret Service agents surrounded him became one of the defining images of the campaign.
+            </p>
+            <figure class="article-photo article-photo--right">
+              <img src="./assets/articles/presidency-2024/trump-republican-convention.jpg" width="1280" height="853" loading="lazy" decoding="async" alt="Donald Trump and JD Vance stand onstage among falling balloons at the Republican National Convention." />
+              <figcaption>
+                Donald Trump and his running mate, JD Vance, take the stage on the final night of the Republican National Convention in Milwaukee on July 18, 2024.
+                <span class="article-photo-credit"><a href="https://commons.wikimedia.org/wiki/File:Former_President_Donald_Trump%27s_Speech_at_the_Republican_National_Convention_(53887722108).jpg">Tim Kennedy / Wikimedia Commons</a></span>
+              </figcaption>
+            </figure>
+            <p>
+              At the Republican National Convention in Milwaukee, Trump selected Senator JD Vance as his running mate. Although the party tried to project a message of unity, its platform still emphasized mass deportations, aggressive tariff policy, and a hard-edged nationalist agenda.
             </p>
             <p>
               Then, on July 21, Joe Biden posted a letter on social media announcing that he was withdrawing from the race and endorsing Vice President Kamala Harris. Harris consolidated Democratic support with surprising speed, effectively neutralizing the Republican Party's central argument about Biden's age and cognitive decline. Her entrance into the race triggered a major fundraising surge, especially among younger voters who had previously shown limited enthusiasm.
             </p>
+            <figure class="article-photo article-photo--left">
+              <img src="./assets/articles/presidency-2024/harris-democratic-convention.jpg" width="1280" height="853" loading="lazy" decoding="async" alt="A wide view of the Democratic National Convention crowd with Kamala Harris on the arena’s large screen." />
+              <figcaption>
+                Kamala Harris accepts the Democratic presidential nomination at Chicago’s United Center on August 22, 2024.
+                <span class="article-photo-credit"><a href="https://commons.wikimedia.org/wiki/File:Kamala_Harris_on_stage_at_the_Democratic_National_Convention_Thursday_Aug._22,_2024_in_Chicago_(53942661345).jpg">Lorie Shaull / Wikimedia Commons</a></span>
+              </figcaption>
+            </figure>
             <p>
               Harris later selected Minnesota Governor Tim Walz as her running mate, aiming to strengthen her appeal among Midwestern working-class voters. The Democratic National Convention in Chicago was widely seen as energetic and message-disciplined, emphasizing joy as a political strategy and contrasting that tone with Trump's darker warnings of global war and economic collapse. Even so, the race remained effectively deadlocked in the seven key swing states likely to decide the Electoral College. Protests over Gaza continued to create tension within the Democratic coalition, especially among younger and more progressive voters. By late August, the race had been transformed from a Biden-Trump rematch into a compressed, high-stakes sprint between Harris and Trump.
             </p>
@@ -223,6 +291,13 @@
             <p>
               A second assassination attempt against Trump heightened the sense of instability surrounding the race and expanded security around both campaigns. Meanwhile, the "Make America Healthy Again" movement gained new relevance when RFK Jr. withdrew from the presidential race and aligned himself with Trump, helping attract anti-establishment and health-skeptical voters distrustful of federal agencies. Trump also intensified his focus on culture-war issues, especially transgender rights and the role of government in education. Harris's closing argument revolved around freedom, especially the freedom to make personal healthcare decisions without government interference.
             </p>
+            <figure class="article-photo article-photo--right">
+              <img src="./assets/articles/presidency-2024/harris-concession.jpg" width="1280" height="721" loading="lazy" decoding="async" alt="Kamala Harris raises one hand while speaking at a lectern, with American flags behind her." />
+              <figcaption>
+                Kamala Harris concedes the election at Howard University in Washington, D.C., on November 6, 2024, the day after Election Day.
+                <span class="article-photo-credit"><a href="https://commons.wikimedia.org/wiki/File:Kamala_Harris_2024_concession_speech.png">Voice of America / Wikimedia Commons</a></span>
+              </figcaption>
+            </figure>
             <p>
               As Election Day approached, turnout appeared strong in several battleground states, particularly Georgia and North Carolina. But on the night of November 5, the results revealed a broader rightward shift across much of the country. Trump not only swept all seven major swing states, but also made notable gains in traditionally Democratic urban areas such as New York City and Chicago. The election also pointed to a significant demographic realignment: Trump improved his standing among Hispanic voters and made gains among Black men.
             </p>

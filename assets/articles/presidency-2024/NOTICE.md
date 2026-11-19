@@ -1,0 +1,7 @@
+# 2024 presidential article photo credits
+
+- `trump-republican-convention.jpg`: [Former President Donald Trump's Speech at the Republican National Convention](https://commons.wikimedia.org/wiki/File:Former_President_Donald_Trump%27s_Speech_at_the_Republican_National_Convention_(53887722108).jpg), Tim Kennedy, [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/). Resized and recompressed.
+- `harris-democratic-convention.jpg`: [Kamala Harris on stage at the Democratic National Convention](https://commons.wikimedia.org/wiki/File:Kamala_Harris_on_stage_at_the_Democratic_National_Convention_Thursday_Aug._22,_2024_in_Chicago_(53942661345).jpg), Lorie Shaull, [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/). Resized by Wikimedia Commons.
+- `biden-state-of-the-union.jpg`: [P20240307CS-1876](https://commons.wikimedia.org/wiki/File:P20240307CS-1876_(53575394559).jpg), Cameron Smith / The White House, public domain.
+- `harris-concession.jpg`: [Kamala Harris 2024 concession speech](https://commons.wikimedia.org/wiki/File:Kamala_Harris_2024_concession_speech.png), Voice of America video still, public domain.
+- `trump-butler-rally.webp`: User-supplied copy of [Evan Vucci's Associated Press photograph](https://www.ap.org/news-highlights/best-of-the-week/first-winner/2024/ap-photographers-vucci-and-pushkar-and-reporter-carr-smyth-dominate-with-photos-and-account-of-assassination-attempt-on-former-president-donald-trump/).

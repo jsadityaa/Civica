@@ -1331,6 +1331,7 @@ html:not([data-theme="dark"]) .national-lead-bubble.dem {
 }
 
 .article-body h3:not(:first-child) {
+  clear: both;
   margin-top: 24px;
 }
 
@@ -1347,6 +1348,76 @@ html:not([data-theme="dark"]) .national-lead-bubble.dem {
   font-weight: 800;
   padding-right: 8px;
   color: #ffffff;
+}
+
+.article-body .article-photo {
+  clear: both;
+  width: min(40%, 320px);
+  margin-block: 4px 16px;
+  margin-inline: 0;
+}
+
+.article-body .article-photo--left {
+  float: left;
+  margin-right: 24px;
+}
+
+.article-body .article-photo--right {
+  float: right;
+  margin-left: 24px;
+}
+
+.article-body .article-photo + p {
+  margin-top: 12px;
+}
+
+@media (max-width: 680px) {
+  .article-body .article-photo {
+    float: none;
+    width: min(90%, 320px);
+    margin: 20px auto;
+  }
+}
+
+.article-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+}
+
+.article-photo figcaption {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.article-photo-credit {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+.article-photo-credit a {
+  font-weight: 600;
+  background: linear-gradient(90deg, #df5047 0%, #8b78d4 52%, #2f86d4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-decoration: underline;
+  text-decoration-color: rgba(47, 134, 212, 0.55);
+  text-underline-offset: 2px;
+}
+
+@media (forced-colors: active) {
+  .article-photo-credit a {
+    background: none;
+    color: LinkText;
+    -webkit-text-fill-color: currentColor;
+  }
 }
 
 .article-pullquote {
@@ -2915,9 +2986,7 @@ html:not([data-theme="dark"]) .state-election-city-labels text {
   gap: 12px;
   border: 1px solid var(--border);
   border-radius: 16px;
-  background:
-    radial-gradient(circle at top left, rgba(40,121,181,0.12), transparent 38%),
-    linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
   padding: 18px;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
 }
@@ -2962,9 +3031,8 @@ html:not([data-theme="dark"]) .state-election-city-labels text {
 }
 
 .exit-polls-filter-button.is-active {
-  background: rgba(40,121,181,0.18);
-  border-color: rgba(40,121,181,0.55);
-  color: #cfe6f7;
+  background: rgba(128,128,128,0.18);
+  border-color: rgba(128,128,128,0.55);
 }
 
 .exit-polls-filter-count {
@@ -2979,8 +3047,8 @@ html:not([data-theme="dark"]) .state-election-city-labels text {
 }
 
 .exit-polls-filter-button.is-active .exit-polls-filter-count {
-  background: rgba(40,121,181,0.36);
-  color: #e8f4fd;
+  background: rgba(128,128,128,0.32);
+  color: var(--text);
 }
 
 .exit-polls-filter-summary {
@@ -6048,18 +6116,20 @@ html:not([data-theme="dark"]) .card-tag {
   font: inherit;
 }
 .forecast-input-selector option { background: var(--panel); color: var(--text); }
-.forecast-input-heading { display: flex; justify-content: flex-start; align-items: center; gap: 36px; margin: 26px 0; }
-.forecast-input-body { position: relative; }
-.forecast-detail-shape { position: absolute; left: 380px; top: 0; width: 280px; height: 220px; pointer-events: none; }
-.forecast-input-heading { padding-right: 300px; min-height: 110px; flex-wrap: wrap; }
-@media (max-width: 900px) {
-  .forecast-detail-shape { left: auto; right: 0; width: 150px; height: 118px; }
-  .forecast-input-selector { max-width: calc(100% - 170px); }
-  .forecast-input-heading { padding-right: 0; min-height: 0; }
+.forecast-input-summary {
+  display: grid;
+  grid-template-columns: minmax(0, max-content) minmax(0, 280px);
+  grid-template-rows: auto 1fr;
+  align-items: start;
+  gap: 26px 24px;
+  margin-bottom: 26px;
 }
-@media (max-width: 400px) {
-  .forecast-detail-shape { width: 110px; height: 90px; }
-  .forecast-input-selector { max-width: calc(100% - 125px); }
+.forecast-input-selector { grid-area: 1 / 1; }
+.forecast-input-heading { grid-area: 2 / 1; align-self: center; display: flex; flex-wrap: wrap; align-items: center; gap: 24px 36px; }
+.forecast-input-heading > div:first-child { min-width: 0; overflow-wrap: anywhere; }
+.forecast-detail-shape { grid-area: 1 / 2 / 3; align-self: center; display: block; width: 100%; height: auto; pointer-events: none; }
+@media (max-width: 900px) {
+  .forecast-input-summary { grid-template-columns: minmax(0, max-content) minmax(0, 150px); }
 }
 .forecast-input-heading h3 { margin: 0; font-size: clamp(24px, 3vw, 36px); letter-spacing: -0.04em; }
 .forecast-input-heading p { color: var(--muted); margin: 6px 0 0; font-size: 14px; }
@@ -6134,7 +6204,9 @@ html:not([data-theme="dark"]) .card-tag {
 .forecast-input-source a { color: inherit; text-decoration: underline; }
 @media (max-width: 600px) {
   .forecast-input-details > .forecast-input-title { padding: 18px 0; font-size: 18px; }
-  .forecast-input-heading { align-items: center; flex-wrap: wrap; gap: 18px 24px; }
+  .forecast-input-summary { grid-template-columns: minmax(0, 1fr) 110px; gap: 18px 16px; align-items: center; }
+  .forecast-detail-shape { grid-row: 1; }
+  .forecast-input-heading { grid-column: 1 / -1; gap: 18px 24px; }
   .forecast-input-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px; }
   .forecast-input-metrics dd { font-size: 21px; }
 }

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Refresh the local 2026 results snapshot from NPR's public live feeds."""
+"""Refresh the local 2026 results snapshot from NPR's public feeds."""
+import argparse
 import gzip
 import json
 import urllib.request
@@ -8,11 +9,20 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 OFFICES = {"senate": ("senate", "S", 35), "governor": ("gov", "G", 36), "house": ("house", "H", 435)}
+SNAPSHOT_PREFIX = "window.POLYCIVIC_MIDTERM_RESULTS_2026 = "
 
 
-def collect():
-    data = {"capturedAt": datetime.now(timezone.utc).isoformat(), "offices": {}}
-    for office, (feed, code, expected) in OFFICES.items():
+def collect(offices):
+    target = ROOT / "midterms-2026-results-data.js"
+    data = {"offices": {}}
+    if target.exists():
+        data = json.loads(target.read_text().removeprefix(SNAPSHOT_PREFIX).strip().removesuffix(";"))
+    if set(OFFICES) - set(offices) - data["offices"].keys():
+        raise ValueError("A partial refresh requires an existing snapshot for the other offices")
+
+    refreshed = 0
+    for office in offices:
+        feed, code, expected = OFFICES[office]
         url = "https://apps.npr.org/2026-election-results/data/" + feed + ".json"
         request = urllib.request.Request(url, headers={"User-Agent": "PolycivicResults/1.0", "Cache-Control": "no-cache"})
         with urllib.request.urlopen(request, timeout=30) as response:
@@ -23,20 +33,24 @@ def collect():
         if len(races) != expected or len({r["id"] for r in races}) != expected:
             raise ValueError("Incomplete or duplicate " + office + " races; snapshot unchanged")
         for race in races:
-            if race.get("test") is not False or race.get("resultsType") != "live" or race.get("office") != code:
-                raise ValueError("Unexpected non-live race; snapshot unchanged")
+            if race.get("test") is not False or race.get("resultsType") not in {"live", "certified"} or race.get("office") != code:
+                raise ValueError("Unexpected race type; snapshot unchanged")
             winners = [c for c in race["candidates"] if c.get("winner") == "X"]
             if race.get("called") and len(winners) != 1:
                 raise ValueError("Called race has no unique winner; snapshot unchanged")
             if race.get("eevp") is not None and not 0 <= race["eevp"] <= 1:
                 raise ValueError("Invalid estimated vote share; snapshot unchanged")
         data["offices"][office] = {"source": url, "races": races}
-    target = ROOT / "midterms-2026-results-data.js"
+        refreshed += len(races)
+    data["capturedAt"] = datetime.now(timezone.utc).isoformat()
     temporary = target.with_suffix(".tmp")
-    temporary.write_text("window.POLYCIVIC_MIDTERM_RESULTS_2026 = " + json.dumps(data, separators=(",", ":")) + ";\n")
+    temporary.write_text(SNAPSHOT_PREFIX + json.dumps(data, separators=(",", ":")) + ";\n")
     temporary.replace(target)
-    print("Updated 506 races from NPR at " + data["capturedAt"])
+    print(f"Updated {refreshed} races from NPR at {data['capturedAt']}")
 
 
 if __name__ == "__main__":
-    collect()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--office", choices=OFFICES, action="append", help="Office to refresh. Repeat to select multiple offices. The default refreshes all offices.")
+    args = parser.parse_args()
+    collect(tuple(dict.fromkeys(args.office)) if args.office else tuple(OFFICES))
