@@ -17,7 +17,9 @@
   const isSpecial = race => race.office === "S" && ["FL", "OH"].includes(race.state);
   const title = race => `${race.stateName}${race.office === "H" ? ` ${Number(race.seatNumber)}` : isSpecial(race) ? " (Special)" : ""}`;
   const keyOf = race => `${race.state}-${Number(race.seatNumber)}`;
-  const href = race => `./race-result-2026.html?office=${race.office === "S" ? "senate" : race.office === "G" ? "governor" : "house"}&id=${encodeURIComponent(race.id)}`;
+  const href = race => race.office === "S"
+    ? `./senate-2026-${race.state.toLowerCase()}-results.html`
+    : `./race-result-2026.html?office=${race.office === "G" ? "governor" : "house"}&id=${encodeURIComponent(race.id)}`;
   const stateHref = state => `./state-election-results-2026.html?name=${encodeURIComponent(state)}`;
   const margin = race => {
     const list = candidates(race);
@@ -215,12 +217,17 @@
   }
   function details() {
     const params = new URLSearchParams(window.location.search);
-    const requestedOffice = params.get("office");
+    const requestedOffice = document.body.dataset.raceOffice || params.get("office");
+    const requestedRace = document.body.dataset.raceId || params.get("id");
     let selected = [];
-    if (office === "race" && offices[requestedOffice]) selected = rows(requestedOffice).filter(r => r.id === params.get("id")).map(r => [requestedOffice, r]);
+    if (office === "race" && offices[requestedOffice]) selected = rows(requestedOffice).filter(r => r.id === requestedRace).map(r => [requestedOffice, r]);
     else if (office === "state") for (const key of ["senate", "governor", "house"]) selected.push(...rows(key).filter(r => r.stateName === (params.get("name") || "Alabama")).sort((a, b) => Number(a.seatNumber) - Number(b.seatNumber)).map(r => [key, r]));
     const content = document.getElementById("results-detail-content"), heading = document.getElementById("results-detail-title");
     if (!selected.length) { heading.textContent = "Results not found"; content.innerHTML = '<p>Select a state from <a href="./state-results-2026.html">State Results</a>.</p>'; return; }
+    if (office === "race" && requestedOffice === "senate" && !document.body.dataset.raceId) {
+      window.location.replace(href(selected[0][1]) + window.location.hash);
+      return;
+    }
     heading.textContent = office === "state" ? `${selected[0][1].stateName} Election Results` : `${title(selected[0][1])} ${offices[selected[0][0]]} Election Results`;
     document.title = `${heading.textContent} 2026 | Polycivic`;
     const nav = document.getElementById("results-detail-nav");
