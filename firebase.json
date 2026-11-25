@@ -480,6 +480,506 @@
         "type": 301
       },
       {
+        "source": "/state-election-results-2026-ak",
+        "destination": "/united-states/2026/states/alaska",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ak.html",
+        "destination": "/united-states/2026/states/alaska",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-al",
+        "destination": "/united-states/2026/states/alabama",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-al.html",
+        "destination": "/united-states/2026/states/alabama",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ar",
+        "destination": "/united-states/2026/states/arkansas",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ar.html",
+        "destination": "/united-states/2026/states/arkansas",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-az",
+        "destination": "/united-states/2026/states/arizona",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-az.html",
+        "destination": "/united-states/2026/states/arizona",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ca",
+        "destination": "/united-states/2026/states/california",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ca.html",
+        "destination": "/united-states/2026/states/california",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-co",
+        "destination": "/united-states/2026/states/colorado",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-co.html",
+        "destination": "/united-states/2026/states/colorado",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ct",
+        "destination": "/united-states/2026/states/connecticut",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ct.html",
+        "destination": "/united-states/2026/states/connecticut",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-de",
+        "destination": "/united-states/2026/states/delaware",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-de.html",
+        "destination": "/united-states/2026/states/delaware",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-fl",
+        "destination": "/united-states/2026/states/florida",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-fl.html",
+        "destination": "/united-states/2026/states/florida",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ga",
+        "destination": "/united-states/2026/states/georgia",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ga.html",
+        "destination": "/united-states/2026/states/georgia",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-hi",
+        "destination": "/united-states/2026/states/hawaii",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-hi.html",
+        "destination": "/united-states/2026/states/hawaii",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ia",
+        "destination": "/united-states/2026/states/iowa",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ia.html",
+        "destination": "/united-states/2026/states/iowa",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-id",
+        "destination": "/united-states/2026/states/idaho",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-id.html",
+        "destination": "/united-states/2026/states/idaho",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-il",
+        "destination": "/united-states/2026/states/illinois",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-il.html",
+        "destination": "/united-states/2026/states/illinois",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-in",
+        "destination": "/united-states/2026/states/indiana",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-in.html",
+        "destination": "/united-states/2026/states/indiana",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ks",
+        "destination": "/united-states/2026/states/kansas",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ks.html",
+        "destination": "/united-states/2026/states/kansas",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ky",
+        "destination": "/united-states/2026/states/kentucky",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ky.html",
+        "destination": "/united-states/2026/states/kentucky",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-la",
+        "destination": "/united-states/2026/states/louisiana",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-la.html",
+        "destination": "/united-states/2026/states/louisiana",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ma",
+        "destination": "/united-states/2026/states/massachusetts",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ma.html",
+        "destination": "/united-states/2026/states/massachusetts",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-md",
+        "destination": "/united-states/2026/states/maryland",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-md.html",
+        "destination": "/united-states/2026/states/maryland",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-me",
+        "destination": "/united-states/2026/states/maine",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-me.html",
+        "destination": "/united-states/2026/states/maine",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-mi",
+        "destination": "/united-states/2026/states/michigan",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-mi.html",
+        "destination": "/united-states/2026/states/michigan",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-mn",
+        "destination": "/united-states/2026/states/minnesota",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-mn.html",
+        "destination": "/united-states/2026/states/minnesota",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-mo",
+        "destination": "/united-states/2026/states/missouri",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-mo.html",
+        "destination": "/united-states/2026/states/missouri",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ms",
+        "destination": "/united-states/2026/states/mississippi",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ms.html",
+        "destination": "/united-states/2026/states/mississippi",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-mt",
+        "destination": "/united-states/2026/states/montana",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-mt.html",
+        "destination": "/united-states/2026/states/montana",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-nc",
+        "destination": "/united-states/2026/states/north-carolina",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-nc.html",
+        "destination": "/united-states/2026/states/north-carolina",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-nd",
+        "destination": "/united-states/2026/states/north-dakota",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-nd.html",
+        "destination": "/united-states/2026/states/north-dakota",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ne",
+        "destination": "/united-states/2026/states/nebraska",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ne.html",
+        "destination": "/united-states/2026/states/nebraska",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-nh",
+        "destination": "/united-states/2026/states/new-hampshire",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-nh.html",
+        "destination": "/united-states/2026/states/new-hampshire",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-nj",
+        "destination": "/united-states/2026/states/new-jersey",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-nj.html",
+        "destination": "/united-states/2026/states/new-jersey",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-nm",
+        "destination": "/united-states/2026/states/new-mexico",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-nm.html",
+        "destination": "/united-states/2026/states/new-mexico",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-nv",
+        "destination": "/united-states/2026/states/nevada",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-nv.html",
+        "destination": "/united-states/2026/states/nevada",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ny",
+        "destination": "/united-states/2026/states/new-york",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ny.html",
+        "destination": "/united-states/2026/states/new-york",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-oh",
+        "destination": "/united-states/2026/states/ohio",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-oh.html",
+        "destination": "/united-states/2026/states/ohio",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ok",
+        "destination": "/united-states/2026/states/oklahoma",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ok.html",
+        "destination": "/united-states/2026/states/oklahoma",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-or",
+        "destination": "/united-states/2026/states/oregon",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-or.html",
+        "destination": "/united-states/2026/states/oregon",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-pa",
+        "destination": "/united-states/2026/states/pennsylvania",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-pa.html",
+        "destination": "/united-states/2026/states/pennsylvania",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ri",
+        "destination": "/united-states/2026/states/rhode-island",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ri.html",
+        "destination": "/united-states/2026/states/rhode-island",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-sc",
+        "destination": "/united-states/2026/states/south-carolina",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-sc.html",
+        "destination": "/united-states/2026/states/south-carolina",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-sd",
+        "destination": "/united-states/2026/states/south-dakota",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-sd.html",
+        "destination": "/united-states/2026/states/south-dakota",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-tn",
+        "destination": "/united-states/2026/states/tennessee",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-tn.html",
+        "destination": "/united-states/2026/states/tennessee",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-tx",
+        "destination": "/united-states/2026/states/texas",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-tx.html",
+        "destination": "/united-states/2026/states/texas",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ut",
+        "destination": "/united-states/2026/states/utah",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-ut.html",
+        "destination": "/united-states/2026/states/utah",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-va",
+        "destination": "/united-states/2026/states/virginia",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-va.html",
+        "destination": "/united-states/2026/states/virginia",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-vt",
+        "destination": "/united-states/2026/states/vermont",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-vt.html",
+        "destination": "/united-states/2026/states/vermont",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-wa",
+        "destination": "/united-states/2026/states/washington",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-wa.html",
+        "destination": "/united-states/2026/states/washington",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-wi",
+        "destination": "/united-states/2026/states/wisconsin",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-wi.html",
+        "destination": "/united-states/2026/states/wisconsin",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-wv",
+        "destination": "/united-states/2026/states/west-virginia",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-wv.html",
+        "destination": "/united-states/2026/states/west-virginia",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-wy",
+        "destination": "/united-states/2026/states/wyoming",
+        "type": 301
+      },
+      {
+        "source": "/state-election-results-2026-wy.html",
+        "destination": "/united-states/2026/states/wyoming",
+        "type": 301
+      },
+      {
         "source": "/house-2026-ak-1-results",
         "destination": "/united-states/2026/house-of-reps/alaska-at-large",
         "type": 301
@@ -5177,6 +5677,366 @@
       {
         "source": "/senate-2026-ri-results.html",
         "destination": "/united-states/2026/senate/rhode-island",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-ak-results",
+        "destination": "/united-states/2026/governor/alaska",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-ak-results.html",
+        "destination": "/united-states/2026/governor/alaska",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-al-results",
+        "destination": "/united-states/2026/governor/alabama",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-al-results.html",
+        "destination": "/united-states/2026/governor/alabama",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-ar-results",
+        "destination": "/united-states/2026/governor/arkansas",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-ar-results.html",
+        "destination": "/united-states/2026/governor/arkansas",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-az-results",
+        "destination": "/united-states/2026/governor/arizona",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-az-results.html",
+        "destination": "/united-states/2026/governor/arizona",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-ca-results",
+        "destination": "/united-states/2026/governor/california",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-ca-results.html",
+        "destination": "/united-states/2026/governor/california",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-co-results",
+        "destination": "/united-states/2026/governor/colorado",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-co-results.html",
+        "destination": "/united-states/2026/governor/colorado",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-fl-results",
+        "destination": "/united-states/2026/governor/florida",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-fl-results.html",
+        "destination": "/united-states/2026/governor/florida",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-ga-results",
+        "destination": "/united-states/2026/governor/georgia",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-ga-results.html",
+        "destination": "/united-states/2026/governor/georgia",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-hi-results",
+        "destination": "/united-states/2026/governor/hawaii",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-hi-results.html",
+        "destination": "/united-states/2026/governor/hawaii",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-ia-results",
+        "destination": "/united-states/2026/governor/iowa",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-ia-results.html",
+        "destination": "/united-states/2026/governor/iowa",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-id-results",
+        "destination": "/united-states/2026/governor/idaho",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-id-results.html",
+        "destination": "/united-states/2026/governor/idaho",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-il-results",
+        "destination": "/united-states/2026/governor/illinois",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-il-results.html",
+        "destination": "/united-states/2026/governor/illinois",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-ks-results",
+        "destination": "/united-states/2026/governor/kansas",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-ks-results.html",
+        "destination": "/united-states/2026/governor/kansas",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-md-results",
+        "destination": "/united-states/2026/governor/maryland",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-md-results.html",
+        "destination": "/united-states/2026/governor/maryland",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-mi-results",
+        "destination": "/united-states/2026/governor/michigan",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-mi-results.html",
+        "destination": "/united-states/2026/governor/michigan",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-mn-results",
+        "destination": "/united-states/2026/governor/minnesota",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-mn-results.html",
+        "destination": "/united-states/2026/governor/minnesota",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-ne-results",
+        "destination": "/united-states/2026/governor/nebraska",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-ne-results.html",
+        "destination": "/united-states/2026/governor/nebraska",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-nm-results",
+        "destination": "/united-states/2026/governor/new-mexico",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-nm-results.html",
+        "destination": "/united-states/2026/governor/new-mexico",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-nv-results",
+        "destination": "/united-states/2026/governor/nevada",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-nv-results.html",
+        "destination": "/united-states/2026/governor/nevada",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-ny-results",
+        "destination": "/united-states/2026/governor/new-york",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-ny-results.html",
+        "destination": "/united-states/2026/governor/new-york",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-oh-results",
+        "destination": "/united-states/2026/governor/ohio",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-oh-results.html",
+        "destination": "/united-states/2026/governor/ohio",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-ok-results",
+        "destination": "/united-states/2026/governor/oklahoma",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-ok-results.html",
+        "destination": "/united-states/2026/governor/oklahoma",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-or-results",
+        "destination": "/united-states/2026/governor/oregon",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-or-results.html",
+        "destination": "/united-states/2026/governor/oregon",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-pa-results",
+        "destination": "/united-states/2026/governor/pennsylvania",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-pa-results.html",
+        "destination": "/united-states/2026/governor/pennsylvania",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-sc-results",
+        "destination": "/united-states/2026/governor/south-carolina",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-sc-results.html",
+        "destination": "/united-states/2026/governor/south-carolina",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-sd-results",
+        "destination": "/united-states/2026/governor/south-dakota",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-sd-results.html",
+        "destination": "/united-states/2026/governor/south-dakota",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-tn-results",
+        "destination": "/united-states/2026/governor/tennessee",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-tn-results.html",
+        "destination": "/united-states/2026/governor/tennessee",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-tx-results",
+        "destination": "/united-states/2026/governor/texas",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-tx-results.html",
+        "destination": "/united-states/2026/governor/texas",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-wi-results",
+        "destination": "/united-states/2026/governor/wisconsin",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-wi-results.html",
+        "destination": "/united-states/2026/governor/wisconsin",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-wy-results",
+        "destination": "/united-states/2026/governor/wyoming",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-wy-results.html",
+        "destination": "/united-states/2026/governor/wyoming",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-ct-results",
+        "destination": "/united-states/2026/governor/connecticut",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-ct-results.html",
+        "destination": "/united-states/2026/governor/connecticut",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-ma-results",
+        "destination": "/united-states/2026/governor/massachusetts",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-ma-results.html",
+        "destination": "/united-states/2026/governor/massachusetts",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-me-results",
+        "destination": "/united-states/2026/governor/maine",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-me-results.html",
+        "destination": "/united-states/2026/governor/maine",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-nh-results",
+        "destination": "/united-states/2026/governor/new-hampshire",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-nh-results.html",
+        "destination": "/united-states/2026/governor/new-hampshire",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-ri-results",
+        "destination": "/united-states/2026/governor/rhode-island",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-ri-results.html",
+        "destination": "/united-states/2026/governor/rhode-island",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-vt-results",
+        "destination": "/united-states/2026/governor/vermont",
+        "type": 301
+      },
+      {
+        "source": "/governor-2026-vt-results.html",
+        "destination": "/united-states/2026/governor/vermont",
         "type": 301
       },
       {

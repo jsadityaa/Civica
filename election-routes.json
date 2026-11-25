@@ -283,13 +283,14 @@
   },
   {
     "path": "/united-states/2026/states/alaska",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-ak.html",
     "params": {
       "name": "Alaska"
     },
     "title": "Alaska Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Alaska"
+      "/state-election-results-2026?name=Alaska",
+      "/state-election-results-2026-ak"
     ],
     "destination": "/election-route-pages/28.html"
   },
@@ -319,13 +320,14 @@
   },
   {
     "path": "/united-states/2026/states/alabama",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-al.html",
     "params": {
       "name": "Alabama"
     },
     "title": "Alabama Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Alabama"
+      "/state-election-results-2026?name=Alabama",
+      "/state-election-results-2026-al"
     ],
     "destination": "/election-route-pages/31.html"
   },
@@ -355,13 +357,14 @@
   },
   {
     "path": "/united-states/2026/states/arkansas",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-ar.html",
     "params": {
       "name": "Arkansas"
     },
     "title": "Arkansas Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Arkansas"
+      "/state-election-results-2026?name=Arkansas",
+      "/state-election-results-2026-ar"
     ],
     "destination": "/election-route-pages/34.html"
   },
@@ -391,13 +394,14 @@
   },
   {
     "path": "/united-states/2026/states/arizona",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-az.html",
     "params": {
       "name": "Arizona"
     },
     "title": "Arizona Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Arizona"
+      "/state-election-results-2026?name=Arizona",
+      "/state-election-results-2026-az"
     ],
     "destination": "/election-route-pages/37.html"
   },
@@ -427,13 +431,14 @@
   },
   {
     "path": "/united-states/2026/states/california",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-ca.html",
     "params": {
       "name": "California"
     },
     "title": "California Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=California"
+      "/state-election-results-2026?name=California",
+      "/state-election-results-2026-ca"
     ],
     "destination": "/election-route-pages/40.html"
   },
@@ -463,13 +468,14 @@
   },
   {
     "path": "/united-states/2026/states/colorado",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-co.html",
     "params": {
       "name": "Colorado"
     },
     "title": "Colorado Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Colorado"
+      "/state-election-results-2026?name=Colorado",
+      "/state-election-results-2026-co"
     ],
     "destination": "/election-route-pages/43.html"
   },
@@ -499,13 +505,14 @@
   },
   {
     "path": "/united-states/2026/states/connecticut",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-ct.html",
     "params": {
       "name": "Connecticut"
     },
     "title": "Connecticut Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Connecticut"
+      "/state-election-results-2026?name=Connecticut",
+      "/state-election-results-2026-ct"
     ],
     "destination": "/election-route-pages/46.html"
   },
@@ -571,13 +578,14 @@
   },
   {
     "path": "/united-states/2026/states/delaware",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-de.html",
     "params": {
       "name": "Delaware"
     },
     "title": "Delaware Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Delaware"
+      "/state-election-results-2026?name=Delaware",
+      "/state-election-results-2026-de"
     ],
     "destination": "/election-route-pages/52.html"
   },
@@ -607,13 +615,14 @@
   },
   {
     "path": "/united-states/2026/states/florida",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-fl.html",
     "params": {
       "name": "Florida"
     },
     "title": "Florida Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Florida"
+      "/state-election-results-2026?name=Florida",
+      "/state-election-results-2026-fl"
     ],
     "destination": "/election-route-pages/55.html"
   },
@@ -643,13 +652,14 @@
   },
   {
     "path": "/united-states/2026/states/georgia",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-ga.html",
     "params": {
       "name": "Georgia"
     },
     "title": "Georgia Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Georgia"
+      "/state-election-results-2026?name=Georgia",
+      "/state-election-results-2026-ga"
     ],
     "destination": "/election-route-pages/58.html"
   },
@@ -679,13 +689,14 @@
   },
   {
     "path": "/united-states/2026/states/hawaii",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-hi.html",
     "params": {
       "name": "Hawaii"
     },
     "title": "Hawaii Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Hawaii"
+      "/state-election-results-2026?name=Hawaii",
+      "/state-election-results-2026-hi"
     ],
     "destination": "/election-route-pages/61.html"
   },
@@ -715,13 +726,14 @@
   },
   {
     "path": "/united-states/2026/states/iowa",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-ia.html",
     "params": {
       "name": "Iowa"
     },
     "title": "Iowa Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Iowa"
+      "/state-election-results-2026?name=Iowa",
+      "/state-election-results-2026-ia"
     ],
     "destination": "/election-route-pages/64.html"
   },
@@ -751,13 +763,14 @@
   },
   {
     "path": "/united-states/2026/states/idaho",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-id.html",
     "params": {
       "name": "Idaho"
     },
     "title": "Idaho Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Idaho"
+      "/state-election-results-2026?name=Idaho",
+      "/state-election-results-2026-id"
     ],
     "destination": "/election-route-pages/67.html"
   },
@@ -787,13 +800,14 @@
   },
   {
     "path": "/united-states/2026/states/illinois",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-il.html",
     "params": {
       "name": "Illinois"
     },
     "title": "Illinois Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Illinois"
+      "/state-election-results-2026?name=Illinois",
+      "/state-election-results-2026-il"
     ],
     "destination": "/election-route-pages/70.html"
   },
@@ -823,13 +837,14 @@
   },
   {
     "path": "/united-states/2026/states/indiana",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-in.html",
     "params": {
       "name": "Indiana"
     },
     "title": "Indiana Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Indiana"
+      "/state-election-results-2026?name=Indiana",
+      "/state-election-results-2026-in"
     ],
     "destination": "/election-route-pages/73.html"
   },
@@ -859,13 +874,14 @@
   },
   {
     "path": "/united-states/2026/states/kansas",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-ks.html",
     "params": {
       "name": "Kansas"
     },
     "title": "Kansas Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Kansas"
+      "/state-election-results-2026?name=Kansas",
+      "/state-election-results-2026-ks"
     ],
     "destination": "/election-route-pages/76.html"
   },
@@ -895,13 +911,14 @@
   },
   {
     "path": "/united-states/2026/states/kentucky",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-ky.html",
     "params": {
       "name": "Kentucky"
     },
     "title": "Kentucky Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Kentucky"
+      "/state-election-results-2026?name=Kentucky",
+      "/state-election-results-2026-ky"
     ],
     "destination": "/election-route-pages/79.html"
   },
@@ -931,13 +948,14 @@
   },
   {
     "path": "/united-states/2026/states/louisiana",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-la.html",
     "params": {
       "name": "Louisiana"
     },
     "title": "Louisiana Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Louisiana"
+      "/state-election-results-2026?name=Louisiana",
+      "/state-election-results-2026-la"
     ],
     "destination": "/election-route-pages/82.html"
   },
@@ -967,13 +985,14 @@
   },
   {
     "path": "/united-states/2026/states/massachusetts",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-ma.html",
     "params": {
       "name": "Massachusetts"
     },
     "title": "Massachusetts Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Massachusetts"
+      "/state-election-results-2026?name=Massachusetts",
+      "/state-election-results-2026-ma"
     ],
     "destination": "/election-route-pages/85.html"
   },
@@ -1003,13 +1022,14 @@
   },
   {
     "path": "/united-states/2026/states/maryland",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-md.html",
     "params": {
       "name": "Maryland"
     },
     "title": "Maryland Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Maryland"
+      "/state-election-results-2026?name=Maryland",
+      "/state-election-results-2026-md"
     ],
     "destination": "/election-route-pages/88.html"
   },
@@ -1039,13 +1059,14 @@
   },
   {
     "path": "/united-states/2026/states/maine",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-me.html",
     "params": {
       "name": "Maine"
     },
     "title": "Maine Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Maine"
+      "/state-election-results-2026?name=Maine",
+      "/state-election-results-2026-me"
     ],
     "destination": "/election-route-pages/91.html"
   },
@@ -1075,13 +1096,14 @@
   },
   {
     "path": "/united-states/2026/states/michigan",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-mi.html",
     "params": {
       "name": "Michigan"
     },
     "title": "Michigan Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Michigan"
+      "/state-election-results-2026?name=Michigan",
+      "/state-election-results-2026-mi"
     ],
     "destination": "/election-route-pages/94.html"
   },
@@ -1111,13 +1133,14 @@
   },
   {
     "path": "/united-states/2026/states/minnesota",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-mn.html",
     "params": {
       "name": "Minnesota"
     },
     "title": "Minnesota Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Minnesota"
+      "/state-election-results-2026?name=Minnesota",
+      "/state-election-results-2026-mn"
     ],
     "destination": "/election-route-pages/97.html"
   },
@@ -1147,13 +1170,14 @@
   },
   {
     "path": "/united-states/2026/states/missouri",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-mo.html",
     "params": {
       "name": "Missouri"
     },
     "title": "Missouri Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Missouri"
+      "/state-election-results-2026?name=Missouri",
+      "/state-election-results-2026-mo"
     ],
     "destination": "/election-route-pages/100.html"
   },
@@ -1183,13 +1207,14 @@
   },
   {
     "path": "/united-states/2026/states/mississippi",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-ms.html",
     "params": {
       "name": "Mississippi"
     },
     "title": "Mississippi Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Mississippi"
+      "/state-election-results-2026?name=Mississippi",
+      "/state-election-results-2026-ms"
     ],
     "destination": "/election-route-pages/103.html"
   },
@@ -1219,13 +1244,14 @@
   },
   {
     "path": "/united-states/2026/states/montana",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-mt.html",
     "params": {
       "name": "Montana"
     },
     "title": "Montana Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Montana"
+      "/state-election-results-2026?name=Montana",
+      "/state-election-results-2026-mt"
     ],
     "destination": "/election-route-pages/106.html"
   },
@@ -1255,13 +1281,14 @@
   },
   {
     "path": "/united-states/2026/states/north-carolina",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-nc.html",
     "params": {
       "name": "North Carolina"
     },
     "title": "North Carolina Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=North+Carolina"
+      "/state-election-results-2026?name=North+Carolina",
+      "/state-election-results-2026-nc"
     ],
     "destination": "/election-route-pages/109.html"
   },
@@ -1291,13 +1318,14 @@
   },
   {
     "path": "/united-states/2026/states/north-dakota",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-nd.html",
     "params": {
       "name": "North Dakota"
     },
     "title": "North Dakota Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=North+Dakota"
+      "/state-election-results-2026?name=North+Dakota",
+      "/state-election-results-2026-nd"
     ],
     "destination": "/election-route-pages/112.html"
   },
@@ -1327,13 +1355,14 @@
   },
   {
     "path": "/united-states/2026/states/nebraska",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-ne.html",
     "params": {
       "name": "Nebraska"
     },
     "title": "Nebraska Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Nebraska"
+      "/state-election-results-2026?name=Nebraska",
+      "/state-election-results-2026-ne"
     ],
     "destination": "/election-route-pages/115.html"
   },
@@ -1363,13 +1392,14 @@
   },
   {
     "path": "/united-states/2026/states/new-hampshire",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-nh.html",
     "params": {
       "name": "New Hampshire"
     },
     "title": "New Hampshire Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=New+Hampshire"
+      "/state-election-results-2026?name=New+Hampshire",
+      "/state-election-results-2026-nh"
     ],
     "destination": "/election-route-pages/118.html"
   },
@@ -1399,13 +1429,14 @@
   },
   {
     "path": "/united-states/2026/states/new-jersey",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-nj.html",
     "params": {
       "name": "New Jersey"
     },
     "title": "New Jersey Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=New+Jersey"
+      "/state-election-results-2026?name=New+Jersey",
+      "/state-election-results-2026-nj"
     ],
     "destination": "/election-route-pages/121.html"
   },
@@ -1435,13 +1466,14 @@
   },
   {
     "path": "/united-states/2026/states/new-mexico",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-nm.html",
     "params": {
       "name": "New Mexico"
     },
     "title": "New Mexico Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=New+Mexico"
+      "/state-election-results-2026?name=New+Mexico",
+      "/state-election-results-2026-nm"
     ],
     "destination": "/election-route-pages/124.html"
   },
@@ -1471,13 +1503,14 @@
   },
   {
     "path": "/united-states/2026/states/nevada",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-nv.html",
     "params": {
       "name": "Nevada"
     },
     "title": "Nevada Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Nevada"
+      "/state-election-results-2026?name=Nevada",
+      "/state-election-results-2026-nv"
     ],
     "destination": "/election-route-pages/127.html"
   },
@@ -1507,13 +1540,14 @@
   },
   {
     "path": "/united-states/2026/states/new-york",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-ny.html",
     "params": {
       "name": "New York"
     },
     "title": "New York Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=New+York"
+      "/state-election-results-2026?name=New+York",
+      "/state-election-results-2026-ny"
     ],
     "destination": "/election-route-pages/130.html"
   },
@@ -1543,13 +1577,14 @@
   },
   {
     "path": "/united-states/2026/states/ohio",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-oh.html",
     "params": {
       "name": "Ohio"
     },
     "title": "Ohio Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Ohio"
+      "/state-election-results-2026?name=Ohio",
+      "/state-election-results-2026-oh"
     ],
     "destination": "/election-route-pages/133.html"
   },
@@ -1579,13 +1614,14 @@
   },
   {
     "path": "/united-states/2026/states/oklahoma",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-ok.html",
     "params": {
       "name": "Oklahoma"
     },
     "title": "Oklahoma Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Oklahoma"
+      "/state-election-results-2026?name=Oklahoma",
+      "/state-election-results-2026-ok"
     ],
     "destination": "/election-route-pages/136.html"
   },
@@ -1615,13 +1651,14 @@
   },
   {
     "path": "/united-states/2026/states/oregon",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-or.html",
     "params": {
       "name": "Oregon"
     },
     "title": "Oregon Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Oregon"
+      "/state-election-results-2026?name=Oregon",
+      "/state-election-results-2026-or"
     ],
     "destination": "/election-route-pages/139.html"
   },
@@ -1651,13 +1688,14 @@
   },
   {
     "path": "/united-states/2026/states/pennsylvania",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-pa.html",
     "params": {
       "name": "Pennsylvania"
     },
     "title": "Pennsylvania Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Pennsylvania"
+      "/state-election-results-2026?name=Pennsylvania",
+      "/state-election-results-2026-pa"
     ],
     "destination": "/election-route-pages/142.html"
   },
@@ -1687,13 +1725,14 @@
   },
   {
     "path": "/united-states/2026/states/rhode-island",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-ri.html",
     "params": {
       "name": "Rhode Island"
     },
     "title": "Rhode Island Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Rhode+Island"
+      "/state-election-results-2026?name=Rhode+Island",
+      "/state-election-results-2026-ri"
     ],
     "destination": "/election-route-pages/145.html"
   },
@@ -1723,13 +1762,14 @@
   },
   {
     "path": "/united-states/2026/states/south-carolina",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-sc.html",
     "params": {
       "name": "South Carolina"
     },
     "title": "South Carolina Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=South+Carolina"
+      "/state-election-results-2026?name=South+Carolina",
+      "/state-election-results-2026-sc"
     ],
     "destination": "/election-route-pages/148.html"
   },
@@ -1759,13 +1799,14 @@
   },
   {
     "path": "/united-states/2026/states/south-dakota",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-sd.html",
     "params": {
       "name": "South Dakota"
     },
     "title": "South Dakota Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=South+Dakota"
+      "/state-election-results-2026?name=South+Dakota",
+      "/state-election-results-2026-sd"
     ],
     "destination": "/election-route-pages/151.html"
   },
@@ -1795,13 +1836,14 @@
   },
   {
     "path": "/united-states/2026/states/tennessee",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-tn.html",
     "params": {
       "name": "Tennessee"
     },
     "title": "Tennessee Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Tennessee"
+      "/state-election-results-2026?name=Tennessee",
+      "/state-election-results-2026-tn"
     ],
     "destination": "/election-route-pages/154.html"
   },
@@ -1831,13 +1873,14 @@
   },
   {
     "path": "/united-states/2026/states/texas",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-tx.html",
     "params": {
       "name": "Texas"
     },
     "title": "Texas Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Texas"
+      "/state-election-results-2026?name=Texas",
+      "/state-election-results-2026-tx"
     ],
     "destination": "/election-route-pages/157.html"
   },
@@ -1867,13 +1910,14 @@
   },
   {
     "path": "/united-states/2026/states/utah",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-ut.html",
     "params": {
       "name": "Utah"
     },
     "title": "Utah Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Utah"
+      "/state-election-results-2026?name=Utah",
+      "/state-election-results-2026-ut"
     ],
     "destination": "/election-route-pages/160.html"
   },
@@ -1903,13 +1947,14 @@
   },
   {
     "path": "/united-states/2026/states/virginia",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-va.html",
     "params": {
       "name": "Virginia"
     },
     "title": "Virginia Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Virginia"
+      "/state-election-results-2026?name=Virginia",
+      "/state-election-results-2026-va"
     ],
     "destination": "/election-route-pages/163.html"
   },
@@ -1939,13 +1984,14 @@
   },
   {
     "path": "/united-states/2026/states/vermont",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-vt.html",
     "params": {
       "name": "Vermont"
     },
     "title": "Vermont Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Vermont"
+      "/state-election-results-2026?name=Vermont",
+      "/state-election-results-2026-vt"
     ],
     "destination": "/election-route-pages/166.html"
   },
@@ -1975,13 +2021,14 @@
   },
   {
     "path": "/united-states/2026/states/washington",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-wa.html",
     "params": {
       "name": "Washington"
     },
     "title": "Washington Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Washington"
+      "/state-election-results-2026?name=Washington",
+      "/state-election-results-2026-wa"
     ],
     "destination": "/election-route-pages/169.html"
   },
@@ -2011,13 +2058,14 @@
   },
   {
     "path": "/united-states/2026/states/wisconsin",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-wi.html",
     "params": {
       "name": "Wisconsin"
     },
     "title": "Wisconsin Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Wisconsin"
+      "/state-election-results-2026?name=Wisconsin",
+      "/state-election-results-2026-wi"
     ],
     "destination": "/election-route-pages/172.html"
   },
@@ -2047,13 +2095,14 @@
   },
   {
     "path": "/united-states/2026/states/west-virginia",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-wv.html",
     "params": {
       "name": "West Virginia"
     },
     "title": "West Virginia Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=West+Virginia"
+      "/state-election-results-2026?name=West+Virginia",
+      "/state-election-results-2026-wv"
     ],
     "destination": "/election-route-pages/175.html"
   },
@@ -2083,13 +2132,14 @@
   },
   {
     "path": "/united-states/2026/states/wyoming",
-    "template": "state-election-results-2026.html",
+    "template": "state-election-results-2026-wy.html",
     "params": {
       "name": "Wyoming"
     },
     "title": "Wyoming Election Results 2026 | Polycivic",
     "aliases": [
-      "/state-election-results-2026?name=Wyoming"
+      "/state-election-results-2026?name=Wyoming",
+      "/state-election-results-2026-wy"
     ],
     "destination": "/election-route-pages/178.html"
   },
@@ -8687,469 +8737,505 @@
   },
   {
     "path": "/united-states/2026/governor/alaska",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-ak-results.html",
     "params": {
       "office": "governor",
       "id": "2010"
     },
     "title": "Alaska Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=2010"
+      "/race-result-2026?office=governor&id=2010",
+      "/governor-2026-ak-results"
     ],
     "destination": "/election-route-pages/650.html"
   },
   {
     "path": "/united-states/2026/governor/alabama",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-al-results.html",
     "params": {
       "office": "governor",
       "id": "1019"
     },
     "title": "Alabama Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=1019"
+      "/race-result-2026?office=governor&id=1019",
+      "/governor-2026-al-results"
     ],
     "destination": "/election-route-pages/651.html"
   },
   {
     "path": "/united-states/2026/governor/arkansas",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-ar-results.html",
     "params": {
       "office": "governor",
       "id": "5626"
     },
     "title": "Arkansas Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=5626"
+      "/race-result-2026?office=governor&id=5626",
+      "/governor-2026-ar-results"
     ],
     "destination": "/election-route-pages/652.html"
   },
   {
     "path": "/united-states/2026/governor/arizona",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-az-results.html",
     "params": {
       "office": "governor",
       "id": "3014"
     },
     "title": "Arizona Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=3014"
+      "/race-result-2026?office=governor&id=3014",
+      "/governor-2026-az-results"
     ],
     "destination": "/election-route-pages/653.html"
   },
   {
     "path": "/united-states/2026/governor/california",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-ca-results.html",
     "params": {
       "office": "governor",
       "id": "6123"
     },
     "title": "California Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=6123"
+      "/race-result-2026?office=governor&id=6123",
+      "/governor-2026-ca-results"
     ],
     "destination": "/election-route-pages/654.html"
   },
   {
     "path": "/united-states/2026/governor/colorado",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-co-results.html",
     "params": {
       "office": "governor",
       "id": "6619"
     },
     "title": "Colorado Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=6619"
+      "/race-result-2026?office=governor&id=6619",
+      "/governor-2026-co-results"
     ],
     "destination": "/election-route-pages/655.html"
   },
   {
     "path": "/united-states/2026/governor/florida",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-fl-results.html",
     "params": {
       "office": "governor",
       "id": "10045"
     },
     "title": "Florida Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=10045"
+      "/race-result-2026?office=governor&id=10045",
+      "/governor-2026-fl-results"
     ],
     "destination": "/election-route-pages/656.html"
   },
   {
     "path": "/united-states/2026/governor/georgia",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-ga-results.html",
     "params": {
       "office": "governor",
       "id": "12029"
     },
     "title": "Georgia Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=12029"
+      "/race-result-2026?office=governor&id=12029",
+      "/governor-2026-ga-results"
     ],
     "destination": "/election-route-pages/657.html"
   },
   {
     "path": "/united-states/2026/governor/hawaii",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-hi-results.html",
     "params": {
       "office": "governor",
       "id": "12480"
     },
     "title": "Hawaii Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=12480"
+      "/race-result-2026?office=governor&id=12480",
+      "/governor-2026-hi-results"
     ],
     "destination": "/election-route-pages/658.html"
   },
   {
     "path": "/united-states/2026/governor/iowa",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-ia-results.html",
     "params": {
       "office": "governor",
       "id": "17076"
     },
     "title": "Iowa Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=17076"
+      "/race-result-2026?office=governor&id=17076",
+      "/governor-2026-ia-results"
     ],
     "destination": "/election-route-pages/659.html"
   },
   {
     "path": "/united-states/2026/governor/idaho",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-id-results.html",
     "params": {
       "office": "governor",
       "id": "13676"
     },
     "title": "Idaho Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=13676"
+      "/race-result-2026?office=governor&id=13676",
+      "/governor-2026-id-results"
     ],
     "destination": "/election-route-pages/660.html"
   },
   {
     "path": "/united-states/2026/governor/illinois",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-il-results.html",
     "params": {
       "office": "governor",
       "id": "15989"
     },
     "title": "Illinois Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=15989"
+      "/race-result-2026?office=governor&id=15989",
+      "/governor-2026-il-results"
     ],
     "destination": "/election-route-pages/661.html"
   },
   {
     "path": "/united-states/2026/governor/kansas",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-ks-results.html",
     "params": {
       "office": "governor",
       "id": "17559"
     },
     "title": "Kansas Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=17559"
+      "/race-result-2026?office=governor&id=17559",
+      "/governor-2026-ks-results"
     ],
     "destination": "/election-route-pages/662.html"
   },
   {
     "path": "/united-states/2026/governor/maryland",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-md-results.html",
     "params": {
       "office": "governor",
       "id": "22091"
     },
     "title": "Maryland Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=22091"
+      "/race-result-2026?office=governor&id=22091",
+      "/governor-2026-md-results"
     ],
     "destination": "/election-route-pages/663.html"
   },
   {
     "path": "/united-states/2026/governor/michigan",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-mi-results.html",
     "params": {
       "office": "governor",
       "id": "24074"
     },
     "title": "Michigan Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=24074"
+      "/race-result-2026?office=governor&id=24074",
+      "/governor-2026-mi-results"
     ],
     "destination": "/election-route-pages/664.html"
   },
   {
     "path": "/united-states/2026/governor/minnesota",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-mn-results.html",
     "params": {
       "office": "governor",
       "id": "24704"
     },
     "title": "Minnesota Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=24704"
+      "/race-result-2026?office=governor&id=24704",
+      "/governor-2026-mn-results"
     ],
     "destination": "/election-route-pages/665.html"
   },
   {
     "path": "/united-states/2026/governor/nebraska",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-ne-results.html",
     "params": {
       "office": "governor",
       "id": "28006"
     },
     "title": "Nebraska Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=28006"
+      "/race-result-2026?office=governor&id=28006",
+      "/governor-2026-ne-results"
     ],
     "destination": "/election-route-pages/666.html"
   },
   {
     "path": "/united-states/2026/governor/new-mexico",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-nm-results.html",
     "params": {
       "office": "governor",
       "id": "32238"
     },
     "title": "New Mexico Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=32238"
+      "/race-result-2026?office=governor&id=32238",
+      "/governor-2026-nm-results"
     ],
     "destination": "/election-route-pages/667.html"
   },
   {
     "path": "/united-states/2026/governor/nevada",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-nv-results.html",
     "params": {
       "office": "governor",
       "id": "29861"
     },
     "title": "Nevada Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=29861"
+      "/race-result-2026?office=governor&id=29861",
+      "/governor-2026-nv-results"
     ],
     "destination": "/election-route-pages/668.html"
   },
   {
     "path": "/united-states/2026/governor/new-york",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-ny-results.html",
     "params": {
       "office": "governor",
       "id": "39760"
     },
     "title": "New York Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=39760"
+      "/race-result-2026?office=governor&id=39760",
+      "/governor-2026-ny-results"
     ],
     "destination": "/election-route-pages/669.html"
   },
   {
     "path": "/united-states/2026/governor/ohio",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-oh-results.html",
     "params": {
       "office": "governor",
       "id": "36005"
     },
     "title": "Ohio Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=36005"
+      "/race-result-2026?office=governor&id=36005",
+      "/governor-2026-oh-results"
     ],
     "destination": "/election-route-pages/670.html"
   },
   {
     "path": "/united-states/2026/governor/oklahoma",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-ok-results.html",
     "params": {
       "office": "governor",
       "id": "37857"
     },
     "title": "Oklahoma Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=37857"
+      "/race-result-2026?office=governor&id=37857",
+      "/governor-2026-ok-results"
     ],
     "destination": "/election-route-pages/671.html"
   },
   {
     "path": "/united-states/2026/governor/oregon",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-or-results.html",
     "params": {
       "office": "governor",
       "id": "38019"
     },
     "title": "Oregon Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=38019"
+      "/race-result-2026?office=governor&id=38019",
+      "/governor-2026-or-results"
     ],
     "destination": "/election-route-pages/672.html"
   },
   {
     "path": "/united-states/2026/governor/pennsylvania",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-pa-results.html",
     "params": {
       "office": "governor",
       "id": "39292"
     },
     "title": "Pennsylvania Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=39292"
+      "/race-result-2026?office=governor&id=39292",
+      "/governor-2026-pa-results"
     ],
     "destination": "/election-route-pages/673.html"
   },
   {
     "path": "/united-states/2026/governor/south-carolina",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-sc-results.html",
     "params": {
       "office": "governor",
       "id": "41191"
     },
     "title": "South Carolina Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=41191"
+      "/race-result-2026?office=governor&id=41191",
+      "/governor-2026-sc-results"
     ],
     "destination": "/election-route-pages/674.html"
   },
   {
     "path": "/united-states/2026/governor/south-dakota",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-sd-results.html",
     "params": {
       "office": "governor",
       "id": "42222"
     },
     "title": "South Dakota Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=42222"
+      "/race-result-2026?office=governor&id=42222",
+      "/governor-2026-sd-results"
     ],
     "destination": "/election-route-pages/675.html"
   },
   {
     "path": "/united-states/2026/governor/tennessee",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-tn-results.html",
     "params": {
       "office": "governor",
       "id": "43440"
     },
     "title": "Tennessee Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=43440"
+      "/race-result-2026?office=governor&id=43440",
+      "/governor-2026-tn-results"
     ],
     "destination": "/election-route-pages/676.html"
   },
   {
     "path": "/united-states/2026/governor/texas",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-tx-results.html",
     "params": {
       "office": "governor",
       "id": "45901"
     },
     "title": "Texas Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=45901"
+      "/race-result-2026?office=governor&id=45901",
+      "/governor-2026-tx-results"
     ],
     "destination": "/election-route-pages/677.html"
   },
   {
     "path": "/united-states/2026/governor/wisconsin",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-wi-results.html",
     "params": {
       "office": "governor",
       "id": "50016"
     },
     "title": "Wisconsin Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=50016"
+      "/race-result-2026?office=governor&id=50016",
+      "/governor-2026-wi-results"
     ],
     "destination": "/election-route-pages/678.html"
   },
   {
     "path": "/united-states/2026/governor/wyoming",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-wy-results.html",
     "params": {
       "office": "governor",
       "id": "51403"
     },
     "title": "Wyoming Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=51403"
+      "/race-result-2026?office=governor&id=51403",
+      "/governor-2026-wy-results"
     ],
     "destination": "/election-route-pages/679.html"
   },
   {
     "path": "/united-states/2026/governor/connecticut",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-ct-results.html",
     "params": {
       "office": "governor",
       "id": "7019"
     },
     "title": "Connecticut Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=7019"
+      "/race-result-2026?office=governor&id=7019",
+      "/governor-2026-ct-results"
     ],
     "destination": "/election-route-pages/680.html"
   },
   {
     "path": "/united-states/2026/governor/massachusetts",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-ma-results.html",
     "params": {
       "office": "governor",
       "id": "22957"
     },
     "title": "Massachusetts Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=22957"
+      "/race-result-2026?office=governor&id=22957",
+      "/governor-2026-ma-results"
     ],
     "destination": "/election-route-pages/681.html"
   },
   {
     "path": "/united-states/2026/governor/maine",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-me-results.html",
     "params": {
       "office": "governor",
       "id": "20646"
     },
     "title": "Maine Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=20646"
+      "/race-result-2026?office=governor&id=20646",
+      "/governor-2026-me-results"
     ],
     "destination": "/election-route-pages/682.html"
   },
   {
     "path": "/united-states/2026/governor/new-hampshire",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-nh-results.html",
     "params": {
       "office": "governor",
       "id": "30005"
     },
     "title": "New Hampshire Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=30005"
+      "/race-result-2026?office=governor&id=30005",
+      "/governor-2026-nh-results"
     ],
     "destination": "/election-route-pages/683.html"
   },
   {
     "path": "/united-states/2026/governor/rhode-island",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-ri-results.html",
     "params": {
       "office": "governor",
       "id": "40005"
     },
     "title": "Rhode Island Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=40005"
+      "/race-result-2026?office=governor&id=40005",
+      "/governor-2026-ri-results"
     ],
     "destination": "/election-route-pages/684.html"
   },
   {
     "path": "/united-states/2026/governor/vermont",
-    "template": "race-result-2026.html",
+    "template": "governor-2026-vt-results.html",
     "params": {
       "office": "governor",
       "id": "46375"
     },
     "title": "Vermont Governor Election Results 2026 | Polycivic",
     "aliases": [
-      "/race-result-2026?office=governor&id=46375"
+      "/race-result-2026?office=governor&id=46375",
+      "/governor-2026-vt-results"
     ],
     "destination": "/election-route-pages/685.html"
   },

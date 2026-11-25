@@ -21,7 +21,7 @@
     ? `./senate-2026-${race.state.toLowerCase()}-results.html`
     : race.office === "H"
       ? `./house-2026-${race.state.toLowerCase()}-${Number(race.seatNumber)}-results.html`
-      : `./race-result-2026.html?office=governor&id=${encodeURIComponent(race.id)}`;
+      : `./governor-2026-${race.state.toLowerCase()}-results.html`;
   const href = race => window.polycivicElectionHref(legacyRaceHref(race));
   const stateHref = state => `./state-election-results-2026.html?name=${encodeURIComponent(state)}`;
   const margin = race => {
@@ -224,10 +224,10 @@
     const requestedRace = document.body.dataset.raceId || params.get("id");
     let selected = [];
     if (office === "race" && offices[requestedOffice]) selected = rows(requestedOffice).filter(r => r.id === requestedRace).map(r => [requestedOffice, r]);
-    else if (office === "state") for (const key of ["senate", "governor", "house"]) selected.push(...rows(key).filter(r => r.stateName === (params.get("name") || "Alabama")).sort((a, b) => Number(a.seatNumber) - Number(b.seatNumber)).map(r => [key, r]));
+    else if (office === "state") for (const key of ["senate", "governor", "house"]) selected.push(...rows(key).filter(r => r.stateName === (document.body.dataset.resultsState || params.get("name") || "Alabama")).sort((a, b) => Number(a.seatNumber) - Number(b.seatNumber)).map(r => [key, r]));
     const content = document.getElementById("results-detail-content"), heading = document.getElementById("results-detail-title");
     if (!selected.length) { heading.textContent = "Results not found"; content.innerHTML = '<p>Select a state from <a href="./state-results-2026.html">State Results</a>.</p>'; return; }
-    if (office === "race" && ["senate", "house"].includes(requestedOffice) && !document.body.dataset.raceId) {
+    if (office === "race" && ["senate", "house", "governor"].includes(requestedOffice) && !document.body.dataset.raceId) {
       window.location.replace(href(selected[0][1]) + window.location.hash);
       return;
     }

@@ -45,7 +45,11 @@ def build():
  states['DC']='District of Columbia'
  for code,name in sorted(states.items()):
   for year in [2024,2026]:
-   detail(f'/united-states/{year}/states/{slug(name)}',f'state-election-results-{year}.html',{'name':name},f'{name} Election Results {year} | Polycivic')
+   if year==2026 and code!='DC':
+    state_template=f'state-election-results-2026-{code.lower()}.html'
+    add(f'/united-states/2026/states/{slug(name)}',state_template,{'name':name},f'{name} Election Results 2026 | Polycivic',['/state-election-results-2026?'+urlencode({'name':name}),'/'+state_template.removesuffix('.html')])
+   else:
+    detail(f'/united-states/{year}/states/{slug(name)}',f'state-election-results-{year}.html',{'name':name},f'{name} Election Results {year} | Polycivic')
   detail(f'/united-states/2024/presidency/{slug(name)}','state-result.html',{'name':name},f'{name} Presidential Election Results 2024 | Polycivic')
  for office,section in [('house','house-of-reps'),('senate','senate'),('governor','governor')]:
   for race in data['offices'][office]['races']:
@@ -54,9 +58,9 @@ def build():
    path=f'/united-states/2026/{section}/{slug(name)}{suffix}'
    params={'office':office,'id':race['id']}
    title=f'{name}{suffix.replace("-", " ").title()} {"U.S. House" if office=="house" else "U.S. Senate" if office=="senate" else "Governor"} Election Results 2026 | Polycivic'
-   template=f'house-2026-{code}-{number}-results.html' if office=='house' else f'senate-2026-{code}-results.html' if office=='senate' else 'race-result-2026.html'
+   template=f'house-2026-{code}-{number}-results.html' if office=='house' else f'senate-2026-{code}-results.html' if office=='senate' else f'governor-2026-{code}-results.html'
    aliases=['/race-result-2026?'+urlencode(params)]
-   if office!='governor':aliases.append('/'+template.removesuffix('.html'))
+   aliases.append('/'+template.removesuffix('.html'))
    add(path,template,params,title,aliases)
  for district in load('house-2024-data.js')['districts'].values():
   suffix='at-large' if district['state'] in AT_LARGE else str(int(district['district']))
