@@ -86,7 +86,7 @@
         if(!row) return hideTooltip();
         const locality = / (County|City)$|^House District /.test(row.county) ? row.county : `${row.county} County`;
         const reportingNote = row.reportingNote ? `<p class="precinct-detail-subtitle">${esc(row.reportingNote)}</p>` : '';
-        tooltip.innerHTML = `<h3>${esc(row.name)}</h3><p class="precinct-detail-subtitle">${esc(locality)} · ${config.election} · ${number(row.total)} votes</p>${reportingNote}<table><thead><tr><th>Candidate</th><th>Votes</th><th>Share</th></tr></thead><tbody>${sorted(row).map(c=>`<tr><td><span class="precinct-candidate-party" data-party="${esc(c.party)}">${esc(c.party)}</span>${esc(c.name)}</td><td>${number(c.votes)}</td><td>${(row.total?c.votes/row.total*100:0).toFixed(1)}%</td></tr>`).join('')}</tbody></table>`;
+        tooltip.innerHTML = `<h3>${esc(row.name)}</h3><p class="precinct-detail-subtitle">${esc(locality)} · ${config.election} · ${number(row.total)} votes</p>${reportingNote}<table><thead><tr><th>Candidate</th><th>Votes</th><th>Share</th></tr></thead><tbody>${sorted(row).slice(0, 3).map(c=>`<tr><td><span class="precinct-candidate-party" data-party="${esc(c.party)}">${esc(c.party)}</span>${esc(c.name)}</td><td>${number(c.votes)}</td><td>${(row.total?c.votes/row.total*100:0).toFixed(1)}%</td></tr>`).join('')}</tbody></table>`;
         tooltip.hidden = false;
         const box = tooltip.getBoundingClientRect();
         tooltip.style.left = `${Math.max(8,Math.min(event.clientX+16,innerWidth-box.width-8))}px`;

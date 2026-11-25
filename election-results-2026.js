@@ -84,20 +84,24 @@
     if (!winner(race)) return { D: "#8fb4cf", R: "#d89a9a", I: "#d7c58f" }[p];
     return colors[p];
   }
+  const supplementMatches = (race, supplement) => supplement?.snapshotVotes
+    ? Object.keys(supplement.snapshotVotes).length === race.candidates.length && race.candidates.every(c => supplement.snapshotVotes[c.id] === c.votes)
+    : supplement?.snapshotCapturedAt === data.capturedAt;
   function candidateRows(race, tooltip = false) {
     const supplement = window.RACE_CANDIDATES_2026?.[race.id];
     const named = race.candidates.filter(c => c.first);
     const known = new Set(named.map(c => c.id));
-    const sameSnapshot = supplement?.snapshotCapturedAt === data.capturedAt;
+    const sameSnapshot = supplementMatches(race, supplement);
     const extra = (supplement?.candidates || []).filter(c => !known.has(c.id)).map(c => sameSnapshot ? c : { ...c, votes: null, percent: null });
     const all = [...named, ...extra].sort((a, b) => (b.votes ?? -1) - (a.votes ?? -1));
-    const list = tooltip && race.office === "H" ? all.slice(0, 3) : all;
+    const list = tooltip ? all.slice(0, 3) : all;
     return list.map(c => `<tr class="${winner(race) === c ? "winner-row" : ""}"><td>${tooltip ? `<div class="tooltip-candidate"><span class="tooltip-candidate-bar ${tone(party(c.party))}"></span><span>${esc(candidateName(c))}</span>${c.incumbent ? '<span class="tooltip-incumbent">Inc.</span>' : ""}</div>` : `<div class="detail-candidate-cell">${portrait(c)}<span class="candidate-name-inline ${tone(party(c.party))}">${esc(candidateName(c))}${c.incumbent ? ' <span class="tooltip-incumbent">Incumbent</span>' : ""}</span></div>`}</td><td>${esc(partyName(c.party))}</td><td>${c.votes == null ? '<span aria-label="Individual total not separately reported">—</span>' : number(c.votes)}</td><td>${pct(c.percent, 2)}</td></tr>`).join("");
   }
   function groupedVoteNote(race) {
     const supplement = window.RACE_CANDIDATES_2026?.[race.id];
-    if (supplement?.fullyReconciled && supplement.snapshotCapturedAt === data.capturedAt) return "";
-    const total = race.candidates.filter(c => !c.first).reduce((sum, c) => sum + c.votes, 0);
+    const current = supplementMatches(race, supplement);
+    if (supplement?.fullyReconciled && current) return "";
+    const total = current ? supplement.groupedVotes : race.candidates.filter(c => !c.first).reduce((sum, c) => sum + c.votes, 0);
     return total ? `<p class="detail-candidate-note">${number(total)} additional votes are reported together by the results provider; individual totals are unavailable. A dash indicates an individual total is not separately reported.</p>` : "";
   }
   const tooltipHTML = race => `<div class="tooltip-header"><div class="tooltip-title">${esc(title(race))}</div><div class="tooltip-ev">${pct(race.eevp)} in</div></div>${!winner(race) ? '<p class="results-2026-call">Uncalled</p>' : race.flippedSeat ? '<p class="results-2026-call">Flip</p>' : ""}<table><thead><tr><th style="text-align:left">Candidate</th><th>Party</th><th>Votes</th><th>Pct.</th></tr></thead><tbody>${candidateRows(race, true)}</tbody></table>`;

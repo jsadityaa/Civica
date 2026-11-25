@@ -28,7 +28,7 @@ def get_race(race):
         records = json.loads(download(url))["results"]
         clean = []
         for record in records:
-            if record.get("test") is not False or record.get("resultsType") != "live" or record.get("office") != race["office"] or str(record.get("id")) != race["id"] or record.get("state") != race["state"]:
+            if record.get("test") is not False or record.get("resultsType") not in {"live", "certified"} or record.get("office") != race["office"] or str(record.get("id")) != race["id"] or record.get("state") != race["state"]:
                 raise ValueError("County feed does not match the live race: " + url)
             choices = [{k: c[k] for k in ["first", "last", "party", "id", "votes", "percent", "incumbent"] if k in c} for c in record["candidates"]]
             # The feed repeats statewide winner markers on county rows. Drop
