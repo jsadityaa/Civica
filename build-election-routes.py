@@ -13,7 +13,20 @@ def load(name):
  return json.loads((ROOT/name).read_text().partition('=')[2].strip().removesuffix(';'))
 def slug(value):return re.sub(r'[^a-z0-9]+','-',value.lower()).strip('-')
 
+def social_thumbnail(html, image):
+ """Set a static preview for crawlers, without image-alt metadata."""
+ html=re.sub(r'\s*<meta\b(?=[^>]*(?:property|name)="(?:og:image(?::[^"]+)?|twitter:image(?::[^"]+)?|twitter:card)")[^>]*>', '', html)
+ url='https://polycivic.com'+image
+ values=[('property','og:image',url),('property','og:image:secure_url',url),
+         ('property','og:image:type','image/png'),('property','og:image:width','1200'),
+         ('property','og:image:height','630'),('name','twitter:card','summary_large_image'),
+         ('name','twitter:image',url)]
+ block=''.join(f'  <meta {kind}="{key}" content="{escape(value,quote=True)}" />\n' for kind,key,value in values)
+ return html.replace('</head>',block+'</head>',1)
+
 def build():
+ thumbnails_path=ROOT/'thumbnails-2024.json'
+ thumbnails=json.loads(thumbnails_path.read_text()) if thumbnails_path.exists() else {}
  routes=[]
  def add(path,template,params=None,title=None,aliases=None):
   if any(r['path']==path for r in routes):raise ValueError('Duplicate route '+path)
@@ -92,6 +105,12 @@ def build():
   updated=re.sub(r'(<a\b[^>]*\bhref=")([^"]*)(")',lambda m:m[1]+escape(clean_link(m[2]),quote=True)+m[3],original)
   updated=re.sub(r'(<(?:link rel="canonical" href|meta property="og:url" content)=")([^"]*)(")',lambda m:m[1]+escape(clean_link(m[2]),quote=True)+m[3],updated)
   if updated!=original:page_path.write_text(updated)
+ # The source overview files also need the exported preview when opened directly.
+ for route in routes:
+  if route['path'] in thumbnails and not route['params']:
+   template=ROOT/route['template']
+   original=template.read_text();updated=social_thumbnail(original,thumbnails[route['path']])
+   if updated!=original:template.write_text(updated)
  # Route copies use root-based assets and supply the existing rendering code's parameters.
  out=ROOT/'election-route-pages';out.mkdir(exist_ok=True)
  for i,r in enumerate(routes):
@@ -107,6 +126,7 @@ def build():
   if r['title']:
    html=re.sub(r'<title>.*?</title>','<title>'+escape(r['title'])+'</title>',html,count=1)
    html=re.sub(r'(<meta (?:property="og:title"|name="twitter:title") content=")[^"]*',lambda m:m[1]+escape(r['title'],quote=True),html)
+  if r['path'] in thumbnails:html=social_thumbnail(html,thumbnails[r['path']])
   (out/f'{i}.html').write_text(html)
   r['destination']=f'/election-route-pages/{i}.html'
  (ROOT/'election-routes.json').write_text(json.dumps(routes,indent=2)+'\n')
