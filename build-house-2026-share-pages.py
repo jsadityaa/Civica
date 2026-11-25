@@ -44,7 +44,7 @@ def build(archives):
         title = f'{label} U.S. House Election Results 2026 | Polycivic'
         description = f'View the 2026 U.S. House election results, candidate vote totals, and district map for {label} on Polycivic.'
         district_slug = 'at-large' if race['state'] in AT_LARGE else str(district)
-        url = f"https://polycivic.com/united-states/2026/house-of-reps/{race['stateName'].lower().replace(' ', '-')}-{district_slug}"
+        url = f"https://polycivic.com/elections/united-states/2026/house-of-reps/{race['stateName'].lower().replace(' ', '-')}-{district_slug}"
         image_url = f'https://polycivic.com/assets/social/house-2026/{code}-{district}.png'
         page = re.sub(r'<title>.*?</title>', f'<title>{escape(title)}</title>', template, count=1)
         for name, value in [('description', description), ('og:title', title), ('og:description', description), ('og:url', url)]:

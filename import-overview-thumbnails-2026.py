@@ -9,11 +9,11 @@ from zipfile import ZipFile
 
 ROOT = Path(__file__).resolve().parent
 TARGETS = [
-    ('1.png', 'senate', 'senate-2026-results.html', '/united-states/2026/senate'),
-    ('2.png', 'governor', 'governor-2026-results.html', '/united-states/2026/governor'),
-    ('3.png', 'house', 'house-2026-results.html', '/united-states/2026/house-of-reps'),
-    ('4.png', 'states', 'state-results-2026.html', '/united-states/2026/states'),
-    ('5.png', 'precinct-maps', 'precinct-map-2026.html', '/united-states/2026/senate/precinct-maps'),
+    ('1.png', 'senate', 'senate-2026-results.html', '/elections/united-states/2026/senate'),
+    ('2.png', 'governor', 'governor-2026-results.html', '/elections/united-states/2026/governor'),
+    ('3.png', 'house', 'house-2026-results.html', '/elections/united-states/2026/house-of-reps'),
+    ('4.png', 'states', 'state-results-2026.html', '/elections/united-states/2026/states'),
+    ('5.png', 'precinct-maps', 'precinct-map-2026.html', '/elections/united-states/2026/senate/precinct-maps'),
 ]
 
 

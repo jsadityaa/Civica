@@ -8,7 +8,7 @@ from pathlib import Path
 from zipfile import ZipFile
 
 ROOT = Path(__file__).resolve().parent
-PREFIX = '/united-states/2024/'
+PREFIX = '/elections/united-states/2024/'
 
 
 def image_for(route, districts):

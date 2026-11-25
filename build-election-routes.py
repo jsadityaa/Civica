@@ -13,6 +13,11 @@ def load(name):
  return json.loads((ROOT/name).read_text().partition('=')[2].strip().removesuffix(';'))
 def slug(value):return re.sub(r'[^a-z0-9]+','-',value.lower()).strip('-')
 
+def section_path(path):
+ if path.startswith(('/elections/', '/forecasts/')):return path
+ if '/forecasts/' in path:return '/forecasts'+path.replace('/forecasts/', '/', 1)
+ return '/elections'+path
+
 def social_thumbnail(html, image):
  """Set a static preview for crawlers, without image-alt metadata."""
  html=re.sub(r'\s*<meta\b(?=[^>]*(?:property|name)="(?:og:image(?::[^"]+)?|twitter:image(?::[^"]+)?|twitter:card)")[^>]*>', '', html)
@@ -26,11 +31,14 @@ def social_thumbnail(html, image):
 
 def build():
  thumbnails_path=ROOT/'thumbnails-2024.json'
- thumbnails=json.loads(thumbnails_path.read_text()) if thumbnails_path.exists() else {}
+ thumbnails={section_path(path):image for path,image in json.loads(thumbnails_path.read_text()).items()} if thumbnails_path.exists() else {}
  routes=[]
  def add(path,template,params=None,title=None,aliases=None):
+  previous_path=path;path=section_path(path)
   if any(r['path']==path for r in routes):raise ValueError('Duplicate route '+path)
-  routes.append(dict(path=path,template=template,params=params or {},title=title,aliases=aliases if aliases is not None else ['/'+template.removesuffix('.html')]))
+  aliases=list(aliases if aliases is not None else ['/'+template.removesuffix('.html')])
+  if previous_path!=path:aliases.append(previous_path)
+  routes.append(dict(path=path,template=template,params=params or {},title=title,aliases=aliases))
  def detail(path,template,params,title):
   add(path,template,params,title,['/'+template.removesuffix('.html')+'?'+urlencode(params)])
  # Results and forecasts always occupy different namespaces.
@@ -123,6 +131,7 @@ def build():
   html=re.sub(r'<link rel="canonical"[^>]*>','<link rel="canonical" href="'+url+'" />',html)
   if 'rel="canonical"' not in html:html=html.replace('</head>','  <link rel="canonical" href="'+url+'" />\n</head>')
   html=re.sub(r'(<meta property="og:url" content=")[^"]*',lambda m:m[1]+url,html)
+  if 'property="og:url"' not in html:html=html.replace('</head>','  <meta property="og:url" content="'+url+'" />\n</head>',1)
   if r['title']:
    html=re.sub(r'<title>.*?</title>','<title>'+escape(r['title'])+'</title>',html,count=1)
    html=re.sub(r'(<meta (?:property="og:title"|name="twitter:title") content=")[^"]*',lambda m:m[1]+escape(r['title'],quote=True),html)
@@ -137,6 +146,7 @@ def build():
  config=json.loads((ROOT/'firebase.json').read_text());hosting=config['hosting']
  aliases={a:r['path'] for r in routes for a in r['aliases'] if '?' not in a}
  retained=[r for r in hosting['redirects'] if r['source'].removesuffix('.html') not in aliases]
+ retained=[{**r,'destination':clean_link(r['destination'])} for r in retained]
  hosting['redirects']=[{'source':a+ext,'destination':path,'type':301} for a,path in aliases.items() for ext in ['', '.html']]+retained
  hosting['rewrites']=[{'source':r['path'],'destination':r['destination']} for r in routes]+[r for r in hosting['rewrites'] if r['source'] not in aliases and not r.get('destination','').startswith('/election-route-pages/')]
  for header in list(hosting['headers']):
@@ -154,7 +164,7 @@ def build():
  existing={loc.text for loc in urlset.findall('{'+ns+'}url/{'+ns+'}loc')}
  for route in routes:
   url='https://polycivic.com'+route['path']
-  if '/forecasts/' in route['path'] or route['path'].startswith('/brazil/') or url in existing:continue
+  if route['path'].startswith(('/forecasts/', '/elections/brazil/')) or url in existing:continue
   el=ET.SubElement(urlset,'{'+ns+'}url');ET.SubElement(el,'{'+ns+'}loc').text=url;existing.add(url)
  tree.write(sitemap,encoding='unicode',xml_declaration=True)
  (ROOT/'firebase.json').write_text(json.dumps(config,indent=2)+'\n')

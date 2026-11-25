@@ -61,7 +61,7 @@ def build(thumbnails_zip=None):
         width, height = struct.unpack(">II", image_bytes[16:24])
         title = f"{state} U.S. Senate {'Special Election' if code in {'fl', 'oh'} else 'Election'} Results 2026 | Polycivic"
         description = f"View {state}’s 2026 U.S. Senate election results, candidate vote totals, and county map on Polycivic."
-        url = f"https://polycivic.com/united-states/2026/senate/{state.lower().replace(chr(32), chr(45))}"
+        url = f"https://polycivic.com/elections/united-states/2026/senate/{state.lower().replace(chr(32), chr(45))}"
         image_url = f"https://polycivic.com/assets/social/senate-2026/{code}.png"
         page = template
         page = re.sub(r'<title>.*?</title>', f'<title>{escape(title)}</title>', page, count=1)

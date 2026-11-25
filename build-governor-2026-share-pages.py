@@ -38,7 +38,7 @@ def build(archive_path=None):
             raise ValueError(f'Expected 1200 × 630 PNG: {state}')
         title = f'{state} Governor Election Results 2026 | Polycivic'
         description = f'View {state}’s 2026 gubernatorial election results, candidate vote totals, and county map on Polycivic.'
-        url = 'https://polycivic.com/united-states/2026/governor/' + state.lower().replace(' ', '-')
+        url = 'https://polycivic.com/elections/united-states/2026/governor/' + state.lower().replace(' ', '-')
         image_url = f'https://polycivic.com/assets/social/governor-2026/{code}.png'
         page = re.sub(r'<title>.*?</title>', f'<title>{escape(title)}</title>', template, count=1)
         for name, value in [('description', description), ('og:title', title), ('og:description', description), ('og:url', url)]:
