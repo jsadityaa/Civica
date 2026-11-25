@@ -1113,7 +1113,7 @@ function renderSummary(result) {
 }
 
 async function renderStateResultPage() {
-  const params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(window.POLYCIVIC_ROUTE_PARAMS || window.location.search);
   const name = params.get("name");
   const title = document.getElementById("detail-title");
 

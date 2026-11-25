@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="/" />
+  <script src="./election-routes.js?v=20261124-clean-urls"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026 Senate Precinct Maps | Polycivic</title>
+  <meta name="description" content="Explore 2026 U.S. Senate precinct returns on statewide maps of Georgia, South Carolina, Nebraska, North Carolina, Michigan, and Ohio." />
+  <link rel="canonical" href="https://polycivic.com/united-states/2026/senate/precinct-maps" />
+  <link rel="icon" type="image/png" href="./favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script>(() => { try { if (localStorage.getItem('datahub-theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); if (localStorage.getItem('datahub-dyslexic-ui') === 'true') document.documentElement.setAttribute('data-dyslexic', 'true'); } catch (e) {} })();</script>
+  <link rel="stylesheet" href="./styles.css?v=20260909-no-outer-election-panels-1" />
+  <link rel="stylesheet" href="./precinct-map-2026.css?v=20261112-states" />
+  <link rel="stylesheet" href="./precinct-results-2026.css?v=20261112-nebraska" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/topojson-client@3"></script>
+</head>
+<body class="results-2026-page">
+  <header class="global-header"><div class="global-header-inner">
+    <a href="/" class="brand" aria-label="Polycivic home">Polycivic</a>
+    <nav class="global-nav" aria-label="Main navigation">
+      <a href="/" class="global-nav-link">Features</a><a href="/elections" class="global-nav-link active">Elections</a><a href="/forecasts" class="global-nav-link">Forecasts</a>
+      <div class="global-nav-dropdown"><a href="/#our-mission" class="global-nav-link">About Us</a><div class="global-nav-dropdown-menu"><a href="/our-mission" class="global-nav-dropdown-link">Our vision</a><a href="/our-team" class="global-nav-dropdown-link">Our team</a></div></div>
+      <a href="/settings" class="global-nav-link">Settings</a>
+    </nav>
+    <div class="account-ui" aria-label="Account controls"><button class="login-button" type="button">Log In</button><button class="account-button" type="button" aria-label="Account"><span class="account-avatar">A</span><span class="account-label">Account</span></button></div>
+  </div></header>
+  <div class="site-shell">
+    <div class="election-package-header">
+      <div class="election-year-strip" aria-label="2026 general election"><span class="year-block red">2</span><span class="year-block blue">0</span><span class="year-block red">2</span><span class="year-block blue">6</span></div>
+      <nav class="election-package-nav" aria-label="2026 election pages">
+        <a href="/united-states/2026/house-of-reps" class="election-package-link">House of Representatives</a>
+        <a href="/united-states/2026/senate" class="election-package-link">Senate</a>
+        <a href="/united-states/2026/governor" class="election-package-link">Governor</a>
+        <a href="/united-states/2026/states" class="election-package-link">State Results</a>
+        <a href="/united-states/2026/senate/precinct-maps" class="election-package-link active" aria-current="page">Precinct Map</a>
+      </nav>
+    </div>
+    <header class="site-header"><h1>2026 Senate Precinct Maps</h1></header>
+    <main>
+      <section class="precinct-map-region" data-state="Georgia" aria-labelledby="georgia-precinct-heading">
+        <h2 id="georgia-precinct-heading">Georgia</h2>
+        <div class="precinct-gradient-legend" role="group" aria-label="Precinct color legend">
+          <div class="precinct-legend-candidates" aria-label="Georgia U.S. Senate election candidates">
+            <div class="precinct-legend-candidate">
+              <img src="./assets/candidates/2026/65866.jpg" alt="Jon Ossoff" width="44" height="44" />
+              <div><strong>Jon Ossoff</strong><span class="precinct-legend-party dem">Democrat</span></div>
+            </div>
+            <div class="precinct-legend-candidate rep">
+              <img src="./assets/candidates/2026/63367.jpg" alt="Mike Collins" width="44" height="44" />
+              <div><strong>Mike Collins</strong><span class="precinct-legend-party rep">Republican</span></div>
+            </div>
+          </div>
+          <div class="precinct-gradient-labels"><span>More Democratic</span><span>Evenly split</span><span>More Republican</span></div>
+          <div class="precinct-gradient-bar" role="img" aria-label="Blue for a more Democratic vote share blends through purple at an even split to red for a more Republican vote share"></div>
+          <p>Darker shading means more votes cast per square mile.</p>
+          <p class="precinct-coverage" hidden></p>
+        </div>
+        <div class="precinct-map-shell">
+          <div class="precinct-map-controls" role="group" aria-label="Georgia map zoom controls"><button type="button" data-zoom="in" aria-label="Zoom in" disabled>+</button><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="reset" disabled>Reset</button><output aria-label="Zoom level">100%</output></div>
+          <p class="precinct-loading" role="status">Loading Georgia’s precinct boundaries…</p>
+          <svg id="georgia-precinct-map" class="precinct-map" role="img" tabindex="0" aria-label="2026 Georgia U.S. Senate precinct map" hidden></svg>
+        </div>
+        <div class="precinct-tooltip" role="tooltip" hidden></div>
+      </section>
+      <section class="precinct-map-region" data-state="South Carolina" aria-labelledby="south-carolina-precinct-heading">
+        <h2 id="south-carolina-precinct-heading">South Carolina</h2>
+        <div class="precinct-gradient-legend" role="group" aria-label="Precinct color legend">
+          <div class="precinct-legend-candidates" aria-label="South Carolina U.S. Senate election candidates">
+            <div class="precinct-legend-candidate">
+              <img src="./assets/candidates/2026/70916.png" alt="Annie Andrews" width="44" height="44" />
+              <div><strong>Annie Andrews</strong><span class="precinct-legend-party dem">Democrat</span></div>
+            </div>
+            <div class="precinct-legend-candidate rep">
+              <img src="./assets/candidates/2026/178208.jpg" alt="Darline Graham" width="44" height="44" />
+              <div><strong>Darline Graham</strong><span class="precinct-legend-party rep">Republican</span></div>
+            </div>
+          </div>
+          <div class="precinct-gradient-labels"><span>More Democratic</span><span>Evenly split</span><span>More Republican</span></div>
+          <div class="precinct-gradient-bar" role="img" aria-label="Blue for a more Democratic vote share blends through purple at an even split to red for a more Republican vote share"></div>
+          <p>Darker shading means more votes cast per square mile.</p>
+          <p class="precinct-coverage" hidden></p>
+        </div>
+        <div class="precinct-map-shell">
+          <div class="precinct-map-controls" role="group" aria-label="South Carolina map zoom controls"><button type="button" data-zoom="in" aria-label="Zoom in" disabled>+</button><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="reset" disabled>Reset</button><output aria-label="Zoom level">100%</output></div>
+          <p class="precinct-loading" role="status">Loading South Carolina’s precinct boundaries…</p>
+          <svg id="south-carolina-precinct-map" class="precinct-map" role="img" tabindex="0" aria-label="2026 South Carolina U.S. Senate precinct map" hidden></svg>
+        </div>
+        <div class="precinct-tooltip" role="tooltip" hidden></div>
+      </section>
+      <section class="precinct-map-region" data-state="Nebraska" aria-labelledby="nebraska-precinct-heading">
+        <h2 id="nebraska-precinct-heading">Nebraska</h2>
+        <div class="precinct-gradient-legend" role="group" aria-label="Precinct color legend">
+          <div class="precinct-legend-candidates" aria-label="Nebraska U.S. Senate election candidates">
+            <div class="precinct-legend-candidate">
+              <img src="./assets/candidates/2026/51566.jpg" alt="Pete Ricketts" width="44" height="44" />
+              <div><strong>Pete Ricketts</strong><span class="precinct-legend-party rep">Republican</span></div>
+            </div>
+            <div class="precinct-legend-candidate end">
+              <img src="./assets/candidates/2026/168007.jpg" alt="Dan Osborn" width="44" height="44" />
+              <div><strong>Dan Osborn</strong><span class="precinct-legend-party ind">Independent</span></div>
+            </div>
+          </div>
+          <div class="precinct-gradient-labels"><span>More Republican</span><span>Evenly split</span><span>More Independent</span></div>
+          <div class="precinct-gradient-bar" role="img" aria-label="Red for a larger Ricketts share, muted orange for an even split, and gold for a larger Osborn share"></div>
+          <p>Color compares the votes for Ricketts and Osborn. Darker shading means more votes cast per square mile.</p>
+          <p class="precinct-coverage" hidden></p>
+        </div>
+        <div class="precinct-map-shell">
+          <div class="precinct-map-controls" role="group" aria-label="Nebraska map zoom controls"><button type="button" data-zoom="in" aria-label="Zoom in" disabled>+</button><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="reset" disabled>Reset</button><output aria-label="Zoom level">100%</output></div>
+          <p class="precinct-loading" role="status">Loading Nebraska’s precinct boundaries…</p>
+          <svg id="nebraska-precinct-map" class="precinct-map" role="img" tabindex="0" aria-label="2026 Nebraska U.S. Senate precinct map" hidden></svg>
+        </div>
+        <div class="precinct-tooltip" role="tooltip" hidden></div>
+      </section>
+      <section class="precinct-map-region" data-state="North Carolina" aria-labelledby="north-carolina-precinct-heading">
+        <h2 id="north-carolina-precinct-heading">North Carolina</h2>
+        <div class="precinct-gradient-legend" role="group" aria-label="Precinct color legend">
+          <div class="precinct-legend-candidates" aria-label="North Carolina U.S. Senate election candidates">
+            <div class="precinct-legend-candidate">
+              <img src="./assets/candidates/2026/34471.jpg" alt="Roy Cooper" width="44" height="44" />
+              <div><strong>Roy Cooper</strong><span class="precinct-legend-party dem">Democrat</span></div>
+            </div>
+            <div class="precinct-legend-candidate rep">
+              <img src="./assets/candidates/2026/169297.jpg" alt="Michael Whatley" width="44" height="44" />
+              <div><strong>Michael Whatley</strong><span class="precinct-legend-party rep">Republican</span></div>
+            </div>
+          </div>
+          <div class="precinct-gradient-labels"><span>More Democratic</span><span>Evenly split</span><span>More Republican</span></div>
+          <div class="precinct-gradient-bar" role="img" aria-label="Blue for a more Democratic vote share blends through purple at an even split to red for a more Republican vote share"></div>
+          <p>Darker shading means more votes cast per square mile.</p>
+          <p class="precinct-coverage" hidden></p>
+        </div>
+        <div class="precinct-map-shell">
+          <div class="precinct-map-controls" role="group" aria-label="North Carolina map zoom controls"><button type="button" data-zoom="in" aria-label="Zoom in" disabled>+</button><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="reset" disabled>Reset</button><output aria-label="Zoom level">100%</output></div>
+          <p class="precinct-loading" role="status">Loading North Carolina’s precinct boundaries…</p>
+          <svg id="north-carolina-precinct-map" class="precinct-map" role="img" tabindex="0" aria-label="2026 North Carolina U.S. Senate precinct map" hidden></svg>
+        </div>
+        <div class="precinct-tooltip" role="tooltip" hidden></div>
+      </section>
+      <section class="precinct-map-region" data-state="Michigan" aria-labelledby="michigan-precinct-heading">
+        <h2 id="michigan-precinct-heading">Michigan</h2>
+        <div class="precinct-gradient-legend" role="group" aria-label="Precinct color legend">
+          <div class="precinct-legend-candidates" aria-label="Michigan U.S. Senate election candidates">
+            <div class="precinct-legend-candidate">
+              <img src="./assets/candidates/2026/67151.jpg" alt="Abdul El-Sayed" width="44" height="44" />
+              <div><strong>Abdul El-Sayed</strong><span class="precinct-legend-party dem">Democrat</span></div>
+            </div>
+            <div class="precinct-legend-candidate rep">
+              <img src="./assets/candidates/2026/mike-rogers-mi.jpg" alt="Mike Rogers" width="44" height="44" />
+              <div><strong>Mike Rogers</strong><span class="precinct-legend-party rep">Republican</span></div>
+            </div>
+          </div>
+          <div class="precinct-gradient-labels"><span>More Democratic</span><span>Evenly split</span><span>More Republican</span></div>
+          <div class="precinct-gradient-bar" role="img" aria-label="Blue for a more Democratic vote share blends through purple at an even split to red for a more Republican vote share"></div>
+          <p>Darker shading means more votes cast per square mile.</p>
+          <p class="precinct-coverage" hidden></p>
+        </div>
+        <div class="precinct-map-shell">
+          <div class="precinct-map-controls" role="group" aria-label="Michigan map zoom controls"><button type="button" data-zoom="in" aria-label="Zoom in" disabled>+</button><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="reset" disabled>Reset</button><output aria-label="Zoom level">100%</output></div>
+          <p class="precinct-loading" role="status">Loading Michigan’s precinct boundaries…</p>
+          <svg id="michigan-precinct-map" class="precinct-map" role="img" tabindex="0" aria-label="2026 Michigan U.S. Senate precinct map" hidden></svg>
+        </div>
+        <div class="precinct-tooltip" role="tooltip" hidden></div>
+      </section>
+      <section class="precinct-map-region" data-state="Texas" aria-labelledby="texas-precinct-heading">
+        <h2 id="texas-precinct-heading">Texas</h2>
+        <div class="precinct-gradient-legend" role="group" aria-label="Precinct color legend">
+          <div class="precinct-legend-candidates" aria-label="Texas U.S. Senate election candidates">
+            <div class="precinct-legend-candidate">
+              <img src="./assets/candidates/2026/153037.jpg" alt="James Talarico" width="44" height="44" />
+              <div><strong>James Talarico</strong><span class="precinct-legend-party dem">Democrat</span></div>
+            </div>
+            <div class="precinct-legend-candidate rep">
+              <img src="./assets/candidates/2026/58352.jpg" alt="Ken Paxton" width="44" height="44" />
+              <div><strong>Ken Paxton</strong><span class="precinct-legend-party rep">Republican</span></div>
+            </div>
+          </div>
+          <div class="precinct-gradient-labels"><span>More Democratic</span><span>Evenly split</span><span>More Republican</span></div>
+          <div class="precinct-gradient-bar" role="img" aria-label="Blue for a more Democratic vote share blends through purple at an even split to red for a more Republican vote share"></div>
+          <p>Darker shading means more votes cast per square mile.</p>
+          <p class="precinct-coverage" hidden></p>
+        </div>
+        <div class="precinct-map-shell">
+          <div class="precinct-map-controls" role="group" aria-label="Texas map zoom controls"><button type="button" data-zoom="in" aria-label="Zoom in" disabled>+</button><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="reset" disabled>Reset</button><output aria-label="Zoom level">100%</output></div>
+          <p class="precinct-loading" role="status">Loading Texas’s precinct boundaries…</p>
+          <svg id="texas-precinct-map" class="precinct-map" role="img" tabindex="0" aria-label="2026 Texas U.S. Senate precinct map" hidden></svg>
+        </div>
+        <div class="precinct-tooltip" role="tooltip" hidden></div>
+      </section>
+      <section class="precinct-map-region" data-state="Florida" aria-labelledby="florida-precinct-heading">
+        <h2 id="florida-precinct-heading">Florida</h2>
+        <div class="precinct-gradient-legend" role="group" aria-label="Precinct color legend">
+          <div class="precinct-legend-candidates" aria-label="Florida U.S. Senate special election candidates">
+            <div class="precinct-legend-candidate">
+              <img src="./assets/candidates/2026/110984.jpg" alt="Angie Nixon" width="44" height="44" />
+              <div><strong>Angie Nixon</strong><span class="precinct-legend-party dem">Democrat</span></div>
+            </div>
+            <div class="precinct-legend-candidate rep">
+              <img src="./assets/candidates/2026/109657.jpg" alt="Ashley Moody" width="44" height="44" />
+              <div><strong>Ashley Moody</strong><span class="precinct-legend-party rep">Republican</span></div>
+            </div>
+          </div>
+          <div class="precinct-gradient-labels"><span>More Democratic</span><span>Evenly split</span><span>More Republican</span></div>
+          <div class="precinct-gradient-bar" role="img" aria-label="Blue for a more Democratic vote share blends through purple at an even split to red for a more Republican vote share"></div>
+          <p>Darker shading means more votes cast per square mile.</p>
+          <p class="precinct-coverage" hidden></p>
+        </div>
+        <div class="precinct-map-shell">
+          <div class="precinct-map-controls" role="group" aria-label="Florida map zoom controls"><button type="button" data-zoom="in" aria-label="Zoom in" disabled>+</button><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="reset" disabled>Reset</button><output aria-label="Zoom level">100%</output></div>
+          <p class="precinct-loading" role="status">Loading Florida’s precinct boundaries…</p>
+          <svg id="florida-precinct-map" class="precinct-map" role="img" tabindex="0" aria-label="2026 Florida U.S. Senate special election precinct map" hidden></svg>
+        </div>
+        <div class="precinct-tooltip" role="tooltip" hidden></div>
+      </section>
+      <section class="precinct-map-region" data-state="Virginia" aria-labelledby="virginia-precinct-heading">
+        <h2 id="virginia-precinct-heading">Virginia</h2>
+        <div class="precinct-gradient-legend" role="group" aria-label="Precinct color legend">
+          <div class="precinct-legend-candidates" aria-label="Virginia U.S. Senate candidates">
+            <div class="precinct-legend-candidate">
+              <img src="./assets/candidates/2026/1782.jpg" alt="Mark Warner" width="44" height="44" />
+              <div><strong>Mark Warner</strong><span class="precinct-legend-party dem">Democrat</span></div>
+            </div>
+            <div class="precinct-legend-candidate rep">
+              <img src="./assets/candidates/2026/174928.jpg" alt="Bert Mizusawa" width="44" height="44" />
+              <div><strong>Bert Mizusawa</strong><span class="precinct-legend-party rep">Republican</span></div>
+            </div>
+          </div>
+          <div class="precinct-gradient-labels"><span>More Democratic</span><span>Evenly split</span><span>More Republican</span></div>
+          <div class="precinct-gradient-bar" role="img" aria-label="Blue for a more Democratic vote share blends through purple at an even split to red for a more Republican vote share"></div>
+          <p>Darker shading means more votes cast per square mile.</p>
+          <p class="precinct-coverage" hidden></p>
+        </div>
+        <div class="precinct-map-shell">
+          <div class="precinct-map-controls" role="group" aria-label="Virginia map zoom controls"><button type="button" data-zoom="in" aria-label="Zoom in" disabled>+</button><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="reset" disabled>Reset</button><output aria-label="Zoom level">100%</output></div>
+          <p class="precinct-loading" role="status">Loading Virginia’s precinct boundaries…</p>
+          <svg id="virginia-precinct-map" class="precinct-map" role="img" tabindex="0" aria-label="2026 Virginia U.S. Senate precinct map" hidden></svg>
+        </div>
+        <div class="precinct-tooltip" role="tooltip" hidden></div>
+      </section>
+      <section class="precinct-map-region" data-state="Ohio" aria-labelledby="ohio-precinct-heading">
+        <h2 id="ohio-precinct-heading">Ohio</h2>
+        <div class="precinct-gradient-legend" role="group" aria-label="Precinct color legend">
+          <div class="precinct-legend-candidates" aria-label="Ohio U.S. Senate special election candidates">
+            <div class="precinct-legend-candidate">
+              <img src="./assets/candidates/sherrod-brown.jpg" alt="Sherrod Brown" width="44" height="44" />
+              <div><strong>Sherrod Brown</strong><span class="precinct-legend-party dem">Democrat</span></div>
+            </div>
+            <div class="precinct-legend-candidate rep">
+              <img src="./assets/candidates/jon-husted.jpg" alt="Jon Husted" width="44" height="44" />
+              <div><strong>Jon Husted</strong><span class="precinct-legend-party rep">Republican</span></div>
+            </div>
+          </div>
+          <div class="precinct-gradient-labels"><span>More Democratic</span><span>Evenly split</span><span>More Republican</span></div>
+          <div class="precinct-gradient-bar" role="img" aria-label="Blue for a more Democratic vote share blends through purple at an even split to red for a more Republican vote share"></div>
+          <p>Darker shading means more votes cast per square mile.</p>
+          <p class="precinct-coverage" hidden></p>
+        </div>
+        <div class="precinct-map-shell">
+          <div class="precinct-map-controls" role="group" aria-label="Ohio map zoom controls"><button type="button" data-zoom="in" aria-label="Zoom in" disabled>+</button><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="reset" disabled>Reset</button><output aria-label="Zoom level">100%</output></div>
+          <p class="precinct-loading" role="status">Loading Ohio’s precinct boundaries…</p>
+          <svg id="ohio-precinct-map" class="precinct-map" role="img" tabindex="0" aria-label="2026 Ohio U.S. Senate precinct map" hidden></svg>
+        </div>
+        <div class="precinct-tooltip" role="tooltip" hidden></div>
+      </section>
+      <section class="precinct-map-region" data-state="Iowa" aria-labelledby="iowa-precinct-heading">
+        <h2 id="iowa-precinct-heading">Iowa</h2>
+        <div class="precinct-gradient-legend" role="group" aria-label="Precinct color legend">
+          <div class="precinct-legend-candidates" aria-label="Iowa U.S. Senate candidates">
+            <div class="precinct-legend-candidate">
+              <img src="./assets/candidates/2026/114917.webp" alt="Josh Turek" width="44" height="44" />
+              <div><strong>Josh Turek</strong><span class="precinct-legend-party dem">Democrat</span></div>
+            </div>
+            <div class="precinct-legend-candidate rep">
+              <img src="./assets/candidates/2026/68744.jpg" alt="Ashley Hinson" width="44" height="44" />
+              <div><strong>Ashley Hinson</strong><span class="precinct-legend-party rep">Republican</span></div>
+            </div>
+          </div>
+          <div class="precinct-gradient-labels"><span>More Democratic</span><span>Evenly split</span><span>More Republican</span></div>
+          <div class="precinct-gradient-bar" role="img" aria-label="Blue for a more Democratic vote share blends through purple at an even split to red for a more Republican vote share"></div>
+          <p>Darker shading means more votes cast per square mile.</p>
+          <p class="precinct-coverage" hidden></p>
+        </div>
+        <div class="precinct-map-shell">
+          <div class="precinct-map-controls" role="group" aria-label="Iowa map zoom controls"><button type="button" data-zoom="in" aria-label="Zoom in" disabled>+</button><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="reset" disabled>Reset</button><output aria-label="Zoom level">100%</output></div>
+          <p class="precinct-loading" role="status">Loading Iowa’s precinct boundaries…</p>
+          <svg id="iowa-precinct-map" class="precinct-map" role="img" tabindex="0" aria-label="2026 Iowa U.S. Senate precinct map" hidden></svg>
+        </div>
+        <div class="precinct-tooltip" role="tooltip" hidden></div>
+      </section>
+      <section class="precinct-map-region" data-state="Alaska" aria-labelledby="alaska-precinct-heading">
+        <h2 id="alaska-precinct-heading">Alaska</h2>
+        <div class="precinct-gradient-legend" role="group" aria-label="Precinct color legend">
+          <div class="precinct-legend-candidates" aria-label="Alaska U.S. Senate candidates">
+            <div class="precinct-legend-candidate">
+              <img src="./assets/candidates/2026/70718.jpg" alt="Mary Peltola" width="44" height="44" />
+              <div><strong>Mary Peltola</strong><span class="precinct-legend-party dem">Democrat</span></div>
+            </div>
+            <div class="precinct-legend-candidate rep">
+              <img src="./assets/candidates/2026/dan-sullivan.jpg" alt="Dan Sullivan" width="44" height="44" />
+              <div><strong>Dan Sullivan</strong><span class="precinct-legend-party rep">Republican</span></div>
+            </div>
+          </div>
+          <div class="precinct-gradient-labels"><span>More Peltola</span><span>Evenly split</span><span>More Sullivan</span></div>
+          <div class="precinct-gradient-bar" role="img" aria-label="Blue for a higher Peltola first-choice vote share blends through purple at an even split to red for a higher Dan S. Sullivan first-choice vote share"></div>
+          <p>Darker shading means more votes cast per square mile.</p>
+          <p class="precinct-coverage" hidden></p>
+        </div>
+        <div class="precinct-map-shell">
+          <div class="precinct-map-controls" role="group" aria-label="Alaska map zoom controls"><button type="button" data-zoom="in" aria-label="Zoom in" disabled>+</button><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="reset" disabled>Reset</button><output aria-label="Zoom level">100%</output></div>
+          <p class="precinct-loading" role="status">Loading Alaska’s precinct boundaries…</p>
+          <svg id="alaska-precinct-map" class="precinct-map" role="img" tabindex="0" aria-label="2026 Alaska U.S. Senate precinct map" hidden></svg>
+        </div>
+        <div class="precinct-tooltip" role="tooltip" hidden></div>
+      </section>
+    </main>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="./auth-config.js?v=20261011-polycivic-auth-domain-2"></script><script src="./auth.js?v=20261011-mobile-redirect-3"></script><script src="./nav-dropdown.js?v=20261104-election-year"></script>
+  <script src="./midterms-2026-states.js"></script>
+  <script src="./georgia-precinct-results-2026-data.js?v=20261112-coverage"></script>
+  <script src="./south-carolina-precinct-results-2026-data.js?v=20261116-coverage-audit"></script>
+  <script src="./nebraska-precinct-results-2026-data.js?v=20261112-complete"></script>
+  <script src="./north-carolina-precinct-results-2026-data.js?v=20261114-precinct-refresh"></script>
+  <script src="./michigan-precinct-results-2026-data.js?v=20261116-precinct-refresh"></script>
+  <script src="./texas-precinct-results-2026-data.js?v=20261116-texas-returns"></script>
+  <script src="./florida-precinct-results-2026-data.js?v=20261114-precinct-refresh"></script>
+  <script src="./virginia-precinct-results-2026-data.js?v=20261116-coverage-audit"></script>
+  <script src="./ohio-precinct-results-2026-data.js"></script>
+  <script src="./ohio-precinct-expansion-2026-data.js?v=20261114-precinct-refresh"></script>
+  <script src="./ohio-unfilled-precincts.js"></script>
+  <script src="./ohio-city-labels.js"></script>
+  <script src="./iowa-precinct-results-2026-data.js?v=20261116-coverage-audit"></script>
+  <script src="./alaska-precinct-results-2026-data.js?v=20261116-city-labels"></script>
+  <script src="./precinct-streets-2026.js?v=20261113-iowa-alaska"></script>
+  <script src="./precinct-map-2026.js?v=20261118-coverage-counts"></script>
+</body>
+</html>

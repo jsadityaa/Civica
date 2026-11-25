@@ -37,7 +37,7 @@ const governorStateFipsByName = {
 };
 
 function getGovernorStateName() {
-  const params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(window.POLYCIVIC_ROUTE_PARAMS || window.location.search);
   const queryState = params.get("name");
   if (queryState) return queryState;
 

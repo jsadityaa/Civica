@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="./election-routes.js?v=20261124-clean-urls"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="View the 2026 U.S. House election results, candidate vote totals, and district map for Washington District 5 on Polycivic." />
+  <link rel="canonical" href="https://polycivic.com/united-states/2026/house-of-reps/washington-5" />
+  <meta property="og:site_name" content="Polycivic" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Washington District 5 U.S. House Election Results 2026 | Polycivic" />
+  <meta property="og:description" content="View the 2026 U.S. House election results, candidate vote totals, and district map for Washington District 5 on Polycivic." />
+  <meta property="og:url" content="https://polycivic.com/united-states/2026/house-of-reps/washington-5" />
+  <meta property="og:image" content="https://polycivic.com/assets/social/house-2026/wa-5.png" />
+  <meta property="og:image:secure_url" content="https://polycivic.com/assets/social/house-2026/wa-5.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:title" content="Washington District 5 U.S. House Election Results 2026 | Polycivic" />
+  <meta name="twitter:description" content="View the 2026 U.S. House election results, candidate vote totals, and district map for Washington District 5 on Polycivic." />
+  <meta name="twitter:image" content="https://polycivic.com/assets/social/house-2026/wa-5.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Washington District 5 U.S. House Election Results 2026 | Polycivic</title>
+  <link rel="icon" type="image/png" href="./favicon.png" />
+  <link rel="shortcut icon" href="./favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="./apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+  <link rel="manifest" href="./site.webmanifest" />
+  <meta name="theme-color" content="#10131b" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/topojson-client@3"></script>
+  <script>(() => { try { const theme = localStorage.getItem('datahub-theme'); if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); if (localStorage.getItem('datahub-dyslexic-ui') === 'true') document.documentElement.setAttribute('data-dyslexic', 'true'); } catch (e) {} })();</script>
+  <link rel="stylesheet" href="./styles.css?v=20261015-massachusetts-card" />
+  <script src="./analytics.js?v=20261011-ga4"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TTQG0NLH31"></script>
+  <link rel="stylesheet" href="./election-results-2026.css?v=20261106-bold-winners" />
+</head>
+<body class="results-2026-page" data-results-office="race" data-race-office="house" data-race-id="48013">
+  <header class="global-header">
+    <div class="global-header-inner">
+      <a href="/" class="brand" aria-label="Polycivic home">Polycivic</a>
+      <nav class="global-nav" aria-label="Main navigation">
+        <a href="/" class="global-nav-link">Features</a>
+        <a href="/elections" class="global-nav-link active">Elections</a>
+        <a href="/forecasts" class="global-nav-link">Forecasts</a>
+        <div class="global-nav-dropdown">
+          <a href="/#our-mission" class="global-nav-link">About Us</a>
+          <div class="global-nav-dropdown-menu">
+            <a href="/our-mission" class="global-nav-dropdown-link">Our vision</a>
+            <a href="/our-team" class="global-nav-dropdown-link">Our team</a>
+          </div>
+        </div>
+        <a href="/settings" class="global-nav-link">Settings</a>
+      </nav>
+      <div class="account-ui" aria-label="Account controls">
+        <button class="login-button" type="button">Log In</button>
+        <button class="account-button" type="button" aria-label="Account">
+          <span class="account-avatar">A</span>
+          <span class="account-label">Account</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="site-shell">
+    <div class="election-package-header">
+      <div class="election-year-strip" aria-label="2026 general election">
+        <span class="year-block red">2</span>
+        <span class="year-block blue">0</span>
+        <span class="year-block red">2</span>
+        <span class="year-block blue">6</span>
+      </div>
+      <nav class="election-package-nav" aria-label="2026 election pages">
+        <a href="/united-states/2026/house-of-reps" class="election-package-link">House of Representatives</a>
+        <a href="/united-states/2026/senate" class="election-package-link">Senate</a>
+        <a href="/united-states/2026/governor" class="election-package-link">Governor</a>
+        <a href="/united-states/2026/states" class="election-package-link active">State Results</a>
+        <a href="/united-states/2026/senate/precinct-maps" class="election-package-link">Precinct Map</a>
+      </nav>
+    </div>
+
+    
+
+    <main class="page-stack state-election-page"><section class="content-panel state-election-hero"><h1 id="results-detail-title">Washington District 5 U.S. House Election Results 2026</h1><nav class="section-nav state-election-jump-nav" id="results-detail-nav" aria-label="Election result sections"></nav></section><div id="results-detail-content"></div></main>
+  </div>
+  <footer id="contact-us" class="civica-homepage__footer">
+      <div class="civica-homepage__footer-inner">
+        <div class="civica-homepage__footer-bottom">
+          <div class="civica-homepage__footer-meta">
+            <p class="civica-homepage__footer-brand">polycivic.com</p>
+            <nav class="civica-homepage__footer-nav" aria-label="Footer navigation">
+              <a href="/contact">Contact Us</a>
+              <a href="/our-mission">Our Vision</a>
+              <a href="/our-team">Our Team</a>
+              <a href="/forum">Blog</a>
+            </nav>
+            <p class="civica-homepage__footer-legal">
+              <a href="/terms">Terms</a>
+              <span>&bull;</span>
+              <a href="/privacy">Privacy Policy</a>
+            </p>
+          </div>
+          <p class="civica-homepage__footer-copy">&copy; 2026 Polycivic. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="./auth-config.js?v=20261011-polycivic-auth-domain-2"></script>
+  <script src="./auth.js?v=20261011-mobile-redirect-3"></script>
+  <script src="./nav-dropdown.js?v=20261104-election-year"></script>
+  <script src="./midterms-2026-results-data.js?v=20261104-results"></script>
+  <script src="./midterms-2026-states.js"></script>
+  <script src="./house-2026-geojson.js"></script>
+  <script src="./county-results-2026-data.js?v=20261107-official-house-counties"></script>
+  <script src="./county-geography-2026.js"></script>
+  <script src="./house-town-geojson.js"></script>
+  <script src="./district-county-geography-2026.js?v=20261106-census-counties"></script>
+  <script src="./state-city-labels.js?v=20261016-city-labels"></script>
+  <script src="./house-candidate-images.js"></script>
+  <script src="./senate-2024-data.js?v=20261008-senate-candidate-images"></script>
+  <script src="./governor-2024-data.js"></script>
+  <script src="./county-maps-2026.js?v=20261107-official-house-counties"></script>
+  <script src="./candidate-portraits-2026.js?v=20261106-all-candidates"></script>
+  <script src="./race-candidates-2026-data.js?v=20261106-all-candidates"></script>
+  <script src="./election-results-2026.js?v=20261124-clean-routes"></script>
+  <script src="./results-2026-refresh.js?v=20261104-five-minutes"></script>
+</body>
+</html>

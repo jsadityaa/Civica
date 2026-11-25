@@ -1423,7 +1423,7 @@ function renderSummary(record) {
 }
 
 async function renderSenateStatePage() {
-  const params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(window.POLYCIVIC_ROUTE_PARAMS || window.location.search);
   const rawName = params.get("name");
   const name = canonicalizeSenateStateName(rawName);
   const seatType = params.get("seat") || "Regular";

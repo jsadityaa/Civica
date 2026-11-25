@@ -17,9 +17,12 @@
   const isSpecial = race => race.office === "S" && ["FL", "OH"].includes(race.state);
   const title = race => `${race.stateName}${race.office === "H" ? ` ${Number(race.seatNumber)}` : isSpecial(race) ? " (Special)" : ""}`;
   const keyOf = race => `${race.state}-${Number(race.seatNumber)}`;
-  const href = race => race.office === "S"
+  const legacyRaceHref = race => race.office === "S"
     ? `./senate-2026-${race.state.toLowerCase()}-results.html`
-    : `./race-result-2026.html?office=${race.office === "G" ? "governor" : "house"}&id=${encodeURIComponent(race.id)}`;
+    : race.office === "H"
+      ? `./house-2026-${race.state.toLowerCase()}-${Number(race.seatNumber)}-results.html`
+      : `./race-result-2026.html?office=governor&id=${encodeURIComponent(race.id)}`;
+  const href = race => window.polycivicElectionHref(legacyRaceHref(race));
   const stateHref = state => `./state-election-results-2026.html?name=${encodeURIComponent(state)}`;
   const margin = race => {
     const list = candidates(race);
@@ -216,7 +219,7 @@
     return `<section class="content-panel state-election-section" id="state-election-${key}-${index}"><div class="panel-heading"><h2>${esc(offices[key])}${isSpecial(race) ? " Special Election" : race.office === "H" ? ` · District ${Number(race.seatNumber)}` : ""}</h2></div><div class="state-election-two-column"><section class="detail-map-card state-election-map-card"><div class="detail-map-head"><h3>${race.office === "H" ? "District Map" : "State Map"}</h3></div><div class="detail-map-canvas state-election-map-canvas"><svg id="detail-map-${race.id}" viewBox="0 0 540 520" preserveAspectRatio="xMidYMid meet"></svg></div></section><section class="state-election-result-card winner-${tone(p)}" style="background:${p ? colors[p] : "#777e8b"}"><h3>${esc(titleText)}</h3><div class="state-election-stats"><div><span>Margin</span><strong>${marginLabel(race)}</strong></div><div><span>Total Votes</span><strong>${number(race.candidates.reduce((sum, c) => sum + c.votes, 0))}</strong></div></div><div class="detail-vote-table-wrap"><table class="detail-vote-table"><thead><tr><th>Candidate</th><th>Party</th><th>Votes</th><th>Pct.</th></tr></thead><tbody>${candidateRows(race)}</tbody></table></div>${office === "state" ? `<a class="state-election-detail-button" href="${href(race)}">See results in detail &gt;</a>` : ""}</section></div></section>`;
   }
   function details() {
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(window.POLYCIVIC_ROUTE_PARAMS || window.location.search);
     const requestedOffice = document.body.dataset.raceOffice || params.get("office");
     const requestedRace = document.body.dataset.raceId || params.get("id");
     let selected = [];
@@ -224,7 +227,7 @@
     else if (office === "state") for (const key of ["senate", "governor", "house"]) selected.push(...rows(key).filter(r => r.stateName === (params.get("name") || "Alabama")).sort((a, b) => Number(a.seatNumber) - Number(b.seatNumber)).map(r => [key, r]));
     const content = document.getElementById("results-detail-content"), heading = document.getElementById("results-detail-title");
     if (!selected.length) { heading.textContent = "Results not found"; content.innerHTML = '<p>Select a state from <a href="./state-results-2026.html">State Results</a>.</p>'; return; }
-    if (office === "race" && requestedOffice === "senate" && !document.body.dataset.raceId) {
+    if (office === "race" && ["senate", "house"].includes(requestedOffice) && !document.body.dataset.raceId) {
       window.location.replace(href(selected[0][1]) + window.location.hash);
       return;
     }

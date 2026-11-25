@@ -290,7 +290,7 @@ if (governorData && document.getElementById("governor-election-map")) {
         })
         .on("click", (event, feature) => {
           if (raceLookup.has(feature.properties.name)) {
-            window.location.href = governorCountyHref(feature.properties.name);
+            window.location.href = window.polycivicElectionHref(governorCountyHref(feature.properties.name));
           }
         });
 

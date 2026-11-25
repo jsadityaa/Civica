@@ -1141,7 +1141,7 @@
   ]
   };
 
-  const stateName = new URLSearchParams(window.location.search).get("name") || "Alabama";
+  const stateName = new URLSearchParams(window.POLYCIVIC_ROUTE_PARAMS || window.location.search).get("name") || "Alabama";
   const section = document.getElementById("state-election-ballot-measures");
   const jump = document.getElementById("state-election-ballot-measures-jump");
   const measures = measuresByState[stateName] || [];

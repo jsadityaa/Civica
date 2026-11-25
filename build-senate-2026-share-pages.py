@@ -61,9 +61,8 @@ def build(thumbnails_zip=None):
         width, height = struct.unpack(">II", image_bytes[16:24])
         title = f"{state} U.S. Senate {'Special Election' if code in {'fl', 'oh'} else 'Election'} Results 2026 | Polycivic"
         description = f"View {state}’s 2026 U.S. Senate election results, candidate vote totals, and county map on Polycivic."
-        url = f"https://polycivic.com/{filename}"
+        url = f"https://polycivic.com/united-states/2026/senate/{state.lower().replace(chr(32), chr(45))}"
         image_url = f"https://polycivic.com/assets/social/senate-2026/{code}.png"
-        alt = f"Polycivic 2026 {state} Senate Results with the state silhouette on a blue-to-red gradient."
         page = template
         page = re.sub(r'<title>.*?</title>', f'<title>{escape(title)}</title>', page, count=1)
         for name, value in (
@@ -83,11 +82,9 @@ def build(thumbnails_zip=None):
             f'  <meta property="og:image:type" content="image/png" />\n'
             f'  <meta property="og:image:width" content="{width}" />\n'
             f'  <meta property="og:image:height" content="{height}" />\n'
-            f'  <meta property="og:image:alt" content="{escape(alt)}" />\n'
             f'  <meta name="twitter:title" content="{escape(title)}" />\n'
             f'  <meta name="twitter:description" content="{escape(description)}" />\n'
             f'  <meta name="twitter:image" content="{image_url}" />\n'
-            f'  <meta name="twitter:image:alt" content="{escape(alt)}" />\n'
         )
         page = page.replace('  <meta name="twitter:card"', preview + '  <meta name="twitter:card"', 1)
         page = page.replace('data-results-office="race"', f'data-results-office="race" data-race-office="senate" data-race-id="{escape(race["id"])}"', 1)

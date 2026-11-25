@@ -1598,7 +1598,7 @@ async function stateElectionFetchGovernorRegionRows(stateName) {
 }
 
 async function stateElectionInit() {
-  const params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(window.POLYCIVIC_ROUTE_PARAMS || window.location.search);
   const stateName = params.get("name") || "Alabama";
   const regionLabel = stateElectionRegionLabel(stateName);
   const regionLabelPlural = stateElectionRegionLabelPlural(stateName);

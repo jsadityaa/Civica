@@ -2652,7 +2652,7 @@ if (houseDetailDataBundle && houseDetailGeojson && document.getElementById("hous
   }
 
   const districts = normalizeDistricts();
-  const params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(window.POLYCIVIC_ROUTE_PARAMS || window.location.search);
   const code = params.get("code");
   const district = code ? districts[code] : null;
 

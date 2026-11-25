@@ -221,7 +221,7 @@ function fillForStateHubTone(tone) {
 }
 
 function openStateResultsHubState(name) {
-  window.location.href = stateResultsHubLink(name);
+  window.location.href = window.polycivicElectionHref(stateResultsHubLink(name));
 }
 
 function renderStateResultsHubFallbackGrid() {
